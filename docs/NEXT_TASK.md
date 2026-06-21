@@ -1,105 +1,107 @@
 # Current Task
 
-## Phase 2B — Availability-Conditioned Reliability Fusion (ACRF)
+## Phase 2C — Modality-Subset Consistency Distillation (MSCD)
 
-## Research Decision
-Do not stack a generic attention or transformer block onto RA-RepDet. The observed E2 weakness is specific: under synthetic modality loss, the reliability gate can still allocate nonzero alpha to an absent stream. Build and evaluate one lightweight, literature-inspired correction: **Availability-Conditioned Reliability Fusion (ACRF)**.
+## Decision
+E5 ACRF proves exact absent-modality suppression, but it lowers full-modality AP50/AP75 versus E2. Do not add another inference-time fusion block.
 
-ACRF must combine:
-1. **post-stem availability masking**: a stream declared absent must become an exact zero feature after its stem, preventing convolution biases from creating phantom features;
-2. **masked reliability softmax**: absent modalities receive a logit mask before softmax and therefore an alpha of exactly zero;
-3. **availability-conditioned gate input**: append the three-bit modality-availability vector to the gate input.
+Implement one training-only, high-level-method-inspired improvement: **Modality-Subset Consistency Distillation (MSCD)**. It is motivated by masked multimodal representation learning and self-distillation for incomplete modalities, but must be adapted to the current lightweight RepViT-FPN-FCOS detector rather than copied from another architecture.
 
-This is a targeted extension of the project’s existing reliability fusion and modality-dropout training. It is not a copied generic module.
+## Goal
+Improve missing-modality robustness while preserving E2 full-modality quality. Inference architecture, parameter count, and runtime must remain identical to E2.
 
 ## Read First
-- `AGENTS.md`
 - `docs/PROJECT_CONTEXT.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `runs/phase2a_report.md`
-- `runs/missing_modality_summary.md`
-- `rarepdet/tools/eval_missing_modality.py`
+- `runs/acrf_evidence_report.md`
+- existing E2 training and reliability-model source files
 
-## Do Not Modify or Overwrite
-- `runs/E0_early_repvit_fcos_e50`
-- `runs/E1_reliability_repvit_fcos_e50`
-- `runs/E2_reliability_dropout015_repvit_fcos_e50`
+## Frozen Assets
+Do not overwrite or modify E0, E1, E2, or E5 runs.
+
+Do not modify these source files:
 - `rarepdet/train_early_fusion.py`
 - `rarepdet/models/early_fusion_fcos.py`
 - `rarepdet/models/reliability_fusion_fcos.py`
 - `datasets/triair_dataset.py`
 
-Never commit data, weights, npy files, images, grids, or heavy visual output.
+Do not add an inference-time attention block, extra detector head, cross-attention, transformer, reconstruction decoder, or parameterized projection layer.
 
-## Task 1 — Implement ACRF as new files only
-Create:
-- `rarepdet/models/availability_reliability_fusion_fcos.py`
-- `rarepdet/train_availability_fusion.py`
-- `rarepdet/tools/test_availability_fusion.py`
-- `docs/ACRF_DESIGN.md`
+## Method Specification
+Create new files only:
+- `rarepdet/train_mscd.py`
+- `rarepdet/tools/test_mscd.py`
+- `rarepdet/tools/build_mscd_report.py`
+- `docs/MSCD_DESIGN.md`
 
-Requirements:
-- Reuse the existing RepViT-M0.9/FPN/FCOS construction and reliability-stem dimensions as far as possible.
-- The model must accept the same 5-channel input convention: RGB[0:3], Thermal[3:4], Event[4:5].
-- Use a batch-level `availability` tensor of shape `[B,3]` with the order RGB, Thermal, Event.
-- During ordinary full-modality inference, availability is `[1,1,1]`.
-- During modality-dropout training and missing-modality evaluation, use the exact dropout/masking convention already used by the project. For backward compatibility, when no availability tensor is supplied, derive it from exact all-zero modality input only; document this fallback as a synthetic-missing-mode assumption.
-- After each modality stem, multiply features by availability so an absent stream is exactly zero.
-- Before alpha softmax, replace unavailable logits with a very negative value; alpha for unavailable modalities must be numerically <= 1e-7.
-- Return alpha and availability information for analysis without breaking torchvision FCOS train/eval return conventions.
-- Use no cross-attention, no transformer, no additional detector heads, and no model-size increase larger than 0.03M parameters compared with E2.
+### Teacher
+- Frozen E2 checkpoint: `runs/E2_reliability_dropout015_repvit_fcos_e50/weights/best.pt`.
+- Teacher always receives the full 5-channel input.
+- Teacher is `eval()` and fully `no_grad()`.
 
-## Task 2 — Mandatory correctness checks
-`test_availability_fusion.py` must run CPU-safe checks and write `runs/acrf_smoke_test.md`.
+### Student
+- Same inference architecture as E2 reliability fusion.
+- Student receives the existing modality-dropout 0.15 training input.
+- Student must be initialized from the same base/pretrained initialization convention used by E2, not from E5.
+- Do not alter the E2 model source. Use a new training wrapper/script and non-invasive forward hooks or an equivalent wrapper to capture FPN outputs.
 
-Required checks:
-1. Full mode alpha sums to 1 for every sample.
-2. no_rgb: alpha_rgb <= 1e-7 and RGB post-stem feature energy is zero.
-3. no_thermal: alpha_thermal <= 1e-7 and Thermal post-stem feature energy is zero.
-4. no_event: alpha_event <= 1e-7 and Event post-stem feature energy is zero.
-5. Full mode forward works for FCOS training loss and inference output.
-6. Existing E0/E1/E2 source files remain byte-identical; report SHA256 before/after if feasible.
+### Consistency loss
+- Capture corresponding FPN feature maps from teacher and student at P3, P4, and P5.
+- L2-normalize each feature map along channel dimension before comparison.
+- Use smooth L1 or MSE feature consistency loss averaged over P3/P4/P5.
+- Total loss: `L = L_detector + lambda_cons * L_cons`.
+- Use `lambda_cons=0` for epochs 1–5, then linearly ramp to `0.05` by epoch 15 and keep `0.05` thereafter.
+- Full-modality samples must not be removed; modality-dropout masks should use the current E2 convention.
+- The consistency term is training-only and must add zero parameters and zero inference computation.
 
-Do not begin any long training unless all six checks pass.
+## Mandatory Tests
+Before long training, `test_mscd.py` must produce `runs/mscd_smoke_test.md` and pass:
+1. Teacher parameters receive no gradients.
+2. Student parameters receive gradients from detector loss and consistency loss.
+3. Hooks capture matching P3/P4/P5 shapes for teacher and student.
+4. Consistency loss is finite for full and one missing-modality synthetic batch.
+5. Inference output of the student is unchanged in structure relative to E2.
+6. Parameter count of student equals E2 exactly.
+7. Existing E0/E1/E2/E5 source files remain unmodified.
 
-## Task 3 — Single controlled 50-epoch experiment E5
-Only after Task 2 passes, train sequentially:
+Do not start 50-epoch training unless all checks pass.
+
+## Experiment E6
+Train exactly one controlled run:
 
 ```powershell
-python rarepdet/train_availability_fusion.py --data D:\download\triair --train-split D:\download\triair\splits\train.txt --val-split D:\download\triair\splits\val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --out runs/E5_acrf_dropout015_repvit_fcos_e50
+python rarepdet/train_mscd.py --data D:\download\triair --train-split D:\download\triair\splits\train.txt --val-split D:\download\triair\splits\val.txt --teacher-weights runs/E2_reliability_dropout015_repvit_fcos_e50/weights/best.pt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --lambda-cons-max 0.05 --cons-warmup-epochs 5 --cons-ramp-end-epoch 15 --out runs/E6_mscd_dropout015_repvit_fcos_e50
 ```
 
-If CUDA OOM occurs, rerun only with `--batch-size 2` and document the changed batch size.
+If CUDA OOM occurs, rerun only with batch size 2 and document it.
 
-After training, run:
+After training:
 
 ```powershell
-python rarepdet/eval_map.py --model availability_reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights runs/E5_acrf_dropout015_repvit_fcos_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.50 --out runs/E5_acrf_dropout015_repvit_fcos_e50/eval_thr050
-python rarepdet/tools/eval_missing_modality.py --model availability_reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights runs/E5_acrf_dropout015_repvit_fcos_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.05 --out runs/E5_acrf_dropout015_repvit_fcos_e50/missing_modality
-python rarepdet/tools/analyze_alpha_modes.py --model availability_reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights runs/E5_acrf_dropout015_repvit_fcos_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --out runs/E5_acrf_dropout015_repvit_fcos_e50/alpha_modes
+python rarepdet/eval_map.py --model reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights runs/E6_mscd_dropout015_repvit_fcos_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.50 --out runs/E6_mscd_dropout015_repvit_fcos_e50/eval_thr050
+python rarepdet/tools/eval_missing_modality.py --model reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights runs/E6_mscd_dropout015_repvit_fcos_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.05 --out runs/E6_mscd_dropout015_repvit_fcos_e50/missing_modality
 ```
 
-## Task 4 — Evidence report
+## Evidence Report
 Create:
-- `runs/acrf_evidence_summary.csv`
-- `runs/acrf_evidence_report.md`
+- `runs/mscd_evidence_summary.csv`
+- `runs/mscd_evidence_report.md`
 
-Compare E1, E2, and E5 using:
+Compare E1, E2, E5, E6:
 
-| Method | Params | Full AP50 | Full AP75 | P@0.50 | R@0.50 | F1@0.50 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 | Mean Missing-Modality AP50 |
+| Method | Extra inference params | Full AP50 | Full AP75 | P@0.50 | R@0.50 | F1@0.50 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 | Mean Missing-Modality AP50 |
 
-The report must explicitly answer:
-1. Does E5 maintain or improve E2 full-modality AP50/AP75?
-2. Does E5 improve the three missing-modality AP50 values, particularly w/o Thermal?
-3. Are absent-modality alpha values actually zero in E5?
-4. Is the parameter increase <=0.03M?
-5. Should E5 replace E2 as the paper main model, or remain an ablation?
-
-Use conservative wording. Do not claim a literature contribution until the evidence report supports it.
+Required decision rule:
+- E6 replaces E2 only if it retains full AP50 within 0.001 of E2 **and** improves mean missing-modality AP50, or if it improves full AP50/AP75 outright.
+- Otherwise E2 remains the paper main model and E6 is reported only as a training-strategy ablation.
+- Do not use a non-standard mean robustness value as the sole selection criterion.
 
 ## Completion
-1. Update `docs/EXPERIMENT_STATUS.md` and `runs/handoff_latest.md`.
-2. Commit only source code, docs, Markdown, CSV, TXT, and JSON.
-3. Commit message: `Phase 2B: availability-conditioned reliability fusion`.
-4. Push to `research/ra-repdet-triair`.
-5. If blocked, create `docs/TASK_BLOCKER.md` with the failed command, final error, attempted fix, and smallest safe next action.
+1. Update `docs/EXPERIMENT_STATUS.md`, `runs/handoff_latest.md`, and `.json`.
+2. Create `runs/phase2c_report.md` summarizing E5 and E6 decisions.
+3. Commit source code, docs, Markdown, CSV, TXT, and JSON only.
+4. Never commit weights, datasets, npy files, images, or visual outputs.
+5. Commit message: `Phase 2C: modality-subset consistency distillation`.
+6. Push to `research/ra-repdet-triair`.
+7. If blocked, create/update `docs/TASK_BLOCKER.md` with the exact failed command, final error, attempted fix, and smallest safe next action.
