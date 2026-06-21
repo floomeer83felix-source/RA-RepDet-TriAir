@@ -1,0 +1,30 @@
+wandb
+coreml
+pretrain
+**/__pycache__
+pretrain
+ignore
+*.zip
+checkpoints
+trt
+.idea/
+.vscode/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+
+# Local experiment outputs and heavy model artifacts.
+runs/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+*.npz
+*.npy
+
+# Local environment files.
+.env
+.venv/
+venv/
