@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-21T10:48:46
+Generated: 2026-06-21T11:09:55
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -27,6 +27,15 @@ Workspace: `E:\RepViT-main`
 - Best AP50: E2 Reliability + Dropout 0.15 (0.979990)
 - Best AP75: E2 Reliability + Dropout 0.15 (0.950906)
 
+## Phase 2A Outputs
+
+- Report: `runs/phase2a_report.md`
+- Main table rows: 3
+- E0 profile rows: 2
+- E2 profile rows: 2
+- Brightness-proxy rows: 9
+- Alpha mode rows: 8
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -45,19 +54,33 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Use score threshold 0.50 for paper-facing precision/recall/F1 reporting.
+- Review Phase 2A paper-facing result package in runs/phase2a_report.md.
 - Select qualitative cases from compare_E0_E1_E2 outputs.
 - Run brightness/noise robustness tests if needed for the robustness section.
-- Inspect reliability alpha behavior under missing-modality cases.
+- Decide whether Phase 2B should add noise/weather proxies or qualitative failure-case mining.
 
 ## Recently Modified Files
 
-- `M runs/handoff_latest.json`
+- `M docs/EXPERIMENT_STATUS.md`
+- ` M docs/NEXT_TASK.md`
+- ` M rarepdet/tools/finish_task.ps1`
+- ` M rarepdet/tools/generate_handoff.py`
+- ` M rarepdet/tools/update_project_status.py`
+- ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `?? AGENTS.md`
-- `?? docs/`
-- `?? rarepdet/tools/finish_task.ps1`
-- `?? rarepdet/tools/update_project_status.py`
+- `?? rarepdet/tools/analyze_alpha_modes.py`
+- `?? rarepdet/tools/build_phase2a_report.py`
+- `?? rarepdet/tools/eval_brightness_proxy.py`
+- `?? rarepdet/tools/phase2a_common.py`
+- `?? rarepdet/tools/phase2a_main_results.py`
+- `?? rarepdet/tools/profile_phase2a.py`
+- `?? runs/phase2a_alpha/`
+- `?? runs/phase2a_brightness_proxy/`
+- `?? runs/phase2a_main_results.csv`
+- `?? runs/phase2a_main_results.md`
+- `?? runs/phase2a_profile_e0/`
+- `?? runs/phase2a_profile_e2/`
+- `?? runs/phase2a_report.md`
 
 ## Next Recommended Tasks
 

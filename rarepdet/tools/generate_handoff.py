@@ -111,6 +111,17 @@ def collect_profile():
     return read_csv(RUNS_DIR / "profile_summary.csv")
 
 
+def collect_phase2a():
+    return {
+        "main_results": read_csv(RUNS_DIR / "phase2a_main_results.csv"),
+        "profile_e0": read_csv(RUNS_DIR / "phase2a_profile_e0" / "profile_results.csv"),
+        "profile_e2": read_csv(RUNS_DIR / "phase2a_profile_e2" / "profile_results.csv"),
+        "brightness_proxy": read_csv(RUNS_DIR / "phase2a_brightness_proxy" / "brightness_proxy_results.csv"),
+        "alpha_modes": read_csv(RUNS_DIR / "phase2a_alpha" / "alpha_mode_summary.csv"),
+        "report": str(RUNS_DIR / "phase2a_report.md") if (RUNS_DIR / "phase2a_report.md").exists() else None,
+    }
+
+
 def best_by(results, metric):
     numeric = []
     for row in results:
@@ -165,11 +176,12 @@ def build_handoff():
         },
         "missing_modality": collect_missing_modality(),
         "profile": collect_profile(),
+        "phase2a": collect_phase2a(),
         "current_pending_experiments": [
-            "Use score threshold 0.50 for paper-facing precision/recall/F1 reporting.",
+            "Review Phase 2A paper-facing result package in runs/phase2a_report.md.",
             "Select qualitative cases from compare_E0_E1_E2 outputs.",
             "Run brightness/noise robustness tests if needed for the robustness section.",
-            "Inspect reliability alpha behavior under missing-modality cases.",
+            "Decide whether Phase 2B should add noise/weather proxies or qualitative failure-case mining.",
         ],
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -228,6 +240,15 @@ def write_markdown(data, path):
         "",
         f"- Best AP50: {best_ap50.get('id', 'NA')} {best_ap50.get('method', '')} ({best_ap50.get('ap50', 'NA')})",
         f"- Best AP75: {best_ap75.get('id', 'NA')} {best_ap75.get('method', '')} ({best_ap75.get('ap75', 'NA')})",
+        "",
+        "## Phase 2A Outputs",
+        "",
+        "- Report: `runs/phase2a_report.md`" if data["phase2a"]["report"] else "- Report: NA",
+        f"- Main table rows: {len(data['phase2a']['main_results'])}",
+        f"- E0 profile rows: {len(data['phase2a']['profile_e0'])}",
+        f"- E2 profile rows: {len(data['phase2a']['profile_e2'])}",
+        f"- Brightness-proxy rows: {len(data['phase2a']['brightness_proxy'])}",
+        f"- Alpha mode rows: {len(data['phase2a']['alpha_modes'])}",
         "",
         "## Model And Code Structure",
         "",

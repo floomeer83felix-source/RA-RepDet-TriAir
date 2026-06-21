@@ -163,6 +163,11 @@ def build_status():
     missing_ap50 = read_csv(RUNS_DIR / "missing_modality_summary.csv")
     missing_ap75 = read_csv(RUNS_DIR / "missing_modality_summary_ap75.csv")
     profile = read_csv(RUNS_DIR / "profile_summary.csv")
+    phase2a_main = read_csv(RUNS_DIR / "phase2a_main_results.csv")
+    phase2a_profile_e0 = read_csv(RUNS_DIR / "phase2a_profile_e0" / "profile_results.csv")
+    phase2a_profile_e2 = read_csv(RUNS_DIR / "phase2a_profile_e2" / "profile_results.csv")
+    phase2a_brightness = read_csv(RUNS_DIR / "phase2a_brightness_proxy" / "brightness_proxy_results.csv")
+    phase2a_alpha = read_csv(RUNS_DIR / "phase2a_alpha" / "alpha_mode_summary.csv")
 
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
@@ -217,6 +222,47 @@ def build_status():
     lines.extend(table(profile_headers, profile))
 
     lines += [
+        "",
+        "## Phase 2A outputs",
+        "",
+        "### Paper main results at score threshold 0.50",
+        "",
+    ]
+    phase2a_main_headers = ["Method", "Threshold", "Precision", "Recall", "F1", "AP50", "AP75", "GT boxes", "Predictions", "Mean Confidence"]
+    lines.extend(table(phase2a_main_headers, phase2a_main))
+
+    lines += [
+        "",
+        "### Phase 2A profile summary",
+        "",
+    ]
+    phase2a_profile_headers = [
+        "Model",
+        "Path",
+        "Batch Size",
+        "Img Size",
+        "Warmup",
+        "Iters",
+        "Repeats",
+        "Params",
+        "FPS mean",
+        "Latency ms/img mean",
+        "CUDA Memory MB mean",
+    ]
+    lines.extend(table(phase2a_profile_headers, phase2a_profile_e0 + phase2a_profile_e2))
+
+    lines += [
+        "",
+        "### Phase 2A brightness-proxy outputs",
+        "",
+        f"- Rows: {len(phase2a_brightness) if phase2a_brightness else 'NA'}",
+        "- Groups: RGB mean-intensity terciles, not day/night labels.",
+        "",
+        "### Phase 2A alpha outputs",
+        "",
+        f"- Rows: {len(phase2a_alpha) if phase2a_alpha else 'NA'}",
+        "- Modes: full, no_rgb, no_thermal, no_event for E1 and E2.",
+        "",
         "",
         "## Current active task",
         "",

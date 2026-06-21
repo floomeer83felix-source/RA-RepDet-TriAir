@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-21T10:48:46
+Generated: 2026-06-21T11:09:55
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -47,18 +47,48 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | E0/Early Fusion | 6591609 | 6591609 | 105.207355 | 24.914556 | 40.137179 | 123.43 |
 | E1/E2 Reliability Fusion | 6593293 | 6593293 | 105.981501 | 47.389574 | 21.101688 | 236.40 |
 
+## Phase 2A outputs
+
+### Paper main results at score threshold 0.50
+
+| Method | Threshold | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| E0 Early Fusion | 0.50 | 0.929133 | 0.954067 | 0.941434 | 0.976620 | 0.928824 | 6074 | 6237 | 0.769583 |
+| E1 Reliability Fusion | 0.50 | 0.925721 | 0.962298 | 0.943655 | 0.979317 | 0.947634 | 6074 | 6314 | 0.794935 |
+| E2 Reliability + Dropout 0.15 | 0.50 | 0.931057 | 0.956042 | 0.943384 | 0.979990 | 0.950906 | 6074 | 6237 | 0.788404 |
+
+### Phase 2A profile summary
+
+| Model | Path | Batch Size | Img Size | Warmup | Iters | Repeats | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| early | raw_forward | 1 | 640 | 100 | 300 | 3 | 6591609 | 119.223563 | 8.390822 | 115.153333 |
+| early | detector_inference | 1 | 640 | 100 | 300 | 3 | 6591609 | 59.018778 | 16.943760 | 122.680000 |
+| reliability | raw_forward | 1 | 640 | 100 | 300 | 3 | 6593293 | 116.372946 | 8.594858 | 228.006667 |
+| reliability | detector_inference | 1 | 640 | 100 | 300 | 3 | 6593293 | 57.986395 | 17.245861 | 235.820000 |
+
+### Phase 2A brightness-proxy outputs
+
+- Rows: 9
+- Groups: RGB mean-intensity terciles, not day/night labels.
+
+### Phase 2A alpha outputs
+
+- Rows: 8
+- Modes: full, no_rgb, no_thermal, no_event for E1 and E2.
+
+
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Establish the fixed GitHub collaboration task flow for RA-RepDet-TriAir.
-- Goal: Create the task handoff documents and automation scripts needed for repeatable, scoped GitHub collaboration on the `research/ra-repdet-triair` branch.
+- Current Task: Execute Phase 2A post-processing for paper-ready RA-RepDet TriAir results.
+- Goal: Produce the Phase 2A paper-facing result package: threshold=0.50 main metrics, repeated E0/E2 profiling, brightness-proxy grouped evaluation, reliability alpha statistics, and a consolidated report.
 
 ## Pending tasks
 
-- Use score threshold 0.50 for paper-facing precision/recall/F1 reporting.
+- Review Phase 2A paper-facing result package in runs/phase2a_report.md.
 - Select qualitative cases from compare_E0_E1_E2 outputs.
 - Run brightness/noise robustness tests if needed for the robustness section.
-- Inspect reliability alpha behavior under missing-modality cases.
+- Decide whether Phase 2B should add noise/weather proxies or qualitative failure-case mining.
 
 ## Known metric caveats
 

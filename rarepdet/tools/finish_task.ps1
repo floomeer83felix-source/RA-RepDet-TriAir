@@ -74,7 +74,13 @@ function Add-FilesSafely {
         "runs\*\alpha\*.csv",
         "runs\*\alpha\*.txt",
         "runs\threshold_sweep\*.csv",
-        "runs\threshold_sweep\*.txt"
+        "runs\threshold_sweep\*.txt",
+        "runs\phase2a_*.csv",
+        "runs\phase2a_*.md",
+        "runs\phase2a_*.txt",
+        "runs\phase2a_*\*.csv",
+        "runs\phase2a_*\*.txt",
+        "runs\phase2a_*\*.md"
     )
 
     $files = New-Object System.Collections.Generic.List[string]
