@@ -88,6 +88,14 @@ wandb/
 !runs/*/alpha/
 !runs/*/alpha/*.csv
 !runs/*/alpha/*.txt
+!runs/*/eval_thr050/
+!runs/*/eval_thr050/*.txt
+!runs/*/alpha_modes/
+!runs/*/alpha_modes/*.csv
+!runs/*/alpha_modes/*.txt
+!runs/acrf_*.csv
+!runs/acrf_*.md
+!runs/acrf_*.txt
 
 # Final safety re-ignores after directory allow-lists
 __pycache__/

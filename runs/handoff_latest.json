@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-21T22:13:50",
+  "generated_at": "2026-06-21T22:14:43",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -12,30 +12,7 @@
     ],
     "status_short": [
       "M .gitignore",
-      "A  docs/ACRF_DESIGN.md",
-      "M  docs/EXPERIMENT_STATUS.md",
-      "M  docs/TASK_BLOCKER.md",
-      "M  rarepdet/eval_map.py",
-      "A  rarepdet/models/availability_reliability_fusion_fcos.py",
-      "M  rarepdet/tools/analyze_alpha_modes.py",
-      "A  rarepdet/tools/build_acrf_evidence_report.py",
-      "M  rarepdet/tools/eval_missing_modality.py",
-      "MM rarepdet/tools/finish_task.ps1",
-      "M  rarepdet/tools/generate_handoff.py",
-      "A  rarepdet/tools/test_availability_fusion.py",
-      "M  rarepdet/tools/update_project_status.py",
-      "A  rarepdet/train_availability_fusion.py",
-      "A  runs/E5_acrf_dropout015_repvit_fcos_e50/alpha_modes/alpha_mode_summary.csv",
-      "A  runs/E5_acrf_dropout015_repvit_fcos_e50/alpha_modes/alpha_mode_summary.txt",
-      "A  runs/E5_acrf_dropout015_repvit_fcos_e50/config.txt",
-      "A  runs/E5_acrf_dropout015_repvit_fcos_e50/eval_thr050/eval_results.txt",
-      "A  runs/E5_acrf_dropout015_repvit_fcos_e50/missing_modality/missing_modality_results.csv",
-      "A  runs/E5_acrf_dropout015_repvit_fcos_e50/missing_modality/missing_modality_results.txt",
-      "A  runs/acrf_evidence_report.md",
-      "A  runs/acrf_evidence_summary.csv",
-      "A  runs/acrf_smoke_test.md",
-      "M  runs/handoff_latest.json",
-      "M  runs/handoff_latest.md"
+      " M rarepdet/tools/finish_task.ps1"
     ]
   },
   "dataset": {
@@ -815,30 +792,7 @@
   },
   "recent_modified_files": [
     "M .gitignore",
-    "A  docs/ACRF_DESIGN.md",
-    "M  docs/EXPERIMENT_STATUS.md",
-    "M  docs/TASK_BLOCKER.md",
-    "M  rarepdet/eval_map.py",
-    "A  rarepdet/models/availability_reliability_fusion_fcos.py",
-    "M  rarepdet/tools/analyze_alpha_modes.py",
-    "A  rarepdet/tools/build_acrf_evidence_report.py",
-    "M  rarepdet/tools/eval_missing_modality.py",
-    "MM rarepdet/tools/finish_task.ps1",
-    "M  rarepdet/tools/generate_handoff.py",
-    "A  rarepdet/tools/test_availability_fusion.py",
-    "M  rarepdet/tools/update_project_status.py",
-    "A  rarepdet/train_availability_fusion.py",
-    "A  runs/E5_acrf_dropout015_repvit_fcos_e50/alpha_modes/alpha_mode_summary.csv",
-    "A  runs/E5_acrf_dropout015_repvit_fcos_e50/alpha_modes/alpha_mode_summary.txt",
-    "A  runs/E5_acrf_dropout015_repvit_fcos_e50/config.txt",
-    "A  runs/E5_acrf_dropout015_repvit_fcos_e50/eval_thr050/eval_results.txt",
-    "A  runs/E5_acrf_dropout015_repvit_fcos_e50/missing_modality/missing_modality_results.csv",
-    "A  runs/E5_acrf_dropout015_repvit_fcos_e50/missing_modality/missing_modality_results.txt",
-    "A  runs/acrf_evidence_report.md",
-    "A  runs/acrf_evidence_summary.csv",
-    "A  runs/acrf_smoke_test.md",
-    "M  runs/handoff_latest.json",
-    "M  runs/handoff_latest.md"
+    " M rarepdet/tools/finish_task.ps1"
   ],
   "next_recommended_tasks": [
     "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
