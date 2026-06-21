@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-21T10:32:37",
+  "generated_at": "2026-06-21T10:48:46",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -11,9 +11,12 @@
       "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
     ],
     "status_short": [
-      "M .gitignore",
-      "?? rarepdet/tools/generate_handoff.py",
-      "?? runs/"
+      "M runs/handoff_latest.json",
+      " M runs/handoff_latest.md",
+      "?? AGENTS.md",
+      "?? docs/",
+      "?? rarepdet/tools/finish_task.ps1",
+      "?? rarepdet/tools/update_project_status.py"
     ]
   },
   "dataset": {
@@ -196,9 +199,12 @@
     "postprocessing_tools": "rarepdet/tools/"
   },
   "recent_modified_files": [
-    "M .gitignore",
-    "?? rarepdet/tools/generate_handoff.py",
-    "?? runs/"
+    "M runs/handoff_latest.json",
+    " M runs/handoff_latest.md",
+    "?? AGENTS.md",
+    "?? docs/",
+    "?? rarepdet/tools/finish_task.ps1",
+    "?? rarepdet/tools/update_project_status.py"
   ],
   "next_recommended_tasks": [
     "Publish this lightweight workspace without datasets, weights, npy files, or visual outputs.",

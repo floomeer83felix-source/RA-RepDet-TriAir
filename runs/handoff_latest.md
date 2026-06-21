@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-21T10:32:37
+Generated: 2026-06-21T10:48:46
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -52,9 +52,12 @@ Workspace: `E:\RepViT-main`
 
 ## Recently Modified Files
 
-- `M .gitignore`
-- `?? rarepdet/tools/generate_handoff.py`
-- `?? runs/`
+- `M runs/handoff_latest.json`
+- ` M runs/handoff_latest.md`
+- `?? AGENTS.md`
+- `?? docs/`
+- `?? rarepdet/tools/finish_task.ps1`
+- `?? rarepdet/tools/update_project_status.py`
 
 ## Next Recommended Tasks
 
