@@ -1,0 +1,5 @@
+Method,Mode,Samples,alpha_rgb_mean,alpha_rgb_std,alpha_thermal_mean,alpha_thermal_std,alpha_event_mean,alpha_event_std,dominant_rgb,dominant_thermal,dominant_event,dominant_rgb_ratio,dominant_thermal_ratio,dominant_event_ratio
+E5 ACRF + Dropout 0.15,full,2098,0.405203,0.404431,0.550471,0.432223,0.044327,0.031257,829,1269,0,0.395138,0.604862,0.000000
+E5 ACRF + Dropout 0.15,no_rgb,2098,0.000000,0.000000,0.519665,0.311293,0.480335,0.311293,0,1270,828,0.000000,0.605338,0.394662
+E5 ACRF + Dropout 0.15,no_thermal,2098,0.800628,0.054813,0.000000,0.000000,0.199372,0.054813,2098,0,0,1.000000,0.000000,0.000000
+E5 ACRF + Dropout 0.15,no_event,2098,0.460204,0.328070,0.539796,0.328070,0.000000,0.000000,830,1268,0,0.395615,0.604385,0.000000

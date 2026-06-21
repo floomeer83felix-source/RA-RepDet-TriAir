@@ -1,19 +1,7 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-21T17:21:55+08:00
+Generated: 2026-06-21T22:13:50
 Workspace: `E:\RepViT-main`
-
-## Current Blocker
-
-Phase 2B ACRF from `docs/NEXT_TASK.md` is blocked because the required local workspace drive is not mounted in the current Windows session.
-
-- `Get-PSDrive -PSProvider FileSystem` shows only `C:` and `D:`.
-- `Test-Path 'E:\RepViT-main'` returns `False`.
-- `gh --version` and `gh auth status` fail because `gh` is not on PATH.
-- The blocker is documented in `docs/TASK_BLOCKER.md`.
-- No E0/E1/E2 training results, weights, datasets, or core training files were modified during this blocked handoff update.
-
-Smallest safe next action: restore access to `E:\RepViT-main`, then run `git -C E:\RepViT-main status -sb` and resume Phase 2B from `docs/NEXT_TASK.md` without deleting any local E5 artifacts.
 
 ## Dataset
 
@@ -33,6 +21,7 @@ Smallest safe next action: restore access to `E:\RepViT-main`, then run `git -C 
 | E0 Early Fusion | 0.028842 | 0.996213 | 0.976620 | 0.928824 | 6074 | 209800 | 0.135346 |
 | E1 Reliability Fusion | 0.028866 | 0.997037 | 0.979317 | 0.947634 | 6074 | 209800 | 0.125795 |
 | E2 Reliability + Dropout 0.15 | 0.028837 | 0.996049 | 0.979990 | 0.950906 | 6074 | 209800 | 0.131865 |
+| E5 ACRF + Dropout 0.15 | 0.938290 | 0.953737 | 0.978066 | 0.946602 | 6074 | 6174 | 0.779350 |
 
 ## Best Model
 
@@ -48,18 +37,20 @@ Smallest safe next action: restore access to `E:\RepViT-main`, then run `git -C 
 - Brightness-proxy rows: 9
 - Alpha mode rows: 8
 
-## Phase 2B Status
+## Phase 2B ACRF Outputs
 
-- Active task: Availability-Conditioned Reliability Fusion (ACRF), defined in `docs/NEXT_TASK.md`.
-- Status: blocked by missing local `E:` workspace and unavailable `gh` CLI.
-- Required blocked files/artifacts: local ACRF source changes, any partial E5 checkpoints, and local `runs/E5_acrf_dropout015_repvit_fcos_e50` artifacts cannot currently be inspected.
-- Blocker report: `docs/TASK_BLOCKER.md`.
+- Report: `runs/acrf_evidence_report.md`
+- Smoke test: `runs/acrf_smoke_test.md`
+- Evidence rows: 3
+- E5 missing-modality rows: 7
+- E5 alpha-mode rows: 4
 
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
 - E1: RGB/Thermal/Event reliability stems -> alpha fusion -> Conv(16,3) -> RepViT-M0.9 -> FPN -> FCOS.
 - E2: E1 plus modality dropout 0.15 during training.
+- E5: Availability-conditioned reliability fusion with post-stem masking, masked softmax, and modality dropout 0.15.
 - labels: TriAir class 0 is shifted to torchvision detection label 1; background remains 0.
 
 - dataset: `datasets/triair_dataset.py`
@@ -73,19 +64,41 @@ Smallest safe next action: restore access to `E:\RepViT-main`, then run `git -C 
 
 ## Current Pending Experiments
 
-- Restore access to `E:\RepViT-main`.
-- Resume Phase 2B ACRF from `docs/NEXT_TASK.md` once the workspace is available.
-- If the local E5 partial checkpoint exists, inspect and resume from `runs/E5_acrf_dropout015_repvit_fcos_e50/weights/last.pt`; do not delete or overwrite it.
-- If the local workspace cannot be restored, re-clone the research branch on an available drive and rerun Phase 2B from scratch.
+- Review Phase 2B ACRF evidence report in runs/acrf_evidence_report.md.
+- Select qualitative cases from compare_E0_E1_E2 outputs.
+- Decide whether E5 should be presented as an ablation rather than replacing E2 as the main model.
+- Run brightness/noise robustness tests if needed for the robustness section.
 
 ## Recently Modified Files
 
-- `A docs/TASK_BLOCKER.md`
-- `M runs/handoff_latest.md`
+- `M .gitignore`
+- `A  docs/ACRF_DESIGN.md`
+- `M  docs/EXPERIMENT_STATUS.md`
+- `M  docs/TASK_BLOCKER.md`
+- `M  rarepdet/eval_map.py`
+- `A  rarepdet/models/availability_reliability_fusion_fcos.py`
+- `M  rarepdet/tools/analyze_alpha_modes.py`
+- `A  rarepdet/tools/build_acrf_evidence_report.py`
+- `M  rarepdet/tools/eval_missing_modality.py`
+- `MM rarepdet/tools/finish_task.ps1`
+- `M  rarepdet/tools/generate_handoff.py`
+- `A  rarepdet/tools/test_availability_fusion.py`
+- `M  rarepdet/tools/update_project_status.py`
+- `A  rarepdet/train_availability_fusion.py`
+- `A  runs/E5_acrf_dropout015_repvit_fcos_e50/alpha_modes/alpha_mode_summary.csv`
+- `A  runs/E5_acrf_dropout015_repvit_fcos_e50/alpha_modes/alpha_mode_summary.txt`
+- `A  runs/E5_acrf_dropout015_repvit_fcos_e50/config.txt`
+- `A  runs/E5_acrf_dropout015_repvit_fcos_e50/eval_thr050/eval_results.txt`
+- `A  runs/E5_acrf_dropout015_repvit_fcos_e50/missing_modality/missing_modality_results.csv`
+- `A  runs/E5_acrf_dropout015_repvit_fcos_e50/missing_modality/missing_modality_results.txt`
+- `A  runs/acrf_evidence_report.md`
+- `A  runs/acrf_evidence_summary.csv`
+- `A  runs/acrf_smoke_test.md`
+- `M  runs/handoff_latest.json`
+- `M  runs/handoff_latest.md`
 
 ## Next Recommended Tasks
 
-- Restore `E:` drive access and verify `E:\RepViT-main`.
-- Resume or reconstruct the Phase 2B ACRF implementation.
-- Run the required ACRF smoke test before any long training.
-- Complete E5 training/evaluation only after the smoke test passes.
+- Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.
+- Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.
+- Add paper tables from Phase 2A and Phase 2B summaries.

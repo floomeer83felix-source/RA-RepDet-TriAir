@@ -28,6 +28,12 @@ EXPERIMENTS = [
         "method": "Reliability + Dropout 0.15",
         "dir": RUNS_DIR / "E2_reliability_dropout015_repvit_fcos_e50",
     },
+    {
+        "id": "E5",
+        "method": "ACRF + Dropout 0.15",
+        "dir": RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50",
+        "eval_subdir": "eval_thr050",
+    },
 ]
 
 
@@ -84,7 +90,8 @@ def git_lines(args):
 def collect_eval_results():
     results = []
     for exp in EXPERIMENTS:
-        row = read_key_value_file(exp["dir"] / "eval" / "eval_results.txt")
+        eval_subdir = exp.get("eval_subdir", "eval")
+        row = read_key_value_file(exp["dir"] / eval_subdir / "eval_results.txt")
         results.append(
             {
                 "id": exp["id"],
@@ -119,6 +126,20 @@ def collect_phase2a():
         "brightness_proxy": read_csv(RUNS_DIR / "phase2a_brightness_proxy" / "brightness_proxy_results.csv"),
         "alpha_modes": read_csv(RUNS_DIR / "phase2a_alpha" / "alpha_mode_summary.csv"),
         "report": str(RUNS_DIR / "phase2a_report.md") if (RUNS_DIR / "phase2a_report.md").exists() else None,
+    }
+
+
+def collect_phase2b():
+    return {
+        "evidence_summary": read_csv(RUNS_DIR / "acrf_evidence_summary.csv"),
+        "evidence_report": str(RUNS_DIR / "acrf_evidence_report.md") if (RUNS_DIR / "acrf_evidence_report.md").exists() else None,
+        "smoke_test": str(RUNS_DIR / "acrf_smoke_test.md") if (RUNS_DIR / "acrf_smoke_test.md").exists() else None,
+        "e5_missing_modality": read_csv(
+            RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50" / "missing_modality" / "missing_modality_results.csv"
+        ),
+        "e5_alpha_modes": read_csv(
+            RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50" / "alpha_modes" / "alpha_mode_summary.csv"
+        ),
     }
 
 
@@ -167,6 +188,7 @@ def build_handoff():
             "E0": "5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.",
             "E1": "RGB/Thermal/Event reliability stems -> alpha fusion -> Conv(16,3) -> RepViT-M0.9 -> FPN -> FCOS.",
             "E2": "E1 plus modality dropout 0.15 during training.",
+            "E5": "Availability-conditioned reliability fusion with post-stem masking, masked softmax, and modality dropout 0.15.",
             "labels": "TriAir class 0 is shifted to torchvision detection label 1; background remains 0.",
         },
         "core_results": eval_results,
@@ -177,11 +199,12 @@ def build_handoff():
         "missing_modality": collect_missing_modality(),
         "profile": collect_profile(),
         "phase2a": collect_phase2a(),
+        "phase2b": collect_phase2b(),
         "current_pending_experiments": [
-            "Review Phase 2A paper-facing result package in runs/phase2a_report.md.",
+            "Review Phase 2B ACRF evidence report in runs/acrf_evidence_report.md.",
             "Select qualitative cases from compare_E0_E1_E2 outputs.",
+            "Decide whether E5 should be presented as an ablation rather than replacing E2 as the main model.",
             "Run brightness/noise robustness tests if needed for the robustness section.",
-            "Decide whether Phase 2B should add noise/weather proxies or qualitative failure-case mining.",
         ],
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -195,9 +218,9 @@ def build_handoff():
         },
         "recent_modified_files": status_short,
         "next_recommended_tasks": [
-            "Publish this lightweight workspace without datasets, weights, npy files, or visual outputs.",
-            "Add paper tables from profile, threshold sweep, missing-modality, and final eval summaries.",
-            "Use E2 as the robustness-oriented best model and E1 as the best F1 threshold-sweep model.",
+            "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
+            "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
+            "Add paper tables from Phase 2A and Phase 2B summaries.",
         ],
     }
 
@@ -249,6 +272,14 @@ def write_markdown(data, path):
         f"- E2 profile rows: {len(data['phase2a']['profile_e2'])}",
         f"- Brightness-proxy rows: {len(data['phase2a']['brightness_proxy'])}",
         f"- Alpha mode rows: {len(data['phase2a']['alpha_modes'])}",
+        "",
+        "## Phase 2B ACRF Outputs",
+        "",
+        "- Report: `runs/acrf_evidence_report.md`" if data["phase2b"]["evidence_report"] else "- Report: NA",
+        "- Smoke test: `runs/acrf_smoke_test.md`" if data["phase2b"]["smoke_test"] else "- Smoke test: NA",
+        f"- Evidence rows: {len(data['phase2b']['evidence_summary'])}",
+        f"- E5 missing-modality rows: {len(data['phase2b']['e5_missing_modality'])}",
+        f"- E5 alpha-mode rows: {len(data['phase2b']['e5_alpha_modes'])}",
         "",
         "## Model And Code Structure",
         "",

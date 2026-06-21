@@ -15,9 +15,10 @@ HANDOFF_PATH = RUNS_DIR / "handoff_latest.md"
 
 
 EXPERIMENTS = [
-    ("E0", "Early Fusion", RUNS_DIR / "E0_early_repvit_fcos_e50"),
-    ("E1", "Reliability Fusion", RUNS_DIR / "E1_reliability_repvit_fcos_e50"),
-    ("E2", "Reliability + Dropout 0.15", RUNS_DIR / "E2_reliability_dropout015_repvit_fcos_e50"),
+    ("E0", "Early Fusion", RUNS_DIR / "E0_early_repvit_fcos_e50", "eval"),
+    ("E1", "Reliability Fusion", RUNS_DIR / "E1_reliability_repvit_fcos_e50", "eval"),
+    ("E2", "Reliability + Dropout 0.15", RUNS_DIR / "E2_reliability_dropout015_repvit_fcos_e50", "eval"),
+    ("E5", "ACRF + Dropout 0.15", RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50", "eval_thr050"),
 ]
 
 
@@ -81,8 +82,8 @@ def to_float(value):
 
 def collect_eval_results():
     rows = []
-    for exp_id, method, exp_dir in EXPERIMENTS:
-        values = read_key_values(exp_dir / "eval" / "eval_results.txt")
+    for exp_id, method, exp_dir, eval_subdir in EXPERIMENTS:
+        values = read_key_values(exp_dir / eval_subdir / "eval_results.txt")
         rows.append(
             {
                 "Experiment": exp_id,
@@ -168,9 +169,17 @@ def build_status():
     phase2a_profile_e2 = read_csv(RUNS_DIR / "phase2a_profile_e2" / "profile_results.csv")
     phase2a_brightness = read_csv(RUNS_DIR / "phase2a_brightness_proxy" / "brightness_proxy_results.csv")
     phase2a_alpha = read_csv(RUNS_DIR / "phase2a_alpha" / "alpha_mode_summary.csv")
+    acrf_evidence = read_csv(RUNS_DIR / "acrf_evidence_summary.csv")
+    e5_missing = read_csv(RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50" / "missing_modality" / "missing_modality_results.csv")
+    e5_alpha = read_csv(RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50" / "alpha_modes" / "alpha_mode_summary.csv")
 
+    active_status = "completed" if acrf_evidence else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
+    if current_task == "NA" and "Phase 2B" in read_text(NEXT_TASK_PATH):
+        current_task = "Phase 2B - Availability-Conditioned Reliability Fusion (ACRF)"
+    if current_goal == "NA" and acrf_evidence:
+        current_goal = "Implement, train, evaluate, and summarize the E5 ACRF ablation."
 
     lines = [
         "# Experiment Status",
@@ -269,6 +278,35 @@ def build_status():
         f"- Task file: `docs/NEXT_TASK.md`",
         f"- Current Task: {current_task}",
         f"- Goal: {current_goal}",
+        f"- Status: {active_status}",
+        "",
+        "## Phase 2B ACRF outputs",
+        "",
+        "- Report: `runs/acrf_evidence_report.md`" if (RUNS_DIR / "acrf_evidence_report.md").exists() else "- Report: NA",
+        "- Smoke test: `runs/acrf_smoke_test.md`" if (RUNS_DIR / "acrf_smoke_test.md").exists() else "- Smoke test: NA",
+        f"- Evidence rows: {len(acrf_evidence) if acrf_evidence else 'NA'}",
+        f"- E5 missing-modality rows: {len(e5_missing) if e5_missing else 'NA'}",
+        f"- E5 alpha-mode rows: {len(e5_alpha) if e5_alpha else 'NA'}",
+        "",
+        "### ACRF evidence summary",
+        "",
+    ]
+    acrf_headers = [
+        "Method",
+        "Params",
+        "Full AP50",
+        "Full AP75",
+        "P@0.50",
+        "R@0.50",
+        "F1@0.50",
+        "w/o RGB AP50",
+        "w/o Thermal AP50",
+        "w/o Event AP50",
+        "Mean Missing-Modality AP50",
+    ]
+    lines.extend(table(acrf_headers, acrf_evidence))
+
+    lines += [
         "",
         "## Pending tasks",
         "",
@@ -292,6 +330,7 @@ def build_status():
         "- E0/E1/E2 completed 50-epoch first-batch experiments and should not be retrained without explicit instruction.",
         "- E2 is the strongest robustness-oriented model by missing-modality AP50/AP75.",
         "- E1 has the highest F1 in the threshold sweep at threshold 0.50.",
+        "- E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.",
         "",
         "## Files or scripts currently under review",
         "",

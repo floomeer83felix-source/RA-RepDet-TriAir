@@ -52,6 +52,14 @@ function Get-CommitMessage {
     }
     $message = ($buffer -join " ").Trim()
     if (-not $message) {
+        foreach ($line in $lines) {
+            if ($line -match '^\s*(?:\d+\.\s*)?Commit message:\s*(.+?)\s*$') {
+                $message = $Matches[1].Trim().Trim(".").Trim([char]0x60).Trim()
+                break
+            }
+        }
+    }
+    if (-not $message) {
         throw "Commit Message section is empty in docs/NEXT_TASK.md."
     }
     return $message
@@ -80,7 +88,16 @@ function Add-FilesSafely {
         "runs\phase2a_*.txt",
         "runs\phase2a_*\*.csv",
         "runs\phase2a_*\*.txt",
-        "runs\phase2a_*\*.md"
+        "runs\phase2a_*\*.md",
+        "runs\acrf_*.csv",
+        "runs\acrf_*.md",
+        "runs\acrf_*.txt",
+        "runs\E5_*\config.txt",
+        "runs\E5_*\eval_thr050\*.txt",
+        "runs\E5_*\missing_modality\*.csv",
+        "runs\E5_*\missing_modality\*.txt",
+        "runs\E5_*\alpha_modes\*.csv",
+        "runs\E5_*\alpha_modes\*.txt"
     )
 
     $files = New-Object System.Collections.Generic.List[string]

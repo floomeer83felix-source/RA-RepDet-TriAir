@@ -1,20 +1,12 @@
 # Experiment Status
 
-Generated: 2026-06-21T17:21:55+08:00
-Handoff source: `runs/handoff_latest.md`
+Generated: 2026-06-21T22:13:50
+Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
 
 - Best AP50: E2 Reliability + Dropout 0.15 (0.979990)
 - Best AP75: E2 Reliability + Dropout 0.15 (0.950906)
-
-## Current active task
-
-- Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 2B — Availability-Conditioned Reliability Fusion (ACRF)
-- Status: blocked
-- Blocker report: `docs/TASK_BLOCKER.md`
-- Blocker summary: local workspace `E:\RepViT-main` is inaccessible because the `E:` drive is not mounted; `gh` is also unavailable on PATH, so the required local `finish_task.ps1` workflow cannot run.
 
 ## Latest completed experiments
 
@@ -23,6 +15,7 @@ Handoff source: `runs/handoff_latest.md`
 | E0 | Early Fusion | 0.028842 | 0.996213 | 0.976620 | 0.928824 | 6074 | 209800 | 0.135346 |
 | E1 | Reliability Fusion | 0.028866 | 0.997037 | 0.979317 | 0.947634 | 6074 | 209800 | 0.125795 |
 | E2 | Reliability + Dropout 0.15 | 0.028837 | 0.996049 | 0.979990 | 0.950906 | 6074 | 209800 | 0.131865 |
+| E5 | ACRF + Dropout 0.15 | 0.938290 | 0.953737 | 0.978066 | 0.946602 | 6074 | 6174 | 0.779350 |
 
 ### Best threshold by F1
 
@@ -57,18 +50,63 @@ Handoff source: `runs/handoff_latest.md`
 
 ## Phase 2A outputs
 
-- Report: `runs/phase2a_report.md`
-- Paper main threshold: score threshold 0.50
-- Brightness-proxy groups: RGB mean-intensity terciles, not day/night labels
-- Alpha mode rows: full, no_rgb, no_thermal, no_event for E1 and E2
+### Paper main results at score threshold 0.50
+
+| Method | Threshold | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| E0 Early Fusion | 0.50 | 0.929133 | 0.954067 | 0.941434 | 0.976620 | 0.928824 | 6074 | 6237 | 0.769583 |
+| E1 Reliability Fusion | 0.50 | 0.925721 | 0.962298 | 0.943655 | 0.979317 | 0.947634 | 6074 | 6314 | 0.794935 |
+| E2 Reliability + Dropout 0.15 | 0.50 | 0.931057 | 0.956042 | 0.943384 | 0.979990 | 0.950906 | 6074 | 6237 | 0.788404 |
+
+### Phase 2A profile summary
+
+| Model | Path | Batch Size | Img Size | Warmup | Iters | Repeats | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| early | raw_forward | 1 | 640 | 100 | 300 | 3 | 6591609 | 111.427245 | 8.977959 | 115.153333 |
+| early | detector_inference | 1 | 640 | 100 | 300 | 3 | 6591609 | 55.488686 | 18.030040 | 122.680000 |
+| reliability | raw_forward | 1 | 640 | 100 | 300 | 3 | 6593293 | 117.451207 | 8.515909 | 228.006667 |
+| reliability | detector_inference | 1 | 640 | 100 | 300 | 3 | 6593293 | 55.884826 | 17.895982 | 235.820000 |
+
+### Phase 2A brightness-proxy outputs
+
+- Rows: 9
+- Groups: RGB mean-intensity terciles, not day/night labels.
+
+### Phase 2A alpha outputs
+
+- Rows: 8
+- Modes: full, no_rgb, no_thermal, no_event for E1 and E2.
+
+
+## Current active task
+
+- Task file: `docs/NEXT_TASK.md`
+- Current Task: Phase 2B - Availability-Conditioned Reliability Fusion (ACRF)
+- Goal: Implement, train, evaluate, and summarize the E5 ACRF ablation.
+- Status: completed
+
+## Phase 2B ACRF outputs
+
+- Report: `runs/acrf_evidence_report.md`
+- Smoke test: `runs/acrf_smoke_test.md`
+- Evidence rows: 3
+- E5 missing-modality rows: 7
+- E5 alpha-mode rows: 4
+
+### ACRF evidence summary
+
+| Method | Params | Full AP50 | Full AP75 | P@0.50 | R@0.50 | F1@0.50 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 | Mean Missing-Modality AP50 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| E1 Reliability Fusion | 6593293 | 0.979317 | 0.947634 | 0.925721 | 0.962298 | 0.943655 | 0.688697 | 0.370994 | 0.477850 | 0.512514 |
+| E2 Reliability + Dropout 0.15 | 6593293 | 0.979990 | 0.950906 | 0.931057 | 0.956042 | 0.943384 | 0.948710 | 0.811566 | 0.978972 | 0.913083 |
+| E5 ACRF + Dropout 0.15 | 6593341 | 0.978066 | 0.946602 | 0.938290 | 0.953737 | 0.945950 | 0.944019 | 0.846657 | 0.978531 | 0.923069 |
 
 ## Pending tasks
 
-- Restore access to `E:\RepViT-main` and verify the local worktree.
-- Resume Phase 2B ACRF implementation from `docs/NEXT_TASK.md`.
-- If `runs/E5_acrf_dropout015_repvit_fcos_e50/weights/last.pt` exists locally, inspect and resume instead of deleting it.
-- Run the required ACRF smoke test before any long training.
-- Complete E5 evaluation and evidence report after training finishes.
+- Review Phase 2B ACRF evidence report in runs/acrf_evidence_report.md.
+- Select qualitative cases from compare_E0_E1_E2 outputs.
+- Decide whether E5 should be presented as an ablation rather than replacing E2 as the main model.
+- Run brightness/noise robustness tests if needed for the robustness section.
 
 ## Known metric caveats
 
@@ -85,11 +123,15 @@ Handoff source: `runs/handoff_latest.md`
 - E0/E1/E2 completed 50-epoch first-batch experiments and should not be retrained without explicit instruction.
 - E2 is the strongest robustness-oriented model by missing-modality AP50/AP75.
 - E1 has the highest F1 in the threshold sweep at threshold 0.50.
-- Phase 2B should remain a targeted ACRF correction, not a generic attention or transformer expansion.
+- E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.
 
 ## Files or scripts currently under review
 
+- `AGENTS.md`
 - `docs/NEXT_TASK.md`
-- `docs/TASK_BLOCKER.md`
-- `runs/handoff_latest.md`
+- `docs/EXPERIMENT_STATUS.md`
+- `docs/PROJECT_CONTEXT.md`
+- `rarepdet/tools/update_project_status.py`
 - `rarepdet/tools/finish_task.ps1`
+- `runs/handoff_latest.md`
+- `runs/handoff_latest.json`

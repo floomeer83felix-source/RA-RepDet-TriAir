@@ -2,6 +2,12 @@
 
 Generated: 2026-06-21T17:21:55+08:00
 
+Resolved: 2026-06-21
+
+## Resolution
+
+The `E:` drive was restored and `E:\RepViT-main` became accessible again. Phase 2B ACRF was resumed from the local E5 checkpoint, completed through epoch 50, evaluated, summarized in `runs/acrf_evidence_report.md`, and prepared for handoff.
+
 ## Blocked Task
 
 `docs/NEXT_TASK.md` currently requests Phase 2B: Availability-Conditioned Reliability Fusion (ACRF), including new ACRF files, smoke checks, E5 50-epoch training, evaluation, evidence report, handoff update, commit, and push.

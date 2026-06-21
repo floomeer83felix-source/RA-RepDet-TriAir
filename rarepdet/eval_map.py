@@ -17,6 +17,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from datasets.triair_dataset import collate_fn
 from rarepdet.data import DetectionTriAirDataset
 from rarepdet.metrics import detection_metrics, format_metrics
+from rarepdet.models.availability_reliability_fusion_fcos import build_availability_reliability_fcos
 from rarepdet.models.early_fusion_fcos import build_detector
 
 
@@ -42,14 +43,23 @@ def evaluate_checkpoint(args):
     checkpoint = torch.load(weights, map_location=device)
     model_cfg = checkpoint.get("model_cfg", {})
     model_type = args.model or model_cfg.get("model_type", "early")
-    model = build_detector(
-        model_type=model_type,
-        model_name=model_cfg.get("model_name", "repvit_m0_9.dist_300e_in1k"),
-        img_size=model_cfg.get("img_size", args.img_size),
-        num_classes=model_cfg.get("num_classes", 2),
-        fpn_out_channels=model_cfg.get("fpn_out_channels", 128),
-        score_thresh=min(args.score_thresh, 0.2),
-    )
+    if model_type == "availability_reliability":
+        model = build_availability_reliability_fcos(
+            model_name=model_cfg.get("model_name", "repvit_m0_9.dist_300e_in1k"),
+            img_size=model_cfg.get("img_size", args.img_size),
+            num_classes=model_cfg.get("num_classes", 2),
+            fpn_out_channels=model_cfg.get("fpn_out_channels", 128),
+            score_thresh=min(args.score_thresh, 0.2),
+        )
+    else:
+        model = build_detector(
+            model_type=model_type,
+            model_name=model_cfg.get("model_name", "repvit_m0_9.dist_300e_in1k"),
+            img_size=model_cfg.get("img_size", args.img_size),
+            num_classes=model_cfg.get("num_classes", 2),
+            fpn_out_channels=model_cfg.get("fpn_out_channels", 128),
+            score_thresh=min(args.score_thresh, 0.2),
+        )
     model.load_state_dict(checkpoint["model_state"], strict=True)
     model.to(device)
     model.eval()
@@ -91,7 +101,7 @@ def evaluate_checkpoint(args):
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate RarePDet AP without pycocotools.")
-    parser.add_argument("--model", default=None, choices=("early", "reliability"), help="Override model type")
+    parser.add_argument("--model", default=None, choices=("early", "reliability", "availability_reliability"), help="Override model type")
     parser.add_argument("--data", default=r"D:\download\triair")
     parser.add_argument("--split-file", default=r"D:\download\triair\splits\val.txt")
     parser.add_argument("--weights", default="runs/rarepdet_early/best.pt")
