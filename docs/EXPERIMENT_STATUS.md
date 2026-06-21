@@ -1,12 +1,20 @@
 # Experiment Status
 
-Generated: 2026-06-21T13:05:48
-Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
+Generated: 2026-06-21T17:21:55+08:00
+Handoff source: `runs/handoff_latest.md`
 
 ## Current best model
 
 - Best AP50: E2 Reliability + Dropout 0.15 (0.979990)
 - Best AP75: E2 Reliability + Dropout 0.15 (0.950906)
+
+## Current active task
+
+- Task file: `docs/NEXT_TASK.md`
+- Current Task: Phase 2B — Availability-Conditioned Reliability Fusion (ACRF)
+- Status: blocked
+- Blocker report: `docs/TASK_BLOCKER.md`
+- Blocker summary: local workspace `E:\RepViT-main` is inaccessible because the `E:` drive is not mounted; `gh` is also unavailable on PATH, so the required local `finish_task.ps1` workflow cannot run.
 
 ## Latest completed experiments
 
@@ -49,46 +57,18 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Phase 2A outputs
 
-### Paper main results at score threshold 0.50
-
-| Method | Threshold | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| E0 Early Fusion | 0.50 | 0.929133 | 0.954067 | 0.941434 | 0.976620 | 0.928824 | 6074 | 6237 | 0.769583 |
-| E1 Reliability Fusion | 0.50 | 0.925721 | 0.962298 | 0.943655 | 0.979317 | 0.947634 | 6074 | 6314 | 0.794935 |
-| E2 Reliability + Dropout 0.15 | 0.50 | 0.931057 | 0.956042 | 0.943384 | 0.979990 | 0.950906 | 6074 | 6237 | 0.788404 |
-
-### Phase 2A profile summary
-
-| Model | Path | Batch Size | Img Size | Warmup | Iters | Repeats | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| early | raw_forward | 1 | 640 | 100 | 300 | 3 | 6591609 | 111.427245 | 8.977959 | 115.153333 |
-| early | detector_inference | 1 | 640 | 100 | 300 | 3 | 6591609 | 55.488686 | 18.030040 | 122.680000 |
-| reliability | raw_forward | 1 | 640 | 100 | 300 | 3 | 6593293 | 117.451207 | 8.515909 | 228.006667 |
-| reliability | detector_inference | 1 | 640 | 100 | 300 | 3 | 6593293 | 55.884826 | 17.895982 | 235.820000 |
-
-### Phase 2A brightness-proxy outputs
-
-- Rows: 9
-- Groups: RGB mean-intensity terciles, not day/night labels.
-
-### Phase 2A alpha outputs
-
-- Rows: 8
-- Modes: full, no_rgb, no_thermal, no_event for E1 and E2.
-
-
-## Current active task
-
-- Task file: `docs/NEXT_TASK.md`
-- Current Task: Execute Phase 2A post-processing for paper-ready RA-RepDet TriAir results.
-- Goal: Produce the Phase 2A paper-facing result package: threshold=0.50 main metrics, repeated E0/E2 profiling, brightness-proxy grouped evaluation, reliability alpha statistics, and a consolidated report.
+- Report: `runs/phase2a_report.md`
+- Paper main threshold: score threshold 0.50
+- Brightness-proxy groups: RGB mean-intensity terciles, not day/night labels
+- Alpha mode rows: full, no_rgb, no_thermal, no_event for E1 and E2
 
 ## Pending tasks
 
-- Review Phase 2A paper-facing result package in runs/phase2a_report.md.
-- Select qualitative cases from compare_E0_E1_E2 outputs.
-- Run brightness/noise robustness tests if needed for the robustness section.
-- Decide whether Phase 2B should add noise/weather proxies or qualitative failure-case mining.
+- Restore access to `E:\RepViT-main` and verify the local worktree.
+- Resume Phase 2B ACRF implementation from `docs/NEXT_TASK.md`.
+- If `runs/E5_acrf_dropout015_repvit_fcos_e50/weights/last.pt` exists locally, inspect and resume instead of deleting it.
+- Run the required ACRF smoke test before any long training.
+- Complete E5 evaluation and evidence report after training finishes.
 
 ## Known metric caveats
 
@@ -105,14 +85,11 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - E0/E1/E2 completed 50-epoch first-batch experiments and should not be retrained without explicit instruction.
 - E2 is the strongest robustness-oriented model by missing-modality AP50/AP75.
 - E1 has the highest F1 in the threshold sweep at threshold 0.50.
+- Phase 2B should remain a targeted ACRF correction, not a generic attention or transformer expansion.
 
 ## Files or scripts currently under review
 
-- `AGENTS.md`
 - `docs/NEXT_TASK.md`
-- `docs/EXPERIMENT_STATUS.md`
-- `docs/PROJECT_CONTEXT.md`
-- `rarepdet/tools/update_project_status.py`
-- `rarepdet/tools/finish_task.ps1`
+- `docs/TASK_BLOCKER.md`
 - `runs/handoff_latest.md`
-- `runs/handoff_latest.json`
+- `rarepdet/tools/finish_task.ps1`
