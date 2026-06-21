@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-21T11:09:55
+Generated: 2026-06-21T13:05:48
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -61,10 +61,10 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 | Model | Path | Batch Size | Img Size | Warmup | Iters | Repeats | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| early | raw_forward | 1 | 640 | 100 | 300 | 3 | 6591609 | 119.223563 | 8.390822 | 115.153333 |
-| early | detector_inference | 1 | 640 | 100 | 300 | 3 | 6591609 | 59.018778 | 16.943760 | 122.680000 |
-| reliability | raw_forward | 1 | 640 | 100 | 300 | 3 | 6593293 | 116.372946 | 8.594858 | 228.006667 |
-| reliability | detector_inference | 1 | 640 | 100 | 300 | 3 | 6593293 | 57.986395 | 17.245861 | 235.820000 |
+| early | raw_forward | 1 | 640 | 100 | 300 | 3 | 6591609 | 111.427245 | 8.977959 | 115.153333 |
+| early | detector_inference | 1 | 640 | 100 | 300 | 3 | 6591609 | 55.488686 | 18.030040 | 122.680000 |
+| reliability | raw_forward | 1 | 640 | 100 | 300 | 3 | 6593293 | 117.451207 | 8.515909 | 228.006667 |
+| reliability | detector_inference | 1 | 640 | 100 | 300 | 3 | 6593293 | 55.884826 | 17.895982 | 235.820000 |
 
 ### Phase 2A brightness-proxy outputs
 

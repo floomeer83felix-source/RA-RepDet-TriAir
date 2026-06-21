@@ -14,15 +14,15 @@ Scope: post-processing only. E0/E1/E2 were not retrained, and detector/Dataset s
 
 | Model | Path | Batch Size | Img Size | Warmup | Iters | Repeats | Params | Trainable Params | FPS mean | FPS std | Latency ms/img mean | Latency ms/img std | CUDA Memory MB mean | CUDA Memory MB std |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| early | raw_forward | 1 | 640 | 100 | 300 | 3 | 6591609 | 6591609 | 119.223563 | 2.346034 | 8.390822 | 0.163564 | 115.153333 | 0.400694 |
-| early | detector_inference | 1 | 640 | 100 | 300 | 3 | 6591609 | 6591609 | 59.018778 | 0.009687 | 16.943760 | 0.002781 | 122.680000 | 0.000000 |
+| early | raw_forward | 1 | 640 | 100 | 300 | 3 | 6591609 | 6591609 | 111.427245 | 2.190858 | 8.977959 | 0.177706 | 115.153333 | 0.400694 |
+| early | detector_inference | 1 | 640 | 100 | 300 | 3 | 6591609 | 6591609 | 55.488686 | 1.186789 | 18.030040 | 0.390312 | 122.680000 | 0.000000 |
 
 ## E2 Phase 2A Profile
 
 | Model | Path | Batch Size | Img Size | Warmup | Iters | Repeats | Params | Trainable Params | FPS mean | FPS std | Latency ms/img mean | Latency ms/img std | CUDA Memory MB mean | CUDA Memory MB std |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| reliability | raw_forward | 1 | 640 | 100 | 300 | 3 | 6593293 | 6593293 | 116.372946 | 1.680733 | 8.594858 | 0.124329 | 228.006667 | 0.004714 |
-| reliability | detector_inference | 1 | 640 | 100 | 300 | 3 | 6593293 | 6593293 | 57.986395 | 0.291187 | 17.245861 | 0.086910 | 235.820000 | 0.000000 |
+| reliability | raw_forward | 1 | 640 | 100 | 300 | 3 | 6593293 | 6593293 | 117.451207 | 1.668889 | 8.515909 | 0.122112 | 228.006667 | 0.004714 |
+| reliability | detector_inference | 1 | 640 | 100 | 300 | 3 | 6593293 | 6593293 | 55.884826 | 0.594419 | 17.895982 | 0.191525 | 235.820000 | 0.000000 |
 
 ## Brightness-Proxy Grouped Evaluation
 

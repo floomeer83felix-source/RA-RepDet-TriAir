@@ -1,5 +1,5 @@
 Phase 2A profile results
 ========================
 
-early raw_forward: FPS=119.223563 +/- 2.346034, Latency=8.390822 ms, CUDA memory=115.153333 MB
-early detector_inference: FPS=59.018778 +/- 0.009687, Latency=16.943760 ms, CUDA memory=122.680000 MB
+early raw_forward: FPS=111.427245 +/- 2.190858, Latency=8.977959 ms, CUDA memory=115.153333 MB
+early detector_inference: FPS=55.488686 +/- 1.186789, Latency=18.030040 ms, CUDA memory=122.680000 MB

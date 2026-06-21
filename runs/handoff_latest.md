@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-21T11:09:55
+Generated: 2026-06-21T13:05:48
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -62,25 +62,15 @@ Workspace: `E:\RepViT-main`
 ## Recently Modified Files
 
 - `M docs/EXPERIMENT_STATUS.md`
-- ` M docs/NEXT_TASK.md`
-- ` M rarepdet/tools/finish_task.ps1`
-- ` M rarepdet/tools/generate_handoff.py`
-- ` M rarepdet/tools/update_project_status.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `?? rarepdet/tools/analyze_alpha_modes.py`
-- `?? rarepdet/tools/build_phase2a_report.py`
-- `?? rarepdet/tools/eval_brightness_proxy.py`
-- `?? rarepdet/tools/phase2a_common.py`
-- `?? rarepdet/tools/phase2a_main_results.py`
-- `?? rarepdet/tools/profile_phase2a.py`
-- `?? runs/phase2a_alpha/`
-- `?? runs/phase2a_brightness_proxy/`
-- `?? runs/phase2a_main_results.csv`
-- `?? runs/phase2a_main_results.md`
-- `?? runs/phase2a_profile_e0/`
-- `?? runs/phase2a_profile_e2/`
-- `?? runs/phase2a_report.md`
+- ` M runs/phase2a_profile_e0/profile_raw_runs.csv`
+- ` M runs/phase2a_profile_e0/profile_results.csv`
+- ` M runs/phase2a_profile_e0/profile_results.txt`
+- ` M runs/phase2a_profile_e2/profile_raw_runs.csv`
+- ` M runs/phase2a_profile_e2/profile_results.csv`
+- ` M runs/phase2a_profile_e2/profile_results.txt`
+- ` M runs/phase2a_report.md`
 
 ## Next Recommended Tasks
 
