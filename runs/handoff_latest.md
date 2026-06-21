@@ -1,7 +1,19 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-21T13:05:48
+Generated: 2026-06-21T17:21:55+08:00
 Workspace: `E:\RepViT-main`
+
+## Current Blocker
+
+Phase 2B ACRF from `docs/NEXT_TASK.md` is blocked because the required local workspace drive is not mounted in the current Windows session.
+
+- `Get-PSDrive -PSProvider FileSystem` shows only `C:` and `D:`.
+- `Test-Path 'E:\RepViT-main'` returns `False`.
+- `gh --version` and `gh auth status` fail because `gh` is not on PATH.
+- The blocker is documented in `docs/TASK_BLOCKER.md`.
+- No E0/E1/E2 training results, weights, datasets, or core training files were modified during this blocked handoff update.
+
+Smallest safe next action: restore access to `E:\RepViT-main`, then run `git -C E:\RepViT-main status -sb` and resume Phase 2B from `docs/NEXT_TASK.md` without deleting any local E5 artifacts.
 
 ## Dataset
 
@@ -36,6 +48,13 @@ Workspace: `E:\RepViT-main`
 - Brightness-proxy rows: 9
 - Alpha mode rows: 8
 
+## Phase 2B Status
+
+- Active task: Availability-Conditioned Reliability Fusion (ACRF), defined in `docs/NEXT_TASK.md`.
+- Status: blocked by missing local `E:` workspace and unavailable `gh` CLI.
+- Required blocked files/artifacts: local ACRF source changes, any partial E5 checkpoints, and local `runs/E5_acrf_dropout015_repvit_fcos_e50` artifacts cannot currently be inspected.
+- Blocker report: `docs/TASK_BLOCKER.md`.
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -54,26 +73,19 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Review Phase 2A paper-facing result package in runs/phase2a_report.md.
-- Select qualitative cases from compare_E0_E1_E2 outputs.
-- Run brightness/noise robustness tests if needed for the robustness section.
-- Decide whether Phase 2B should add noise/weather proxies or qualitative failure-case mining.
+- Restore access to `E:\RepViT-main`.
+- Resume Phase 2B ACRF from `docs/NEXT_TASK.md` once the workspace is available.
+- If the local E5 partial checkpoint exists, inspect and resume from `runs/E5_acrf_dropout015_repvit_fcos_e50/weights/last.pt`; do not delete or overwrite it.
+- If the local workspace cannot be restored, re-clone the research branch on an available drive and rerun Phase 2B from scratch.
 
 ## Recently Modified Files
 
-- `M docs/EXPERIMENT_STATUS.md`
-- ` M runs/handoff_latest.json`
-- ` M runs/handoff_latest.md`
-- ` M runs/phase2a_profile_e0/profile_raw_runs.csv`
-- ` M runs/phase2a_profile_e0/profile_results.csv`
-- ` M runs/phase2a_profile_e0/profile_results.txt`
-- ` M runs/phase2a_profile_e2/profile_raw_runs.csv`
-- ` M runs/phase2a_profile_e2/profile_results.csv`
-- ` M runs/phase2a_profile_e2/profile_results.txt`
-- ` M runs/phase2a_report.md`
+- `A docs/TASK_BLOCKER.md`
+- `M runs/handoff_latest.md`
 
 ## Next Recommended Tasks
 
-- Publish this lightweight workspace without datasets, weights, npy files, or visual outputs.
-- Add paper tables from profile, threshold sweep, missing-modality, and final eval summaries.
-- Use E2 as the robustness-oriented best model and E1 as the best F1 threshold-sweep model.
+- Restore `E:` drive access and verify `E:\RepViT-main`.
+- Resume or reconstruct the Phase 2B ACRF implementation.
+- Run the required ACRF smoke test before any long training.
+- Complete E5 training/evaluation only after the smoke test passes.
