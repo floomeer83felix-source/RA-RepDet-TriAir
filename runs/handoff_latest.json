@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-21T22:14:43",
+  "generated_at": "2026-06-22T07:48:04",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -11,8 +11,21 @@
       "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
     ],
     "status_short": [
-      "M .gitignore",
-      " M rarepdet/tools/finish_task.ps1"
+      "M docs/EXPERIMENT_STATUS.md",
+      " M rarepdet/tools/finish_task.ps1",
+      " M rarepdet/tools/generate_handoff.py",
+      " M rarepdet/tools/update_project_status.py",
+      " M runs/handoff_latest.json",
+      " M runs/handoff_latest.md",
+      "?? docs/MSCD_DESIGN.md",
+      "?? rarepdet/tools/build_mscd_report.py",
+      "?? rarepdet/tools/test_mscd.py",
+      "?? rarepdet/train_mscd.py",
+      "?? runs/E6_mscd_dropout015_repvit_fcos_e50/",
+      "?? runs/mscd_evidence_report.md",
+      "?? runs/mscd_evidence_summary.csv",
+      "?? runs/mscd_smoke_test.md",
+      "?? runs/phase2c_report.md"
     ]
   },
   "dataset": {
@@ -32,6 +45,7 @@
     "E1": "RGB/Thermal/Event reliability stems -> alpha fusion -> Conv(16,3) -> RepViT-M0.9 -> FPN -> FCOS.",
     "E2": "E1 plus modality dropout 0.15 during training.",
     "E5": "Availability-conditioned reliability fusion with post-stem masking, masked softmax, and modality dropout 0.15.",
+    "E6": "E2 inference architecture trained with modality-subset consistency distillation from frozen E2 full-input teacher.",
     "labels": "TriAir class 0 is shifted to torchvision detection label 1; background remains 0."
   },
   "core_results": [
@@ -78,6 +92,17 @@
       "gt_boxes": "6074",
       "predictions": "6174",
       "mean_confidence": "0.779350"
+    },
+    {
+      "id": "E6",
+      "method": "MSCD + Dropout 0.15",
+      "precision": "0.937297",
+      "recall": "0.949951",
+      "ap50": "0.974990",
+      "ap75": "0.945138",
+      "gt_boxes": "6074",
+      "predictions": "6156",
+      "mean_confidence": "0.801200"
     }
   ],
   "best_model": {
@@ -774,10 +799,141 @@
       }
     ]
   },
+  "phase2c": {
+    "evidence_summary": [
+      {
+        "Method": "E1 Reliability Fusion",
+        "Extra inference params": "0",
+        "Full AP50": "0.979317",
+        "Full AP75": "0.947634",
+        "P@0.50": "0.925721",
+        "R@0.50": "0.962298",
+        "F1@0.50": "0.943655",
+        "w/o RGB AP50": "0.688697",
+        "w/o Thermal AP50": "0.370994",
+        "w/o Event AP50": "0.477850",
+        "Mean Missing-Modality AP50": "0.512514"
+      },
+      {
+        "Method": "E2 Reliability + Dropout 0.15",
+        "Extra inference params": "0",
+        "Full AP50": "0.979990",
+        "Full AP75": "0.950906",
+        "P@0.50": "0.931057",
+        "R@0.50": "0.956042",
+        "F1@0.50": "0.943384",
+        "w/o RGB AP50": "0.948710",
+        "w/o Thermal AP50": "0.811566",
+        "w/o Event AP50": "0.978972",
+        "Mean Missing-Modality AP50": "0.913083"
+      },
+      {
+        "Method": "E5 ACRF + Dropout 0.15",
+        "Extra inference params": "48",
+        "Full AP50": "0.978066",
+        "Full AP75": "0.946602",
+        "P@0.50": "0.938290",
+        "R@0.50": "0.953737",
+        "F1@0.50": "0.945950",
+        "w/o RGB AP50": "0.944019",
+        "w/o Thermal AP50": "0.846657",
+        "w/o Event AP50": "0.978531",
+        "Mean Missing-Modality AP50": "0.923069"
+      },
+      {
+        "Method": "E6 MSCD + Dropout 0.15",
+        "Extra inference params": "0",
+        "Full AP50": "0.974990",
+        "Full AP75": "0.945138",
+        "P@0.50": "0.937297",
+        "R@0.50": "0.949951",
+        "F1@0.50": "0.943582",
+        "w/o RGB AP50": "0.941817",
+        "w/o Thermal AP50": "0.757718",
+        "w/o Event AP50": "0.962810",
+        "Mean Missing-Modality AP50": "0.887448"
+      }
+    ],
+    "evidence_report": "E:\\RepViT-main\\runs\\mscd_evidence_report.md",
+    "phase2c_report": "E:\\RepViT-main\\runs\\phase2c_report.md",
+    "smoke_test": "E:\\RepViT-main\\runs\\mscd_smoke_test.md",
+    "e6_missing_modality": [
+      {
+        "Mode": "full",
+        "Precision": "0.028832221163012393",
+        "Recall": "0.9958840961475139",
+        "AP50": "0.9760364294052124",
+        "AP75": "0.9462205171585083",
+        "GT boxes": "6074",
+        "Predictions": "209800",
+        "Mean Confidence": "0.14723740668447105"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.028722592945662536",
+        "Recall": "0.9920974646032269",
+        "AP50": "0.941817045211792",
+        "AP75": "0.8285554051399231",
+        "GT boxes": "6074",
+        "Predictions": "209800",
+        "Mean Confidence": "0.17372752327283753"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.02661582459485224",
+        "Recall": "0.9193282844912742",
+        "AP50": "0.7577184438705444",
+        "AP75": "0.5233491063117981",
+        "GT boxes": "6074",
+        "Predictions": "209800",
+        "Mean Confidence": "0.20736178709238456"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.02873212583412774",
+        "Recall": "0.9924267369114258",
+        "AP50": "0.9628102779388428",
+        "AP75": "0.9058251976966858",
+        "GT boxes": "6074",
+        "Predictions": "209800",
+        "Mean Confidence": "0.18897050569961477"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.0267349857006673",
+        "Recall": "0.9234441883437603",
+        "AP50": "0.7629208564758301",
+        "AP75": "0.5156474709510803",
+        "GT boxes": "6074",
+        "Predictions": "209800",
+        "Mean Confidence": "0.20583141752631468"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.02697807435653003",
+        "Recall": "0.9318406322028318",
+        "AP50": "0.752621591091156",
+        "AP75": "0.5923941135406494",
+        "GT boxes": "6074",
+        "Predictions": "209800",
+        "Mean Confidence": "0.251010156356196"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.015071496663489036",
+        "Recall": "0.5205795192624301",
+        "AP50": "0.23152488470077515",
+        "AP75": "0.12583810091018677",
+        "GT boxes": "6074",
+        "Predictions": "209800",
+        "Mean Confidence": "0.2670055817259392"
+      }
+    ]
+  },
   "current_pending_experiments": [
-    "Review Phase 2B ACRF evidence report in runs/acrf_evidence_report.md.",
+    "Review Phase 2C MSCD evidence report in runs/mscd_evidence_report.md.",
     "Select qualitative cases from compare_E0_E1_E2 outputs.",
-    "Decide whether E5 should be presented as an ablation rather than replacing E2 as the main model.",
+    "Keep E2 as the main paper model unless a later task defines a stronger controlled improvement.",
     "Run brightness/noise robustness tests if needed for the robustness section."
   ],
   "code_structure": {
@@ -791,12 +947,26 @@
     "postprocessing_tools": "rarepdet/tools/"
   },
   "recent_modified_files": [
-    "M .gitignore",
-    " M rarepdet/tools/finish_task.ps1"
+    "M docs/EXPERIMENT_STATUS.md",
+    " M rarepdet/tools/finish_task.ps1",
+    " M rarepdet/tools/generate_handoff.py",
+    " M rarepdet/tools/update_project_status.py",
+    " M runs/handoff_latest.json",
+    " M runs/handoff_latest.md",
+    "?? docs/MSCD_DESIGN.md",
+    "?? rarepdet/tools/build_mscd_report.py",
+    "?? rarepdet/tools/test_mscd.py",
+    "?? rarepdet/train_mscd.py",
+    "?? runs/E6_mscd_dropout015_repvit_fcos_e50/",
+    "?? runs/mscd_evidence_report.md",
+    "?? runs/mscd_evidence_summary.csv",
+    "?? runs/mscd_smoke_test.md",
+    "?? runs/phase2c_report.md"
   ],
   "next_recommended_tasks": [
     "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
     "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
-    "Add paper tables from Phase 2A and Phase 2B summaries."
+    "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
+    "Add paper tables from Phase 2A, Phase 2B, and Phase 2C summaries."
   ]
 }

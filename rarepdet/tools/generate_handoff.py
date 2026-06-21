@@ -34,6 +34,12 @@ EXPERIMENTS = [
         "dir": RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50",
         "eval_subdir": "eval_thr050",
     },
+    {
+        "id": "E6",
+        "method": "MSCD + Dropout 0.15",
+        "dir": RUNS_DIR / "E6_mscd_dropout015_repvit_fcos_e50",
+        "eval_subdir": "eval_thr050",
+    },
 ]
 
 
@@ -143,6 +149,18 @@ def collect_phase2b():
     }
 
 
+def collect_phase2c():
+    return {
+        "evidence_summary": read_csv(RUNS_DIR / "mscd_evidence_summary.csv"),
+        "evidence_report": str(RUNS_DIR / "mscd_evidence_report.md") if (RUNS_DIR / "mscd_evidence_report.md").exists() else None,
+        "phase2c_report": str(RUNS_DIR / "phase2c_report.md") if (RUNS_DIR / "phase2c_report.md").exists() else None,
+        "smoke_test": str(RUNS_DIR / "mscd_smoke_test.md") if (RUNS_DIR / "mscd_smoke_test.md").exists() else None,
+        "e6_missing_modality": read_csv(
+            RUNS_DIR / "E6_mscd_dropout015_repvit_fcos_e50" / "missing_modality" / "missing_modality_results.csv"
+        ),
+    }
+
+
 def best_by(results, metric):
     numeric = []
     for row in results:
@@ -189,6 +207,7 @@ def build_handoff():
             "E1": "RGB/Thermal/Event reliability stems -> alpha fusion -> Conv(16,3) -> RepViT-M0.9 -> FPN -> FCOS.",
             "E2": "E1 plus modality dropout 0.15 during training.",
             "E5": "Availability-conditioned reliability fusion with post-stem masking, masked softmax, and modality dropout 0.15.",
+            "E6": "E2 inference architecture trained with modality-subset consistency distillation from frozen E2 full-input teacher.",
             "labels": "TriAir class 0 is shifted to torchvision detection label 1; background remains 0.",
         },
         "core_results": eval_results,
@@ -200,10 +219,11 @@ def build_handoff():
         "profile": collect_profile(),
         "phase2a": collect_phase2a(),
         "phase2b": collect_phase2b(),
+        "phase2c": collect_phase2c(),
         "current_pending_experiments": [
-            "Review Phase 2B ACRF evidence report in runs/acrf_evidence_report.md.",
+            "Review Phase 2C MSCD evidence report in runs/mscd_evidence_report.md.",
             "Select qualitative cases from compare_E0_E1_E2 outputs.",
-            "Decide whether E5 should be presented as an ablation rather than replacing E2 as the main model.",
+            "Keep E2 as the main paper model unless a later task defines a stronger controlled improvement.",
             "Run brightness/noise robustness tests if needed for the robustness section.",
         ],
         "code_structure": {
@@ -220,7 +240,8 @@ def build_handoff():
         "next_recommended_tasks": [
             "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
             "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
-            "Add paper tables from Phase 2A and Phase 2B summaries.",
+            "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
+            "Add paper tables from Phase 2A, Phase 2B, and Phase 2C summaries.",
         ],
     }
 
@@ -280,6 +301,14 @@ def write_markdown(data, path):
         f"- Evidence rows: {len(data['phase2b']['evidence_summary'])}",
         f"- E5 missing-modality rows: {len(data['phase2b']['e5_missing_modality'])}",
         f"- E5 alpha-mode rows: {len(data['phase2b']['e5_alpha_modes'])}",
+        "",
+        "## Phase 2C MSCD Outputs",
+        "",
+        "- Report: `runs/mscd_evidence_report.md`" if data["phase2c"]["evidence_report"] else "- Report: NA",
+        "- Phase 2C report: `runs/phase2c_report.md`" if data["phase2c"]["phase2c_report"] else "- Phase 2C report: NA",
+        "- Smoke test: `runs/mscd_smoke_test.md`" if data["phase2c"]["smoke_test"] else "- Smoke test: NA",
+        f"- Evidence rows: {len(data['phase2c']['evidence_summary'])}",
+        f"- E6 missing-modality rows: {len(data['phase2c']['e6_missing_modality'])}",
         "",
         "## Model And Code Structure",
         "",

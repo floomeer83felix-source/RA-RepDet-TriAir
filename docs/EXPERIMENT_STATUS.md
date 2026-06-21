@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-21T22:14:43
+Generated: 2026-06-22T07:48:04
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -16,6 +16,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | E1 | Reliability Fusion | 0.028866 | 0.997037 | 0.979317 | 0.947634 | 6074 | 209800 | 0.125795 |
 | E2 | Reliability + Dropout 0.15 | 0.028837 | 0.996049 | 0.979990 | 0.950906 | 6074 | 209800 | 0.131865 |
 | E5 | ACRF + Dropout 0.15 | 0.938290 | 0.953737 | 0.978066 | 0.946602 | 6074 | 6174 | 0.779350 |
+| E6 | MSCD + Dropout 0.15 | 0.937297 | 0.949951 | 0.974990 | 0.945138 | 6074 | 6156 | 0.801200 |
 
 ### Best threshold by F1
 
@@ -81,8 +82,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 2B - Availability-Conditioned Reliability Fusion (ACRF)
-- Goal: Implement, train, evaluate, and summarize the E5 ACRF ablation.
+- Current Task: Phase 2C - Modality-Subset Consistency Distillation (MSCD)
+- Goal: Implement, train, evaluate, and summarize the E6 MSCD training-strategy ablation.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -101,11 +102,28 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | E2 Reliability + Dropout 0.15 | 6593293 | 0.979990 | 0.950906 | 0.931057 | 0.956042 | 0.943384 | 0.948710 | 0.811566 | 0.978972 | 0.913083 |
 | E5 ACRF + Dropout 0.15 | 6593341 | 0.978066 | 0.946602 | 0.938290 | 0.953737 | 0.945950 | 0.944019 | 0.846657 | 0.978531 | 0.923069 |
 
+## Phase 2C MSCD outputs
+
+- Report: `runs/mscd_evidence_report.md`
+- Phase 2C report: `runs/phase2c_report.md`
+- Smoke test: `runs/mscd_smoke_test.md`
+- Evidence rows: 4
+- E6 missing-modality rows: 7
+
+### MSCD evidence summary
+
+| Method | Extra inference params | Full AP50 | Full AP75 | P@0.50 | R@0.50 | F1@0.50 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 | Mean Missing-Modality AP50 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| E1 Reliability Fusion | 0 | 0.979317 | 0.947634 | 0.925721 | 0.962298 | 0.943655 | 0.688697 | 0.370994 | 0.477850 | 0.512514 |
+| E2 Reliability + Dropout 0.15 | 0 | 0.979990 | 0.950906 | 0.931057 | 0.956042 | 0.943384 | 0.948710 | 0.811566 | 0.978972 | 0.913083 |
+| E5 ACRF + Dropout 0.15 | 48 | 0.978066 | 0.946602 | 0.938290 | 0.953737 | 0.945950 | 0.944019 | 0.846657 | 0.978531 | 0.923069 |
+| E6 MSCD + Dropout 0.15 | 0 | 0.974990 | 0.945138 | 0.937297 | 0.949951 | 0.943582 | 0.941817 | 0.757718 | 0.962810 | 0.887448 |
+
 ## Pending tasks
 
-- Review Phase 2B ACRF evidence report in runs/acrf_evidence_report.md.
+- Review Phase 2C MSCD evidence report in runs/mscd_evidence_report.md.
 - Select qualitative cases from compare_E0_E1_E2 outputs.
-- Decide whether E5 should be presented as an ablation rather than replacing E2 as the main model.
+- Keep E2 as the main paper model unless a later task defines a stronger controlled improvement.
 - Run brightness/noise robustness tests if needed for the robustness section.
 
 ## Known metric caveats
@@ -124,6 +142,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - E2 is the strongest robustness-oriented model by missing-modality AP50/AP75.
 - E1 has the highest F1 in the threshold sweep at threshold 0.50.
 - E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.
+- E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.
 
 ## Files or scripts currently under review
 

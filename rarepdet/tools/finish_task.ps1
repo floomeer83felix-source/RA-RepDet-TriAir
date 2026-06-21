@@ -92,12 +92,18 @@ function Add-FilesSafely {
         "runs\acrf_*.csv",
         "runs\acrf_*.md",
         "runs\acrf_*.txt",
-        "runs\E5_*\config.txt",
-        "runs\E5_*\eval_thr050\*.txt",
-        "runs\E5_*\missing_modality\*.csv",
-        "runs\E5_*\missing_modality\*.txt",
-        "runs\E5_*\alpha_modes\*.csv",
-        "runs\E5_*\alpha_modes\*.txt"
+        "runs\mscd_*.csv",
+        "runs\mscd_*.md",
+        "runs\mscd_*.txt",
+        "runs\phase2c_*.csv",
+        "runs\phase2c_*.md",
+        "runs\phase2c_*.txt",
+        "runs\E*_*\config.txt",
+        "runs\E*_*\eval_thr050\*.txt",
+        "runs\E*_*\missing_modality\*.csv",
+        "runs\E*_*\missing_modality\*.txt",
+        "runs\E*_*\alpha_modes\*.csv",
+        "runs\E*_*\alpha_modes\*.txt"
     )
 
     $files = New-Object System.Collections.Generic.List[string]

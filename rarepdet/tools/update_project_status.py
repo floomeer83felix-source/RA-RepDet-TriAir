@@ -19,6 +19,7 @@ EXPERIMENTS = [
     ("E1", "Reliability Fusion", RUNS_DIR / "E1_reliability_repvit_fcos_e50", "eval"),
     ("E2", "Reliability + Dropout 0.15", RUNS_DIR / "E2_reliability_dropout015_repvit_fcos_e50", "eval"),
     ("E5", "ACRF + Dropout 0.15", RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50", "eval_thr050"),
+    ("E6", "MSCD + Dropout 0.15", RUNS_DIR / "E6_mscd_dropout015_repvit_fcos_e50", "eval_thr050"),
 ]
 
 
@@ -172,14 +173,20 @@ def build_status():
     acrf_evidence = read_csv(RUNS_DIR / "acrf_evidence_summary.csv")
     e5_missing = read_csv(RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50" / "missing_modality" / "missing_modality_results.csv")
     e5_alpha = read_csv(RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50" / "alpha_modes" / "alpha_mode_summary.csv")
+    mscd_evidence = read_csv(RUNS_DIR / "mscd_evidence_summary.csv")
+    e6_missing = read_csv(RUNS_DIR / "E6_mscd_dropout015_repvit_fcos_e50" / "missing_modality" / "missing_modality_results.csv")
 
-    active_status = "completed" if acrf_evidence else "pending"
+    active_status = "completed" if mscd_evidence else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in read_text(NEXT_TASK_PATH):
         current_task = "Phase 2B - Availability-Conditioned Reliability Fusion (ACRF)"
+    if current_task == "NA" and "Phase 2C" in read_text(NEXT_TASK_PATH):
+        current_task = "Phase 2C - Modality-Subset Consistency Distillation (MSCD)"
     if current_goal == "NA" and acrf_evidence:
         current_goal = "Implement, train, evaluate, and summarize the E5 ACRF ablation."
+    if mscd_evidence:
+        current_goal = "Implement, train, evaluate, and summarize the E6 MSCD training-strategy ablation."
 
     lines = [
         "# Experiment Status",
@@ -308,6 +315,34 @@ def build_status():
 
     lines += [
         "",
+        "## Phase 2C MSCD outputs",
+        "",
+        "- Report: `runs/mscd_evidence_report.md`" if (RUNS_DIR / "mscd_evidence_report.md").exists() else "- Report: NA",
+        "- Phase 2C report: `runs/phase2c_report.md`" if (RUNS_DIR / "phase2c_report.md").exists() else "- Phase 2C report: NA",
+        "- Smoke test: `runs/mscd_smoke_test.md`" if (RUNS_DIR / "mscd_smoke_test.md").exists() else "- Smoke test: NA",
+        f"- Evidence rows: {len(mscd_evidence) if mscd_evidence else 'NA'}",
+        f"- E6 missing-modality rows: {len(e6_missing) if e6_missing else 'NA'}",
+        "",
+        "### MSCD evidence summary",
+        "",
+    ]
+    mscd_headers = [
+        "Method",
+        "Extra inference params",
+        "Full AP50",
+        "Full AP75",
+        "P@0.50",
+        "R@0.50",
+        "F1@0.50",
+        "w/o RGB AP50",
+        "w/o Thermal AP50",
+        "w/o Event AP50",
+        "Mean Missing-Modality AP50",
+    ]
+    lines.extend(table(mscd_headers, mscd_evidence))
+
+    lines += [
+        "",
         "## Pending tasks",
         "",
     ]
@@ -331,6 +366,7 @@ def build_status():
         "- E2 is the strongest robustness-oriented model by missing-modality AP50/AP75.",
         "- E1 has the highest F1 in the threshold sweep at threshold 0.50.",
         "- E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.",
+        "- E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.",
         "",
         "## Files or scripts currently under review",
         "",
