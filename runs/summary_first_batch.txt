@@ -1,0 +1,11 @@
+Method | Precision | Recall | AP50 | AP75 | GT boxes | Predictions | Mean Confidence
+--- | ---: | ---: | ---: | ---: | ---: | ---: | ---:
+E0 Early Fusion | 0.028842 | 0.996213 | 0.976620 | 0.928824 | 6074 | 209800 | 0.135346
+E1 Reliability Fusion | 0.028866 | 0.997037 | 0.979317 | 0.947634 | 6074 | 209800 | 0.125795
+E2 Reliability + Dropout 0.15 | 0.028837 | 0.996049 | 0.979990 | 0.950906 | 6074 | 209800 | 0.131865
+
+AP50 最高: E2 Reliability + Dropout 0.15 (0.979990)
+Recall 最高: E1 Reliability Fusion (0.997037)
+E1 相比 E0: 提升 (AP50 0.976620 -> 0.979317)
+E2 相比 E1: 提升 (AP50 0.979317 -> 0.979990)
+下一步建议: 需要做 missing-modality test，用于验证 reliability fusion 在 RGB/Thermal/Event 缺失或退化时是否更稳健。

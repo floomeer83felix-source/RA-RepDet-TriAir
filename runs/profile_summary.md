@@ -1,0 +1,8 @@
+﻿# Profile Summary
+
+warmup=50, iters=200, batch-size=1, img-size=640, device=cuda
+
+| Model | Params | Trainable Params | GFLOPs | FPS | Latency ms/img | CUDA Memory MB |
+| --- | --- | --- | --- | --- | --- | --- |
+| E0/Early Fusion | 6591609 | 6591609 | 105.207355 | 24.914556 | 40.137179 | 123.43 |
+| E1/E2 Reliability Fusion | 6593293 | 6593293 | 105.981501 | 47.389574 | 21.101688 | 236.40 |

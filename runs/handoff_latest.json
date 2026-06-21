@@ -1,0 +1,208 @@
+{
+  "project_name": "RA-RepDet-TriAir",
+  "generated_at": "2026-06-21T10:32:37",
+  "workspace": "E:\\RepViT-main",
+  "git": {
+    "branch": "research/ra-repdet-triair",
+    "remotes": [
+      "origin\thttps://github.com/floomeer83felix-source/RepViT-main.git (fetch)",
+      "origin\thttps://github.com/floomeer83felix-source/RepViT-main.git (push)",
+      "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (fetch)",
+      "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
+    ],
+    "status_short": [
+      "M .gitignore",
+      "?? rarepdet/tools/generate_handoff.py",
+      "?? runs/"
+    ]
+  },
+  "dataset": {
+    "root": "D:\\download\\triair",
+    "samples": 10489,
+    "images_with_label_txt": 9751,
+    "images_without_label_txt": 738,
+    "empty_label_txt_files": 1,
+    "classes": 1,
+    "total_valid_boxes": 30634,
+    "val_images": 2098,
+    "val_boxes": 6074,
+    "note": "Missing txt files are treated as empty-target images."
+  },
+  "models": {
+    "E0": "5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.",
+    "E1": "RGB/Thermal/Event reliability stems -> alpha fusion -> Conv(16,3) -> RepViT-M0.9 -> FPN -> FCOS.",
+    "E2": "E1 plus modality dropout 0.15 during training.",
+    "labels": "TriAir class 0 is shifted to torchvision detection label 1; background remains 0."
+  },
+  "core_results": [
+    {
+      "id": "E0",
+      "method": "Early Fusion",
+      "precision": "0.028842",
+      "recall": "0.996213",
+      "ap50": "0.976620",
+      "ap75": "0.928824",
+      "gt_boxes": "6074",
+      "predictions": "209800",
+      "mean_confidence": "0.135346"
+    },
+    {
+      "id": "E1",
+      "method": "Reliability Fusion",
+      "precision": "0.028866",
+      "recall": "0.997037",
+      "ap50": "0.979317",
+      "ap75": "0.947634",
+      "gt_boxes": "6074",
+      "predictions": "209800",
+      "mean_confidence": "0.125795"
+    },
+    {
+      "id": "E2",
+      "method": "Reliability + Dropout 0.15",
+      "precision": "0.028837",
+      "recall": "0.996049",
+      "ap50": "0.979990",
+      "ap75": "0.950906",
+      "gt_boxes": "6074",
+      "predictions": "209800",
+      "mean_confidence": "0.131865"
+    }
+  ],
+  "best_model": {
+    "by_ap50": {
+      "id": "E2",
+      "method": "Reliability + Dropout 0.15",
+      "precision": "0.028837",
+      "recall": "0.996049",
+      "ap50": "0.979990",
+      "ap75": "0.950906",
+      "gt_boxes": "6074",
+      "predictions": "209800",
+      "mean_confidence": "0.131865"
+    },
+    "by_ap75": {
+      "id": "E2",
+      "method": "Reliability + Dropout 0.15",
+      "precision": "0.028837",
+      "recall": "0.996049",
+      "ap50": "0.979990",
+      "ap75": "0.950906",
+      "gt_boxes": "6074",
+      "predictions": "209800",
+      "mean_confidence": "0.131865"
+    }
+  },
+  "missing_modality": {
+    "ap50": [
+      {
+        "Method": "E0 Early Fusion",
+        "Full": "0.976620",
+        "w/o RGB": "0.739537",
+        "w/o Thermal": "0.410636",
+        "w/o Event": "0.974633",
+        "RGB only": "0.398050",
+        "Thermal only": "0.700867",
+        "Event only": "0.013115"
+      },
+      {
+        "Method": "E1 Reliability Fusion",
+        "Full": "0.979317",
+        "w/o RGB": "0.688697",
+        "w/o Thermal": "0.370994",
+        "w/o Event": "0.477850",
+        "RGB only": "0.477494",
+        "Thermal only": "0.000240",
+        "Event only": "0.004093"
+      },
+      {
+        "Method": "E2 Reliability + Dropout 0.15",
+        "Full": "0.979990",
+        "w/o RGB": "0.948710",
+        "w/o Thermal": "0.811566",
+        "w/o Event": "0.978972",
+        "RGB only": "0.802234",
+        "Thermal only": "0.863495",
+        "Event only": "0.304352"
+      }
+    ],
+    "ap75": [
+      {
+        "Method": "E0 Early Fusion",
+        "Full": "0.928824",
+        "w/o RGB": "0.564886",
+        "w/o Thermal": "0.333051",
+        "w/o Event": "0.925954",
+        "RGB only": "0.312297",
+        "Thermal only": "0.536687",
+        "Event only": "0.001062"
+      },
+      {
+        "Method": "E1 Reliability Fusion",
+        "Full": "0.947634",
+        "w/o RGB": "0.600607",
+        "w/o Thermal": "0.350580",
+        "w/o Event": "0.345952",
+        "RGB only": "0.347069",
+        "Thermal only": "0.000003",
+        "Event only": "0.000245"
+      },
+      {
+        "Method": "E2 Reliability + Dropout 0.15",
+        "Full": "0.950906",
+        "w/o RGB": "0.820473",
+        "w/o Thermal": "0.552192",
+        "w/o Event": "0.948703",
+        "RGB only": "0.542798",
+        "Thermal only": "0.663646",
+        "Event only": "0.171463"
+      }
+    ]
+  },
+  "profile": [
+    {
+      "Model": "E0/Early Fusion",
+      "Params": "6591609",
+      "Trainable Params": "6591609",
+      "GFLOPs": "105.207355",
+      "FPS": "24.914556",
+      "Latency ms/img": "40.137179",
+      "CUDA Memory MB": "123.43"
+    },
+    {
+      "Model": "E1/E2 Reliability Fusion",
+      "Params": "6593293",
+      "Trainable Params": "6593293",
+      "GFLOPs": "105.981501",
+      "FPS": "47.389574",
+      "Latency ms/img": "21.101688",
+      "CUDA Memory MB": "236.40"
+    }
+  ],
+  "current_pending_experiments": [
+    "Use score threshold 0.50 for paper-facing precision/recall/F1 reporting.",
+    "Select qualitative cases from compare_E0_E1_E2 outputs.",
+    "Run brightness/noise robustness tests if needed for the robustness section.",
+    "Inspect reliability alpha behavior under missing-modality cases."
+  ],
+  "code_structure": {
+    "dataset": "datasets/triair_dataset.py",
+    "split_tool": "tools/create_triair_split.py",
+    "training": "rarepdet/train_early_fusion.py",
+    "evaluation": "rarepdet/eval_map.py",
+    "visualization": "rarepdet/val_early_fusion.py",
+    "backbones": "rarepdet/models/repvit_fpn_backbone.py",
+    "detector_builder": "rarepdet/models/early_fusion_fcos.py",
+    "postprocessing_tools": "rarepdet/tools/"
+  },
+  "recent_modified_files": [
+    "M .gitignore",
+    "?? rarepdet/tools/generate_handoff.py",
+    "?? runs/"
+  ],
+  "next_recommended_tasks": [
+    "Publish this lightweight workspace without datasets, weights, npy files, or visual outputs.",
+    "Add paper tables from profile, threshold sweep, missing-modality, and final eval summaries.",
+    "Use E2 as the robustness-oriented best model and E1 as the best F1 threshold-sweep model."
+  ]
+}
