@@ -1,107 +1,114 @@
 # Current Task
 
-## Phase 2C — Modality-Subset Consistency Distillation (MSCD)
+## Phase 3A — Dropout-Ratio Ablation and Paper Evidence Package
 
-## Decision
-E5 ACRF proves exact absent-modality suppression, but it lowers full-modality AP50/AP75 versus E2. Do not add another inference-time fusion block.
+## Research Decision
+E5 (ACRF) and E6 (MSCD) both failed the predefined replacement rule. Stop adding new fusion or distillation methods. E2 remains the paper main model.
 
-Implement one training-only, high-level-method-inspired improvement: **Modality-Subset Consistency Distillation (MSCD)**. It is motivated by masked multimodal representation learning and self-distillation for incomplete modalities, but must be adapted to the current lightweight RepViT-FPN-FCOS detector rather than copied from another architecture.
-
-## Goal
-Improve missing-modality robustness while preserving E2 full-modality quality. Inference architecture, parameter count, and runtime must remain identical to E2.
+This phase must supply the two pieces of evidence still needed for a credible manuscript:
+1. a controlled modality-dropout ratio ablation showing whether `p=0.15` is a reasonable choice;
+2. paper-ready qualitative-case selection for E0/E1/E2.
 
 ## Read First
 - `docs/PROJECT_CONTEXT.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `runs/phase2a_report.md`
 - `runs/acrf_evidence_report.md`
-- existing E2 training and reliability-model source files
+- `runs/mscd_evidence_report.md`
+- `runs/handoff_latest.md`
 
 ## Frozen Assets
-Do not overwrite or modify E0, E1, E2, or E5 runs.
+Do not overwrite or alter E0, E1, E2, E5, or E6.
 
-Do not modify these source files:
+Do not modify:
 - `rarepdet/train_early_fusion.py`
 - `rarepdet/models/early_fusion_fcos.py`
 - `rarepdet/models/reliability_fusion_fcos.py`
 - `datasets/triair_dataset.py`
 
-Do not add an inference-time attention block, extra detector head, cross-attention, transformer, reconstruction decoder, or parameterized projection layer.
+Do not add a new architecture, loss, teacher, or artificial weather/noise experiment.
+Never run two training jobs simultaneously.
 
-## Method Specification
-Create new files only:
-- `rarepdet/train_mscd.py`
-- `rarepdet/tools/test_mscd.py`
-- `rarepdet/tools/build_mscd_report.py`
-- `docs/MSCD_DESIGN.md`
+## Task 1 — Controlled dropout-ratio ablation
+Train only these two missing ratio points, using the exact E2 training recipe:
 
-### Teacher
-- Frozen E2 checkpoint: `runs/E2_reliability_dropout015_repvit_fcos_e50/weights/best.pt`.
-- Teacher always receives the full 5-channel input.
-- Teacher is `eval()` and fully `no_grad()`.
-
-### Student
-- Same inference architecture as E2 reliability fusion.
-- Student receives the existing modality-dropout 0.15 training input.
-- Student must be initialized from the same base/pretrained initialization convention used by E2, not from E5.
-- Do not alter the E2 model source. Use a new training wrapper/script and non-invasive forward hooks or an equivalent wrapper to capture FPN outputs.
-
-### Consistency loss
-- Capture corresponding FPN feature maps from teacher and student at P3, P4, and P5.
-- L2-normalize each feature map along channel dimension before comparison.
-- Use smooth L1 or MSE feature consistency loss averaged over P3/P4/P5.
-- Total loss: `L = L_detector + lambda_cons * L_cons`.
-- Use `lambda_cons=0` for epochs 1–5, then linearly ramp to `0.05` by epoch 15 and keep `0.05` thereafter.
-- Full-modality samples must not be removed; modality-dropout masks should use the current E2 convention.
-- The consistency term is training-only and must add zero parameters and zero inference computation.
-
-## Mandatory Tests
-Before long training, `test_mscd.py` must produce `runs/mscd_smoke_test.md` and pass:
-1. Teacher parameters receive no gradients.
-2. Student parameters receive gradients from detector loss and consistency loss.
-3. Hooks capture matching P3/P4/P5 shapes for teacher and student.
-4. Consistency loss is finite for full and one missing-modality synthetic batch.
-5. Inference output of the student is unchanged in structure relative to E2.
-6. Parameter count of student equals E2 exactly.
-7. Existing E0/E1/E2/E5 source files remain unmodified.
-
-Do not start 50-epoch training unless all checks pass.
-
-## Experiment E6
-Train exactly one controlled run:
-
+### E3: dropout 0.10
 ```powershell
-python rarepdet/train_mscd.py --data D:\download\triair --train-split D:\download\triair\splits\train.txt --val-split D:\download\triair\splits\val.txt --teacher-weights runs/E2_reliability_dropout015_repvit_fcos_e50/weights/best.pt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --lambda-cons-max 0.05 --cons-warmup-epochs 5 --cons-ramp-end-epoch 15 --out runs/E6_mscd_dropout015_repvit_fcos_e50
+python rarepdet/train_early_fusion.py --model reliability --data D:\download\triair --train-split D:\download\triair\splits\train.txt --val-split D:\download\triair\splits\val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.10 --out runs/E3_reliability_dropout010_repvit_fcos_e50
 ```
 
-If CUDA OOM occurs, rerun only with batch size 2 and document it.
-
-After training:
-
+### E4: dropout 0.20
+Run only after E3 evaluation has completed:
 ```powershell
-python rarepdet/eval_map.py --model reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights runs/E6_mscd_dropout015_repvit_fcos_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.50 --out runs/E6_mscd_dropout015_repvit_fcos_e50/eval_thr050
-python rarepdet/tools/eval_missing_modality.py --model reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights runs/E6_mscd_dropout015_repvit_fcos_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.05 --out runs/E6_mscd_dropout015_repvit_fcos_e50/missing_modality
+python rarepdet/train_early_fusion.py --model reliability --data D:\download\triair --train-split D:\download\triair\splits\train.txt --val-split D:\download\triair\splits\val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --out runs/E4_reliability_dropout020_repvit_fcos_e50
 ```
 
-## Evidence Report
-Create:
-- `runs/mscd_evidence_summary.csv`
-- `runs/mscd_evidence_report.md`
+If batch size 4 gives CUDA OOM, rerun that experiment once with batch size 2 and record it in the output config/report. Do not change any other hyperparameter.
 
-Compare E1, E2, E5, E6:
+For E3 and E4, after each train run:
+```powershell
+python rarepdet/eval_map.py --model reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights <BEST_WEIGHT> --img-size 640 --device cuda --batch-size 4 --score-thr 0.50 --out <RUN_DIR>/eval_thr050
+python rarepdet/tools/eval_missing_modality.py --model reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights <BEST_WEIGHT> --img-size 640 --device cuda --batch-size 4 --score-thr 0.05 --out <RUN_DIR>/missing_modality
+```
 
-| Method | Extra inference params | Full AP50 | Full AP75 | P@0.50 | R@0.50 | F1@0.50 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 | Mean Missing-Modality AP50 |
+## Task 2 — Build the ratio-ablation report
+Create or update `rarepdet/tools/build_dropout_ablation_report.py` and generate:
+- `runs/dropout_ablation_summary.csv`
+- `runs/dropout_ablation_summary.md`
 
-Required decision rule:
-- E6 replaces E2 only if it retains full AP50 within 0.001 of E2 **and** improves mean missing-modality AP50, or if it improves full AP50/AP75 outright.
-- Otherwise E2 remains the paper main model and E6 is reported only as a training-strategy ablation.
-- Do not use a non-standard mean robustness value as the sole selection criterion.
+Compare exactly:
+- E1: p=0.00
+- E3: p=0.10
+- E2: p=0.15
+- E4: p=0.20
 
-## Completion
-1. Update `docs/EXPERIMENT_STATUS.md`, `runs/handoff_latest.md`, and `.json`.
-2. Create `runs/phase2c_report.md` summarizing E5 and E6 decisions.
-3. Commit source code, docs, Markdown, CSV, TXT, and JSON only.
-4. Never commit weights, datasets, npy files, images, or visual outputs.
-5. Commit message: `Phase 2C: modality-subset consistency distillation`.
-6. Push to `research/ra-repdet-triair`.
-7. If blocked, create/update `docs/TASK_BLOCKER.md` with the exact failed command, final error, attempted fix, and smallest safe next action.
+Required columns:
+
+| Method | Dropout Ratio | P@0.50 | R@0.50 | F1@0.50 | Full AP50 | Full AP75 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 | Mean Missing-Modality AP50 |
+
+Footnote: Mean Missing-Modality AP50 is only the arithmetic mean of the three single-modality-missing AP50 values; it is a robustness summary, not a standard detection metric.
+
+Selection rule:
+- choose the default ratio based on full-modality AP50/AP75 plus the three per-condition missing-modality AP50 values;
+- do not select a ratio based only on the arithmetic mean;
+- state whether p=0.15 remains justified.
+
+## Task 3 — Qualitative paper cases
+Use E0/E1/E2 only. Existing comparison tools may be reused or repaired in `rarepdet/tools/`.
+
+At `score_thr=0.50`, generate a lightweight manifest/report only; never commit images:
+- `runs/qualitative_cases_summary.md`
+- `runs/qualitative_cases_manifest.csv`
+
+The manifest must include image id/path, brightness-proxy group, GT count, and per-model TP/FP/FN summary for selected examples.
+
+Select up to five recommended cases in each category:
+- E0 miss, E2 hit;
+- E1 miss, E2 hit;
+- low-brightness E2-success case;
+- representative shared success case;
+- representative E2 failure case.
+
+In the Markdown report provide one proposed figure caption, but do not claim causal explanations from a single image.
+
+## Task 4 — Final package
+Create `runs/phase3a_report.md` containing:
+1. dropout-ratio ablation table;
+2. selected default ratio decision;
+3. qualitative-case manifest summary;
+4. final model decision: E2 remains main model unless ablation shows otherwise;
+5. exact remaining gaps before manuscript drafting.
+
+Update:
+- `docs/EXPERIMENT_STATUS.md`
+- `runs/handoff_latest.md`
+- `runs/handoff_latest.json`
+
+Commit only source code, docs, Markdown, CSV, TXT, and JSON. Never commit weights, data, npy files, images, or visual outputs.
+
+Commit message:
+`Phase 3A: dropout ablation and qualitative evidence`
+
+Push to `research/ra-repdet-triair`.
+
+If blocked, create/update `docs/TASK_BLOCKER.md` with the exact failed command, final error, attempted fix, and smallest safe next action.
