@@ -1,114 +1,93 @@
 # Current Task
 
-## Phase 3A — Dropout-Ratio Ablation and Paper Evidence Package
+## Phase 3B — Split Integrity and Model-Selection Audit
 
-## Research Decision
-E5 (ACRF) and E6 (MSCD) both failed the predefined replacement rule. Stop adding new fusion or distillation methods. E2 remains the paper main model.
+## Why This Phase Exists
+Phase 3A is complete. Before any manuscript writing or additional training, audit whether the current random train/validation split contains duplicated, near-duplicated, or likely adjacent-frame samples. The current AP values are very high, so split integrity must be documented before treating them as publication-grade.
 
-This phase must supply the two pieces of evidence still needed for a credible manuscript:
-1. a controlled modality-dropout ratio ablation showing whether `p=0.15` is a reasonable choice;
-2. paper-ready qualitative-case selection for E0/E1/E2.
+Also correct the dropout-ratio interpretation: E2 (`p=0.15`) has the best full-modality AP50/AP75, whereas E4 (`p=0.20`) has the best P@0.50/F1@0.50 and is better in all three tested missing-modality AP50 conditions. Do not state that `p=0.15` is universally best.
 
 ## Read First
 - `docs/PROJECT_CONTEXT.md`
 - `docs/EXPERIMENT_STATUS.md`
-- `runs/phase2a_report.md`
-- `runs/acrf_evidence_report.md`
-- `runs/mscd_evidence_report.md`
-- `runs/handoff_latest.md`
-
-## Frozen Assets
-Do not overwrite or alter E0, E1, E2, E5, or E6.
-
-Do not modify:
-- `rarepdet/train_early_fusion.py`
-- `rarepdet/models/early_fusion_fcos.py`
-- `rarepdet/models/reliability_fusion_fcos.py`
-- `datasets/triair_dataset.py`
-
-Do not add a new architecture, loss, teacher, or artificial weather/noise experiment.
-Never run two training jobs simultaneously.
-
-## Task 1 — Controlled dropout-ratio ablation
-Train only these two missing ratio points, using the exact E2 training recipe:
-
-### E3: dropout 0.10
-```powershell
-python rarepdet/train_early_fusion.py --model reliability --data D:\download\triair --train-split D:\download\triair\splits\train.txt --val-split D:\download\triair\splits\val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.10 --out runs/E3_reliability_dropout010_repvit_fcos_e50
-```
-
-### E4: dropout 0.20
-Run only after E3 evaluation has completed:
-```powershell
-python rarepdet/train_early_fusion.py --model reliability --data D:\download\triair --train-split D:\download\triair\splits\train.txt --val-split D:\download\triair\splits\val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --out runs/E4_reliability_dropout020_repvit_fcos_e50
-```
-
-If batch size 4 gives CUDA OOM, rerun that experiment once with batch size 2 and record it in the output config/report. Do not change any other hyperparameter.
-
-For E3 and E4, after each train run:
-```powershell
-python rarepdet/eval_map.py --model reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights <BEST_WEIGHT> --img-size 640 --device cuda --batch-size 4 --score-thr 0.50 --out <RUN_DIR>/eval_thr050
-python rarepdet/tools/eval_missing_modality.py --model reliability --data D:\download\triair --split-file D:\download\triair\splits\val.txt --weights <BEST_WEIGHT> --img-size 640 --device cuda --batch-size 4 --score-thr 0.05 --out <RUN_DIR>/missing_modality
-```
-
-## Task 2 — Build the ratio-ablation report
-Create or update `rarepdet/tools/build_dropout_ablation_report.py` and generate:
-- `runs/dropout_ablation_summary.csv`
+- `runs/phase3a_report.md`
 - `runs/dropout_ablation_summary.md`
+- `runs/handoff_latest.md`
+- `D:\download\triair\splits\train.txt`
+- `D:\download\triair\splits\val.txt`
 
-Compare exactly:
-- E1: p=0.00
-- E3: p=0.10
-- E2: p=0.15
-- E4: p=0.20
+## Strict Scope
+- Do not train any model.
+- Do not alter E0–E6 runs, checkpoints, Dataset code, model code, or training code.
+- Do not edit `rarepdet/train_early_fusion.py`, `rarepdet/models/`, or `datasets/triair_dataset.py`.
+- Do not add new architecture, loss, or augmentation.
+- Only create or modify audit/report scripts under `rarepdet/tools/`, docs, and lightweight files under `runs/`.
+- Do not commit source images, npy files, copied data, figure panels, weights, or raw predictions.
 
-Required columns:
+## Task 1 — Cross-split integrity audit
+Create `rarepdet/tools/audit_split_integrity.py`.
 
-| Method | Dropout Ratio | P@0.50 | R@0.50 | F1@0.50 | Full AP50 | Full AP75 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 | Mean Missing-Modality AP50 |
+It must read the existing train/validation split lists and produce:
+- `runs/split_integrity_summary.md`
+- `runs/split_integrity_summary.csv`
+- `runs/split_integrity_nearest_pairs.csv`
+- `runs/split_integrity_manual_review.csv`
+- optional local-only panels under `runs/local_split_audit_panels/` (must be gitignored and never committed)
 
-Footnote: Mean Missing-Modality AP50 is only the arithmetic mean of the three single-modality-missing AP50 values; it is a robustness summary, not a standard detection metric.
+### Required audit checks
+1. Path overlap: number of identical paths listed in both splits.
+2. Exact byte duplication: SHA256 of `.npy` bytes across train/validation; report count and all duplicate pairs.
+3. Filename/id adjacency when parsable:
+   - identify whether filenames contain numeric ids;
+   - report the fraction of validation ids with train ids at distance 1, 2, 5, and 10;
+   - report `NA` if ids cannot be parsed.
+4. Near-duplicate visual audit using the RGB channels only:
+   - derive a deterministic compact perceptual signature from each sample without loading all arrays simultaneously;
+   - for every validation sample, find its nearest train sample by Hamming distance or equivalent deterministic signature distance;
+   - report distribution quantiles and fractions at conservative distance thresholds;
+   - write the nearest train partner for every validation sample to CSV.
+5. Top-pair review manifest:
+   - list the 50 closest cross-split pairs with train path, val path, ids, signature distance, direct RGB MAE, GT-box counts, and an initially blank manual-review field;
+   - create local-only image panels for these pairs if possible, but do not commit them.
 
-Selection rule:
-- choose the default ratio based on full-modality AP50/AP75 plus the three per-condition missing-modality AP50 values;
-- do not select a ratio based only on the arithmetic mean;
-- state whether p=0.15 remains justified.
+### Interpretation rules
+- Do not claim that a perceptual-signature threshold proves leakage.
+- Separate exact duplication from near-duplicate similarity.
+- Add an explicit final status using only these labels:
+  - `BLOCKED: exact cross-split duplicates found`
+  - `CAUTION: near-duplicate or adjacent-frame review required`
+  - `NO STRONG AUTOMATIC EVIDENCE OF LEAKAGE`
+- Explain that human review of the closest pairs is required when the result is `CAUTION`.
 
-## Task 3 — Qualitative paper cases
-Use E0/E1/E2 only. Existing comparison tools may be reused or repaired in `rarepdet/tools/`.
+## Task 2 — Correct the dropout-ratio conclusion
+Create `runs/dropout_ratio_selection_note.md` and update `runs/phase3a_report.md` plus `runs/dropout_ablation_summary.md` only as needed to avoid an overclaim.
 
-At `score_thr=0.50`, generate a lightweight manifest/report only; never commit images:
-- `runs/qualitative_cases_summary.md`
-- `runs/qualitative_cases_manifest.csv`
+The note must state factually:
+- E2 (`p=0.15`) yields the highest full-modality AP50/AP75.
+- E4 (`p=0.20`) yields the highest P@0.50/F1@0.50 and the strongest AP50 in `w/o RGB`, `w/o Thermal`, and `w/o Event` conditions.
+- Therefore there is no universally dominant ratio in the current single-seed 50-epoch ablation.
+- For an accuracy-first main result, retain E2.
+- For a robustness-first operating point, report E4 as a separate variant.
+- Do not call the arithmetic mean missing-modality AP50 a standard metric.
 
-The manifest must include image id/path, brightness-proxy group, GT count, and per-model TP/FP/FN summary for selected examples.
+Do not retrain either model in this phase.
 
-Select up to five recommended cases in each category:
-- E0 miss, E2 hit;
-- E1 miss, E2 hit;
-- low-brightness E2-success case;
-- representative shared success case;
-- representative E2 failure case.
-
-In the Markdown report provide one proposed figure caption, but do not claim causal explanations from a single image.
-
-## Task 4 — Final package
-Create `runs/phase3a_report.md` containing:
-1. dropout-ratio ablation table;
-2. selected default ratio decision;
-3. qualitative-case manifest summary;
-4. final model decision: E2 remains main model unless ablation shows otherwise;
-5. exact remaining gaps before manuscript drafting.
+## Task 3 — Phase 3B report and status update
+Create `runs/phase3b_report.md` with:
+1. split audit outcome and any required manual-review next action;
+2. corrected E2/E4 model-positioning statement;
+3. explicit recommendation:
+   - if `BLOCKED` or `CAUTION`, do not begin manuscript drafting or final 100-epoch runs until the issue is resolved;
+   - if `NO STRONG AUTOMATIC EVIDENCE OF LEAKAGE`, next phase may perform a controlled seed-replication of E2 versus E4 before final model selection.
 
 Update:
 - `docs/EXPERIMENT_STATUS.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
 
-Commit only source code, docs, Markdown, CSV, TXT, and JSON. Never commit weights, data, npy files, images, or visual outputs.
-
-Commit message:
-`Phase 3A: dropout ablation and qualitative evidence`
-
-Push to `research/ra-repdet-triair`.
-
-If blocked, create/update `docs/TASK_BLOCKER.md` with the exact failed command, final error, attempted fix, and smallest safe next action.
+## Completion
+1. Run all audit scripts without GPU training.
+2. Commit only source code, Markdown, CSV, TXT, JSON, and documentation.
+3. Commit message: `Phase 3B: audit split integrity and model selection`.
+4. Push to `research/ra-repdet-triair`.
+5. If blocked, create/update `docs/TASK_BLOCKER.md` with the failed command, final error, attempted fix, and smallest safe next action.
