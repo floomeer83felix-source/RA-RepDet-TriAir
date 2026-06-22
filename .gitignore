@@ -24,6 +24,7 @@ runs/**/profile_*/
 runs/**/*_vis/
 runs/**/*.log
 runs/**/train_log.txt
+runs/**/train_exitcode*.txt
 runs/triair_vis/
 runs/**/*.png
 runs/**/*.jpg
@@ -114,6 +115,7 @@ runs/**/profile_*/
 runs/**/*_vis/
 runs/**/*.log
 runs/**/train_log.txt
+runs/**/train_exitcode*.txt
 runs/triair_vis/
 runs/**/*.png
 runs/**/*.jpg

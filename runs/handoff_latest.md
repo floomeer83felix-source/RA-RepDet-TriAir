@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-23T00:21:18
+Generated: 2026-06-23T00:22:27
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -93,21 +93,7 @@ Workspace: `E:\RepViT-main`
 
 ## Recently Modified Files
 
-- `M docs/EXPERIMENT_STATUS.md`
-- ` M rarepdet/tools/finish_task.ps1`
-- ` M rarepdet/tools/generate_handoff.py`
-- ` M rarepdet/tools/update_project_status.py`
-- ` M runs/handoff_latest.json`
-- ` M runs/handoff_latest.md`
-- `?? rarepdet/tools/build_dropout_ablation_report.py`
-- `?? rarepdet/tools/select_qualitative_cases.py`
-- `?? runs/E3_reliability_dropout010_repvit_fcos_e50/`
-- `?? runs/E4_reliability_dropout020_repvit_fcos_e50/`
-- `?? runs/dropout_ablation_summary.csv`
-- `?? runs/dropout_ablation_summary.md`
-- `?? runs/phase3a_report.md`
-- `?? runs/qualitative_cases_manifest.csv`
-- `?? runs/qualitative_cases_summary.md`
+- `M .gitignore`
 
 ## Next Recommended Tasks
 
