@@ -9,12 +9,13 @@
 
 Footnote: Mean Missing-Modality AP50 is only the arithmetic mean of the three single-modality-missing AP50 values; it is a robustness summary, not a standard detection metric.
 
-## Selection Rule
+## Interpretation Rule
 
-Selection uses full AP50/AP75 and the three single-modality-missing AP50 values. A value within 0.001 of the best value in a column is treated as tied; the mean missing-modality AP50 is reported as a summary only.
+The ratio ablation is interpreted by separating full-modality detection quality from missing-modality robustness. Full AP50/AP75 drive the accuracy-first main-model choice; P@0.50/F1@0.50 and the three single-modality-missing AP50 values identify a robustness-first operating point. The arithmetic mean missing-modality AP50 is reported only as a summary, not as a standard metric or sole selection rule.
 
 ## Decision
 
-- Selected default ratio: p=0.15 (E2 Reliability + Dropout 0.15).
-- p=0.15 remains justified: Yes.
-- E2 p=0.15 evidence: Full AP50=0.979990, Full AP75=0.950906, w/o RGB=0.948710, w/o Thermal=0.811566, w/o Event=0.978972.
+- Accuracy-first ratio: p=0.15 (E2 Reliability + Dropout 0.15).
+- Robustness-first ratio: p=0.20 (E4 Reliability + Dropout 0.20).
+- p=0.15 remains justified for the main accuracy-first result: Yes.
+- No ratio is universally dominant in this single-seed 50-epoch ablation.

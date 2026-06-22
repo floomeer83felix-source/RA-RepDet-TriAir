@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-23T00:22:27",
+  "generated_at": "2026-06-23T07:24:34",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -11,7 +11,23 @@
       "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
     ],
     "status_short": [
-      "M .gitignore"
+      "M .gitignore",
+      " M docs/EXPERIMENT_STATUS.md",
+      " M rarepdet/tools/build_dropout_ablation_report.py",
+      " M rarepdet/tools/generate_handoff.py",
+      " M rarepdet/tools/update_project_status.py",
+      " M runs/dropout_ablation_summary.md",
+      " M runs/handoff_latest.json",
+      " M runs/handoff_latest.md",
+      " M runs/phase3a_report.md",
+      "?? rarepdet/tools/audit_split_integrity.py",
+      "?? runs/dropout_ratio_selection_note.md",
+      "?? runs/phase3b_report.md",
+      "?? runs/split_integrity_exact_duplicates.csv",
+      "?? runs/split_integrity_manual_review.csv",
+      "?? runs/split_integrity_nearest_pairs.csv",
+      "?? runs/split_integrity_summary.csv",
+      "?? runs/split_integrity_summary.md"
     ]
   },
   "dataset": {
@@ -1476,11 +1492,151 @@
     "qualitative_report": "E:\\RepViT-main\\runs\\qualitative_cases_summary.md",
     "phase3a_report": "E:\\RepViT-main\\runs\\phase3a_report.md"
   },
+  "phase3b": {
+    "split_summary": [
+      {
+        "Metric": "train_count",
+        "Value": "8391",
+        "Notes": "Existing split file rows."
+      },
+      {
+        "Metric": "val_count",
+        "Value": "2098",
+        "Notes": "Existing split file rows."
+      },
+      {
+        "Metric": "path_overlap_count",
+        "Value": "0",
+        "Notes": "Identical resolved paths in both splits."
+      },
+      {
+        "Metric": "exact_sha256_duplicate_pairs",
+        "Value": "0",
+        "Notes": "Exact .npy byte duplicates across train/val."
+      },
+      {
+        "Metric": "numeric_id_parseable",
+        "Value": "yes",
+        "Notes": "Numeric id parsed from final number in filename stem."
+      },
+      {
+        "Metric": "val_with_train_id_within_1",
+        "Value": "0.973308",
+        "Notes": "Fraction of val ids with a train id within +/- this distance."
+      },
+      {
+        "Metric": "val_with_train_id_within_2",
+        "Value": "0.994280",
+        "Notes": "Fraction of val ids with a train id within +/- this distance."
+      },
+      {
+        "Metric": "val_with_train_id_within_5",
+        "Value": "0.997617",
+        "Notes": "Fraction of val ids with a train id within +/- this distance."
+      },
+      {
+        "Metric": "val_with_train_id_within_10",
+        "Value": "0.999047",
+        "Notes": "Fraction of val ids with a train id within +/- this distance."
+      },
+      {
+        "Metric": "signature_distance_min",
+        "Value": "0.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p01",
+        "Value": "0.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p05",
+        "Value": "0.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p10",
+        "Value": "0.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p25",
+        "Value": "4.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p50",
+        "Value": "8.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p75",
+        "Value": "14.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p90",
+        "Value": "22.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p95",
+        "Value": "30.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_p99",
+        "Value": "74.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "signature_distance_max",
+        "Value": "83.000000",
+        "Notes": "Hamming distance, 256-bit RGB pooled signature."
+      },
+      {
+        "Metric": "fraction_signature_distance_<=0",
+        "Value": "0.101049",
+        "Notes": "Fraction of val samples at or below threshold."
+      },
+      {
+        "Metric": "fraction_signature_distance_<=4",
+        "Value": "0.322212",
+        "Notes": "Fraction of val samples at or below threshold."
+      },
+      {
+        "Metric": "fraction_signature_distance_<=8",
+        "Value": "0.565300",
+        "Notes": "Fraction of val samples at or below threshold."
+      },
+      {
+        "Metric": "fraction_signature_distance_<=16",
+        "Value": "0.823642",
+        "Notes": "Fraction of val samples at or below threshold."
+      },
+      {
+        "Metric": "fraction_signature_distance_<=32",
+        "Value": "0.957579",
+        "Notes": "Fraction of val samples at or below threshold."
+      },
+      {
+        "Metric": "final_status",
+        "Value": "CAUTION: near-duplicate or adjacent-frame review required",
+        "Notes": "Automatic audit label required by Phase 3B."
+      }
+    ],
+    "nearest_pair_count": 2098,
+    "manual_review_count": 50,
+    "exact_duplicate_count": 0,
+    "split_report": "E:\\RepViT-main\\runs\\split_integrity_summary.md",
+    "selection_note": "E:\\RepViT-main\\runs\\dropout_ratio_selection_note.md",
+    "phase3b_report": "E:\\RepViT-main\\runs\\phase3b_report.md"
+  },
   "current_pending_experiments": [
-    "Review Phase 3A dropout ablation in runs/dropout_ablation_summary.md.",
-    "Use runs/qualitative_cases_manifest.csv to assemble paper figure panels outside Git.",
-    "Keep the selected default dropout ratio documented in runs/phase3a_report.md.",
-    "Prepare manuscript tables from Phase 2A, Phase 2B, Phase 2C, and Phase 3A summaries."
+    "Review split-integrity result in runs/split_integrity_summary.md.",
+    "Manually inspect closest pairs in runs/split_integrity_manual_review.csv if the split audit status is CAUTION.",
+    "Use runs/dropout_ratio_selection_note.md for E2/E4 model positioning.",
+    "Do not start manuscript drafting or final 100-epoch runs until Phase 3B recommendation is cleared."
   ],
   "code_structure": {
     "dataset": "datasets/triair_dataset.py",
@@ -1493,12 +1649,28 @@
     "postprocessing_tools": "rarepdet/tools/"
   },
   "recent_modified_files": [
-    "M .gitignore"
+    "M .gitignore",
+    " M docs/EXPERIMENT_STATUS.md",
+    " M rarepdet/tools/build_dropout_ablation_report.py",
+    " M rarepdet/tools/generate_handoff.py",
+    " M rarepdet/tools/update_project_status.py",
+    " M runs/dropout_ablation_summary.md",
+    " M runs/handoff_latest.json",
+    " M runs/handoff_latest.md",
+    " M runs/phase3a_report.md",
+    "?? rarepdet/tools/audit_split_integrity.py",
+    "?? runs/dropout_ratio_selection_note.md",
+    "?? runs/phase3b_report.md",
+    "?? runs/split_integrity_exact_duplicates.csv",
+    "?? runs/split_integrity_manual_review.csv",
+    "?? runs/split_integrity_nearest_pairs.csv",
+    "?? runs/split_integrity_summary.csv",
+    "?? runs/split_integrity_summary.md"
   ],
   "next_recommended_tasks": [
     "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
     "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
     "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
-    "Use the Phase 3A dropout-ratio report to justify the final default dropout value."
+    "Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision."
   ]
 }

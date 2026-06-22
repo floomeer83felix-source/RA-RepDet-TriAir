@@ -176,43 +176,32 @@ def row_score(row, columns, tolerance=0.001):
 
 
 def choose_default(rows):
-    evidence_columns = [
-        "Full AP50",
-        "Full AP75",
-        "w/o RGB AP50",
-        "w/o Thermal AP50",
-        "w/o Event AP50",
-    ]
+    evidence_columns = ["Full AP50", "Full AP75", "P@0.50", "F1@0.50", "w/o RGB AP50", "w/o Thermal AP50", "w/o Event AP50"]
     valid_rows = [row for row in rows if all(to_float(row.get(column)) is not None for column in evidence_columns)]
     if not valid_rows:
-        return None, "Not enough completed evidence to select a default ratio."
+        return None, None, "Not enough completed evidence to position dropout ratios."
 
-    maxima = {
-        column: max(to_float(row[column]) for row in valid_rows)
-        for column in evidence_columns
-    }
-    for row in valid_rows:
-        row["_evidence_wins"] = sum(
-            1 for column in evidence_columns if to_float(row[column]) >= maxima[column] - 0.001
-        )
-
-    selected = max(
+    accuracy_first = max(
+        valid_rows,
+        key=lambda row: (to_float(row["Full AP50"]), to_float(row["Full AP75"])),
+    )
+    robustness_first = max(
         valid_rows,
         key=lambda row: (
-            row["_evidence_wins"],
-            to_float(row["Full AP50"]),
-            to_float(row["Full AP75"]),
             to_float(row["w/o RGB AP50"]),
             to_float(row["w/o Thermal AP50"]),
             to_float(row["w/o Event AP50"]),
+            to_float(row["F1@0.50"]),
         ),
     )
     reason = (
-        "Selection uses full AP50/AP75 and the three single-modality-missing AP50 values. "
-        "A value within 0.001 of the best value in a column is treated as tied; the mean "
-        "missing-modality AP50 is reported as a summary only."
+        "The ratio ablation is interpreted by separating full-modality detection quality from "
+        "missing-modality robustness. Full AP50/AP75 drive the accuracy-first main-model choice; "
+        "P@0.50/F1@0.50 and the three single-modality-missing AP50 values identify a robustness-first "
+        "operating point. The arithmetic mean missing-modality AP50 is reported only as a summary, "
+        "not as a standard metric or sole selection rule."
     )
-    return selected, reason
+    return accuracy_first, robustness_first, reason
 
 
 def write_csv(rows, path):
@@ -252,11 +241,12 @@ def qualitative_summary():
 
 def main():
     rows = build_rows()
-    selected, reason = choose_default(rows)
-    selected_method = selected.get("Method", "NA") if selected else "NA"
-    selected_ratio = selected.get("Dropout Ratio", "NA") if selected else "NA"
-    p015_row = next((row for row in rows if row.get("Dropout Ratio") == "0.15"), {})
-    p015_justified = selected_ratio == "0.15"
+    accuracy_first, robustness_first, reason = choose_default(rows)
+    accuracy_method = accuracy_first.get("Method", "NA") if accuracy_first else "NA"
+    accuracy_ratio = accuracy_first.get("Dropout Ratio", "NA") if accuracy_first else "NA"
+    robustness_method = robustness_first.get("Method", "NA") if robustness_first else "NA"
+    robustness_ratio = robustness_first.get("Dropout Ratio", "NA") if robustness_first else "NA"
+    p015_accuracy_first = accuracy_ratio == "0.15"
 
     csv_path = RUNS_DIR / "dropout_ablation_summary.csv"
     md_path = RUNS_DIR / "dropout_ablation_summary.md"
@@ -271,15 +261,16 @@ def main():
         "",
         "Footnote: Mean Missing-Modality AP50 is only the arithmetic mean of the three single-modality-missing AP50 values; it is a robustness summary, not a standard detection metric.",
         "",
-        "## Selection Rule",
+        "## Interpretation Rule",
         "",
         reason,
         "",
         "## Decision",
         "",
-        f"- Selected default ratio: p={selected_ratio} ({selected_method}).",
-        f"- p=0.15 remains justified: {'Yes' if p015_justified else 'No'}.",
-        f"- E2 p=0.15 evidence: Full AP50={p015_row.get('Full AP50', 'NA')}, Full AP75={p015_row.get('Full AP75', 'NA')}, w/o RGB={p015_row.get('w/o RGB AP50', 'NA')}, w/o Thermal={p015_row.get('w/o Thermal AP50', 'NA')}, w/o Event={p015_row.get('w/o Event AP50', 'NA')}.",
+        f"- Accuracy-first ratio: p={accuracy_ratio} ({accuracy_method}).",
+        f"- Robustness-first ratio: p={robustness_ratio} ({robustness_method}).",
+        f"- p=0.15 remains justified for the main accuracy-first result: {'Yes' if p015_accuracy_first else 'No'}.",
+        "- No ratio is universally dominant in this single-seed 50-epoch ablation.",
         "",
     ]
     md_path.write_text("\n".join(lines), encoding="utf-8")
@@ -299,8 +290,10 @@ def main():
         "",
         reason,
         "",
-        f"- Selected default ratio: p={selected_ratio} ({selected_method}).",
-        f"- p=0.15 remains justified: {'Yes' if p015_justified else 'No'}.",
+        f"- Accuracy-first ratio: p={accuracy_ratio} ({accuracy_method}).",
+        f"- Robustness-first ratio: p={robustness_ratio} ({robustness_method}).",
+        f"- p=0.15 remains justified for the main accuracy-first result: {'Yes' if p015_accuracy_first else 'No'}.",
+        "- No ratio is universally dominant in this single-seed 50-epoch ablation.",
         "",
         "## Qualitative-Case Manifest Summary",
         "",
@@ -308,7 +301,8 @@ def main():
         "",
         "## Final Model Decision",
         "",
-        f"- Main model after Phase 3A: {'E2 Reliability + Dropout 0.15' if p015_justified else selected_method}.",
+        f"- Main model after Phase 3A: {'E2 Reliability + Dropout 0.15' if p015_accuracy_first else accuracy_method}.",
+        f"- Robustness-first variant after Phase 3A: {robustness_method}.",
         "- E5 and E6 remain ablations because they did not satisfy their predefined replacement rules.",
         "",
         "## Remaining Gaps Before Manuscript Drafting",

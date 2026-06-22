@@ -77,6 +77,15 @@ def read_csv(path):
         return list(csv.DictReader(f))
 
 
+def count_csv_rows(path):
+    if not path.exists():
+        return 0
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.reader(f)
+        next(reader, None)
+        return sum(1 for _ in reader)
+
+
 def read_key_value_file(path):
     if not path.exists():
         return {}
@@ -183,6 +192,18 @@ def collect_phase3a():
     }
 
 
+def collect_phase3b():
+    return {
+        "split_summary": read_csv(RUNS_DIR / "split_integrity_summary.csv"),
+        "nearest_pair_count": count_csv_rows(RUNS_DIR / "split_integrity_nearest_pairs.csv"),
+        "manual_review_count": count_csv_rows(RUNS_DIR / "split_integrity_manual_review.csv"),
+        "exact_duplicate_count": count_csv_rows(RUNS_DIR / "split_integrity_exact_duplicates.csv"),
+        "split_report": str(RUNS_DIR / "split_integrity_summary.md") if (RUNS_DIR / "split_integrity_summary.md").exists() else None,
+        "selection_note": str(RUNS_DIR / "dropout_ratio_selection_note.md") if (RUNS_DIR / "dropout_ratio_selection_note.md").exists() else None,
+        "phase3b_report": str(RUNS_DIR / "phase3b_report.md") if (RUNS_DIR / "phase3b_report.md").exists() else None,
+    }
+
+
 def best_by(results, metric):
     numeric = []
     for row in results:
@@ -245,11 +266,12 @@ def build_handoff():
         "phase2b": collect_phase2b(),
         "phase2c": collect_phase2c(),
         "phase3a": collect_phase3a(),
+        "phase3b": collect_phase3b(),
         "current_pending_experiments": [
-            "Review Phase 3A dropout ablation in runs/dropout_ablation_summary.md.",
-            "Use runs/qualitative_cases_manifest.csv to assemble paper figure panels outside Git.",
-            "Keep the selected default dropout ratio documented in runs/phase3a_report.md.",
-            "Prepare manuscript tables from Phase 2A, Phase 2B, Phase 2C, and Phase 3A summaries.",
+            "Review split-integrity result in runs/split_integrity_summary.md.",
+            "Manually inspect closest pairs in runs/split_integrity_manual_review.csv if the split audit status is CAUTION.",
+            "Use runs/dropout_ratio_selection_note.md for E2/E4 model positioning.",
+            "Do not start manuscript drafting or final 100-epoch runs until Phase 3B recommendation is cleared.",
         ],
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -266,7 +288,7 @@ def build_handoff():
             "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
             "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
             "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
-            "Use the Phase 3A dropout-ratio report to justify the final default dropout value.",
+            "Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.",
         ],
     }
 
@@ -342,6 +364,16 @@ def write_markdown(data, path):
         "- Phase 3A report: `runs/phase3a_report.md`" if data["phase3a"]["phase3a_report"] else "- Phase 3A report: NA",
         f"- Dropout ablation rows: {len(data['phase3a']['dropout_ablation'])}",
         f"- Qualitative manifest rows: {len(data['phase3a']['qualitative_manifest'])}",
+        "",
+        "## Phase 3B Outputs",
+        "",
+        "- Split-integrity report: `runs/split_integrity_summary.md`" if data["phase3b"]["split_report"] else "- Split-integrity report: NA",
+        "- Dropout selection note: `runs/dropout_ratio_selection_note.md`" if data["phase3b"]["selection_note"] else "- Dropout selection note: NA",
+        "- Phase 3B report: `runs/phase3b_report.md`" if data["phase3b"]["phase3b_report"] else "- Phase 3B report: NA",
+        f"- Split summary rows: {len(data['phase3b']['split_summary'])}",
+        f"- Nearest-pair rows: {data['phase3b']['nearest_pair_count']}",
+        f"- Manual-review rows: {data['phase3b']['manual_review_count']}",
+        f"- Exact duplicate rows: {data['phase3b']['exact_duplicate_count']}",
         "",
         "## Model And Code Structure",
         "",

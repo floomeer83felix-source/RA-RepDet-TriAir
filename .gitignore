@@ -18,6 +18,7 @@ runs/**/vis_pred/
 runs/**/visualizations/
 runs/**/compare_*/
 runs/**/qualitative_cases/
+runs/local_split_audit_panels/
 runs/**/training_curves/
 runs/**/paper_tables/*.png
 runs/**/profile_*/
@@ -109,6 +110,7 @@ runs/**/vis_pred/
 runs/**/visualizations/
 runs/**/compare_*/
 runs/**/qualitative_cases/
+runs/local_split_audit_panels/
 runs/**/training_curves/
 runs/**/paper_tables/*.png
 runs/**/profile_*/

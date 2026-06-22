@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-23T00:22:27
+Generated: 2026-06-23T07:24:34
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -64,6 +64,16 @@ Workspace: `E:\RepViT-main`
 - Dropout ablation rows: 4
 - Qualitative manifest rows: 25
 
+## Phase 3B Outputs
+
+- Split-integrity report: `runs/split_integrity_summary.md`
+- Dropout selection note: `runs/dropout_ratio_selection_note.md`
+- Phase 3B report: `runs/phase3b_report.md`
+- Split summary rows: 26
+- Nearest-pair rows: 2098
+- Manual-review rows: 50
+- Exact duplicate rows: 0
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -86,18 +96,34 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Review Phase 3A dropout ablation in runs/dropout_ablation_summary.md.
-- Use runs/qualitative_cases_manifest.csv to assemble paper figure panels outside Git.
-- Keep the selected default dropout ratio documented in runs/phase3a_report.md.
-- Prepare manuscript tables from Phase 2A, Phase 2B, Phase 2C, and Phase 3A summaries.
+- Review split-integrity result in runs/split_integrity_summary.md.
+- Manually inspect closest pairs in runs/split_integrity_manual_review.csv if the split audit status is CAUTION.
+- Use runs/dropout_ratio_selection_note.md for E2/E4 model positioning.
+- Do not start manuscript drafting or final 100-epoch runs until Phase 3B recommendation is cleared.
 
 ## Recently Modified Files
 
 - `M .gitignore`
+- ` M docs/EXPERIMENT_STATUS.md`
+- ` M rarepdet/tools/build_dropout_ablation_report.py`
+- ` M rarepdet/tools/generate_handoff.py`
+- ` M rarepdet/tools/update_project_status.py`
+- ` M runs/dropout_ablation_summary.md`
+- ` M runs/handoff_latest.json`
+- ` M runs/handoff_latest.md`
+- ` M runs/phase3a_report.md`
+- `?? rarepdet/tools/audit_split_integrity.py`
+- `?? runs/dropout_ratio_selection_note.md`
+- `?? runs/phase3b_report.md`
+- `?? runs/split_integrity_exact_duplicates.csv`
+- `?? runs/split_integrity_manual_review.csv`
+- `?? runs/split_integrity_nearest_pairs.csv`
+- `?? runs/split_integrity_summary.csv`
+- `?? runs/split_integrity_summary.md`
 
 ## Next Recommended Tasks
 
 - Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.
 - Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.
 - Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.
-- Use the Phase 3A dropout-ratio report to justify the final default dropout value.
+- Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.

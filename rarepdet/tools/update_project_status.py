@@ -180,14 +180,19 @@ def build_status():
     dropout_ablation = read_csv(RUNS_DIR / "dropout_ablation_summary.csv")
     qualitative_manifest = read_csv(RUNS_DIR / "qualitative_cases_manifest.csv")
     phase3a_report_exists = (RUNS_DIR / "phase3a_report.md").exists()
+    split_integrity = read_csv(RUNS_DIR / "split_integrity_summary.csv")
+    split_manual_review = read_csv(RUNS_DIR / "split_integrity_manual_review.csv")
+    phase3b_report_exists = (RUNS_DIR / "phase3b_report.md").exists()
 
-    active_status = "completed" if phase3a_report_exists and dropout_ablation and qualitative_manifest else "pending"
+    active_status = "completed" if phase3b_report_exists and split_integrity else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in read_text(NEXT_TASK_PATH):
         current_task = "Phase 2B - Availability-Conditioned Reliability Fusion (ACRF)"
     if current_task == "NA" and "Phase 2C" in read_text(NEXT_TASK_PATH):
         current_task = "Phase 2C - Modality-Subset Consistency Distillation (MSCD)"
+    if current_task == "NA" and "Phase 3B" in read_text(NEXT_TASK_PATH):
+        current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in read_text(NEXT_TASK_PATH):
         current_task = "Phase 3A - Dropout-Ratio Ablation and Paper Evidence Package"
     if current_goal == "NA" and acrf_evidence:
@@ -196,6 +201,8 @@ def build_status():
         current_goal = "Implement, train, evaluate, and summarize the E6 MSCD training-strategy ablation."
     if "Phase 3A" in read_text(NEXT_TASK_PATH):
         current_goal = "Train E3/E4 dropout-ratio ablations and build qualitative evidence package."
+    if "Phase 3B" in read_text(NEXT_TASK_PATH):
+        current_goal = "Audit split integrity and correct E2/E4 model-selection positioning."
 
     lines = [
         "# Experiment Status",
@@ -380,6 +387,22 @@ def build_status():
 
     lines += [
         "",
+        "## Phase 3B outputs",
+        "",
+        "- Split-integrity report: `runs/split_integrity_summary.md`" if (RUNS_DIR / "split_integrity_summary.md").exists() else "- Split-integrity report: NA",
+        "- Dropout selection note: `runs/dropout_ratio_selection_note.md`" if (RUNS_DIR / "dropout_ratio_selection_note.md").exists() else "- Dropout selection note: NA",
+        "- Phase 3B report: `runs/phase3b_report.md`" if phase3b_report_exists else "- Phase 3B report: NA",
+        f"- Split summary rows: {len(split_integrity) if split_integrity else 'NA'}",
+        f"- Manual-review rows: {len(split_manual_review) if split_manual_review else 'NA'}",
+        "",
+        "### Split-integrity summary",
+        "",
+    ]
+    split_headers = ["Metric", "Value", "Notes"]
+    lines.extend(table(split_headers, split_integrity))
+
+    lines += [
+        "",
         "## Pending tasks",
         "",
     ]
@@ -405,6 +428,7 @@ def build_status():
         "- E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.",
         "- E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.",
         "- Phase 3A should be used to justify the selected modality-dropout ratio without adding a new model family.",
+        "- Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.",
         "",
         "## Files or scripts currently under review",
         "",

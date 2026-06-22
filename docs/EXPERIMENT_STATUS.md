@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-23T00:22:27
+Generated: 2026-06-23T07:24:34
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -84,8 +84,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 3A - Dropout-Ratio Ablation and Paper Evidence Package
-- Goal: Train E3/E4 dropout-ratio ablations and build qualitative evidence package.
+- Current Task: Phase 3B - Split Integrity and Model-Selection Audit
+- Goal: Audit split integrity and correct E2/E4 model-selection positioning.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -138,12 +138,51 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | E2 Reliability + Dropout 0.15 | 0.15 | 0.931057 | 0.956042 | 0.943384 | 0.979990 | 0.950906 | 0.948710 | 0.811566 | 0.978972 | 0.913083 |
 | E4 Reliability + Dropout 0.20 | 0.20 | 0.946437 | 0.951268 | 0.948846 | 0.978692 | 0.948514 | 0.954897 | 0.872685 | 0.979640 | 0.935741 |
 
+## Phase 3B outputs
+
+- Split-integrity report: `runs/split_integrity_summary.md`
+- Dropout selection note: `runs/dropout_ratio_selection_note.md`
+- Phase 3B report: `runs/phase3b_report.md`
+- Split summary rows: 26
+- Manual-review rows: 50
+
+### Split-integrity summary
+
+| Metric | Value | Notes |
+| --- | --- | --- |
+| train_count | 8391 | Existing split file rows. |
+| val_count | 2098 | Existing split file rows. |
+| path_overlap_count | 0 | Identical resolved paths in both splits. |
+| exact_sha256_duplicate_pairs | 0 | Exact .npy byte duplicates across train/val. |
+| numeric_id_parseable | yes | Numeric id parsed from final number in filename stem. |
+| val_with_train_id_within_1 | 0.973308 | Fraction of val ids with a train id within +/- this distance. |
+| val_with_train_id_within_2 | 0.994280 | Fraction of val ids with a train id within +/- this distance. |
+| val_with_train_id_within_5 | 0.997617 | Fraction of val ids with a train id within +/- this distance. |
+| val_with_train_id_within_10 | 0.999047 | Fraction of val ids with a train id within +/- this distance. |
+| signature_distance_min | 0.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p01 | 0.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p05 | 0.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p10 | 0.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p25 | 4.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p50 | 8.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p75 | 14.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p90 | 22.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p95 | 30.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_p99 | 74.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| signature_distance_max | 83.000000 | Hamming distance, 256-bit RGB pooled signature. |
+| fraction_signature_distance_<=0 | 0.101049 | Fraction of val samples at or below threshold. |
+| fraction_signature_distance_<=4 | 0.322212 | Fraction of val samples at or below threshold. |
+| fraction_signature_distance_<=8 | 0.565300 | Fraction of val samples at or below threshold. |
+| fraction_signature_distance_<=16 | 0.823642 | Fraction of val samples at or below threshold. |
+| fraction_signature_distance_<=32 | 0.957579 | Fraction of val samples at or below threshold. |
+| final_status | CAUTION: near-duplicate or adjacent-frame review required | Automatic audit label required by Phase 3B. |
+
 ## Pending tasks
 
-- Review Phase 3A dropout ablation in runs/dropout_ablation_summary.md.
-- Use runs/qualitative_cases_manifest.csv to assemble paper figure panels outside Git.
-- Keep the selected default dropout ratio documented in runs/phase3a_report.md.
-- Prepare manuscript tables from Phase 2A, Phase 2B, Phase 2C, and Phase 3A summaries.
+- Review split-integrity result in runs/split_integrity_summary.md.
+- Manually inspect closest pairs in runs/split_integrity_manual_review.csv if the split audit status is CAUTION.
+- Use runs/dropout_ratio_selection_note.md for E2/E4 model positioning.
+- Do not start manuscript drafting or final 100-epoch runs until Phase 3B recommendation is cleared.
 
 ## Known metric caveats
 
@@ -163,6 +202,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.
 - E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.
 - Phase 3A should be used to justify the selected modality-dropout ratio without adding a new model family.
+- Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.
 
 ## Files or scripts currently under review
 
