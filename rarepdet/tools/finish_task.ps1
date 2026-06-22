@@ -52,10 +52,22 @@ function Get-CommitMessage {
     }
     $message = ($buffer -join " ").Trim()
     if (-not $message) {
-        foreach ($line in $lines) {
-            if ($line -match '^\s*(?:\d+\.\s*)?Commit message:\s*(.+?)\s*$') {
+        for ($i = 0; $i -lt $lines.Count; $i++) {
+            $line = $lines[$i]
+            if ($line -match '^\s*(?:\d+\.\s*)?Commit message:\s*(.*?)\s*$') {
                 $message = $Matches[1].Trim().Trim(".").Trim([char]0x60).Trim()
-                break
+                if (-not $message) {
+                    for ($j = $i + 1; $j -lt $lines.Count; $j++) {
+                        $candidate = $lines[$j].Trim()
+                        if ($candidate) {
+                            $message = $candidate.Trim(".").Trim([char]0x60).Trim()
+                            break
+                        }
+                    }
+                }
+                if ($message) {
+                    break
+                }
             }
         }
     }

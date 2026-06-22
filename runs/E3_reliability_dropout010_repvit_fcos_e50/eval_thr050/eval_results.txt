@@ -1,0 +1,13 @@
+RarePDet eval results
+====================
+model: reliability
+weights: E:\RepViT-main\runs\E3_reliability_dropout010_repvit_fcos_e50\weights\best.pt
+images: 2098
+Precision: 0.949248
+Recall: 0.945341
+AP50: 0.977738
+AP75: 0.945218
+GT boxes: 6074
+Predictions: 6049
+Mean Confidence: 0.774961
+FPS: 60.45

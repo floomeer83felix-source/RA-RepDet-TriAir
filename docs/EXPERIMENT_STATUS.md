@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-22T07:48:04
+Generated: 2026-06-23T00:21:18
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -15,6 +15,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | E0 | Early Fusion | 0.028842 | 0.996213 | 0.976620 | 0.928824 | 6074 | 209800 | 0.135346 |
 | E1 | Reliability Fusion | 0.028866 | 0.997037 | 0.979317 | 0.947634 | 6074 | 209800 | 0.125795 |
 | E2 | Reliability + Dropout 0.15 | 0.028837 | 0.996049 | 0.979990 | 0.950906 | 6074 | 209800 | 0.131865 |
+| E3 | Reliability + Dropout 0.10 | 0.949248 | 0.945341 | 0.977738 | 0.945218 | 6074 | 6049 | 0.774961 |
+| E4 | Reliability + Dropout 0.20 | 0.946437 | 0.951268 | 0.978692 | 0.948514 | 6074 | 6105 | 0.799311 |
 | E5 | ACRF + Dropout 0.15 | 0.938290 | 0.953737 | 0.978066 | 0.946602 | 6074 | 6174 | 0.779350 |
 | E6 | MSCD + Dropout 0.15 | 0.937297 | 0.949951 | 0.974990 | 0.945138 | 6074 | 6156 | 0.801200 |
 
@@ -82,8 +84,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 2C - Modality-Subset Consistency Distillation (MSCD)
-- Goal: Implement, train, evaluate, and summarize the E6 MSCD training-strategy ablation.
+- Current Task: Phase 3A - Dropout-Ratio Ablation and Paper Evidence Package
+- Goal: Train E3/E4 dropout-ratio ablations and build qualitative evidence package.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -119,12 +121,29 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | E5 ACRF + Dropout 0.15 | 48 | 0.978066 | 0.946602 | 0.938290 | 0.953737 | 0.945950 | 0.944019 | 0.846657 | 0.978531 | 0.923069 |
 | E6 MSCD + Dropout 0.15 | 0 | 0.974990 | 0.945138 | 0.937297 | 0.949951 | 0.943582 | 0.941817 | 0.757718 | 0.962810 | 0.887448 |
 
+## Phase 3A outputs
+
+- Dropout report: `runs/dropout_ablation_summary.md`
+- Qualitative report: `runs/qualitative_cases_summary.md`
+- Phase 3A report: `runs/phase3a_report.md`
+- Dropout ablation rows: 4
+- Qualitative manifest rows: 25
+
+### Dropout-ratio ablation
+
+| Method | Dropout Ratio | P@0.50 | R@0.50 | F1@0.50 | Full AP50 | Full AP75 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 | Mean Missing-Modality AP50 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| E1 Reliability Fusion | 0.00 | 0.925721 | 0.962298 | 0.943655 | 0.979317 | 0.947634 | 0.688697 | 0.370994 | 0.477850 | 0.512514 |
+| E3 Reliability + Dropout 0.10 | 0.10 | 0.949248 | 0.945341 | 0.947290 | 0.977738 | 0.945218 | 0.930783 | 0.723911 | 0.978295 | 0.877663 |
+| E2 Reliability + Dropout 0.15 | 0.15 | 0.931057 | 0.956042 | 0.943384 | 0.979990 | 0.950906 | 0.948710 | 0.811566 | 0.978972 | 0.913083 |
+| E4 Reliability + Dropout 0.20 | 0.20 | 0.946437 | 0.951268 | 0.948846 | 0.978692 | 0.948514 | 0.954897 | 0.872685 | 0.979640 | 0.935741 |
+
 ## Pending tasks
 
-- Review Phase 2C MSCD evidence report in runs/mscd_evidence_report.md.
-- Select qualitative cases from compare_E0_E1_E2 outputs.
-- Keep E2 as the main paper model unless a later task defines a stronger controlled improvement.
-- Run brightness/noise robustness tests if needed for the robustness section.
+- Review Phase 3A dropout ablation in runs/dropout_ablation_summary.md.
+- Use runs/qualitative_cases_manifest.csv to assemble paper figure panels outside Git.
+- Keep the selected default dropout ratio documented in runs/phase3a_report.md.
+- Prepare manuscript tables from Phase 2A, Phase 2B, Phase 2C, and Phase 3A summaries.
 
 ## Known metric caveats
 
@@ -143,6 +162,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - E1 has the highest F1 in the threshold sweep at threshold 0.50.
 - E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.
 - E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.
+- Phase 3A should be used to justify the selected modality-dropout ratio without adding a new model family.
 
 ## Files or scripts currently under review
 

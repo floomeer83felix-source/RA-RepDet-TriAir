@@ -29,6 +29,18 @@ EXPERIMENTS = [
         "dir": RUNS_DIR / "E2_reliability_dropout015_repvit_fcos_e50",
     },
     {
+        "id": "E3",
+        "method": "Reliability + Dropout 0.10",
+        "dir": RUNS_DIR / "E3_reliability_dropout010_repvit_fcos_e50",
+        "eval_subdir": "eval_thr050",
+    },
+    {
+        "id": "E4",
+        "method": "Reliability + Dropout 0.20",
+        "dir": RUNS_DIR / "E4_reliability_dropout020_repvit_fcos_e50",
+        "eval_subdir": "eval_thr050",
+    },
+    {
         "id": "E5",
         "method": "ACRF + Dropout 0.15",
         "dir": RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50",
@@ -161,6 +173,16 @@ def collect_phase2c():
     }
 
 
+def collect_phase3a():
+    return {
+        "dropout_ablation": read_csv(RUNS_DIR / "dropout_ablation_summary.csv"),
+        "dropout_report": str(RUNS_DIR / "dropout_ablation_summary.md") if (RUNS_DIR / "dropout_ablation_summary.md").exists() else None,
+        "qualitative_manifest": read_csv(RUNS_DIR / "qualitative_cases_manifest.csv"),
+        "qualitative_report": str(RUNS_DIR / "qualitative_cases_summary.md") if (RUNS_DIR / "qualitative_cases_summary.md").exists() else None,
+        "phase3a_report": str(RUNS_DIR / "phase3a_report.md") if (RUNS_DIR / "phase3a_report.md").exists() else None,
+    }
+
+
 def best_by(results, metric):
     numeric = []
     for row in results:
@@ -206,6 +228,8 @@ def build_handoff():
             "E0": "5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.",
             "E1": "RGB/Thermal/Event reliability stems -> alpha fusion -> Conv(16,3) -> RepViT-M0.9 -> FPN -> FCOS.",
             "E2": "E1 plus modality dropout 0.15 during training.",
+            "E3": "E1 plus modality dropout 0.10 during training.",
+            "E4": "E1 plus modality dropout 0.20 during training.",
             "E5": "Availability-conditioned reliability fusion with post-stem masking, masked softmax, and modality dropout 0.15.",
             "E6": "E2 inference architecture trained with modality-subset consistency distillation from frozen E2 full-input teacher.",
             "labels": "TriAir class 0 is shifted to torchvision detection label 1; background remains 0.",
@@ -220,11 +244,12 @@ def build_handoff():
         "phase2a": collect_phase2a(),
         "phase2b": collect_phase2b(),
         "phase2c": collect_phase2c(),
+        "phase3a": collect_phase3a(),
         "current_pending_experiments": [
-            "Review Phase 2C MSCD evidence report in runs/mscd_evidence_report.md.",
-            "Select qualitative cases from compare_E0_E1_E2 outputs.",
-            "Keep E2 as the main paper model unless a later task defines a stronger controlled improvement.",
-            "Run brightness/noise robustness tests if needed for the robustness section.",
+            "Review Phase 3A dropout ablation in runs/dropout_ablation_summary.md.",
+            "Use runs/qualitative_cases_manifest.csv to assemble paper figure panels outside Git.",
+            "Keep the selected default dropout ratio documented in runs/phase3a_report.md.",
+            "Prepare manuscript tables from Phase 2A, Phase 2B, Phase 2C, and Phase 3A summaries.",
         ],
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -241,7 +266,7 @@ def build_handoff():
             "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
             "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
             "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
-            "Add paper tables from Phase 2A, Phase 2B, and Phase 2C summaries.",
+            "Use the Phase 3A dropout-ratio report to justify the final default dropout value.",
         ],
     }
 
@@ -309,6 +334,14 @@ def write_markdown(data, path):
         "- Smoke test: `runs/mscd_smoke_test.md`" if data["phase2c"]["smoke_test"] else "- Smoke test: NA",
         f"- Evidence rows: {len(data['phase2c']['evidence_summary'])}",
         f"- E6 missing-modality rows: {len(data['phase2c']['e6_missing_modality'])}",
+        "",
+        "## Phase 3A Outputs",
+        "",
+        "- Dropout report: `runs/dropout_ablation_summary.md`" if data["phase3a"]["dropout_report"] else "- Dropout report: NA",
+        "- Qualitative report: `runs/qualitative_cases_summary.md`" if data["phase3a"]["qualitative_report"] else "- Qualitative report: NA",
+        "- Phase 3A report: `runs/phase3a_report.md`" if data["phase3a"]["phase3a_report"] else "- Phase 3A report: NA",
+        f"- Dropout ablation rows: {len(data['phase3a']['dropout_ablation'])}",
+        f"- Qualitative manifest rows: {len(data['phase3a']['qualitative_manifest'])}",
         "",
         "## Model And Code Structure",
         "",

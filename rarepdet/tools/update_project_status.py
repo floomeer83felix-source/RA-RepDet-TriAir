@@ -18,6 +18,8 @@ EXPERIMENTS = [
     ("E0", "Early Fusion", RUNS_DIR / "E0_early_repvit_fcos_e50", "eval"),
     ("E1", "Reliability Fusion", RUNS_DIR / "E1_reliability_repvit_fcos_e50", "eval"),
     ("E2", "Reliability + Dropout 0.15", RUNS_DIR / "E2_reliability_dropout015_repvit_fcos_e50", "eval"),
+    ("E3", "Reliability + Dropout 0.10", RUNS_DIR / "E3_reliability_dropout010_repvit_fcos_e50", "eval_thr050"),
+    ("E4", "Reliability + Dropout 0.20", RUNS_DIR / "E4_reliability_dropout020_repvit_fcos_e50", "eval_thr050"),
     ("E5", "ACRF + Dropout 0.15", RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50", "eval_thr050"),
     ("E6", "MSCD + Dropout 0.15", RUNS_DIR / "E6_mscd_dropout015_repvit_fcos_e50", "eval_thr050"),
 ]
@@ -175,18 +177,25 @@ def build_status():
     e5_alpha = read_csv(RUNS_DIR / "E5_acrf_dropout015_repvit_fcos_e50" / "alpha_modes" / "alpha_mode_summary.csv")
     mscd_evidence = read_csv(RUNS_DIR / "mscd_evidence_summary.csv")
     e6_missing = read_csv(RUNS_DIR / "E6_mscd_dropout015_repvit_fcos_e50" / "missing_modality" / "missing_modality_results.csv")
+    dropout_ablation = read_csv(RUNS_DIR / "dropout_ablation_summary.csv")
+    qualitative_manifest = read_csv(RUNS_DIR / "qualitative_cases_manifest.csv")
+    phase3a_report_exists = (RUNS_DIR / "phase3a_report.md").exists()
 
-    active_status = "completed" if mscd_evidence else "pending"
+    active_status = "completed" if phase3a_report_exists and dropout_ablation and qualitative_manifest else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in read_text(NEXT_TASK_PATH):
         current_task = "Phase 2B - Availability-Conditioned Reliability Fusion (ACRF)"
     if current_task == "NA" and "Phase 2C" in read_text(NEXT_TASK_PATH):
         current_task = "Phase 2C - Modality-Subset Consistency Distillation (MSCD)"
+    if current_task == "NA" and "Phase 3A" in read_text(NEXT_TASK_PATH):
+        current_task = "Phase 3A - Dropout-Ratio Ablation and Paper Evidence Package"
     if current_goal == "NA" and acrf_evidence:
         current_goal = "Implement, train, evaluate, and summarize the E5 ACRF ablation."
     if mscd_evidence:
         current_goal = "Implement, train, evaluate, and summarize the E6 MSCD training-strategy ablation."
+    if "Phase 3A" in read_text(NEXT_TASK_PATH):
+        current_goal = "Train E3/E4 dropout-ratio ablations and build qualitative evidence package."
 
     lines = [
         "# Experiment Status",
@@ -343,6 +352,34 @@ def build_status():
 
     lines += [
         "",
+        "## Phase 3A outputs",
+        "",
+        "- Dropout report: `runs/dropout_ablation_summary.md`" if (RUNS_DIR / "dropout_ablation_summary.md").exists() else "- Dropout report: NA",
+        "- Qualitative report: `runs/qualitative_cases_summary.md`" if (RUNS_DIR / "qualitative_cases_summary.md").exists() else "- Qualitative report: NA",
+        "- Phase 3A report: `runs/phase3a_report.md`" if phase3a_report_exists else "- Phase 3A report: NA",
+        f"- Dropout ablation rows: {len(dropout_ablation) if dropout_ablation else 'NA'}",
+        f"- Qualitative manifest rows: {len(qualitative_manifest) if qualitative_manifest else 'NA'}",
+        "",
+        "### Dropout-ratio ablation",
+        "",
+    ]
+    dropout_headers = [
+        "Method",
+        "Dropout Ratio",
+        "P@0.50",
+        "R@0.50",
+        "F1@0.50",
+        "Full AP50",
+        "Full AP75",
+        "w/o RGB AP50",
+        "w/o Thermal AP50",
+        "w/o Event AP50",
+        "Mean Missing-Modality AP50",
+    ]
+    lines.extend(table(dropout_headers, dropout_ablation))
+
+    lines += [
+        "",
         "## Pending tasks",
         "",
     ]
@@ -367,6 +404,7 @@ def build_status():
         "- E1 has the highest F1 in the threshold sweep at threshold 0.50.",
         "- E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.",
         "- E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.",
+        "- Phase 3A should be used to justify the selected modality-dropout ratio without adding a new model family.",
         "",
         "## Files or scripts currently under review",
         "",
