@@ -187,11 +187,15 @@ def build_status():
     blocked_split_summary = read_csv(RUNS_DIR / "blocked_split_proposal_summary.csv")
     rgb_strata_summary = read_csv(RUNS_DIR / "rgb_separation_strata_summary.csv")
     phase3c_report_exists = (RUNS_DIR / "phase3c_report.md").exists()
+    clean_block_summary = read_csv(RUNS_DIR / "clean_block64g16_summary.csv")
+    phase4a_report_exists = (RUNS_DIR / "phase4a_report.md").exists()
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "completed" if phase3b_report_exists and split_integrity else "pending"
     if "Phase 3C" in next_text:
         active_status = "completed" if phase3c_report_exists and rgb_duplicate_summary and blocked_split_summary else "pending"
+    if "Phase 4A" in next_text:
+        active_status = "completed" if phase4a_report_exists and clean_block_summary else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -200,6 +204,8 @@ def build_status():
         current_task = "Phase 2C - Modality-Subset Consistency Distillation (MSCD)"
     if current_task == "NA" and "Phase 3C" in next_text:
         current_task = "Phase 3C - RGB Duplicate Audit and Leakage-Aware Split Proposal"
+    if current_task == "NA" and "Phase 4A" in next_text:
+        current_task = "Phase 4A - Clean Blocked-Split Core Comparison"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -214,6 +220,8 @@ def build_status():
         current_goal = "Audit split integrity and correct E2/E4 model-selection positioning."
     if "Phase 3C" in next_text:
         current_goal = "Audit exact RGB-content cross-split duplication and propose leakage-aware blocked split candidates."
+    if "Phase 4A" in next_text:
+        current_goal = "Train and evaluate B0/B1/B2/B4 on the validated block64/guard16 clean split."
 
     lines = [
         "# Experiment Status",
@@ -459,6 +467,33 @@ def build_status():
 
     lines += [
         "",
+        "## Phase 4A outputs",
+        "",
+        "- Clean split protocol: `runs/clean_block64g16_protocol.md`" if (RUNS_DIR / "clean_block64g16_protocol.md").exists() else "- Clean split protocol: NA",
+        "- Clean summary: `runs/clean_block64g16_summary.md`" if (RUNS_DIR / "clean_block64g16_summary.md").exists() else "- Clean summary: NA",
+        "- Phase 4A report: `runs/phase4a_report.md`" if phase4a_report_exists else "- Phase 4A report: NA",
+        f"- Clean summary rows: {len(clean_block_summary) if clean_block_summary else 'NA'}",
+        "",
+        "### Clean block64/guard16 summary",
+        "",
+    ]
+    clean_headers = [
+        "Method",
+        "Dropout Ratio",
+        "Params",
+        "P@0.50",
+        "R@0.50",
+        "F1@0.50",
+        "Full AP50",
+        "Full AP75",
+        "w/o RGB AP50",
+        "w/o Thermal AP50",
+        "w/o Event AP50",
+    ]
+    lines.extend(table(clean_headers, clean_block_summary))
+
+    lines += [
+        "",
         "## Pending tasks",
         "",
     ]
@@ -474,6 +509,7 @@ def build_status():
         "- Missing-modality tables use score threshold 0.05.",
         "- Current AP implementation is project-local and does not depend on pycocotools.",
         "- Phase 3C RGB-separation strata are diagnostics only and are not a clean independent test set.",
+        "- Phase 4A clean-split results use block64_guard16_seed0 only and should not be mixed with former random-split metrics.",
         "",
         "## Important research decisions",
         "",
@@ -487,6 +523,7 @@ def build_status():
         "- Phase 3A should be used to justify the selected modality-dropout ratio without adding a new model family.",
         "- Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.",
         "- If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.",
+        "- Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.",
         "",
         "## Files or scripts currently under review",
         "",
@@ -499,6 +536,8 @@ def build_status():
         "- `rarepdet/tools/audit_rgb_cross_split_duplicates.py`",
         "- `rarepdet/tools/propose_blocked_split.py`",
         "- `rarepdet/tools/build_rgb_separation_subsets.py`",
+        "- `rarepdet/tools/validate_clean_block64_protocol.py`",
+        "- `rarepdet/tools/build_clean_block64_summary.py`",
         "- `runs/handoff_latest.md`",
         "- `runs/handoff_latest.json`",
         "",

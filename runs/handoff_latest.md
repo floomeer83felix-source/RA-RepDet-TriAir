@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-23T08:58:31
+Generated: 2026-06-24T05:12:28
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -86,6 +86,16 @@ Workspace: `E:\RepViT-main`
 - Blocked split candidate rows: 3
 - RGB strata rows: 6
 
+## Phase 4A Outputs
+
+- Clean split protocol: `runs/clean_block64g16_protocol.md`
+- Clean summary: `runs/clean_block64g16_summary.md`
+- Phase 4A report: `runs/phase4a_report.md`
+- Clean summary rows: 4
+- B1 missing-modality rows: 7
+- B2 missing-modality rows: 7
+- B4 missing-modality rows: 7
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -108,10 +118,9 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Review Phase 3C conclusion in runs/phase3c_report.md.
-- Use the blocked-split recommendation before clean-split retraining.
-- Do not start manuscript drafting or final 100-epoch runs on the random split if exact RGB-content overlap is confirmed.
-- Retrain only E2 and E4 on the selected blocked split in the next phase if a candidate passes.
+- Use runs/phase4a_report.md as the clean blocked-split decision gate once Phase 4A completes.
+- Former random-split results are historical diagnostics only and must not be paper headline results.
+- Do not start 100-epoch training until the Phase 4A next-action gate is reviewed.
 
 ## Recently Modified Files
 
@@ -121,22 +130,16 @@ Workspace: `E:\RepViT-main`
 - ` M rarepdet/tools/update_project_status.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `?? rarepdet/tools/audit_rgb_cross_split_duplicates.py`
-- `?? rarepdet/tools/build_phase3c_report.py`
-- `?? rarepdet/tools/build_rgb_separation_subsets.py`
-- `?? rarepdet/tools/propose_blocked_split.py`
-- `?? rarepdet/tools/split_audit_common.py`
-- `?? runs/blocked_split_candidates/`
-- `?? runs/blocked_split_proposal_summary.csv`
-- `?? runs/blocked_split_proposal_summary.md`
-- `?? runs/phase3c_report.md`
-- `?? runs/rgb_cross_split_duplicate_summary.csv`
-- `?? runs/rgb_cross_split_duplicate_summary.md`
-- `?? runs/rgb_cross_split_exact_pairs.csv`
-- `?? runs/rgb_cross_split_group_stats.csv`
-- `?? runs/rgb_separation_strata_summary.csv`
-- `?? runs/rgb_separation_strata_summary.md`
-- `?? runs/rgb_separation_subsets/`
+- `?? rarepdet/tools/build_clean_block64_summary.py`
+- `?? rarepdet/tools/validate_clean_block64_protocol.py`
+- `?? runs/B0_early_block64g16_e50/`
+- `?? runs/B1_reliability_p000_block64g16_e50/`
+- `?? runs/B2_reliability_p015_block64g16_e50/`
+- `?? runs/B4_reliability_p020_block64g16_e50/`
+- `?? runs/clean_block64g16_protocol.md`
+- `?? runs/clean_block64g16_summary.csv`
+- `?? runs/clean_block64g16_summary.md`
+- `?? runs/phase4a_report.md`
 
 ## Next Recommended Tasks
 

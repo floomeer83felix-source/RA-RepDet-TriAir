@@ -224,6 +224,26 @@ def collect_phase3c():
     }
 
 
+def collect_phase4a():
+    return {
+        "clean_protocol": str(RUNS_DIR / "clean_block64g16_protocol.md")
+        if (RUNS_DIR / "clean_block64g16_protocol.md").exists()
+        else None,
+        "clean_summary": read_csv(RUNS_DIR / "clean_block64g16_summary.csv"),
+        "clean_summary_report": str(RUNS_DIR / "clean_block64g16_summary.md")
+        if (RUNS_DIR / "clean_block64g16_summary.md").exists()
+        else None,
+        "phase4a_report": str(RUNS_DIR / "phase4a_report.md") if (RUNS_DIR / "phase4a_report.md").exists() else None,
+        "b0_eval": read_key_value_file(RUNS_DIR / "B0_early_block64g16_e50" / "eval_thr050" / "eval_results.txt"),
+        "b1_eval": read_key_value_file(RUNS_DIR / "B1_reliability_p000_block64g16_e50" / "eval_thr050" / "eval_results.txt"),
+        "b2_eval": read_key_value_file(RUNS_DIR / "B2_reliability_p015_block64g16_e50" / "eval_thr050" / "eval_results.txt"),
+        "b4_eval": read_key_value_file(RUNS_DIR / "B4_reliability_p020_block64g16_e50" / "eval_thr050" / "eval_results.txt"),
+        "b1_missing": read_csv(RUNS_DIR / "B1_reliability_p000_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"),
+        "b2_missing": read_csv(RUNS_DIR / "B2_reliability_p015_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"),
+        "b4_missing": read_csv(RUNS_DIR / "B4_reliability_p020_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"),
+    }
+
+
 def best_by(results, metric):
     numeric = []
     for row in results:
@@ -288,11 +308,11 @@ def build_handoff():
         "phase3a": collect_phase3a(),
         "phase3b": collect_phase3b(),
         "phase3c": collect_phase3c(),
+        "phase4a": collect_phase4a(),
         "current_pending_experiments": [
-            "Review Phase 3C conclusion in runs/phase3c_report.md.",
-            "Use the blocked-split recommendation before clean-split retraining.",
-            "Do not start manuscript drafting or final 100-epoch runs on the random split if exact RGB-content overlap is confirmed.",
-            "Retrain only E2 and E4 on the selected blocked split in the next phase if a candidate passes.",
+            "Use runs/phase4a_report.md as the clean blocked-split decision gate once Phase 4A completes.",
+            "Former random-split results are historical diagnostics only and must not be paper headline results.",
+            "Do not start 100-epoch training until the Phase 4A next-action gate is reviewed.",
         ],
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -407,6 +427,16 @@ def write_markdown(data, path):
         f"- RGB group rows: {data['phase3c']['rgb_group_count']}",
         f"- Blocked split candidate rows: {len(data['phase3c']['blocked_split_summary'])}",
         f"- RGB strata rows: {len(data['phase3c']['strata_summary'])}",
+        "",
+        "## Phase 4A Outputs",
+        "",
+        "- Clean split protocol: `runs/clean_block64g16_protocol.md`" if data["phase4a"]["clean_protocol"] else "- Clean split protocol: NA",
+        "- Clean summary: `runs/clean_block64g16_summary.md`" if data["phase4a"]["clean_summary_report"] else "- Clean summary: NA",
+        "- Phase 4A report: `runs/phase4a_report.md`" if data["phase4a"]["phase4a_report"] else "- Phase 4A report: NA",
+        f"- Clean summary rows: {len(data['phase4a']['clean_summary'])}",
+        f"- B1 missing-modality rows: {len(data['phase4a']['b1_missing'])}",
+        f"- B2 missing-modality rows: {len(data['phase4a']['b2_missing'])}",
+        f"- B4 missing-modality rows: {len(data['phase4a']['b4_missing'])}",
         "",
         "## Model And Code Structure",
         "",

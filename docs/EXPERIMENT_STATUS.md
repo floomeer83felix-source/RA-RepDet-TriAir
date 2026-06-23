@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-23T08:58:31
+Generated: 2026-06-24T05:12:28
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -85,7 +85,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 - Task file: `docs/NEXT_TASK.md`
 - Current Task: Phase 3C - RGB Duplicate Audit and Leakage-Aware Split Proposal
-- Goal: Audit exact RGB-content cross-split duplication and propose leakage-aware blocked split candidates.
+- Goal: Train and evaluate B0/B1/B2/B4 on the validated block64/guard16 clean split.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -231,12 +231,27 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | near_rgb_match_or_near_neighbor | E4 Reliability + Dropout 0.20 | 676 | 1923 | 0.954476 | 0.970359 | 0.962352 | 0.985744 | 0.958865 | 1955 |
 | higher_rgb_separation | E4 Reliability + Dropout 0.20 | 370 | 1071 | 0.924157 | 0.921569 | 0.922861 | 0.955066 | 0.917360 | 1068 |
 
+## Phase 4A outputs
+
+- Clean split protocol: `runs/clean_block64g16_protocol.md`
+- Clean summary: `runs/clean_block64g16_summary.md`
+- Phase 4A report: `runs/phase4a_report.md`
+- Clean summary rows: 4
+
+### Clean block64/guard16 summary
+
+| Method | Dropout Ratio | Params | P@0.50 | R@0.50 | F1@0.50 | Full AP50 | Full AP75 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| B0 Early Fusion | NA | 6591609 | 0.920573 | 0.881436 | 0.900580 | 0.941521 | 0.835843 | NA | NA | NA |
+| B1 Reliability p=0.00 | 0.00 | 6593293 | 0.920237 | 0.894986 | 0.907436 | 0.949001 | 0.875731 | 0.675841 | 0.355645 | 0.428863 |
+| B2 Reliability p=0.15 | 0.15 | 6593293 | 0.912933 | 0.914634 | 0.913783 | 0.956423 | 0.879736 | 0.906801 | 0.748108 | 0.957883 |
+| B4 Reliability p=0.20 | 0.20 | 6593293 | 0.903604 | 0.925644 | 0.914491 | 0.960244 | 0.885327 | 0.907047 | 0.738021 | 0.961505 |
+
 ## Pending tasks
 
-- Review Phase 3C conclusion in runs/phase3c_report.md.
-- Use the blocked-split recommendation before clean-split retraining.
-- Do not start manuscript drafting or final 100-epoch runs on the random split if exact RGB-content overlap is confirmed.
-- Retrain only E2 and E4 on the selected blocked split in the next phase if a candidate passes.
+- Use runs/phase4a_report.md as the clean blocked-split decision gate once Phase 4A completes.
+- Former random-split results are historical diagnostics only and must not be paper headline results.
+- Do not start 100-epoch training until the Phase 4A next-action gate is reviewed.
 
 ## Known metric caveats
 
@@ -246,6 +261,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Missing-modality tables use score threshold 0.05.
 - Current AP implementation is project-local and does not depend on pycocotools.
 - Phase 3C RGB-separation strata are diagnostics only and are not a clean independent test set.
+- Phase 4A clean-split results use block64_guard16_seed0 only and should not be mixed with former random-split metrics.
 
 ## Important research decisions
 
@@ -259,6 +275,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 3A should be used to justify the selected modality-dropout ratio without adding a new model family.
 - Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.
 - If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.
+- Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.
 
 ## Files or scripts currently under review
 
@@ -271,5 +288,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - `rarepdet/tools/audit_rgb_cross_split_duplicates.py`
 - `rarepdet/tools/propose_blocked_split.py`
 - `rarepdet/tools/build_rgb_separation_subsets.py`
+- `rarepdet/tools/validate_clean_block64_protocol.py`
+- `rarepdet/tools/build_clean_block64_summary.py`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`

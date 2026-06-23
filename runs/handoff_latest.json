@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-23T08:58:31",
+  "generated_at": "2026-06-24T05:12:28",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -17,22 +17,16 @@
       " M rarepdet/tools/update_project_status.py",
       " M runs/handoff_latest.json",
       " M runs/handoff_latest.md",
-      "?? rarepdet/tools/audit_rgb_cross_split_duplicates.py",
-      "?? rarepdet/tools/build_phase3c_report.py",
-      "?? rarepdet/tools/build_rgb_separation_subsets.py",
-      "?? rarepdet/tools/propose_blocked_split.py",
-      "?? rarepdet/tools/split_audit_common.py",
-      "?? runs/blocked_split_candidates/",
-      "?? runs/blocked_split_proposal_summary.csv",
-      "?? runs/blocked_split_proposal_summary.md",
-      "?? runs/phase3c_report.md",
-      "?? runs/rgb_cross_split_duplicate_summary.csv",
-      "?? runs/rgb_cross_split_duplicate_summary.md",
-      "?? runs/rgb_cross_split_exact_pairs.csv",
-      "?? runs/rgb_cross_split_group_stats.csv",
-      "?? runs/rgb_separation_strata_summary.csv",
-      "?? runs/rgb_separation_strata_summary.md",
-      "?? runs/rgb_separation_subsets/"
+      "?? rarepdet/tools/build_clean_block64_summary.py",
+      "?? rarepdet/tools/validate_clean_block64_protocol.py",
+      "?? runs/B0_early_block64g16_e50/",
+      "?? runs/B1_reliability_p000_block64g16_e50/",
+      "?? runs/B2_reliability_p015_block64g16_e50/",
+      "?? runs/B4_reliability_p020_block64g16_e50/",
+      "?? runs/clean_block64g16_protocol.md",
+      "?? runs/clean_block64g16_summary.csv",
+      "?? runs/clean_block64g16_summary.md",
+      "?? runs/phase4a_report.md"
     ]
   },
   "dataset": {
@@ -1949,11 +1943,337 @@
     "strata_report": "E:\\RepViT-main\\runs\\rgb_separation_strata_summary.md",
     "phase3c_report": "E:\\RepViT-main\\runs\\phase3c_report.md"
   },
+  "phase4a": {
+    "clean_protocol": "E:\\RepViT-main\\runs\\clean_block64g16_protocol.md",
+    "clean_summary": [
+      {
+        "Method": "B0 Early Fusion",
+        "Dropout Ratio": "NA",
+        "Params": "6591609",
+        "P@0.50": "0.920573",
+        "R@0.50": "0.881436",
+        "F1@0.50": "0.900580",
+        "Full AP50": "0.941521",
+        "Full AP75": "0.835843",
+        "w/o RGB AP50": "NA",
+        "w/o Thermal AP50": "NA",
+        "w/o Event AP50": "NA"
+      },
+      {
+        "Method": "B1 Reliability p=0.00",
+        "Dropout Ratio": "0.00",
+        "Params": "6593293",
+        "P@0.50": "0.920237",
+        "R@0.50": "0.894986",
+        "F1@0.50": "0.907436",
+        "Full AP50": "0.949001",
+        "Full AP75": "0.875731",
+        "w/o RGB AP50": "0.675841",
+        "w/o Thermal AP50": "0.355645",
+        "w/o Event AP50": "0.428863"
+      },
+      {
+        "Method": "B2 Reliability p=0.15",
+        "Dropout Ratio": "0.15",
+        "Params": "6593293",
+        "P@0.50": "0.912933",
+        "R@0.50": "0.914634",
+        "F1@0.50": "0.913783",
+        "Full AP50": "0.956423",
+        "Full AP75": "0.879736",
+        "w/o RGB AP50": "0.906801",
+        "w/o Thermal AP50": "0.748108",
+        "w/o Event AP50": "0.957883"
+      },
+      {
+        "Method": "B4 Reliability p=0.20",
+        "Dropout Ratio": "0.20",
+        "Params": "6593293",
+        "P@0.50": "0.903604",
+        "R@0.50": "0.925644",
+        "F1@0.50": "0.914491",
+        "Full AP50": "0.960244",
+        "Full AP75": "0.885327",
+        "w/o RGB AP50": "0.907047",
+        "w/o Thermal AP50": "0.738021",
+        "w/o Event AP50": "0.961505"
+      }
+    ],
+    "clean_summary_report": "E:\\RepViT-main\\runs\\clean_block64g16_summary.md",
+    "phase4a_report": "E:\\RepViT-main\\runs\\phase4a_report.md",
+    "b0_eval": {
+      "model": "early",
+      "weights": "E:\\RepViT-main\\runs\\B0_early_block64g16_e50\\weights\\best.pt",
+      "images": "2213",
+      "Precision": "0.920573",
+      "Recall": "0.881436",
+      "AP50": "0.941521",
+      "AP75": "0.835843",
+      "GT boxes": "5904",
+      "Predictions": "5653",
+      "Mean Confidence": "0.766052",
+      "FPS": "58.31"
+    },
+    "b1_eval": {
+      "model": "reliability",
+      "weights": "E:\\RepViT-main\\runs\\B1_reliability_p000_block64g16_e50\\weights\\best.pt",
+      "images": "2213",
+      "Precision": "0.920237",
+      "Recall": "0.894986",
+      "AP50": "0.949001",
+      "AP75": "0.875731",
+      "GT boxes": "5904",
+      "Predictions": "5742",
+      "Mean Confidence": "0.775402",
+      "FPS": "59.69"
+    },
+    "b2_eval": {
+      "model": "reliability",
+      "weights": "E:\\RepViT-main\\runs\\B2_reliability_p015_block64g16_e50\\weights\\best.pt",
+      "images": "2213",
+      "Precision": "0.912933",
+      "Recall": "0.914634",
+      "AP50": "0.956423",
+      "AP75": "0.879736",
+      "GT boxes": "5904",
+      "Predictions": "5915",
+      "Mean Confidence": "0.784655",
+      "FPS": "58.47"
+    },
+    "b4_eval": {
+      "model": "reliability",
+      "weights": "E:\\RepViT-main\\runs\\B4_reliability_p020_block64g16_e50\\weights\\best.pt",
+      "images": "2213",
+      "Precision": "0.903604",
+      "Recall": "0.925644",
+      "AP50": "0.960244",
+      "AP75": "0.885327",
+      "GT boxes": "5904",
+      "Predictions": "6048",
+      "Mean Confidence": "0.764135",
+      "FPS": "55.50"
+    },
+    "b1_missing": [
+      {
+        "Mode": "full",
+        "Precision": "0.026597379123361953",
+        "Recall": "0.9969512195121951",
+        "AP50": "0.9535278081893921",
+        "AP75": "0.879147469997406",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1201466182136712"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.021802982376863986",
+        "Recall": "0.8172425474254743",
+        "AP50": "0.6758414506912231",
+        "AP75": "0.5684424638748169",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.13373890757804818"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.014853140533212834",
+        "Recall": "0.5567411924119241",
+        "AP50": "0.35564541816711426",
+        "AP75": "0.2974809408187866",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.13146162046852677"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.017175779484862177",
+        "Recall": "0.6438008130081301",
+        "AP50": "0.4288625717163086",
+        "AP75": "0.29254207015037537",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1279745617344255"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.017139629462268414",
+        "Recall": "0.6424457994579946",
+        "AP50": "0.4286544919013977",
+        "AP75": "0.2925899624824524",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1277525161798594"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.0016854948034342521",
+        "Recall": "0.06317750677506775",
+        "AP50": "0.00022285246814135462",
+        "AP75": "1.9299491214042064e-06",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1130046326038838"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.0050112968820605515",
+        "Recall": "0.18783875338753386",
+        "AP50": "0.0011300499318167567",
+        "AP75": "1.312899257754907e-05",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.12901899570867695"
+      }
+    ],
+    "b2_missing": [
+      {
+        "Mode": "full",
+        "Precision": "0.026534116583822865",
+        "Recall": "0.994579945799458",
+        "AP50": "0.9592487812042236",
+        "AP75": "0.8826526999473572",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.12803012011225104"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.02640759150474469",
+        "Recall": "0.9898373983739838",
+        "AP50": "0.9068012237548828",
+        "AP75": "0.7340074777603149",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.16328930600738625"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.024857659286037052",
+        "Recall": "0.9317411924119241",
+        "AP50": "0.7481079697608948",
+        "AP75": "0.4417235851287842",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.20202521240824334"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.026525079078174425",
+        "Recall": "0.9942411924119241",
+        "AP50": "0.9578831791877747",
+        "AP75": "0.8785284161567688",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.13085925807941567"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.024866696791685496",
+        "Recall": "0.932079945799458",
+        "AP50": "0.7428228855133057",
+        "AP75": "0.43815726041793823",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.20058120404127303"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.025689109805693628",
+        "Recall": "0.9629065040650406",
+        "AP50": "0.8152005672454834",
+        "AP75": "0.5918518900871277",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.16461403022540866"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.015598734749209218",
+        "Recall": "0.5846883468834688",
+        "AP50": "0.2846757173538208",
+        "AP75": "0.12581147253513336",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.27146312562955"
+      }
+    ],
+    "b4_missing": [
+      {
+        "Mode": "full",
+        "Precision": "0.026561229100768188",
+        "Recall": "0.9955962059620597",
+        "AP50": "0.9611371755599976",
+        "AP75": "0.8866533041000366",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1608217602771262"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.026439222774514236",
+        "Recall": "0.9910230352303523",
+        "AP50": "0.9070470333099365",
+        "AP75": "0.7282618284225464",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.19075164207164325"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.025011296882060552",
+        "Recall": "0.9375",
+        "AP50": "0.7380214333534241",
+        "AP75": "0.39361903071403503",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.20688343768967152"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.026543154089471305",
+        "Recall": "0.9949186991869918",
+        "AP50": "0.9615053534507751",
+        "AP75": "0.8851098418235779",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1615109823040506"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.024943515589697242",
+        "Recall": "0.9349593495934959",
+        "AP50": "0.7297244668006897",
+        "AP75": "0.3924413025379181",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.20588263080433059"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.02569362855851785",
+        "Recall": "0.9630758807588076",
+        "AP50": "0.8076184391975403",
+        "AP75": "0.5735316872596741",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.192241033860396"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.016904654315408947",
+        "Recall": "0.6336382113821138",
+        "AP50": "0.25799262523651123",
+        "AP75": "0.11064821481704712",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.2501008340992434"
+      }
+    ]
+  },
   "current_pending_experiments": [
-    "Review Phase 3C conclusion in runs/phase3c_report.md.",
-    "Use the blocked-split recommendation before clean-split retraining.",
-    "Do not start manuscript drafting or final 100-epoch runs on the random split if exact RGB-content overlap is confirmed.",
-    "Retrain only E2 and E4 on the selected blocked split in the next phase if a candidate passes."
+    "Use runs/phase4a_report.md as the clean blocked-split decision gate once Phase 4A completes.",
+    "Former random-split results are historical diagnostics only and must not be paper headline results.",
+    "Do not start 100-epoch training until the Phase 4A next-action gate is reviewed."
   ],
   "code_structure": {
     "dataset": "datasets/triair_dataset.py",
@@ -1972,22 +2292,16 @@
     " M rarepdet/tools/update_project_status.py",
     " M runs/handoff_latest.json",
     " M runs/handoff_latest.md",
-    "?? rarepdet/tools/audit_rgb_cross_split_duplicates.py",
-    "?? rarepdet/tools/build_phase3c_report.py",
-    "?? rarepdet/tools/build_rgb_separation_subsets.py",
-    "?? rarepdet/tools/propose_blocked_split.py",
-    "?? rarepdet/tools/split_audit_common.py",
-    "?? runs/blocked_split_candidates/",
-    "?? runs/blocked_split_proposal_summary.csv",
-    "?? runs/blocked_split_proposal_summary.md",
-    "?? runs/phase3c_report.md",
-    "?? runs/rgb_cross_split_duplicate_summary.csv",
-    "?? runs/rgb_cross_split_duplicate_summary.md",
-    "?? runs/rgb_cross_split_exact_pairs.csv",
-    "?? runs/rgb_cross_split_group_stats.csv",
-    "?? runs/rgb_separation_strata_summary.csv",
-    "?? runs/rgb_separation_strata_summary.md",
-    "?? runs/rgb_separation_subsets/"
+    "?? rarepdet/tools/build_clean_block64_summary.py",
+    "?? rarepdet/tools/validate_clean_block64_protocol.py",
+    "?? runs/B0_early_block64g16_e50/",
+    "?? runs/B1_reliability_p000_block64g16_e50/",
+    "?? runs/B2_reliability_p015_block64g16_e50/",
+    "?? runs/B4_reliability_p020_block64g16_e50/",
+    "?? runs/clean_block64g16_protocol.md",
+    "?? runs/clean_block64g16_summary.csv",
+    "?? runs/clean_block64g16_summary.md",
+    "?? runs/phase4a_report.md"
   ],
   "next_recommended_tasks": [
     "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",

@@ -1,0 +1,13 @@
+RarePDet eval results
+====================
+model: reliability
+weights: E:\RepViT-main\runs\B4_reliability_p020_block64g16_e50\weights\best.pt
+images: 2213
+Precision: 0.903604
+Recall: 0.925644
+AP50: 0.960244
+AP75: 0.885327
+GT boxes: 5904
+Predictions: 6048
+Mean Confidence: 0.764135
+FPS: 55.50
