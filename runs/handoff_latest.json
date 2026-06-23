@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-23T07:24:34",
+  "generated_at": "2026-06-23T08:58:31",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -11,23 +11,28 @@
       "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
     ],
     "status_short": [
-      "M .gitignore",
-      " M docs/EXPERIMENT_STATUS.md",
-      " M rarepdet/tools/build_dropout_ablation_report.py",
+      "M docs/EXPERIMENT_STATUS.md",
+      " M rarepdet/tools/finish_task.ps1",
       " M rarepdet/tools/generate_handoff.py",
       " M rarepdet/tools/update_project_status.py",
-      " M runs/dropout_ablation_summary.md",
       " M runs/handoff_latest.json",
       " M runs/handoff_latest.md",
-      " M runs/phase3a_report.md",
-      "?? rarepdet/tools/audit_split_integrity.py",
-      "?? runs/dropout_ratio_selection_note.md",
-      "?? runs/phase3b_report.md",
-      "?? runs/split_integrity_exact_duplicates.csv",
-      "?? runs/split_integrity_manual_review.csv",
-      "?? runs/split_integrity_nearest_pairs.csv",
-      "?? runs/split_integrity_summary.csv",
-      "?? runs/split_integrity_summary.md"
+      "?? rarepdet/tools/audit_rgb_cross_split_duplicates.py",
+      "?? rarepdet/tools/build_phase3c_report.py",
+      "?? rarepdet/tools/build_rgb_separation_subsets.py",
+      "?? rarepdet/tools/propose_blocked_split.py",
+      "?? rarepdet/tools/split_audit_common.py",
+      "?? runs/blocked_split_candidates/",
+      "?? runs/blocked_split_proposal_summary.csv",
+      "?? runs/blocked_split_proposal_summary.md",
+      "?? runs/phase3c_report.md",
+      "?? runs/rgb_cross_split_duplicate_summary.csv",
+      "?? runs/rgb_cross_split_duplicate_summary.md",
+      "?? runs/rgb_cross_split_exact_pairs.csv",
+      "?? runs/rgb_cross_split_group_stats.csv",
+      "?? runs/rgb_separation_strata_summary.csv",
+      "?? runs/rgb_separation_strata_summary.md",
+      "?? runs/rgb_separation_subsets/"
     ]
   },
   "dataset": {
@@ -1632,11 +1637,323 @@
     "selection_note": "E:\\RepViT-main\\runs\\dropout_ratio_selection_note.md",
     "phase3b_report": "E:\\RepViT-main\\runs\\phase3b_report.md"
   },
+  "phase3c": {
+    "rgb_duplicate_summary": [
+      {
+        "Metric": "interpretation_label",
+        "Value": "CONFIRMED RGB-CONTENT CROSS-SPLIT DUPLICATION",
+        "Notes": "Exact required Phase 3C label."
+      },
+      {
+        "Metric": "train_images",
+        "Value": "8391",
+        "Notes": "Existing train split rows."
+      },
+      {
+        "Metric": "val_images",
+        "Value": "2098",
+        "Notes": "Existing validation split rows."
+      },
+      {
+        "Metric": "exact_rgb_matched_val_images",
+        "Value": "153",
+        "Notes": "Validation samples with at least one train sample sharing exact RGB content."
+      },
+      {
+        "Metric": "exact_rgb_matched_val_fraction",
+        "Value": "0.072927",
+        "Notes": "Matched validation fraction."
+      },
+      {
+        "Metric": "exact_rgb_matched_train_images",
+        "Value": "153",
+        "Notes": "Train samples with at least one validation sample sharing exact RGB content."
+      },
+      {
+        "Metric": "exact_rgb_matched_train_fraction",
+        "Value": "0.018234",
+        "Notes": "Matched train fraction."
+      },
+      {
+        "Metric": "cross_split_rgb_groups",
+        "Value": "153",
+        "Notes": "Distinct RGB-content hashes present in both splits."
+      },
+      {
+        "Metric": "group_total_size_min",
+        "Value": "2",
+        "Notes": "Train+val samples per matched group."
+      },
+      {
+        "Metric": "group_total_size_p50",
+        "Value": "2",
+        "Notes": "Train+val samples per matched group."
+      },
+      {
+        "Metric": "group_total_size_max",
+        "Value": "2",
+        "Notes": "Train+val samples per matched group."
+      },
+      {
+        "Metric": "group_val_size_p50",
+        "Value": "1",
+        "Notes": "Validation samples per matched group."
+      },
+      {
+        "Metric": "groups_identical_gt_box_counts",
+        "Value": "123",
+        "Notes": "All records in the RGB group have one GT-box count."
+      },
+      {
+        "Metric": "groups_different_gt_box_counts",
+        "Value": "30",
+        "Notes": "RGB group contains more than one GT-box count."
+      },
+      {
+        "Metric": "pair_id_distance_min",
+        "Value": "1",
+        "Notes": "Representative exact RGB pairs, same filename family only."
+      },
+      {
+        "Metric": "pair_id_distance_p50",
+        "Value": "1",
+        "Notes": "Representative exact RGB pairs, same filename family only."
+      },
+      {
+        "Metric": "pair_id_distance_p90",
+        "Value": "1",
+        "Notes": "Representative exact RGB pairs, same filename family only."
+      },
+      {
+        "Metric": "train_gt_boxes",
+        "Value": "24560",
+        "Notes": "Non-empty label rows in train split."
+      },
+      {
+        "Metric": "val_gt_boxes",
+        "Value": "6074",
+        "Notes": "Non-empty label rows in validation split."
+      },
+      {
+        "Metric": "full_multimodal_byte_duplication_claim",
+        "Value": "not_claimed",
+        "Notes": "This audit only hashes RGB channels; full 5-channel byte equality is not implied."
+      }
+    ],
+    "rgb_exact_pair_count": 153,
+    "rgb_group_count": 153,
+    "blocked_split_summary": [
+      {
+        "candidate": "block64_guard16_seed0",
+        "block_size": "64",
+        "guard_band": "16",
+        "train_images": "7439",
+        "val_images": "2213",
+        "guard_images": "837",
+        "train_gt_boxes": "22443",
+        "val_gt_boxes": "5904",
+        "guard_gt_boxes": "2287",
+        "val_share_all_images": "0.210983",
+        "val_share_used_images": "0.229279",
+        "exact_rgb_matched_val_images": "0",
+        "exact_rgb_matched_train_images": "0",
+        "exact_rgb_group_count": "0",
+        "id_guard_violations": "0",
+        "nearest_signature_min": "2",
+        "nearest_signature_p50": "52",
+        "nearest_signature_p90": "74",
+        "fraction_signature_le4": "0.010845",
+        "nearest_id_distance_min": "17",
+        "nearest_id_distance_p50": "38",
+        "recommended": "yes"
+      },
+      {
+        "candidate": "block128_guard32_seed0",
+        "block_size": "128",
+        "guard_band": "32",
+        "train_images": "7308",
+        "val_images": "2231",
+        "guard_images": "950",
+        "train_gt_boxes": "23547",
+        "val_gt_boxes": "5040",
+        "guard_gt_boxes": "2047",
+        "val_share_all_images": "0.212699",
+        "val_share_used_images": "0.233882",
+        "exact_rgb_matched_val_images": "0",
+        "exact_rgb_matched_train_images": "0",
+        "exact_rgb_group_count": "0",
+        "id_guard_violations": "0",
+        "nearest_signature_min": "8",
+        "nearest_signature_p50": "48",
+        "nearest_signature_p90": "74",
+        "fraction_signature_le4": "0.000000",
+        "nearest_id_distance_min": "33",
+        "nearest_id_distance_p50": "72",
+        "recommended": "no"
+      },
+      {
+        "candidate": "block256_guard64_seed0",
+        "block_size": "256",
+        "guard_band": "64",
+        "train_images": "6983",
+        "val_images": "2384",
+        "guard_images": "1122",
+        "train_gt_boxes": "20876",
+        "val_gt_boxes": "6557",
+        "guard_gt_boxes": "3201",
+        "val_share_all_images": "0.227286",
+        "val_share_used_images": "0.254511",
+        "exact_rgb_matched_val_images": "0",
+        "exact_rgb_matched_train_images": "0",
+        "exact_rgb_group_count": "0",
+        "id_guard_violations": "0",
+        "nearest_signature_min": "1",
+        "nearest_signature_p50": "52",
+        "nearest_signature_p90": "74",
+        "fraction_signature_le4": "0.009648",
+        "nearest_id_distance_min": "65",
+        "nearest_id_distance_p50": "137",
+        "recommended": "no"
+      }
+    ],
+    "strata_summary": [
+      {
+        "subset": "near_rgb_match_or_near_neighbor",
+        "model": "subset_only",
+        "image_count": "676",
+        "gt_boxes": "1923",
+        "id_distance_min": "1",
+        "id_distance_p25": "1",
+        "id_distance_p50": "1",
+        "id_distance_p75": "1",
+        "id_distance_p90": "3",
+        "precision": "NA",
+        "recall": "NA",
+        "f1": "NA",
+        "ap50": "NA",
+        "ap75": "NA",
+        "predictions": "NA",
+        "mean_confidence": "NA",
+        "fps": "NA",
+        "weights": "NA",
+        "warning": ""
+      },
+      {
+        "subset": "higher_rgb_separation",
+        "model": "subset_only",
+        "image_count": "370",
+        "gt_boxes": "1071",
+        "id_distance_min": "1",
+        "id_distance_p25": "1",
+        "id_distance_p50": "1",
+        "id_distance_p75": "3",
+        "id_distance_p90": "16",
+        "precision": "NA",
+        "recall": "NA",
+        "f1": "NA",
+        "ap50": "NA",
+        "ap75": "NA",
+        "predictions": "NA",
+        "mean_confidence": "NA",
+        "fps": "NA",
+        "weights": "NA",
+        "warning": ""
+      },
+      {
+        "subset": "near_rgb_match_or_near_neighbor",
+        "model": "E2 Reliability + Dropout 0.15",
+        "image_count": "676",
+        "gt_boxes": "1923",
+        "id_distance_min": "1",
+        "id_distance_p25": "1",
+        "id_distance_p50": "1",
+        "id_distance_p75": "1",
+        "id_distance_p90": "3",
+        "precision": "0.942552",
+        "recall": "0.964119",
+        "f1": "0.953213",
+        "ap50": "0.984299",
+        "ap75": "0.957422",
+        "predictions": "1967",
+        "mean_confidence": "0.791685",
+        "fps": "67.49",
+        "weights": "E:\\RepViT-main\\runs\\E2_reliability_dropout015_repvit_fcos_e50\\weights\\best.pt",
+        "warning": ""
+      },
+      {
+        "subset": "higher_rgb_separation",
+        "model": "E2 Reliability + Dropout 0.15",
+        "image_count": "370",
+        "gt_boxes": "1071",
+        "id_distance_min": "1",
+        "id_distance_p25": "1",
+        "id_distance_p50": "1",
+        "id_distance_p75": "3",
+        "id_distance_p90": "16",
+        "precision": "0.909589",
+        "recall": "0.929972",
+        "f1": "0.919668",
+        "ap50": "0.961141",
+        "ap75": "0.915696",
+        "predictions": "1095",
+        "mean_confidence": "0.774432",
+        "fps": "69.69",
+        "weights": "E:\\RepViT-main\\runs\\E2_reliability_dropout015_repvit_fcos_e50\\weights\\best.pt",
+        "warning": ""
+      },
+      {
+        "subset": "near_rgb_match_or_near_neighbor",
+        "model": "E4 Reliability + Dropout 0.20",
+        "image_count": "676",
+        "gt_boxes": "1923",
+        "id_distance_min": "1",
+        "id_distance_p25": "1",
+        "id_distance_p50": "1",
+        "id_distance_p75": "1",
+        "id_distance_p90": "3",
+        "precision": "0.954476",
+        "recall": "0.970359",
+        "f1": "0.962352",
+        "ap50": "0.985744",
+        "ap75": "0.958865",
+        "predictions": "1955",
+        "mean_confidence": "0.802795",
+        "fps": "70.27",
+        "weights": "E:\\RepViT-main\\runs\\E4_reliability_dropout020_repvit_fcos_e50\\weights\\best.pt",
+        "warning": ""
+      },
+      {
+        "subset": "higher_rgb_separation",
+        "model": "E4 Reliability + Dropout 0.20",
+        "image_count": "370",
+        "gt_boxes": "1071",
+        "id_distance_min": "1",
+        "id_distance_p25": "1",
+        "id_distance_p50": "1",
+        "id_distance_p75": "3",
+        "id_distance_p90": "16",
+        "precision": "0.924157",
+        "recall": "0.921569",
+        "f1": "0.922861",
+        "ap50": "0.955066",
+        "ap75": "0.917360",
+        "predictions": "1068",
+        "mean_confidence": "0.781040",
+        "fps": "70.24",
+        "weights": "E:\\RepViT-main\\runs\\E4_reliability_dropout020_repvit_fcos_e50\\weights\\best.pt",
+        "warning": ""
+      }
+    ],
+    "rgb_duplicate_report": "E:\\RepViT-main\\runs\\rgb_cross_split_duplicate_summary.md",
+    "blocked_split_report": "E:\\RepViT-main\\runs\\blocked_split_proposal_summary.md",
+    "strata_report": "E:\\RepViT-main\\runs\\rgb_separation_strata_summary.md",
+    "phase3c_report": "E:\\RepViT-main\\runs\\phase3c_report.md"
+  },
   "current_pending_experiments": [
-    "Review split-integrity result in runs/split_integrity_summary.md.",
-    "Manually inspect closest pairs in runs/split_integrity_manual_review.csv if the split audit status is CAUTION.",
-    "Use runs/dropout_ratio_selection_note.md for E2/E4 model positioning.",
-    "Do not start manuscript drafting or final 100-epoch runs until Phase 3B recommendation is cleared."
+    "Review Phase 3C conclusion in runs/phase3c_report.md.",
+    "Use the blocked-split recommendation before clean-split retraining.",
+    "Do not start manuscript drafting or final 100-epoch runs on the random split if exact RGB-content overlap is confirmed.",
+    "Retrain only E2 and E4 on the selected blocked split in the next phase if a candidate passes."
   ],
   "code_structure": {
     "dataset": "datasets/triair_dataset.py",
@@ -1649,23 +1966,28 @@
     "postprocessing_tools": "rarepdet/tools/"
   },
   "recent_modified_files": [
-    "M .gitignore",
-    " M docs/EXPERIMENT_STATUS.md",
-    " M rarepdet/tools/build_dropout_ablation_report.py",
+    "M docs/EXPERIMENT_STATUS.md",
+    " M rarepdet/tools/finish_task.ps1",
     " M rarepdet/tools/generate_handoff.py",
     " M rarepdet/tools/update_project_status.py",
-    " M runs/dropout_ablation_summary.md",
     " M runs/handoff_latest.json",
     " M runs/handoff_latest.md",
-    " M runs/phase3a_report.md",
-    "?? rarepdet/tools/audit_split_integrity.py",
-    "?? runs/dropout_ratio_selection_note.md",
-    "?? runs/phase3b_report.md",
-    "?? runs/split_integrity_exact_duplicates.csv",
-    "?? runs/split_integrity_manual_review.csv",
-    "?? runs/split_integrity_nearest_pairs.csv",
-    "?? runs/split_integrity_summary.csv",
-    "?? runs/split_integrity_summary.md"
+    "?? rarepdet/tools/audit_rgb_cross_split_duplicates.py",
+    "?? rarepdet/tools/build_phase3c_report.py",
+    "?? rarepdet/tools/build_rgb_separation_subsets.py",
+    "?? rarepdet/tools/propose_blocked_split.py",
+    "?? rarepdet/tools/split_audit_common.py",
+    "?? runs/blocked_split_candidates/",
+    "?? runs/blocked_split_proposal_summary.csv",
+    "?? runs/blocked_split_proposal_summary.md",
+    "?? runs/phase3c_report.md",
+    "?? runs/rgb_cross_split_duplicate_summary.csv",
+    "?? runs/rgb_cross_split_duplicate_summary.md",
+    "?? runs/rgb_cross_split_exact_pairs.csv",
+    "?? runs/rgb_cross_split_group_stats.csv",
+    "?? runs/rgb_separation_strata_summary.csv",
+    "?? runs/rgb_separation_strata_summary.md",
+    "?? runs/rgb_separation_subsets/"
   ],
   "next_recommended_tasks": [
     "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",

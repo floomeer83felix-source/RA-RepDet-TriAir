@@ -204,6 +204,26 @@ def collect_phase3b():
     }
 
 
+def collect_phase3c():
+    return {
+        "rgb_duplicate_summary": read_csv(RUNS_DIR / "rgb_cross_split_duplicate_summary.csv"),
+        "rgb_exact_pair_count": count_csv_rows(RUNS_DIR / "rgb_cross_split_exact_pairs.csv"),
+        "rgb_group_count": count_csv_rows(RUNS_DIR / "rgb_cross_split_group_stats.csv"),
+        "blocked_split_summary": read_csv(RUNS_DIR / "blocked_split_proposal_summary.csv"),
+        "strata_summary": read_csv(RUNS_DIR / "rgb_separation_strata_summary.csv"),
+        "rgb_duplicate_report": str(RUNS_DIR / "rgb_cross_split_duplicate_summary.md")
+        if (RUNS_DIR / "rgb_cross_split_duplicate_summary.md").exists()
+        else None,
+        "blocked_split_report": str(RUNS_DIR / "blocked_split_proposal_summary.md")
+        if (RUNS_DIR / "blocked_split_proposal_summary.md").exists()
+        else None,
+        "strata_report": str(RUNS_DIR / "rgb_separation_strata_summary.md")
+        if (RUNS_DIR / "rgb_separation_strata_summary.md").exists()
+        else None,
+        "phase3c_report": str(RUNS_DIR / "phase3c_report.md") if (RUNS_DIR / "phase3c_report.md").exists() else None,
+    }
+
+
 def best_by(results, metric):
     numeric = []
     for row in results:
@@ -267,11 +287,12 @@ def build_handoff():
         "phase2c": collect_phase2c(),
         "phase3a": collect_phase3a(),
         "phase3b": collect_phase3b(),
+        "phase3c": collect_phase3c(),
         "current_pending_experiments": [
-            "Review split-integrity result in runs/split_integrity_summary.md.",
-            "Manually inspect closest pairs in runs/split_integrity_manual_review.csv if the split audit status is CAUTION.",
-            "Use runs/dropout_ratio_selection_note.md for E2/E4 model positioning.",
-            "Do not start manuscript drafting or final 100-epoch runs until Phase 3B recommendation is cleared.",
+            "Review Phase 3C conclusion in runs/phase3c_report.md.",
+            "Use the blocked-split recommendation before clean-split retraining.",
+            "Do not start manuscript drafting or final 100-epoch runs on the random split if exact RGB-content overlap is confirmed.",
+            "Retrain only E2 and E4 on the selected blocked split in the next phase if a candidate passes.",
         ],
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -374,6 +395,18 @@ def write_markdown(data, path):
         f"- Nearest-pair rows: {data['phase3b']['nearest_pair_count']}",
         f"- Manual-review rows: {data['phase3b']['manual_review_count']}",
         f"- Exact duplicate rows: {data['phase3b']['exact_duplicate_count']}",
+        "",
+        "## Phase 3C Outputs",
+        "",
+        "- RGB duplicate report: `runs/rgb_cross_split_duplicate_summary.md`" if data["phase3c"]["rgb_duplicate_report"] else "- RGB duplicate report: NA",
+        "- Blocked split report: `runs/blocked_split_proposal_summary.md`" if data["phase3c"]["blocked_split_report"] else "- Blocked split report: NA",
+        "- RGB strata report: `runs/rgb_separation_strata_summary.md`" if data["phase3c"]["strata_report"] else "- RGB strata report: NA",
+        "- Phase 3C report: `runs/phase3c_report.md`" if data["phase3c"]["phase3c_report"] else "- Phase 3C report: NA",
+        f"- RGB duplicate summary rows: {len(data['phase3c']['rgb_duplicate_summary'])}",
+        f"- RGB exact pair rows: {data['phase3c']['rgb_exact_pair_count']}",
+        f"- RGB group rows: {data['phase3c']['rgb_group_count']}",
+        f"- Blocked split candidate rows: {len(data['phase3c']['blocked_split_summary'])}",
+        f"- RGB strata rows: {len(data['phase3c']['strata_summary'])}",
         "",
         "## Model And Code Structure",
         "",

@@ -1,0 +1,21 @@
+Metric,Value,Notes
+interpretation_label,CONFIRMED RGB-CONTENT CROSS-SPLIT DUPLICATION,Exact required Phase 3C label.
+train_images,8391,Existing train split rows.
+val_images,2098,Existing validation split rows.
+exact_rgb_matched_val_images,153,Validation samples with at least one train sample sharing exact RGB content.
+exact_rgb_matched_val_fraction,0.072927,Matched validation fraction.
+exact_rgb_matched_train_images,153,Train samples with at least one validation sample sharing exact RGB content.
+exact_rgb_matched_train_fraction,0.018234,Matched train fraction.
+cross_split_rgb_groups,153,Distinct RGB-content hashes present in both splits.
+group_total_size_min,2,Train+val samples per matched group.
+group_total_size_p50,2,Train+val samples per matched group.
+group_total_size_max,2,Train+val samples per matched group.
+group_val_size_p50,1,Validation samples per matched group.
+groups_identical_gt_box_counts,123,All records in the RGB group have one GT-box count.
+groups_different_gt_box_counts,30,RGB group contains more than one GT-box count.
+pair_id_distance_min,1,"Representative exact RGB pairs, same filename family only."
+pair_id_distance_p50,1,"Representative exact RGB pairs, same filename family only."
+pair_id_distance_p90,1,"Representative exact RGB pairs, same filename family only."
+train_gt_boxes,24560,Non-empty label rows in train split.
+val_gt_boxes,6074,Non-empty label rows in validation split.
+full_multimodal_byte_duplication_claim,not_claimed,This audit only hashes RGB channels; full 5-channel byte equality is not implied.

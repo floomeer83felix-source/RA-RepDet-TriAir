@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-23T07:24:34
+Generated: 2026-06-23T08:58:31
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -74,6 +74,18 @@ Workspace: `E:\RepViT-main`
 - Manual-review rows: 50
 - Exact duplicate rows: 0
 
+## Phase 3C Outputs
+
+- RGB duplicate report: `runs/rgb_cross_split_duplicate_summary.md`
+- Blocked split report: `runs/blocked_split_proposal_summary.md`
+- RGB strata report: `runs/rgb_separation_strata_summary.md`
+- Phase 3C report: `runs/phase3c_report.md`
+- RGB duplicate summary rows: 20
+- RGB exact pair rows: 153
+- RGB group rows: 153
+- Blocked split candidate rows: 3
+- RGB strata rows: 6
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -96,30 +108,35 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Review split-integrity result in runs/split_integrity_summary.md.
-- Manually inspect closest pairs in runs/split_integrity_manual_review.csv if the split audit status is CAUTION.
-- Use runs/dropout_ratio_selection_note.md for E2/E4 model positioning.
-- Do not start manuscript drafting or final 100-epoch runs until Phase 3B recommendation is cleared.
+- Review Phase 3C conclusion in runs/phase3c_report.md.
+- Use the blocked-split recommendation before clean-split retraining.
+- Do not start manuscript drafting or final 100-epoch runs on the random split if exact RGB-content overlap is confirmed.
+- Retrain only E2 and E4 on the selected blocked split in the next phase if a candidate passes.
 
 ## Recently Modified Files
 
-- `M .gitignore`
-- ` M docs/EXPERIMENT_STATUS.md`
-- ` M rarepdet/tools/build_dropout_ablation_report.py`
+- `M docs/EXPERIMENT_STATUS.md`
+- ` M rarepdet/tools/finish_task.ps1`
 - ` M rarepdet/tools/generate_handoff.py`
 - ` M rarepdet/tools/update_project_status.py`
-- ` M runs/dropout_ablation_summary.md`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- ` M runs/phase3a_report.md`
-- `?? rarepdet/tools/audit_split_integrity.py`
-- `?? runs/dropout_ratio_selection_note.md`
-- `?? runs/phase3b_report.md`
-- `?? runs/split_integrity_exact_duplicates.csv`
-- `?? runs/split_integrity_manual_review.csv`
-- `?? runs/split_integrity_nearest_pairs.csv`
-- `?? runs/split_integrity_summary.csv`
-- `?? runs/split_integrity_summary.md`
+- `?? rarepdet/tools/audit_rgb_cross_split_duplicates.py`
+- `?? rarepdet/tools/build_phase3c_report.py`
+- `?? rarepdet/tools/build_rgb_separation_subsets.py`
+- `?? rarepdet/tools/propose_blocked_split.py`
+- `?? rarepdet/tools/split_audit_common.py`
+- `?? runs/blocked_split_candidates/`
+- `?? runs/blocked_split_proposal_summary.csv`
+- `?? runs/blocked_split_proposal_summary.md`
+- `?? runs/phase3c_report.md`
+- `?? runs/rgb_cross_split_duplicate_summary.csv`
+- `?? runs/rgb_cross_split_duplicate_summary.md`
+- `?? runs/rgb_cross_split_exact_pairs.csv`
+- `?? runs/rgb_cross_split_group_stats.csv`
+- `?? runs/rgb_separation_strata_summary.csv`
+- `?? runs/rgb_separation_strata_summary.md`
+- `?? runs/rgb_separation_subsets/`
 
 ## Next Recommended Tasks
 

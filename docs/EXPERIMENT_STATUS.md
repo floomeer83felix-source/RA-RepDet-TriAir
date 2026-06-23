@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-23T07:24:34
+Generated: 2026-06-23T08:58:31
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -84,8 +84,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 3B - Split Integrity and Model-Selection Audit
-- Goal: Audit split integrity and correct E2/E4 model-selection positioning.
+- Current Task: Phase 3C - RGB Duplicate Audit and Leakage-Aware Split Proposal
+- Goal: Audit exact RGB-content cross-split duplication and propose leakage-aware blocked split candidates.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -177,12 +177,66 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | fraction_signature_distance_<=32 | 0.957579 | Fraction of val samples at or below threshold. |
 | final_status | CAUTION: near-duplicate or adjacent-frame review required | Automatic audit label required by Phase 3B. |
 
+## Phase 3C outputs
+
+- RGB duplicate report: `runs/rgb_cross_split_duplicate_summary.md`
+- Blocked split report: `runs/blocked_split_proposal_summary.md`
+- RGB strata report: `runs/rgb_separation_strata_summary.md`
+- Phase 3C report: `runs/phase3c_report.md`
+- RGB duplicate summary rows: 20
+- Blocked split candidate rows: 3
+- RGB separation strata rows: 6
+
+### RGB duplicate summary
+
+| Metric | Value | Notes |
+| --- | --- | --- |
+| interpretation_label | CONFIRMED RGB-CONTENT CROSS-SPLIT DUPLICATION | Exact required Phase 3C label. |
+| train_images | 8391 | Existing train split rows. |
+| val_images | 2098 | Existing validation split rows. |
+| exact_rgb_matched_val_images | 153 | Validation samples with at least one train sample sharing exact RGB content. |
+| exact_rgb_matched_val_fraction | 0.072927 | Matched validation fraction. |
+| exact_rgb_matched_train_images | 153 | Train samples with at least one validation sample sharing exact RGB content. |
+| exact_rgb_matched_train_fraction | 0.018234 | Matched train fraction. |
+| cross_split_rgb_groups | 153 | Distinct RGB-content hashes present in both splits. |
+| group_total_size_min | 2 | Train+val samples per matched group. |
+| group_total_size_p50 | 2 | Train+val samples per matched group. |
+| group_total_size_max | 2 | Train+val samples per matched group. |
+| group_val_size_p50 | 1 | Validation samples per matched group. |
+| groups_identical_gt_box_counts | 123 | All records in the RGB group have one GT-box count. |
+| groups_different_gt_box_counts | 30 | RGB group contains more than one GT-box count. |
+| pair_id_distance_min | 1 | Representative exact RGB pairs, same filename family only. |
+| pair_id_distance_p50 | 1 | Representative exact RGB pairs, same filename family only. |
+| pair_id_distance_p90 | 1 | Representative exact RGB pairs, same filename family only. |
+| train_gt_boxes | 24560 | Non-empty label rows in train split. |
+| val_gt_boxes | 6074 | Non-empty label rows in validation split. |
+| full_multimodal_byte_duplication_claim | not_claimed | This audit only hashes RGB channels; full 5-channel byte equality is not implied. |
+
+### Blocked split candidates
+
+| candidate | block_size | guard_band | train_images | val_images | guard_images | val_share_all_images | exact_rgb_matched_val_images | id_guard_violations | val_gt_boxes | recommended |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| block64_guard16_seed0 | 64 | 16 | 7439 | 2213 | 837 | 0.210983 | 0 | 0 | 5904 | yes |
+| block128_guard32_seed0 | 128 | 32 | 7308 | 2231 | 950 | 0.212699 | 0 | 0 | 5040 | no |
+| block256_guard64_seed0 | 256 | 64 | 6983 | 2384 | 1122 | 0.227286 | 0 | 0 | 6557 | no |
+
+### RGB separation strata
+
+| subset | model | image_count | gt_boxes | precision | recall | f1 | ap50 | ap75 | predictions |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| near_rgb_match_or_near_neighbor | subset_only | 676 | 1923 | NA | NA | NA | NA | NA | NA |
+| higher_rgb_separation | subset_only | 370 | 1071 | NA | NA | NA | NA | NA | NA |
+| near_rgb_match_or_near_neighbor | E2 Reliability + Dropout 0.15 | 676 | 1923 | 0.942552 | 0.964119 | 0.953213 | 0.984299 | 0.957422 | 1967 |
+| higher_rgb_separation | E2 Reliability + Dropout 0.15 | 370 | 1071 | 0.909589 | 0.929972 | 0.919668 | 0.961141 | 0.915696 | 1095 |
+| near_rgb_match_or_near_neighbor | E4 Reliability + Dropout 0.20 | 676 | 1923 | 0.954476 | 0.970359 | 0.962352 | 0.985744 | 0.958865 | 1955 |
+| higher_rgb_separation | E4 Reliability + Dropout 0.20 | 370 | 1071 | 0.924157 | 0.921569 | 0.922861 | 0.955066 | 0.917360 | 1068 |
+
 ## Pending tasks
 
-- Review split-integrity result in runs/split_integrity_summary.md.
-- Manually inspect closest pairs in runs/split_integrity_manual_review.csv if the split audit status is CAUTION.
-- Use runs/dropout_ratio_selection_note.md for E2/E4 model positioning.
-- Do not start manuscript drafting or final 100-epoch runs until Phase 3B recommendation is cleared.
+- Review Phase 3C conclusion in runs/phase3c_report.md.
+- Use the blocked-split recommendation before clean-split retraining.
+- Do not start manuscript drafting or final 100-epoch runs on the random split if exact RGB-content overlap is confirmed.
+- Retrain only E2 and E4 on the selected blocked split in the next phase if a candidate passes.
 
 ## Known metric caveats
 
@@ -191,6 +245,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Threshold sweep indicates 0.50 is the best F1 threshold for E0/E1/E2 in the current val split.
 - Missing-modality tables use score threshold 0.05.
 - Current AP implementation is project-local and does not depend on pycocotools.
+- Phase 3C RGB-separation strata are diagnostics only and are not a clean independent test set.
 
 ## Important research decisions
 
@@ -203,6 +258,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.
 - Phase 3A should be used to justify the selected modality-dropout ratio without adding a new model family.
 - Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.
+- If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.
 
 ## Files or scripts currently under review
 
@@ -212,5 +268,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - `docs/PROJECT_CONTEXT.md`
 - `rarepdet/tools/update_project_status.py`
 - `rarepdet/tools/finish_task.ps1`
+- `rarepdet/tools/audit_rgb_cross_split_duplicates.py`
+- `rarepdet/tools/propose_blocked_split.py`
+- `rarepdet/tools/build_rgb_separation_subsets.py`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`

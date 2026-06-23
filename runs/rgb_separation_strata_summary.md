@@ -1,0 +1,16 @@
+# RGB Separation Strata Summary
+
+These validation subsets are diagnostics for sensitivity to RGB similarity. The higher-separation subset is not a clean independent test set.
+
+Score threshold for P/R/F1: `0.5`. AP50/AP75 are score-ranked.
+
+## Results
+
+| subset | model | image_count | gt_boxes | id_distance_min | id_distance_p25 | id_distance_p50 | id_distance_p75 | id_distance_p90 | precision | recall | f1 | ap50 | ap75 | predictions | mean_confidence | fps | weights | warning |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| near_rgb_match_or_near_neighbor | subset_only | 676 | 1923 | 1 | 1 | 1 | 1 | 3 | NA | NA | NA | NA | NA | NA | NA | NA | NA |  |
+| higher_rgb_separation | subset_only | 370 | 1071 | 1 | 1 | 1 | 3 | 16 | NA | NA | NA | NA | NA | NA | NA | NA | NA |  |
+| near_rgb_match_or_near_neighbor | E2 Reliability + Dropout 0.15 | 676 | 1923 | 1 | 1 | 1 | 1 | 3 | 0.942552 | 0.964119 | 0.953213 | 0.984299 | 0.957422 | 1967 | 0.791685 | 67.49 | E:\RepViT-main\runs\E2_reliability_dropout015_repvit_fcos_e50\weights\best.pt |  |
+| higher_rgb_separation | E2 Reliability + Dropout 0.15 | 370 | 1071 | 1 | 1 | 1 | 3 | 16 | 0.909589 | 0.929972 | 0.919668 | 0.961141 | 0.915696 | 1095 | 0.774432 | 69.69 | E:\RepViT-main\runs\E2_reliability_dropout015_repvit_fcos_e50\weights\best.pt |  |
+| near_rgb_match_or_near_neighbor | E4 Reliability + Dropout 0.20 | 676 | 1923 | 1 | 1 | 1 | 1 | 3 | 0.954476 | 0.970359 | 0.962352 | 0.985744 | 0.958865 | 1955 | 0.802795 | 70.27 | E:\RepViT-main\runs\E4_reliability_dropout020_repvit_fcos_e50\weights\best.pt |  |
+| higher_rgb_separation | E4 Reliability + Dropout 0.20 | 370 | 1071 | 1 | 1 | 1 | 3 | 16 | 0.924157 | 0.921569 | 0.922861 | 0.955066 | 0.917360 | 1068 | 0.781040 | 70.24 | E:\RepViT-main\runs\E4_reliability_dropout020_repvit_fcos_e50\weights\best.pt |  |

@@ -183,26 +183,37 @@ def build_status():
     split_integrity = read_csv(RUNS_DIR / "split_integrity_summary.csv")
     split_manual_review = read_csv(RUNS_DIR / "split_integrity_manual_review.csv")
     phase3b_report_exists = (RUNS_DIR / "phase3b_report.md").exists()
+    rgb_duplicate_summary = read_csv(RUNS_DIR / "rgb_cross_split_duplicate_summary.csv")
+    blocked_split_summary = read_csv(RUNS_DIR / "blocked_split_proposal_summary.csv")
+    rgb_strata_summary = read_csv(RUNS_DIR / "rgb_separation_strata_summary.csv")
+    phase3c_report_exists = (RUNS_DIR / "phase3c_report.md").exists()
 
+    next_text = read_text(NEXT_TASK_PATH)
     active_status = "completed" if phase3b_report_exists and split_integrity else "pending"
+    if "Phase 3C" in next_text:
+        active_status = "completed" if phase3c_report_exists and rgb_duplicate_summary and blocked_split_summary else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
-    if current_task == "NA" and "Phase 2B" in read_text(NEXT_TASK_PATH):
+    if current_task == "NA" and "Phase 2B" in next_text:
         current_task = "Phase 2B - Availability-Conditioned Reliability Fusion (ACRF)"
-    if current_task == "NA" and "Phase 2C" in read_text(NEXT_TASK_PATH):
+    if current_task == "NA" and "Phase 2C" in next_text:
         current_task = "Phase 2C - Modality-Subset Consistency Distillation (MSCD)"
-    if current_task == "NA" and "Phase 3B" in read_text(NEXT_TASK_PATH):
+    if current_task == "NA" and "Phase 3C" in next_text:
+        current_task = "Phase 3C - RGB Duplicate Audit and Leakage-Aware Split Proposal"
+    if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
-    if current_task == "NA" and "Phase 3A" in read_text(NEXT_TASK_PATH):
+    if current_task == "NA" and "Phase 3A" in next_text:
         current_task = "Phase 3A - Dropout-Ratio Ablation and Paper Evidence Package"
     if current_goal == "NA" and acrf_evidence:
         current_goal = "Implement, train, evaluate, and summarize the E5 ACRF ablation."
     if mscd_evidence:
         current_goal = "Implement, train, evaluate, and summarize the E6 MSCD training-strategy ablation."
-    if "Phase 3A" in read_text(NEXT_TASK_PATH):
+    if "Phase 3A" in next_text:
         current_goal = "Train E3/E4 dropout-ratio ablations and build qualitative evidence package."
-    if "Phase 3B" in read_text(NEXT_TASK_PATH):
+    if "Phase 3B" in next_text:
         current_goal = "Audit split integrity and correct E2/E4 model-selection positioning."
+    if "Phase 3C" in next_text:
+        current_goal = "Audit exact RGB-content cross-split duplication and propose leakage-aware blocked split candidates."
 
     lines = [
         "# Experiment Status",
@@ -403,6 +414,51 @@ def build_status():
 
     lines += [
         "",
+        "## Phase 3C outputs",
+        "",
+        "- RGB duplicate report: `runs/rgb_cross_split_duplicate_summary.md`" if (RUNS_DIR / "rgb_cross_split_duplicate_summary.md").exists() else "- RGB duplicate report: NA",
+        "- Blocked split report: `runs/blocked_split_proposal_summary.md`" if (RUNS_DIR / "blocked_split_proposal_summary.md").exists() else "- Blocked split report: NA",
+        "- RGB strata report: `runs/rgb_separation_strata_summary.md`" if (RUNS_DIR / "rgb_separation_strata_summary.md").exists() else "- RGB strata report: NA",
+        "- Phase 3C report: `runs/phase3c_report.md`" if phase3c_report_exists else "- Phase 3C report: NA",
+        f"- RGB duplicate summary rows: {len(rgb_duplicate_summary) if rgb_duplicate_summary else 'NA'}",
+        f"- Blocked split candidate rows: {len(blocked_split_summary) if blocked_split_summary else 'NA'}",
+        f"- RGB separation strata rows: {len(rgb_strata_summary) if rgb_strata_summary else 'NA'}",
+        "",
+        "### RGB duplicate summary",
+        "",
+    ]
+    lines.extend(table(split_headers, rgb_duplicate_summary))
+
+    lines += [
+        "",
+        "### Blocked split candidates",
+        "",
+    ]
+    blocked_headers = [
+        "candidate",
+        "block_size",
+        "guard_band",
+        "train_images",
+        "val_images",
+        "guard_images",
+        "val_share_all_images",
+        "exact_rgb_matched_val_images",
+        "id_guard_violations",
+        "val_gt_boxes",
+        "recommended",
+    ]
+    lines.extend(table(blocked_headers, blocked_split_summary))
+
+    lines += [
+        "",
+        "### RGB separation strata",
+        "",
+    ]
+    strata_headers = ["subset", "model", "image_count", "gt_boxes", "precision", "recall", "f1", "ap50", "ap75", "predictions"]
+    lines.extend(table(strata_headers, rgb_strata_summary))
+
+    lines += [
+        "",
         "## Pending tasks",
         "",
     ]
@@ -417,6 +473,7 @@ def build_status():
         "- Threshold sweep indicates 0.50 is the best F1 threshold for E0/E1/E2 in the current val split.",
         "- Missing-modality tables use score threshold 0.05.",
         "- Current AP implementation is project-local and does not depend on pycocotools.",
+        "- Phase 3C RGB-separation strata are diagnostics only and are not a clean independent test set.",
         "",
         "## Important research decisions",
         "",
@@ -429,6 +486,7 @@ def build_status():
         "- E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.",
         "- Phase 3A should be used to justify the selected modality-dropout ratio without adding a new model family.",
         "- Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.",
+        "- If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.",
         "",
         "## Files or scripts currently under review",
         "",
@@ -438,6 +496,9 @@ def build_status():
         "- `docs/PROJECT_CONTEXT.md`",
         "- `rarepdet/tools/update_project_status.py`",
         "- `rarepdet/tools/finish_task.ps1`",
+        "- `rarepdet/tools/audit_rgb_cross_split_duplicates.py`",
+        "- `rarepdet/tools/propose_blocked_split.py`",
+        "- `rarepdet/tools/build_rgb_separation_subsets.py`",
         "- `runs/handoff_latest.md`",
         "- `runs/handoff_latest.json`",
         "",
