@@ -59,6 +59,9 @@ function Get-CommitMessage {
                 if (-not $message) {
                     for ($j = $i + 1; $j -lt $lines.Count; $j++) {
                         $candidate = $lines[$j].Trim()
+                        if ($candidate -match '^```') {
+                            continue
+                        }
                         if ($candidate) {
                             $message = $candidate.Trim(".").Trim([char]0x60).Trim()
                             break

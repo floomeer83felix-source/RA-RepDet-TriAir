@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-24T05:12:28
+Generated: 2026-06-24T05:13:12
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -124,22 +124,7 @@ Workspace: `E:\RepViT-main`
 
 ## Recently Modified Files
 
-- `M docs/EXPERIMENT_STATUS.md`
-- ` M rarepdet/tools/finish_task.ps1`
-- ` M rarepdet/tools/generate_handoff.py`
-- ` M rarepdet/tools/update_project_status.py`
-- ` M runs/handoff_latest.json`
-- ` M runs/handoff_latest.md`
-- `?? rarepdet/tools/build_clean_block64_summary.py`
-- `?? rarepdet/tools/validate_clean_block64_protocol.py`
-- `?? runs/B0_early_block64g16_e50/`
-- `?? runs/B1_reliability_p000_block64g16_e50/`
-- `?? runs/B2_reliability_p015_block64g16_e50/`
-- `?? runs/B4_reliability_p020_block64g16_e50/`
-- `?? runs/clean_block64g16_protocol.md`
-- `?? runs/clean_block64g16_summary.csv`
-- `?? runs/clean_block64g16_summary.md`
-- `?? runs/phase4a_report.md`
+- `M rarepdet/tools/finish_task.ps1`
 
 ## Next Recommended Tasks
 
