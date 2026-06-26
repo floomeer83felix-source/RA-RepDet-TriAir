@@ -276,6 +276,23 @@ def collect_phase4b():
     }
 
 
+def collect_phase5a():
+    return {
+        "phase5a_report": str(RUNS_DIR / "phase5a_report.md") if (RUNS_DIR / "phase5a_report.md").exists() else None,
+        "decision": read_last_nonempty_line(RUNS_DIR / "phase5a_report.md"),
+        "paper_readiness": read_csv(RUNS_DIR / "paper_readiness_summary.csv"),
+        "convergence": read_csv(RUNS_DIR / "clean_block64g16_convergence.csv"),
+        "efficiency": read_csv(RUNS_DIR / "clean_efficiency_profile.csv"),
+        "r4_reliability": read_csv(RUNS_DIR / "r4_reliability_weight_audit.csv"),
+        "qualitative": read_csv(RUNS_DIR / "clean_qualitative_manifest.csv"),
+        "yolo_seed0": read_csv(RUNS_DIR / "Y11n_rgb_seed0_block64g16_e50" / "eval_project" / "eval_results.csv"),
+        "yolo_seed2": read_csv(RUNS_DIR / "Y11n_rgb_seed2_block64g16_e50" / "eval_project" / "eval_results.csv"),
+        "yolo_protocol": str(RUNS_DIR / "yolo11n_rgb_baseline_protocol.md")
+        if (RUNS_DIR / "yolo11n_rgb_baseline_protocol.md").exists()
+        else None,
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -352,10 +369,11 @@ def build_handoff():
         "phase3c": collect_phase3c(),
         "phase4a": collect_phase4a(),
         "phase4b": collect_phase4b(),
+        "phase5a": collect_phase5a(),
         "current_pending_experiments": [
-            "Use runs/phase4b_report.md as the controlled-seed clean-split decision gate once Phase 4B completes.",
+            "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
             "Former random-split results are historical diagnostics only and must not be paper headline results.",
-            "Do not start 100-epoch training until the Phase 4B decision gate is reviewed.",
+            "Do not start 100-epoch training or manuscript drafting until the Phase 5A decision gate is reviewed.",
         ],
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -374,6 +392,7 @@ def build_handoff():
             "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
             "Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.",
             "Use the Phase 4B R-run table for clean-split headline model selection.",
+            "Use Phase 5A to separate RGB-only external-baseline evidence from tri-modal fusion ablation evidence.",
         ],
     }
 
@@ -494,6 +513,18 @@ def write_markdown(data, path):
         f"- R2 missing-modality rows: {len(data['phase4b']['r2_missing_seed0']) + len(data['phase4b']['r2_missing_seed2'])}",
         f"- R4 missing-modality rows: {len(data['phase4b']['r4_missing_seed0']) + len(data['phase4b']['r4_missing_seed2'])}",
         f"- Decision: {data['phase4b']['decision'] or 'NA'}",
+        "",
+        "## Phase 5A Paper-Readiness Outputs",
+        "",
+        "- Phase 5A report: `runs/phase5a_report.md`" if data["phase5a"]["phase5a_report"] else "- Phase 5A report: NA",
+        "- YOLO11n protocol: `runs/yolo11n_rgb_baseline_protocol.md`" if data["phase5a"]["yolo_protocol"] else "- YOLO11n protocol: NA",
+        f"- Paper-readiness summary rows: {len(data['phase5a']['paper_readiness'])}",
+        f"- Convergence rows: {len(data['phase5a']['convergence'])}",
+        f"- Efficiency rows: {len(data['phase5a']['efficiency'])}",
+        f"- R4 reliability-weight rows: {len(data['phase5a']['r4_reliability'])}",
+        f"- Qualitative manifest rows: {len(data['phase5a']['qualitative'])}",
+        f"- YOLO11n eval rows: {len(data['phase5a']['yolo_seed0']) + len(data['phase5a']['yolo_seed2'])}",
+        f"- Decision: {data['phase5a']['decision'] or 'NA'}",
         "",
         "## Model And Code Structure",
         "",

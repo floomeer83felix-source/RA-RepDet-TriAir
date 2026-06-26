@@ -1,0 +1,15 @@
+# Clean Main-Model Efficiency Profile
+
+Generated: 2026-06-26T23:26:57
+Device: `cuda`
+
+Protocol: batch 1, input `5x640x640`, 100 warm-up iterations, 300 timed iterations, 3 repeats. Dataloader and file IO are excluded.
+
+R4 seed-0 and seed-2 checkpoints are checked for identical parameter counts; the seed-0 checkpoint is benchmarked because modality dropout is training-only.
+
+| Model | Path | Batch Size | Img Size | Warmup | Iters | Repeats | Params | Trainable Params | FPS mean | FPS std | Latency ms/img mean | Latency ms/img std | CUDA Memory MB mean | CUDA Memory MB std | Note |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| R0 Early Fusion | raw_forward | 1 | 640 | 100 | 300 | 3 | 6591609 | 6591609 | 102.762853 | 4.329434 | 9.747951 | 0.398954 | 115.153333 | 0.400694 | seed0 checkpoint |
+| R0 Early Fusion | detector_inference | 1 | 640 | 100 | 300 | 3 | 6591609 | 6591609 | 48.065821 | 1.228000 | 20.818388 | 0.531762 | 122.680000 | 0.000000 | seed0 checkpoint |
+| R4 Reliability p=0.20 | raw_forward | 1 | 640 | 100 | 300 | 3 | 6593293 | 6593293 | 97.717654 | 2.020327 | 10.238004 | 0.214691 | 228.940000 | 0.000000 | seed0 checkpoint; dropout is training-only |
+| R4 Reliability p=0.20 | detector_inference | 1 | 640 | 100 | 300 | 3 | 6593293 | 6593293 | 50.436489 | 0.556706 | 19.829330 | 0.218753 | 236.756667 | 0.004714 | seed0 checkpoint; dropout is training-only |

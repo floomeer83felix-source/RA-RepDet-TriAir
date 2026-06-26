@@ -203,6 +203,15 @@ def build_status():
     phase4b_report_exists = (RUNS_DIR / "phase4b_report.md").exists()
     seed_smoke_exists = (RUNS_DIR / "seed_reproducibility_smoke.md").exists()
     phase4b_decision = read_last_nonempty_line(RUNS_DIR / "phase4b_report.md")
+    paper_readiness = read_csv(RUNS_DIR / "paper_readiness_summary.csv")
+    phase5a_report_exists = (RUNS_DIR / "phase5a_report.md").exists()
+    phase5a_decision = read_last_nonempty_line(RUNS_DIR / "phase5a_report.md")
+    clean_convergence = read_csv(RUNS_DIR / "clean_block64g16_convergence.csv")
+    clean_efficiency = read_csv(RUNS_DIR / "clean_efficiency_profile.csv")
+    r4_reliability_audit = read_csv(RUNS_DIR / "r4_reliability_weight_audit.csv")
+    clean_qualitative = read_csv(RUNS_DIR / "clean_qualitative_manifest.csv")
+    yolo_seed0 = read_csv(RUNS_DIR / "Y11n_rgb_seed0_block64g16_e50" / "eval_project" / "eval_results.csv")
+    yolo_seed2 = read_csv(RUNS_DIR / "Y11n_rgb_seed2_block64g16_e50" / "eval_project" / "eval_results.csv")
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "completed" if phase3b_report_exists and split_integrity else "pending"
@@ -212,6 +221,8 @@ def build_status():
         active_status = "completed" if phase4a_report_exists and clean_block_summary else "pending"
     if "Phase 4B" in next_text:
         active_status = "completed" if phase4b_report_exists and clean_seed_replication and seed_smoke_exists else "pending"
+    if "Phase 5A" in next_text:
+        active_status = "completed" if phase5a_report_exists and phase5a_decision == "READY FOR MANUSCRIPT DRAFTING" else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -224,6 +235,8 @@ def build_status():
         current_task = "Phase 4A - Clean Blocked-Split Core Comparison"
     if "Phase 4B" in next_text:
         current_task = "Phase 4B - Controlled Seed Replication on the Clean Blocked Split"
+    if "Phase 5A" in next_text:
+        current_task = "Phase 5A - Paper-Readiness Supplemental Evaluation"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -242,6 +255,8 @@ def build_status():
         current_goal = "Train and evaluate B0/B1/B2/B4 on the validated block64/guard16 clean split."
     if "Phase 4B" in next_text:
         current_goal = "Train and evaluate R0/R1/R2/R4 at seeds 0 and 2 on the frozen clean block64/guard16 split."
+    if "Phase 5A" in next_text:
+        current_goal = "Complete paper-readiness evidence: YOLO11n RGB baseline, efficiency, alpha, qualitative, and convergence audits."
 
     lines = [
         "# Experiment Status",
@@ -544,6 +559,55 @@ def build_status():
 
     lines += [
         "",
+        "## Phase 5A outputs",
+        "",
+        "- Phase 5A report: `runs/phase5a_report.md`" if phase5a_report_exists else "- Phase 5A report: NA",
+        "- Paper-readiness summary: `runs/paper_readiness_summary.csv`" if paper_readiness else "- Paper-readiness summary: NA",
+        "- YOLO11n protocol: `runs/yolo11n_rgb_baseline_protocol.md`"
+        if (RUNS_DIR / "yolo11n_rgb_baseline_protocol.md").exists()
+        else "- YOLO11n protocol: NA",
+        f"- Convergence rows: {len(clean_convergence) if clean_convergence else 'NA'}",
+        f"- Efficiency rows: {len(clean_efficiency) if clean_efficiency else 'NA'}",
+        f"- R4 reliability-weight rows: {len(r4_reliability_audit) if r4_reliability_audit else 'NA'}",
+        f"- Qualitative manifest rows: {len(clean_qualitative) if clean_qualitative else 'NA'}",
+        f"- YOLO11n eval rows: {len(yolo_seed0) + len(yolo_seed2)}",
+        f"- Decision: {phase5a_decision or 'NA'}",
+        "",
+        "### YOLO11n RGB-only baseline",
+        "",
+    ]
+    yolo_headers = [
+        "Method",
+        "Seed",
+        "Precision",
+        "Recall",
+        "F1",
+        "AP50",
+        "AP75",
+        "GT boxes",
+        "Predictions",
+        "Mean Confidence",
+    ]
+    lines.extend(table(yolo_headers, yolo_seed0 + yolo_seed2))
+
+    lines += [
+        "",
+        "### Clean efficiency profile",
+        "",
+    ]
+    clean_eff_headers = [
+        "Model",
+        "Path",
+        "Params",
+        "FPS mean",
+        "Latency ms/img mean",
+        "CUDA Memory MB mean",
+        "Note",
+    ]
+    lines.extend(table(clean_eff_headers, clean_efficiency))
+
+    lines += [
+        "",
         "## Pending tasks",
         "",
     ]
@@ -562,6 +626,7 @@ def build_status():
         "- Phase 4A clean-split results use block64_guard16_seed0 only and should not be mixed with former random-split metrics.",
         "- Phase 4B controlled-seed results use the same frozen block64_guard16_seed0 split with explicit seeds 0 and 2.",
         "- Phase 4B still uses only two seeds; do not claim statistical significance.",
+        "- Phase 5A YOLO11n is an RGB-only external baseline and not an architecture-only ablation.",
         "",
         "## Important research decisions",
         "",
@@ -577,6 +642,7 @@ def build_status():
         "- If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.",
         "- Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.",
         f"- Phase 4B decision gate: {phase4b_decision or 'NA'}.",
+        f"- Phase 5A decision gate: {phase5a_decision or 'NA'}.",
         "",
         "## Files or scripts currently under review",
         "",

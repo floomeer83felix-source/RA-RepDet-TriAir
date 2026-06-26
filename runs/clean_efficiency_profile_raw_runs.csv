@@ -1,0 +1,13 @@
+Model,Path,Repeat,Batch Size,Img Size,Warmup,Iters,Repeats,Params,Trainable Params,FPS,Latency ms/img,CUDA Memory MB,Note
+R0 Early Fusion,raw_forward,1,1,640,100,300,3,6591609,6591609,99.978348,10.002166,115.72,seed0 checkpoint
+R0 Early Fusion,detector_inference,1,1,640,100,300,3,6591609,6591609,46.573201,21.471576,122.68,seed0 checkpoint
+R0 Early Fusion,raw_forward,2,1,640,100,300,3,6591609,6591609,99.432723,10.057051,114.87,seed0 checkpoint
+R0 Early Fusion,detector_inference,2,1,640,100,300,3,6591609,6591609,48.043341,20.814539,122.68,seed0 checkpoint
+R0 Early Fusion,raw_forward,3,1,640,100,300,3,6591609,6591609,108.877489,9.184635,114.87,seed0 checkpoint
+R0 Early Fusion,detector_inference,3,1,640,100,300,3,6591609,6591609,49.580922,20.169048,122.68,seed0 checkpoint
+R4 Reliability p=0.20,raw_forward,1,1,640,100,300,3,6593293,6593293,99.373710,10.063024,228.94,seed0 checkpoint; dropout is training-only
+R4 Reliability p=0.20,detector_inference,1,1,640,100,300,3,6593293,6593293,50.415156,19.835305,236.75,seed0 checkpoint; dropout is training-only
+R4 Reliability p=0.20,raw_forward,2,1,640,100,300,3,6593293,6593293,94.873270,10.540377,228.94,seed0 checkpoint; dropout is training-only
+R4 Reliability p=0.20,detector_inference,2,1,640,100,300,3,6593293,6593293,49.765583,20.094209,236.76,seed0 checkpoint; dropout is training-only
+R4 Reliability p=0.20,raw_forward,3,1,640,100,300,3,6593293,6593293,98.905981,10.110612,228.94,seed0 checkpoint; dropout is training-only
+R4 Reliability p=0.20,detector_inference,3,1,640,100,300,3,6593293,6593293,51.128729,19.558476,236.76,seed0 checkpoint; dropout is training-only

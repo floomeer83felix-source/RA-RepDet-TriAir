@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-26T21:09:22
+Generated: 2026-06-27T01:43:08
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -107,6 +107,18 @@ Workspace: `E:\RepViT-main`
 - R4 missing-modality rows: 14
 - Decision: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT
 
+## Phase 5A Paper-Readiness Outputs
+
+- Phase 5A report: `runs/phase5a_report.md`
+- YOLO11n protocol: `runs/yolo11n_rgb_baseline_protocol.md`
+- Paper-readiness summary rows: 18
+- Convergence rows: 8
+- Efficiency rows: 4
+- R4 reliability-weight rows: 8
+- Qualitative manifest rows: 20
+- YOLO11n eval rows: 2
+- Decision: READY FOR MANUSCRIPT DRAFTING
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -129,33 +141,40 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Use runs/phase4b_report.md as the controlled-seed clean-split decision gate once Phase 4B completes.
+- Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.
 - Former random-split results are historical diagnostics only and must not be paper headline results.
-- Do not start 100-epoch training until the Phase 4B decision gate is reviewed.
+- Do not start 100-epoch training or manuscript drafting until the Phase 5A decision gate is reviewed.
 
 ## Recently Modified Files
 
-- `M docs/EXPERIMENT_STATUS.md`
+- `M .gitignore`
+- ` M docs/EXPERIMENT_STATUS.md`
 - ` M rarepdet/tools/finish_task.ps1`
 - ` M rarepdet/tools/generate_handoff.py`
 - ` M rarepdet/tools/update_project_status.py`
-- ` M rarepdet/train_early_fusion.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `?? rarepdet/tools/build_clean_seed_replication_report.py`
-- `?? rarepdet/tools/test_seed_reproducibility.py`
-- `?? runs/R0_early_seed0_block64g16_e50/`
-- `?? runs/R0_early_seed2_block64g16_e50/`
-- `?? runs/R1_reliability_p000_seed0_block64g16_e50/`
-- `?? runs/R1_reliability_p000_seed2_block64g16_e50/`
-- `?? runs/R2_reliability_p015_seed0_block64g16_e50/`
-- `?? runs/R2_reliability_p015_seed2_block64g16_e50/`
-- `?? runs/R4_reliability_p020_seed0_block64g16_e50/`
-- `?? runs/R4_reliability_p020_seed2_block64g16_e50/`
-- `?? runs/clean_block64g16_seed_replication.csv`
-- `?? runs/clean_block64g16_seed_replication.md`
-- `?? runs/phase4b_report.md`
-- `?? runs/seed_reproducibility_smoke.md`
+- `?? rarepdet/tools/audit_clean_convergence.py`
+- `?? rarepdet/tools/audit_r4_reliability_weights.py`
+- `?? rarepdet/tools/build_clean_qualitative_manifest.py`
+- `?? rarepdet/tools/build_phase5a_report.py`
+- `?? rarepdet/tools/eval_yolo11n_rgb_baseline.py`
+- `?? rarepdet/tools/prepare_yolo11n_rgb_baseline.py`
+- `?? rarepdet/tools/profile_clean_main_models.py`
+- `?? runs/Y11n_rgb_seed0_block64g16_e50/`
+- `?? runs/Y11n_rgb_seed2_block64g16_e50/`
+- `?? runs/clean_block64g16_convergence.csv`
+- `?? runs/clean_block64g16_convergence.md`
+- `?? runs/clean_efficiency_profile.csv`
+- `?? runs/clean_efficiency_profile.md`
+- `?? runs/clean_efficiency_profile_raw_runs.csv`
+- `?? runs/clean_qualitative_manifest.csv`
+- `?? runs/clean_qualitative_summary.md`
+- `?? runs/paper_readiness_summary.csv`
+- `?? runs/phase5a_report.md`
+- `?? runs/r4_reliability_weight_audit.csv`
+- `?? runs/r4_reliability_weight_audit.md`
+- `?? runs/yolo11n_rgb_baseline_protocol.md`
 
 ## Next Recommended Tasks
 
@@ -164,3 +183,4 @@ Workspace: `E:\RepViT-main`
 - Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.
 - Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.
 - Use the Phase 4B R-run table for clean-split headline model selection.
+- Use Phase 5A to separate RGB-only external-baseline evidence from tri-modal fusion ablation evidence.

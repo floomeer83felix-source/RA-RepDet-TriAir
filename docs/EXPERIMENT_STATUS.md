@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-26T21:09:22
+Generated: 2026-06-27T01:43:08
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -84,8 +84,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 4B - Controlled Seed Replication on the Clean Blocked Split
-- Goal: Train and evaluate R0/R1/R2/R4 at seeds 0 and 2 on the frozen clean block64/guard16 split.
+- Current Task: Phase 5A - Paper-Readiness Supplemental Evaluation
+- Goal: Complete paper-readiness evidence: YOLO11n RGB baseline, efficiency, alpha, qualitative, and convergence audits.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -268,11 +268,39 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | R4 Reliability p=0.20 | 0 | 0.20 | 0.938850 | 0.920562 | 0.929616 | 0.965012 | 0.895019 | 0.923708 | 0.729869 | 0.963677 |
 | R4 Reliability p=0.20 | 2 | 0.20 | 0.906763 | 0.917514 | 0.912107 | 0.959977 | 0.887513 | 0.908394 | 0.706685 | 0.959476 |
 
+## Phase 5A outputs
+
+- Phase 5A report: `runs/phase5a_report.md`
+- Paper-readiness summary: `runs/paper_readiness_summary.csv`
+- YOLO11n protocol: `runs/yolo11n_rgb_baseline_protocol.md`
+- Convergence rows: 8
+- Efficiency rows: 4
+- R4 reliability-weight rows: 8
+- Qualitative manifest rows: 20
+- YOLO11n eval rows: 2
+- Decision: READY FOR MANUSCRIPT DRAFTING
+
+### YOLO11n RGB-only baseline
+
+| Method | Seed | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| YOLO11n RGB-only | 0 | 0.913918 | 0.793022 | 0.849188 | 0.886374 | 0.629228 | 5904 | 5123 | 0.808770 |
+| YOLO11n RGB-only | 2 | 0.914027 | 0.786924 | 0.845727 | 0.885401 | 0.636794 | 5904 | 5083 | 0.782716 |
+
+### Clean efficiency profile
+
+| Model | Path | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean | Note |
+| --- | --- | --- | --- | --- | --- | --- |
+| R0 Early Fusion | raw_forward | 6591609 | 102.762853 | 9.747951 | 115.153333 | seed0 checkpoint |
+| R0 Early Fusion | detector_inference | 6591609 | 48.065821 | 20.818388 | 122.680000 | seed0 checkpoint |
+| R4 Reliability p=0.20 | raw_forward | 6593293 | 97.717654 | 10.238004 | 228.940000 | seed0 checkpoint; dropout is training-only |
+| R4 Reliability p=0.20 | detector_inference | 6593293 | 50.436489 | 19.829330 | 236.756667 | seed0 checkpoint; dropout is training-only |
+
 ## Pending tasks
 
-- Use runs/phase4b_report.md as the controlled-seed clean-split decision gate once Phase 4B completes.
+- Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.
 - Former random-split results are historical diagnostics only and must not be paper headline results.
-- Do not start 100-epoch training until the Phase 4B decision gate is reviewed.
+- Do not start 100-epoch training or manuscript drafting until the Phase 5A decision gate is reviewed.
 
 ## Known metric caveats
 
@@ -285,6 +313,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 4A clean-split results use block64_guard16_seed0 only and should not be mixed with former random-split metrics.
 - Phase 4B controlled-seed results use the same frozen block64_guard16_seed0 split with explicit seeds 0 and 2.
 - Phase 4B still uses only two seeds; do not claim statistical significance.
+- Phase 5A YOLO11n is an RGB-only external baseline and not an architecture-only ablation.
 
 ## Important research decisions
 
@@ -300,6 +329,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.
 - Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.
 - Phase 4B decision gate: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT.
+- Phase 5A decision gate: READY FOR MANUSCRIPT DRAFTING.
 
 ## Files or scripts currently under review
 

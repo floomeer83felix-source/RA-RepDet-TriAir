@@ -132,7 +132,9 @@ function Add-FilesSafely {
         "runs\R*_*\config.txt",
         "runs\R*_*\eval_thr050\*.txt",
         "runs\R*_*\missing_modality\*.csv",
-        "runs\R*_*\missing_modality\*.txt"
+        "runs\R*_*\missing_modality\*.txt",
+        "runs\Y11n_rgb*_block64g16_e50\eval_project\*.csv",
+        "runs\Y11n_rgb*_block64g16_e50\eval_project\*.txt"
     )
 
     $files = New-Object System.Collections.Generic.List[string]
