@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-24T05:13:12
+Generated: 2026-06-26T21:09:22
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -84,8 +84,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 3C - RGB Duplicate Audit and Leakage-Aware Split Proposal
-- Goal: Train and evaluate B0/B1/B2/B4 on the validated block64/guard16 clean split.
+- Current Task: Phase 4B - Controlled Seed Replication on the Clean Blocked Split
+- Goal: Train and evaluate R0/R1/R2/R4 at seeds 0 and 2 on the frozen clean block64/guard16 split.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -247,11 +247,32 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | B2 Reliability p=0.15 | 0.15 | 6593293 | 0.912933 | 0.914634 | 0.913783 | 0.956423 | 0.879736 | 0.906801 | 0.748108 | 0.957883 |
 | B4 Reliability p=0.20 | 0.20 | 6593293 | 0.903604 | 0.925644 | 0.914491 | 0.960244 | 0.885327 | 0.907047 | 0.738021 | 0.961505 |
 
+## Phase 4B outputs
+
+- Seed reproducibility smoke: `runs/seed_reproducibility_smoke.md`
+- Seed replication summary: `runs/clean_block64g16_seed_replication.md`
+- Phase 4B report: `runs/phase4b_report.md`
+- Seed replication rows: 8
+- Decision: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT
+
+### Controlled-seed clean block64/guard16 summary
+
+| Variant | Seed | Dropout Ratio | P@0.50 | R@0.50 | F1@0.50 | AP50 | AP75 | w/o RGB AP50 | w/o Thermal AP50 | w/o Event AP50 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| R0 Early Fusion | 0 | NA | 0.890591 | 0.896172 | 0.893373 | 0.938560 | 0.827560 | NA | NA | NA |
+| R0 Early Fusion | 2 | NA | 0.902247 | 0.891091 | 0.896634 | 0.937711 | 0.831114 | NA | NA | NA |
+| R1 Reliability p=0.00 | 0 | 0.00 | 0.890553 | 0.916497 | 0.903339 | 0.952112 | 0.889847 | 0.673004 | 0.328742 | 0.425560 |
+| R1 Reliability p=0.00 | 2 | 0.00 | 0.920263 | 0.899221 | 0.909620 | 0.954378 | 0.893068 | 0.752975 | 0.332811 | 0.711880 |
+| R2 Reliability p=0.15 | 0 | 0.15 | 0.906797 | 0.912940 | 0.909858 | 0.961573 | 0.899166 | 0.911342 | 0.682321 | 0.961223 |
+| R2 Reliability p=0.15 | 2 | 0.15 | 0.916368 | 0.909383 | 0.912862 | 0.957739 | 0.870351 | 0.904481 | 0.658199 | 0.955474 |
+| R4 Reliability p=0.20 | 0 | 0.20 | 0.938850 | 0.920562 | 0.929616 | 0.965012 | 0.895019 | 0.923708 | 0.729869 | 0.963677 |
+| R4 Reliability p=0.20 | 2 | 0.20 | 0.906763 | 0.917514 | 0.912107 | 0.959977 | 0.887513 | 0.908394 | 0.706685 | 0.959476 |
+
 ## Pending tasks
 
-- Use runs/phase4a_report.md as the clean blocked-split decision gate once Phase 4A completes.
+- Use runs/phase4b_report.md as the controlled-seed clean-split decision gate once Phase 4B completes.
 - Former random-split results are historical diagnostics only and must not be paper headline results.
-- Do not start 100-epoch training until the Phase 4A next-action gate is reviewed.
+- Do not start 100-epoch training until the Phase 4B decision gate is reviewed.
 
 ## Known metric caveats
 
@@ -262,6 +283,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Current AP implementation is project-local and does not depend on pycocotools.
 - Phase 3C RGB-separation strata are diagnostics only and are not a clean independent test set.
 - Phase 4A clean-split results use block64_guard16_seed0 only and should not be mixed with former random-split metrics.
+- Phase 4B controlled-seed results use the same frozen block64_guard16_seed0 split with explicit seeds 0 and 2.
+- Phase 4B still uses only two seeds; do not claim statistical significance.
 
 ## Important research decisions
 
@@ -276,6 +299,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.
 - If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.
 - Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.
+- Phase 4B decision gate: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT.
 
 ## Files or scripts currently under review
 

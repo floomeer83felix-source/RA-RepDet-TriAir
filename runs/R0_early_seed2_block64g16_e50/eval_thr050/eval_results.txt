@@ -1,0 +1,13 @@
+RarePDet eval results
+====================
+model: early
+weights: E:\RepViT-main\runs\R0_early_seed2_block64g16_e50\weights\best.pt
+images: 2213
+Precision: 0.902247
+Recall: 0.891091
+AP50: 0.937711
+AP75: 0.831114
+GT boxes: 5904
+Predictions: 5831
+Mean Confidence: 0.783072
+FPS: 63.14

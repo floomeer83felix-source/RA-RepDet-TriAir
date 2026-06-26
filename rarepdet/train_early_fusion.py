@@ -2,11 +2,13 @@
 """Train Early/Reliability RepViT + FPN + FCOS on TriAir."""
 
 import argparse
+import random
 from pathlib import Path
 import subprocess
 import sys
 import time
 
+import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
@@ -41,6 +43,65 @@ def move_targets_to_device(targets, device):
 
 def count_params(model):
     return sum(parameter.numel() for parameter in model.parameters())
+
+
+def configure_reproducibility(seed):
+    """Enable deterministic seeded execution only when explicitly requested."""
+
+    if seed is None:
+        return {
+            "seed": "None",
+            "deterministic_algorithms": "legacy_unseeded",
+            "cudnn_deterministic": torch.backends.cudnn.deterministic,
+            "cudnn_benchmark": torch.backends.cudnn.benchmark,
+        }
+
+    seed = int(seed)
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    try:
+        torch.use_deterministic_algorithms(True, warn_only=True)
+        deterministic_algorithms = "warn_only"
+    except TypeError:
+        torch.use_deterministic_algorithms(True)
+        deterministic_algorithms = "enabled_without_warn_only"
+    except Exception as exc:
+        deterministic_algorithms = f"unavailable: {exc}"
+    return {
+        "seed": seed,
+        "deterministic_algorithms": deterministic_algorithms,
+        "cudnn_deterministic": torch.backends.cudnn.deterministic,
+        "cudnn_benchmark": torch.backends.cudnn.benchmark,
+    }
+
+
+def seed_worker(worker_id):
+    worker_seed = torch.initial_seed() % 2**32
+    np.random.seed(worker_seed)
+    random.seed(worker_seed)
+
+
+def make_train_generator(seed, device):
+    if seed is None:
+        return None
+    # DataLoader uses a CPU generator for deterministic shuffling.
+    generator = torch.Generator(device="cpu")
+    generator.manual_seed(int(seed))
+    return generator
+
+
+def reproducibility_lines(args, settings):
+    return [
+        f"requested_seed: {args.seed}",
+        f"deterministic_algorithms: {settings['deterministic_algorithms']}",
+        f"cudnn_deterministic: {settings['cudnn_deterministic']}",
+        f"cudnn_benchmark: {settings['cudnn_benchmark']}",
+    ]
 
 
 def is_cuda_oom(exc):
@@ -140,12 +201,15 @@ def evaluate(model, loader, device, score_thresh=0.05):
     return metrics
 
 
-def write_config(path, args, model, train_len, val_len):
+def write_config(path, args, model, train_len, val_len, reproducibility_settings=None):
     with path.open("w", encoding="utf-8") as f:
         f.write("RarePDet experiment config\n")
         f.write("==========================\n")
         for key, value in sorted(vars(args).items()):
             f.write(f"{key}: {value}\n")
+        if reproducibility_settings is not None:
+            for line in reproducibility_lines(args, reproducibility_settings):
+                f.write(line + "\n")
         f.write(f"train_samples: {train_len}\n")
         f.write(f"val_samples: {val_len}\n")
         f.write(f"params: {count_params(model)}\n")
@@ -167,6 +231,7 @@ def main():
     parser.add_argument("--num-workers", default=0, type=int)
     parser.add_argument("--out", default="runs/rarepdet_early")
     parser.add_argument("--modality-dropout", default=0.0, type=float)
+    parser.add_argument("--seed", default=None, type=int)
     args = parser.parse_args()
 
     if args.epochs <= 0:
@@ -175,6 +240,8 @@ def main():
         raise SystemExit("ERROR: --batch-size must be positive.")
     if args.img_size <= 0:
         raise SystemExit("ERROR: --img-size must be positive.")
+
+    reproducibility_settings = configure_reproducibility(args.seed)
 
     out_dir = resolve_path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -190,6 +257,8 @@ def main():
         requested_device = torch.device("cpu")
     device = requested_device
     log_line(f"Using device: {device}", log_file)
+    for line in reproducibility_lines(args, reproducibility_settings):
+        log_line(line, log_file)
 
     train_dataset = DetectionTriAirDataset(
         args.data,
@@ -206,6 +275,7 @@ def main():
         modality_dropout=0.0,
     )
 
+    train_generator = make_train_generator(args.seed, device)
     train_loader = DataLoader(
         train_dataset,
         batch_size=args.batch_size,
@@ -213,6 +283,8 @@ def main():
         num_workers=args.num_workers,
         collate_fn=collate_fn,
         pin_memory=(device.type == "cuda"),
+        generator=train_generator,
+        worker_init_fn=seed_worker if args.seed is not None else None,
     )
     val_loader = DataLoader(
         val_dataset,
@@ -232,7 +304,7 @@ def main():
     ).to(device)
 
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
-    write_config(out_dir / "config.txt", args, model, len(train_dataset), len(val_dataset))
+    write_config(out_dir / "config.txt", args, model, len(train_dataset), len(val_dataset), reproducibility_settings)
     log_line(f"train samples: {len(train_dataset)}", log_file)
     log_line(f"val samples: {len(val_dataset)}", log_file)
     log_line(f"params: {count_params(model)}", log_file)

@@ -244,6 +244,48 @@ def collect_phase4a():
     }
 
 
+def collect_phase4b():
+    return {
+        "smoke_test": str(RUNS_DIR / "seed_reproducibility_smoke.md")
+        if (RUNS_DIR / "seed_reproducibility_smoke.md").exists()
+        else None,
+        "seed_replication": read_csv(RUNS_DIR / "clean_block64g16_seed_replication.csv"),
+        "seed_replication_report": str(RUNS_DIR / "clean_block64g16_seed_replication.md")
+        if (RUNS_DIR / "clean_block64g16_seed_replication.md").exists()
+        else None,
+        "phase4b_report": str(RUNS_DIR / "phase4b_report.md") if (RUNS_DIR / "phase4b_report.md").exists() else None,
+        "decision": read_last_nonempty_line(RUNS_DIR / "phase4b_report.md"),
+        "r1_missing_seed0": read_csv(
+            RUNS_DIR / "R1_reliability_p000_seed0_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"
+        ),
+        "r1_missing_seed2": read_csv(
+            RUNS_DIR / "R1_reliability_p000_seed2_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"
+        ),
+        "r2_missing_seed0": read_csv(
+            RUNS_DIR / "R2_reliability_p015_seed0_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"
+        ),
+        "r2_missing_seed2": read_csv(
+            RUNS_DIR / "R2_reliability_p015_seed2_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"
+        ),
+        "r4_missing_seed0": read_csv(
+            RUNS_DIR / "R4_reliability_p020_seed0_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"
+        ),
+        "r4_missing_seed2": read_csv(
+            RUNS_DIR / "R4_reliability_p020_seed2_block64g16_e50" / "missing_modality" / "missing_modality_results.csv"
+        ),
+    }
+
+
+def read_last_nonempty_line(path):
+    if not path.exists():
+        return None
+    for line in reversed(path.read_text(encoding="utf-8").splitlines()):
+        stripped = line.strip()
+        if stripped:
+            return stripped
+    return None
+
+
 def best_by(results, metric):
     numeric = []
     for row in results:
@@ -309,10 +351,11 @@ def build_handoff():
         "phase3b": collect_phase3b(),
         "phase3c": collect_phase3c(),
         "phase4a": collect_phase4a(),
+        "phase4b": collect_phase4b(),
         "current_pending_experiments": [
-            "Use runs/phase4a_report.md as the clean blocked-split decision gate once Phase 4A completes.",
+            "Use runs/phase4b_report.md as the controlled-seed clean-split decision gate once Phase 4B completes.",
             "Former random-split results are historical diagnostics only and must not be paper headline results.",
-            "Do not start 100-epoch training until the Phase 4A next-action gate is reviewed.",
+            "Do not start 100-epoch training until the Phase 4B decision gate is reviewed.",
         ],
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -330,6 +373,7 @@ def build_handoff():
             "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
             "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
             "Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.",
+            "Use the Phase 4B R-run table for clean-split headline model selection.",
         ],
     }
 
@@ -437,6 +481,19 @@ def write_markdown(data, path):
         f"- B1 missing-modality rows: {len(data['phase4a']['b1_missing'])}",
         f"- B2 missing-modality rows: {len(data['phase4a']['b2_missing'])}",
         f"- B4 missing-modality rows: {len(data['phase4a']['b4_missing'])}",
+        "",
+        "## Phase 4B Controlled-Seed Outputs",
+        "",
+        "- Smoke test: `runs/seed_reproducibility_smoke.md`" if data["phase4b"]["smoke_test"] else "- Smoke test: NA",
+        "- Seed replication report: `runs/clean_block64g16_seed_replication.md`"
+        if data["phase4b"]["seed_replication_report"]
+        else "- Seed replication report: NA",
+        "- Phase 4B report: `runs/phase4b_report.md`" if data["phase4b"]["phase4b_report"] else "- Phase 4B report: NA",
+        f"- Seed replication rows: {len(data['phase4b']['seed_replication'])}",
+        f"- R1 missing-modality rows: {len(data['phase4b']['r1_missing_seed0']) + len(data['phase4b']['r1_missing_seed2'])}",
+        f"- R2 missing-modality rows: {len(data['phase4b']['r2_missing_seed0']) + len(data['phase4b']['r2_missing_seed2'])}",
+        f"- R4 missing-modality rows: {len(data['phase4b']['r4_missing_seed0']) + len(data['phase4b']['r4_missing_seed2'])}",
+        f"- Decision: {data['phase4b']['decision'] or 'NA'}",
         "",
         "## Model And Code Structure",
         "",

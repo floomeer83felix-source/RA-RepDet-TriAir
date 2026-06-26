@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-24T05:13:12",
+  "generated_at": "2026-06-26T21:09:22",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -11,7 +11,27 @@
       "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
     ],
     "status_short": [
-      "M rarepdet/tools/finish_task.ps1"
+      "M docs/EXPERIMENT_STATUS.md",
+      " M rarepdet/tools/finish_task.ps1",
+      " M rarepdet/tools/generate_handoff.py",
+      " M rarepdet/tools/update_project_status.py",
+      " M rarepdet/train_early_fusion.py",
+      " M runs/handoff_latest.json",
+      " M runs/handoff_latest.md",
+      "?? rarepdet/tools/build_clean_seed_replication_report.py",
+      "?? rarepdet/tools/test_seed_reproducibility.py",
+      "?? runs/R0_early_seed0_block64g16_e50/",
+      "?? runs/R0_early_seed2_block64g16_e50/",
+      "?? runs/R1_reliability_p000_seed0_block64g16_e50/",
+      "?? runs/R1_reliability_p000_seed2_block64g16_e50/",
+      "?? runs/R2_reliability_p015_seed0_block64g16_e50/",
+      "?? runs/R2_reliability_p015_seed2_block64g16_e50/",
+      "?? runs/R4_reliability_p020_seed0_block64g16_e50/",
+      "?? runs/R4_reliability_p020_seed2_block64g16_e50/",
+      "?? runs/clean_block64g16_seed_replication.csv",
+      "?? runs/clean_block64g16_seed_replication.md",
+      "?? runs/phase4b_report.md",
+      "?? runs/seed_reproducibility_smoke.md"
     ]
   },
   "dataset": {
@@ -2255,10 +2275,554 @@
       }
     ]
   },
+  "phase4b": {
+    "smoke_test": "E:\\RepViT-main\\runs\\seed_reproducibility_smoke.md",
+    "seed_replication": [
+      {
+        "Variant": "R0 Early Fusion",
+        "Seed": "0",
+        "Dropout Ratio": "NA",
+        "P@0.50": "0.890591",
+        "R@0.50": "0.896172",
+        "F1@0.50": "0.893373",
+        "AP50": "0.938560",
+        "AP75": "0.827560",
+        "w/o RGB AP50": "NA",
+        "w/o Thermal AP50": "NA",
+        "w/o Event AP50": "NA"
+      },
+      {
+        "Variant": "R0 Early Fusion",
+        "Seed": "2",
+        "Dropout Ratio": "NA",
+        "P@0.50": "0.902247",
+        "R@0.50": "0.891091",
+        "F1@0.50": "0.896634",
+        "AP50": "0.937711",
+        "AP75": "0.831114",
+        "w/o RGB AP50": "NA",
+        "w/o Thermal AP50": "NA",
+        "w/o Event AP50": "NA"
+      },
+      {
+        "Variant": "R1 Reliability p=0.00",
+        "Seed": "0",
+        "Dropout Ratio": "0.00",
+        "P@0.50": "0.890553",
+        "R@0.50": "0.916497",
+        "F1@0.50": "0.903339",
+        "AP50": "0.952112",
+        "AP75": "0.889847",
+        "w/o RGB AP50": "0.673004",
+        "w/o Thermal AP50": "0.328742",
+        "w/o Event AP50": "0.425560"
+      },
+      {
+        "Variant": "R1 Reliability p=0.00",
+        "Seed": "2",
+        "Dropout Ratio": "0.00",
+        "P@0.50": "0.920263",
+        "R@0.50": "0.899221",
+        "F1@0.50": "0.909620",
+        "AP50": "0.954378",
+        "AP75": "0.893068",
+        "w/o RGB AP50": "0.752975",
+        "w/o Thermal AP50": "0.332811",
+        "w/o Event AP50": "0.711880"
+      },
+      {
+        "Variant": "R2 Reliability p=0.15",
+        "Seed": "0",
+        "Dropout Ratio": "0.15",
+        "P@0.50": "0.906797",
+        "R@0.50": "0.912940",
+        "F1@0.50": "0.909858",
+        "AP50": "0.961573",
+        "AP75": "0.899166",
+        "w/o RGB AP50": "0.911342",
+        "w/o Thermal AP50": "0.682321",
+        "w/o Event AP50": "0.961223"
+      },
+      {
+        "Variant": "R2 Reliability p=0.15",
+        "Seed": "2",
+        "Dropout Ratio": "0.15",
+        "P@0.50": "0.916368",
+        "R@0.50": "0.909383",
+        "F1@0.50": "0.912862",
+        "AP50": "0.957739",
+        "AP75": "0.870351",
+        "w/o RGB AP50": "0.904481",
+        "w/o Thermal AP50": "0.658199",
+        "w/o Event AP50": "0.955474"
+      },
+      {
+        "Variant": "R4 Reliability p=0.20",
+        "Seed": "0",
+        "Dropout Ratio": "0.20",
+        "P@0.50": "0.938850",
+        "R@0.50": "0.920562",
+        "F1@0.50": "0.929616",
+        "AP50": "0.965012",
+        "AP75": "0.895019",
+        "w/o RGB AP50": "0.923708",
+        "w/o Thermal AP50": "0.729869",
+        "w/o Event AP50": "0.963677"
+      },
+      {
+        "Variant": "R4 Reliability p=0.20",
+        "Seed": "2",
+        "Dropout Ratio": "0.20",
+        "P@0.50": "0.906763",
+        "R@0.50": "0.917514",
+        "F1@0.50": "0.912107",
+        "AP50": "0.959977",
+        "AP75": "0.887513",
+        "w/o RGB AP50": "0.908394",
+        "w/o Thermal AP50": "0.706685",
+        "w/o Event AP50": "0.959476"
+      }
+    ],
+    "seed_replication_report": "E:\\RepViT-main\\runs\\clean_block64g16_seed_replication.md",
+    "phase4b_report": "E:\\RepViT-main\\runs\\phase4b_report.md",
+    "decision": "SELECT R4 AS CLEAN-SPLIT MAIN VARIANT",
+    "r1_missing_seed0": [
+      {
+        "Mode": "full",
+        "Precision": "0.026547672842295526",
+        "Recall": "0.9950880758807588",
+        "AP50": "0.954266369342804",
+        "AP75": "0.8918557167053223",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.13462365004645177"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.022422051513782196",
+        "Recall": "0.8404471544715447",
+        "AP50": "0.6730044484138489",
+        "AP75": "0.5811824202537537",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.13791009250206818"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.01255309534568459",
+        "Recall": "0.47052845528455284",
+        "AP50": "0.32874244451522827",
+        "AP75": "0.2999885678291321",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.09382089259211518"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.01744690465431541",
+        "Recall": "0.6539634146341463",
+        "AP50": "0.4255604147911072",
+        "AP75": "0.28395766019821167",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1310550152859198"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.017401717126073205",
+        "Recall": "0.652269647696477",
+        "AP50": "0.42452073097229004",
+        "AP75": "0.2842196524143219",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.13155601553677826"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.0023361952101220063",
+        "Recall": "0.08756775067750677",
+        "AP50": "0.0005919816321693361",
+        "AP75": "1.62204923981335e-05",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.0983218224391752"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.00727971079981925",
+        "Recall": "0.2728658536585366",
+        "AP50": "0.005592857487499714",
+        "AP75": "0.00023376793251372874",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.09087383684297788"
+      }
+    ],
+    "r1_missing_seed2": [
+      {
+        "Mode": "full",
+        "Precision": "0.026561229100768188",
+        "Recall": "0.9955962059620597",
+        "AP50": "0.9563413262367249",
+        "AP75": "0.8954483866691589",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.13461493025248103"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.02482150926344329",
+        "Recall": "0.9303861788617886",
+        "AP50": "0.7529745697975159",
+        "AP75": "0.589164137840271",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.13369462377245722"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.011098056936285586",
+        "Recall": "0.4159891598915989",
+        "AP50": "0.3328113257884979",
+        "AP75": "0.3080024719238281",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.11027533872616113"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.02518300948938093",
+        "Recall": "0.9439363143631436",
+        "AP50": "0.711879551410675",
+        "AP75": "0.455550879240036",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.12425014553733854"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.016814279258924536",
+        "Recall": "0.6302506775067751",
+        "AP50": "0.42337554693222046",
+        "AP75": "0.2833400368690491",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.11819507470742453"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.02299141436963398",
+        "Recall": "0.8617886178861789",
+        "AP50": "0.6018693447113037",
+        "AP75": "0.3702876567840576",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.11789504985153756"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.006945323090826932",
+        "Recall": "0.2603319783197832",
+        "AP50": "0.021948622539639473",
+        "AP75": "0.0009735393105074763",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1030572382538797"
+      }
+    ],
+    "r2_missing_seed0": [
+      {
+        "Mode": "full",
+        "Precision": "0.026552191595119748",
+        "Recall": "0.9952574525745257",
+        "AP50": "0.9623881578445435",
+        "AP75": "0.900086522102356",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.16641165504779984"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.02641211025756891",
+        "Recall": "0.9900067750677507",
+        "AP50": "0.9113417267799377",
+        "AP75": "0.7525312304496765",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.18063998428088773"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.024378671486669678",
+        "Recall": "0.9137872628726287",
+        "AP50": "0.6823210120201111",
+        "AP75": "0.3784500062465668",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.22997462732294027"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.026552191595119748",
+        "Recall": "0.9952574525745257",
+        "AP50": "0.9612230658531189",
+        "AP75": "0.8832560777664185",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1720208135641475"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.02403976502485314",
+        "Recall": "0.9010840108401084",
+        "AP50": "0.6622436046600342",
+        "AP75": "0.36550211906433105",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.22724518641135943"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.025467690917306822",
+        "Recall": "0.9546070460704607",
+        "AP50": "0.7825735211372375",
+        "AP75": "0.5674428343772888",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.18842431737154627"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.01568910980569363",
+        "Recall": "0.5880758807588076",
+        "AP50": "0.2536754906177521",
+        "AP75": "0.12247610837221146",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.26622049639370987"
+      }
+    ],
+    "r2_missing_seed2": [
+      {
+        "Mode": "full",
+        "Precision": "0.02660189787618617",
+        "Recall": "0.997120596205962",
+        "AP50": "0.9588375091552734",
+        "AP75": "0.8715863823890686",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1584986397956649"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.026516041572525982",
+        "Recall": "0.9939024390243902",
+        "AP50": "0.9044808149337769",
+        "AP75": "0.7294940948486328",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.17867251263900252"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.02420244012652508",
+        "Recall": "0.9071815718157181",
+        "AP50": "0.6581994891166687",
+        "AP75": "0.3533431887626648",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.2160243707686878"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.026547672842295526",
+        "Recall": "0.9950880758807588",
+        "AP50": "0.9554735422134399",
+        "AP75": "0.8555238246917725",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.16160816705353487"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.024008133755083597",
+        "Recall": "0.8998983739837398",
+        "AP50": "0.6506466865539551",
+        "AP75": "0.34831327199935913",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.2157140377090829"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.02545413465883416",
+        "Recall": "0.9540989159891599",
+        "AP50": "0.7968207597732544",
+        "AP75": "0.5603545308113098",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.17758977527912392"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.01649344780840488",
+        "Recall": "0.6182249322493225",
+        "AP50": "0.2671952247619629",
+        "AP75": "0.12125372886657715",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.24814058801139904"
+      }
+    ],
+    "r4_missing_seed0": [
+      {
+        "Mode": "full",
+        "Precision": "0.026511522819701764",
+        "Recall": "0.9937330623306233",
+        "AP50": "0.9653457403182983",
+        "AP75": "0.8954504728317261",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1755510352160386"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.02633981021238138",
+        "Recall": "0.9872967479674797",
+        "AP50": "0.9237081408500671",
+        "AP75": "0.7744431495666504",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.19323112084104824"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.024952553095345685",
+        "Recall": "0.9352981029810298",
+        "AP50": "0.7298694849014282",
+        "AP75": "0.42972826957702637",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.23591050606158676"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.02648892905558066",
+        "Recall": "0.9928861788617886",
+        "AP50": "0.9636772871017456",
+        "AP75": "0.8918624520301819",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.1820835148013869"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.02490736556710348",
+        "Recall": "0.9336043360433605",
+        "AP50": "0.7222901582717896",
+        "AP75": "0.42420950531959534",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.23580560410195786"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.02569362855851785",
+        "Recall": "0.9630758807588076",
+        "AP50": "0.8255230188369751",
+        "AP75": "0.6005561947822571",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.20927710354779297"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.01615002259376412",
+        "Recall": "0.6053523035230353",
+        "AP50": "0.314615398645401",
+        "AP75": "0.16543954610824585",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.2729901698962278"
+      }
+    ],
+    "r4_missing_seed2": [
+      {
+        "Mode": "full",
+        "Precision": "0.026534116583822865",
+        "Recall": "0.994579945799458",
+        "AP50": "0.9603855013847351",
+        "AP75": "0.8881215453147888",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.17374341110695932"
+      },
+      {
+        "Mode": "no_rgb",
+        "Precision": "0.026457297785811115",
+        "Recall": "0.99170054200542",
+        "AP50": "0.908394455909729",
+        "AP75": "0.7479444146156311",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.20180382617723602"
+      },
+      {
+        "Mode": "no_thermal",
+        "Precision": "0.02447356529597831",
+        "Recall": "0.9173441734417345",
+        "AP50": "0.7066850066184998",
+        "AP75": "0.4015817642211914",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.23326518396224524"
+      },
+      {
+        "Mode": "no_event",
+        "Precision": "0.026525079078174425",
+        "Recall": "0.9942411924119241",
+        "AP50": "0.9594763517379761",
+        "AP75": "0.8784834742546082",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.17671785373127924"
+      },
+      {
+        "Mode": "rgb_only",
+        "Precision": "0.024432896520560327",
+        "Recall": "0.915819783197832",
+        "AP50": "0.7068525552749634",
+        "AP75": "0.4028528928756714",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.23684306783982925"
+      },
+      {
+        "Mode": "thermal_only",
+        "Precision": "0.025576140985088116",
+        "Recall": "0.9586720867208672",
+        "AP50": "0.7754999399185181",
+        "AP75": "0.5591753721237183",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.20388182386486606"
+      },
+      {
+        "Mode": "event_only",
+        "Precision": "0.014283777677361048",
+        "Recall": "0.5353997289972899",
+        "AP50": "0.2586073875427246",
+        "AP75": "0.1435757279396057",
+        "GT boxes": "5904",
+        "Predictions": "221300",
+        "Mean Confidence": "0.28925286241862175"
+      }
+    ]
+  },
   "current_pending_experiments": [
-    "Use runs/phase4a_report.md as the clean blocked-split decision gate once Phase 4A completes.",
+    "Use runs/phase4b_report.md as the controlled-seed clean-split decision gate once Phase 4B completes.",
     "Former random-split results are historical diagnostics only and must not be paper headline results.",
-    "Do not start 100-epoch training until the Phase 4A next-action gate is reviewed."
+    "Do not start 100-epoch training until the Phase 4B decision gate is reviewed."
   ],
   "code_structure": {
     "dataset": "datasets/triair_dataset.py",
@@ -2271,12 +2835,33 @@
     "postprocessing_tools": "rarepdet/tools/"
   },
   "recent_modified_files": [
-    "M rarepdet/tools/finish_task.ps1"
+    "M docs/EXPERIMENT_STATUS.md",
+    " M rarepdet/tools/finish_task.ps1",
+    " M rarepdet/tools/generate_handoff.py",
+    " M rarepdet/tools/update_project_status.py",
+    " M rarepdet/train_early_fusion.py",
+    " M runs/handoff_latest.json",
+    " M runs/handoff_latest.md",
+    "?? rarepdet/tools/build_clean_seed_replication_report.py",
+    "?? rarepdet/tools/test_seed_reproducibility.py",
+    "?? runs/R0_early_seed0_block64g16_e50/",
+    "?? runs/R0_early_seed2_block64g16_e50/",
+    "?? runs/R1_reliability_p000_seed0_block64g16_e50/",
+    "?? runs/R1_reliability_p000_seed2_block64g16_e50/",
+    "?? runs/R2_reliability_p015_seed0_block64g16_e50/",
+    "?? runs/R2_reliability_p015_seed2_block64g16_e50/",
+    "?? runs/R4_reliability_p020_seed0_block64g16_e50/",
+    "?? runs/R4_reliability_p020_seed2_block64g16_e50/",
+    "?? runs/clean_block64g16_seed_replication.csv",
+    "?? runs/clean_block64g16_seed_replication.md",
+    "?? runs/phase4b_report.md",
+    "?? runs/seed_reproducibility_smoke.md"
   ],
   "next_recommended_tasks": [
     "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
     "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
     "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
-    "Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision."
+    "Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.",
+    "Use the Phase 4B R-run table for clean-split headline model selection."
   ]
 }

@@ -54,6 +54,16 @@ def read_csv(path):
         return list(csv.DictReader(f))
 
 
+def read_last_nonempty_line(path):
+    if not path.exists():
+        return None
+    for line in reversed(read_text(path).splitlines()):
+        stripped = line.strip()
+        if stripped:
+            return stripped
+    return None
+
+
 def parse_sections(path):
     sections = {}
     current = None
@@ -189,6 +199,10 @@ def build_status():
     phase3c_report_exists = (RUNS_DIR / "phase3c_report.md").exists()
     clean_block_summary = read_csv(RUNS_DIR / "clean_block64g16_summary.csv")
     phase4a_report_exists = (RUNS_DIR / "phase4a_report.md").exists()
+    clean_seed_replication = read_csv(RUNS_DIR / "clean_block64g16_seed_replication.csv")
+    phase4b_report_exists = (RUNS_DIR / "phase4b_report.md").exists()
+    seed_smoke_exists = (RUNS_DIR / "seed_reproducibility_smoke.md").exists()
+    phase4b_decision = read_last_nonempty_line(RUNS_DIR / "phase4b_report.md")
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "completed" if phase3b_report_exists and split_integrity else "pending"
@@ -196,6 +210,8 @@ def build_status():
         active_status = "completed" if phase3c_report_exists and rgb_duplicate_summary and blocked_split_summary else "pending"
     if "Phase 4A" in next_text:
         active_status = "completed" if phase4a_report_exists and clean_block_summary else "pending"
+    if "Phase 4B" in next_text:
+        active_status = "completed" if phase4b_report_exists and clean_seed_replication and seed_smoke_exists else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -206,6 +222,8 @@ def build_status():
         current_task = "Phase 3C - RGB Duplicate Audit and Leakage-Aware Split Proposal"
     if current_task == "NA" and "Phase 4A" in next_text:
         current_task = "Phase 4A - Clean Blocked-Split Core Comparison"
+    if "Phase 4B" in next_text:
+        current_task = "Phase 4B - Controlled Seed Replication on the Clean Blocked Split"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -222,6 +240,8 @@ def build_status():
         current_goal = "Audit exact RGB-content cross-split duplication and propose leakage-aware blocked split candidates."
     if "Phase 4A" in next_text:
         current_goal = "Train and evaluate B0/B1/B2/B4 on the validated block64/guard16 clean split."
+    if "Phase 4B" in next_text:
+        current_goal = "Train and evaluate R0/R1/R2/R4 at seeds 0 and 2 on the frozen clean block64/guard16 split."
 
     lines = [
         "# Experiment Status",
@@ -494,6 +514,36 @@ def build_status():
 
     lines += [
         "",
+        "## Phase 4B outputs",
+        "",
+        "- Seed reproducibility smoke: `runs/seed_reproducibility_smoke.md`" if seed_smoke_exists else "- Seed reproducibility smoke: NA",
+        "- Seed replication summary: `runs/clean_block64g16_seed_replication.md`"
+        if (RUNS_DIR / "clean_block64g16_seed_replication.md").exists()
+        else "- Seed replication summary: NA",
+        "- Phase 4B report: `runs/phase4b_report.md`" if phase4b_report_exists else "- Phase 4B report: NA",
+        f"- Seed replication rows: {len(clean_seed_replication) if clean_seed_replication else 'NA'}",
+        f"- Decision: {phase4b_decision or 'NA'}",
+        "",
+        "### Controlled-seed clean block64/guard16 summary",
+        "",
+    ]
+    seed_headers = [
+        "Variant",
+        "Seed",
+        "Dropout Ratio",
+        "P@0.50",
+        "R@0.50",
+        "F1@0.50",
+        "AP50",
+        "AP75",
+        "w/o RGB AP50",
+        "w/o Thermal AP50",
+        "w/o Event AP50",
+    ]
+    lines.extend(table(seed_headers, clean_seed_replication))
+
+    lines += [
+        "",
         "## Pending tasks",
         "",
     ]
@@ -510,6 +560,8 @@ def build_status():
         "- Current AP implementation is project-local and does not depend on pycocotools.",
         "- Phase 3C RGB-separation strata are diagnostics only and are not a clean independent test set.",
         "- Phase 4A clean-split results use block64_guard16_seed0 only and should not be mixed with former random-split metrics.",
+        "- Phase 4B controlled-seed results use the same frozen block64_guard16_seed0 split with explicit seeds 0 and 2.",
+        "- Phase 4B still uses only two seeds; do not claim statistical significance.",
         "",
         "## Important research decisions",
         "",
@@ -524,6 +576,7 @@ def build_status():
         "- Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.",
         "- If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.",
         "- Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.",
+        f"- Phase 4B decision gate: {phase4b_decision or 'NA'}.",
         "",
         "## Files or scripts currently under review",
         "",

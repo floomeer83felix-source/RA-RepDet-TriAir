@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-24T05:13:12
+Generated: 2026-06-26T21:09:22
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -96,6 +96,17 @@ Workspace: `E:\RepViT-main`
 - B2 missing-modality rows: 7
 - B4 missing-modality rows: 7
 
+## Phase 4B Controlled-Seed Outputs
+
+- Smoke test: `runs/seed_reproducibility_smoke.md`
+- Seed replication report: `runs/clean_block64g16_seed_replication.md`
+- Phase 4B report: `runs/phase4b_report.md`
+- Seed replication rows: 8
+- R1 missing-modality rows: 14
+- R2 missing-modality rows: 14
+- R4 missing-modality rows: 14
+- Decision: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -118,13 +129,33 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Use runs/phase4a_report.md as the clean blocked-split decision gate once Phase 4A completes.
+- Use runs/phase4b_report.md as the controlled-seed clean-split decision gate once Phase 4B completes.
 - Former random-split results are historical diagnostics only and must not be paper headline results.
-- Do not start 100-epoch training until the Phase 4A next-action gate is reviewed.
+- Do not start 100-epoch training until the Phase 4B decision gate is reviewed.
 
 ## Recently Modified Files
 
-- `M rarepdet/tools/finish_task.ps1`
+- `M docs/EXPERIMENT_STATUS.md`
+- ` M rarepdet/tools/finish_task.ps1`
+- ` M rarepdet/tools/generate_handoff.py`
+- ` M rarepdet/tools/update_project_status.py`
+- ` M rarepdet/train_early_fusion.py`
+- ` M runs/handoff_latest.json`
+- ` M runs/handoff_latest.md`
+- `?? rarepdet/tools/build_clean_seed_replication_report.py`
+- `?? rarepdet/tools/test_seed_reproducibility.py`
+- `?? runs/R0_early_seed0_block64g16_e50/`
+- `?? runs/R0_early_seed2_block64g16_e50/`
+- `?? runs/R1_reliability_p000_seed0_block64g16_e50/`
+- `?? runs/R1_reliability_p000_seed2_block64g16_e50/`
+- `?? runs/R2_reliability_p015_seed0_block64g16_e50/`
+- `?? runs/R2_reliability_p015_seed2_block64g16_e50/`
+- `?? runs/R4_reliability_p020_seed0_block64g16_e50/`
+- `?? runs/R4_reliability_p020_seed2_block64g16_e50/`
+- `?? runs/clean_block64g16_seed_replication.csv`
+- `?? runs/clean_block64g16_seed_replication.md`
+- `?? runs/phase4b_report.md`
+- `?? runs/seed_reproducibility_smoke.md`
 
 ## Next Recommended Tasks
 
@@ -132,3 +163,4 @@ Workspace: `E:\RepViT-main`
 - Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.
 - Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.
 - Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.
+- Use the Phase 4B R-run table for clean-split headline model selection.
