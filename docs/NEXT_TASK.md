@@ -39,6 +39,7 @@ The assistant will separately produce and approve the final inserted figures and
 - Single-blind review: author names/affiliations appear in the manuscript.
 - PDF plus complete editable LaTeX source will be required later.
 - Data Availability Statement and declarations are required.
+- SIVP guidance requires transparency about non-copy-editing LLM use and states that authors remain accountable. Prepare a disclosure template; do not add it to the manuscript until the authors confirm the final wording.
 
 ## Task 0 — Create Submission Package Skeleton
 Create this commit-safe directory tree:
@@ -165,6 +166,7 @@ submission/sivp/metadata/cover_letter_draft.md
 submission/sivp/metadata/data_availability_statement_draft.md
 submission/sivp/metadata/competing_interests_statement_draft.md
 submission/sivp/metadata/author_contributions_template.md
+submission/sivp/metadata/ai_use_disclosure_draft.md
 ```
 
 Rules:
@@ -172,6 +174,7 @@ Rules:
 - Do not infer author order, correspondence, affiliation, funding, or competing interests.
 - Cover letter must be a conservative SIVP-specific draft, state the paper is original/not under review elsewhere, identify practical scope fit, and not claim SOTA.
 - Data availability statement must not promise dataset/code openness beyond the project’s known rights and current repository status.
+- The AI-use disclosure draft must state only the actual anticipated workflow: generative AI assistance for draft language/structure or copyediting as applicable; authors verify all scientific content, methods, calculations, citations, and final wording; no AI-generated experimental data or scientific-evidence images. It must be marked `AUTHOR CONFIRMATION REQUIRED` and must not be inserted into the manuscript automatically.
 
 ## Task 7 — Compile Dry Run and Report
 Compile a **placeholder-only dry run** locally if the official template environment is available. It is acceptable that the output contains placeholder boxes; do not treat it as submission PDF.
