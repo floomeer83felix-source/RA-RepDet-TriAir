@@ -1,0 +1,33 @@
+# Table 4 missing modality robustness
+
+Synthetic single-modality removal results. Each condition is interpreted separately.
+
+| Variant | Seed | Condition | AP50 | Row Type | Mean | Min | Max | Range | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| R1 Reliability p=0.00 | 0 | w/o RGB | 0.673004 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R1 Reliability p=0.00 | 0 | w/o Thermal | 0.328742 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R1 Reliability p=0.00 | 0 | w/o Event | 0.425560 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R1 Reliability p=0.00 | 2 | w/o RGB | 0.752975 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R1 Reliability p=0.00 | 2 | w/o Thermal | 0.332811 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R1 Reliability p=0.00 | 2 | w/o Event | 0.711880 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R2 Reliability p=0.15 | 0 | w/o RGB | 0.911342 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R2 Reliability p=0.15 | 0 | w/o Thermal | 0.682321 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R2 Reliability p=0.15 | 0 | w/o Event | 0.961223 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R2 Reliability p=0.15 | 2 | w/o RGB | 0.904481 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R2 Reliability p=0.15 | 2 | w/o Thermal | 0.658199 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R2 Reliability p=0.15 | 2 | w/o Event | 0.955474 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R4 Reliability p=0.20 | 0 | w/o RGB | 0.923708 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R4 Reliability p=0.20 | 0 | w/o Thermal | 0.729869 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R4 Reliability p=0.20 | 0 | w/o Event | 0.963677 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R4 Reliability p=0.20 | 2 | w/o RGB | 0.908394 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R4 Reliability p=0.20 | 2 | w/o Thermal | 0.706685 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R4 Reliability p=0.20 | 2 | w/o Event | 0.959476 | per-seed | NA | NA | NA | NA | runs/clean_block64g16_seed_replication.csv |
+| R1 Reliability p=0.00 | 0,2 | w/o RGB | NA | mean/min/max/range | 0.712989 | 0.673004 | 0.752975 | 0.079971 | computed from per-seed rows; conditions are not averaged together |
+| R1 Reliability p=0.00 | 0,2 | w/o Thermal | NA | mean/min/max/range | 0.330777 | 0.328742 | 0.332811 | 0.004069 | computed from per-seed rows; conditions are not averaged together |
+| R1 Reliability p=0.00 | 0,2 | w/o Event | NA | mean/min/max/range | 0.568720 | 0.425560 | 0.711880 | 0.286320 | computed from per-seed rows; conditions are not averaged together |
+| R2 Reliability p=0.15 | 0,2 | w/o RGB | NA | mean/min/max/range | 0.907911 | 0.904481 | 0.911342 | 0.006861 | computed from per-seed rows; conditions are not averaged together |
+| R2 Reliability p=0.15 | 0,2 | w/o Thermal | NA | mean/min/max/range | 0.670260 | 0.658199 | 0.682321 | 0.024122 | computed from per-seed rows; conditions are not averaged together |
+| R2 Reliability p=0.15 | 0,2 | w/o Event | NA | mean/min/max/range | 0.958349 | 0.955474 | 0.961223 | 0.005749 | computed from per-seed rows; conditions are not averaged together |
+| R4 Reliability p=0.20 | 0,2 | w/o RGB | NA | mean/min/max/range | 0.916051 | 0.908394 | 0.923708 | 0.015314 | computed from per-seed rows; conditions are not averaged together |
+| R4 Reliability p=0.20 | 0,2 | w/o Thermal | NA | mean/min/max/range | 0.718277 | 0.706685 | 0.729869 | 0.023184 | computed from per-seed rows; conditions are not averaged together |
+| R4 Reliability p=0.20 | 0,2 | w/o Event | NA | mean/min/max/range | 0.961577 | 0.959476 | 0.963677 | 0.004201 | computed from per-seed rows; conditions are not averaged together |

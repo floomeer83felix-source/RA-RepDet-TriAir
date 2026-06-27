@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-27T01:43:08
+Generated: 2026-06-27T16:32:30
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -119,6 +119,20 @@ Workspace: `E:\RepViT-main`
 - YOLO11n eval rows: 2
 - Decision: READY FOR MANUSCRIPT DRAFTING
 
+## Phase 6A Manuscript Outputs
+
+- Manuscript README: `manuscript/README.md`
+- Draft manuscript: `manuscript/RA_RepDet_manuscript_v1.md`
+- Phase 6A report: `runs/phase6a_manuscript_report.md`
+- Table CSV files: 7
+- Table Markdown files: 7
+- Figure source CSV files: 3
+- Figure manifest: `manuscript/figures/figure_manifest.md`
+- Verified reference inventory rows: 31
+- Claim ledger: `manuscript/submission_notes/claim_ledger.md`
+- Self-audit: `manuscript/submission_notes/manuscript_self_audit.md`
+- Decision: MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -141,9 +155,10 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.
-- Former random-split results are historical diagnostics only and must not be paper headline results.
-- Do not start 100-epoch training or manuscript drafting until the Phase 5A decision gate is reviewed.
+- Choose a target SCI/EI journal before final formatting.
+- Finalize citation style and replace manuscript reference placeholders after journal selection.
+- Prepare journal-specific figure dimensions from the commit-safe figure manifests and source CSV files.
+- Keep random-split E-runs as historical diagnostics only.
 
 ## Recently Modified Files
 
@@ -154,33 +169,13 @@ Workspace: `E:\RepViT-main`
 - ` M rarepdet/tools/update_project_status.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `?? rarepdet/tools/audit_clean_convergence.py`
-- `?? rarepdet/tools/audit_r4_reliability_weights.py`
-- `?? rarepdet/tools/build_clean_qualitative_manifest.py`
-- `?? rarepdet/tools/build_phase5a_report.py`
-- `?? rarepdet/tools/eval_yolo11n_rgb_baseline.py`
-- `?? rarepdet/tools/prepare_yolo11n_rgb_baseline.py`
-- `?? rarepdet/tools/profile_clean_main_models.py`
-- `?? runs/Y11n_rgb_seed0_block64g16_e50/`
-- `?? runs/Y11n_rgb_seed2_block64g16_e50/`
-- `?? runs/clean_block64g16_convergence.csv`
-- `?? runs/clean_block64g16_convergence.md`
-- `?? runs/clean_efficiency_profile.csv`
-- `?? runs/clean_efficiency_profile.md`
-- `?? runs/clean_efficiency_profile_raw_runs.csv`
-- `?? runs/clean_qualitative_manifest.csv`
-- `?? runs/clean_qualitative_summary.md`
-- `?? runs/paper_readiness_summary.csv`
-- `?? runs/phase5a_report.md`
-- `?? runs/r4_reliability_weight_audit.csv`
-- `?? runs/r4_reliability_weight_audit.md`
-- `?? runs/yolo11n_rgb_baseline_protocol.md`
+- `?? manuscript/`
+- `?? rarepdet/tools/build_phase6a_manuscript.py`
+- `?? runs/phase6a_manuscript_report.md`
 
 ## Next Recommended Tasks
 
-- Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.
-- Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.
-- Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.
-- Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.
-- Use the Phase 4B R-run table for clean-split headline model selection.
-- Use Phase 5A to separate RGB-only external-baseline evidence from tri-modal fusion ablation evidence.
+- Select the target journal and adapt manuscript formatting, citation style, and figure requirements.
+- Review manuscript/RA_RepDet_manuscript_v1.md against the target journal scope and word limits.
+- Render final Fig. 1 and Fig. 2 schematics only after target-journal figure specifications are known.
+- Keep raw data, weights, rendered panels, and local qualitative assets out of Git.

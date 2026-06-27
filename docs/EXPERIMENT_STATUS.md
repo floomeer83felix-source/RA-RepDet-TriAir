@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-27T01:43:08
+Generated: 2026-06-27T16:32:30
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -84,8 +84,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 5A - Paper-Readiness Supplemental Evaluation
-- Goal: Complete paper-readiness evidence: YOLO11n RGB baseline, efficiency, alpha, qualitative, and convergence audits.
+- Current Task: Phase 6A - Journal-Neutral English Manuscript Draft
+- Goal: Create a complete journal-neutral English manuscript package from frozen clean-split evidence.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -296,11 +296,27 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 | R4 Reliability p=0.20 | raw_forward | 6593293 | 97.717654 | 10.238004 | 228.940000 | seed0 checkpoint; dropout is training-only |
 | R4 Reliability p=0.20 | detector_inference | 6593293 | 50.436489 | 19.829330 | 236.756667 | seed0 checkpoint; dropout is training-only |
 
+## Phase 6A outputs
+
+- Manuscript README: `manuscript/README.md`
+- Draft manuscript: `manuscript/RA_RepDet_manuscript_v1.md`
+- Phase 6A report: `runs/phase6a_manuscript_report.md`
+- Figure manifest: `manuscript/figures/figure_manifest.md`
+- Claim ledger: `manuscript/submission_notes/claim_ledger.md`
+- Self-audit: `manuscript/submission_notes/manuscript_self_audit.md`
+- Table CSV files: 7
+- Table Markdown files: 7
+- Figure source CSV files: 3
+- Verified reference inventory rows: 31
+- Decision: MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING
+
+
 ## Pending tasks
 
-- Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.
-- Former random-split results are historical diagnostics only and must not be paper headline results.
-- Do not start 100-epoch training or manuscript drafting until the Phase 5A decision gate is reviewed.
+- Choose a target SCI/EI journal before final formatting.
+- Finalize citation style and replace manuscript reference placeholders after journal selection.
+- Prepare journal-specific figure dimensions from the commit-safe figure manifests and source CSV files.
+- Keep random-split E-runs as historical diagnostics only.
 
 ## Known metric caveats
 
@@ -314,6 +330,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 4B controlled-seed results use the same frozen block64_guard16_seed0 split with explicit seeds 0 and 2.
 - Phase 4B still uses only two seeds; do not claim statistical significance.
 - Phase 5A YOLO11n is an RGB-only external baseline and not an architecture-only ablation.
+- Phase 6A manuscript is journal-neutral and citation style remains pending target journal selection.
 
 ## Important research decisions
 
@@ -330,6 +347,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.
 - Phase 4B decision gate: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT.
 - Phase 5A decision gate: READY FOR MANUSCRIPT DRAFTING.
+- Phase 6A decision gate: MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING.
 
 ## Files or scripts currently under review
 

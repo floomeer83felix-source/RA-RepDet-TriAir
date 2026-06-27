@@ -293,6 +293,35 @@ def collect_phase5a():
     }
 
 
+def collect_phase6a():
+    manuscript_dir = PROJECT_ROOT / "manuscript"
+    report = RUNS_DIR / "phase6a_manuscript_report.md"
+    references = manuscript_dir / "references" / "reference_inventory.csv"
+    return {
+        "manuscript_readme": str(manuscript_dir / "README.md") if (manuscript_dir / "README.md").exists() else None,
+        "draft": str(manuscript_dir / "RA_RepDet_manuscript_v1.md")
+        if (manuscript_dir / "RA_RepDet_manuscript_v1.md").exists()
+        else None,
+        "report": str(report) if report.exists() else None,
+        "decision": read_last_nonempty_line(report),
+        "table_csv_count": len(list((manuscript_dir / "tables").glob("*.csv"))) if (manuscript_dir / "tables").exists() else 0,
+        "table_md_count": len(list((manuscript_dir / "tables").glob("*.md"))) if (manuscript_dir / "tables").exists() else 0,
+        "figure_source_count": len(list((manuscript_dir / "figures").glob("fig*_source.csv")))
+        if (manuscript_dir / "figures").exists()
+        else 0,
+        "figure_manifest": str(manuscript_dir / "figures" / "figure_manifest.md")
+        if (manuscript_dir / "figures" / "figure_manifest.md").exists()
+        else None,
+        "reference_count": count_csv_rows(references),
+        "claim_ledger": str(manuscript_dir / "submission_notes" / "claim_ledger.md")
+        if (manuscript_dir / "submission_notes" / "claim_ledger.md").exists()
+        else None,
+        "self_audit": str(manuscript_dir / "submission_notes" / "manuscript_self_audit.md")
+        if (manuscript_dir / "submission_notes" / "manuscript_self_audit.md").exists()
+        else None,
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -319,6 +348,33 @@ def build_handoff():
     eval_results = collect_eval_results()
     best_ap50 = best_by(eval_results, "ap50")
     best_ap75 = best_by(eval_results, "ap75")
+    phase6a = collect_phase6a()
+    pending = [
+        "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
+        "Former random-split results are historical diagnostics only and must not be paper headline results.",
+        "Do not start 100-epoch training or manuscript drafting until the Phase 5A decision gate is reviewed.",
+    ]
+    next_tasks = [
+        "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
+        "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
+        "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
+        "Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.",
+        "Use the Phase 4B R-run table for clean-split headline model selection.",
+        "Use Phase 5A to separate RGB-only external-baseline evidence from tri-modal fusion ablation evidence.",
+    ]
+    if phase6a["decision"] == "MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING":
+        pending = [
+            "Choose a target SCI/EI journal before final formatting.",
+            "Finalize citation style and replace manuscript reference placeholders after journal selection.",
+            "Prepare journal-specific figure dimensions from the commit-safe figure manifests and source CSV files.",
+            "Keep random-split E-runs as historical diagnostics only.",
+        ]
+        next_tasks = [
+            "Select the target journal and adapt manuscript formatting, citation style, and figure requirements.",
+            "Review manuscript/RA_RepDet_manuscript_v1.md against the target journal scope and word limits.",
+            "Render final Fig. 1 and Fig. 2 schematics only after target-journal figure specifications are known.",
+            "Keep raw data, weights, rendered panels, and local qualitative assets out of Git.",
+        ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -370,11 +426,8 @@ def build_handoff():
         "phase4a": collect_phase4a(),
         "phase4b": collect_phase4b(),
         "phase5a": collect_phase5a(),
-        "current_pending_experiments": [
-            "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
-            "Former random-split results are historical diagnostics only and must not be paper headline results.",
-            "Do not start 100-epoch training or manuscript drafting until the Phase 5A decision gate is reviewed.",
-        ],
+        "phase6a": phase6a,
+        "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
             "split_tool": "tools/create_triair_split.py",
@@ -386,14 +439,7 @@ def build_handoff():
             "postprocessing_tools": "rarepdet/tools/",
         },
         "recent_modified_files": status_short,
-        "next_recommended_tasks": [
-            "Use E2 as the main robustness model unless the paper specifically needs the alpha-correctness ACRF ablation.",
-            "Use E5 as an ablation showing exact zero absent-modality alpha with a small parameter increase.",
-            "Use E6 as a training-strategy ablation because Phase 2C did not satisfy the E2 replacement rule.",
-            "Use E2 for accuracy-first reporting and E4 as a robustness-first variant unless later split/seed audits change the decision.",
-            "Use the Phase 4B R-run table for clean-split headline model selection.",
-            "Use Phase 5A to separate RGB-only external-baseline evidence from tri-modal fusion ablation evidence.",
-        ],
+        "next_recommended_tasks": next_tasks,
     }
 
 
@@ -525,6 +571,20 @@ def write_markdown(data, path):
         f"- Qualitative manifest rows: {len(data['phase5a']['qualitative'])}",
         f"- YOLO11n eval rows: {len(data['phase5a']['yolo_seed0']) + len(data['phase5a']['yolo_seed2'])}",
         f"- Decision: {data['phase5a']['decision'] or 'NA'}",
+        "",
+        "## Phase 6A Manuscript Outputs",
+        "",
+        "- Manuscript README: `manuscript/README.md`" if data["phase6a"]["manuscript_readme"] else "- Manuscript README: NA",
+        "- Draft manuscript: `manuscript/RA_RepDet_manuscript_v1.md`" if data["phase6a"]["draft"] else "- Draft manuscript: NA",
+        "- Phase 6A report: `runs/phase6a_manuscript_report.md`" if data["phase6a"]["report"] else "- Phase 6A report: NA",
+        f"- Table CSV files: {data['phase6a']['table_csv_count']}",
+        f"- Table Markdown files: {data['phase6a']['table_md_count']}",
+        f"- Figure source CSV files: {data['phase6a']['figure_source_count']}",
+        "- Figure manifest: `manuscript/figures/figure_manifest.md`" if data["phase6a"]["figure_manifest"] else "- Figure manifest: NA",
+        f"- Verified reference inventory rows: {data['phase6a']['reference_count']}",
+        "- Claim ledger: `manuscript/submission_notes/claim_ledger.md`" if data["phase6a"]["claim_ledger"] else "- Claim ledger: NA",
+        "- Self-audit: `manuscript/submission_notes/manuscript_self_audit.md`" if data["phase6a"]["self_audit"] else "- Self-audit: NA",
+        f"- Decision: {data['phase6a']['decision'] or 'NA'}",
         "",
         "## Model And Code Structure",
         "",

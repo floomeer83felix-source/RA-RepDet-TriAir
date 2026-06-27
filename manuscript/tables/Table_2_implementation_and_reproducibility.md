@@ -1,0 +1,18 @@
+# Table 2 implementation and reproducibility
+
+Implementation and reproducibility choices used by the clean-split experiments.
+
+| Item | Value | Source | Notes |
+| --- | --- | --- | --- |
+| Detector family | RepViT-M0.9 + FPN + FCOS | rarepdet/models/ | Torchvision FCOS head with custom backbone. |
+| Input representation | 5 channels: RGB, thermal, event | datasets/triair_dataset.py | Images are emitted as CxHxW float32 tensors. |
+| Early-fusion baseline | Conv2d(5,3,1) -> RepViT -> FPN -> FCOS | rarepdet/models/early_fusion_fcos.py | Matched tri-modal baseline R0. |
+| Reliability fusion | RGB/T/E stems -> softmax alpha -> Conv2d(16,3,1) | rarepdet/models/reliability_fusion_fcos.py | Used by R1/R2/R4. |
+| FPN input channels | [48, 96, 192, 384] | tools/check_repvit_features.py | RepViT-M0.9 feature map channels. |
+| FPN output channels | 128 | rarepdet/models/repvit_fpn_backbone.py | Shared by controlled variants. |
+| Class handling | TriAir class 0 -> torchvision label 1 | rarepdet/train_early_fusion.py | Background remains label 0. |
+| Image size | 640 | runs/*/config.txt | Used for controlled clean-split runs. |
+| Training length | 50 epochs | runs/clean_block64g16_convergence.csv | Convergence audit is descriptive. |
+| Controlled seeds | 0 and 2 | runs/seed_reproducibility_smoke.md | Replication only, no statistical significance claim. |
+| AP implementation | project-local AP50/AP75 | rarepdet/eval_map.py | No pycocotools dependency. |
+| YOLO baseline | YOLO11n RGB-only | runs/yolo11n_rgb_baseline_protocol.md | External comparison, not architecture-only ablation. |

@@ -1,0 +1,12 @@
+# Figure Manifest
+
+| Figure | Title | Source | Commit Safe | Local Output |
+| --- | --- | --- | --- | --- |
+| Fig. 1 | Overall R4 architecture and training/inference flow | rarepdet/models/reliability_fusion_fcos.py; manuscript method text | manifest only | manual schematic pending target journal |
+| Fig. 2 | Leakage-aware blocked split and RGB-content duplicate audit workflow | runs/phase3c_report.md; runs/clean_block64g16_protocol.md | manifest only | manual schematic pending target journal |
+| Fig. 3 | Controlled two-seed full-modality AP50/AP75/F1 comparison | manuscript/figures/fig3_controlled_ablation_source.csv | csv and plotting script | manuscript/figures/local_rendered/Fig3_controlled_ablation.png/pdf |
+| Fig. 4 | Three missing-modality AP50 conditions for R1/R2/R4 | manuscript/figures/fig4_missing_modality_source.csv | csv and plotting script | manuscript/figures/local_rendered/Fig4_missing_modality.png/pdf |
+| Fig. 5 | R4 fusion-weight means under full and synthetic missing-modality conditions | manuscript/figures/fig5_reliability_weight_source.csv | csv and plotting script | manuscript/figures/local_rendered/Fig5_reliability_weights.png/pdf |
+| Fig. 6 | Qualitative panels for R0 versus R4, hard cases, and missing-modality cases | manuscript/figures/fig6_qualitative_panel_manifest.csv | manifest only | manuscript/figures/local_qualitative/ |
+
+Rendered PNG/PDF charts and qualitative panels are local-only and must not be committed.

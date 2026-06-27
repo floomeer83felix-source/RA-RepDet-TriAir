@@ -1,0 +1,20 @@
+# Table 5 rgb only external baseline
+
+R4 tri-modal detector compared with a YOLO11n RGB-only external baseline.
+
+| Method | Input | Seed | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence | Row Type | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| R4 Reliability p=0.20 | RGB-thermal-event | 0 | 0.938850 | 0.920562 | 0.929616 | 0.965012 | 0.895019 | 5904 | NA | NA | per-seed | runs/clean_block64g16_seed_replication.csv |
+| R4 Reliability p=0.20 | RGB-thermal-event | 2 | 0.906763 | 0.917514 | 0.912107 | 0.959977 | 0.887513 | 5904 | NA | NA | per-seed | runs/clean_block64g16_seed_replication.csv |
+| YOLO11n RGB-only | RGB only | 0 | 0.913918 | 0.793022 | 0.849188 | 0.886374 | 0.629228 | 5904 | 5123 | 0.808770 | per-seed | runs/Y11n_rgb_seed*_block64g16_e50/eval_project/eval_results.csv |
+| YOLO11n RGB-only | RGB only | 2 | 0.914027 | 0.786924 | 0.845727 | 0.885401 | 0.636794 | 5904 | 5083 | 0.782716 | per-seed | runs/Y11n_rgb_seed*_block64g16_e50/eval_project/eval_results.csv |
+| R4 Reliability p=0.20 | RGB-thermal-event | 0,2 | 0.922806 | NA | NA | NA | NA | 5904 | NA | NA | Precision mean/min/max/range | min=0.906763; max=0.938850; range=0.032087 |
+| R4 Reliability p=0.20 | RGB-thermal-event | 0,2 | NA | 0.919038 | NA | NA | NA | 5904 | NA | NA | Recall mean/min/max/range | min=0.917514; max=0.920562; range=0.003048 |
+| R4 Reliability p=0.20 | RGB-thermal-event | 0,2 | NA | NA | 0.920861 | NA | NA | 5904 | NA | NA | F1 mean/min/max/range | min=0.912107; max=0.929616; range=0.017509 |
+| R4 Reliability p=0.20 | RGB-thermal-event | 0,2 | NA | NA | NA | 0.962495 | NA | 5904 | NA | NA | AP50 mean/min/max/range | min=0.959977; max=0.965012; range=0.005035 |
+| R4 Reliability p=0.20 | RGB-thermal-event | 0,2 | NA | NA | NA | NA | 0.891266 | 5904 | NA | NA | AP75 mean/min/max/range | min=0.887513; max=0.895019; range=0.007506 |
+| YOLO11n RGB-only | RGB only | 0,2 | 0.913973 | NA | NA | NA | NA | 5904 | NA | NA | Precision mean/min/max/range | min=0.913918; max=0.914027; range=0.000109 |
+| YOLO11n RGB-only | RGB only | 0,2 | NA | 0.789973 | NA | NA | NA | 5904 | NA | NA | Recall mean/min/max/range | min=0.786924; max=0.793022; range=0.006098 |
+| YOLO11n RGB-only | RGB only | 0,2 | NA | NA | 0.847457 | NA | NA | 5904 | NA | NA | F1 mean/min/max/range | min=0.845727; max=0.849188; range=0.003461 |
+| YOLO11n RGB-only | RGB only | 0,2 | NA | NA | NA | 0.885887 | NA | 5904 | NA | NA | AP50 mean/min/max/range | min=0.885401; max=0.886374; range=0.000973 |
+| YOLO11n RGB-only | RGB only | 0,2 | NA | NA | NA | NA | 0.633011 | 5904 | NA | NA | AP75 mean/min/max/range | min=0.629228; max=0.636794; range=0.007566 |

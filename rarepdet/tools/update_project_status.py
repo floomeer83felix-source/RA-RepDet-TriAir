@@ -54,6 +54,15 @@ def read_csv(path):
         return list(csv.DictReader(f))
 
 
+def count_csv_rows(path):
+    if not path.exists():
+        return 0
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.reader(f)
+        next(reader, None)
+        return sum(1 for _ in reader)
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -212,6 +221,13 @@ def build_status():
     clean_qualitative = read_csv(RUNS_DIR / "clean_qualitative_manifest.csv")
     yolo_seed0 = read_csv(RUNS_DIR / "Y11n_rgb_seed0_block64g16_e50" / "eval_project" / "eval_results.csv")
     yolo_seed2 = read_csv(RUNS_DIR / "Y11n_rgb_seed2_block64g16_e50" / "eval_project" / "eval_results.csv")
+    manuscript_dir = PROJECT_ROOT / "manuscript"
+    phase6a_report_exists = (RUNS_DIR / "phase6a_manuscript_report.md").exists()
+    phase6a_decision = read_last_nonempty_line(RUNS_DIR / "phase6a_manuscript_report.md")
+    phase6a_table_csv_count = len(list((manuscript_dir / "tables").glob("*.csv"))) if (manuscript_dir / "tables").exists() else 0
+    phase6a_table_md_count = len(list((manuscript_dir / "tables").glob("*.md"))) if (manuscript_dir / "tables").exists() else 0
+    phase6a_reference_count = count_csv_rows(manuscript_dir / "references" / "reference_inventory.csv")
+    phase6a_figure_source_count = len(list((manuscript_dir / "figures").glob("fig*_source.csv"))) if (manuscript_dir / "figures").exists() else 0
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "completed" if phase3b_report_exists and split_integrity else "pending"
@@ -223,6 +239,8 @@ def build_status():
         active_status = "completed" if phase4b_report_exists and clean_seed_replication and seed_smoke_exists else "pending"
     if "Phase 5A" in next_text:
         active_status = "completed" if phase5a_report_exists and phase5a_decision == "READY FOR MANUSCRIPT DRAFTING" else "pending"
+    if "Phase 6A" in next_text:
+        active_status = "completed" if phase6a_report_exists and phase6a_decision == "MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING" else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -237,6 +255,8 @@ def build_status():
         current_task = "Phase 4B - Controlled Seed Replication on the Clean Blocked Split"
     if "Phase 5A" in next_text:
         current_task = "Phase 5A - Paper-Readiness Supplemental Evaluation"
+    if "Phase 6A" in next_text:
+        current_task = "Phase 6A - Journal-Neutral English Manuscript Draft"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -257,6 +277,8 @@ def build_status():
         current_goal = "Train and evaluate R0/R1/R2/R4 at seeds 0 and 2 on the frozen clean block64/guard16 split."
     if "Phase 5A" in next_text:
         current_goal = "Complete paper-readiness evidence: YOLO11n RGB baseline, efficiency, alpha, qualitative, and convergence audits."
+    if "Phase 6A" in next_text:
+        current_goal = "Create a complete journal-neutral English manuscript package from frozen clean-split evidence."
 
     lines = [
         "# Experiment Status",
@@ -608,6 +630,29 @@ def build_status():
 
     lines += [
         "",
+        "## Phase 6A outputs",
+        "",
+        "- Manuscript README: `manuscript/README.md`" if (manuscript_dir / "README.md").exists() else "- Manuscript README: NA",
+        "- Draft manuscript: `manuscript/RA_RepDet_manuscript_v1.md`"
+        if (manuscript_dir / "RA_RepDet_manuscript_v1.md").exists()
+        else "- Draft manuscript: NA",
+        "- Phase 6A report: `runs/phase6a_manuscript_report.md`" if phase6a_report_exists else "- Phase 6A report: NA",
+        "- Figure manifest: `manuscript/figures/figure_manifest.md`"
+        if (manuscript_dir / "figures" / "figure_manifest.md").exists()
+        else "- Figure manifest: NA",
+        "- Claim ledger: `manuscript/submission_notes/claim_ledger.md`"
+        if (manuscript_dir / "submission_notes" / "claim_ledger.md").exists()
+        else "- Claim ledger: NA",
+        "- Self-audit: `manuscript/submission_notes/manuscript_self_audit.md`"
+        if (manuscript_dir / "submission_notes" / "manuscript_self_audit.md").exists()
+        else "- Self-audit: NA",
+        f"- Table CSV files: {phase6a_table_csv_count}",
+        f"- Table Markdown files: {phase6a_table_md_count}",
+        f"- Figure source CSV files: {phase6a_figure_source_count}",
+        f"- Verified reference inventory rows: {phase6a_reference_count}",
+        f"- Decision: {phase6a_decision or 'NA'}",
+        "",
+        "",
         "## Pending tasks",
         "",
     ]
@@ -627,6 +672,7 @@ def build_status():
         "- Phase 4B controlled-seed results use the same frozen block64_guard16_seed0 split with explicit seeds 0 and 2.",
         "- Phase 4B still uses only two seeds; do not claim statistical significance.",
         "- Phase 5A YOLO11n is an RGB-only external baseline and not an architecture-only ablation.",
+        "- Phase 6A manuscript is journal-neutral and citation style remains pending target journal selection.",
         "",
         "## Important research decisions",
         "",
@@ -643,6 +689,7 @@ def build_status():
         "- Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.",
         f"- Phase 4B decision gate: {phase4b_decision or 'NA'}.",
         f"- Phase 5A decision gate: {phase5a_decision or 'NA'}.",
+        f"- Phase 6A decision gate: {phase6a_decision or 'NA'}.",
         "",
         "## Files or scripts currently under review",
         "",

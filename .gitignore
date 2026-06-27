@@ -137,6 +137,17 @@ runs/**/*.tiff
 runs/local_yolo11n_rgb_cache/
 runs/local_clean_qualitative_panels/
 
+# Phase 6A manuscript local-only rendered assets.
+manuscript/figures/local_rendered/
+manuscript/figures/local_qualitative/
+manuscript/**/*.png
+manuscript/**/*.jpg
+manuscript/**/*.jpeg
+manuscript/**/*.bmp
+manuscript/**/*.tif
+manuscript/**/*.tiff
+manuscript/**/*.pdf
+
 # Phase 5A local-only YOLO outputs. Keep only lightweight project eval files.
 runs/Y11n_rgb*_block64g16_e50/**
 !runs/Y11n_rgb*_block64g16_e50/

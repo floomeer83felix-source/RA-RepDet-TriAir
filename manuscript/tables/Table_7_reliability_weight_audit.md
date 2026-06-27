@@ -1,0 +1,14 @@
+# Table 7 reliability weight audit
+
+Observed reliability-gating behavior under full input and synthetic single-modality removal.
+
+| Variant | Seed | Mode | Samples | alpha_rgb_mean | alpha_rgb_std | alpha_thermal_mean | alpha_thermal_std | alpha_event_mean | alpha_event_std | dominant_rgb | dominant_thermal | dominant_event | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| R4 Reliability p=0.20 | 0 | full | 2213 | 0.430324 | 0.318728 | 0.350048 | 0.196388 | 0.219628 | 0.125369 | 877 | 1336 | 0 | runs/r4_reliability_weight_audit.csv |
+| R4 Reliability p=0.20 | 0 | no_rgb | 2213 | 0.235099 | 0.112048 | 0.390569 | 0.107722 | 0.374332 | 0.022308 | 377 | 1323 | 513 | runs/r4_reliability_weight_audit.csv |
+| R4 Reliability p=0.20 | 0 | no_thermal | 2213 | 0.708866 | 0.134936 | 0.142052 | 0.059503 | 0.149082 | 0.076173 | 2213 | 0 | 0 | runs/r4_reliability_weight_audit.csv |
+| R4 Reliability p=0.20 | 0 | no_event | 2213 | 0.443547 | 0.285414 | 0.338973 | 0.178248 | 0.217480 | 0.108322 | 887 | 1326 | 0 | runs/r4_reliability_weight_audit.csv |
+| R4 Reliability p=0.20 | 2 | full | 2213 | 0.459054 | 0.283962 | 0.350642 | 0.166642 | 0.190304 | 0.120816 | 887 | 1326 | 0 | runs/r4_reliability_weight_audit.csv |
+| R4 Reliability p=0.20 | 2 | no_rgb | 2213 | 0.240884 | 0.093168 | 0.408295 | 0.094522 | 0.350820 | 0.021914 | 352 | 1366 | 495 | runs/r4_reliability_weight_audit.csv |
+| R4 Reliability p=0.20 | 2 | no_thermal | 2213 | 0.761068 | 0.120387 | 0.131866 | 0.054451 | 0.107066 | 0.066586 | 2213 | 0 | 0 | runs/r4_reliability_weight_audit.csv |
+| R4 Reliability p=0.20 | 2 | no_event | 2213 | 0.465362 | 0.250669 | 0.333710 | 0.122676 | 0.200928 | 0.130703 | 893 | 1320 | 0 | runs/r4_reliability_weight_audit.csv |
