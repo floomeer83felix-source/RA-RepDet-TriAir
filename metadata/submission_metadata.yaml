@@ -1,0 +1,84 @@
+project: RA-RepDet-TriAir
+journal_target: Signal, Image and Video Processing
+submission_state: NOT_READY_FOR_FORMAL_SUBMISSION
+
+evidence_policy:
+  allowed_sources:
+    - training configuration files
+    - training and evaluation logs
+    - actual source code
+    - dataset documentation supplied by authors
+    - public release metadata after author authorization
+    - true command outputs
+    - explicit author-provided information
+  forbidden_fill:
+    - TriAir provenance not supported by documentation
+    - TriAir licence or redistribution rights not provided by authors
+    - independent test results not produced after protocol lock
+    - DOI, public repository URL, tag, or release commit not verified
+    - author names, affiliations, ORCID, funding, or competing interests not provided by authors
+
+dataset:
+  local_name: TriAir
+  local_root: D:\download\triair
+  samples: 10489
+  images_with_label_txt: 9751
+  images_without_label_txt: 738
+  empty_label_txt_files: 1
+  total_valid_boxes: 30634
+  input_channels: RGB(3)+thermal(1)+event(1)
+  label_format: YOLO class cx cy w h
+  class_mapping: source class 0 -> torchvision label 1; background remains 0
+  source_publication_or_datacard: AUTHOR_REQUIRED
+  dataset_version: AUTHOR_REQUIRED
+  dataset_licence: AUTHOR_REQUIRED
+  access_terms: AUTHOR_REQUIRED
+  redistribution_permission: AUTHOR_REQUIRED
+
+split:
+  name: block64_guard16_seed0
+  train_images: 7439
+  validation_images: 2213
+  guard_images_excluded: 837
+  train_manifest: runs/blocked_split_candidates/block64_guard16_seed0_train.txt
+  train_manifest_sha256: c4d94e5b376e862c3875314d39d79149988c479f12e97a6fcbeea72d3dfa85e5
+  validation_manifest: runs/blocked_split_candidates/block64_guard16_seed0_val.txt
+  validation_manifest_sha256: a48aff2ee29d041bd07b746947028191475a59f0df6b7b64d4882cd610746dc4
+  guard_manifest: runs/blocked_split_candidates/block64_guard16_seed0_guard.txt
+  guard_manifest_sha256: 25a57cea733a218ce2bbd37b22acdf76722cdcc3856861020017340357b338a8
+  exact_rgb_train_validation_matches: 0
+  same_family_guard_violations: 0
+
+main_model:
+  name: R4 Reliability p=0.20
+  evidence_split: validation partition only
+  full_ap50_mean_two_seeds: 0.962495
+  full_ap75_mean_two_seeds: 0.891266
+  f1_at_0_50_mean_two_seeds: 0.920861
+  independent_test_result: NOT_PROVIDED_BY_AUTHORS
+
+implementation:
+  backbone: repvit_m0_9.dist_300e_in1k
+  detector: torchvision FCOS with custom RepViT-FPN backbone
+  fpn_input_channels: [48, 96, 192, 384]
+  fpn_output_channels: 128
+  img_size: 640
+  epochs: 50
+  seeds: [0, 2]
+  optimizer: AdamW
+  learning_rate: 1e-4
+  weight_decay: 1e-4
+  batch_size: AUTHOR_REQUIRED_PER_FINAL_RUN
+  scheduler: no explicit scheduler in train_early_fusion.py
+  augmentation: no mosaic or mixup; modality dropout only for R2/R4
+  hardware: AUTHOR_REQUIRED
+  software_versions: AUTHOR_REQUIRED
+
+release_archive:
+  public_github_url: AUTHOR_REQUIRED
+  release_tag: AUTHOR_REQUIRED
+  commit_hash: AUTHOR_REQUIRED
+  zenodo_doi: AUTHOR_REQUIRED
+  archive_date: AUTHOR_REQUIRED
+  code_license: Apache-2.0 inherited from repository LICENSE unless authors choose otherwise
+  dataset_license: AUTHOR_REQUIRED

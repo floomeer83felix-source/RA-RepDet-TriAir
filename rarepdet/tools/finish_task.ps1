@@ -81,7 +81,25 @@ function Get-CommitMessage {
 }
 
 function Add-FilesSafely {
-    $allowedRoots = @(".gitignore", "AGENTS.md", "docs", "rarepdet", "datasets", "tools", "manuscript", "submission")
+    $allowedRoots = @(
+        ".gitignore",
+        "AGENTS.md",
+        "AUTHOR_FINAL_INPUTS_REQUIRED_V18.md",
+        "REVISION_LOG_V18.md",
+        "SUBMISSION_PRECHECK_V18.md",
+        "archive_manifest.txt",
+        "main.tex",
+        "main_sivp_snjnl.tex",
+        "references.bib",
+        "docs",
+        "rarepdet",
+        "datasets",
+        "tools",
+        "scripts",
+        "metadata",
+        "manuscript",
+        "submission"
+    )
     $topLevelPatterns = @("README*.md", "requirements*.txt")
     $runPatterns = @(
         "runs\handoff_latest.md",

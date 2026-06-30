@@ -1,0 +1,28 @@
+RA-RepDet SIVP archive manifest
+
+Status: NOT_READY_FOR_FORMAL_SUBMISSION
+
+GitHub repository URL: AUTHOR_REQUIRED
+Release tag: AUTHOR_REQUIRED
+Release commit hash: AUTHOR_REQUIRED
+Zenodo DOI: AUTHOR_REQUIRED
+Archive date: AUTHOR_REQUIRED
+Code licence: Apache-2.0 inherited from repository LICENSE unless authors confirm otherwise
+
+TriAir citation: AUTHOR_REQUIRED
+TriAir version: AUTHOR_REQUIRED
+TriAir licence: AUTHOR_REQUIRED
+TriAir access terms: AUTHOR_REQUIRED
+TriAir redistribution permission: AUTHOR_REQUIRED
+
+Evidence files currently available:
+- runs/clean_block64g16_protocol.md
+- runs/phase4b_report.md
+- runs/phase5a_report.md
+- runs/clean_block64g16_seed_replication.csv
+- runs/clean_efficiency_profile.csv
+- runs/r4_reliability_weight_audit.csv
+- manuscript/tables/*.csv
+- submission/sivp/tex/references.bib
+
+Raw dataset arrays, trained weights, rendered qualitative panels, and large prediction outputs are intentionally excluded from the archive.

@@ -1,114 +1,65 @@
 # Task Blocker
 
-Generated: 2026-06-21T17:21:55+08:00
+## Task
 
-Resolved: 2026-06-21
+Execute `D:/download/CODEX_FINISH_V18_CN.md`, run strict final preflight, and compile the final Springer `sn-jnl` PDF.
 
-## Resolution
+## Blocking Condition
 
-The `E:` drive was restored and `E:\RepViT-main` became accessible again. Phase 2B ACRF was resumed from the local E5 checkpoint, completed through epoch 50, evaluated, summarized in `runs/acrf_evidence_report.md`, and prepared for handoff.
+The strict v18 final submission gate cannot pass without author-provided metadata, verified TriAir provenance/licence information, public archive metadata, and final publication figures. Filling these values would violate the user's explicit instruction not to invent TriAir source, licence, independent test results, DOI, repository URL, commit hash, or extra baselines.
 
-## Blocked Task
-
-`docs/NEXT_TASK.md` currently requests Phase 2B: Availability-Conditioned Reliability Fusion (ACRF), including new ACRF files, smoke checks, E5 50-epoch training, evaluation, evidence report, handoff update, commit, and push.
-
-## Current Blocker
-
-The required local workspace `E:\RepViT-main` is not accessible in the current Windows session. The `E:` drive is not mounted, so the project files, uncommitted local work, and any local E5 artifacts cannot be read, verified, resumed, committed, or pushed from the required workspace.
-
-A second blocker is that GitHub CLI is not available on the current PATH, so the required `rarepdet/tools/finish_task.ps1` GitHub push workflow cannot be run even from another checkout.
-
-## Failed Commands And Final Errors
+## Failed Command
 
 ```powershell
-Get-PSDrive -PSProvider FileSystem | Select-Object Name,Root,Free,Used
+python scripts/preflight_submission.py --root .
 ```
 
-Output showed only `C:` and `D:` filesystem drives. `E:` was absent.
-
-```powershell
-Test-Path 'E:\RepViT-main'
-```
-
-Final output:
+## Last Error Lines
 
 ```text
-False
+RA-RepDet SIVP preflight
+root: E:\RepViT-main
+allow_placeholders: False
+FAIL: Placeholder or unverified field remains in main.tex: /\[[A-Z0-9 _/-]*(AUTHOR|AFFILIATION|EMAIL|FUNDING|ACKNOWLEDG|COMPETING|CONTRIBUTION|DATA AVAILABILITY)[A-Z0-9 _/-]*\]/
+FAIL: Placeholder or unverified field remains in archive_manifest.txt: /AUTHOR_(REQUIRED|CONFIRMATION_REQUIRED|CONFIRMATION REQUIRED)/
+FAIL: Placeholder or unverified field remains in main.tex: /AUTHOR CONFIRMATION REQUIRED/
+FAIL: Placeholder or unverified field remains in SUBMISSION_PRECHECK_V18.md: /NOT PROVIDED/
+FAIL: Placeholder or unverified field remains in submission\sivp\tex\ra_repdet_sivp.tex: /Final artwork pending/
+FAIL: Placeholder or unverified field remains in submission\sivp\tex\ra_repdet_sivp.tex: /TABLE PLACEHOLDER/
+FAIL: Placeholder or unverified field remains in main.tex: /PLACEHOLDER/
+FAIL: Missing final figure assets: figures/Fig1_overall_architecture.pdf, figures/Fig2_leakage_aware_protocol.pdf, figures/Fig3_controlled_ablation.pdf, figures/Fig4_missing_modality_robustness.pdf, figures/Fig5_reliability_weight_audit.pdf, figures/Fig6_qualitative_results.pdf
+RESULT: FAIL
 ```
-
-```powershell
-git -C 'E:\RepViT-main' status -sb
-```
-
-Could not be run because the path does not exist in the current session.
-
-```powershell
-gh --version
-```
-
-Final error:
-
-```text
-gh : The term 'gh' is not recognized as the name of a cmdlet, function, script file, or operable program.
-```
-
-```powershell
-where.exe gh
-```
-
-Final output:
-
-```text
-INFO: Could not find files for the given pattern(s).
-```
-
-## Last Relevant Execution State
-
-Before the workspace became inaccessible, Phase 2B work had reportedly progressed far enough to begin the E5 ACRF training attempt. That long training attempt reached approximately epoch 17, then stopped with a local log-file write failure:
-
-```text
-FileNotFoundError: [Errno 2] No such file or directory: 'E:\RepViT-main\runs\E5_acrf_dropout015_repvit_fcos_e50\train_log.txt'
-```
-
-A resume/log-directory patch was prepared locally afterward, but it is on the inaccessible `E:` workspace and cannot currently be inspected, compiled, committed, or pushed.
 
 ## Attempted Measures
 
-- Checked mounted filesystem drives with `Get-PSDrive`; only `C:` and `D:` are present.
-- Checked `Test-Path 'E:\RepViT-main'`; it returned `False`.
-- Checked for GitHub CLI with `gh --version` and `gh auth status`; both failed because `gh` is not on PATH.
-- Checked `where.exe gh`; no executable was found.
-- Read the remote `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, `docs/EXPERIMENT_STATUS.md`, `docs/NEXT_TASK.md`, and `runs/handoff_latest.md` through the GitHub connector to confirm the active task and document this blocker.
+- Read the v18 Chinese instruction file with UTF-8 decoding.
+- Ran the initial audit command with `--allow-placeholders`; the first attempt showed the preflight script was absent.
+- Added `scripts/preflight_submission.py`.
+- Created root `main.tex` and `main_sivp_snjnl.tex` and kept them synchronized.
+- Created v18 metadata, precheck, revision log, and author-input files without inventing missing information.
+- Confirmed `python scripts/preflight_submission.py --root . --allow-placeholders` returns PASS with warnings.
+- Confirmed strict `python scripts/preflight_submission.py --root .` fails on unresolved real-world inputs and final assets.
 
 ## Related Files
 
-- `docs/NEXT_TASK.md`
-- `docs/PROJECT_CONTEXT.md`
-- `docs/EXPERIMENT_STATUS.md`
-- `runs/handoff_latest.md`
-- `rarepdet/tools/finish_task.ps1`
-- Local-only, currently inaccessible path: `E:\RepViT-main`
+- `D:/download/CODEX_FINISH_V18_CN.md`
+- `scripts/preflight_submission.py`
+- `main.tex`
+- `main_sivp_snjnl.tex`
+- `metadata/submission_metadata.yaml`
+- `metadata/submission_metadata.tex`
+- `metadata/IMPLEMENTATION_DETAILS_TEMPLATE.md`
+- `AUTHOR_FINAL_INPUTS_REQUIRED_V18.md`
+- `REVISION_LOG_V18.md`
+- `SUBMISSION_PRECHECK_V18.md`
+- `archive_manifest.txt`
+- `runs/phase7a_asset_readiness_report.md`
 
-## Proposed Repair Options
+## Repair Option 1
 
-1. Remount or reconnect the `E:` drive so `E:\RepViT-main` becomes available again, then resume from the local workspace with:
+Authors provide the missing factual inputs: final author metadata, TriAir citation/version/licence/access terms, public release URL/tag/commit/Zenodo DOI, final Visio-derived Fig. 1--2, and final Fig. 3--6 assets. Then replace the marked fields, rerun strict preflight, and compile `main_sivp_snjnl.tex`.
 
-```powershell
-git switch research/ra-repdet-triair
-git pull --ff-only research research/ra-repdet-triair
-```
+## Repair Option 2
 
-After that, inspect `git status`, recover the local ACRF changes if present, verify the E5 checkpoint, resume E5 training from `runs/E5_acrf_dropout015_repvit_fcos_e50/weights/last.pt`, then run the required evaluations and `finish_task.ps1`.
-
-2. If the `E:` workspace cannot be restored, create a fresh clone of `floomeer83felix-source/RA-RepDet-TriAir` on an available drive, re-implement Phase 2B from `docs/NEXT_TASK.md`, and rerun E5 from scratch. This is slower but avoids relying on inaccessible uncommitted files.
-
-## Smallest Safe Next Action
-
-Restore access to `E:\RepViT-main` and rerun:
-
-```powershell
-Get-PSDrive -PSProvider FileSystem
-git -C E:\RepViT-main status -sb
-```
-
-Do not retrain or overwrite E0/E1/E2. Do not delete any local E5 artifacts if the `E:` drive returns.
+If final author/release/assets are not available yet, keep this as a pre-submission readiness package. Use the `--allow-placeholders` preflight PASS as a structural check, do not compile or label a final PDF, and wait for author approval before making a formal SIVP submission bundle.

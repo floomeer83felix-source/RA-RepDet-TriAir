@@ -1,0 +1,50 @@
+% !TEX root = main.tex
+% PRE-FINAL SIVP placeholder source. Not for submission.
+\documentclass[pdflatex,iicol,sn-mathphys-num]{sn-jnl}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{hyperref}
+
+\raggedbottom
+
+\begin{document}
+
+\title[Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection Under Leakage-Aware Evaluation]{Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection Under Leakage-Aware Evaluation}
+
+\author*[1]{\fnm{[AUTHOR 1 GIVEN NAME]} \sur{[AUTHOR 1 FAMILY NAME]}}\email{[CORRESPONDING EMAIL]}
+\author[2]{\fnm{[AUTHOR 2 GIVEN NAME]} \sur{[AUTHOR 2 FAMILY NAME]}}\email{[AUTHOR 2 EMAIL]}
+
+\affil*[1]{\orgdiv{[DEPARTMENT]}, \orgname{[AFFILIATION]}, \orgaddress{\city{[CITY]}, \country{[COUNTRY]}}}
+\affil[2]{\orgdiv{[DEPARTMENT]}, \orgname{[AFFILIATION]}, \orgaddress{\city{[CITY]}, \country{[COUNTRY]}}}
+
+\abstract{Multi-sensor UAV perception can benefit from RGB, thermal, and event information, but validation can be overstated when adjacent frames or duplicated visual content cross train and validation splits. We present RA-RepDet, a lightweight RepViT-FCOS detector for TriAir vehicle detection that combines reliability-aware fusion with modality-dropout training. The study uses a leakage-aware blocked split with 7439 training images, 2213 validation images, and 837 excluded guard images, yielding zero exact RGB train/validation matches and zero same-family guard violations. In controlled two-seed experiments, the proposed R4 variant, reliability fusion with modality dropout p=0.20, achieved mean AP50=0.962495, AP75=0.891266, and F1=0.920861. R4 improved the matched tri-modal early-fusion RepViT-FCOS baseline and was strongest among evaluated reliability variants under synthetic single-sensor removal. The YOLO11n comparison is reported strictly as an RGB-only external baseline, not as a matched architecture ablation. These results support a practical, reproducible tri-modal UAV detection baseline while preserving limitations from two seeds, one dataset, synthetic missingness, and thermal-drop vulnerability.}
+
+\keywords{UAV vehicle detection, RGB-thermal-event fusion, RepViT-FCOS, missing-modality robustness, leakage-aware evaluation}
+
+\maketitle
+
+\input{submission/sivp/tex/ra_repdet_sivp}
+
+\section*{Statements and Declarations}
+
+\bmhead{Funding}
+[FUNDING NUMBER OR NONE - AUTHOR CONFIRMATION REQUIRED]
+
+\bmhead{Competing Interests}
+[COMPETING INTERESTS STATEMENT - AUTHOR CONFIRMATION REQUIRED]
+
+\bmhead{Author Contributions}
+[AUTHOR CONTRIBUTIONS - AUTHOR CONFIRMATION REQUIRED]
+
+\bmhead{Acknowledgments}
+[ACKNOWLEDGMENTS OR NONE - AUTHOR CONFIRMATION REQUIRED]
+
+\bmhead{Data Availability}
+[DATA AVAILABILITY STATEMENT - AUTHOR CONFIRMATION REQUIRED. Do not promise dataset redistribution beyond known rights.]
+
+\bibliography{references}
+
+\end{document}

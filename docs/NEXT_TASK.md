@@ -62,7 +62,7 @@ powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 
 # Commit Message
 
-Phase 7A: enter final SIVP asset readiness
+Phase 7A: add V18 submission preflight blocker
 
 # After Completion
 
