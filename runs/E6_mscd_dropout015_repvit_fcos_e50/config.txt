@@ -1,0 +1,22 @@
+MSCD RarePDet experiment config
+================================
+batch_size: 2
+cons_ramp_end_epoch: 15
+cons_warmup_epochs: 5
+data: D:\download\triair
+device: cuda
+epochs: 50
+img_size: 640
+lambda_cons_max: 0.05
+lr: 0.0001
+modality_dropout: 0.15
+num_workers: 0
+out: runs\E6_mscd_dropout015_repvit_fcos_e50
+teacher_weights: runs\E2_reliability_dropout015_repvit_fcos_e50\weights\best.pt
+train_split: D:\download\triair\splits\train.txt
+val_split: D:\download\triair\splits\val.txt
+train_samples: 8391
+val_samples: 2098
+params: 6593293
+teacher_params: 6593293
+extra_inference_params: 0

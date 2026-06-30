@@ -1,0 +1,26 @@
+Category,Rank,Image ID,Image Path,Brightness Proxy,Brightness Group,GT Count,E0 TP,E0 FP,E0 FN,E1 TP,E1 FP,E1 FN,E2 TP,E2 FP,E2 FN,Notes
+"E0 miss, E2 hit",1,1261,D:\download\triair\data\images\nframe_01854.npy,0.233803,mid,3,1,0,2,3,0,0,3,0,0,E2 covers all GT while E0 leaves at least one GT unmatched.
+"E0 miss, E2 hit",2,1866,D:\download\triair\data\images\frame_02622.npy,0.528254,high,4,2,0,2,3,0,1,4,0,0,E2 covers all GT while E0 leaves at least one GT unmatched.
+"E0 miss, E2 hit",3,1072,D:\download\triair\data\images\nframe_08441.npy,0.021670,low,4,2,2,2,2,2,2,4,1,0,E2 covers all GT while E0 leaves at least one GT unmatched.
+"E0 miss, E2 hit",4,1860,D:\download\triair\data\images\nframe_09431.npy,0.013719,low,2,1,0,1,1,0,1,2,0,0,E2 covers all GT while E0 leaves at least one GT unmatched.
+"E0 miss, E2 hit",5,756,D:\download\triair\data\images\nframe_09430.npy,0.013863,low,2,1,0,1,1,0,1,2,0,0,E2 covers all GT while E0 leaves at least one GT unmatched.
+"E1 miss, E2 hit",1,188,D:\download\triair\data\images\frame_03146.npy,0.559118,high,4,4,0,0,2,0,2,4,0,0,E2 covers all GT while E1 leaves at least one GT unmatched.
+"E1 miss, E2 hit",2,1072,D:\download\triair\data\images\nframe_08441.npy,0.021670,low,4,2,2,2,2,2,2,4,1,0,E2 covers all GT while E1 leaves at least one GT unmatched.
+"E1 miss, E2 hit",3,1860,D:\download\triair\data\images\nframe_09431.npy,0.013719,low,2,1,0,1,1,0,1,2,0,0,E2 covers all GT while E1 leaves at least one GT unmatched.
+"E1 miss, E2 hit",4,756,D:\download\triair\data\images\nframe_09430.npy,0.013863,low,2,1,0,1,1,0,1,2,0,0,E2 covers all GT while E1 leaves at least one GT unmatched.
+"E1 miss, E2 hit",5,1474,D:\download\triair\data\images\nframe_02335.npy,0.015267,low,1,1,0,0,0,0,1,1,0,0,E2 covers all GT while E1 leaves at least one GT unmatched.
+low-brightness E2-success case,1,1368,D:\download\triair\data\images\nframe_09793.npy,0.011780,low,1,1,0,0,1,0,0,1,0,0,Low-brightness proxy sample where E2 covers all GT.
+low-brightness E2-success case,2,304,D:\download\triair\data\images\nframe_09794.npy,0.011780,low,1,1,0,0,1,0,0,1,0,0,Low-brightness proxy sample where E2 covers all GT.
+low-brightness E2-success case,3,1356,D:\download\triair\data\images\nframe_09403.npy,0.012590,low,2,2,0,0,2,0,0,2,0,0,Low-brightness proxy sample where E2 covers all GT.
+low-brightness E2-success case,4,974,D:\download\triair\data\images\nframe_09404.npy,0.012602,low,2,2,0,0,2,0,0,2,0,0,Low-brightness proxy sample where E2 covers all GT.
+low-brightness E2-success case,5,1309,D:\download\triair\data\images\nframe_09395.npy,0.012725,low,2,2,0,0,2,0,0,2,0,0,Low-brightness proxy sample where E2 covers all GT.
+representative shared success case,1,1326,D:\download\triair\data\images\nframe_01460.npy,0.047708,low,13,13,0,0,13,0,0,13,0,0,All three models cover all GT; lower total FP ranked first.
+representative shared success case,2,683,D:\download\triair\data\images\nframe_08492.npy,0.106795,mid,10,10,0,0,10,0,0,10,0,0,All three models cover all GT; lower total FP ranked first.
+representative shared success case,3,1893,D:\download\triair\data\images\frame_02513.npy,0.508440,high,9,9,0,0,9,0,0,9,0,0,All three models cover all GT; lower total FP ranked first.
+representative shared success case,4,604,D:\download\triair\data\images\frame_02419.npy,0.514977,high,9,9,0,0,9,0,0,9,0,0,All three models cover all GT; lower total FP ranked first.
+representative shared success case,5,1970,D:\download\triair\data\images\frame_02793.npy,0.459821,high,9,9,0,0,9,0,0,9,0,0,All three models cover all GT; lower total FP ranked first.
+representative E2 failure case,1,1612,D:\download\triair\data\images\nframe_08506.npy,0.183049,mid,15,12,1,3,12,1,3,11,0,4,E2 has at least one unmatched GT or false positive.
+representative E2 failure case,2,2022,D:\download\triair\data\images\nframe_08526.npy,0.245088,mid,14,12,3,2,12,1,2,11,0,3,E2 has at least one unmatched GT or false positive.
+representative E2 failure case,3,1649,D:\download\triair\data\images\nframe_01495.npy,0.044615,low,14,12,1,2,13,2,1,12,3,2,E2 has at least one unmatched GT or false positive.
+representative E2 failure case,4,724,D:\download\triair\data\images\frame_01350.npy,0.481368,high,6,4,0,2,5,1,1,4,2,2,E2 has at least one unmatched GT or false positive.
+representative E2 failure case,5,1065,D:\download\triair\data\images\nframe_09122.npy,0.185695,mid,3,2,0,1,2,2,1,1,2,2,E2 has at least one unmatched GT or false positive.

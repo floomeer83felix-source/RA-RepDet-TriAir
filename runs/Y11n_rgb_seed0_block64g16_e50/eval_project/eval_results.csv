@@ -1,0 +1,2 @@
+Method,Seed,Images,Weights,Precision,Recall,F1,AP50,AP75,GT boxes,Predictions,Mean Confidence,FPS,Score Threshold,Prediction Conf
+YOLO11n RGB-only,0,2213,E:\RepViT-main\runs\Y11n_rgb_seed0_block64g16_e50\weights\best.pt,0.913918,0.793022,0.849188,0.886374,0.629228,5904,5123,0.808770,124.460735,0.5,0.001

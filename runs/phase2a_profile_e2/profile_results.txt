@@ -1,0 +1,5 @@
+Phase 2A profile results
+========================
+
+reliability raw_forward: FPS=117.451207 +/- 1.668889, Latency=8.515909 ms, CUDA memory=228.006667 MB
+reliability detector_inference: FPS=55.884826 +/- 0.594419, Latency=17.895982 ms, CUDA memory=235.820000 MB

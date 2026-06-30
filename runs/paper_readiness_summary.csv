@@ -1,0 +1,19 @@
+Section,Item,Status,Value,Notes
+Required Output,Phase 4B report,present,E:\RepViT-main\runs\phase4b_report.md,
+Required Output,Seed replication table,present,E:\RepViT-main\runs\clean_block64g16_seed_replication.csv,
+Required Output,Convergence audit,present,E:\RepViT-main\runs\clean_block64g16_convergence.csv,
+Required Output,Efficiency profile,present,E:\RepViT-main\runs\clean_efficiency_profile.csv,
+Required Output,R4 reliability audit,present,E:\RepViT-main\runs\r4_reliability_weight_audit.csv,
+Required Output,Qualitative manifest,present,E:\RepViT-main\runs\clean_qualitative_manifest.csv,
+Required Output,YOLO protocol,present,E:\RepViT-main\runs\yolo11n_rgb_baseline_protocol.md,
+Required Output,YOLO seed0 eval,present,E:\RepViT-main\runs\Y11n_rgb_seed0_block64g16_e50\eval_project\eval_results.csv,
+Required Output,YOLO seed2 eval,present,E:\RepViT-main\runs\Y11n_rgb_seed2_block64g16_e50\eval_project\eval_results.csv,
+Protocol,Current blocker,none,NA,Old resolved blocker files do not block Phase 5A.
+Clean split main variant,R4 Full AP50 mean,complete,0.962495,R4 is marked as main variant by Phase 4B.
+YOLO11n RGB-only,Seed 0,complete,AP50=0.886374 AP75=0.629228 F1=0.849188,External RGB-only baseline; not an architecture-only ablation.
+YOLO11n RGB-only,Seed 2,complete,AP50=0.885401 AP75=0.636794 F1=0.845727,External RGB-only baseline; not an architecture-only ablation.
+Convergence,R-run audit,complete,"CLEARLY_PLATEAUED=7, NEAR_PLATEAU=1",Descriptive only; no retraining triggered.
+Efficiency,Clean profile rows,complete,4,"Current-code profile, batch 1, 100 warmup, 300 iters, 3 repeats."
+Reliability audit,R4 alpha rows,complete,8,Synthetic modality removal gating behavior only.
+Qualitative,Manifest rows,complete,20,R4 corrects R0 miss/localization failure: 5; R4 failure/hard case: 5; R4 missing-modality illustrative case: 5; Shared successful detection: 5
+Decision,Phase 5A gate,READY FOR MANUSCRIPT DRAFTING,READY FOR MANUSCRIPT DRAFTING,

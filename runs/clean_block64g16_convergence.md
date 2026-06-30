@@ -1,0 +1,30 @@
+# Clean Block64G16 Convergence Audit
+
+Generated: 2026-06-26T23:25:17
+
+This audit reads existing R-run `train_log.txt` files only. It does not retrain and does not claim convergence solely because epoch 50 is the best checkpoint.
+
+## Summary
+
+- CLEARLY_PLATEAUED: 7
+- NEAR_PLATEAU: 1
+
+## Per-Run Audit
+
+| Variant | Seed | Best Epoch | Best AP50 | AP50 Epoch 40 | AP50 Epoch 45 | AP50 Epoch 50 | Delta AP50 40->50 | Best In Final Five | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| R0 Early Fusion | 0 | 5 | 0.938600 | 0.914500 | 0.917300 | 0.891700 | -0.022800 | false | CLEARLY_PLATEAUED |
+| R0 Early Fusion | 2 | 7 | 0.937700 | 0.875500 | 0.893100 | 0.857000 | -0.018500 | false | CLEARLY_PLATEAUED |
+| R1 Reliability p=0.00 | 0 | 11 | 0.952100 | 0.907200 | 0.920800 | 0.919500 | 0.012300 | false | NEAR_PLATEAU |
+| R1 Reliability p=0.00 | 2 | 6 | 0.954400 | 0.939900 | 0.910100 | 0.898700 | -0.041200 | false | CLEARLY_PLATEAUED |
+| R2 Reliability p=0.15 | 0 | 7 | 0.961500 | 0.935100 | 0.936400 | 0.928000 | -0.007100 | false | CLEARLY_PLATEAUED |
+| R2 Reliability p=0.15 | 2 | 6 | 0.957700 | 0.931400 | 0.933100 | 0.917000 | -0.014400 | false | CLEARLY_PLATEAUED |
+| R4 Reliability p=0.20 | 0 | 10 | 0.965000 | 0.947900 | 0.942300 | 0.936000 | -0.011900 | false | CLEARLY_PLATEAUED |
+| R4 Reliability p=0.20 | 2 | 7 | 0.960000 | 0.936000 | 0.934600 | 0.938900 | 0.002900 | false | CLEARLY_PLATEAUED |
+
+## Interpretation
+
+- `CLEARLY_PLATEAUED` means the late-epoch AP50 trajectory is flat or below earlier best values.
+- `NEAR_PLATEAU` means the late trajectory is mostly stable but not decisively flat.
+- `TAIL_STILL_IMPROVING` flags a descriptive late upward trend that may justify a reviewer-requested extension.
+- The fixed 50-epoch schedule should be disclosed for the clean-split controlled comparison.

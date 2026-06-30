@@ -1,0 +1,18 @@
+# Table 6 efficiency and convergence
+
+Efficiency profiling and convergence audit. Raw-forward and detector-inference paths are separate.
+
+| Group | Model | Path or Seed | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean | Best Epoch | Best AP50 | Status | Source | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| efficiency | R0 Early Fusion | raw_forward | 6591609 | 102.762853 | 9.747951 | 115.153333 | NA | NA | NA | runs/clean_efficiency_profile.csv | seed0 checkpoint |
+| efficiency | R0 Early Fusion | detector_inference | 6591609 | 48.065821 | 20.818388 | 122.680000 | NA | NA | NA | runs/clean_efficiency_profile.csv | seed0 checkpoint |
+| efficiency | R4 Reliability p=0.20 | raw_forward | 6593293 | 97.717654 | 10.238004 | 228.940000 | NA | NA | NA | runs/clean_efficiency_profile.csv | seed0 checkpoint; dropout is training-only |
+| efficiency | R4 Reliability p=0.20 | detector_inference | 6593293 | 50.436489 | 19.829330 | 236.756667 | NA | NA | NA | runs/clean_efficiency_profile.csv | seed0 checkpoint; dropout is training-only |
+| convergence | R0 Early Fusion | 0 | NA | NA | NA | NA | 5 | 0.938600 | CLEARLY_PLATEAUED | runs/clean_block64g16_convergence.csv | Descriptive audit; no extra training triggered. |
+| convergence | R0 Early Fusion | 2 | NA | NA | NA | NA | 7 | 0.937700 | CLEARLY_PLATEAUED | runs/clean_block64g16_convergence.csv | Descriptive audit; no extra training triggered. |
+| convergence | R1 Reliability p=0.00 | 0 | NA | NA | NA | NA | 11 | 0.952100 | NEAR_PLATEAU | runs/clean_block64g16_convergence.csv | Descriptive audit; no extra training triggered. |
+| convergence | R1 Reliability p=0.00 | 2 | NA | NA | NA | NA | 6 | 0.954400 | CLEARLY_PLATEAUED | runs/clean_block64g16_convergence.csv | Descriptive audit; no extra training triggered. |
+| convergence | R2 Reliability p=0.15 | 0 | NA | NA | NA | NA | 7 | 0.961500 | CLEARLY_PLATEAUED | runs/clean_block64g16_convergence.csv | Descriptive audit; no extra training triggered. |
+| convergence | R2 Reliability p=0.15 | 2 | NA | NA | NA | NA | 6 | 0.957700 | CLEARLY_PLATEAUED | runs/clean_block64g16_convergence.csv | Descriptive audit; no extra training triggered. |
+| convergence | R4 Reliability p=0.20 | 0 | NA | NA | NA | NA | 10 | 0.965000 | CLEARLY_PLATEAUED | runs/clean_block64g16_convergence.csv | Descriptive audit; no extra training triggered. |
+| convergence | R4 Reliability p=0.20 | 2 | NA | NA | NA | NA | 7 | 0.960000 | CLEARLY_PLATEAUED | runs/clean_block64g16_convergence.csv | Descriptive audit; no extra training triggered. |

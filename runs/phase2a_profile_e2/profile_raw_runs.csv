@@ -1,0 +1,7 @@
+Model,Path,Repeat,Batch Size,Img Size,Warmup,Iters,Params,Trainable Params,FPS,Latency ms/img,CUDA Memory MB
+reliability,raw_forward,1,1,640,100,300,6593293,6593293,115.117560,8.686772,228.00
+reliability,detector_inference,1,1,640,100,300,6593293,6593293,56.446471,17.715899,235.82
+reliability,raw_forward,2,1,640,100,300,6593293,6593293,118.923570,8.408762,228.01
+reliability,detector_inference,2,1,640,100,300,6593293,6593293,56.145682,17.810809,235.82
+reliability,raw_forward,3,1,640,100,300,6593293,6593293,118.312490,8.452193,228.01
+reliability,detector_inference,3,1,640,100,300,6593293,6593293,55.062324,18.161239,235.82

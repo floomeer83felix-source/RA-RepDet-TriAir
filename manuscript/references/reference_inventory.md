@@ -1,0 +1,39 @@
+# Reference Inventory
+
+Status: DRAFT VERIFIED METADATA - citation style pending target journal.
+
+Only entries with a DOI, arXiv record, official project page, publisher page, or official documentation source are included. The manuscript uses placeholder keys of the form `[REF: Key]` until a target journal citation style is selected.
+
+| Key | Title | Authors | Venue | Year | DOI_or_URL | Intended Section | Verification Source |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| RepViT2024 | RepViT: Revisiting Mobile CNN From ViT Perspective | Wang et al. | CVPR / arXiv | 2024 | https://arxiv.org/abs/2307.09283 | Method | arXiv record |
+| FCOS2019 | FCOS: Fully Convolutional One-Stage Object Detection | Tian, Shen, Chen, and He | ICCV | 2019 | https://openaccess.thecvf.com/content_ICCV_2019/html/Tian_FCOS_Fully_Convolutional_One-Stage_Object_Detection_ICCV_2019_paper.html | Method | CVF Open Access |
+| FPN2017 | Feature Pyramid Networks for Object Detection | Lin et al. | CVPR | 2017 | https://openaccess.thecvf.com/content_cvpr_2017/html/Lin_Feature_Pyramid_Networks_CVPR_2017_paper.html | Method | CVF Open Access |
+| FasterRCNN2015 | Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks | Ren, He, Girshick, and Sun | NeurIPS | 2015 | https://arxiv.org/abs/1506.01497 | Related work | arXiv record |
+| RetinaNet2017 | Focal Loss for Dense Object Detection | Lin, Goyal, Girshick, He, and Dollar | ICCV | 2017 | https://openaccess.thecvf.com/content_ICCV_2017/html/Lin_Focal_Loss_for_ICCV_2017_paper.html | Related work | CVF Open Access |
+| YOLO11Docs | YOLO11 model documentation | Ultralytics | Official documentation | 2024 | https://docs.ultralytics.com/models/yolo11/ | Experiments | Official documentation |
+| TorchvisionFCOS | Torchvision FCOS model documentation | PyTorch / Torchvision maintainers | Official documentation | 2024 | https://pytorch.org/vision/stable/models/fcos.html | Method | Official documentation |
+| TimmModels | PyTorch Image Models | Ross Wightman and contributors | Official software repository | 2019 | https://github.com/huggingface/pytorch-image-models | Implementation | Official repository |
+| VisDrone2018 | VisDrone: The Vision Meets Drone Object Detection Challenge | Zhu et al. | ECCV Workshops / official dataset | 2018 | https://github.com/VisDrone/VisDrone-Dataset | Related work | Official dataset repository |
+| UAVDT2018 | The Unmanned Aerial Vehicle Benchmark: Object Detection and Tracking | Du et al. | ECCV Workshops / official project | 2018 | https://sites.google.com/view/grli-uavdt | Related work | Official project page |
+| KAIST2015 | Multispectral Pedestrian Detection: Benchmark Dataset and Baseline | Hwang et al. | CVPR | 2015 | https://soonminhwang.github.io/rgbt-ped-detection/ | Related work | Official project page |
+| FLIRADAS | FLIR ADAS thermal dataset | Teledyne FLIR | Official dataset | 2018 | https://www.flir.com/oem/adas/adas-dataset-form/ | Related work | Official dataset page |
+| LLVIP2021 | LLVIP: A Visible-Infrared Paired Dataset for Low-Light Vision | Jia et al. | Official dataset / arXiv | 2021 | https://github.com/bupt-ai-cz/LLVIP | Related work | Official repository |
+| DroneVehicle2021 | DroneVehicle: A Drone-Based RGB-Infrared Cross-Modality Vehicle Detection Dataset | Sun et al. | Official dataset repository | 2021 | https://github.com/VisDrone/DroneVehicle | Related work | Official repository |
+| CrossModalDistillation2016 | Cross Modal Distillation for Supervision Transfer | Gupta, Hoffman, and Malik | CVPR | 2016 | https://openaccess.thecvf.com/content_cvpr_2016/html/Gupta_Cross_Modal_Distillation_CVPR_2016_paper.html | Related work | CVF Open Access |
+| ModalityHallucination2016 | Learning with Side Information through Modality Hallucination | Hoffman et al. | CVPR | 2016 | https://openaccess.thecvf.com/content_cvpr_2016/html/Hoffman_Learning_With_Side_CVPR_2016_paper.html | Related work | CVF Open Access |
+| Gallego2020EventSurvey | Event-Based Vision: A Survey | Gallego et al. | IEEE TPAMI | 2020 | https://arxiv.org/abs/1904.08405 | Related work | arXiv record |
+| MVSEC2018 | The Multivehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception | Zhu et al. | IEEE Robotics and Automation Letters | 2018 | https://daniilidis-group.github.io/mvsec/ | Related work | Official project page |
+| DSEC2021 | DSEC: A Stereo Event Camera Dataset for Driving Scenarios | Gehrig et al. | IEEE Robotics and Automation Letters | 2021 | https://dsec.ifi.uzh.ch/ | Related work | Official project page |
+| Gen1Events | GEN1 Automotive Detection Dataset | Prophesee | Official dataset documentation | 2020 | https://docs.prophesee.ai/stable/datasets.html | Related work | Official documentation |
+| RVT2023 | Recurrent Vision Transformers for Object Detection with Event Cameras | Gehrig and Scaramuzza | CVPR | 2023 | https://arxiv.org/abs/2212.05598 | Related work | arXiv record |
+| E2VID2021 | High Speed and High Dynamic Range Video with an Event Camera | Rebecq et al. | IEEE TPAMI / CVPR extension | 2021 | https://arxiv.org/abs/1906.07173 | Related work | arXiv record |
+| ModDrop2016 | ModDrop: Adaptive Multi-Modal Gesture Recognition | Neverova et al. | IEEE TPAMI / CVPR workshop lineage | 2016 | https://arxiv.org/abs/1501.00102 | Missing-modality robustness | arXiv record |
+| HeMIS2016 | HeMIS: Hetero-Modal Image Segmentation | Havaei et al. | MICCAI | 2016 | https://arxiv.org/abs/1607.05194 | Missing-modality robustness | arXiv record |
+| Kapoor2023Leakage | Leakage and the Reproducibility Crisis in ML-based Science | Kapoor and Narayanan | Patterns | 2023 | https://doi.org/10.1016/j.patter.2023.100804 | Evaluation protocol | DOI resolver |
+| Cawley2010Overfitting | On Over-fitting in Model Selection and Subsequent Selection Bias in Performance Evaluation | Cawley and Talbot | Journal of Machine Learning Research | 2010 | https://jmlr.org/papers/v11/cawley10a.html | Evaluation protocol | JMLR official page |
+| Recht2019ImageNet | Do ImageNet Classifiers Generalize to ImageNet? | Recht et al. | ICML | 2019 | https://arxiv.org/abs/1902.10811 | Evaluation protocol | arXiv record |
+| Northcutt2021LabelErrors | Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks | Northcutt, Athalye, and Mueller | NeurIPS | 2021 | https://arxiv.org/abs/2103.14749 | Evaluation protocol | arXiv record |
+| COCO2014 | Microsoft COCO: Common Objects in Context | Lin et al. | ECCV | 2014 | https://arxiv.org/abs/1405.0312 | Experiments | arXiv record |
+| PascalVOC2010 | The PASCAL Visual Object Classes (VOC) Challenge | Everingham et al. | International Journal of Computer Vision | 2010 | https://doi.org/10.1007/s11263-009-0275-4 | Experiments | DOI resolver |
+| Kohavi1995CV | A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection | Kohavi | IJCAI | 1995 | https://www.ijcai.org/Proceedings/95-2/Papers/016.pdf | Evaluation protocol | IJCAI proceedings PDF |

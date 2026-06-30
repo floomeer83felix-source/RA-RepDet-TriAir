@@ -1,0 +1,17 @@
+YOLO11n RGB baseline eval results
+=================================
+Method: YOLO11n RGB-only
+Seed: 2
+Images: 2213
+Weights: E:\RepViT-main\runs\Y11n_rgb_seed2_block64g16_e50\weights\best.pt
+Precision: 0.914027
+Recall: 0.786924
+F1: 0.845727
+AP50: 0.885401
+AP75: 0.636794
+GT boxes: 5904
+Predictions: 5083
+Mean Confidence: 0.782716
+FPS: 113.668377
+Score Threshold: 0.5
+Prediction Conf: 0.001
