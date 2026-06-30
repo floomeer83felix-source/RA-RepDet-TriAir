@@ -1,0 +1,61 @@
+﻿table_or_figure,variant,seed,condition,metric,v22_value,v23_value,absolute_difference,reason_for_change
+Table 3 / Fig. 3,R0 Early Fusion,0,full,precision,0.890591,0.8905908096280087,1.9037199128213445e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,0,full,recall,0.896172,0.8961720867208672,8.672086726502215e-08,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,0,full,f1,0.893373,0.8933727311101731,2.68889826848806e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,0,full,ap50,0.93856,0.9407908916473389,0.0022308916473389173,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,0,full,ap75,0.82756,0.8304921388626099,0.002932138862609901,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,2,full,precision,0.902247,0.9022466129308866,3.8706911342778483e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,2,full,recall,0.891091,0.8910907859078591,2.1409214090439832e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,2,full,f1,0.896634,0.8966340008521516,8.521515715287364e-10,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,2,full,ap50,0.937711,0.9413885474205017,0.0036775474205017478,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R0 Early Fusion,2,full,ap75,0.831114,0.8346405029296875,0.0035265029296874806,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,0,full,precision,0.890553,0.8905529953917051,4.608294967844984e-09,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,0,full,recall,0.916497,0.9164972899728997,2.8997289969190376e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,0,full,f1,0.903339,0.9033388981636061,1.0183639387317811e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,0,full,ap50,0.952112,0.954266369342804,0.0021543693428039967,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,0,full,ap75,0.889847,0.8918557167053223,0.002008716705322211,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,2,full,precision,0.920263,0.9202634772057549,4.772057548008135e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,2,full,recall,0.899221,0.8992208672086721,1.3279132793364568e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,2,full,f1,0.90962,0.9096204917330593,4.917330592713043e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,2,full,ap50,0.954378,0.9563413262367249,0.001963326236724905,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R1 Reliability p=0.00,2,full,ap75,0.893068,0.8954483866691589,0.0023803866691589626,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,0,full,precision,0.906797,0.9067967698519516,2.3014804839682768e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,0,full,recall,0.91294,0.912940379403794,3.794037940485495e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,0,full,f1,0.909858,0.9098582039162728,2.039162728673105e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,0,full,ap50,0.961573,0.9623881578445435,0.000815157844543446,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,0,full,ap75,0.899166,0.900086522102356,0.0009205221023559362,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,2,full,precision,0.916368,0.9163679808841099,1.91158900930688e-08,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,2,full,recall,0.909383,0.9093834688346883,4.6883468829417296e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,2,full,f1,0.912862,0.9128623650429312,3.650429312163084e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,2,full,ap50,0.957739,0.9588375091552734,0.0010985091552734305,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R2 Reliability p=0.15,2,full,ap75,0.870351,0.8715863823890686,0.0012353823890686177,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,0,full,precision,0.93885,0.9388495422352738,4.577647261250206e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,0,full,recall,0.920562,0.9205623306233063,3.306233062883024e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,0,full,f1,0.929616,0.9296160095783802,9.578380200103709e-09,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,0,full,ap50,0.965012,0.9653457403182983,0.00033374031829835893,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,0,full,ap75,0.895019,0.8954504728317261,0.0004314728317260652,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,2,full,precision,0.906763,0.9067626380984265,3.619015734868114e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,2,full,recall,0.917514,0.9175135501355014,4.4986449865280775e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,2,full,f1,0.912107,0.9121064152214179,5.847785821133655e-07,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,2,full,ap50,0.959977,0.9603855013847351,0.0004085013847351382,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 3 / Fig. 3,R4 Reliability p=0.20,2,full,ap75,0.887513,0.8881215453147888,0.000608545314788822,detector-output threshold standardized to 0.001; operating threshold kept at 0.50
+Table 4 / Fig. 4,R1 Reliability p=0.00,0,w/o RGB,ap50,0.673004,0.6730044484138489,4.484138488303202e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R1 Reliability p=0.00,0,w/o Thermal,ap50,0.328742,0.32874244451522827,4.4451522829280776e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R1 Reliability p=0.00,0,w/o Event,ap50,0.42556,0.4255604147911072,4.1479110718389833e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R1 Reliability p=0.00,2,w/o RGB,ap50,0.752975,0.7529745697975159,4.302024840807661e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R1 Reliability p=0.00,2,w/o Thermal,ap50,0.332811,0.3328113257884979,3.257884979013248e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R1 Reliability p=0.00,2,w/o Event,ap50,0.71188,0.711879551410675,4.4858932490843273e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R2 Reliability p=0.15,0,w/o RGB,ap50,0.911342,0.9113417267799377,2.7322006224128614e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R2 Reliability p=0.15,0,w/o Thermal,ap50,0.682321,0.6823210120201111,1.2020111128663302e-08,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R2 Reliability p=0.15,0,w/o Event,ap50,0.961223,0.9612230658531189,6.585311884688139e-08,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R2 Reliability p=0.15,2,w/o RGB,ap50,0.904481,0.9044808149337769,1.8506622312397525e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R2 Reliability p=0.15,2,w/o Thermal,ap50,0.658199,0.6581994891166687,4.891166687226445e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R2 Reliability p=0.15,2,w/o Event,ap50,0.955474,0.9554735422134399,4.577865601040898e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R4 Reliability p=0.20,0,w/o RGB,ap50,0.923708,0.9237081408500671,1.4085006716513249e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R4 Reliability p=0.20,0,w/o Thermal,ap50,0.729869,0.7298694849014282,4.849014282326536e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R4 Reliability p=0.20,0,w/o Event,ap50,0.963677,0.9636772871017456,2.871017455996494e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R4 Reliability p=0.20,2,w/o RGB,ap50,0.908394,0.908394455909729,4.559097289691394e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R4 Reliability p=0.20,2,w/o Thermal,ap50,0.706685,0.7066850066184998,6.618499748256568e-09,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+Table 4 / Fig. 4,R4 Reliability p=0.20,2,w/o Event,ap50,0.959476,0.9594763517379761,3.5173797607868096e-07,missing-modality AP recomputed from detector-output threshold 0.001 candidates
+
+

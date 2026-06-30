@@ -1,5 +1,9 @@
 # Integration status
 
-This branch currently publishes the V23 standardized-evaluation protocol and evidence index. The local V23 handoff also contains revised evaluator implementations that separate detector-output and metric thresholds, but those executable changes have not yet been committed to this branch.
+Code integration complete.
 
-Do not treat the command examples in `docs/STANDARDIZED_EVALUATION_V23.md` as runnable from this branch until the evaluator integration is committed and reviewed. The authoritative V23 evidence remains the supplied handoff/source bundle. No model weight, split, or reported metric has been changed by the documentation commits on this branch.
+This branch now includes the V23 evaluator implementations in `rarepdet/eval_map.py` and `rarepdet/tools/eval_missing_modality.py`. Both scripts separate detector-output thresholding from the precision/recall/F1 operating threshold, preserve the legacy `--score-thr` / `--score-thresh` entry points, and write the V23 provenance fields required by the standardized re-evaluation protocol.
+
+The lightweight V23 evidence files are published under `reproducibility/standardized_evaluation_v23/results_v23/`. No raw data, model weight, checkpoint, split, or reported V23 numeric result was changed by this integration commit.
+
+Note: the external file named `RA_RepDet_SIVP_v24_SubmissionReadiness_Source.zip` was not present in the searched local paths during this repository sync. The evaluator files and evidence copied here come from the local V23 standardized re-evaluation outputs generated under `<LOCAL_PROJECT_ROOT>`.

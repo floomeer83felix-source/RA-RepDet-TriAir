@@ -2,11 +2,11 @@
 
 Repository: `floomeer83felix-source/RA-RepDet-TriAir`
 
-Local workspace: `E:\RepViT-main`
+Local workspace: `<LOCAL_PROJECT_ROOT>`
 
 Remote branch: `research/ra-repdet-triair`
 
-Dataset root: `D:\download\triair`
+Dataset root: `<LOCAL_DATASET_ROOT>`
 
 This project studies RepViT-based multimodal UAV vehicle detection on TriAir. The current experimental line compares:
 

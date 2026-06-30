@@ -26,9 +26,9 @@ Lightweight aggregate tables, manifests, commands, environment records, and raw 
 Use the dedicated standardized evaluator scripts with explicit thresholds. The data root and checkpoint path are local paths supplied by the user.
 
 ```powershell
-python rarepdet/tools/eval_standardized.py --model reliability --data <LOCAL_TRI_MODAL_UAV_DATASET_ROOT> --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights <LOCAL_CHECKPOINT_PATH> --img-size 640 --device cuda --batch-size 4 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/standardized_eval
+python rarepdet/eval_map.py --model reliability --data <LOCAL_DATASET_ROOT> --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights <LOCAL_CHECKPOINT_PATH> --img-size 640 --device cuda --batch-size 4 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/standardized_eval
 ```
 
 ```powershell
-python rarepdet/tools/eval_missing_modality_standardized.py --model reliability --data <LOCAL_TRI_MODAL_UAV_DATASET_ROOT> --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights <LOCAL_CHECKPOINT_PATH> --img-size 640 --device cuda --batch-size 4 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/standardized_missing_modality
+python rarepdet/tools/eval_missing_modality.py --model reliability --data <LOCAL_DATASET_ROOT> --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights <LOCAL_CHECKPOINT_PATH> --img-size 640 --device cuda --batch-size 4 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/standardized_missing_modality
 ```

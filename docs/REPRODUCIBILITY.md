@@ -54,14 +54,14 @@ Seed 0:
 
 ```powershell
 conda activate pytorch
-python rarepdet/train_early_fusion.py --model reliability --data D:\download\triair --train-split runs/blocked_split_candidates/block64_guard16_seed0_train.txt --val-split runs/blocked_split_candidates/block64_guard16_seed0_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --seed 0 --out runs/R4_reliability_p020_seed0_block64g16_e50
+python rarepdet/train_early_fusion.py --model reliability --data <LOCAL_DATASET_ROOT> --train-split runs/blocked_split_candidates/block64_guard16_seed0_train.txt --val-split runs/blocked_split_candidates/block64_guard16_seed0_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --seed 0 --out runs/R4_reliability_p020_seed0_block64g16_e50
 ```
 
 Seed 2:
 
 ```powershell
 conda activate pytorch
-python rarepdet/train_early_fusion.py --model reliability --data D:\download\triair --train-split runs/blocked_split_candidates/block64_guard16_seed0_train.txt --val-split runs/blocked_split_candidates/block64_guard16_seed0_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --seed 2 --out runs/R4_reliability_p020_seed2_block64g16_e50
+python rarepdet/train_early_fusion.py --model reliability --data <LOCAL_DATASET_ROOT> --train-split runs/blocked_split_candidates/block64_guard16_seed0_train.txt --val-split runs/blocked_split_candidates/block64_guard16_seed0_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --seed 2 --out runs/R4_reliability_p020_seed2_block64g16_e50
 ```
 
 ## Evaluation Commands
@@ -70,14 +70,14 @@ Full-modality validation at the manuscript threshold:
 
 ```powershell
 conda activate pytorch
-python rarepdet/eval_map.py --model reliability --data D:\download\triair --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights runs/R4_reliability_p020_seed0_block64g16_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.50 --out runs/R4_reliability_p020_seed0_block64g16_e50/eval_thr050
+python rarepdet/eval_map.py --model reliability --data <LOCAL_DATASET_ROOT> --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights <LOCAL_CHECKPOINT_PATH> --img-size 640 --device cuda --batch-size 4 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/R4_reliability_p020_seed0_block64g16_e50/eval_thr050
 ```
 
 Missing-modality robustness evaluation:
 
 ```powershell
 conda activate pytorch
-python rarepdet/tools/eval_missing_modality.py --model reliability --data D:\download\triair --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights runs/R4_reliability_p020_seed0_block64g16_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.05 --out runs/R4_reliability_p020_seed0_block64g16_e50/missing_modality
+python rarepdet/tools/eval_missing_modality.py --model reliability --data <LOCAL_DATASET_ROOT> --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights <LOCAL_CHECKPOINT_PATH> --img-size 640 --device cuda --batch-size 4 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/R4_reliability_p020_seed0_block64g16_e50/missing_modality
 ```
 
 Efficiency profiling, matching the clean-split manuscript workflow:

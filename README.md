@@ -17,6 +17,21 @@ This public package intentionally contains only source code, split manifests, au
 
 The former E0-E6 runs are historical/exploratory diagnostics and are not manuscript headline results. The manuscript headline result is the clean blocked-split R4 comparison on the frozen validation partition.
 
+## V23 Standardized Re-Evaluation
+
+The V23 evaluator integration standardizes the detector-output candidate set used by full-input and missing-modality validation:
+
+- Frozen split: `block64_guard16_seed0`.
+- Detector-output threshold: `0.001`.
+- Metric operating threshold: `0.50` for precision, recall, and F1.
+- NMS threshold: `0.6`.
+- Detections per image: `100`.
+- AP50/AP75 are project-local single-class AP metrics, not COCO AP50:95.
+- Results are validation-only and are not an independent test result.
+- Missing-modality rows use synthetic channel removal, not physical sensor-failure measurements.
+
+V23 lightweight evidence is stored in [`reproducibility/standardized_evaluation_v23/results_v23`](reproducibility/standardized_evaluation_v23/results_v23).
+
 ## What Is Included
 
 - `datasets/triair_dataset.py`: TriAir five-channel dataset adapter. Missing label txt files are treated as empty-target images.
@@ -43,19 +58,19 @@ The publication-safe clean split is `block64_guard16_seed0` and is documented in
 Create or inspect split manifests:
 
 ```powershell
-python tools/create_triair_split.py --data D:\download\triair --val-ratio 0.2 --seed 0 --out D:\download\triair\splits
+python tools/create_triair_split.py --data <LOCAL_DATASET_ROOT> --val-ratio 0.2 --seed 0 --out <LOCAL_DATASET_ROOT>/splits
 ```
 
 Train a reliability model on explicit split files:
 
 ```powershell
-python rarepdet/train_early_fusion.py --model reliability --data D:\download\triair --train-split runs/blocked_split_candidates/block64_guard16_seed0_train.txt --val-split runs/blocked_split_candidates/block64_guard16_seed0_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --seed 0 --out runs/R4_reliability_p020_seed0_block64g16_e50
+python rarepdet/train_early_fusion.py --model reliability --data <LOCAL_DATASET_ROOT> --train-split runs/blocked_split_candidates/block64_guard16_seed0_train.txt --val-split runs/blocked_split_candidates/block64_guard16_seed0_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --seed 0 --out runs/R4_reliability_p020_seed0_block64g16_e50
 ```
 
 Evaluate a checkpoint:
 
 ```powershell
-python rarepdet/eval_map.py --model reliability --data D:\download\triair --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights runs/R4_reliability_p020_seed0_block64g16_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --score-thr 0.50 --out runs/R4_reliability_p020_seed0_block64g16_e50/eval_thr050
+python rarepdet/eval_map.py --model reliability --data <LOCAL_DATASET_ROOT> --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights <LOCAL_CHECKPOINT_PATH> --img-size 640 --device cuda --batch-size 4 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/R4_reliability_p020_seed0_block64g16_e50/eval_thr050
 ```
 
 ## License
