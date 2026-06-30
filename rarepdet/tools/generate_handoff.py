@@ -322,6 +322,42 @@ def collect_phase6a():
     }
 
 
+def collect_phase6b():
+    submission_dir = PROJECT_ROOT / "submission" / "sivp"
+    report = RUNS_DIR / "phase6b_sivp_preparation_report.md"
+    return {
+        "readme": str(submission_dir / "README.md") if (submission_dir / "README.md").exists() else None,
+        "main_tex": str(submission_dir / "tex" / "main.tex") if (submission_dir / "tex" / "main.tex").exists() else None,
+        "body_tex": str(submission_dir / "tex" / "ra_repdet_sivp.tex")
+        if (submission_dir / "tex" / "ra_repdet_sivp.tex").exists()
+        else None,
+        "references_bib": str(submission_dir / "tex" / "references.bib")
+        if (submission_dir / "tex" / "references.bib").exists()
+        else None,
+        "report": str(report) if report.exists() else None,
+        "decision": read_last_nonempty_line(report),
+        "metadata_count": len(list((submission_dir / "metadata").glob("*.md"))) if (submission_dir / "metadata").exists() else 0,
+        "review_count": len(list((submission_dir / "review").glob("*.md"))) + len(list((submission_dir / "review").glob("*.csv")))
+        if (submission_dir / "review").exists()
+        else 0,
+        "tex_source_count": len(
+            [
+                path
+                for path in (submission_dir / "tex").glob("**/*")
+                if path.is_file() and path.suffix.lower() in {".tex", ".cls", ".bst", ".bib", ".md"}
+            ]
+        )
+        if (submission_dir / "tex").exists()
+        else 0,
+        "figure_map": str(submission_dir / "figures" / "FINAL_ASSET_INSERTION_MAP.md")
+        if (submission_dir / "figures" / "FINAL_ASSET_INSERTION_MAP.md").exists()
+        else None,
+        "table_map": str(submission_dir / "tables" / "FINAL_TABLE_INSERTION_MAP.md")
+        if (submission_dir / "tables" / "FINAL_TABLE_INSERTION_MAP.md").exists()
+        else None,
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -349,6 +385,7 @@ def build_handoff():
     best_ap50 = best_by(eval_results, "ap50")
     best_ap75 = best_by(eval_results, "ap75")
     phase6a = collect_phase6a()
+    phase6b = collect_phase6b()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -374,6 +411,19 @@ def build_handoff():
             "Review manuscript/RA_RepDet_manuscript_v1.md against the target journal scope and word limits.",
             "Render final Fig. 1 and Fig. 2 schematics only after target-journal figure specifications are known.",
             "Keep raw data, weights, rendered panels, and local qualitative assets out of Git.",
+        ]
+    if phase6b["decision"] == "READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA":
+        pending = [
+            "Produce and author-approve final SIVP figures before replacing placeholder boxes.",
+            "Prepare final publication tables from the existing manuscript/table CSV sources.",
+            "Collect author metadata, declarations, funding, acknowledgments, and AI-use wording.",
+            "Complete a final LaTeX compile after the local environment has required Springer dependencies.",
+        ]
+        next_tasks = [
+            "Create final SIVP figure artwork according to submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md.",
+            "Create final SIVP tables according to submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md.",
+            "Ask authors to complete submission/sivp/metadata placeholders.",
+            "Install or enable the missing local LaTeX dependencies before final PDF compilation.",
         ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
@@ -427,6 +477,7 @@ def build_handoff():
         "phase4b": collect_phase4b(),
         "phase5a": collect_phase5a(),
         "phase6a": phase6a,
+        "phase6b": phase6b,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -585,6 +636,20 @@ def write_markdown(data, path):
         "- Claim ledger: `manuscript/submission_notes/claim_ledger.md`" if data["phase6a"]["claim_ledger"] else "- Claim ledger: NA",
         "- Self-audit: `manuscript/submission_notes/manuscript_self_audit.md`" if data["phase6a"]["self_audit"] else "- Self-audit: NA",
         f"- Decision: {data['phase6a']['decision'] or 'NA'}",
+        "",
+        "## Phase 6B SIVP Submission-Source Outputs",
+        "",
+        "- SIVP README: `submission/sivp/README.md`" if data["phase6b"]["readme"] else "- SIVP README: NA",
+        "- Main LaTeX source: `submission/sivp/tex/main.tex`" if data["phase6b"]["main_tex"] else "- Main LaTeX source: NA",
+        "- Body LaTeX source: `submission/sivp/tex/ra_repdet_sivp.tex`" if data["phase6b"]["body_tex"] else "- Body LaTeX source: NA",
+        "- BibTeX references: `submission/sivp/tex/references.bib`" if data["phase6b"]["references_bib"] else "- BibTeX references: NA",
+        "- Phase 6B report: `runs/phase6b_sivp_preparation_report.md`" if data["phase6b"]["report"] else "- Phase 6B report: NA",
+        f"- Template/LaTeX source files: {data['phase6b']['tex_source_count']}",
+        f"- Metadata template files: {data['phase6b']['metadata_count']}",
+        f"- Review/audit files: {data['phase6b']['review_count']}",
+        "- Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`" if data["phase6b"]["figure_map"] else "- Figure insertion map: NA",
+        "- Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`" if data["phase6b"]["table_map"] else "- Table insertion map: NA",
+        f"- Decision: {data['phase6b']['decision'] or 'NA'}",
         "",
         "## Model And Code Structure",
         "",

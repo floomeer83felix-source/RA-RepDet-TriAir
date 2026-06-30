@@ -1,0 +1,5 @@
+# Competing Interests Statement Draft
+
+[AUTHOR CONFIRMATION REQUIRED]
+
+The authors declare [NO COMPETING INTERESTS / DETAILS OF COMPETING INTERESTS].

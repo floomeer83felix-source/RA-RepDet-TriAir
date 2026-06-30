@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-27T16:32:30
+Generated: 2026-06-30T15:00:17
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -84,8 +84,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 6A - Journal-Neutral English Manuscript Draft
-- Goal: Create a complete journal-neutral English manuscript package from frozen clean-split evidence.
+- Current Task: Phase 6B - SIVP Submission-Source Preparation
+- Goal: Prepare a pre-final SIVP LaTeX source package, metadata placeholders, and compliance audits.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -310,13 +310,27 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Verified reference inventory rows: 31
 - Decision: MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING
 
+## Phase 6B outputs
+
+- SIVP README: `submission/sivp/README.md`
+- Main LaTeX source: `submission/sivp/tex/main.tex`
+- Body LaTeX source: `submission/sivp/tex/ra_repdet_sivp.tex`
+- BibTeX references: `submission/sivp/tex/references.bib`
+- Phase 6B report: `runs/phase6b_sivp_preparation_report.md`
+- Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
+- Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
+- Template/LaTeX source files: 16
+- Metadata template files: 7
+- Review/audit files: 5
+- Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
+
 
 ## Pending tasks
 
-- Choose a target SCI/EI journal before final formatting.
-- Finalize citation style and replace manuscript reference placeholders after journal selection.
-- Prepare journal-specific figure dimensions from the commit-safe figure manifests and source CSV files.
-- Keep random-split E-runs as historical diagnostics only.
+- Produce and author-approve final SIVP figures before replacing placeholder boxes.
+- Prepare final publication tables from the existing manuscript/table CSV sources.
+- Collect author metadata, declarations, funding, acknowledgments, and AI-use wording.
+- Complete a final LaTeX compile after the local environment has required Springer dependencies.
 
 ## Known metric caveats
 
@@ -331,6 +345,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 4B still uses only two seeds; do not claim statistical significance.
 - Phase 5A YOLO11n is an RGB-only external baseline and not an architecture-only ablation.
 - Phase 6A manuscript is journal-neutral and citation style remains pending target journal selection.
+- Phase 6B source package is pre-final and uses placeholders for final figures, tables, author details, and declarations.
+- Phase 6B dry-run compilation was skipped if the local LaTeX environment lacks required Springer dependencies.
 
 ## Important research decisions
 
@@ -348,6 +364,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 4B decision gate: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT.
 - Phase 5A decision gate: READY FOR MANUSCRIPT DRAFTING.
 - Phase 6A decision gate: MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING.
+- Phase 6B decision gate: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA.
 
 ## Files or scripts currently under review
 

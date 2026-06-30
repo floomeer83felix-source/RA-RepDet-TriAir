@@ -148,6 +148,16 @@ manuscript/**/*.tif
 manuscript/**/*.tiff
 manuscript/**/*.pdf
 
+# Phase 6B SIVP local-only downloads, builds, and rendered outputs.
+runs/_springer_template_download.zip
+runs/_springer_template_extract/
+submission/sivp/tex/build/
+submission/sivp/**/*.pdf
+submission/sivp/**/*.png
+submission/sivp/**/*.jpg
+submission/sivp/**/*.jpeg
+submission/sivp/**/*.eps
+
 # Phase 5A local-only YOLO outputs. Keep only lightweight project eval files.
 runs/Y11n_rgb*_block64g16_e50/**
 !runs/Y11n_rgb*_block64g16_e50/

@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-27T16:32:30",
+  "generated_at": "2026-06-30T15:00:17",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -18,9 +18,9 @@
       " M rarepdet/tools/update_project_status.py",
       " M runs/handoff_latest.json",
       " M runs/handoff_latest.md",
-      "?? manuscript/",
-      "?? rarepdet/tools/build_phase6a_manuscript.py",
-      "?? runs/phase6a_manuscript_report.md"
+      "?? rarepdet/tools/build_phase6b_sivp_package.py",
+      "?? runs/phase6b_sivp_preparation_report.md",
+      "?? submission/"
     ]
   },
   "dataset": {
@@ -3528,11 +3528,24 @@
     "claim_ledger": "E:\\RepViT-main\\manuscript\\submission_notes\\claim_ledger.md",
     "self_audit": "E:\\RepViT-main\\manuscript\\submission_notes\\manuscript_self_audit.md"
   },
+  "phase6b": {
+    "readme": "E:\\RepViT-main\\submission\\sivp\\README.md",
+    "main_tex": "E:\\RepViT-main\\submission\\sivp\\tex\\main.tex",
+    "body_tex": "E:\\RepViT-main\\submission\\sivp\\tex\\ra_repdet_sivp.tex",
+    "references_bib": "E:\\RepViT-main\\submission\\sivp\\tex\\references.bib",
+    "report": "E:\\RepViT-main\\runs\\phase6b_sivp_preparation_report.md",
+    "decision": "READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA",
+    "metadata_count": 7,
+    "review_count": 5,
+    "tex_source_count": 16,
+    "figure_map": "E:\\RepViT-main\\submission\\sivp\\figures\\FINAL_ASSET_INSERTION_MAP.md",
+    "table_map": "E:\\RepViT-main\\submission\\sivp\\tables\\FINAL_TABLE_INSERTION_MAP.md"
+  },
   "current_pending_experiments": [
-    "Choose a target SCI/EI journal before final formatting.",
-    "Finalize citation style and replace manuscript reference placeholders after journal selection.",
-    "Prepare journal-specific figure dimensions from the commit-safe figure manifests and source CSV files.",
-    "Keep random-split E-runs as historical diagnostics only."
+    "Produce and author-approve final SIVP figures before replacing placeholder boxes.",
+    "Prepare final publication tables from the existing manuscript/table CSV sources.",
+    "Collect author metadata, declarations, funding, acknowledgments, and AI-use wording.",
+    "Complete a final LaTeX compile after the local environment has required Springer dependencies."
   ],
   "code_structure": {
     "dataset": "datasets/triair_dataset.py",
@@ -3552,14 +3565,14 @@
     " M rarepdet/tools/update_project_status.py",
     " M runs/handoff_latest.json",
     " M runs/handoff_latest.md",
-    "?? manuscript/",
-    "?? rarepdet/tools/build_phase6a_manuscript.py",
-    "?? runs/phase6a_manuscript_report.md"
+    "?? rarepdet/tools/build_phase6b_sivp_package.py",
+    "?? runs/phase6b_sivp_preparation_report.md",
+    "?? submission/"
   ],
   "next_recommended_tasks": [
-    "Select the target journal and adapt manuscript formatting, citation style, and figure requirements.",
-    "Review manuscript/RA_RepDet_manuscript_v1.md against the target journal scope and word limits.",
-    "Render final Fig. 1 and Fig. 2 schematics only after target-journal figure specifications are known.",
-    "Keep raw data, weights, rendered panels, and local qualitative assets out of Git."
+    "Create final SIVP figure artwork according to submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md.",
+    "Create final SIVP tables according to submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md.",
+    "Ask authors to complete submission/sivp/metadata placeholders.",
+    "Install or enable the missing local LaTeX dependencies before final PDF compilation."
   ]
 }

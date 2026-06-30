@@ -1,0 +1,26 @@
+Citation Key,Inventory Key,Title,Inventory Source,URL or DOI,Status
+Cawley2010Overfitting,Cawley2010Overfitting,On Over-fitting in Model Selection and Subsequent Selection Bias in Performance Evaluation,JMLR official page,https://jmlr.org/papers/v11/cawley10a.html,used in LaTeX draft
+CrossModalDistillation2016,CrossModalDistillation2016,Cross Modal Distillation for Supervision Transfer,CVF Open Access,https://openaccess.thecvf.com/content_cvpr_2016/html/Gupta_Cross_Modal_Distillation_CVPR_2016_paper.html,used in LaTeX draft
+DSEC2021,DSEC2021,DSEC: A Stereo Event Camera Dataset for Driving Scenarios,Official project page,https://dsec.ifi.uzh.ch/,used in LaTeX draft
+DroneVehicle2021,DroneVehicle2021,DroneVehicle: A Drone-Based RGB-Infrared Cross-Modality Vehicle Detection Dataset,Official repository,https://github.com/VisDrone/DroneVehicle,used in LaTeX draft
+FCOS2019,FCOS2019,FCOS: Fully Convolutional One-Stage Object Detection,CVF Open Access,https://openaccess.thecvf.com/content_ICCV_2019/html/Tian_FCOS_Fully_Convolutional_One-Stage_Object_Detection_ICCV_2019_paper.html,used in LaTeX draft
+FLIRADAS,FLIRADAS,FLIR ADAS thermal dataset,Official dataset page,https://www.flir.com/oem/adas/adas-dataset-form/,used in LaTeX draft
+FPN2017,FPN2017,Feature Pyramid Networks for Object Detection,CVF Open Access,https://openaccess.thecvf.com/content_cvpr_2017/html/Lin_Feature_Pyramid_Networks_CVPR_2017_paper.html,used in LaTeX draft
+FasterRCNN2015,FasterRCNN2015,Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks,arXiv record,https://arxiv.org/abs/1506.01497,used in LaTeX draft
+Gallego2020EventSurvey,Gallego2020EventSurvey,Event-Based Vision: A Survey,arXiv record,https://arxiv.org/abs/1904.08405,used in LaTeX draft
+Gen1Events,Gen1Events,GEN1 Automotive Detection Dataset,Official documentation,https://docs.prophesee.ai/stable/datasets.html,used in LaTeX draft
+HeMIS2016,HeMIS2016,HeMIS: Hetero-Modal Image Segmentation,arXiv record,https://arxiv.org/abs/1607.05194,used in LaTeX draft
+KAIST2015,KAIST2015,Multispectral Pedestrian Detection: Benchmark Dataset and Baseline,Official project page,https://soonminhwang.github.io/rgbt-ped-detection/,used in LaTeX draft
+Kapoor2023Leakage,Kapoor2023Leakage,Leakage and the Reproducibility Crisis in ML-based Science,DOI resolver,https://doi.org/10.1016/j.patter.2023.100804,used in LaTeX draft
+LLVIP2021,LLVIP2021,LLVIP: A Visible-Infrared Paired Dataset for Low-Light Vision,Official repository,https://github.com/bupt-ai-cz/LLVIP,used in LaTeX draft
+MVSEC2018,MVSEC2018,The Multivehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception,Official project page,https://daniilidis-group.github.io/mvsec/,used in LaTeX draft
+ModDrop2016,ModDrop2016,ModDrop: Adaptive Multi-Modal Gesture Recognition,arXiv record,https://arxiv.org/abs/1501.00102,used in LaTeX draft
+ModalityHallucination2016,ModalityHallucination2016,Learning with Side Information through Modality Hallucination,CVF Open Access,https://openaccess.thecvf.com/content_cvpr_2016/html/Hoffman_Learning_With_Side_CVPR_2016_paper.html,used in LaTeX draft
+Northcutt2021LabelErrors,Northcutt2021LabelErrors,Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks,arXiv record,https://arxiv.org/abs/2103.14749,used in LaTeX draft
+Recht2019ImageNet,Recht2019ImageNet,Do ImageNet Classifiers Generalize to ImageNet?,arXiv record,https://arxiv.org/abs/1902.10811,used in LaTeX draft
+RepViT2024,RepViT2024,RepViT: Revisiting Mobile CNN From ViT Perspective,arXiv record,https://arxiv.org/abs/2307.09283,used in LaTeX draft
+RetinaNet2017,RetinaNet2017,Focal Loss for Dense Object Detection,CVF Open Access,https://openaccess.thecvf.com/content_ICCV_2017/html/Lin_Focal_Loss_for_ICCV_2017_paper.html,used in LaTeX draft
+TorchvisionFCOS,TorchvisionFCOS,Torchvision FCOS model documentation,Official documentation,https://pytorch.org/vision/stable/models/fcos.html,used in LaTeX draft
+UAVDT2018,UAVDT2018,The Unmanned Aerial Vehicle Benchmark: Object Detection and Tracking,Official project page,https://sites.google.com/view/grli-uavdt,used in LaTeX draft
+VisDrone2018,VisDrone2018,VisDrone: The Vision Meets Drone Object Detection Challenge,Official dataset repository,https://github.com/VisDrone/VisDrone-Dataset,used in LaTeX draft
+YOLO11Docs,YOLO11Docs,YOLO11 model documentation,Official documentation,https://docs.ultralytics.com/models/yolo11/,used in LaTeX draft

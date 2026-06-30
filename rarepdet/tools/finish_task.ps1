@@ -81,7 +81,7 @@ function Get-CommitMessage {
 }
 
 function Add-FilesSafely {
-    $allowedRoots = @(".gitignore", "AGENTS.md", "docs", "rarepdet", "datasets", "tools", "manuscript")
+    $allowedRoots = @(".gitignore", "AGENTS.md", "docs", "rarepdet", "datasets", "tools", "manuscript", "submission")
     $topLevelPatterns = @("README*.md", "requirements*.txt")
     $runPatterns = @(
         "runs\handoff_latest.md",
@@ -153,7 +153,7 @@ function Add-FilesSafely {
             ForEach-Object { $files.Add($_.FullName) }
     }
 
-    $forbidden = '(^|[\\/])data([\\/]|$)|(^|[\\/])datasets_cache([\\/]|$)|(^|[\\/])weights([\\/]|$)|(^|[\\/])vis_pred([\\/]|$)|(^|[\\/])local_rendered([\\/]|$)|(^|[\\/])local_qualitative([\\/]|$)|(^|[\\/])__pycache__([\\/]|$)|\.(npy|npz|pt|pth|ckpt|zip|rar|png|jpg|jpeg|bmp|tif|tiff|pdf|pyc|pyo|pyd)$'
+    $forbidden = '(^|[\\/])data([\\/]|$)|(^|[\\/])datasets_cache([\\/]|$)|(^|[\\/])weights([\\/]|$)|(^|[\\/])vis_pred([\\/]|$)|(^|[\\/])local_rendered([\\/]|$)|(^|[\\/])local_qualitative([\\/]|$)|(^|[\\/])build([\\/]|$)|(^|[\\/])__pycache__([\\/]|$)|\.(npy|npz|pt|pth|ckpt|zip|rar|png|jpg|jpeg|bmp|tif|tiff|eps|pdf|pyc|pyo|pyd)$'
     $safeFiles = $files |
         Sort-Object -Unique |
         Where-Object {
@@ -186,7 +186,7 @@ function Test-StagedSafety {
     }
 
     $forbidden = $staged | Where-Object {
-        $_ -match '(^|/)data(/|$)|(^|/)datasets_cache(/|$)|(^|/)weights(/|$)|(^|/)vis_pred(/|$)|(^|/)local_rendered(/|$)|(^|/)local_qualitative(/|$)|\.(npy|npz|pt|pth|ckpt|zip|rar|png|jpg|jpeg|bmp|tif|tiff|pdf|pyc|pyo|pyd)$'
+        $_ -match '(^|/)data(/|$)|(^|/)datasets_cache(/|$)|(^|/)weights(/|$)|(^|/)vis_pred(/|$)|(^|/)local_rendered(/|$)|(^|/)local_qualitative(/|$)|(^|/)build(/|$)|\.(npy|npz|pt|pth|ckpt|zip|rar|png|jpg|jpeg|bmp|tif|tiff|eps|pdf|pyc|pyo|pyd)$'
     }
     if ($forbidden) {
         $forbidden | ForEach-Object { Write-Error "Forbidden staged file: $_" }

@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-27T16:32:30
+Generated: 2026-06-30T15:00:17
 Workspace: `E:\RepViT-main`
 
 ## Dataset
@@ -133,6 +133,20 @@ Workspace: `E:\RepViT-main`
 - Self-audit: `manuscript/submission_notes/manuscript_self_audit.md`
 - Decision: MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING
 
+## Phase 6B SIVP Submission-Source Outputs
+
+- SIVP README: `submission/sivp/README.md`
+- Main LaTeX source: `submission/sivp/tex/main.tex`
+- Body LaTeX source: `submission/sivp/tex/ra_repdet_sivp.tex`
+- BibTeX references: `submission/sivp/tex/references.bib`
+- Phase 6B report: `runs/phase6b_sivp_preparation_report.md`
+- Template/LaTeX source files: 16
+- Metadata template files: 7
+- Review/audit files: 5
+- Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
+- Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
+- Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -155,10 +169,10 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Choose a target SCI/EI journal before final formatting.
-- Finalize citation style and replace manuscript reference placeholders after journal selection.
-- Prepare journal-specific figure dimensions from the commit-safe figure manifests and source CSV files.
-- Keep random-split E-runs as historical diagnostics only.
+- Produce and author-approve final SIVP figures before replacing placeholder boxes.
+- Prepare final publication tables from the existing manuscript/table CSV sources.
+- Collect author metadata, declarations, funding, acknowledgments, and AI-use wording.
+- Complete a final LaTeX compile after the local environment has required Springer dependencies.
 
 ## Recently Modified Files
 
@@ -169,13 +183,13 @@ Workspace: `E:\RepViT-main`
 - ` M rarepdet/tools/update_project_status.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `?? manuscript/`
-- `?? rarepdet/tools/build_phase6a_manuscript.py`
-- `?? runs/phase6a_manuscript_report.md`
+- `?? rarepdet/tools/build_phase6b_sivp_package.py`
+- `?? runs/phase6b_sivp_preparation_report.md`
+- `?? submission/`
 
 ## Next Recommended Tasks
 
-- Select the target journal and adapt manuscript formatting, citation style, and figure requirements.
-- Review manuscript/RA_RepDet_manuscript_v1.md against the target journal scope and word limits.
-- Render final Fig. 1 and Fig. 2 schematics only after target-journal figure specifications are known.
-- Keep raw data, weights, rendered panels, and local qualitative assets out of Git.
+- Create final SIVP figure artwork according to submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md.
+- Create final SIVP tables according to submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md.
+- Ask authors to complete submission/sivp/metadata placeholders.
+- Install or enable the missing local LaTeX dependencies before final PDF compilation.

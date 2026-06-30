@@ -228,6 +228,26 @@ def build_status():
     phase6a_table_md_count = len(list((manuscript_dir / "tables").glob("*.md"))) if (manuscript_dir / "tables").exists() else 0
     phase6a_reference_count = count_csv_rows(manuscript_dir / "references" / "reference_inventory.csv")
     phase6a_figure_source_count = len(list((manuscript_dir / "figures").glob("fig*_source.csv"))) if (manuscript_dir / "figures").exists() else 0
+    submission_dir = PROJECT_ROOT / "submission" / "sivp"
+    phase6b_report_exists = (RUNS_DIR / "phase6b_sivp_preparation_report.md").exists()
+    phase6b_decision = read_last_nonempty_line(RUNS_DIR / "phase6b_sivp_preparation_report.md")
+    phase6b_tex_source_count = (
+        len(
+            [
+                path
+                for path in (submission_dir / "tex").glob("**/*")
+                if path.is_file() and path.suffix.lower() in {".tex", ".cls", ".bst", ".bib", ".md"}
+            ]
+        )
+        if (submission_dir / "tex").exists()
+        else 0
+    )
+    phase6b_metadata_count = len(list((submission_dir / "metadata").glob("*.md"))) if (submission_dir / "metadata").exists() else 0
+    phase6b_review_count = (
+        len(list((submission_dir / "review").glob("*.md"))) + len(list((submission_dir / "review").glob("*.csv")))
+        if (submission_dir / "review").exists()
+        else 0
+    )
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "completed" if phase3b_report_exists and split_integrity else "pending"
@@ -241,6 +261,12 @@ def build_status():
         active_status = "completed" if phase5a_report_exists and phase5a_decision == "READY FOR MANUSCRIPT DRAFTING" else "pending"
     if "Phase 6A" in next_text:
         active_status = "completed" if phase6a_report_exists and phase6a_decision == "MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING" else "pending"
+    if "Phase 6B" in next_text:
+        active_status = (
+            "completed"
+            if phase6b_report_exists and phase6b_decision == "READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA"
+            else "pending"
+        )
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -257,6 +283,8 @@ def build_status():
         current_task = "Phase 5A - Paper-Readiness Supplemental Evaluation"
     if "Phase 6A" in next_text:
         current_task = "Phase 6A - Journal-Neutral English Manuscript Draft"
+    if "Phase 6B" in next_text:
+        current_task = "Phase 6B - SIVP Submission-Source Preparation"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -279,6 +307,8 @@ def build_status():
         current_goal = "Complete paper-readiness evidence: YOLO11n RGB baseline, efficiency, alpha, qualitative, and convergence audits."
     if "Phase 6A" in next_text:
         current_goal = "Create a complete journal-neutral English manuscript package from frozen clean-split evidence."
+    if "Phase 6B" in next_text:
+        current_goal = "Prepare a pre-final SIVP LaTeX source package, metadata placeholders, and compliance audits."
 
     lines = [
         "# Experiment Status",
@@ -652,6 +682,30 @@ def build_status():
         f"- Verified reference inventory rows: {phase6a_reference_count}",
         f"- Decision: {phase6a_decision or 'NA'}",
         "",
+        "## Phase 6B outputs",
+        "",
+        "- SIVP README: `submission/sivp/README.md`" if (submission_dir / "README.md").exists() else "- SIVP README: NA",
+        "- Main LaTeX source: `submission/sivp/tex/main.tex`"
+        if (submission_dir / "tex" / "main.tex").exists()
+        else "- Main LaTeX source: NA",
+        "- Body LaTeX source: `submission/sivp/tex/ra_repdet_sivp.tex`"
+        if (submission_dir / "tex" / "ra_repdet_sivp.tex").exists()
+        else "- Body LaTeX source: NA",
+        "- BibTeX references: `submission/sivp/tex/references.bib`"
+        if (submission_dir / "tex" / "references.bib").exists()
+        else "- BibTeX references: NA",
+        "- Phase 6B report: `runs/phase6b_sivp_preparation_report.md`" if phase6b_report_exists else "- Phase 6B report: NA",
+        "- Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`"
+        if (submission_dir / "figures" / "FINAL_ASSET_INSERTION_MAP.md").exists()
+        else "- Figure insertion map: NA",
+        "- Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`"
+        if (submission_dir / "tables" / "FINAL_TABLE_INSERTION_MAP.md").exists()
+        else "- Table insertion map: NA",
+        f"- Template/LaTeX source files: {phase6b_tex_source_count}",
+        f"- Metadata template files: {phase6b_metadata_count}",
+        f"- Review/audit files: {phase6b_review_count}",
+        f"- Decision: {phase6b_decision or 'NA'}",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -673,6 +727,8 @@ def build_status():
         "- Phase 4B still uses only two seeds; do not claim statistical significance.",
         "- Phase 5A YOLO11n is an RGB-only external baseline and not an architecture-only ablation.",
         "- Phase 6A manuscript is journal-neutral and citation style remains pending target journal selection.",
+        "- Phase 6B source package is pre-final and uses placeholders for final figures, tables, author details, and declarations.",
+        "- Phase 6B dry-run compilation was skipped if the local LaTeX environment lacks required Springer dependencies.",
         "",
         "## Important research decisions",
         "",
@@ -690,6 +746,7 @@ def build_status():
         f"- Phase 4B decision gate: {phase4b_decision or 'NA'}.",
         f"- Phase 5A decision gate: {phase5a_decision or 'NA'}.",
         f"- Phase 6A decision gate: {phase6a_decision or 'NA'}.",
+        f"- Phase 6B decision gate: {phase6b_decision or 'NA'}.",
         "",
         "## Files or scripts currently under review",
         "",
