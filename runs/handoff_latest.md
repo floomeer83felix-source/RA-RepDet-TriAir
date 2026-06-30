@@ -1,7 +1,14 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-06-30T15:00:17
+Generated: 2026-06-30T15:21:29
 Workspace: `E:\RepViT-main`
+
+## Current Active Task
+
+- Task file: `docs/NEXT_TASK.md`
+- Current Task: Phase 7A - Final SIVP Asset Readiness and Author Metadata Intake
+- Goal: Prepare the project to move from the pre-final SIVP LaTeX source package into final submission-asset production. This task should organize the exact final figure/table requirements, author metadata requests, and compile-readiness blockers without retraining models or changing experimental evidence.
+- Commit Message: Phase 7A: enter final SIVP asset readiness
 
 ## Dataset
 
@@ -176,16 +183,12 @@ Workspace: `E:\RepViT-main`
 
 ## Recently Modified Files
 
-- `M .gitignore`
-- ` M docs/EXPERIMENT_STATUS.md`
-- ` M rarepdet/tools/finish_task.ps1`
+- `M docs/EXPERIMENT_STATUS.md`
+- ` M docs/NEXT_TASK.md`
 - ` M rarepdet/tools/generate_handoff.py`
 - ` M rarepdet/tools/update_project_status.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `?? rarepdet/tools/build_phase6b_sivp_package.py`
-- `?? runs/phase6b_sivp_preparation_report.md`
-- `?? submission/`
 
 ## Next Recommended Tasks
 

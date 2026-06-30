@@ -10,6 +10,8 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 RUNS_DIR = PROJECT_ROOT / "runs"
+DOCS_DIR = PROJECT_ROOT / "docs"
+NEXT_TASK_PATH = DOCS_DIR / "NEXT_TASK.md"
 
 
 EXPERIMENTS = [
@@ -75,6 +77,43 @@ def read_csv(path):
         return []
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         return list(csv.DictReader(f))
+
+
+def read_text(path):
+    if not path.exists():
+        return ""
+    return path.read_text(encoding="utf-8")
+
+
+def parse_sections(path):
+    sections = {}
+    current = None
+    for raw_line in read_text(path).splitlines():
+        line = raw_line.strip()
+        if line.startswith("#"):
+            current = line.lstrip("#").strip()
+            sections[current] = []
+        elif current:
+            sections[current].append(raw_line.rstrip())
+    return {key: "\n".join(value).strip() for key, value in sections.items()}
+
+
+def first_paragraph(text):
+    for block in text.split("\n\n"):
+        block = block.strip()
+        if block:
+            return " ".join(line.strip() for line in block.splitlines() if line.strip())
+    return "NA"
+
+
+def collect_current_task():
+    sections = parse_sections(NEXT_TASK_PATH)
+    return {
+        "task_file": "docs/NEXT_TASK.md",
+        "current_task": first_paragraph(sections.get("Current Task", "")),
+        "goal": first_paragraph(sections.get("Goal", "")),
+        "commit_message": first_paragraph(sections.get("Commit Message", "")),
+    }
 
 
 def count_csv_rows(path):
@@ -438,6 +477,7 @@ def build_handoff():
             "remotes": remotes,
             "status_short": status_short,
         },
+        "current_task": collect_current_task(),
         "dataset": {
             "root": r"D:\download\triair",
             "samples": 10489,
@@ -500,6 +540,13 @@ def write_markdown(data, path):
         "",
         f"Generated: {data['generated_at']}",
         f"Workspace: `{data['workspace']}`",
+        "",
+        "## Current Active Task",
+        "",
+        f"- Task file: `{data['current_task']['task_file']}`",
+        f"- Current Task: {data['current_task']['current_task']}",
+        f"- Goal: {data['current_task']['goal']}",
+        f"- Commit Message: {data['current_task']['commit_message']}",
         "",
         "## Dataset",
         "",

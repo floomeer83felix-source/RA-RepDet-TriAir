@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-06-30T15:00:17
+Generated: 2026-06-30T15:21:29
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current best model
@@ -84,9 +84,9 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 6B - SIVP Submission-Source Preparation
-- Goal: Prepare a pre-final SIVP LaTeX source package, metadata placeholders, and compliance audits.
-- Status: completed
+- Current Task: Phase 7A - Final SIVP Asset Readiness and Author Metadata Intake
+- Goal: Prepare final SIVP figure/table readiness, author metadata intake, and compile-blocker tracking without retraining models or changing experimental evidence.
+- Status: pending
 
 ## Phase 2B ACRF outputs
 
@@ -347,6 +347,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 6A manuscript is journal-neutral and citation style remains pending target journal selection.
 - Phase 6B source package is pre-final and uses placeholders for final figures, tables, author details, and declarations.
 - Phase 6B dry-run compilation was skipped if the local LaTeX environment lacks required Springer dependencies.
+- Phase 7A is an asset-readiness and metadata-intake phase; it must not change clean-split metrics or retrain models.
 
 ## Important research decisions
 
@@ -365,6 +366,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 5A decision gate: READY FOR MANUSCRIPT DRAFTING.
 - Phase 6A decision gate: MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING.
 - Phase 6B decision gate: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA.
+- Phase 7A starts from the completed Phase 6B SIVP source skeleton and should replace placeholders only after author approval.
 
 ## Files or scripts currently under review
 

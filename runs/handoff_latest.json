@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-06-30T15:00:17",
+  "generated_at": "2026-06-30T15:21:29",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -11,17 +11,19 @@
       "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
     ],
     "status_short": [
-      "M .gitignore",
-      " M docs/EXPERIMENT_STATUS.md",
-      " M rarepdet/tools/finish_task.ps1",
+      "M docs/EXPERIMENT_STATUS.md",
+      " M docs/NEXT_TASK.md",
       " M rarepdet/tools/generate_handoff.py",
       " M rarepdet/tools/update_project_status.py",
       " M runs/handoff_latest.json",
-      " M runs/handoff_latest.md",
-      "?? rarepdet/tools/build_phase6b_sivp_package.py",
-      "?? runs/phase6b_sivp_preparation_report.md",
-      "?? submission/"
+      " M runs/handoff_latest.md"
     ]
+  },
+  "current_task": {
+    "task_file": "docs/NEXT_TASK.md",
+    "current_task": "Phase 7A - Final SIVP Asset Readiness and Author Metadata Intake",
+    "goal": "Prepare the project to move from the pre-final SIVP LaTeX source package into final submission-asset production. This task should organize the exact final figure/table requirements, author metadata requests, and compile-readiness blockers without retraining models or changing experimental evidence.",
+    "commit_message": "Phase 7A: enter final SIVP asset readiness"
   },
   "dataset": {
     "root": "D:\\download\\triair",
@@ -3558,16 +3560,12 @@
     "postprocessing_tools": "rarepdet/tools/"
   },
   "recent_modified_files": [
-    "M .gitignore",
-    " M docs/EXPERIMENT_STATUS.md",
-    " M rarepdet/tools/finish_task.ps1",
+    "M docs/EXPERIMENT_STATUS.md",
+    " M docs/NEXT_TASK.md",
     " M rarepdet/tools/generate_handoff.py",
     " M rarepdet/tools/update_project_status.py",
     " M runs/handoff_latest.json",
-    " M runs/handoff_latest.md",
-    "?? rarepdet/tools/build_phase6b_sivp_package.py",
-    "?? runs/phase6b_sivp_preparation_report.md",
-    "?? submission/"
+    " M runs/handoff_latest.md"
   ],
   "next_recommended_tasks": [
     "Create final SIVP figure artwork according to submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md.",

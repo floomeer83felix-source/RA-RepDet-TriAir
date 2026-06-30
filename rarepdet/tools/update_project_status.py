@@ -250,7 +250,7 @@ def build_status():
     )
 
     next_text = read_text(NEXT_TASK_PATH)
-    active_status = "completed" if phase3b_report_exists and split_integrity else "pending"
+    active_status = "pending"
     if "Phase 3C" in next_text:
         active_status = "completed" if phase3c_report_exists and rgb_duplicate_summary and blocked_split_summary else "pending"
     if "Phase 4A" in next_text:
@@ -267,6 +267,8 @@ def build_status():
             if phase6b_report_exists and phase6b_decision == "READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA"
             else "pending"
         )
+    if "Phase 7A" in next_text:
+        active_status = "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -285,6 +287,8 @@ def build_status():
         current_task = "Phase 6A - Journal-Neutral English Manuscript Draft"
     if "Phase 6B" in next_text:
         current_task = "Phase 6B - SIVP Submission-Source Preparation"
+    if "Phase 7A" in next_text:
+        current_task = "Phase 7A - Final SIVP Asset Readiness and Author Metadata Intake"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -309,6 +313,11 @@ def build_status():
         current_goal = "Create a complete journal-neutral English manuscript package from frozen clean-split evidence."
     if "Phase 6B" in next_text:
         current_goal = "Prepare a pre-final SIVP LaTeX source package, metadata placeholders, and compliance audits."
+    if "Phase 7A" in next_text:
+        current_goal = (
+            "Prepare final SIVP figure/table readiness, author metadata intake, and compile-blocker tracking "
+            "without retraining models or changing experimental evidence."
+        )
 
     lines = [
         "# Experiment Status",
@@ -729,6 +738,7 @@ def build_status():
         "- Phase 6A manuscript is journal-neutral and citation style remains pending target journal selection.",
         "- Phase 6B source package is pre-final and uses placeholders for final figures, tables, author details, and declarations.",
         "- Phase 6B dry-run compilation was skipped if the local LaTeX environment lacks required Springer dependencies.",
+        "- Phase 7A is an asset-readiness and metadata-intake phase; it must not change clean-split metrics or retrain models.",
         "",
         "## Important research decisions",
         "",
@@ -747,6 +757,7 @@ def build_status():
         f"- Phase 5A decision gate: {phase5a_decision or 'NA'}.",
         f"- Phase 6A decision gate: {phase6a_decision or 'NA'}.",
         f"- Phase 6B decision gate: {phase6b_decision or 'NA'}.",
+        "- Phase 7A starts from the completed Phase 6B SIVP source skeleton and should replace placeholders only after author approval.",
         "",
         "## Files or scripts currently under review",
         "",
