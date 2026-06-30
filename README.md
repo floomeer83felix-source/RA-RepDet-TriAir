@@ -4,6 +4,19 @@ Minimal public experiment repository for RA-RepDet, a RepViT-FCOS based RGB-ther
 
 This public package intentionally contains only source code, split manifests, audit scripts, lightweight CSV/TXT/MD result summaries, and manuscript table/figure source files. It does not contain raw TriAir `.npy` arrays, label archives, trained weights, prediction images, local qualitative panels, or large caches.
 
+## Publication Snapshot
+
+- Manuscript protocol: `block64_guard16_seed0`.
+- Train / validation / guard: `7439 / 2213 / 837`.
+- Headline variant: `R4 Reliability p=0.20`.
+- Report scope: frozen validation partition only.
+- Snapshot evidence commit SHA: `700e84556c31e044d100fa9a5f6243720f023d6f`.
+- Protocol references: [`runs/clean_block64g16_protocol.md`](runs/clean_block64g16_protocol.md) and [`runs/phase4b_report.md`](runs/phase4b_report.md).
+- Dataset provenance and access notes: [`docs/DATA_PROVENANCE.md`](docs/DATA_PROVENANCE.md).
+- Reproducibility notes: [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
+
+The former E0-E6 runs are historical/exploratory diagnostics and are not manuscript headline results. The manuscript headline result is the clean blocked-split R4 comparison on the frozen validation partition.
+
 ## What Is Included
 
 - `datasets/triair_dataset.py`: TriAir five-channel dataset adapter. Missing label txt files are treated as empty-target images.
