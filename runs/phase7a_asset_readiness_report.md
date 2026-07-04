@@ -1,6 +1,7 @@
 # Phase 7A V18 Asset Readiness Report
 
 Generated: 2026-06-30
+Refreshed: 2026-07-04
 
 ## Requested Gate
 
@@ -21,6 +22,14 @@ followed by official Springer `sn-jnl` PDF compilation only after the strict pre
 - Created `metadata/submission_metadata.yaml`, `metadata/submission_metadata.tex`, `metadata/IMPLEMENTATION_DETAILS_TEMPLATE.md`, `AUTHOR_FINAL_INPUTS_REQUIRED_V18.md`, `REVISION_LOG_V18.md`, `SUBMISSION_PRECHECK_V18.md`, and `archive_manifest.txt`.
 - Ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result: `PASS` with warnings.
 - Ran `python scripts/preflight_submission.py --root .`; result: `FAIL`.
+
+## 2026-07-04 Refresh
+
+- Re-ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result: `PASS` with placeholder/final-asset warnings.
+- Re-ran `python scripts/preflight_submission.py --root .`; result: `FAIL` on the same missing author-confirmed metadata, final figure assets, and remaining figure/table placeholders.
+- Refreshed `runs/handoff_latest.md`, `runs/handoff_latest.json`, and `docs/EXPERIMENT_STATUS.md`.
+- No GPU training, GPU inference, or metric-changing evaluation was executed.
+- `git pull --ff-only research research/ra-repdet-triair` remains blocked because the local and remote branches have diverged.
 
 ## Strict Preflight Blockers
 
