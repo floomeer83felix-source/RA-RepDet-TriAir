@@ -1,163 +1,78 @@
-# [RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760)
+﻿# RA-RepDet-TriAir
 
-# [RepViT: Revisiting  Mobile CNN From ViT Perspective](https://arxiv.org/abs/2307.09283)
+Minimal public experiment repository for RA-RepDet, a RepViT-FCOS based RGB-thermal-event UAV vehicle detection study on local TriAir-formatted data.
 
+This public package intentionally contains only source code, split manifests, audit scripts, lightweight CSV/TXT/MD result summaries, and manuscript table/figure source files. It does not contain raw TriAir `.npy` arrays, label archives, trained weights, prediction images, local qualitative panels, or large caches.
 
-Official PyTorch implementation of **RepViT-SAM** and **RepViT**. CVPR 2024.
+## Publication Snapshot
 
-<p align="center">
-  <img src="sam/figures/comparison.png" width=80%> <br>
-  Models are deployed on iPhone 12 with Core ML Tools to get latency.
-</p>
+- Manuscript protocol: `block64_guard16_seed0`.
+- Train / validation / guard: `7439 / 2213 / 837`.
+- Headline variant: `R4 Reliability p=0.20`.
+- Report scope: frozen validation partition only.
+- Snapshot evidence commit SHA: `700e84556c31e044d100fa9a5f6243720f023d6f`.
+- Protocol references: [`runs/clean_block64g16_protocol.md`](runs/clean_block64g16_protocol.md) and [`runs/phase4b_report.md`](runs/phase4b_report.md).
+- Dataset provenance and access notes: [`docs/DATA_PROVENANCE.md`](docs/DATA_PROVENANCE.md).
+- Reproducibility notes: [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
 
-<p align="center">
-  <img src="figures/latency.png" width=70%> <br>
-  Models are trained on ImageNet-1K and deployed on iPhone 12 with Core ML Tools to get latency.
-</p>
+The former E0-E6 runs are historical/exploratory diagnostics and are not manuscript headline results. The manuscript headline result is the clean blocked-split R4 comparison on the frozen validation partition.
 
+## V23 Standardized Re-Evaluation
 
-[RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760).\
-Ao Wang, Hui Chen, Zijia Lin, Jungong Han, and Guiguang Ding\
-[[`arXiv`](https://arxiv.org/abs/2312.05760)] [[`Project Page`](https://jameslahm.github.io/repvit-sam)]
+The V23 evaluator integration standardizes the detector-output candidate set used by full-input and missing-modality validation:
 
-<details>
-  <summary>
-  <font size="+1">Abstract</font>
-  </summary>
-Segment Anything Model (SAM) has shown impressive zero-shot transfer performance for various computer vision tasks recently. However, its heavy computation costs remain daunting for practical applications. MobileSAM proposes to replace the heavyweight image encoder in SAM with TinyViT by employing distillation, which results in a significant reduction in computational requirements. However, its deployment on resource-constrained mobile devices still encounters challenges due to the substantial memory and computational overhead caused by self-attention mechanisms. Recently, RepViT achieves the state-of-the-art performance and latency trade-off on mobile devices by incorporating efficient architectural designs of ViTs into CNNs. Here, to achieve real-time segmenting anything on mobile devices, following, we replace the heavyweight image encoder in SAM with RepViT model, ending up with the RepViT-SAM model. Extensive experiments show that RepViT-SAM can enjoy significantly better zero-shot transfer capability than MobileSAM, along with nearly $10\times$ faster inference speed.
-</details>
+- Frozen split: `block64_guard16_seed0`.
+- Detector-output threshold: `0.001`.
+- Metric operating threshold: `0.50` for precision, recall, and F1.
+- NMS threshold: `0.6`.
+- Detections per image: `100`.
+- AP50/AP75 are project-local single-class AP metrics, not COCO AP50:95.
+- Results are validation-only and are not an independent test result.
+- Missing-modality rows use synthetic channel removal, not physical sensor-failure measurements.
 
-<br/>
+V23 lightweight evidence is stored in [`reproducibility/standardized_evaluation_v23/results_v23`](reproducibility/standardized_evaluation_v23/results_v23).
 
-[RepViT: Revisiting  Mobile CNN From ViT Perspective](https://arxiv.org/abs/2307.09283).\
-Ao Wang, Hui Chen, Zijia Lin, Jungong Han, and Guiguang Ding\
-[[`arXiv`](https://arxiv.org/abs/2307.09283)]
+## What Is Included
 
-<details>
-  <summary>
-  <font size="+1">Abstract</font>
-  </summary>
-Recently, lightweight Vision Transformers (ViTs) demonstrate superior performance and lower latency compared with lightweight Convolutional Neural Networks (CNNs) on resource-constrained mobile devices. This improvement is usually attributed to the multi-head self-attention module, which enables the model to learn global representations. However, the architectural disparities between lightweight ViTs and lightweight CNNs have not been adequately examined. In this study, we revisit the efficient design of lightweight CNNs and emphasize their potential for mobile devices. We incrementally enhance the mobile-friendliness of a standard lightweight CNN, specifically MobileNetV3, by integrating the efficient architectural choices of lightweight ViTs. This ends up with a new family of pure lightweight CNNs, namely RepViT. Extensive experiments show that RepViT outperforms existing state-of-the-art lightweight ViTs and exhibits favorable latency in various vision tasks. On ImageNet, RepViT achieves over 80\% top-1 accuracy with 1ms latency on an iPhone 12, which is the first time for a lightweight model, to the best of our knowledge. Our largest model, RepViT-M2.3, obtains 83.7\% accuracy with only 2.3ms latency.
-</details>
+- `datasets/triair_dataset.py`: TriAir five-channel dataset adapter. Missing label txt files are treated as empty-target images.
+- `rarepdet/`: training, evaluation, metrics, RepViT-FPN-FCOS models, and post-processing tools used by the experiments.
+- `tools/`: lightweight dataset/split/check utilities.
+- `runs/`: lightweight experiment summaries, clean blocked split manifests, eval outputs, missing-modality CSV/TXT files, and profile summaries.
+- `manuscript/tables` and `manuscript/figures`: source CSV/MD files used to prepare paper tables and figure data.
+- `docs/`: design notes and current experiment status.
 
-<br/>
+## What Is Not Included
 
+- Raw TriAir sensor arrays or `.npy` files.
+- Model checkpoints or weights (`.pt`, `.pth`, `.ckpt`).
+- Rendered prediction images, qualitative panels, or visualization caches.
+- Local training caches, Python environments, or large logs.
+- Any claim of TriAir public redistribution rights. Obtain the dataset only through the provider/author-approved route.
 
+## Core Evidence
 
+The publication-safe clean split is `block64_guard16_seed0` and is documented in `runs/clean_block64g16_protocol.md` and `runs/phase4b_report.md`. The selected clean-split main variant is R4 Reliability Fusion with modality dropout `p=0.20`, using validation-partition evidence only. No independent held-out test result is claimed in this repository.
 
+## Basic Commands
 
-<br/>
+Create or inspect split manifests:
 
-**UPDATES** 🔥
-- 2023/12/17: [Grounding-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything/tree/main) supports RepViT-SAM with [Grounded-RepViT-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything/tree/main/EfficientSAM#run-grounded-repvit-sam-demo). Thanks!
-- 2023/12/11: RepViT-SAM has been released. Please refer to [RepViT-SAM](./sam/README.md).
-- 2023/12/11: RepViT-M0.6 has been released, achieving 74.1% with ~0.6ms latency. Its checkpoint is [here](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_6_distill_300e.pth)
-- 2023/09/28: RepViT-M0.9/1.0/1.1/1.5/2.3 models have been released.
-- 2023/07/27: RepViT models have been integrated into timm. See https://github.com/huggingface/pytorch-image-models/pull/1876.
-
-<br/>
-
-## Classification on ImageNet-1K
-
-### Models
-
-| Model | Top-1 (300 / 450)| #params | MACs | Latency | Ckpt | Core ML | Log |
-|:---------------|:----:|:---:|:--:|:--:|:--:|:--:|:--:|
-| M0.9 |   78.7 / 79.1  |     5.1M    |   0.8G   |      0.9ms     |  [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_9_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_9_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_9_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_9_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m0_9_distill_300e.txt) / [450e](./logs/repvit_m0_9_distill_450e.txt) |
-| M1.0 |   80.0 / 80.3   |     6.8M    |   1.1G   |      1.0ms     | [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_0_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_0_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_0_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_0_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m1_0_distill_300e.txt) / [450e](./logs/repvit_m1_0_distill_450e.txt) |
-| M1.1 |   80.7 / 81.2   |     8.2M    |   1.3G   |      1.1ms     | [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m1_1_distill_300e.txt) / [450e](./logs/repvit_m1_1_distill_450e.txt) |
-| M1.5 |   82.3 / 82.5   |     14.0M    |   2.3G   |      1.5ms     | [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m1_5_distill_300e.txt) / [450e](./logs/repvit_m1_5_distill_450e.txt) |
-| M2.3 |   83.3 / 83.7   |     22.9M    |   4.5G   |      2.3ms     | [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m2_3_distill_300e.txt) / [450e](./logs/repvit_m2_3_distill_450e.txt) |
-
-
-Tips: Convert a training-time RepViT into the inference-time structure
-```
-from timm.models import create_model
-import utils
-
-model = create_model('repvit_m0_9')
-utils.replace_batchnorm(model)
+```powershell
+python tools/create_triair_split.py --data <LOCAL_DATASET_ROOT> --val-ratio 0.2 --seed 0 --out <LOCAL_DATASET_ROOT>/splits
 ```
 
-## Latency Measurement 
+Train a reliability model on explicit split files:
 
-The latency reported in RepViT for iPhone 12 (iOS 16) uses the benchmark tool from [XCode 14](https://developer.apple.com/videos/play/wwdc2022/10027/).
-For example, here is a latency measurement of RepViT-M0.9:
-
-![](./figures/repvit_m0_9_latency.png)
-
-Tips: export the model to Core ML model
-```
-python export_coreml.py --model repvit_m0_9 --ckpt pretrain/repvit_m0_9_distill_300e.pth
-```
-Tips: measure the throughput on GPU
-```
-python speed_gpu.py --model repvit_m0_9
+```powershell
+python rarepdet/train_early_fusion.py --model reliability --data <LOCAL_DATASET_ROOT> --train-split runs/blocked_split_candidates/block64_guard16_seed0_train.txt --val-split runs/blocked_split_candidates/block64_guard16_seed0_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.20 --seed 0 --out runs/R4_reliability_p020_seed0_block64g16_e50
 ```
 
+Evaluate a checkpoint:
 
-## ImageNet  
-
-### Prerequisites
-`conda` virtual environment is recommended. 
-```
-conda create -n repvit python=3.8
-pip install -r requirements.txt
+```powershell
+python rarepdet/eval_map.py --model reliability --data <LOCAL_DATASET_ROOT> --split-file runs/blocked_split_candidates/block64_guard16_seed0_val.txt --weights <LOCAL_CHECKPOINT_PATH> --img-size 640 --device cuda --batch-size 4 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/R4_reliability_p020_seed0_block64g16_e50/eval_thr050
 ```
 
-### Data preparation
+## License
 
-Download and extract ImageNet train and val images from http://image-net.org/. The training and validation data are expected to be in the `train` folder and `val` folder respectively:
-```
-|-- /path/to/imagenet/
-    |-- train
-    |-- val
-```
-
-### Training
-To train RepViT-M0.9 on an 8-GPU machine:
-
-```
-python -m torch.distributed.launch --nproc_per_node=8 --master_port 12346 --use_env main.py --model repvit_m0_9 --data-path ~/imagenet --dist-eval
-```
-Tips: specify your data path and model name! 
-
-### Testing 
-For example, to test RepViT-M0.9:
-```
-python main.py --eval --model repvit_m0_9 --resume pretrain/repvit_m0_9_distill_300e.pth --data-path ~/imagenet
-```
-
-## Downstream Tasks
-[Object Detection and Instance Segmentation](detection/README.md)<br>
-[Semantic Segmentation](segmentation/README.md)
-
-## Acknowledgement
-
-Classification (ImageNet) code base is partly built with [LeViT](https://github.com/facebookresearch/LeViT), [PoolFormer](https://github.com/sail-sg/poolformer) and [EfficientFormer](https://github.com/snap-research/EfficientFormer). 
-
-The detection and segmentation pipeline is from [MMCV](https://github.com/open-mmlab/mmcv) ([MMDetection](https://github.com/open-mmlab/mmdetection) and [MMSegmentation](https://github.com/open-mmlab/mmsegmentation)). 
-
-Thanks for the great implementations! 
-
-## Citation
-
-If our code or models help your work, please cite our paper:
-```BibTeX
-@inproceedings{wang2024repvit,
-  title={Repvit: Revisiting mobile cnn from vit perspective},
-  author={Wang, Ao and Chen, Hui and Lin, Zijia and Han, Jungong and Ding, Guiguang},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={15909--15920},
-  year={2024}
-}
-
-@misc{wang2023repvitsam,
-      title={RepViT-SAM: Towards Real-Time Segmenting Anything}, 
-      author={Ao Wang and Hui Chen and Zijia Lin and Jungong Han and Guiguang Ding},
-      year={2023},
-      eprint={2312.05760},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
+Code is released under the repository `LICENSE`. Dataset rights are separate and must be checked with the TriAir provider/author documentation.

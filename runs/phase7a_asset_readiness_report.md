@@ -29,8 +29,9 @@ followed by official Springer `sn-jnl` PDF compilation only after the strict pre
 - Re-ran `python scripts/preflight_submission.py --root .`; result: `FAIL` on the same missing author-confirmed metadata, final figure assets, and remaining figure/table placeholders.
 - Refreshed `runs/handoff_latest.md`, `runs/handoff_latest.json`, and `docs/EXPERIMENT_STATUS.md`.
 - No GPU training, GPU inference, or metric-changing evaluation was executed.
-- `git pull --ff-only research research/ra-repdet-triair` remains blocked because the local and remote branches have diverged.
-- Local refresh commit was created, but `git push research research/ra-repdet-triair` was rejected as non-fast-forward; see `docs/TASK_BLOCKER.md`.
+- Earlier `git pull --ff-only research research/ra-repdet-triair` was blocked because the local and remote branches had diverged.
+- Local refresh commit was created, and the first `git push research research/ra-repdet-triair` was rejected as non-fast-forward before the merge.
+- Per user direction, the remote `research/research/ra-repdet-triair` branch was then merged with `--allow-unrelated-histories`; the remaining blocker is strict final-submission preflight, not branch divergence.
 
 ## Strict Preflight Blockers
 
