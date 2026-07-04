@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-04T10:50:28
+Generated: 2026-07-04T10:52:28
 Workspace: `E:\RepViT-main`
 
 ## Current Active Task
@@ -183,32 +183,7 @@ Workspace: `E:\RepViT-main`
 
 ## Recently Modified Files
 
-- `A  PUBLIC_RELEASE_MANIFEST.md`
-- `M  README.md`
-- `A  docs/DATA_PROVENANCE.md`
-- ` M docs/EXPERIMENT_STATUS.md`
-- `A  docs/REPRODUCIBILITY.md`
-- `A  docs/STANDARDIZED_EVALUATION_V23.md`
-- ` M docs/TASK_BLOCKER.md`
-- `M  rarepdet/eval_map.py`
-- `M  rarepdet/tools/eval_missing_modality.py`
-- `A  reproducibility/standardized_evaluation_v23/INTEGRATION_STATUS.md`
-- `A  reproducibility/standardized_evaluation_v23/README.md`
-- `A  reproducibility/standardized_evaluation_v23/code_changes/eval_map.py`
-- `A  reproducibility/standardized_evaluation_v23/code_changes/eval_missing_modality.py`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/checkpoint_manifest_v23.csv`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/evaluation_commands_v23.txt`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/evaluation_environment_v23.txt`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/evaluation_manifest_v23.yaml`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/full_input_aggregate.csv`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/full_input_per_run.csv`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/missing_modality_aggregate.csv`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/missing_modality_per_run.csv`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/result_diff_v22_to_v23.csv`
-- `A  reproducibility/standardized_evaluation_v23/results_v23/result_reconciliation_v23.md`
-- ` M runs/handoff_latest.json`
-- ` M runs/handoff_latest.md`
-- ` M runs/phase7a_asset_readiness_report.md`
+- `M runs/phase7a_asset_readiness_report.md`
 - `?? rarepdet/tools/eval_dronevehicle_modality_specific.py`
 - `?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py`
 - `?? runs/component_disjoint_candidates/`

@@ -32,6 +32,7 @@ followed by official Springer `sn-jnl` PDF compilation only after the strict pre
 - Earlier `git pull --ff-only research research/ra-repdet-triair` was blocked because the local and remote branches had diverged.
 - Local refresh commit was created, and the first `git push research research/ra-repdet-triair` was rejected as non-fast-forward before the merge.
 - Per user direction, the remote `research/research/ra-repdet-triair` branch was then merged with `--allow-unrelated-histories`; the remaining blocker is strict final-submission preflight, not branch divergence.
+- After the merge commit, `git push research research/ra-repdet-triair` succeeded.
 
 ## Strict Preflight Blockers
 
