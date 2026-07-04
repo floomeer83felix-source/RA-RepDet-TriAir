@@ -1,10 +1,10 @@
 # Current Task
 
 ## Title
-Phase 7E — Local Non-Final Candidate Renders for Fig. 3–5
+Phase 7F — Author Figure Review Intake and Fig. 6 Panel Inventory
 
 ## Goal
-Create reproducible, local-only candidate renders for the three quantitative figures whose sources are frozen and validated: Fig. 3, Fig. 4, and Fig. 5. These outputs are strictly for author review. They must be visibly marked **CANDIDATE — NOT FINAL**, remain untracked, and must not be inserted into the SIVP LaTeX body or treated as approved publication assets.
+Prepare a clear author-review packet for the three local, non-final Fig. 3–5 candidates; make the Fig. 1–2 schematic decisions explicit; and perform a local-only inventory of real Fig. 6 validation panels referenced by the existing qualitative manifest. This task organizes review evidence and decisions. It must not approve assets on the authors’ behalf, generate final figures, insert figures into LaTeX, or change research evidence.
 
 ## Read First
 1. `AGENTS.md` if it exists.
@@ -15,80 +15,79 @@ Create reproducible, local-only candidate renders for the three quantitative fig
 6. `runs/phase7b_publication_state_reconciliation.md`
 7. `runs/phase7c_table_insertion_report.md`
 8. `runs/phase7d_figure_source_lock_report.md`
-9. `docs/TASK_BLOCKER.md`
-10. `submission/sivp/README.md`
-11. `submission/sivp/tex/ra_repdet_sivp.tex`
-12. `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
-13. `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md`
-14. `submission/sivp/figures/FIGURE_BUILD_SPEC.md`
-15. `submission/sivp/review/FIGURE_CANDIDATE_CHECK.md`
-16. `submission/sivp/figures/figure_candidate_build.py`
-17. `manuscript/figures/fig3_controlled_ablation_source.csv`
-18. `manuscript/figures/fig4_missing_modality_source.csv`
-19. `manuscript/figures/fig5_reliability_weight_source.csv`
-20. `scripts/preflight_submission.py`
-21. `rarepdet/tools/generate_handoff.py`
-22. `rarepdet/tools/update_project_status.py`
+9. `runs/phase7e_candidate_render_report.md`
+10. `docs/TASK_BLOCKER.md`
+11. `submission/sivp/README.md`
+12. `submission/sivp/tex/ra_repdet_sivp.tex`
+13. `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
+14. `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md`
+15. `submission/sivp/figures/FIGURE_BUILD_SPEC.md`
+16. `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md`
+17. `submission/sivp/review/FIGURE_CANDIDATE_CHECK.md`
+18. `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md`
+19. `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
+20. `runs/clean_qualitative_manifest.csv`
+21. `submission/sivp/figures/figure_candidate_build.py`
+22. `scripts/preflight_submission.py`
+23. `rarepdet/tools/generate_handoff.py`
+24. `rarepdet/tools/update_project_status.py`
 
 ## Frozen Assets
 - Remote branch: `research/ra-repdet-triair`.
 - Official manuscript headline: **R4 Reliability p=0.20** on `block64_guard16_seed0`, controlled seeds `0` and `2`.
 - Publication headline means: F1@0.50 `0.920861`, AP50 `0.962495`, AP75 `0.891266`, w/o RGB AP50 `0.916051`, w/o Thermal AP50 `0.718277`, and w/o Event AP50 `0.961577`.
 - Phase 4B decision: `SELECT R4 AS CLEAN-SPLIT MAIN VARIANT`.
-- Fig. 3 source is exactly `manuscript/figures/fig3_controlled_ablation_source.csv` with Phase 7D SHA256 `23e2984adac08ebd6584e1c8d56f82d3cdd0dfb9e5e32047d5064481076d21dc`.
-- Fig. 4 source is exactly `manuscript/figures/fig4_missing_modality_source.csv` with Phase 7D SHA256 `aea82341ac37547ece40428e56bd3d98fabf299304a4b24067a7705eaf642fde`.
-- Fig. 5 source is exactly `manuscript/figures/fig5_reliability_weight_source.csv` with Phase 7D SHA256 `ef93dca475e9a1fa704856952951fbe47ebb701c9e559ea60abf46d861a1239c`.
-- Fig. 1–2 remain author-design / Visio-style dependencies. Fig. 6 remains dependent on verified local real validation panels. Do not work on Fig. 1, Fig. 2, or Fig. 6 in this task.
-- The manuscript figure placeholders remain intentional until approved final assets exist.
-- Candidate artwork is not final artwork, not a submission asset, and not author-approved.
+- Fig. 3–5 local candidates exist only under `runs/local_candidate_figures/phase7e/`, are Git-ignored, visibly marked `CANDIDATE — NOT FINAL`, and are not publication assets.
+- Fig. 3–5 source hashes remain those validated in Phase 7D and Phase 7E.
+- Fig. 1–2 require author-approved schematic/Visio design sources. Fig. 6 requires verified local real validation panels and author-approved panel selection.
+- The six figure placeholders in `submission/sivp/tex/ra_repdet_sivp.tex` remain intentional until final approved assets exist.
+- Strict V18 preflight remains blocked by final figures and author-provided metadata/governance/release/environment information.
 
 ## Allowed Files To Modify
-- `.gitignore` only to add an exact ignore rule for `runs/local_candidate_figures/` if it is not already ignored.
 - `docs/NEXT_TASK.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `docs/TASK_BLOCKER.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/phase7e_candidate_render_report.md`
-- `runs/phase7e_candidate_render_report.json`
-- `submission/sivp/figures/figure_candidate_build.py`
-- `submission/sivp/figures/FIGURE_BUILD_SPEC.md`
-- `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md`
-- `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.csv`
-- `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md`
-- `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.csv`
+- `runs/phase7f_author_review_intake_report.md`
+- `runs/phase7f_author_review_intake_report.json`
+- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md`
+- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv`
+- `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md`
+- `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv`
+- `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md`
+- `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.csv`
+- `submission/sivp/figures/qualitative_panel_inventory.py`
 - `rarepdet/tools/generate_handoff.py`
 - `rarepdet/tools/update_project_status.py`
 
 ## Local Outputs Required but Never Committed
-Create only under this local directory:
+Create only under:
 
 ```text
-runs/local_candidate_figures/phase7e/
+runs/local_candidate_figures/phase7f/
 ```
 
-Required local-only files:
+Required local-only output:
 
 ```text
-Fig3_controlled_ablation_candidate.pdf
-Fig4_missing_modality_robustness_candidate.pdf
-Fig5_reliability_weight_audit_candidate.pdf
-candidate_render_manifest.json
+fig6_panel_inventory.json
 ```
 
-These files must remain untracked and ignored. They must not be copied or renamed into `submission/sivp/figures/`, `figures/`, `manuscript/figures/`, or any final-asset directory.
+This local JSON may include absolute panel paths needed for local verification. It must remain ignored and untracked. Do not copy local absolute paths or local panel filenames into public committed reports.
 
 ## Forbidden Files To Modify
-- All training, model, dataset, loss, primary AP-evaluation, data-loading, and split-generation files.
-- All raw `.npy` data, labels, checkpoints, weights, source evidence CSVs, source figure CSVs, qualitative panels, rendered final figure assets, final PDFs, and prior experiment outputs.
-- `submission/sivp/tex/ra_repdet_sivp.tex`; do not replace any figure placeholder or add any `\includegraphics` call.
-- `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md` and `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.*`; this task does not change final-asset readiness.
-- Do not generate Fig. 1, Fig. 2, Fig. 6, any final `Fig1`–`Fig6` PDF, or a final compiled manuscript PDF.
-- Do not fabricate author approval, confidence intervals, statistical significance, interpolation, model outputs, qualitative detections, citations, data-governance facts, release URLs, licences, or DOIs.
-- Do not run training, GPU inference, metric recomputation, split mutation, or source-data mutation.
+- All training, model, dataset, loss, evaluation, data-loading, and split-generation files.
+- All raw `.npy` data, labels, checkpoints, weights, source evidence CSVs, source figure CSVs, local qualitative panels, rendered candidate PDFs, final figure assets, and final PDFs.
+- `.gitignore`, unless an existing ignore rule does not already cover `runs/local_candidate_figures/`; do not weaken any ignore rule.
+- `submission/sivp/tex/ra_repdet_sivp.tex`; do not replace figure placeholders or add `\includegraphics` calls.
+- `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md` and `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.*`; no figure readiness status becomes final in this task.
+- Do not generate, alter, copy, rename, or commit any candidate or final Fig. 1–6 PDF/image.
+- Do not fabricate author approval, local-panel verification, captions, author information, citations, data terms, release details, or numerical evidence.
+- Do not run training, GPU inference, metric recomputation, split mutation, source-data mutation, or LaTeX compilation.
 
 ## Required Commands
-Run only local candidate-render work. Start with:
+Start with safe context and source checks:
 
 ```powershell
 git switch research/ra-repdet-triair
@@ -100,19 +99,16 @@ python submission/sivp/figures/figure_candidate_build.py --dry-run --root .
 
 If `git pull --ff-only` cannot proceed because of genuine local/remote divergence, do not use `--allow-unrelated-histories`, reset, force push, or rewrite history. Record the blocker in `docs/TASK_BLOCKER.md`, commit only safe partial outputs if possible, and stop.
 
-After validating source hashes, run exactly:
+Then run only a local inventory:
 
 ```powershell
-python submission/sivp/figures/figure_candidate_build.py --render-candidates --root . --output-dir runs/local_candidate_figures/phase7e
+python submission/sivp/figures/qualitative_panel_inventory.py --dry-run --root . --output runs/local_candidate_figures/phase7f/fig6_panel_inventory.json
 ```
 
-Then run:
+After producing committed review templates and local inventory, run:
 
 ```powershell
-python submission/sivp/figures/figure_candidate_build.py --dry-run --root .
-git check-ignore -v runs/local_candidate_figures/phase7e/Fig3_controlled_ablation_candidate.pdf
-git check-ignore -v runs/local_candidate_figures/phase7e/Fig4_missing_modality_robustness_candidate.pdf
-git check-ignore -v runs/local_candidate_figures/phase7e/Fig5_reliability_weight_audit_candidate.pdf
+git check-ignore -v runs/local_candidate_figures/phase7f/fig6_panel_inventory.json
 python rarepdet/tools/generate_handoff.py
 python rarepdet/tools/update_project_status.py
 python scripts/preflight_submission.py --root . --allow-placeholders
@@ -120,111 +116,104 @@ python scripts/preflight_submission.py --root .
 powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 ```
 
-Do not run a LaTeX compilation in this task. The strict preflight is expected to remain FAIL.
+The strict preflight is expected to remain FAIL. Do not run a PDF compilation.
 
 ## Required Outputs
 
-### 1. Extend the candidate builder safely
-Extend `submission/sivp/figures/figure_candidate_build.py` to support exactly two mutually exclusive modes:
+### 1. Author figure review packet
+Create `submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md`. It must be concise, author-facing, and use only verified repository facts.
+
+It must include:
+
+- A one-paragraph scope statement: this is a review packet, not final approval and not a formal submission package.
+- For **Fig. 3**, **Fig. 4**, and **Fig. 5**:
+  - the exact local candidate filename/path relative to project root;
+  - source CSV path and SHA256;
+  - the locked caption and what is shown;
+  - reviewer checklist items: correctness, legibility at full width, axis/legend clarity, no unintended implication of significance, and approve/revise decision;
+  - a clear statement that candidates are marked `CANDIDATE — NOT FINAL` and must not be copied into final asset paths before written approval.
+- For **Fig. 1** and **Fig. 2**:
+  - exact schematic content checklist from `FIGURE_BUILD_SPEC.md`;
+  - decision options limited to: `provide external source`, `approve a future implementation from checklist`, `revise checklist`, or `defer`.
+- For **Fig. 6**:
+  - explain that only real local validation panels from the manifest are eligible;
+  - state that panel selection, cropping/redaction, and final composition require author review;
+  - include no raw local path, image preview, or fabricated panel selection.
+- A direct link/reference to `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md` for non-figure remaining inputs.
+
+### 2. Author decision templates
+Create `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv` and an accompanying readable Markdown table in the packet. Each figure must have one row with these fields:
 
 ```text
---dry-run
---render-candidates --output-dir <path>
+figure_id, current_state, candidate_or_source_location, author_decision, author_comments, approval_date, approver_identity, final_asset_authorized, notes
 ```
+
+Default values must be empty or explicitly `pending author review`. Do not prefill any approval, identity, date, or final authorization.
+
+Create `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md` and `.csv` with fields:
+
+```text
+review_slot, manifest_row_id, sample_identifier, panel_category, local_panel_verified, crop_or_redaction_needed, author_decision, comments, approval_date, approver_identity
+```
+
+Populate only the safe metadata already contained in the qualitative manifest, such as a row ID, sample identifier, category, and rank when present. Do not write local absolute paths, raw image file names, or image contents into committed files. Every approval/decision-related field must be `pending author review` or empty.
+
+### 3. Local Fig. 6 inventory tool
+Create `submission/sivp/figures/qualitative_panel_inventory.py`.
 
 Requirements:
 
-- Both modes must validate the same three frozen Fig. 3–5 CSV sources using the existing expected headers, row counts, numerical-token counts, and SHA256 checks.
-- `--render-candidates` must reject output directories that resolve inside `submission/sivp/figures/`, `figures/`, `manuscript/figures/`, or any final-asset directory.
-- It must require an output directory under `runs/local_candidate_figures/` and fail if the path is not ignored by Git after the `.gitignore` update.
-- It must produce exactly the three required PDF files and one JSON manifest named above. Do not write PNG/JPG/SVG/EPS files unless separately approved in a later task.
-- Every candidate PDF must include a prominent visible text watermark: `CANDIDATE — NOT FINAL`.
-- Each generated PDF must embed or visibly state the exact source CSV relative path and its SHA256.
-- The JSON manifest must record: build timestamp, command arguments, source paths, hashes, headers, row counts, numeric-token counts, Python and matplotlib versions, generated candidate filenames, and a literal `final_asset_status: not_final` field.
-- The script must not import training code or open a GPU context.
-- It must fail clearly and write no partial final-looking file if validation fails. Use a temporary filename and atomic rename for each PDF where practical.
+- Accept exactly `--dry-run`, `--root`, and `--output`.
+- Read the existing qualitative manifest; discover the actual manifest schema instead of hard-coding unverified column names.
+- Resolve local panel paths only for local verification. Never print full absolute paths to stdout, committed markdown, or committed CSV files.
+- Verify, without modifying or rendering, how many manifest rows have an addressable local panel path and how many existing files are present. Do not open images, regenerate detections, or write image files.
+- Write exactly one local JSON file to the user-supplied output path. The JSON may contain local absolute paths, existence booleans, and per-row diagnostics because it is ignored/untracked.
+- Print a privacy-safe summary only: manifest row count, count with candidate path metadata, count of existing panel files, count missing/unverifiable, and output file location relative to project root.
+- Reject output paths outside `runs/local_candidate_figures/` and reject output paths not ignored by Git.
+- Do not import model/training code or open a GPU context.
 
-### 2. Required candidate plot designs
-Follow the locked build specification exactly and preserve every source row.
+### 4. Committed Fig. 6 inventory summary
+Create `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md` and `.csv` containing only aggregate, non-sensitive results:
 
-**Fig. 3 — Controlled clean-split ablation**
-- One full-width candidate PDF with three labeled panels: `(a) F1@0.50`, `(b) AP50`, `(c) AP75`.
-- X-axis: `R0 Early Fusion`, `R1 Reliability p=0.00`, `R2 Reliability p=0.15`, `R4 Reliability p=0.20`.
-- Show both seed 0 and seed 2 as distinct overlaid points for every metric/variant.
-- A two-seed mean may be shown only if explicitly labeled `mean of seeds 0 and 2`.
-- Do not draw error bars, confidence intervals, p-values, or significance marks.
-- Use only CSV values; do not use text copied from reports as data.
+- manifest path and SHA256;
+- manifest row count;
+- identified safe metadata columns used for review template;
+- count of rows with path metadata;
+- count of locally existing panels;
+- count missing/unverifiable;
+- whether any image content was opened (`must be no`);
+- whether any local path or panel filename was committed (`must be no`);
+- status: `ready for author selection`, `partial local inventory`, or `blocked`.
 
-**Fig. 4 — Missing-modality robustness**
-- One full-width candidate PDF showing all 18 source rows exactly once.
-- X-axis groups: `w/o RGB`, `w/o Thermal`, `w/o Event`.
-- Variant grouping: R1, R2, R4; show seed 0 and seed 2 as distinct overlaid points.
-- Y-axis: AP50, with a visible scale appropriate to the data and an explicit `AP50` label.
-- Do not hide the thermal-removal weakness; do not use statistical error bars or inferred confidence intervals.
+Do not mark Fig. 6 final or selected. Do not choose panels automatically.
 
-**Fig. 5 — Reliability-weight audit**
-- One full-width candidate PDF showing all eight source rows exactly once.
-- X-axis: input mode `full`, `no_rgb`, `no_thermal`, `no_event`; use a two-panel layout, one panel per seed.
-- Show `alpha_rgb`, `alpha_thermal`, and `alpha_event` means as grouped bars or points.
-- Use the provided `alpha_*_std` values only as explicitly labeled `± std` variability bars; do not infer confidence intervals or significance.
-- Retain the condition labels and do not interpret alpha as physical causal importance.
+### 5. Report, status, and blocker
+Create `runs/phase7f_author_review_intake_report.md` and matching JSON containing:
 
-Use simple publication-legible styling, clear axis labels, a readable legend, and the specified 174 mm full-width intention. Do not rely on custom fonts or download external assets.
+- local candidate Fig. 3–5 review readiness;
+- figure-review packet and decision-template locations;
+- Fig. 6 aggregate local-inventory result;
+- author decisions required for Fig. 1–6;
+- remaining ledger categories outside figures;
+- explicit confirmation that no figure asset, candidate PDF, final PDF, source CSV, model, metric, dataset, split, panel image, or LaTeX body changed.
 
-### 3. Candidate render manifest and integrity check
-Create:
+Update `docs/TASK_BLOCKER.md` to reflect that the review packet exists but author decisions and final approved Fig. 1–6 assets are still required. Do not remove any final-figure or metadata blocker.
 
-- `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md`
-- `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.csv`
-- `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md`
-- `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.csv`
-
-The manifest must distinguish:
-
-- source-lock documentation committed to Git;
-- candidate render specifications committed to Git;
-- candidate PDF/JSON files that were generated locally but intentionally not committed;
-- final assets that remain missing and author approval requirements.
-
-The integrity check must record:
-
-- all three source SHA256 values matched Phase 7D;
-- each expected candidate PDF exists locally and is nonzero;
-- each candidate filename ends `_candidate.pdf`;
-- the JSON manifest marks every asset `not_final`;
-- all candidate paths are ignored by Git and absent from `git status --short`;
-- no final `Fig1`–`Fig6` PDF exists or was created;
-- the SIVP LaTeX body still has all six figure placeholders;
-- Fig. 1–2 and Fig. 6 remain unresolved;
-- strict preflight remains expected to fail on figures and external author/metadata inputs.
-
-### 4. Report, status, and blocker
-Create `runs/phase7e_candidate_render_report.md` and matching JSON including:
-
-- exact source hashes and validation results;
-- candidate file paths, byte sizes, and local-only status;
-- visual-design conformance checks for the three PDFs;
-- confirmation that source CSVs, metrics, models, datasets, splits, final assets, LaTeX body, and final PDFs were unchanged;
-- remaining strict-preflight blockers;
-- explicit statement that candidates await author review and are not publication assets.
-
-Update `docs/TASK_BLOCKER.md` to record that Fig. 3–5 local candidates exist only for review. Keep the final-figure blocker open until all Fig. 1–6 final approved PDFs exist and are verified.
-
-Refresh `runs/handoff_latest.md` and `.json` and `docs/EXPERIMENT_STATUS.md`. The clean blocked-split R4 headline must remain first; E0–E6 remain historical/exploratory. Do not present local candidates as completed final assets.
+Refresh `runs/handoff_latest.md` and `.json` and `docs/EXPERIMENT_STATUS.md`. The clean blocked-split R4 headline remains first; E0–E6 remain historical/exploratory. Do not present a review packet, candidate PDF, or panel inventory as a final publication asset.
 
 ## Acceptance Criteria
-- `figure_candidate_build.py --dry-run --root .` passes before and after rendering.
-- `--render-candidates` creates exactly three local-only candidate PDFs and one local JSON manifest under `runs/local_candidate_figures/phase7e/`.
-- All candidates are visibly marked `CANDIDATE — NOT FINAL` and include source path/hash provenance.
-- Fig. 3 shows every 8-row source record through the seed-point representation; Fig. 4 shows every 18-row record; Fig. 5 shows every 8-row record.
-- All candidate outputs are ignored by Git, absent from `git status --short`, and are not committed.
-- No final Fig. 1–6 asset, LaTeX body placeholder, final PDF, source CSV, metric, model, dataset, split, source data, checkpoint, or evaluation output changes.
-- Placeholder-mode preflight is executed and documented. Strict preflight remains truthfully FAIL due to final figures and external author/metadata requirements.
-- `runs/handoff_latest.md` records the final commit SHA, changed files, command outcomes, candidate review status, and residual blockers.
-- Commit only the allowed code/documentation files and push the branch.
+- The author review packet and all four review template/check files exist with no fabricated approvals.
+- Fig. 3–5 local candidates remain only local, ignored, untracked, and explicitly non-final.
+- `qualitative_panel_inventory.py --dry-run` produces exactly one ignored local JSON inventory and no image/PDF output.
+- Committed Fig. 6 inventory files contain no local absolute paths, raw panel filenames, or image contents.
+- Fig. 1–2 remain author-design dependencies; Fig. 6 remains pending author selection; no figure placeholder is replaced.
+- Placeholder-mode preflight is executed and documented. Strict preflight remains truthfully FAIL because author decisions, final figure assets, and external metadata remain unresolved.
+- No training, GPU inference, numerical evaluation, split mutation, source-data mutation, source CSV modification, candidate/final figure generation, or LaTeX compilation occurs.
+- `runs/handoff_latest.md` records the final commit SHA, changed files, command outcomes, review-intake state, and residual blockers.
+- Commit only allowed code/documentation files and push the branch.
 
 ## Commit Message
-`docs: add local candidate renders for figures 3-5`
+`docs: add author figure review intake and panel inventory`
 
 ## Completion / Blocker Rule
-Complete the non-final local candidate-render task, refresh handoff/status, commit only the allowed code and documents, and push. If rendering cannot be completed without source mismatch, unignored output, a final-asset-path violation, or an ambiguous visualization choice, write the exact blocker in `docs/TASK_BLOCKER.md`, commit the safe diagnostics, and stop. Do not insert candidates into the manuscript or claim final submission readiness.
+Complete the review-intake and inventory task, refresh handoff/status, commit only the allowed code and documents, and push. If the manifest does not expose a safe way to perform local path verification, document the aggregate limitation in the committed inventory check and keep Fig. 6 blocked. Do not fabricate panel availability, approve candidate figures, insert assets, or claim submission readiness.
