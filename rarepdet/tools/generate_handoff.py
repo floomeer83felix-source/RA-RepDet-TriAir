@@ -73,6 +73,15 @@ PHASE7G_CROSSWALK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE
 PHASE7G_CROSSWALK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_TABLE_CROSSWALK.csv"
 PHASE7G_REPRO_AUDIT_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "REPRODUCIBILITY_CLOSURE_AUDIT.md"
 PHASE7G_REPRO_AUDIT_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "REPRODUCIBILITY_CLOSURE_AUDIT.csv"
+PHASE7H_REPORT_MD = RUNS_DIR / "phase7h_author_response_validation_report.md"
+PHASE7H_REPORT_JSON = RUNS_DIR / "phase7h_author_response_validation_report.json"
+PHASE7H_VALIDATOR = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "validate_author_submission_inputs.py"
+PHASE7H_VALIDATION_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "AUTHOR_RESPONSE_VALIDATION.md"
+PHASE7H_VALIDATION_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "AUTHOR_RESPONSE_VALIDATION.csv"
+PHASE7H_READINESS_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "METADATA_APPLICATION_READINESS_MAP.md"
+PHASE7H_READINESS_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "METADATA_APPLICATION_READINESS_MAP.csv"
+PHASE7H_GATE_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_RESPONSE_GATE_CHECK.md"
+PHASE7H_GATE_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_RESPONSE_GATE_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -649,6 +658,41 @@ def collect_phase7g():
     }
 
 
+def collect_phase7h():
+    report_data = {}
+    if PHASE7H_REPORT_JSON.exists():
+        try:
+            report_data = json.loads(PHASE7H_REPORT_JSON.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            report_data = {"json_error": "Could not parse phase7h report JSON."}
+    counts = report_data.get("counts", {})
+    readiness_counts = counts.get("readiness_counts", {})
+    return {
+        "report": str(PHASE7H_REPORT_MD) if PHASE7H_REPORT_MD.exists() else None,
+        "report_json": str(PHASE7H_REPORT_JSON) if PHASE7H_REPORT_JSON.exists() else None,
+        "validator": str(PHASE7H_VALIDATOR) if PHASE7H_VALIDATOR.exists() else None,
+        "validation": str(PHASE7H_VALIDATION_MD) if PHASE7H_VALIDATION_MD.exists() else None,
+        "validation_csv": str(PHASE7H_VALIDATION_CSV) if PHASE7H_VALIDATION_CSV.exists() else None,
+        "readiness_map": str(PHASE7H_READINESS_MD) if PHASE7H_READINESS_MD.exists() else None,
+        "readiness_map_csv": str(PHASE7H_READINESS_CSV) if PHASE7H_READINESS_CSV.exists() else None,
+        "gate_check": str(PHASE7H_GATE_CHECK_MD) if PHASE7H_GATE_CHECK_MD.exists() else None,
+        "gate_check_csv": str(PHASE7H_GATE_CHECK_CSV) if PHASE7H_GATE_CHECK_CSV.exists() else None,
+        "ledger_total": counts.get("ledger_total", count_csv_rows(PHASE7B_LEDGER_CSV)),
+        "resolved_count": counts.get("resolved_count", 0),
+        "unresolved_count": counts.get("unresolved_count", 0),
+        "response_rows": counts.get("response_template_rows", count_csv_rows(PHASE7G_AUTHOR_RESPONSES_CSV)),
+        "structural_integrity_errors": counts.get("structural_integrity_errors", 0),
+        "readiness_counts": readiness_counts,
+        "validator_outcome": report_data.get("validator", {}).get("outcome", "pending"),
+        "placeholder_preflight_result": report_data.get("placeholder_preflight_result", "pending"),
+        "strict_preflight_result": report_data.get("strict_preflight_result", "pending"),
+        "remaining_blockers": report_data.get("remaining_strict_preflight_blockers", []),
+        "command_outcomes": report_data.get("command_outcomes", []),
+        "changed_files": report_data.get("changed_files", []),
+        "final_commit_sha": report_data.get("final_commit_sha", "pending until commit is created"),
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -683,6 +727,7 @@ def build_handoff():
     phase7e = collect_phase7e()
     phase7f = collect_phase7f()
     phase7g = collect_phase7g()
+    phase7h = collect_phase7h()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -796,6 +841,19 @@ def build_handoff():
             "Collect TriAir governance, release/archive, claim-scope, and environment confirmations.",
             "Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.",
         ]
+    if phase7h["report"] or "Phase 7H" in read_text(NEXT_TASK_PATH):
+        pending = [
+            "Author-response validation gate exists and currently reports 29 pending_author_response rows with zero structurally ready rows.",
+            "TAB_001 remains resolved and absent from response requirements; no open table_asset blocker remains.",
+            "Strict V18 preflight remains blocked by unresolved author metadata, declarations, data governance, release/archive facts, final Fig. 1-6 assets, claim-scope approval, environment record, and compile readiness.",
+            "Do not apply any response or claim formal submission readiness until rows are author-confirmed and externally verified where required.",
+        ]
+        next_tasks = [
+            "Collect completed author responses with confirmer, confirmation date, and source-of-confirmation fields.",
+            "Rerun the Phase 7H validator after responses are supplied.",
+            "Promote Phase 7I only for structurally ready author metadata/declaration rows.",
+            "Keep data governance, release/archive, figures, environment, strict preflight, compile, and bundle assembly gated by their queued conditional phases.",
+        ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -858,6 +916,7 @@ def build_handoff():
         "phase7e": phase7e,
         "phase7f": phase7f,
         "phase7g": phase7g,
+        "phase7h": phase7h,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -1300,6 +1359,52 @@ def write_markdown(data, path):
         ),
         f"- Final commit SHA: {data['phase7g']['final_commit_sha']}",
         "- Phase 7G status: table ledger reconciled and author intake/static audit package completed; strict preflight remains blocked by non-table external inputs and final figure assets.",
+        "",
+        "## Phase 7H Author Response Validation Gate",
+        "",
+        "- Author-response validation report: `runs/phase7h_author_response_validation_report.md`" if data["phase7h"]["report"] else "- Author-response validation report: NA",
+        "- Author-response validation JSON: `runs/phase7h_author_response_validation_report.json`" if data["phase7h"]["report_json"] else "- Author-response validation JSON: NA",
+        "- Validator script: `submission/sivp/metadata/validate_author_submission_inputs.py`" if data["phase7h"]["validator"] else "- Validator script: NA",
+        "- Validation report: `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md` and `.csv`"
+        if data["phase7h"]["validation"] and data["phase7h"]["validation_csv"]
+        else "- Validation report: NA",
+        "- Application readiness map: `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md` and `.csv`"
+        if data["phase7h"]["readiness_map"] and data["phase7h"]["readiness_map_csv"]
+        else "- Application readiness map: NA",
+        "- Gate check: `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md` and `.csv`"
+        if data["phase7h"]["gate_check"] and data["phase7h"]["gate_check_csv"]
+        else "- Gate check: NA",
+        f"- Ledger/template counts: total={data['phase7h']['ledger_total']}; resolved={data['phase7h']['resolved_count']}; unresolved={data['phase7h']['unresolved_count']}; response_rows={data['phase7h']['response_rows']}",
+        f"- Structural integrity errors: {data['phase7h']['structural_integrity_errors']}",
+        "- Readiness counts: "
+        + (
+            ", ".join(f"{key}={value}" for key, value in sorted(data["phase7h"]["readiness_counts"].items()))
+            if data["phase7h"]["readiness_counts"]
+            else "none recorded"
+        ),
+        f"- Validator outcome: {data['phase7h']['validator_outcome']}",
+        f"- Placeholder-mode preflight result: {data['phase7h']['placeholder_preflight_result']}",
+        f"- Strict preflight result: {data['phase7h']['strict_preflight_result']}",
+        "- Command outcomes: "
+        + (
+            "; ".join(data["phase7h"]["command_outcomes"])
+            if data["phase7h"]["command_outcomes"]
+            else "see report after Phase 7H commands are run"
+        ),
+        "- Phase 7H changed files: "
+        + (
+            ", ".join(f"`{item}`" for item in data["phase7h"]["changed_files"])
+            if data["phase7h"]["changed_files"]
+            else "see git diff for current task files"
+        ),
+        "- Residual blockers: "
+        + (
+            "; ".join(data["phase7h"]["remaining_blockers"])
+            if data["phase7h"]["remaining_blockers"]
+            else "none recorded"
+        ),
+        f"- Final commit SHA: {data['phase7h']['final_commit_sha']}",
+        "- Phase 7H status: report-only validation gate completed; current blank template remains pending and no author facts are applied.",
         "",
         "## Model And Code Structure",
         "",

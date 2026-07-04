@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-04T15:40:57
+Generated: 2026-07-04T18:27:44
 Workspace: `E:\RepViT-main`
 
 ## Publication Headline
@@ -13,9 +13,9 @@ Workspace: `E:\RepViT-main`
 ## Current Active Task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7G — Expanded Submission Ledger, Author Intake, and Static Audit Batch
-- Goal: Complete a larger batch of **non-experimental, evidence-preserving submission-readiness tasks** in one pass:
-- Commit Message: `docs: expand submission audit and author intake package`
+- Current Task: Phase 7H — Author-Response Validation Gate and Application Readiness
+- Goal: Build a safe, report-only validation gate for the 29 unresolved author-input rows created in Phase 7G. The gate must identify which supplied responses are structurally ready to apply, which are incomplete, and which require external verification. It must not write author facts, figures, release values, or metadata into any manuscript or submission source file.
+- Commit Message: `docs: add author response validation gate`
 
 ## Dataset
 
@@ -158,8 +158,8 @@ Workspace: `E:\RepViT-main`
 - BibTeX references: `submission/sivp/tex/references.bib`
 - Phase 6B report: `runs/phase6b_sivp_preparation_report.md`
 - Template/LaTeX source files: 16
-- Metadata template files: 11
-- Review/audit files: 26
+- Metadata template files: 13
+- Review/audit files: 28
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
@@ -268,6 +268,26 @@ Workspace: `E:\RepViT-main`
 - Final commit SHA: pending until commit is created
 - Phase 7G status: table ledger reconciled and author intake/static audit package completed; strict preflight remains blocked by non-table external inputs and final figure assets.
 
+## Phase 7H Author Response Validation Gate
+
+- Author-response validation report: `runs/phase7h_author_response_validation_report.md`
+- Author-response validation JSON: `runs/phase7h_author_response_validation_report.json`
+- Validator script: `submission/sivp/metadata/validate_author_submission_inputs.py`
+- Validation report: `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md` and `.csv`
+- Application readiness map: `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md` and `.csv`
+- Gate check: `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md` and `.csv`
+- Ledger/template counts: total=30; resolved=1; unresolved=29; response_rows=29
+- Structural integrity errors: 0
+- Readiness counts: external_verification_required=0, invalid_or_incomplete=0, pending_author_response=29, response_present_needs_confirmation=0, structurally_ready_for_future_apply=0
+- Validator outcome: PASS
+- Placeholder-mode preflight result: PASS with expected warnings
+- Strict preflight result: expected FAIL
+- Command outcomes: git switch research/ra-repdet-triair: PASS; git pull --ff-only research research/ra-repdet-triair: PASS, fast-forwarded to 04ca80f; git status --short: PASS; unrelated pre-existing untracked files remain outside the task; python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings; python -m py_compile submission/sivp/metadata/validate_author_submission_inputs.py: PASS; python submission/sivp/metadata/validate_author_submission_inputs.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --output-prefix submission/sivp/metadata/author_response_validation: PASS; 29 pending_author_response rows; python scripts/preflight_submission.py --root .: expected FAIL
+- Phase 7H changed files: `docs/UPCOMING_TASKS.md`, `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, `runs/handoff_latest.md`, `runs/handoff_latest.json`, `runs/phase7h_author_response_validation_report.md`, `runs/phase7h_author_response_validation_report.json`, `submission/sivp/metadata/validate_author_submission_inputs.py`, `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md`, `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv`, `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md`, `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv`, `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md`, `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv`, `rarepdet/tools/generate_handoff.py`, `rarepdet/tools/update_project_status.py`
+- Residual blockers: author_metadata; declarations; data_governance; release_archive; figure_asset; claim_scope; environment; compile_readiness
+- Final commit SHA: pending until commit is created
+- Phase 7H status: report-only validation gate completed; current blank template remains pending and no author facts are applied.
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -290,42 +310,35 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Strict V18 preflight remains blocked by author-confirmed metadata, declarations, TriAir governance facts, release/archive metadata, final approved Fig. 1-6 assets, claim-scope approval, final environment record, and final compile readiness.
-- TAB_001 is reconciled as complete after Phase 7C; no open table_asset blocker remains.
-- Author submission intake now covers 29 unresolved ledger items with blank response fields, and static source audit passes structural checks only.
-- Do not treat placeholder-mode preflight PASS or static-audit PASS as formal submission readiness.
+- Author-response validation gate exists and currently reports 29 pending_author_response rows with zero structurally ready rows.
+- TAB_001 remains resolved and absent from response requirements; no open table_asset blocker remains.
+- Strict V18 preflight remains blocked by unresolved author metadata, declarations, data governance, release/archive facts, final Fig. 1-6 assets, claim-scope approval, environment record, and compile readiness.
+- Do not apply any response or claim formal submission readiness until rows are author-confirmed and externally verified where required.
 
 ## Recently Modified Files
 
 - `M docs/EXPERIMENT_STATUS.md`
 - ` M docs/TASK_BLOCKER.md`
+- ` M docs/UPCOMING_TASKS.md`
 - ` M rarepdet/tools/generate_handoff.py`
 - ` M rarepdet/tools/update_project_status.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `A  runs/phase7g_submission_intake_report.json`
-- ` M submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
-- ` M submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
+- `A  runs/phase7h_author_response_validation_report.json`
 - `?? runs/component_disjoint_candidates/`
-- `?? runs/phase7g_submission_intake_report.md`
+- `?? runs/phase7h_author_response_validation_report.md`
 - `?? runs/v39_component_disjoint/`
-- `?? submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`
-- `?? submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
-- `?? submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`
-- `?? submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`
-- `?? submission/sivp/review/FIGURE_TABLE_CROSSWALK.csv`
-- `?? submission/sivp/review/FIGURE_TABLE_CROSSWALK.md`
-- `?? submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.csv`
-- `?? submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md`
-- `?? submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.csv`
-- `?? submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md`
-- `?? submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.csv`
-- `?? submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md`
-- `?? submission/sivp/review/static_submission_audit.py`
+- `?? submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv`
+- `?? submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md`
+- `?? submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv`
+- `?? submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md`
+- `?? submission/sivp/metadata/validate_author_submission_inputs.py`
+- `?? submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv`
+- `?? submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md`
 
 ## Next Recommended Tasks
 
-- Collect completed author responses in submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv.
-- Collect author-approved final Fig. 1-6 assets and Fig. 6 panel-selection/composition decisions before replacing figure placeholders.
-- Collect TriAir governance, release/archive, claim-scope, and environment confirmations.
-- Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.
+- Collect completed author responses with confirmer, confirmation date, and source-of-confirmation fields.
+- Rerun the Phase 7H validator after responses are supplied.
+- Promote Phase 7I only for structurally ready author metadata/declaration rows.
+- Keep data governance, release/archive, figures, environment, strict preflight, compile, and bundle assembly gated by their queued conditional phases.

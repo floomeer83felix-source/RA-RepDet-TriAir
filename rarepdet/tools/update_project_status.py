@@ -70,6 +70,15 @@ PHASE7G_REPRO_AUDIT_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "REPR
 PHASE7G_REPRO_AUDIT_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "REPRODUCIBILITY_CLOSURE_AUDIT.csv"
 PHASE7G_COMPLETENESS_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "SUBMISSION_INPUT_COMPLETENESS_CHECK.md"
 PHASE7G_COMPLETENESS_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "SUBMISSION_INPUT_COMPLETENESS_CHECK.csv"
+PHASE7H_REPORT = RUNS_DIR / "phase7h_author_response_validation_report.md"
+PHASE7H_REPORT_JSON = RUNS_DIR / "phase7h_author_response_validation_report.json"
+PHASE7H_VALIDATOR = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "validate_author_submission_inputs.py"
+PHASE7H_VALIDATION_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "AUTHOR_RESPONSE_VALIDATION.md"
+PHASE7H_VALIDATION_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "AUTHOR_RESPONSE_VALIDATION.csv"
+PHASE7H_READINESS_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "METADATA_APPLICATION_READINESS_MAP.md"
+PHASE7H_READINESS_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "METADATA_APPLICATION_READINESS_MAP.csv"
+PHASE7H_GATE_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_RESPONSE_GATE_CHECK.md"
+PHASE7H_GATE_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_RESPONSE_GATE_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -351,6 +360,15 @@ def build_status():
     phase7g_author_response_rows = count_csv_rows(PHASE7G_AUTHOR_RESPONSES_CSV)
     phase7g_crosswalk_rows = count_csv_rows(PHASE7G_CROSSWALK_CSV)
     phase7g_static_audit_rows = count_csv_rows(PHASE7G_STATIC_AUDIT_CSV)
+    phase7h_report_exists = PHASE7H_REPORT.exists()
+    phase7h_report_json_exists = PHASE7H_REPORT_JSON.exists()
+    phase7h_validator_exists = PHASE7H_VALIDATOR.exists()
+    phase7h_validation_exists = PHASE7H_VALIDATION_MD.exists() and PHASE7H_VALIDATION_CSV.exists()
+    phase7h_readiness_exists = PHASE7H_READINESS_MD.exists() and PHASE7H_READINESS_CSV.exists()
+    phase7h_gate_check_exists = PHASE7H_GATE_CHECK_MD.exists() and PHASE7H_GATE_CHECK_CSV.exists()
+    phase7h_validation_rows = count_csv_rows(PHASE7H_VALIDATION_CSV)
+    phase7h_readiness_rows = count_csv_rows(PHASE7H_READINESS_CSV)
+    phase7h_gate_check_rows = count_csv_rows(PHASE7H_GATE_CHECK_CSV)
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -428,6 +446,19 @@ def build_status():
             )
             else "pending"
         )
+    if "Phase 7H" in next_text:
+        active_status = (
+            "completed"
+            if (
+                phase7h_report_exists
+                and phase7h_report_json_exists
+                and phase7h_validator_exists
+                and phase7h_validation_exists
+                and phase7h_readiness_exists
+                and phase7h_gate_check_exists
+            )
+            else "pending"
+        )
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -460,6 +491,8 @@ def build_status():
         current_task = "Phase 7F - Author Figure Review Intake and Fig. 6 Panel Inventory"
     if "Phase 7G" in next_text:
         current_task = "Phase 7G - Expanded Submission Ledger, Author Intake, and Static Audit Batch"
+    if "Phase 7H" in next_text:
+        current_task = "Phase 7H - Author-Response Validation Gate and Application Readiness"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -519,6 +552,11 @@ def build_status():
             "Reconcile the completed table ledger state, create a fillable author-submission intake package, "
             "run static SIVP source audits, and document the remaining closure dependencies without changing "
             "experimental evidence, manuscript source TeX, or final assets."
+        )
+    if "Phase 7H" in next_text:
+        current_goal = (
+            "Validate the Phase 7G author response template in report-only mode and identify application readiness "
+            "without applying any author facts, approvals, release values, metadata, figures, or TeX changes."
         )
 
     lines = [
@@ -1001,6 +1039,21 @@ def build_status():
         if phase7g_report_exists
         else "- Decision: NA",
         "",
+        "## Phase 7H outputs",
+        "",
+        "- Author-response validation report: `runs/phase7h_author_response_validation_report.md`" if phase7h_report_exists else "- Author-response validation report: NA",
+        "- Author-response validation JSON: `runs/phase7h_author_response_validation_report.json`" if phase7h_report_json_exists else "- Author-response validation JSON: NA",
+        "- Validator script: `submission/sivp/metadata/validate_author_submission_inputs.py`" if phase7h_validator_exists else "- Validator script: NA",
+        "- Validation report: `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md` and `.csv`" if phase7h_validation_exists else "- Validation report: NA",
+        "- Application readiness map: `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md` and `.csv`" if phase7h_readiness_exists else "- Application readiness map: NA",
+        "- Gate check: `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md` and `.csv`" if phase7h_gate_check_exists else "- Gate check: NA",
+        f"- Validation rows: {phase7h_validation_rows if phase7h_validation_exists else 'NA'}",
+        f"- Readiness-map rows: {phase7h_readiness_rows if phase7h_readiness_exists else 'NA'}",
+        f"- Gate-check rows: {phase7h_gate_check_rows if phase7h_gate_check_exists else 'NA'}",
+        "- Decision: REPORT-ONLY AUTHOR RESPONSE VALIDATION GATE CREATED; CURRENT TEMPLATE HAS 29 PENDING ROWS AND ZERO APPLIED FACTS"
+        if phase7h_report_exists
+        else "- Decision: NA",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -1031,6 +1084,7 @@ def build_status():
         "- Phase 7E generates local ignored Fig. 3-5 candidate PDFs for author review only; they are not final assets and are not inserted into LaTeX.",
         "- Phase 7F creates review templates and a local Fig. 6 inventory only; it does not approve assets, select panels, insert figures, or change evidence.",
         "- Phase 7G reconciles the completed table ledger row and creates author-intake/static-audit documentation only; it does not approve assets, insert final figures, modify source TeX, or close external metadata requirements.",
+        "- Phase 7H validates response-template structure only; it does not apply author facts, approvals, figure decisions, release values, metadata, TeX changes, or final assets.",
         "",
         "## Important research decisions",
         "",
@@ -1057,6 +1111,7 @@ def build_status():
         "- Phase 7E local Fig. 3-5 candidate renders await author review; final Fig. 1-6 assets remain missing until approved PDFs are supplied.",
         "- Phase 7F records that Fig. 6 has 20 locally existing manifest panels, but author selection and final composition approval are still required.",
         "- Phase 7G records that `TAB_001` is complete and no open table_asset blocker remains; all non-table author, governance, release, claim, environment, figure, and compile blockers still require confirmation.",
+        "- Phase 7H records 29 pending author-response rows and zero structurally ready rows in the current blank template; future application phases remain conditional.",
         "",
         "## Files or scripts currently under review",
         "",
@@ -1077,6 +1132,7 @@ def build_status():
         "- `runs/phase7e_candidate_render_report.md`",
         "- `runs/phase7f_author_review_intake_report.md`",
         "- `runs/phase7g_submission_intake_report.md`",
+        "- `runs/phase7h_author_response_validation_report.md`",
         "- `runs/handoff_latest.md`",
         "- `runs/handoff_latest.json`",
         "",

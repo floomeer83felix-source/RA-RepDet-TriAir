@@ -2,24 +2,26 @@
 
 ## Task
 
-Execute `docs/NEXT_TASK.md` for Phase 7G: reconcile the completed table ledger state, create a fillable author-submission intake package, run static source audits, document figure/table and reproducibility closure state, update handoff/status, and preserve all final-submission blockers that still require external confirmation.
+Execute `docs/NEXT_TASK.md` for Phase 7H: create a report-only author-response validation gate and application-readiness map for the 29 unresolved Phase 7G response rows.
 
 ## Blocking Condition
 
-Phase 7G completed documentation and static validation only. `TAB_001` is now resolved because Phase 7C inserted evidence-locked Tables 1-7, and the static audit confirms zero `TABLE PLACEHOLDER` strings in the SIVP body. No open table_asset blocker remains.
+Phase 7H creates the validation gate but does not close any unresolved author, figure, release, data-governance, claim, environment, or compile-readiness blocker. The current response template still has 29 blank author-response rows. The validator reports all 29 as `pending_author_response`, with zero structurally ready rows and zero factual values confirmed.
 
-Strict V18 final-submission preflight still fails because non-table external inputs and final figure assets remain unresolved:
+`TAB_001` remains resolved from Phase 7C/7G and does not reappear as an open table blocker. Strict V18 final-submission preflight still fails because external facts and final approved assets are absent.
 
-- author_metadata: final author names, affiliations, ORCID decisions, and corresponding email.
-- declarations: funding, acknowledgments, contributions, competing interests, and AI-use disclosure.
-- data_governance: TriAir citation, version/provider, licence/access terms, and redistribution restrictions.
-- release_archive: public URL or no-release policy, release tag, immutable source identifier, archive date, release licence, and DOI state.
-- figure_asset: approved final Fig. 1-6 PDF assets are absent; Fig. 1-2 still require author-designed schematics; Fig. 3-5 candidates are non-final review inputs only; Fig. 6 still requires author panel selection, crop/redaction decisions, and final composition approval.
-- claim_scope: authors must approve validation-only wording or provide new approved held-out evidence before any stronger claim.
+Remaining blocker categories:
+
+- author_metadata: final author names, affiliations, ORCID decisions, and corresponding email are unconfirmed.
+- declarations: funding, acknowledgments, contributions, competing interests, and AI-use disclosure are unconfirmed.
+- data_governance: TriAir citation, version/provider, licence/access terms, and redistribution restrictions are unconfirmed.
+- release_archive: public URL or no-release policy, release tag, immutable source identifier, archive date, release licence, and DOI state are unconfirmed.
+- figure_asset: approved final Fig. 1-6 PDF assets are absent; Fig. 1-2 still require author-designed schematic decisions; Fig. 3-5 candidates remain non-final review inputs; Fig. 6 still requires author panel selection, crop/redaction decisions, and final composition approval.
+- claim_scope: authors must approve validation-only wording or provide approved held-out evidence before stronger claims.
 - environment: final hardware/software record still needs author or research-owner confirmation.
 - compile_readiness: final Springer `sn-jnl` compile must wait until strict preflight passes and final assets exist.
 
-No author fact, approver identity, approval date, public release value, dataset licence/access statement, DOI, final figure asset, Fig. 6 panel selection, final figure insertion, manuscript claim change, or final PDF compile was produced in Phase 7G.
+No author fact, approver identity, approval date, public release value, dataset licence/access statement, DOI, final figure asset, Fig. 6 panel selection, final figure insertion, manuscript claim change, response-template edit, or final PDF compile was produced in Phase 7H.
 
 ## Failed Command
 
@@ -45,55 +47,46 @@ RESULT: FAIL
 
 ## Attempted Fixes
 
-- Ran the required branch switch and fast-forward pull before Phase 7G edits.
-- Ran `git status --short`; unrelated pre-existing untracked files were present before task edits and are not part of Phase 7G.
+- Ran the required branch switch and fast-forward pull before Phase 7H edits.
+- Ran `git status --short`; unrelated pre-existing untracked files remained outside the task.
 - Ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result: `PASS` with expected warnings.
-- Reconciled `TAB_001` in both canonical ledger formats to the completed Phase 7C table state.
-- Created `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`.
-- Created `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv` with 29 unresolved rows, excluding resolved `TAB_001`, and leaving all response/confirmation fields blank.
-- Created `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md` with only repository-documented experimental settings prefilled.
-- Created and ran `submission/sivp/review/static_submission_audit.py`; result: `PASS`.
-- Created `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md` and `.csv`.
-- Created `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md` and `.csv` with 13 assets.
-- Created `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md` and `.csv`.
-- Created `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`.
-- Created `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md` and `.csv`.
-- Created `runs/phase7g_submission_intake_report.md` and `.json`.
-- Updated handoff/status generators to report Phase 7G outputs and to avoid counting complete ledger rows as open blockers.
-- No GPU training, GPU inference sweep, metric-changing evaluation, split mutation, source-data mutation, source CSV change, core model/dataset/evaluation change, final figure generation, candidate PDF generation, LaTeX figure insertion, strict-rule weakening, or final PDF compile was executed.
+- Created `submission/sivp/metadata/validate_author_submission_inputs.py` as a CPU-only, report-only validator.
+- Ran the validator on the current blank response template; result: `PASS`, 29 `pending_author_response` rows, zero structural integrity errors.
+- Created `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md` and `.csv`.
+- Created `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md` and `.csv`.
+- Created `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md` and `.csv`.
+- Updated `docs/UPCOMING_TASKS.md` with dependency-ordered conditional phases 7I-7O and 8A.
+- Created `runs/phase7h_author_response_validation_report.md` and `.json`.
+- Updated handoff/status generators to report Phase 7H outputs and pending state.
+- No response CSV, figure decision CSV, Fig. 6 panel template, TeX source, metadata destination, reference file, release/archive manifest, figure asset, source CSV, model code, dataset code, training code, evaluation code, strict preflight rule, metric, checkpoint, split, raw data, local panel, or final PDF was modified.
 
 ## Related Files
 
 - `docs/NEXT_TASK.md`
+- `docs/UPCOMING_TASKS.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `docs/TASK_BLOCKER.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/phase7g_submission_intake_report.md`
-- `runs/phase7g_submission_intake_report.json`
-- `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
-- `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
-- `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`
+- `runs/phase7h_author_response_validation_report.md`
+- `runs/phase7h_author_response_validation_report.json`
+- `submission/sivp/metadata/validate_author_submission_inputs.py`
+- `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md`
+- `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv`
+- `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md`
+- `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv`
+- `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md`
+- `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv`
 - `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
-- `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`
-- `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`
-- `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md`
-- `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.csv`
-- `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md`
-- `submission/sivp/review/FIGURE_TABLE_CROSSWALK.csv`
-- `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md`
-- `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.csv`
-- `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md`
-- `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.csv`
-- `submission/sivp/review/static_submission_audit.py`
+- `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
+- `scripts/preflight_submission.py`
 - `rarepdet/tools/generate_handoff.py`
 - `rarepdet/tools/update_project_status.py`
-- `scripts/preflight_submission.py`
 
 ## Repair Option 1
 
-Authors complete `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`, the existing figure decision files, and the Fig. 6 review template. Then add only confirmed metadata, approved final Fig. 1-6 PDFs, approved data-governance/release/environment facts, rerun strict preflight, and compile the final Springer `sn-jnl` package.
+Authors complete `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv` with responses, confirmer identity, confirmation date, and source of confirmation. Rerun the Phase 7H validator. Promote Phase 7I only for rows that become structurally ready and author-confirmed.
 
 ## Repair Option 2
 
-Keep the repository as a pre-submission readiness package with completed evidence-locked tables, source-locked figures, blank author intake fields, and static audit evidence. Continue using placeholder-mode preflight only as a structural check until every remaining author, asset, data-governance, release, claim-scope, environment, and compile-readiness item is closed.
+Keep the repository at the validation-gate stage. Continue using the gate reports to identify missing response and confirmation fields, and do not apply any author, asset, data-governance, release, claim, environment, or compile-readiness value until the corresponding row is structurally ready and externally verified where required.

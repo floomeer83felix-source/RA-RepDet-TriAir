@@ -7,7 +7,7 @@ This file is a forward task queue. It is not the active execution entry point. C
 
 ## Current Active Task
 
-- `docs/NEXT_TASK.md`: Phase 7G — Submission Ledger Reconciliation and Author Intake Package.
+- `docs/NEXT_TASK.md`: Phase 7H - Author-Response Validation Gate and Application Readiness.
 
 ## Queue Discipline
 
@@ -19,162 +19,104 @@ This file is a forward task queue. It is not the active execution entry point. C
 
 ---
 
-## Phase 7H — Apply Author Metadata and Declaration Responses
+## Phase 7I - Conditional Application of Confirmed Author Metadata and Declarations
 
 ### Trigger
-Run only after authors complete `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv` and the response source is committed or otherwise supplied explicitly.
+Run only after `AUTHOR_RESPONSE_VALIDATION.md` shows the relevant author_metadata and declarations rows are structurally ready, author-confirmed, and have nonblank confirmation source metadata.
 
-### Goal
-Validate author-provided metadata and declarations, then update only the relevant metadata placeholders and submission-support files.
+### Allowed Scope
+Apply confirmed author names/order, affiliations, ORCIDs, corresponding email, funding, acknowledgments, contributions, competing interests, and AI-use disclosure to the explicit destination files listed in the readiness map.
 
-### Scope
-- Author names/order, affiliations, ORCIDs, corresponding email.
-- Funding, acknowledgments, contributions, competing interests, AI-use disclosure.
-- Do not alter scientific results or figures.
-
-### Acceptance Criteria
-- Every applied author fact has a source row and confirmation metadata.
-- No blank response is treated as confirmed.
-- Strict preflight may still fail on figures, data governance, release/archive, environment, or compile readiness.
+### Cannot Run Until
+The Phase 7H validation gate reports no missing response/confirmation fields for the rows being applied. Blank, partial, or unverified rows must remain untouched.
 
 ---
 
-## Phase 7I — Apply Data Governance and Release/Archive Responses
+## Phase 7J - Conditional Application of Confirmed Data Governance and Release/Archive Facts
 
 ### Trigger
-Run only after authors provide TriAir citation/version/licence/access/redistribution facts and release/archive decisions.
+Run only after the data_governance and release_archive rows are structurally ready and externally verified by the data owner, provider terms, and release owner as applicable.
 
-### Goal
-Update data availability, references, release/archive manifests, and submission metadata using author-confirmed facts only.
+### Allowed Scope
+Apply confirmed TriAir citation/version/licence/access/redistribution facts, release URL or no-release policy, release tag, immutable source identifier, archive date, release licence, and DOI state to the listed destination files.
 
-### Scope
-- TriAir citation and BibTeX if provided.
-- Dataset provider/version/licence/access terms.
-- Public release URL or explicit no-release/private policy.
-- Release tag, immutable source identifier, archive date, release licence, DOI if applicable.
-
-### Acceptance Criteria
-- No DOI, URL, licence, citation, or access statement is invented.
-- Ledger rows for data governance and release/archive are updated only when confirmed.
-- Strict preflight may still fail on figures, author decisions, environment, or compile readiness.
+### Cannot Run Until
+Provider terms, release-owner confirmation, and all confirmation-source fields are available. A well-formed URL, DOI, licence, or citation string alone is not enough.
 
 ---
 
-## Phase 7J — Apply Author Figure Decisions and Prepare Final Figure Assets
+## Phase 7K - Conditional Final Figure Asset Workflow after author decisions
 
 ### Trigger
-Run only after authors complete `AUTHOR_FIGURE_REVIEW_DECISIONS.csv` and provide or approve final source material for Fig. 1–6.
+Run only after `AUTHOR_FIGURE_REVIEW_DECISIONS.csv` and the Fig. 6 panel review template contain author-approved decisions with confirmation metadata.
 
-### Goal
-Convert approved figure decisions into final figure assets and update readiness checks.
+### Allowed Scope
+Prepare or insert final Fig. 1-6 assets only from approved schematic sources, approved frozen-CSV candidate revisions, and approved real Fig. 6 panel selections/composition decisions.
 
-### Scope
-- Fig. 1–2: use author-approved schematic source or approved implementation checklist.
-- Fig. 3–5: use approved candidate or apply requested revisions from frozen CSVs only.
-- Fig. 6: use approved real local validation panels and approved crop/redaction/composition.
-
-### Acceptance Criteria
-- Final PDFs exist at the required final asset paths.
-- Every final figure has author approval evidence.
-- No candidate watermark remains in final approved assets.
-- SIVP body figure placeholders are replaced only after final assets are verified.
+### Cannot Run Until
+Every affected figure has author approval, final asset authorization, confirmation date, approver identity, and source-of-confirmation. Local candidate PDFs and panel inventories are not final assets.
 
 ---
 
-## Phase 7K — Final Environment Record and Reproducibility Metadata
+## Phase 7L - Environment Record and Reproducibility Metadata Closure
 
 ### Trigger
-Run only after the environment record template is completed by the responsible author or research owner.
+Run only after the environment row and environment record template are completed and confirmed by the responsible author or research owner.
 
-### Goal
-Apply confirmed training/evaluation environment details to reproducibility metadata.
+### Allowed Scope
+Apply confirmed hardware, OS, Python, PyTorch/Torchvision, CUDA/cuDNN, key package versions, and training/profiling protocol summary to reproducibility metadata.
 
-### Scope
-- Hardware, OS, Python, PyTorch/Torchvision, CUDA/cuDNN, key package versions.
-- Training and profiling protocol summary.
-- Confirmation identity and date.
-
-### Acceptance Criteria
-- Environment details are not inferred from the current machine unless explicitly confirmed.
-- Metadata is internally consistent with the manuscript and evidence tables.
-- Strict preflight may still fail only on unresolved external inputs.
+### Cannot Run Until
+Machine-specific facts and confirmer/date fields are present. Do not infer environment facts from the current machine unless explicitly confirmed.
 
 ---
 
-## Phase 7L — Strict Preflight Closure Check
+## Phase 7M - Strict Preflight Closure Check
 
 ### Trigger
-Run after author metadata, declarations, data governance, release/archive, figures, claim-scope decision, and environment record are all applied.
+Run after author metadata, declarations, data governance, release/archive facts, figure assets, claim-scope decision, environment record, and compile-readiness inputs are all applied.
 
-### Goal
-Run strict preflight and identify any remaining formal submission blockers without weakening validation.
+### Allowed Scope
+Run strict preflight and document any remaining formal submission blockers without weakening validation.
 
-### Scope
-- `python scripts/preflight_submission.py --root .`
-- Review placeholder patterns, missing final assets, metadata gaps, release/archive completeness, and compile prerequisites.
-
-### Acceptance Criteria
-- Strict preflight either passes or produces a precise blocker list.
-- No final PDF is claimed ready unless strict preflight passes.
-- Any failure is reflected in `docs/TASK_BLOCKER.md`, handoff, and status.
+### Cannot Run Until
+All external confirmations and approved final assets are present. Placeholder-mode PASS remains a structural check only.
 
 ---
 
-## Phase 7M — Springer sn-jnl Compile Dry Run
+## Phase 7N - Springer `sn-jnl` Compile Dry Run
 
 ### Trigger
 Run only after strict preflight passes and the local Springer LaTeX environment is available.
 
-### Goal
-Compile the SIVP manuscript package and capture build logs without altering scientific content.
+### Allowed Scope
+Compile the approved SIVP source package, capture logs, and review references, figures, tables, captions, and layout.
 
-### Scope
-- Compile `main_sivp_snjnl.tex` or the repository-approved entry point.
-- Capture warnings/errors.
-- Check references, figures, tables, captions, and page layout.
-
-### Acceptance Criteria
-- PDF and log are generated locally and reviewed.
-- Any layout or compile blocker is documented.
-- Do not label the PDF as final unless the compile is clean and authors approve.
+### Cannot Run Until
+Strict preflight passes. Do not label a PDF final unless the compile is clean and authors approve the compiled package.
 
 ---
 
-## Phase 7N — Final Submission Bundle Assembly
+## Phase 7O - Final Submission Bundle Assembly
 
 ### Trigger
-Run only after strict preflight passes, compile review passes, and authors approve the final package.
+Run only after strict preflight passes, compile review passes, release/archive records are frozen, and authors approve the final package.
 
-### Goal
-Assemble a final, auditable SIVP submission bundle.
+### Allowed Scope
+Assemble the final source package manifest, final PDF if approved, final figures/tables, metadata, declarations, and release/archive references.
 
-### Scope
-- Source package manifest.
-- Final figures and tables.
-- Final PDF if approved.
-- Metadata and declarations.
-- Release/archive references.
-
-### Acceptance Criteria
-- All bundle components trace to confirmed sources.
-- No local-only candidate, raw data, checkpoint, or unapproved panel is included.
-- Handoff clearly states formal submission readiness only if every gate passes.
+### Cannot Run Until
+Every publisher-required field and package artifact is confirmed. Do not include local-only candidates, raw data, checkpoints, or unapproved panels.
 
 ---
 
-## Phase 8A — Optional Post-Submission Research Continuation
+## Phase 8A - Optional post-submission research continuation
 
 ### Trigger
-Run only after the SIVP package is finalized or the user explicitly pauses submission work.
+Run only after the SIVP submission package is finalized, or after the user explicitly pauses submission work and requests research continuation.
 
-### Goal
-Return to research development for the next paper direction, such as R²-RepDet stress-suite robustness, asynchronous event-window tests, or reliability/registration-aware fusion.
+### Allowed Scope
+Start a separate research-readiness task for the next paper direction, such as stress-suite robustness, asynchronous event-window tests, or reliability/registration-aware fusion.
 
-### Scope
-- Separate from the SIVP submission branch unless user requests otherwise.
-- Start with a new task that audits current code/data readiness.
-- Do not mix new experiments with the submitted manuscript evidence.
-
-### Acceptance Criteria
-- New research evidence is versioned separately.
-- Submitted manuscript claims remain frozen unless authors explicitly approve a revision.
+### Cannot Run Until
+Submission evidence and new research evidence are clearly separated. Submitted manuscript claims remain frozen unless authors explicitly approve a revision.

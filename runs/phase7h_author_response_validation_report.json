@@ -1,0 +1,96 @@
+{
+  "phase": "Phase 7H",
+  "decision": "REPORT-ONLY AUTHOR RESPONSE VALIDATION GATE CREATED",
+  "formal_submission_readiness": false,
+  "validator": {
+    "script": "submission/sivp/metadata/validate_author_submission_inputs.py",
+    "mode": "cpu-only report-only",
+    "network_or_external_verification": false,
+    "output_prefix": "submission/sivp/metadata/author_response_validation",
+    "outcome": "PASS"
+  },
+  "counts": {
+    "ledger_total": 30,
+    "resolved_count": 1,
+    "unresolved_count": 29,
+    "response_template_rows": 29,
+    "structural_integrity_errors": 0,
+    "readiness_counts": {
+      "pending_author_response": 29,
+      "response_present_needs_confirmation": 0,
+      "structurally_ready_for_future_apply": 0,
+      "invalid_or_incomplete": 0,
+      "external_verification_required": 0
+    },
+    "pending_by_category": {
+      "author_metadata": 4,
+      "declarations": 5,
+      "data_governance": 4,
+      "release_archive": 6,
+      "figure_asset": 6,
+      "claim_scope": 2,
+      "environment": 1,
+      "compile_readiness": 1
+    }
+  },
+  "structural_integrity_errors": [],
+  "no_application_no_inference_confirmation": true,
+  "response_template_modified": false,
+  "tab_001_status": "resolved and absent from response requirements",
+  "placeholder_preflight_result": "PASS with expected warnings",
+  "strict_preflight_result": "expected FAIL",
+  "remaining_strict_preflight_blockers": [
+    "author_metadata",
+    "declarations",
+    "data_governance",
+    "release_archive",
+    "figure_asset",
+    "claim_scope",
+    "environment",
+    "compile_readiness"
+  ],
+  "output_locations": {
+    "validation_md": "submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md",
+    "validation_csv": "submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv",
+    "readiness_map_md": "submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md",
+    "readiness_map_csv": "submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv",
+    "gate_check_md": "submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md",
+    "gate_check_csv": "submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv"
+  },
+  "authors_must_provide_next": [
+    "author_response for each row intended for future application",
+    "confirmed_by for each row intended for future application",
+    "confirmation_date in YYYY-MM-DD format",
+    "source_of_confirmation",
+    "external verification evidence for data governance, release/archive, figure assets, environment, and compile readiness where required",
+    "figure decisions and Fig. 6 panel-selection/composition decisions before any final figure workflow"
+  ],
+  "command_outcomes": [
+    "git switch research/ra-repdet-triair: PASS",
+    "git pull --ff-only research research/ra-repdet-triair: PASS, fast-forwarded to 04ca80f",
+    "git status --short: PASS; unrelated pre-existing untracked files remain outside the task",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings",
+    "python -m py_compile submission/sivp/metadata/validate_author_submission_inputs.py: PASS",
+    "python submission/sivp/metadata/validate_author_submission_inputs.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --output-prefix submission/sivp/metadata/author_response_validation: PASS; 29 pending_author_response rows",
+    "python scripts/preflight_submission.py --root .: expected FAIL"
+  ],
+  "changed_files": [
+    "docs/UPCOMING_TASKS.md",
+    "docs/EXPERIMENT_STATUS.md",
+    "docs/TASK_BLOCKER.md",
+    "runs/handoff_latest.md",
+    "runs/handoff_latest.json",
+    "runs/phase7h_author_response_validation_report.md",
+    "runs/phase7h_author_response_validation_report.json",
+    "submission/sivp/metadata/validate_author_submission_inputs.py",
+    "submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md",
+    "submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv",
+    "submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md",
+    "submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv",
+    "submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md",
+    "submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv",
+    "rarepdet/tools/generate_handoff.py",
+    "rarepdet/tools/update_project_status.py"
+  ],
+  "final_commit_sha": "pending until commit is created"
+}
