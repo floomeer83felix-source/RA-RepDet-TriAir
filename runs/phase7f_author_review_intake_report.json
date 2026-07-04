@@ -1,0 +1,116 @@
+{
+  "phase": "Phase 7F",
+  "title": "Author Figure Review Intake and Fig. 6 Panel Inventory",
+  "generated": "2026-07-04",
+  "workspace": "E:\\RepViT-main",
+  "baseline_commit": "7cdac6e",
+  "fig3_5_review_readiness": [
+    {
+      "figure_id": "Fig. 3",
+      "local_candidate": "runs/local_candidate_figures/phase7e/Fig3_controlled_ablation_candidate.pdf",
+      "source_csv": "manuscript/figures/fig3_controlled_ablation_source.csv",
+      "source_sha256": "23e2984adac08ebd6584e1c8d56f82d3cdd0dfb9e5e32047d5064481076d21dc",
+      "state": "pending author review; not final"
+    },
+    {
+      "figure_id": "Fig. 4",
+      "local_candidate": "runs/local_candidate_figures/phase7e/Fig4_missing_modality_robustness_candidate.pdf",
+      "source_csv": "manuscript/figures/fig4_missing_modality_source.csv",
+      "source_sha256": "aea82341ac37547ece40428e56bd3d98fabf299304a4b24067a7705eaf642fde",
+      "state": "pending author review; not final"
+    },
+    {
+      "figure_id": "Fig. 5",
+      "local_candidate": "runs/local_candidate_figures/phase7e/Fig5_reliability_weight_audit_candidate.pdf",
+      "source_csv": "manuscript/figures/fig5_reliability_weight_source.csv",
+      "source_sha256": "ef93dca475e9a1fa704856952951fbe47ebb701c9e559ea60abf46d861a1239c",
+      "state": "pending author review; not final"
+    }
+  ],
+  "review_packet_locations": {
+    "author_packet": "submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md",
+    "author_decision_csv": "submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv",
+    "fig6_panel_review_template_md": "submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md",
+    "fig6_panel_review_template_csv": "submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv",
+    "fig6_inventory_check_md": "submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md",
+    "fig6_inventory_check_csv": "submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.csv"
+  },
+  "fig6_inventory": {
+    "manifest_path": "runs/clean_qualitative_manifest.csv",
+    "manifest_sha256": "966a81923d5a91bd4d65578e7d607bc989769bad37489b90e56df76724989608",
+    "manifest_row_count": 20,
+    "rows_with_path_metadata": 20,
+    "locally_existing_panels": 20,
+    "missing_or_unverifiable": 0,
+    "image_content_opened": false,
+    "local_path_or_panel_filename_committed": false,
+    "status": "ready for author selection",
+    "local_json": "runs/local_candidate_figures/phase7f/fig6_panel_inventory.json"
+  },
+  "author_decisions_required": [
+    "Fig. 1 schematic source or checklist decision",
+    "Fig. 2 schematic source or checklist decision",
+    "Fig. 3 approve or revise local non-final candidate",
+    "Fig. 4 approve or revise local non-final candidate",
+    "Fig. 5 approve or revise local non-final candidate",
+    "Fig. 6 select real local validation panels and approve crop/redaction/final composition"
+  ],
+  "remaining_ledger_categories_outside_figures": {
+    "author_metadata": 4,
+    "declarations": 5,
+    "data_governance": 4,
+    "release_archive": 6,
+    "table_asset": 1,
+    "claim_scope": 2,
+    "environment": 1,
+    "compile_readiness": 1
+  },
+  "command_outcomes": [
+    "git switch research/ra-repdet-triair: PASS",
+    "git pull --ff-only research research/ra-repdet-triair: PASS",
+    "git status --short: PASS; unrelated pre-existing untracked files remained outside the task",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings before Phase 7F edits",
+    "python submission/sivp/figures/figure_candidate_build.py --dry-run --root .: PASS",
+    "python submission/sivp/figures/qualitative_panel_inventory.py --dry-run --root . --output runs/local_candidate_figures/phase7f/fig6_panel_inventory.json: PASS",
+    "git check-ignore -v runs/local_candidate_figures/phase7f/fig6_panel_inventory.json: PASS",
+    "python -m py_compile submission/sivp/figures/qualitative_panel_inventory.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py: PASS",
+    "python rarepdet/tools/generate_handoff.py: PASS",
+    "python rarepdet/tools/update_project_status.py: PASS",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings after Phase 7F",
+    "python scripts/preflight_submission.py --root .: FAIL as expected on unresolved author metadata, final artwork placeholders, release/data placeholders, and missing Fig. 1-6 assets"
+  ],
+  "changed_files": [
+    "docs/EXPERIMENT_STATUS.md",
+    "docs/TASK_BLOCKER.md",
+    "runs/handoff_latest.md",
+    "runs/handoff_latest.json",
+    "runs/phase7f_author_review_intake_report.md",
+    "runs/phase7f_author_review_intake_report.json",
+    "submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md",
+    "submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv",
+    "submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md",
+    "submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv",
+    "submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md",
+    "submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.csv",
+    "submission/sivp/figures/qualitative_panel_inventory.py",
+    "rarepdet/tools/generate_handoff.py",
+    "rarepdet/tools/update_project_status.py"
+  ],
+  "local_uncommitted_outputs": [
+    "runs/local_candidate_figures/phase7f/fig6_panel_inventory.json"
+  ],
+  "non_modification_confirmation": "No figure asset, candidate PDF, final PDF, source CSV, model, metric, dataset, split, panel image, raw data, checkpoint, SIVP LaTeX body, or final compiled PDF was changed. No training, GPU inference, metric recomputation, split mutation, source-data mutation, candidate/final figure generation, or LaTeX compilation was run.",
+  "residual_blockers": [
+    "author decisions for Fig. 1-6 are still missing",
+    "final approved Fig. 1-6 assets are still missing",
+    "Fig. 1-2 still require author-approved schematic sources or checklist approval",
+    "Fig. 6 still requires author-approved panel selection, crop/redaction decisions, and final composition approval",
+    "author-confirmed metadata and declarations are missing",
+    "TriAir citation, version, licence, access, and redistribution facts are missing",
+    "public release/archive URL, tag, commit/archive hash, date, licence, and DOI facts are missing",
+    "validation-only wording approval or independent held-out evidence decision is missing",
+    "final hardware/software environment record is missing",
+    "strict V18 preflight and final Springer sn-jnl compile remain blocked"
+  ],
+  "final_commit_sha": "pending until completion commit is created"
+}

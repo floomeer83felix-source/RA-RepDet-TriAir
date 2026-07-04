@@ -51,6 +51,14 @@ PHASE7E_MANIFEST_MD = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE
 PHASE7E_MANIFEST_CSV = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_CANDIDATE_RENDER_MANIFEST.csv"
 PHASE7E_RENDER_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_RENDER_CHECK.md"
 PHASE7E_RENDER_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_RENDER_CHECK.csv"
+PHASE7F_REPORT_MD = RUNS_DIR / "phase7f_author_review_intake_report.md"
+PHASE7F_REPORT_JSON = RUNS_DIR / "phase7f_author_review_intake_report.json"
+PHASE7F_PACKET_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_FIGURE_REVIEW_PACKET.md"
+PHASE7F_DECISIONS_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_FIGURE_REVIEW_DECISIONS.csv"
+PHASE7F_PANEL_TEMPLATE_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_REVIEW_TEMPLATE.md"
+PHASE7F_PANEL_TEMPLATE_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_REVIEW_TEMPLATE.csv"
+PHASE7F_PANEL_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_INVENTORY_CHECK.md"
+PHASE7F_PANEL_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_INVENTORY_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -543,6 +551,37 @@ def collect_phase7e():
     }
 
 
+def collect_phase7f():
+    report_data = {}
+    if PHASE7F_REPORT_JSON.exists():
+        try:
+            report_data = json.loads(PHASE7F_REPORT_JSON.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            report_data = {"json_error": "Could not parse phase7f report JSON."}
+    return {
+        "report": str(PHASE7F_REPORT_MD) if PHASE7F_REPORT_MD.exists() else None,
+        "report_json": str(PHASE7F_REPORT_JSON) if PHASE7F_REPORT_JSON.exists() else None,
+        "packet": str(PHASE7F_PACKET_MD) if PHASE7F_PACKET_MD.exists() else None,
+        "decisions_csv": str(PHASE7F_DECISIONS_CSV) if PHASE7F_DECISIONS_CSV.exists() else None,
+        "panel_template": str(PHASE7F_PANEL_TEMPLATE_MD) if PHASE7F_PANEL_TEMPLATE_MD.exists() else None,
+        "panel_template_csv": str(PHASE7F_PANEL_TEMPLATE_CSV) if PHASE7F_PANEL_TEMPLATE_CSV.exists() else None,
+        "panel_check": str(PHASE7F_PANEL_CHECK_MD) if PHASE7F_PANEL_CHECK_MD.exists() else None,
+        "panel_check_csv": str(PHASE7F_PANEL_CHECK_CSV) if PHASE7F_PANEL_CHECK_CSV.exists() else None,
+        "decision_rows": count_csv_rows(PHASE7F_DECISIONS_CSV),
+        "panel_template_rows": count_csv_rows(PHASE7F_PANEL_TEMPLATE_CSV),
+        "panel_check_rows": count_csv_rows(PHASE7F_PANEL_CHECK_CSV),
+        "fig3_5_review_readiness": report_data.get("fig3_5_review_readiness", []),
+        "fig6_inventory": report_data.get("fig6_inventory", {}),
+        "author_decisions_required": report_data.get("author_decisions_required", []),
+        "remaining_ledger_categories_outside_figures": report_data.get("remaining_ledger_categories_outside_figures", {}),
+        "local_uncommitted_outputs": report_data.get("local_uncommitted_outputs", []),
+        "command_outcomes": report_data.get("command_outcomes", []),
+        "changed_files": report_data.get("changed_files", []),
+        "residual_blockers": report_data.get("residual_blockers", []),
+        "final_commit_sha": report_data.get("final_commit_sha", "pending until commit is created"),
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -575,6 +614,7 @@ def build_handoff():
     phase7c = collect_phase7c()
     phase7d = collect_phase7d()
     phase7e = collect_phase7e()
+    phase7f = collect_phase7f()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -662,6 +702,19 @@ def build_handoff():
             "Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and final approved Fig. 1-6 assets.",
             "Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.",
         ]
+    if phase7f["report"] or "Phase 7F" in read_text(NEXT_TASK_PATH):
+        pending = [
+            "Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved Fig. 1-6 assets, final environment record, and final compile readiness are supplied.",
+            "Author review packet and decision templates now exist, but every Fig. 1-6 author decision remains pending.",
+            "Fig. 6 local panel inventory found 20 locally existing manifest panels, but no panel selection, crop/redaction, or final composition is approved.",
+            "Local Fig. 3-5 candidate PDFs and the Fig. 6 path-level inventory JSON remain ignored/untracked review inputs, not publication assets.",
+        ]
+        next_tasks = [
+            "Collect written author decisions in submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv.",
+            "Collect Fig. 6 panel selections and crop/redaction decisions in submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv.",
+            "Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and approved final Fig. 1-6 assets.",
+            "Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.",
+        ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -722,6 +775,7 @@ def build_handoff():
         "phase7c": phase7c,
         "phase7d": phase7d,
         "phase7e": phase7e,
+        "phase7f": phase7f,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -1069,6 +1123,54 @@ def write_markdown(data, path):
         ),
         f"- Final commit SHA: {data['phase7e']['final_commit_sha']}",
         "- Phase 7E status: local non-final Fig. 3-5 candidates generated for author review; strict preflight remains blocked by final figure and external author/metadata inputs.",
+        "",
+        "## Phase 7F Author Figure Review Intake",
+        "",
+        "- Author review report: `runs/phase7f_author_review_intake_report.md`" if data["phase7f"]["report"] else "- Author review report: NA",
+        "- Author review JSON: `runs/phase7f_author_review_intake_report.json`" if data["phase7f"]["report_json"] else "- Author review JSON: NA",
+        "- Author review packet: `submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md`" if data["phase7f"]["packet"] else "- Author review packet: NA",
+        "- Author decision CSV: `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv`" if data["phase7f"]["decisions_csv"] else "- Author decision CSV: NA",
+        "- Fig. 6 panel review template: `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md` and `.csv`"
+        if data["phase7f"]["panel_template"] and data["phase7f"]["panel_template_csv"]
+        else "- Fig. 6 panel review template: NA",
+        "- Fig. 6 inventory check: `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md` and `.csv`"
+        if data["phase7f"]["panel_check"] and data["phase7f"]["panel_check_csv"]
+        else "- Fig. 6 inventory check: NA",
+        f"- Author decision rows: {data['phase7f']['decision_rows']}",
+        f"- Fig. 6 review-template rows: {data['phase7f']['panel_template_rows']}",
+        "- Fig. 6 local inventory: "
+        + (
+            "manifest rows={manifest_row_count}; rows with path metadata={rows_with_path_metadata}; "
+            "existing local panels={locally_existing_panels}; missing/unverifiable={missing_or_unverifiable}; status={status}"
+        ).format(**data["phase7f"]["fig6_inventory"])
+        if data["phase7f"]["fig6_inventory"]
+        else "- Fig. 6 local inventory: none recorded",
+        "- Local uncommitted outputs: "
+        + (
+            ", ".join(f"`{item}`" for item in data["phase7f"]["local_uncommitted_outputs"])
+            if data["phase7f"]["local_uncommitted_outputs"]
+            else "none recorded"
+        ),
+        "- Command outcomes: "
+        + (
+            "; ".join(data["phase7f"]["command_outcomes"])
+            if data["phase7f"]["command_outcomes"]
+            else "see report after Phase 7F commands are run"
+        ),
+        "- Phase 7F changed files: "
+        + (
+            ", ".join(f"`{item}`" for item in data["phase7f"]["changed_files"])
+            if data["phase7f"]["changed_files"]
+            else "see git diff for current task files"
+        ),
+        "- Residual blockers: "
+        + (
+            "; ".join(data["phase7f"]["residual_blockers"])
+            if data["phase7f"]["residual_blockers"]
+            else "none recorded"
+        ),
+        f"- Final commit SHA: {data['phase7f']['final_commit_sha']}",
+        "- Phase 7F status: author review intake and Fig. 6 local panel inventory completed; strict preflight remains blocked by author decisions, final figure assets, and external metadata inputs.",
         "",
         "## Model And Code Structure",
         "",

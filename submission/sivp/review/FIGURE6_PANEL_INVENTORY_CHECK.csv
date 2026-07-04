@@ -1,0 +1,2 @@
+check_id,manifest_path,manifest_sha256,manifest_row_count,safe_metadata_columns_used_for_review_template,rows_with_path_metadata,locally_existing_panels,missing_or_unverifiable,image_content_opened,local_path_or_panel_filename_committed,status,notes
+phase7f_fig6_panel_inventory,runs/clean_qualitative_manifest.csv,966a81923d5a91bd4d65578e7d607bc989769bad37489b90e56df76724989608,20,Category; Rank; Image Index,20,20,0,no,no,ready for author selection,"No panel is selected or approved; path-level details remain only in ignored local JSON."

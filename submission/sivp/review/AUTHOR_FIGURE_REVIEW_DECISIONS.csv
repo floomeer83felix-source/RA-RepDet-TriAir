@@ -1,0 +1,7 @@
+figure_id,current_state,candidate_or_source_location,author_decision,author_comments,approval_date,approver_identity,final_asset_authorized,notes
+Fig. 1,author-design required,schematic checklist in AUTHOR_FIGURE_REVIEW_PACKET.md,pending author review,,,,pending author review,"Decision options: provide external source; approve a future implementation from checklist; revise checklist; defer."
+Fig. 2,author-design required,schematic checklist in AUTHOR_FIGURE_REVIEW_PACKET.md,pending author review,,,,pending author review,"Decision options: provide external source; approve a future implementation from checklist; revise checklist; defer."
+Fig. 3,local non-final candidate available; final asset missing,runs/local_candidate_figures/phase7e/Fig3_controlled_ablation_candidate.pdf,pending author review,,,,pending author review,Local candidate only; not final.
+Fig. 4,local non-final candidate available; final asset missing,runs/local_candidate_figures/phase7e/Fig4_missing_modality_robustness_candidate.pdf,pending author review,,,,pending author review,Local candidate only; not final.
+Fig. 5,local non-final candidate available; final asset missing,runs/local_candidate_figures/phase7e/Fig5_reliability_weight_audit_candidate.pdf,pending author review,,,,pending author review,Local candidate only; not final.
+Fig. 6,local panel inventory completed; author selection required,submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md,pending author review,,,,pending author review,Only real local validation panels from the manifest are eligible.

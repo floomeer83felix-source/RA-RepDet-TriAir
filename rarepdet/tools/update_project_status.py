@@ -48,6 +48,14 @@ PHASE7E_MANIFEST_MD = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE
 PHASE7E_MANIFEST_CSV = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_CANDIDATE_RENDER_MANIFEST.csv"
 PHASE7E_RENDER_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_RENDER_CHECK.md"
 PHASE7E_RENDER_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_RENDER_CHECK.csv"
+PHASE7F_REPORT = RUNS_DIR / "phase7f_author_review_intake_report.md"
+PHASE7F_REPORT_JSON = RUNS_DIR / "phase7f_author_review_intake_report.json"
+PHASE7F_PACKET_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_FIGURE_REVIEW_PACKET.md"
+PHASE7F_DECISIONS_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_FIGURE_REVIEW_DECISIONS.csv"
+PHASE7F_PANEL_TEMPLATE_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_REVIEW_TEMPLATE.md"
+PHASE7F_PANEL_TEMPLATE_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_REVIEW_TEMPLATE.csv"
+PHASE7F_PANEL_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_INVENTORY_CHECK.md"
+PHASE7F_PANEL_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_INVENTORY_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -307,6 +315,15 @@ def build_status():
     phase7e_render_check_exists = PHASE7E_RENDER_CHECK_MD.exists() and PHASE7E_RENDER_CHECK_CSV.exists()
     phase7e_manifest_rows = count_csv_rows(PHASE7E_MANIFEST_CSV)
     phase7e_render_check_rows = count_csv_rows(PHASE7E_RENDER_CHECK_CSV)
+    phase7f_report_exists = PHASE7F_REPORT.exists()
+    phase7f_report_json_exists = PHASE7F_REPORT_JSON.exists()
+    phase7f_packet_exists = PHASE7F_PACKET_MD.exists()
+    phase7f_decisions_exists = PHASE7F_DECISIONS_CSV.exists()
+    phase7f_panel_template_exists = PHASE7F_PANEL_TEMPLATE_MD.exists() and PHASE7F_PANEL_TEMPLATE_CSV.exists()
+    phase7f_panel_check_exists = PHASE7F_PANEL_CHECK_MD.exists() and PHASE7F_PANEL_CHECK_CSV.exists()
+    phase7f_decision_rows = count_csv_rows(PHASE7F_DECISIONS_CSV)
+    phase7f_panel_template_rows = count_csv_rows(PHASE7F_PANEL_TEMPLATE_CSV)
+    phase7f_panel_check_rows = count_csv_rows(PHASE7F_PANEL_CHECK_CSV)
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -354,6 +371,19 @@ def build_status():
             if phase7e_report_exists and phase7e_report_json_exists and phase7e_manifest_exists and phase7e_render_check_exists
             else "pending"
         )
+    if "Phase 7F" in next_text:
+        active_status = (
+            "completed"
+            if (
+                phase7f_report_exists
+                and phase7f_report_json_exists
+                and phase7f_packet_exists
+                and phase7f_decisions_exists
+                and phase7f_panel_template_exists
+                and phase7f_panel_check_exists
+            )
+            else "pending"
+        )
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -382,6 +412,8 @@ def build_status():
         current_task = "Phase 7D - Candidate Figure Source Lock and Build Specification"
     if "Phase 7E" in next_text:
         current_task = "Phase 7E - Local Non-Final Candidate Renders for Fig. 3-5"
+    if "Phase 7F" in next_text:
+        current_task = "Phase 7F - Author Figure Review Intake and Fig. 6 Panel Inventory"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -430,6 +462,11 @@ def build_status():
         current_goal = (
             "Create reproducible, local-only candidate renders for Fig. 3, Fig. 4, and Fig. 5 for author review, "
             "without committing candidate PDFs or inserting final figure assets."
+        )
+    if "Phase 7F" in next_text:
+        current_goal = (
+            "Prepare author-review decisions for Fig. 1-6 and run a local-only Fig. 6 panel inventory "
+            "without approving, generating, or inserting final figure assets."
         )
 
     lines = [
@@ -878,6 +915,21 @@ def build_status():
         if phase7e_report_exists
         else "- Decision: NA",
         "",
+        "## Phase 7F outputs",
+        "",
+        "- Author review intake report: `runs/phase7f_author_review_intake_report.md`" if phase7f_report_exists else "- Author review intake report: NA",
+        "- Author review intake JSON: `runs/phase7f_author_review_intake_report.json`" if phase7f_report_json_exists else "- Author review intake JSON: NA",
+        "- Author review packet: `submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md`" if phase7f_packet_exists else "- Author review packet: NA",
+        "- Author decision CSV: `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv`" if phase7f_decisions_exists else "- Author decision CSV: NA",
+        "- Fig. 6 panel review template: `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md` and `.csv`" if phase7f_panel_template_exists else "- Fig. 6 panel review template: NA",
+        "- Fig. 6 inventory check: `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md` and `.csv`" if phase7f_panel_check_exists else "- Fig. 6 inventory check: NA",
+        f"- Author decision rows: {phase7f_decision_rows if phase7f_decisions_exists else 'NA'}",
+        f"- Fig. 6 panel-template rows: {phase7f_panel_template_rows if phase7f_panel_template_exists else 'NA'}",
+        f"- Fig. 6 inventory-check rows: {phase7f_panel_check_rows if phase7f_panel_check_exists else 'NA'}",
+        "- Decision: AUTHOR FIGURE REVIEW INTAKE AND FIG. 6 LOCAL PANEL INVENTORY COMPLETED; FINAL FIGURE AND EXTERNAL AUTHOR/METADATA BLOCKERS REMAIN OPEN"
+        if phase7f_report_exists
+        else "- Decision: NA",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -906,6 +958,7 @@ def build_status():
         "- Phase 7C inserts table assets only from frozen source CSVs; it does not change metrics, source evidence, checkpoints, splits, source data, or model code.",
         "- Phase 7D locks figure sources and candidate-build specifications only; it does not generate or approve final figure artwork.",
         "- Phase 7E generates local ignored Fig. 3-5 candidate PDFs for author review only; they are not final assets and are not inserted into LaTeX.",
+        "- Phase 7F creates review templates and a local Fig. 6 inventory only; it does not approve assets, select panels, insert figures, or change evidence.",
         "",
         "## Important research decisions",
         "",
@@ -930,6 +983,7 @@ def build_status():
         "- Phase 7C removes final table placeholders by inserting evidence-locked table fragments; final figure and author/metadata blockers remain external.",
         "- Phase 7D distinguishes author-design Fig. 1-2, frozen-CSV candidate-spec Fig. 3-5, and local-panel-dependent Fig. 6 without changing final artwork placeholders.",
         "- Phase 7E local Fig. 3-5 candidate renders await author review; final Fig. 1-6 assets remain missing until approved PDFs are supplied.",
+        "- Phase 7F records that Fig. 6 has 20 locally existing manifest panels, but author selection and final composition approval are still required.",
         "",
         "## Files or scripts currently under review",
         "",
@@ -945,8 +999,10 @@ def build_status():
         "- `rarepdet/tools/validate_clean_block64_protocol.py`",
         "- `rarepdet/tools/build_clean_block64_summary.py`",
         "- `submission/sivp/figures/figure_candidate_build.py`",
+        "- `submission/sivp/figures/qualitative_panel_inventory.py`",
         "- `runs/phase7d_figure_source_lock_report.md`",
         "- `runs/phase7e_candidate_render_report.md`",
+        "- `runs/phase7f_author_review_intake_report.md`",
         "- `runs/handoff_latest.md`",
         "- `runs/handoff_latest.json`",
         "",
