@@ -1,0 +1,92 @@
+{
+  "phase": "Phase 7I",
+  "decision": "REPORT-ONLY CONFIRMATION-GATED UPDATE PLAN CREATED",
+  "formal_submission_readiness": false,
+  "planner": {
+    "script": "submission/sivp/metadata/plan_confirmed_submission_updates.py",
+    "mode": "cpu-only report-only",
+    "network_or_external_verification": false,
+    "output_prefix": "submission/sivp/metadata/confirmed_update_plan",
+    "outcome": "PASS"
+  },
+  "counts": {
+    "ledger_total": 30,
+    "resolved_count": 1,
+    "unresolved_count": 29,
+    "response_rows": 29,
+    "validation_rows": 29,
+    "plan_rows": 29,
+    "eligible_rows": 0,
+    "plan_check_rows": 10,
+    "plan_state_counts": {
+      "awaiting_figure_decision": 6,
+      "pending_author_response": 23
+    },
+    "plan_state_counts_by_category": {
+      "author_metadata:pending_author_response": 4,
+      "declarations:pending_author_response": 5,
+      "data_governance:pending_author_response": 4,
+      "release_archive:pending_author_response": 6,
+      "figure_asset:awaiting_figure_decision": 6,
+      "claim_scope:pending_author_response": 2,
+      "environment:pending_author_response": 1,
+      "compile_readiness:pending_author_response": 1
+    }
+  },
+  "current_blank_template_zero_eligible": true,
+  "tab_001_status": "resolved and absent from unresolved plan",
+  "no_destination_application_confirmation": true,
+  "response_template_modified": false,
+  "figure_decision_modified": false,
+  "fig6_local_paths_exposed": false,
+  "placeholder_preflight_result": "PASS with expected warnings",
+  "strict_preflight_result": "expected FAIL",
+  "remaining_strict_preflight_blockers": [
+    "author_metadata",
+    "declarations",
+    "data_governance",
+    "release_archive",
+    "figure_asset",
+    "claim_scope",
+    "environment",
+    "compile_readiness"
+  ],
+  "output_locations": {
+    "plan_md": "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md",
+    "plan_csv": "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv",
+    "plan_json": "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json",
+    "check_md": "submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md",
+    "check_csv": "submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv"
+  },
+  "next_author_action": "Complete AUTHOR_SUBMISSION_INPUT_RESPONSES.csv plus AUTHOR_FIGURE_REVIEW_DECISIONS.csv and FIGURE6_PANEL_REVIEW_TEMPLATE.csv with factual response values, confirmer identity, confirmation date, source of confirmation, and required external evidence.",
+  "command_outcomes": [
+    "git switch research/ra-repdet-triair: PASS",
+    "git pull --ff-only research research/ra-repdet-triair: PASS, branch up to date after initial fast-forward to 9b9383b",
+    "git status --short: PASS; unrelated pre-existing untracked files remain outside the task",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings",
+    "python submission/sivp/metadata/validate_author_submission_inputs.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --output-prefix submission/sivp/metadata/author_response_validation: PASS; 29 pending_author_response rows",
+    "python -m py_compile submission/sivp/metadata/plan_confirmed_submission_updates.py: PASS",
+    "python submission/sivp/metadata/plan_confirmed_submission_updates.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --validation submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --figure-decisions submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv --figure6-template submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv --output-prefix submission/sivp/metadata/confirmed_update_plan: PASS; 29 plan rows; zero eligible rows",
+    "docs/NEXT_TASK.md commit-message line normalized without changing task scope: PASS",
+    "python scripts/preflight_submission.py --root .: expected FAIL"
+  ],
+  "changed_files": [
+    "docs/NEXT_TASK.md",
+    "docs/UPCOMING_TASKS.md",
+    "docs/EXPERIMENT_STATUS.md",
+    "docs/TASK_BLOCKER.md",
+    "runs/handoff_latest.md",
+    "runs/handoff_latest.json",
+    "runs/phase7i_update_planning_report.md",
+    "runs/phase7i_update_planning_report.json",
+    "submission/sivp/metadata/plan_confirmed_submission_updates.py",
+    "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md",
+    "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv",
+    "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json",
+    "submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md",
+    "submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv",
+    "rarepdet/tools/generate_handoff.py",
+    "rarepdet/tools/update_project_status.py"
+  ],
+  "final_commit_sha": "pending until commit is created"
+}

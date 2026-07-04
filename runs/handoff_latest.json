@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-07-04T18:27:44",
+  "generated_at": "2026-07-04T19:10:25",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -12,30 +12,30 @@
     ],
     "status_short": [
       "M docs/EXPERIMENT_STATUS.md",
+      " M docs/NEXT_TASK.md",
       " M docs/TASK_BLOCKER.md",
       " M docs/UPCOMING_TASKS.md",
       " M rarepdet/tools/generate_handoff.py",
       " M rarepdet/tools/update_project_status.py",
       " M runs/handoff_latest.json",
       " M runs/handoff_latest.md",
-      "A  runs/phase7h_author_response_validation_report.json",
+      "A  runs/phase7i_update_planning_report.json",
       "?? runs/component_disjoint_candidates/",
-      "?? runs/phase7h_author_response_validation_report.md",
+      "?? runs/phase7i_update_planning_report.md",
       "?? runs/v39_component_disjoint/",
-      "?? submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv",
-      "?? submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md",
-      "?? submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv",
-      "?? submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md",
-      "?? submission/sivp/metadata/validate_author_submission_inputs.py",
-      "?? submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv",
-      "?? submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md"
+      "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv",
+      "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json",
+      "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md",
+      "?? submission/sivp/metadata/plan_confirmed_submission_updates.py",
+      "?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv",
+      "?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md"
     ]
   },
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "current_task": "Phase 7H \u2014 Author-Response Validation Gate and Application Readiness",
-    "goal": "Build a safe, report-only validation gate for the 29 unresolved author-input rows created in Phase 7G. The gate must identify which supplied responses are structurally ready to apply, which are incomplete, and which require external verification. It must not write author facts, figures, release values, or metadata into any manuscript or submission source file.",
-    "commit_message": "`docs: add author response validation gate`"
+    "current_task": "Phase 7I \u2014 Confirmation-Gated Submission Update Planning",
+    "goal": "Create a CPU-only, report-only planner that converts the Phase 7H validation results into an auditable *future update plan*. The planner must state which confirmed inputs could eventually be applied, which destination files would be affected, and which external checks still block application. It must never edit manuscript TeX, metadata destinations, references, release manifests, figure assets, or the author-response template.",
+    "commit_message": "docs: add confirmation-gated update planner"
   },
   "dataset": {
     "root": "D:\\download\\triair",
@@ -3569,8 +3569,8 @@
     "references_bib": "E:\\RepViT-main\\submission\\sivp\\tex\\references.bib",
     "report": "E:\\RepViT-main\\runs\\phase6b_sivp_preparation_report.md",
     "decision": "READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA",
-    "metadata_count": 13,
-    "review_count": 28,
+    "metadata_count": 14,
+    "review_count": 30,
     "tex_source_count": 16,
     "figure_map": "E:\\RepViT-main\\submission\\sivp\\figures\\FINAL_ASSET_INSERTION_MAP.md",
     "table_map": "E:\\RepViT-main\\submission\\sivp\\tables\\FINAL_TABLE_INSERTION_MAP.md"
@@ -4233,11 +4233,84 @@
     ],
     "final_commit_sha": "pending until commit is created"
   },
+  "phase7i": {
+    "report": "E:\\RepViT-main\\runs\\phase7i_update_planning_report.md",
+    "report_json": "E:\\RepViT-main\\runs\\phase7i_update_planning_report.json",
+    "planner": "E:\\RepViT-main\\submission\\sivp\\metadata\\plan_confirmed_submission_updates.py",
+    "plan": "E:\\RepViT-main\\submission\\sivp\\metadata\\CONFIRMED_UPDATE_PLAN.md",
+    "plan_csv": "E:\\RepViT-main\\submission\\sivp\\metadata\\CONFIRMED_UPDATE_PLAN.csv",
+    "plan_json": "E:\\RepViT-main\\submission\\sivp\\metadata\\CONFIRMED_UPDATE_PLAN.json",
+    "check": "E:\\RepViT-main\\submission\\sivp\\review\\CONFIRMED_UPDATE_PLAN_CHECK.md",
+    "check_csv": "E:\\RepViT-main\\submission\\sivp\\review\\CONFIRMED_UPDATE_PLAN_CHECK.csv",
+    "ledger_total": 30,
+    "resolved_count": 1,
+    "unresolved_count": 29,
+    "plan_rows": 29,
+    "eligible_rows": 0,
+    "plan_state_counts": {
+      "awaiting_figure_decision": 6,
+      "pending_author_response": 23
+    },
+    "plan_state_counts_by_category": {
+      "author_metadata:pending_author_response": 4,
+      "declarations:pending_author_response": 5,
+      "data_governance:pending_author_response": 4,
+      "release_archive:pending_author_response": 6,
+      "figure_asset:awaiting_figure_decision": 6,
+      "claim_scope:pending_author_response": 2,
+      "environment:pending_author_response": 1,
+      "compile_readiness:pending_author_response": 1
+    },
+    "planner_outcome": "PASS",
+    "placeholder_preflight_result": "PASS with expected warnings",
+    "strict_preflight_result": "expected FAIL",
+    "remaining_blockers": [
+      "author_metadata",
+      "declarations",
+      "data_governance",
+      "release_archive",
+      "figure_asset",
+      "claim_scope",
+      "environment",
+      "compile_readiness"
+    ],
+    "command_outcomes": [
+      "git switch research/ra-repdet-triair: PASS",
+      "git pull --ff-only research research/ra-repdet-triair: PASS, branch up to date after initial fast-forward to 9b9383b",
+      "git status --short: PASS; unrelated pre-existing untracked files remain outside the task",
+      "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings",
+      "python submission/sivp/metadata/validate_author_submission_inputs.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --output-prefix submission/sivp/metadata/author_response_validation: PASS; 29 pending_author_response rows",
+      "python -m py_compile submission/sivp/metadata/plan_confirmed_submission_updates.py: PASS",
+      "python submission/sivp/metadata/plan_confirmed_submission_updates.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --validation submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --figure-decisions submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv --figure6-template submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv --output-prefix submission/sivp/metadata/confirmed_update_plan: PASS; 29 plan rows; zero eligible rows",
+      "docs/NEXT_TASK.md commit-message line normalized without changing task scope: PASS",
+      "python scripts/preflight_submission.py --root .: expected FAIL"
+    ],
+    "changed_files": [
+      "docs/NEXT_TASK.md",
+      "docs/UPCOMING_TASKS.md",
+      "docs/EXPERIMENT_STATUS.md",
+      "docs/TASK_BLOCKER.md",
+      "runs/handoff_latest.md",
+      "runs/handoff_latest.json",
+      "runs/phase7i_update_planning_report.md",
+      "runs/phase7i_update_planning_report.json",
+      "submission/sivp/metadata/plan_confirmed_submission_updates.py",
+      "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md",
+      "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv",
+      "submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json",
+      "submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md",
+      "submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv",
+      "rarepdet/tools/generate_handoff.py",
+      "rarepdet/tools/update_project_status.py"
+    ],
+    "final_commit_sha": "pending until commit is created"
+  },
   "current_pending_experiments": [
-    "Author-response validation gate exists and currently reports 29 pending_author_response rows with zero structurally ready rows.",
-    "TAB_001 remains resolved and absent from response requirements; no open table_asset blocker remains.",
+    "Phase 7I dry-run update plan exists and currently reports 29 plan rows with zero eligible_for_future_guarded_application rows.",
+    "Figure rows remain awaiting_figure_decision; all non-figure rows remain pending_author_response under the current blank response template.",
+    "TAB_001 remains resolved and absent from unresolved planning work; no open table_asset blocker remains.",
     "Strict V18 preflight remains blocked by unresolved author metadata, declarations, data governance, release/archive facts, final Fig. 1-6 assets, claim-scope approval, environment record, and compile readiness.",
-    "Do not apply any response or claim formal submission readiness until rows are author-confirmed and externally verified where required."
+    "Do not apply any planned row until a future promoted phase confirms eligibility and required external evidence."
   ],
   "code_structure": {
     "dataset": "datasets/triair_dataset.py",
@@ -4251,28 +4324,28 @@
   },
   "recent_modified_files": [
     "M docs/EXPERIMENT_STATUS.md",
+    " M docs/NEXT_TASK.md",
     " M docs/TASK_BLOCKER.md",
     " M docs/UPCOMING_TASKS.md",
     " M rarepdet/tools/generate_handoff.py",
     " M rarepdet/tools/update_project_status.py",
     " M runs/handoff_latest.json",
     " M runs/handoff_latest.md",
-    "A  runs/phase7h_author_response_validation_report.json",
+    "A  runs/phase7i_update_planning_report.json",
     "?? runs/component_disjoint_candidates/",
-    "?? runs/phase7h_author_response_validation_report.md",
+    "?? runs/phase7i_update_planning_report.md",
     "?? runs/v39_component_disjoint/",
-    "?? submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv",
-    "?? submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md",
-    "?? submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv",
-    "?? submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md",
-    "?? submission/sivp/metadata/validate_author_submission_inputs.py",
-    "?? submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv",
-    "?? submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md"
+    "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv",
+    "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json",
+    "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md",
+    "?? submission/sivp/metadata/plan_confirmed_submission_updates.py",
+    "?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv",
+    "?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md"
   ],
   "next_recommended_tasks": [
-    "Collect completed author responses with confirmer, confirmation date, and source-of-confirmation fields.",
-    "Rerun the Phase 7H validator after responses are supplied.",
-    "Promote Phase 7I only for structurally ready author metadata/declaration rows.",
-    "Keep data governance, release/archive, figures, environment, strict preflight, compile, and bundle assembly gated by their queued conditional phases."
+    "Authors must complete the response template plus figure decision files with confirmation metadata and external evidence where required.",
+    "Rerun the Phase 7H validator and Phase 7I planner after responses or figure decisions are supplied.",
+    "Promote Phase 7J only for eligible author_metadata/declaration rows.",
+    "Keep data governance, release/archive, final figures, environment, strict preflight, compile, and final bundle assembly gated by Phases 7K-7P."
   ]
 }

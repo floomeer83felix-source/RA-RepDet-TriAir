@@ -79,6 +79,14 @@ PHASE7H_READINESS_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "META
 PHASE7H_READINESS_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "METADATA_APPLICATION_READINESS_MAP.csv"
 PHASE7H_GATE_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_RESPONSE_GATE_CHECK.md"
 PHASE7H_GATE_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_RESPONSE_GATE_CHECK.csv"
+PHASE7I_REPORT = RUNS_DIR / "phase7i_update_planning_report.md"
+PHASE7I_REPORT_JSON = RUNS_DIR / "phase7i_update_planning_report.json"
+PHASE7I_PLANNER = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "plan_confirmed_submission_updates.py"
+PHASE7I_PLAN_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRMED_UPDATE_PLAN.md"
+PHASE7I_PLAN_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRMED_UPDATE_PLAN.csv"
+PHASE7I_PLAN_JSON = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRMED_UPDATE_PLAN.json"
+PHASE7I_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "CONFIRMED_UPDATE_PLAN_CHECK.md"
+PHASE7I_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "CONFIRMED_UPDATE_PLAN_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -369,6 +377,13 @@ def build_status():
     phase7h_validation_rows = count_csv_rows(PHASE7H_VALIDATION_CSV)
     phase7h_readiness_rows = count_csv_rows(PHASE7H_READINESS_CSV)
     phase7h_gate_check_rows = count_csv_rows(PHASE7H_GATE_CHECK_CSV)
+    phase7i_report_exists = PHASE7I_REPORT.exists()
+    phase7i_report_json_exists = PHASE7I_REPORT_JSON.exists()
+    phase7i_planner_exists = PHASE7I_PLANNER.exists()
+    phase7i_plan_exists = PHASE7I_PLAN_MD.exists() and PHASE7I_PLAN_CSV.exists() and PHASE7I_PLAN_JSON.exists()
+    phase7i_check_exists = PHASE7I_CHECK_MD.exists() and PHASE7I_CHECK_CSV.exists()
+    phase7i_plan_rows = count_csv_rows(PHASE7I_PLAN_CSV)
+    phase7i_check_rows = count_csv_rows(PHASE7I_CHECK_CSV)
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -459,6 +474,18 @@ def build_status():
             )
             else "pending"
         )
+    if "Phase 7I" in next_text:
+        active_status = (
+            "completed"
+            if (
+                phase7i_report_exists
+                and phase7i_report_json_exists
+                and phase7i_planner_exists
+                and phase7i_plan_exists
+                and phase7i_check_exists
+            )
+            else "pending"
+        )
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -493,6 +520,8 @@ def build_status():
         current_task = "Phase 7G - Expanded Submission Ledger, Author Intake, and Static Audit Batch"
     if "Phase 7H" in next_text:
         current_task = "Phase 7H - Author-Response Validation Gate and Application Readiness"
+    if "Phase 7I" in next_text:
+        current_task = "Phase 7I - Confirmation-Gated Submission Update Planning"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -557,6 +586,11 @@ def build_status():
         current_goal = (
             "Validate the Phase 7G author response template in report-only mode and identify application readiness "
             "without applying any author facts, approvals, release values, metadata, figures, or TeX changes."
+        )
+    if "Phase 7I" in next_text:
+        current_goal = (
+            "Convert Phase 7H validation results into a report-only future update plan without editing manuscript "
+            "TeX, metadata destinations, references, release manifests, figure assets, or response templates."
         )
 
     lines = [
@@ -1054,6 +1088,19 @@ def build_status():
         if phase7h_report_exists
         else "- Decision: NA",
         "",
+        "## Phase 7I outputs",
+        "",
+        "- Update planning report: `runs/phase7i_update_planning_report.md`" if phase7i_report_exists else "- Update planning report: NA",
+        "- Update planning JSON: `runs/phase7i_update_planning_report.json`" if phase7i_report_json_exists else "- Update planning JSON: NA",
+        "- Planner script: `submission/sivp/metadata/plan_confirmed_submission_updates.py`" if phase7i_planner_exists else "- Planner script: NA",
+        "- Confirmed update plan: `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md`, `.csv`, and `.json`" if phase7i_plan_exists else "- Confirmed update plan: NA",
+        "- Plan gate check: `submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md` and `.csv`" if phase7i_check_exists else "- Plan gate check: NA",
+        f"- Plan rows: {phase7i_plan_rows if phase7i_plan_exists else 'NA'}",
+        f"- Plan-check rows: {phase7i_check_rows if phase7i_check_exists else 'NA'}",
+        "- Decision: REPORT-ONLY CONFIRMATION-GATED UPDATE PLAN CREATED; CURRENT TEMPLATE HAS ZERO ELIGIBLE ROWS"
+        if phase7i_report_exists
+        else "- Decision: NA",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -1085,6 +1132,7 @@ def build_status():
         "- Phase 7F creates review templates and a local Fig. 6 inventory only; it does not approve assets, select panels, insert figures, or change evidence.",
         "- Phase 7G reconciles the completed table ledger row and creates author-intake/static-audit documentation only; it does not approve assets, insert final figures, modify source TeX, or close external metadata requirements.",
         "- Phase 7H validates response-template structure only; it does not apply author facts, approvals, figure decisions, release values, metadata, TeX changes, or final assets.",
+        "- Phase 7I plans future guarded updates only; it does not apply author facts, edit destination metadata, alter TeX, approve figures, update release manifests, or close strict-preflight blockers.",
         "",
         "## Important research decisions",
         "",
@@ -1112,6 +1160,7 @@ def build_status():
         "- Phase 7F records that Fig. 6 has 20 locally existing manifest panels, but author selection and final composition approval are still required.",
         "- Phase 7G records that `TAB_001` is complete and no open table_asset blocker remains; all non-table author, governance, release, claim, environment, figure, and compile blockers still require confirmation.",
         "- Phase 7H records 29 pending author-response rows and zero structurally ready rows in the current blank template; future application phases remain conditional.",
+        "- Phase 7I records 29 future-plan rows with zero eligible-for-application rows in the current blank template; Phase 7J and later remain conditional on confirmed responses and required external evidence.",
         "",
         "## Files or scripts currently under review",
         "",
@@ -1133,6 +1182,7 @@ def build_status():
         "- `runs/phase7f_author_review_intake_report.md`",
         "- `runs/phase7g_submission_intake_report.md`",
         "- `runs/phase7h_author_response_validation_report.md`",
+        "- `runs/phase7i_update_planning_report.md`",
         "- `runs/handoff_latest.md`",
         "- `runs/handoff_latest.json`",
         "",

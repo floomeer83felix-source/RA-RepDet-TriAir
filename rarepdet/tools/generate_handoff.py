@@ -82,6 +82,14 @@ PHASE7H_READINESS_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "META
 PHASE7H_READINESS_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "METADATA_APPLICATION_READINESS_MAP.csv"
 PHASE7H_GATE_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_RESPONSE_GATE_CHECK.md"
 PHASE7H_GATE_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "AUTHOR_RESPONSE_GATE_CHECK.csv"
+PHASE7I_REPORT_MD = RUNS_DIR / "phase7i_update_planning_report.md"
+PHASE7I_REPORT_JSON = RUNS_DIR / "phase7i_update_planning_report.json"
+PHASE7I_PLANNER = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "plan_confirmed_submission_updates.py"
+PHASE7I_PLAN_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRMED_UPDATE_PLAN.md"
+PHASE7I_PLAN_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRMED_UPDATE_PLAN.csv"
+PHASE7I_PLAN_JSON = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRMED_UPDATE_PLAN.json"
+PHASE7I_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "CONFIRMED_UPDATE_PLAN_CHECK.md"
+PHASE7I_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "CONFIRMED_UPDATE_PLAN_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -693,6 +701,46 @@ def collect_phase7h():
     }
 
 
+def collect_phase7i():
+    report_data = {}
+    plan_data = {}
+    if PHASE7I_REPORT_JSON.exists():
+        try:
+            report_data = json.loads(PHASE7I_REPORT_JSON.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            report_data = {"json_error": "Could not parse phase7i report JSON."}
+    if PHASE7I_PLAN_JSON.exists():
+        try:
+            plan_data = json.loads(PHASE7I_PLAN_JSON.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            plan_data = {"json_error": "Could not parse confirmed update plan JSON."}
+    counts = report_data.get("counts", plan_data.get("counts", {}))
+    return {
+        "report": str(PHASE7I_REPORT_MD) if PHASE7I_REPORT_MD.exists() else None,
+        "report_json": str(PHASE7I_REPORT_JSON) if PHASE7I_REPORT_JSON.exists() else None,
+        "planner": str(PHASE7I_PLANNER) if PHASE7I_PLANNER.exists() else None,
+        "plan": str(PHASE7I_PLAN_MD) if PHASE7I_PLAN_MD.exists() else None,
+        "plan_csv": str(PHASE7I_PLAN_CSV) if PHASE7I_PLAN_CSV.exists() else None,
+        "plan_json": str(PHASE7I_PLAN_JSON) if PHASE7I_PLAN_JSON.exists() else None,
+        "check": str(PHASE7I_CHECK_MD) if PHASE7I_CHECK_MD.exists() else None,
+        "check_csv": str(PHASE7I_CHECK_CSV) if PHASE7I_CHECK_CSV.exists() else None,
+        "ledger_total": counts.get("ledger_total", count_csv_rows(PHASE7B_LEDGER_CSV)),
+        "resolved_count": counts.get("resolved_count", 0),
+        "unresolved_count": counts.get("unresolved_count", 0),
+        "plan_rows": counts.get("plan_rows", count_csv_rows(PHASE7I_PLAN_CSV)),
+        "eligible_rows": counts.get("eligible_rows", 0),
+        "plan_state_counts": counts.get("plan_state_counts", {}),
+        "plan_state_counts_by_category": counts.get("plan_state_counts_by_category", {}),
+        "planner_outcome": report_data.get("planner", plan_data.get("planner", {})).get("outcome", "pending"),
+        "placeholder_preflight_result": report_data.get("placeholder_preflight_result", "pending"),
+        "strict_preflight_result": report_data.get("strict_preflight_result", "pending"),
+        "remaining_blockers": report_data.get("remaining_strict_preflight_blockers", []),
+        "command_outcomes": report_data.get("command_outcomes", []),
+        "changed_files": report_data.get("changed_files", []),
+        "final_commit_sha": report_data.get("final_commit_sha", "pending until commit is created"),
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -728,6 +776,7 @@ def build_handoff():
     phase7f = collect_phase7f()
     phase7g = collect_phase7g()
     phase7h = collect_phase7h()
+    phase7i = collect_phase7i()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -854,6 +903,20 @@ def build_handoff():
             "Promote Phase 7I only for structurally ready author metadata/declaration rows.",
             "Keep data governance, release/archive, figures, environment, strict preflight, compile, and bundle assembly gated by their queued conditional phases.",
         ]
+    if phase7i["report"] or "Phase 7I" in read_text(NEXT_TASK_PATH):
+        pending = [
+            "Phase 7I dry-run update plan exists and currently reports 29 plan rows with zero eligible_for_future_guarded_application rows.",
+            "Figure rows remain awaiting_figure_decision; all non-figure rows remain pending_author_response under the current blank response template.",
+            "TAB_001 remains resolved and absent from unresolved planning work; no open table_asset blocker remains.",
+            "Strict V18 preflight remains blocked by unresolved author metadata, declarations, data governance, release/archive facts, final Fig. 1-6 assets, claim-scope approval, environment record, and compile readiness.",
+            "Do not apply any planned row until a future promoted phase confirms eligibility and required external evidence.",
+        ]
+        next_tasks = [
+            "Authors must complete the response template plus figure decision files with confirmation metadata and external evidence where required.",
+            "Rerun the Phase 7H validator and Phase 7I planner after responses or figure decisions are supplied.",
+            "Promote Phase 7J only for eligible author_metadata/declaration rows.",
+            "Keep data governance, release/archive, final figures, environment, strict preflight, compile, and final bundle assembly gated by Phases 7K-7P.",
+        ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -917,6 +980,7 @@ def build_handoff():
         "phase7f": phase7f,
         "phase7g": phase7g,
         "phase7h": phase7h,
+        "phase7i": phase7i,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -1405,6 +1469,54 @@ def write_markdown(data, path):
         ),
         f"- Final commit SHA: {data['phase7h']['final_commit_sha']}",
         "- Phase 7H status: report-only validation gate completed; current blank template remains pending and no author facts are applied.",
+        "",
+        "## Phase 7I Confirmation-Gated Update Planning",
+        "",
+        "- Update planning report: `runs/phase7i_update_planning_report.md`" if data["phase7i"]["report"] else "- Update planning report: NA",
+        "- Update planning JSON: `runs/phase7i_update_planning_report.json`" if data["phase7i"]["report_json"] else "- Update planning JSON: NA",
+        "- Planner script: `submission/sivp/metadata/plan_confirmed_submission_updates.py`" if data["phase7i"]["planner"] else "- Planner script: NA",
+        "- Confirmed update plan: `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md`, `.csv`, and `.json`"
+        if data["phase7i"]["plan"] and data["phase7i"]["plan_csv"] and data["phase7i"]["plan_json"]
+        else "- Confirmed update plan: NA",
+        "- Plan gate check: `submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md` and `.csv`"
+        if data["phase7i"]["check"] and data["phase7i"]["check_csv"]
+        else "- Plan gate check: NA",
+        f"- Ledger/plan counts: total={data['phase7i']['ledger_total']}; resolved={data['phase7i']['resolved_count']}; unresolved={data['phase7i']['unresolved_count']}; plan_rows={data['phase7i']['plan_rows']}; eligible_rows={data['phase7i']['eligible_rows']}",
+        "- Plan-state counts: "
+        + (
+            ", ".join(f"{key}={value}" for key, value in sorted(data["phase7i"]["plan_state_counts"].items()))
+            if data["phase7i"]["plan_state_counts"]
+            else "none recorded"
+        ),
+        "- Plan-state counts by category: "
+        + (
+            ", ".join(f"{key}={value}" for key, value in sorted(data["phase7i"]["plan_state_counts_by_category"].items()))
+            if data["phase7i"]["plan_state_counts_by_category"]
+            else "none recorded"
+        ),
+        f"- Planner outcome: {data['phase7i']['planner_outcome']}",
+        f"- Placeholder-mode preflight result: {data['phase7i']['placeholder_preflight_result']}",
+        f"- Strict preflight result: {data['phase7i']['strict_preflight_result']}",
+        "- Command outcomes: "
+        + (
+            "; ".join(data["phase7i"]["command_outcomes"])
+            if data["phase7i"]["command_outcomes"]
+            else "see report after Phase 7I commands are run"
+        ),
+        "- Phase 7I changed files: "
+        + (
+            ", ".join(f"`{item}`" for item in data["phase7i"]["changed_files"])
+            if data["phase7i"]["changed_files"]
+            else "see git diff for current task files"
+        ),
+        "- Residual blockers: "
+        + (
+            "; ".join(data["phase7i"]["remaining_blockers"])
+            if data["phase7i"]["remaining_blockers"]
+            else "none recorded"
+        ),
+        f"- Final commit SHA: {data['phase7i']['final_commit_sha']}",
+        "- Phase 7I status: report-only dry-run plan completed; no author facts, destination metadata, TeX, figures, release manifests, or final assets are applied.",
         "",
         "## Model And Code Structure",
         "",

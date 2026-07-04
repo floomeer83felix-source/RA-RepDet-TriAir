@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-07-04T18:27:44
+Generated: 2026-07-04T19:10:25
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Publication headline model
@@ -91,8 +91,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7H - Author-Response Validation Gate and Application Readiness
-- Goal: Validate the Phase 7G author response template in report-only mode and identify application readiness without applying any author facts, approvals, release values, metadata, figures, or TeX changes.
+- Current Task: Phase 7I - Confirmation-Gated Submission Update Planning
+- Goal: Convert Phase 7H validation results into a report-only future update plan without editing manuscript TeX, metadata destinations, references, release manifests, figure assets, or response templates.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -327,8 +327,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Template/LaTeX source files: 16
-- Metadata template files: 13
-- Review/audit files: 28
+- Metadata template files: 14
+- Review/audit files: 30
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
 
 ## Phase 7B outputs
@@ -413,13 +413,25 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Gate-check rows: 11
 - Decision: REPORT-ONLY AUTHOR RESPONSE VALIDATION GATE CREATED; CURRENT TEMPLATE HAS 29 PENDING ROWS AND ZERO APPLIED FACTS
 
+## Phase 7I outputs
+
+- Update planning report: `runs/phase7i_update_planning_report.md`
+- Update planning JSON: `runs/phase7i_update_planning_report.json`
+- Planner script: `submission/sivp/metadata/plan_confirmed_submission_updates.py`
+- Confirmed update plan: `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md`, `.csv`, and `.json`
+- Plan gate check: `submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md` and `.csv`
+- Plan rows: 29
+- Plan-check rows: 10
+- Decision: REPORT-ONLY CONFIRMATION-GATED UPDATE PLAN CREATED; CURRENT TEMPLATE HAS ZERO ELIGIBLE ROWS
+
 
 ## Pending tasks
 
-- Author-response validation gate exists and currently reports 29 pending_author_response rows with zero structurally ready rows.
-- TAB_001 remains resolved and absent from response requirements; no open table_asset blocker remains.
+- Phase 7I dry-run update plan exists and currently reports 29 plan rows with zero eligible_for_future_guarded_application rows.
+- Figure rows remain awaiting_figure_decision; all non-figure rows remain pending_author_response under the current blank response template.
+- TAB_001 remains resolved and absent from unresolved planning work; no open table_asset blocker remains.
 - Strict V18 preflight remains blocked by unresolved author metadata, declarations, data governance, release/archive facts, final Fig. 1-6 assets, claim-scope approval, environment record, and compile readiness.
-- Do not apply any response or claim formal submission readiness until rows are author-confirmed and externally verified where required.
+- Do not apply any planned row until a future promoted phase confirms eligibility and required external evidence.
 
 ## Known metric caveats
 
@@ -444,6 +456,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 7F creates review templates and a local Fig. 6 inventory only; it does not approve assets, select panels, insert figures, or change evidence.
 - Phase 7G reconciles the completed table ledger row and creates author-intake/static-audit documentation only; it does not approve assets, insert final figures, modify source TeX, or close external metadata requirements.
 - Phase 7H validates response-template structure only; it does not apply author facts, approvals, figure decisions, release values, metadata, TeX changes, or final assets.
+- Phase 7I plans future guarded updates only; it does not apply author facts, edit destination metadata, alter TeX, approve figures, update release manifests, or close strict-preflight blockers.
 
 ## Important research decisions
 
@@ -471,6 +484,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 7F records that Fig. 6 has 20 locally existing manifest panels, but author selection and final composition approval are still required.
 - Phase 7G records that `TAB_001` is complete and no open table_asset blocker remains; all non-table author, governance, release, claim, environment, figure, and compile blockers still require confirmation.
 - Phase 7H records 29 pending author-response rows and zero structurally ready rows in the current blank template; future application phases remain conditional.
+- Phase 7I records 29 future-plan rows with zero eligible-for-application rows in the current blank template; Phase 7J and later remain conditional on confirmed responses and required external evidence.
 
 ## Files or scripts currently under review
 
@@ -492,5 +506,6 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - `runs/phase7f_author_review_intake_report.md`
 - `runs/phase7g_submission_intake_report.md`
 - `runs/phase7h_author_response_validation_report.md`
+- `runs/phase7i_update_planning_report.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`

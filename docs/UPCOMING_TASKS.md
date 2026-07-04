@@ -7,74 +7,75 @@ This file is a forward task queue. It is not the active execution entry point. C
 
 ## Current Active Task
 
-- `docs/NEXT_TASK.md`: Phase 7H - Author-Response Validation Gate and Application Readiness.
+- `docs/NEXT_TASK.md`: Phase 7I - Confirmation-Gated Submission Update Planning.
 
 ## Queue Discipline
 
 - Keep exactly one current task in `docs/NEXT_TASK.md`.
 - Promote the next queued task only after the current task is completed, handoff/status are refreshed, and the branch is pushed.
 - Do not claim strict final-submission readiness until strict preflight passes without placeholders and all final assets/author facts are verified.
-- Do not fabricate author metadata, data-governance facts, release URLs, DOIs, approvals, or figure decisions.
-- Do not run training, GPU inference, metric recomputation, split mutation, source-data mutation, or LaTeX compilation unless a promoted task explicitly allows it.
+- Do not fabricate author metadata, data-governance facts, release URLs, DOIs, approvals, environment facts, or figure decisions.
+- Do not run training, GPU inference, metric recomputation, split mutation, source-data mutation, network access, or LaTeX compilation unless a promoted task explicitly allows it.
+- Treat `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.*` as a future-planning artifact only. It is not authorization to apply values.
 
 ---
 
-## Phase 7I - Conditional Application of Confirmed Author Metadata and Declarations
+## Phase 7J - Apply Confirmed Authorship and Declarations
 
 ### Trigger
-Run only after `AUTHOR_RESPONSE_VALIDATION.md` shows the relevant author_metadata and declarations rows are structurally ready, author-confirmed, and have nonblank confirmation source metadata.
+Run only after the Phase 7H validator and Phase 7I planner identify eligible author_metadata and declarations rows with complete author responses, confirmer identity, confirmation date, and source-of-confirmation metadata.
 
 ### Allowed Scope
-Apply confirmed author names/order, affiliations, ORCIDs, corresponding email, funding, acknowledgments, contributions, competing interests, and AI-use disclosure to the explicit destination files listed in the readiness map.
+Apply only the eligible, author-confirmed authorship/declaration rows to their listed destination files. Keep all data-governance, release/archive, figure, environment, claim-scope, strict-preflight, compile, and bundle work out of scope.
 
 ### Cannot Run Until
-The Phase 7H validation gate reports no missing response/confirmation fields for the rows being applied. Blank, partial, or unverified rows must remain untouched.
+Blank, partial, unverified, or externally gated rows must remain untouched. The Phase 7I plan must show the target rows as `eligible_for_future_guarded_application`.
 
 ---
 
-## Phase 7J - Conditional Application of Confirmed Data Governance and Release/Archive Facts
+## Phase 7K - Apply Confirmed Data Governance and Release Facts
 
 ### Trigger
-Run only after the data_governance and release_archive rows are structurally ready and externally verified by the data owner, provider terms, and release owner as applicable.
+Run only after data_governance and release_archive rows are author-confirmed and externally verified by the responsible data owner, provider terms, or release owner.
 
 ### Allowed Scope
-Apply confirmed TriAir citation/version/licence/access/redistribution facts, release URL or no-release policy, release tag, immutable source identifier, archive date, release licence, and DOI state to the listed destination files.
+Apply confirmed TriAir citation, version/provider, licence/access, redistribution facts, public URL or no-release policy, release tag, immutable source identifier, archive date, release licence, and DOI/no-DOI state to the listed destination files.
 
 ### Cannot Run Until
 Provider terms, release-owner confirmation, and all confirmation-source fields are available. A well-formed URL, DOI, licence, or citation string alone is not enough.
 
 ---
 
-## Phase 7K - Conditional Final Figure Asset Workflow after author decisions
+## Phase 7L - Final Figure Workflow
 
 ### Trigger
-Run only after `AUTHOR_FIGURE_REVIEW_DECISIONS.csv` and the Fig. 6 panel review template contain author-approved decisions with confirmation metadata.
+Run only after author decisions and approved final Fig. 1-6 assets are available, including complete `AUTHOR_FIGURE_REVIEW_DECISIONS.csv` entries and Fig. 6 panel-selection/composition approval.
 
 ### Allowed Scope
 Prepare or insert final Fig. 1-6 assets only from approved schematic sources, approved frozen-CSV candidate revisions, and approved real Fig. 6 panel selections/composition decisions.
 
 ### Cannot Run Until
-Every affected figure has author approval, final asset authorization, confirmation date, approver identity, and source-of-confirmation. Local candidate PDFs and panel inventories are not final assets.
+Every affected figure has author approval, final asset authorization, confirmation date, approver identity, and source-of-confirmation. Local candidate PDFs and panel inventories are review inputs, not final assets.
 
 ---
 
-## Phase 7L - Environment Record and Reproducibility Metadata Closure
+## Phase 7M - Environment and Reproducibility Closure
 
 ### Trigger
-Run only after the environment row and environment record template are completed and confirmed by the responsible author or research owner.
+Run only after a confirmed environment record is supplied by the responsible author or research owner.
 
 ### Allowed Scope
 Apply confirmed hardware, OS, Python, PyTorch/Torchvision, CUDA/cuDNN, key package versions, and training/profiling protocol summary to reproducibility metadata.
 
 ### Cannot Run Until
-Machine-specific facts and confirmer/date fields are present. Do not infer environment facts from the current machine unless explicitly confirmed.
+Machine-specific facts and confirmer/date/source fields are present. Do not infer environment facts from the current machine unless explicitly confirmed.
 
 ---
 
-## Phase 7M - Strict Preflight Closure Check
+## Phase 7N - Strict Preflight Closure Check
 
 ### Trigger
-Run after author metadata, declarations, data governance, release/archive facts, figure assets, claim-scope decision, environment record, and compile-readiness inputs are all applied.
+Run only after all external blockers are closed: author metadata, declarations, data governance, release/archive facts, final figure assets, claim scope, environment, and compile readiness.
 
 ### Allowed Scope
 Run strict preflight and document any remaining formal submission blockers without weakening validation.
@@ -84,7 +85,7 @@ All external confirmations and approved final assets are present. Placeholder-mo
 
 ---
 
-## Phase 7N - Springer `sn-jnl` Compile Dry Run
+## Phase 7O - Springer `sn-jnl` Compile Dry Run
 
 ### Trigger
 Run only after strict preflight passes and the local Springer LaTeX environment is available.
@@ -97,10 +98,10 @@ Strict preflight passes. Do not label a PDF final unless the compile is clean an
 
 ---
 
-## Phase 7O - Final Submission Bundle Assembly
+## Phase 7P - Final Submission Bundle Assembly
 
 ### Trigger
-Run only after strict preflight passes, compile review passes, release/archive records are frozen, and authors approve the final package.
+Run only after compile review and author final approval.
 
 ### Allowed Scope
 Assemble the final source package manifest, final PDF if approved, final figures/tables, metadata, declarations, and release/archive references.
@@ -110,7 +111,7 @@ Every publisher-required field and package artifact is confirmed. Do not include
 
 ---
 
-## Phase 8A - Optional post-submission research continuation
+## Phase 8A - Optional Post-Submission Research Continuation
 
 ### Trigger
 Run only after the SIVP submission package is finalized, or after the user explicitly pauses submission work and requests research continuation.

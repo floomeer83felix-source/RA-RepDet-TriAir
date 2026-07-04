@@ -208,7 +208,7 @@ Refresh handoff/status. Keep R4 clean blocked-split evidence first and old E0–
 - Commit only allowed code/documentation files and push.
 
 ## Commit Message
-`docs: add confirmation-gated update planner`
+docs: add confirmation-gated update planner
 
 ## Completion / Blocker Rule
 Complete the report-only planner, refresh handoff/status, commit, and push. Stop after planning. Do not apply responses, final assets, or publication metadata and do not claim submission readiness.
