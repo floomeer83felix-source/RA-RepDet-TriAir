@@ -1,10 +1,10 @@
 # Current Task
 
 ## Title
-Phase 7B — Publication-State Reconciliation and Submission-Input Ledger
+Phase 7C — Evidence-Locked SIVP Table Insertion
 
 ## Goal
-Resolve the documentation inconsistency between the frozen blocked-split manuscript conclusion and legacy random-split summaries, then create one auditable ledger of author-provided and asset-provided requirements for strict SIVP preflight. This is a documentation and tooling task only; it must not retrain, re-evaluate, or change any scientific evidence.
+Replace the seven SIVP manuscript table placeholders with publication-ready LaTeX tables generated exclusively from the existing frozen CSV evidence. This task advances submission assets without changing any experiment, metric, model, split, dataset, or claim scope.
 
 ## Read First
 1. `AGENTS.md` if it exists.
@@ -12,24 +12,31 @@ Resolve the documentation inconsistency between the frozen blocked-split manuscr
 3. `docs/EXPERIMENT_STATUS.md`
 4. `runs/handoff_latest.md`
 5. `runs/phase4b_report.md`
-6. `runs/clean_block64g16_protocol.md`
-7. `runs/phase7a_asset_readiness_report.md`
-8. `docs/TASK_BLOCKER.md`
-9. `AUTHOR_FINAL_INPUTS_REQUIRED_V18.md`
-10. `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
+6. `runs/phase7b_publication_state_reconciliation.md`
+7. `docs/TASK_BLOCKER.md`
+8. `submission/sivp/README.md`
+9. `submission/sivp/tex/main.tex`
+10. `submission/sivp/tex/ra_repdet_sivp.tex`
 11. `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
-12. `scripts/preflight_submission.py`
-13. `rarepdet/tools/generate_handoff.py`
-14. `rarepdet/tools/update_project_status.py`
+12. `manuscript/tables/Table_1_dataset_and_clean_split.csv`
+13. `manuscript/tables/Table_2_implementation_and_reproducibility.csv`
+14. `manuscript/tables/Table_3_controlled_ablation.csv`
+15. `manuscript/tables/Table_4_missing_modality_robustness.csv`
+16. `manuscript/tables/Table_5_rgb_only_external_baseline.csv`
+17. `manuscript/tables/Table_6_efficiency_and_convergence.csv`
+18. `manuscript/tables/Table_7_reliability_weight_audit.csv`
+19. `scripts/preflight_submission.py`
+20. `rarepdet/tools/generate_handoff.py`
+21. `rarepdet/tools/update_project_status.py`
 
 ## Frozen Assets
 - Remote branch: `research/ra-repdet-triair`.
-- Manuscript protocol: `block64_guard16_seed0`.
-- Frozen split cardinalities: train `7439`, validation `2213`, guard `837`.
-- Official manuscript headline: **R4 Reliability p=0.20**, controlled seeds `0` and `2`, on the frozen blocked validation split.
+- Official manuscript headline: **R4 Reliability p=0.20** on `block64_guard16_seed0`, controlled seeds `0` and `2`.
+- Publication headline means: F1@0.50 `0.920861`, AP50 `0.962495`, AP75 `0.891266`, w/o RGB AP50 `0.916051`, w/o Thermal AP50 `0.718277`, w/o Event AP50 `0.961577`.
 - Phase 4B decision: `SELECT R4 AS CLEAN-SPLIT MAIN VARIANT`.
-- Former E0–E6 random-split results are historical/exploratory diagnostics only and must never be labeled as the manuscript’s current best model.
-- Strict V18 preflight remains blocked until authors supply factual metadata and final approved assets.
+- The seven CSV files under `manuscript/tables/` are the sole numerical sources for this task.
+- Former E0–E6 random-split results are historical/exploratory only and must not be promoted in any generated table or caption.
+- Strict V18 preflight remains blocked by author-supplied metadata, TriAir governance facts, final figures, release metadata, final environment record, and final compile readiness.
 
 ## Allowed Files To Modify
 - `docs/NEXT_TASK.md`
@@ -37,20 +44,32 @@ Resolve the documentation inconsistency between the frozen blocked-split manuscr
 - `docs/TASK_BLOCKER.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/phase7b_publication_state_reconciliation.md`
-- `runs/phase7b_publication_state_reconciliation.json`
-- `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
-- `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
+- `runs/phase7c_table_insertion_report.md`
+- `runs/phase7c_table_insertion_report.json`
+- `submission/sivp/tex/ra_repdet_sivp.tex`
+- `submission/sivp/tables/Table_1_dataset_and_clean_split.tex`
+- `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`
+- `submission/sivp/tables/Table_3_controlled_ablation.tex`
+- `submission/sivp/tables/Table_4_missing_modality_robustness.tex`
+- `submission/sivp/tables/Table_5_rgb_only_external_baseline.tex`
+- `submission/sivp/tables/Table_6_efficiency_and_convergence.tex`
+- `submission/sivp/tables/Table_7_reliability_weight_audit.tex`
+- `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`
+- `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv`
+- `submission/sivp/review/TABLE_RENDERING_CHECK.md`
+- `submission/sivp/review/TABLE_RENDERING_CHECK.csv`
 - `rarepdet/tools/generate_handoff.py`
 - `rarepdet/tools/update_project_status.py`
 
 ## Forbidden Files To Modify
-- All training, model, dataset, loss, and primary AP-evaluation files.
-- All split manifests, raw `.npy` data, weights, checkpoints, labels, images, rendered final figures, final PDFs, and prior experimental outputs.
-- Do not modify reported numerical evidence or run any training, inference sweep, or metric-changing evaluation.
+- All training, model, dataset, loss, primary AP-evaluation, and split-generation source files.
+- `manuscript/tables/*.csv` and all other source-evidence CSV files.
+- All raw `.npy` data, labels, checkpoints, weights, images, rendered final figure assets, final PDFs, and existing experimental outputs.
+- Do not modify numerical experiment values, calculate replacement metrics, regenerate model outputs, run training, run inference sweeps, or mutate split manifests.
+- Do not insert fake author information, citations, DOIs, licence terms, release URLs, or final-asset approvals.
 
 ## Required Commands
-Run only read-only inspection and documentation/tooling checks. Start with:
+Run only documentation/table-generation checks. Start with:
 
 ```powershell
 git switch research/ra-repdet-triair
@@ -59,9 +78,9 @@ git status --short
 python scripts/preflight_submission.py --root . --allow-placeholders
 ```
 
-If the fast-forward pull cannot run because of a genuine local/remote divergence, do not use `--allow-unrelated-histories`, force push, reset, or history rewriting. Record the blocker in `docs/TASK_BLOCKER.md`, commit only safe partial outputs, push only if it is fast-forward, and stop.
+If `git pull --ff-only` cannot proceed because of local/remote divergence, do not use `--allow-unrelated-histories`, reset, force push, or rewrite history. Record a blocker, commit only safe partial documents if possible, and stop.
 
-After reconciling the permitted tooling and documents, run:
+After inserting tables, run:
 
 ```powershell
 python rarepdet/tools/generate_handoff.py
@@ -71,75 +90,81 @@ python scripts/preflight_submission.py --root .
 powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 ```
 
-The strict preflight is expected to fail until real external inputs are supplied. Capture that failure accurately; do not weaken the strict validator merely to obtain a PASS.
+A local PDF compile is optional only if the complete Springer `sn-jnl` environment is available. Do not install packages, fabricate a PDF, or claim visual compilation success when dependencies are missing.
 
 ## Required Outputs
 
-### 1. Canonical publication-state wording
-Make `docs/EXPERIMENT_STATUS.md` and `runs/handoff_latest.md` agree on all of the following:
+### 1. Seven evidence-locked table assets
+Create one standalone LaTeX fragment per source CSV, using the exact table numbering and captions already present in `submission/sivp/tex/ra_repdet_sivp.tex`:
 
-- The official clean blocked-split manuscript headline is `R4 Reliability p=0.20`, with seeds `0, 2` and `block64_guard16_seed0`.
-- The controlled-seed means are: F1@0.50 `0.920861`, AP50 `0.962495`, AP75 `0.891266`, w/o RGB AP50 `0.916051`, w/o Thermal AP50 `0.718277`, and w/o Event AP50 `0.961577`.
-- Former E0–E6 results may be retained only in a clearly labeled **historical/exploratory random-split** section.
-- Do not state or imply that legacy E2 is the current best model, headline model, or manuscript selection.
-- If preserving legacy E2 rankings, label them explicitly as “legacy random-split historical” and never place them above the clean blocked-split publication snapshot.
+| Table | Required fragment | Sole source |
+| --- | --- | --- |
+| 1 | `submission/sivp/tables/Table_1_dataset_and_clean_split.tex` | `manuscript/tables/Table_1_dataset_and_clean_split.csv` |
+| 2 | `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex` | `manuscript/tables/Table_2_implementation_and_reproducibility.csv` |
+| 3 | `submission/sivp/tables/Table_3_controlled_ablation.tex` | `manuscript/tables/Table_3_controlled_ablation.csv` |
+| 4 | `submission/sivp/tables/Table_4_missing_modality_robustness.tex` | `manuscript/tables/Table_4_missing_modality_robustness.csv` |
+| 5 | `submission/sivp/tables/Table_5_rgb_only_external_baseline.tex` | `manuscript/tables/Table_5_rgb_only_external_baseline.csv` |
+| 6 | `submission/sivp/tables/Table_6_efficiency_and_convergence.tex` | `manuscript/tables/Table_6_efficiency_and_convergence.csv` |
+| 7 | `submission/sivp/tables/Table_7_reliability_weight_audit.tex` | `manuscript/tables/Table_7_reliability_weight_audit.csv` |
 
-Update `rarepdet/tools/generate_handoff.py` and/or `rarepdet/tools/update_project_status.py` only as needed to prevent this mismatch from reappearing after regeneration. Preserve all historical content that is factually valid and do not alter experiment numbers.
+Requirements for every fragment:
 
-### 2. Final-submission input ledger
-Create:
+- Use LaTeX-safe escaping for `%`, `_`, `&`, `#`, and other special characters.
+- Preserve every source row, header, numeric value, missing value marker, model name, seed label, threshold, and unit exactly as represented in the source CSV. Do not silently round, recompute, sort, filter, average, or reformat a number.
+- Use a readable SIVP-compatible layout that fits a two-column journal paper. Use `\resizebox{\textwidth}{!}{...}` or an equivalent only when necessary; do not change source values to fit the page.
+- Use `booktabs`-style rules only when packages already supplied by the source template make them available. Do not add undeclared packages without verifying the main template supports them.
+- Keep captions and labels in `ra_repdet_sivp.tex`; fragments should contain only the tabular content, or clearly documented table wrappers if the current LaTeX structure requires it.
+- Add concise, factual notes inside the relevant table environment only when they clarify an existing source fact (for example, two seed means or synthetic modality removal). Do not introduce new scientific claims.
 
-- `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
-- `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
+### 2. Replace every table placeholder
+In `submission/sivp/tex/ra_repdet_sivp.tex`, replace all seven strings containing `TABLE PLACEHOLDER - FINAL VERSION PENDING` with `\input{...}` references to the matching fragment. Preserve all existing captions and labels. Do not modify figure placeholders in this task.
 
-Each row must contain these fields:
+### 3. Source traceability and validation
+Create both Markdown and CSV traceability files mapping each table fragment to:
 
-```text
-item_id, category, exact_required_input, repository_destination, owner, source_or_evidence, current_state, strict_preflight_effect, action_to_close, notes
-```
+- source CSV path and Git blob/commit provenance if available;
+- source row count and rendered row count;
+- source header and rendered header;
+- exact numerical-token comparison result;
+- any LaTeX escaping transformations;
+- reviewer status: `pass`, `warning`, or `blocker`.
 
-At minimum cover:
+Create `submission/sivp/review/TABLE_RENDERING_CHECK.md` and `.csv` that records:
 
-- author names, affiliations, ORCIDs, corresponding email;
-- funding, acknowledgments, author contributions, competing interests;
-- TriAir citation/data card, version/provider, licence, access terms, redistribution permission;
-- public release URL, release tag, immutable commit, archive date, licence, Zenodo DOI if applicable;
-- final Fig. 1–6 assets, explicitly distinguishing author/Visio-dependent Fig. 1–2 from data-derived Fig. 3–6;
-- final publication tables;
-- validation-only wording approval versus new independent held-out evidence;
-- final hardware/software environment record;
-- Springer `sn-jnl` local dependency and final compile readiness.
+- whether all 7 input fragments exist;
+- whether the manuscript body contains zero remaining table placeholder strings;
+- whether all 7 source CSVs are unchanged by this task;
+- whether every source row is represented exactly once in its corresponding fragment;
+- whether Table 3 and Table 4 use clean blocked-split R0/R1/R2/R4 evidence rather than legacy E0–E6 headline wording;
+- potential width/layout warnings;
+- expected strict-preflight result after table insertion.
 
-Use only verified facts from repository files. For any missing factual content, write `missing — author confirmation required`; do not invent names, citations, licence terms, DOIs, URLs, or approvals.
+### 4. Report and status
+Create `runs/phase7c_table_insertion_report.md` and matching JSON that includes:
 
-### 3. Reconciliation report
-Create `runs/phase7b_publication_state_reconciliation.md` and matching JSON with:
+- the seven source-to-fragment mappings;
+- verification outcomes and row counts;
+- remaining strict-preflight blockers after removing table placeholders;
+- a confirmation that no metric, source evidence CSV, model, dataset, split, weights, checkpoint, figure, or final PDF changed;
+- any compile limitation.
 
-- documents inspected and their commit/path provenance;
-- every detected inconsistency and the corrective action;
-- the canonical headline statement;
-- strict and placeholder preflight outcomes;
-- count of open ledger items by category;
-- confirmation that no scientific metric, checkpoint, split, source data, or core model file changed;
-- the exact next external inputs required from authors.
+Update `docs/TASK_BLOCKER.md` to remove table placeholders only if they are actually gone and validated. Keep every unresolved author/metadata/figure/release/environment/compiler blocker.
 
-### 4. Blocker and handoff
-Update `docs/TASK_BLOCKER.md` so it reflects the resolved documentation mismatch and preserves only genuine unresolved strict-preflight blockers. Do not remove the strict-preflight block unless every required field and final asset is actually present and verified.
-
-Refresh `runs/handoff_latest.md` and `runs/handoff_latest.json`. Their top summary must show the clean blocked-split R4 headline first and must list Phase 7B completion plus the remaining author/asset blockers.
+Refresh `runs/handoff_latest.md` and `.json` and `docs/EXPERIMENT_STATUS.md`. Their publication headline must remain R4 on the frozen blocked split; legacy E0–E6 wording must remain historical/exploratory.
 
 ## Acceptance Criteria
-- `docs/EXPERIMENT_STATUS.md`, `runs/handoff_latest.md`, and generated status output agree that R4 p=0.20 is the official clean blocked-split manuscript headline.
-- No historical random-split row is called the current “best model” without a clear legacy label.
-- The ledger covers every strict V18 blocker with owner, destination, status, and closure action.
-- Placeholder-mode preflight is run and documented. Strict preflight remains FAIL unless all real inputs have been supplied; never fake a PASS.
-- No training, GPU inference, experimental rerun, split mutation, source-data mutation, or core model/dataset/evaluation changes occur.
-- All new/modified files are within the allowed list.
-- `runs/handoff_latest.md` records the final commit SHA, changed files, command outcomes, and residual blockers.
+- Seven `.tex` table fragments exist and are linked from the SIVP manuscript body.
+- The SIVP body contains zero `TABLE PLACEHOLDER` strings.
+- Each fragment is demonstrably traceable to exactly one unchanged source CSV, without numeric modification.
+- Tables 3 and 4 preserve the clean blocked-split R0/R1/R2/R4 evidence and do not elevate legacy random-split E2 as the manuscript headline.
+- Placeholder-mode preflight is executed and documented. Strict preflight must still be reported truthfully; it is expected to remain FAIL until author metadata, data/release facts, final figures, environment record, and final compile readiness are closed.
+- No training, GPU inference, numerical evaluation, split mutation, source-data mutation, or core model/dataset/evaluation change occurs.
+- No final PDF is generated or labeled submission-ready.
+- `runs/handoff_latest.md` records the final commit SHA, changed files, command outcomes, table-validation outcome, and residual blockers.
 - Commit all permitted outputs and push the branch.
 
 ## Commit Message
-`docs: reconcile R4 publication status and submission ledger`
+`docs: insert evidence-locked SIVP tables`
 
 ## Completion / Blocker Rule
-Complete the documentation/tooling reconciliation, update the handoff, commit, and push. If author-provided facts or approved assets remain missing, keep strict preflight blocked, list them in the ledger and `docs/TASK_BLOCKER.md`, and stop. Do not create final submission PDFs or claim readiness for formal submission.
+Complete the table-only asset task, refresh handoff/status, commit, and push. If source CSV structure cannot be rendered safely without changing values or if a template dependency is ambiguous, write the issue in `docs/TASK_BLOCKER.md`, commit the traceability findings, and stop. Do not alter experimental evidence or lower strict-preflight standards.
