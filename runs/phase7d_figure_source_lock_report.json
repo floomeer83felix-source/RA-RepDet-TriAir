@@ -1,0 +1,189 @@
+{
+  "phase": "Phase 7D",
+  "title": "Candidate Figure Source Lock and Build Specification",
+  "generated": "2026-07-04",
+  "workspace": "E:/RepViT-main",
+  "baseline_commit_inspected": "4f5e5dac2ac9dd1d239dc3523aefd594edb2c99d",
+  "inspected_sources": [
+    "AGENTS.md",
+    "docs/PROJECT_CONTEXT.md",
+    "docs/EXPERIMENT_STATUS.md",
+    "docs/NEXT_TASK.md",
+    "runs/handoff_latest.md",
+    "runs/phase4b_report.md",
+    "runs/phase7b_publication_state_reconciliation.md",
+    "runs/phase7c_table_insertion_report.md",
+    "docs/TASK_BLOCKER.md",
+    "submission/sivp/README.md",
+    "submission/sivp/tex/main.tex",
+    "submission/sivp/tex/ra_repdet_sivp.tex",
+    "submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md",
+    "manuscript/figures/fig3_controlled_ablation_source.csv",
+    "manuscript/figures/fig4_missing_modality_source.csv",
+    "manuscript/figures/fig5_reliability_weight_source.csv",
+    "runs/clean_qualitative_manifest.csv",
+    "runs/phase3c_report.md",
+    "runs/clean_block64g16_protocol.md",
+    "rarepdet/models/early_fusion_fcos.py",
+    "rarepdet/models/repvit_fpn_backbone.py",
+    "scripts/preflight_submission.py",
+    "rarepdet/tools/generate_handoff.py",
+    "rarepdet/tools/update_project_status.py"
+  ],
+  "source_path_notes": [
+    "rarepdet/models/reliability_fusion_fcos.py was listed in docs/NEXT_TASK.md but is absent in this tree.",
+    "The actual reliability fusion builder/backbone evidence is in rarepdet/models/early_fusion_fcos.py and rarepdet/models/repvit_fpn_backbone.py."
+  ],
+  "figure_readiness": [
+    {
+      "figure_id": "Fig. 1",
+      "target_filename": "Fig1_overall_architecture.pdf",
+      "current_state": "author-design required",
+      "author_approval_required": "yes"
+    },
+    {
+      "figure_id": "Fig. 2",
+      "target_filename": "Fig2_leakage_aware_protocol.pdf",
+      "current_state": "author-design required",
+      "author_approval_required": "yes"
+    },
+    {
+      "figure_id": "Fig. 3",
+      "target_filename": "Fig3_controlled_ablation.pdf",
+      "current_state": "candidate build spec ready",
+      "author_approval_required": "yes"
+    },
+    {
+      "figure_id": "Fig. 4",
+      "target_filename": "Fig4_missing_modality_robustness.pdf",
+      "current_state": "candidate build spec ready",
+      "author_approval_required": "yes"
+    },
+    {
+      "figure_id": "Fig. 5",
+      "target_filename": "Fig5_reliability_weight_audit.pdf",
+      "current_state": "candidate build spec ready",
+      "author_approval_required": "yes"
+    },
+    {
+      "figure_id": "Fig. 6",
+      "target_filename": "Fig6_qualitative_results.pdf",
+      "current_state": "local-panel inventory required",
+      "author_approval_required": "yes"
+    }
+  ],
+  "dry_run_result": {
+    "command": "python submission/sivp/figures/figure_candidate_build.py --dry-run --root .",
+    "status": "PASS",
+    "validated_sources": [
+      {
+        "figure_id": "Fig. 3",
+        "source": "manuscript/figures/fig3_controlled_ablation_source.csv",
+        "headers": [
+          "Variant",
+          "Seed",
+          "F1",
+          "AP50",
+          "AP75"
+        ],
+        "row_count": 8,
+        "numerical_token_count": 40,
+        "sha256": "23e2984adac08ebd6584e1c8d56f82d3cdd0dfb9e5e32047d5064481076d21dc",
+        "target_candidate": "Fig3_controlled_ablation_candidate.pdf"
+      },
+      {
+        "figure_id": "Fig. 4",
+        "source": "manuscript/figures/fig4_missing_modality_source.csv",
+        "headers": [
+          "Variant",
+          "Seed",
+          "Condition",
+          "AP50"
+        ],
+        "row_count": 18,
+        "numerical_token_count": 55,
+        "sha256": "aea82341ac37547ece40428e56bd3d98fabf299304a4b24067a7705eaf642fde",
+        "target_candidate": "Fig4_missing_modality_robustness_candidate.pdf"
+      },
+      {
+        "figure_id": "Fig. 5",
+        "source": "manuscript/figures/fig5_reliability_weight_source.csv",
+        "headers": [
+          "Seed",
+          "Mode",
+          "alpha_rgb_mean",
+          "alpha_thermal_mean",
+          "alpha_event_mean",
+          "alpha_rgb_std",
+          "alpha_thermal_std",
+          "alpha_event_std"
+        ],
+        "row_count": 8,
+        "numerical_token_count": 56,
+        "sha256": "ef93dca475e9a1fa704856952951fbe47ebb701c9e559ea60abf46d861a1239c",
+        "target_candidate": "Fig5_reliability_weight_audit_candidate.pdf"
+      }
+    ],
+    "writes_artwork": false
+  },
+  "author_action_list": [
+    "Approve or provide Fig. 1 architecture schematic design source and final PDF.",
+    "Approve or provide Fig. 2 leakage-aware protocol schematic design source and final PDF.",
+    "Review any future non-final Fig. 3-5 local candidate renders before final asset insertion.",
+    "Verify Fig. 6 local real validation panels, select final cases, approve any redaction/cropping, and approve final PDF."
+  ],
+  "future_candidate_render_procedure": [
+    "Run only after a later task explicitly approves non-dry candidate rendering.",
+    "Use only the three frozen CSV files for Fig. 3-5.",
+    "Write only untracked *_candidate.* files into a user-provided output directory outside figures/ and submission/sivp/figures/.",
+    "Keep a visible candidate/non-final mark until author approval.",
+    "Do not replace LaTeX placeholders or final asset paths until final approval exists."
+  ],
+  "non_modification_confirmation": [
+    "No figures, images, PDFs, SVGs, JPGs, PNGs, EPS files, candidate artwork, final figures, or final compiled PDFs were generated, committed, or inserted.",
+    "No source evidence CSV, metric, checkpoint, model, split, dataset, training code, evaluation code, or LaTeX body figure placeholder was modified."
+  ],
+  "command_outcomes": [
+    "git switch research/ra-repdet-triair: PASS",
+    "git pull --ff-only research research/ra-repdet-triair: PASS",
+    "git status --short: PASS; unrelated pre-existing untracked files remain outside this task",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings before Phase 7D edits",
+    "python -m py_compile submission/sivp/figures/figure_candidate_build.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py: PASS",
+    "python submission/sivp/figures/figure_candidate_build.py --dry-run --root .: PASS; wrote no artwork",
+    "final/candidate artifact check after dry run: PASS; no Fig1-Fig6 final PDF and no *_candidate image/PDF/SVG/JPG/EPS output found",
+    "python rarepdet/tools/generate_handoff.py: PASS",
+    "python rarepdet/tools/update_project_status.py: PASS",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings after Phase 7D",
+    "python scripts/preflight_submission.py --root .: FAIL as expected on unresolved author metadata, final artwork placeholders, release/data placeholders and missing Fig. 1-6 assets"
+  ],
+  "changed_files": [
+    "docs/EXPERIMENT_STATUS.md",
+    "docs/TASK_BLOCKER.md",
+    "runs/handoff_latest.md",
+    "runs/handoff_latest.json",
+    "runs/phase7d_figure_source_lock_report.md",
+    "runs/phase7d_figure_source_lock_report.json",
+    "submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md",
+    "submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md",
+    "submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.csv",
+    "submission/sivp/figures/FIGURE_BUILD_SPEC.md",
+    "submission/sivp/figures/figure_candidate_build.py",
+    "submission/sivp/review/FIGURE_CANDIDATE_CHECK.md",
+    "submission/sivp/review/FIGURE_CANDIDATE_CHECK.csv",
+    "rarepdet/tools/generate_handoff.py",
+    "rarepdet/tools/update_project_status.py"
+  ],
+  "residual_blockers": [
+    "author-confirmed metadata and declarations are missing",
+    "TriAir citation, version, licence, access, and redistribution facts are missing",
+    "public release/archive URL, tag, commit/archive hash, date, licence, and DOI facts are missing",
+    "final approved Fig. 1-6 assets are missing",
+    "Fig. 1-2 require author-approved schematic/Visio-style design sources",
+    "Fig. 6 requires verified local real validation panel inventory and author-approved selection",
+    "validation-only wording approval or independent held-out evidence decision is missing",
+    "final hardware/software environment record is missing",
+    "strict V18 preflight and final Springer sn-jnl compile remain blocked"
+  ],
+  "decision": "FIGURE SOURCES LOCKED; CANDIDATE BUILD SPEC READY FOR FIG. 3-5; STRICT PREFLIGHT REMAINS BLOCKED BY FINAL FIGURE AND EXTERNAL AUTHOR/METADATA INPUTS",
+  "final_commit_sha": "pending until completion commit is created"
+}
