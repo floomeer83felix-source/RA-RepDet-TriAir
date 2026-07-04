@@ -13,6 +13,23 @@ STATUS_PATH = DOCS_DIR / "EXPERIMENT_STATUS.md"
 NEXT_TASK_PATH = DOCS_DIR / "NEXT_TASK.md"
 HANDOFF_PATH = RUNS_DIR / "handoff_latest.md"
 
+PUBLICATION_HEADLINE = {
+    "model": "R4 Reliability p=0.20",
+    "protocol": "block64_guard16_seed0",
+    "seeds": "0, 2",
+    "decision": "SELECT R4 AS CLEAN-SPLIT MAIN VARIANT",
+    "F1@0.50": "0.920861",
+    "AP50": "0.962495",
+    "AP75": "0.891266",
+    "w/o RGB AP50": "0.916051",
+    "w/o Thermal AP50": "0.718277",
+    "w/o Event AP50": "0.961577",
+}
+
+PHASE7B_REPORT = RUNS_DIR / "phase7b_publication_state_reconciliation.md"
+PHASE7B_LEDGER_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "FINAL_SUBMISSION_INPUT_LEDGER.md"
+PHASE7B_LEDGER_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FINAL_SUBMISSION_INPUT_LEDGER.csv"
+
 
 EXPERIMENTS = [
     ("E0", "Early Fusion", RUNS_DIR / "E0_early_repvit_fcos_e50", "eval"),
@@ -248,6 +265,10 @@ def build_status():
         if (submission_dir / "review").exists()
         else 0
     )
+    phase7b_report_exists = PHASE7B_REPORT.exists()
+    phase7b_ledger_md_exists = PHASE7B_LEDGER_MD.exists()
+    phase7b_ledger_csv_exists = PHASE7B_LEDGER_CSV.exists()
+    phase7b_ledger_rows = count_csv_rows(PHASE7B_LEDGER_CSV)
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -269,6 +290,8 @@ def build_status():
         )
     if "Phase 7A" in next_text:
         active_status = "pending"
+    if "Phase 7B" in next_text:
+        active_status = "completed" if phase7b_report_exists and phase7b_ledger_md_exists and phase7b_ledger_csv_exists else "pending"
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -289,6 +312,8 @@ def build_status():
         current_task = "Phase 6B - SIVP Submission-Source Preparation"
     if "Phase 7A" in next_text:
         current_task = "Phase 7A - Final SIVP Asset Readiness and Author Metadata Intake"
+    if "Phase 7B" in next_text:
+        current_task = "Phase 7B - Publication-State Reconciliation and Submission-Input Ledger"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -318,6 +343,11 @@ def build_status():
             "Prepare final SIVP figure/table readiness, author metadata intake, and compile-blocker tracking "
             "without retraining models or changing experimental evidence."
         )
+    if "Phase 7B" in next_text:
+        current_goal = (
+            "Reconcile the official clean blocked-split R4 manuscript headline with legacy random-split summaries "
+            "and create the strict-preflight final-submission input ledger."
+        )
 
     lines = [
         "# Experiment Status",
@@ -325,12 +355,19 @@ def build_status():
         f"Generated: {datetime.now().isoformat(timespec='seconds')}",
         f"Handoff source: `{HANDOFF_PATH}`" if HANDOFF_PATH.exists() else "Handoff source: `NA`",
         "",
-        "## Current best model",
+        "## Publication headline model",
         "",
-        f"- Best AP50: {na(best_ap50.get('Experiment') if best_ap50 else None)} {na(best_ap50.get('Method') if best_ap50 else None)} ({na(best_ap50.get('AP50') if best_ap50 else None)})",
-        f"- Best AP75: {na(best_ap75.get('Experiment') if best_ap75 else None)} {na(best_ap75.get('Method') if best_ap75 else None)} ({na(best_ap75.get('AP75') if best_ap75 else None)})",
+        f"- Official clean blocked-split manuscript headline: {PUBLICATION_HEADLINE['model']} on `{PUBLICATION_HEADLINE['protocol']}`, seeds {PUBLICATION_HEADLINE['seeds']}.",
+        f"- Controlled-seed means: F1@0.50 {PUBLICATION_HEADLINE['F1@0.50']}, AP50 {PUBLICATION_HEADLINE['AP50']}, AP75 {PUBLICATION_HEADLINE['AP75']}, w/o RGB AP50 {PUBLICATION_HEADLINE['w/o RGB AP50']}, w/o Thermal AP50 {PUBLICATION_HEADLINE['w/o Thermal AP50']}, w/o Event AP50 {PUBLICATION_HEADLINE['w/o Event AP50']}.",
+        f"- Phase 4B decision: {PUBLICATION_HEADLINE['decision']}.",
+        "- Former E0-E6 random-split results are historical/exploratory diagnostics only and must not be described as the current best or manuscript headline.",
         "",
-        "## Latest completed experiments",
+        "## Legacy random-split historical ranking",
+        "",
+        f"- Legacy random-split AP50 leader: {na(best_ap50.get('Experiment') if best_ap50 else None)} {na(best_ap50.get('Method') if best_ap50 else None)} ({na(best_ap50.get('AP50') if best_ap50 else None)})",
+        f"- Legacy random-split AP75 leader: {na(best_ap75.get('Experiment') if best_ap75 else None)} {na(best_ap75.get('Method') if best_ap75 else None)} ({na(best_ap75.get('AP75') if best_ap75 else None)})",
+        "",
+        "## Historical/exploratory random-split experiments",
         "",
     ]
 
@@ -715,6 +752,14 @@ def build_status():
         f"- Review/audit files: {phase6b_review_count}",
         f"- Decision: {phase6b_decision or 'NA'}",
         "",
+        "## Phase 7B outputs",
+        "",
+        "- Reconciliation report: `runs/phase7b_publication_state_reconciliation.md`" if phase7b_report_exists else "- Reconciliation report: NA",
+        "- Input ledger: `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`" if phase7b_ledger_md_exists else "- Input ledger: NA",
+        "- Input ledger CSV: `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`" if phase7b_ledger_csv_exists else "- Input ledger CSV: NA",
+        f"- Input ledger rows: {phase7b_ledger_rows if phase7b_ledger_csv_exists else 'NA'}",
+        "- Decision: PUBLICATION-STATE MISMATCH RESOLVED; STRICT PREFLIGHT REMAINS BLOCKED BY AUTHOR/ASSET INPUTS" if phase7b_report_exists else "- Decision: NA",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -739,13 +784,14 @@ def build_status():
         "- Phase 6B source package is pre-final and uses placeholders for final figures, tables, author details, and declarations.",
         "- Phase 6B dry-run compilation was skipped if the local LaTeX environment lacks required Springer dependencies.",
         "- Phase 7A is an asset-readiness and metadata-intake phase; it must not change clean-split metrics or retrain models.",
+        "- Phase 7B reconciles publication-state documentation only; it does not change metrics, checkpoints, splits, source data, or model code.",
         "",
         "## Important research decisions",
         "",
         "- Missing txt labels are treated as empty-target images.",
         "- TriAir class 0 is shifted to torchvision label 1; background remains label 0.",
         "- E0/E1/E2 completed 50-epoch first-batch experiments and should not be retrained without explicit instruction.",
-        "- E2 is the strongest robustness-oriented model by missing-modality AP50/AP75.",
+        "- Legacy random-split E2 is the strongest robustness-oriented E-run by missing-modality AP50/AP75, but it is not the manuscript headline.",
         "- E1 has the highest F1 in the threshold sweep at threshold 0.50.",
         "- E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.",
         "- E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.",
@@ -753,11 +799,13 @@ def build_status():
         "- Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.",
         "- If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.",
         "- Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.",
+        f"- Official manuscript headline: {PUBLICATION_HEADLINE['model']} on `{PUBLICATION_HEADLINE['protocol']}` with controlled seeds {PUBLICATION_HEADLINE['seeds']}.",
         f"- Phase 4B decision gate: {phase4b_decision or 'NA'}.",
         f"- Phase 5A decision gate: {phase5a_decision or 'NA'}.",
         f"- Phase 6A decision gate: {phase6a_decision or 'NA'}.",
         f"- Phase 6B decision gate: {phase6b_decision or 'NA'}.",
         "- Phase 7A starts from the completed Phase 6B SIVP source skeleton and should replace placeholders only after author approval.",
+        "- Phase 7B final-submission ledger is the closure checklist for strict V18 preflight blockers.",
         "",
         "## Files or scripts currently under review",
         "",

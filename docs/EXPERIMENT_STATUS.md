@@ -1,14 +1,21 @@
 # Experiment Status
 
-Generated: 2026-07-04T10:52:29
+Generated: 2026-07-04T11:23:19
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
-## Current best model
+## Publication headline model
 
-- Best AP50: E2 Reliability + Dropout 0.15 (0.979990)
-- Best AP75: E2 Reliability + Dropout 0.15 (0.950906)
+- Official clean blocked-split manuscript headline: R4 Reliability p=0.20 on `block64_guard16_seed0`, seeds 0, 2.
+- Controlled-seed means: F1@0.50 0.920861, AP50 0.962495, AP75 0.891266, w/o RGB AP50 0.916051, w/o Thermal AP50 0.718277, w/o Event AP50 0.961577.
+- Phase 4B decision: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT.
+- Former E0-E6 random-split results are historical/exploratory diagnostics only and must not be described as the current best or manuscript headline.
 
-## Latest completed experiments
+## Legacy random-split historical ranking
+
+- Legacy random-split AP50 leader: E2 Reliability + Dropout 0.15 (0.979990)
+- Legacy random-split AP75 leader: E2 Reliability + Dropout 0.15 (0.950906)
+
+## Historical/exploratory random-split experiments
 
 | Experiment | Method | Precision | Recall | AP50 | AP75 | GT boxes | Predictions | Mean Confidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -84,9 +91,9 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7A - Final SIVP Asset Readiness and Author Metadata Intake
-- Goal: Prepare final SIVP figure/table readiness, author metadata intake, and compile-blocker tracking without retraining models or changing experimental evidence.
-- Status: pending
+- Current Task: Phase 7B - Publication-State Reconciliation and Submission-Input Ledger
+- Goal: Reconcile the official clean blocked-split R4 manuscript headline with legacy random-split summaries and create the strict-preflight final-submission input ledger.
+- Status: completed
 
 ## Phase 2B ACRF outputs
 
@@ -320,17 +327,24 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Template/LaTeX source files: 16
-- Metadata template files: 7
-- Review/audit files: 5
+- Metadata template files: 8
+- Review/audit files: 6
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
+
+## Phase 7B outputs
+
+- Reconciliation report: `runs/phase7b_publication_state_reconciliation.md`
+- Input ledger: `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
+- Input ledger CSV: `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
+- Input ledger rows: 30
+- Decision: PUBLICATION-STATE MISMATCH RESOLVED; STRICT PREFLIGHT REMAINS BLOCKED BY AUTHOR/ASSET INPUTS
 
 
 ## Pending tasks
 
-- Produce and author-approve final SIVP figures before replacing placeholder boxes.
-- Prepare final publication tables from the existing manuscript/table CSV sources.
-- Collect author metadata, declarations, funding, acknowledgments, and AI-use wording.
-- Complete a final LaTeX compile after the local environment has required Springer dependencies.
+- Strict V18 preflight remains blocked until author-confirmed metadata, release metadata, TriAir licence/citation/access details, and final approved figure/table assets are supplied.
+- Use submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md and submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv as the closure checklist.
+- Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders.
 
 ## Known metric caveats
 
@@ -348,13 +362,14 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 6B source package is pre-final and uses placeholders for final figures, tables, author details, and declarations.
 - Phase 6B dry-run compilation was skipped if the local LaTeX environment lacks required Springer dependencies.
 - Phase 7A is an asset-readiness and metadata-intake phase; it must not change clean-split metrics or retrain models.
+- Phase 7B reconciles publication-state documentation only; it does not change metrics, checkpoints, splits, source data, or model code.
 
 ## Important research decisions
 
 - Missing txt labels are treated as empty-target images.
 - TriAir class 0 is shifted to torchvision label 1; background remains label 0.
 - E0/E1/E2 completed 50-epoch first-batch experiments and should not be retrained without explicit instruction.
-- E2 is the strongest robustness-oriented model by missing-modality AP50/AP75.
+- Legacy random-split E2 is the strongest robustness-oriented E-run by missing-modality AP50/AP75, but it is not the manuscript headline.
 - E1 has the highest F1 in the threshold sweep at threshold 0.50.
 - E5 ACRF enforces exact zero alpha for synthetic absent modalities, but should remain an ablation unless the paper prioritizes alpha correctness over E2 full-modality AP.
 - E6 MSCD keeps E2 inference architecture unchanged; use it as the main model only if the Phase 2C decision rule accepts it.
@@ -362,11 +377,13 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 3B corrects the ratio interpretation: E2 is accuracy-first, E4 is robustness-first; no ratio is universally dominant in the current single-seed ablation.
 - If Phase 3C confirms exact RGB-content overlap, do not use the random split as a publication-grade independent benchmark.
 - Phase 4A is the first clean blocked-split comparison and is single training-seed evidence only.
+- Official manuscript headline: R4 Reliability p=0.20 on `block64_guard16_seed0` with controlled seeds 0, 2.
 - Phase 4B decision gate: SELECT R4 AS CLEAN-SPLIT MAIN VARIANT.
 - Phase 5A decision gate: READY FOR MANUSCRIPT DRAFTING.
 - Phase 6A decision gate: MANUSCRIPT DRAFT READY FOR JOURNAL TARGETING.
 - Phase 6B decision gate: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA.
 - Phase 7A starts from the completed Phase 6B SIVP source skeleton and should replace placeholders only after author approval.
+- Phase 7B final-submission ledger is the closure checklist for strict V18 preflight blockers.
 
 ## Files or scripts currently under review
 

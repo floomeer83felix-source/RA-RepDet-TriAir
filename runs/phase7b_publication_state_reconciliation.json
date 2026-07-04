@@ -1,0 +1,128 @@
+{
+  "generated": "2026-07-04",
+  "workspace": "E:\\RepViT-main",
+  "remote_branch": "research/ra-repdet-triair",
+  "baseline_commit_inspected": "d6b42ac8334cd86ad7d0bc072dcb1fa95ab866db",
+  "final_commit_sha": "pending until the completion commit is created",
+  "documents_inspected": [
+    {"path": "AGENTS.md", "provenance": "required task rules inspected at baseline commit"},
+    {"path": "docs/PROJECT_CONTEXT.md", "provenance": "project context inspected at baseline commit"},
+    {"path": "docs/EXPERIMENT_STATUS.md", "provenance": "source of stale E2 current-best wording inspected at baseline commit"},
+    {"path": "docs/NEXT_TASK.md", "provenance": "Phase 7B task definition inspected after fast-forward pull"},
+    {"path": "runs/handoff_latest.md", "provenance": "source of stale E2 best-model handoff wording inspected at baseline commit"},
+    {"path": "runs/phase4b_report.md", "provenance": "canonical clean blocked-split R4 decision source"},
+    {"path": "runs/clean_block64g16_protocol.md", "provenance": "frozen split cardinality and integrity source"},
+    {"path": "runs/phase7a_asset_readiness_report.md", "provenance": "strict V18 blocker and preflight history source"},
+    {"path": "docs/TASK_BLOCKER.md", "provenance": "stale branch-divergence blocker and strict-preflight blocker source"},
+    {"path": "AUTHOR_FINAL_INPUTS_REQUIRED_V18.md", "provenance": "author/external input requirement source"},
+    {"path": "submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md", "provenance": "final Fig. 1-6 asset requirement source"},
+    {"path": "submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md", "provenance": "final table requirement source"},
+    {"path": "scripts/preflight_submission.py", "provenance": "strict and placeholder preflight rule source"},
+    {"path": "rarepdet/tools/generate_handoff.py", "provenance": "handoff regeneration source updated in Phase 7B"},
+    {"path": "rarepdet/tools/update_project_status.py", "provenance": "experiment-status regeneration source updated in Phase 7B"}
+  ],
+  "canonical_headline": {
+    "model": "R4 Reliability p=0.20",
+    "protocol": "block64_guard16_seed0",
+    "seeds": [0, 2],
+    "controlled_seed_means": {
+      "F1@0.50": 0.920861,
+      "AP50": 0.962495,
+      "AP75": 0.891266,
+      "w/o RGB AP50": 0.916051,
+      "w/o Thermal AP50": 0.718277,
+      "w/o Event AP50": 0.961577
+    },
+    "decision": "SELECT R4 AS CLEAN-SPLIT MAIN VARIANT",
+    "legacy_note": "Former E0-E6 random-split results are historical/exploratory diagnostics only."
+  },
+  "inconsistencies_and_actions": [
+    {
+      "inconsistency": "docs/EXPERIMENT_STATUS.md placed legacy random-split E2 under Current best model.",
+      "action": "Updated the status generator so the top section is the clean blocked-split R4 publication headline and E0-E6 rows are historical/exploratory."
+    },
+    {
+      "inconsistency": "runs/handoff_latest.md placed legacy random-split E2 under Best Model before the clean split decision.",
+      "action": "Updated the handoff generator so R4 appears first and E0-E6 rankings are explicitly legacy random-split historical rankings."
+    },
+    {
+      "inconsistency": "runs/handoff_latest.md still described Phase 7A after docs/NEXT_TASK.md moved to Phase 7B.",
+      "action": "Updated task parsing and Phase 7B summary hooks."
+    },
+    {
+      "inconsistency": "docs/TASK_BLOCKER.md mixed resolved branch-divergence history with the real strict V18 blockers.",
+      "action": "Rewrote blocker scope to unresolved strict-preflight blockers only."
+    },
+    {
+      "inconsistency": "Strict V18 blockers were not consolidated in one closure ledger.",
+      "action": "Created final-submission input ledger in Markdown and CSV."
+    }
+  ],
+  "command_outcomes": [
+    "git switch research/ra-repdet-triair: PASS",
+    "git pull --ff-only research research/ra-repdet-triair: PASS",
+    "git status --short: PASS; unrelated untracked files existed before Phase 7B edits",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings",
+    "python rarepdet/tools/generate_handoff.py: PASS",
+    "python rarepdet/tools/update_project_status.py: PASS",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings after reconciliation",
+    "python scripts/preflight_submission.py --root .: FAIL as expected on unresolved author metadata, placeholders, table placeholders and missing final Fig. 1-6 assets"
+  ],
+  "preflight_outcomes": {
+    "placeholder_mode": "PASS with warnings",
+    "strict_mode": "FAIL as expected until external author/assets inputs are supplied"
+  },
+  "open_ledger_counts_by_category": {
+    "author_metadata": 4,
+    "declarations": 5,
+    "data_governance": 4,
+    "release_archive": 6,
+    "figure_asset": 6,
+    "table_asset": 1,
+    "claim_scope": 2,
+    "environment": 1,
+    "compile_readiness": 1
+  },
+  "open_ledger_total": 30,
+  "non_modification_confirmation": {
+    "scientific_metrics_changed": false,
+    "checkpoints_changed": false,
+    "splits_changed": false,
+    "source_data_changed": false,
+    "core_model_files_changed": false,
+    "training_or_gpu_inference_run": false,
+    "metric_changing_evaluation_run": false
+  },
+  "changed_files": [
+    "docs/EXPERIMENT_STATUS.md",
+    "docs/TASK_BLOCKER.md",
+    "runs/handoff_latest.md",
+    "runs/handoff_latest.json",
+    "runs/phase7b_publication_state_reconciliation.md",
+    "runs/phase7b_publication_state_reconciliation.json",
+    "submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md",
+    "submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv",
+    "rarepdet/tools/generate_handoff.py",
+    "rarepdet/tools/update_project_status.py"
+  ],
+  "residual_blockers": [
+    "author-confirmed metadata and declarations are missing",
+    "TriAir citation/version/licence/access/redistribution facts are missing",
+    "public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing",
+    "final approved Fig. 1-6 assets are missing",
+    "final publication Tables 1-7 remain pending",
+    "validation-only wording approval or independent held-out evidence decision is missing",
+    "final hardware/software environment record is missing",
+    "strict V18 preflight and final Springer sn-jnl compile remain blocked"
+  ],
+  "next_external_inputs_required": [
+    "final author names, affiliations, ORCIDs, corresponding email, funding, acknowledgments, contributions, competing interests and AI-use disclosure approval",
+    "TriAir citation/data card, dataset version/provider, licence, access terms and redistribution permission",
+    "public release URL, release tag, immutable commit/archive hash, archive date, release licence and Zenodo DOI if applicable",
+    "final author-approved Fig. 1-2 Visio-dependent assets and final author-approved Fig. 3-6 publication assets",
+    "final publication Tables 1-7 inserted from existing evidence without changing values",
+    "author approval of validation-only wording or separately produced independent held-out test evidence under a locked protocol",
+    "final hardware/software environment record",
+    "final strict preflight PASS and Springer sn-jnl compile after all ledger items are closed"
+  ]
+}

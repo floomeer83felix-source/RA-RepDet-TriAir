@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-07-04T10:52:28",
+  "generated_at": "2026-07-04T11:23:19",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -11,18 +11,25 @@
       "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
     ],
     "status_short": [
-      "M runs/phase7a_asset_readiness_report.md",
-      "?? rarepdet/tools/eval_dronevehicle_modality_specific.py",
-      "?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py",
+      "M  docs/EXPERIMENT_STATUS.md",
+      "M  docs/TASK_BLOCKER.md",
+      "M  rarepdet/tools/generate_handoff.py",
+      "M  rarepdet/tools/update_project_status.py",
+      "M  runs/handoff_latest.json",
+      "M  runs/handoff_latest.md",
+      "A  runs/phase7b_publication_state_reconciliation.json",
+      "A  runs/phase7b_publication_state_reconciliation.md",
+      "A  submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md",
+      "A  submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv",
       "?? runs/component_disjoint_candidates/",
       "?? runs/v39_component_disjoint/"
     ]
   },
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "current_task": "Phase 7A - Final SIVP Asset Readiness and Author Metadata Intake",
-    "goal": "Prepare the project to move from the pre-final SIVP LaTeX source package into final submission-asset production. This task should organize the exact final figure/table requirements, author metadata requests, and compile-readiness blockers without retraining models or changing experimental evidence.",
-    "commit_message": "Phase 7A: add V18 submission preflight blocker"
+    "current_task": "Phase 7B \u2014 Publication-State Reconciliation and Submission-Input Ledger",
+    "goal": "Resolve the documentation inconsistency between the frozen blocked-split manuscript conclusion and legacy random-split summaries, then create one auditable ledger of author-provided and asset-provided requirements for strict SIVP preflight. This is a documentation and tooling task only; it must not retrain, re-evaluate, or change any scientific evidence.",
+    "commit_message": "`docs: reconcile R4 publication status and submission ledger`"
   },
   "dataset": {
     "root": "D:\\download\\triair",
@@ -35,6 +42,25 @@
     "val_images": 2098,
     "val_boxes": 6074,
     "note": "Missing txt files are treated as empty-target images."
+  },
+  "publication_headline": {
+    "model": "R4 Reliability p=0.20",
+    "protocol": "block64_guard16_seed0",
+    "seeds": [
+      "0",
+      "2"
+    ],
+    "decision": "SELECT R4 AS CLEAN-SPLIT MAIN VARIANT",
+    "means": {
+      "F1@0.50": "0.920861",
+      "AP50": "0.962495",
+      "AP75": "0.891266",
+      "w/o RGB AP50": "0.916051",
+      "w/o Thermal AP50": "0.718277",
+      "w/o Event AP50": "0.961577"
+    },
+    "scope": "official clean blocked-split manuscript headline",
+    "legacy_note": "Former E0-E6 random-split results are historical/exploratory diagnostics only."
   },
   "models": {
     "E0": "5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.",
@@ -126,6 +152,7 @@
     }
   ],
   "best_model": {
+    "scope": "legacy_random_split_historical",
     "by_ap50": {
       "id": "E2",
       "method": "Reliability + Dropout 0.15",
@@ -3536,17 +3563,68 @@
     "references_bib": "E:\\RepViT-main\\submission\\sivp\\tex\\references.bib",
     "report": "E:\\RepViT-main\\runs\\phase6b_sivp_preparation_report.md",
     "decision": "READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA",
-    "metadata_count": 7,
-    "review_count": 5,
+    "metadata_count": 8,
+    "review_count": 6,
     "tex_source_count": 16,
     "figure_map": "E:\\RepViT-main\\submission\\sivp\\figures\\FINAL_ASSET_INSERTION_MAP.md",
     "table_map": "E:\\RepViT-main\\submission\\sivp\\tables\\FINAL_TABLE_INSERTION_MAP.md"
   },
+  "phase7b": {
+    "report": "E:\\RepViT-main\\runs\\phase7b_publication_state_reconciliation.md",
+    "report_json": "E:\\RepViT-main\\runs\\phase7b_publication_state_reconciliation.json",
+    "ledger_md": "E:\\RepViT-main\\submission\\sivp\\metadata\\FINAL_SUBMISSION_INPUT_LEDGER.md",
+    "ledger_csv": "E:\\RepViT-main\\submission\\sivp\\review\\FINAL_SUBMISSION_INPUT_LEDGER.csv",
+    "ledger_rows": 30,
+    "open_counts_by_category": {
+      "author_metadata": 4,
+      "declarations": 5,
+      "data_governance": 4,
+      "release_archive": 6,
+      "figure_asset": 6,
+      "table_asset": 1,
+      "claim_scope": 2,
+      "environment": 1,
+      "compile_readiness": 1
+    },
+    "open_item_count": 30,
+    "command_outcomes": [
+      "git switch research/ra-repdet-triair: PASS",
+      "git pull --ff-only research research/ra-repdet-triair: PASS",
+      "git status --short: PASS; unrelated untracked files existed before Phase 7B edits",
+      "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings",
+      "python rarepdet/tools/generate_handoff.py: PASS",
+      "python rarepdet/tools/update_project_status.py: PASS",
+      "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings after reconciliation",
+      "python scripts/preflight_submission.py --root .: FAIL as expected on unresolved author metadata, placeholders, table placeholders and missing final Fig. 1-6 assets"
+    ],
+    "changed_files": [
+      "docs/EXPERIMENT_STATUS.md",
+      "docs/TASK_BLOCKER.md",
+      "runs/handoff_latest.md",
+      "runs/handoff_latest.json",
+      "runs/phase7b_publication_state_reconciliation.md",
+      "runs/phase7b_publication_state_reconciliation.json",
+      "submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md",
+      "submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv",
+      "rarepdet/tools/generate_handoff.py",
+      "rarepdet/tools/update_project_status.py"
+    ],
+    "residual_blockers": [
+      "author-confirmed metadata and declarations are missing",
+      "TriAir citation/version/licence/access/redistribution facts are missing",
+      "public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing",
+      "final approved Fig. 1-6 assets are missing",
+      "final publication Tables 1-7 remain pending",
+      "validation-only wording approval or independent held-out evidence decision is missing",
+      "final hardware/software environment record is missing",
+      "strict V18 preflight and final Springer sn-jnl compile remain blocked"
+    ],
+    "final_commit_sha": "pending until the completion commit is created"
+  },
   "current_pending_experiments": [
-    "Produce and author-approve final SIVP figures before replacing placeholder boxes.",
-    "Prepare final publication tables from the existing manuscript/table CSV sources.",
-    "Collect author metadata, declarations, funding, acknowledgments, and AI-use wording.",
-    "Complete a final LaTeX compile after the local environment has required Springer dependencies."
+    "Strict V18 preflight remains blocked until author-confirmed metadata, release metadata, TriAir licence/citation/access details, and final approved figure/table assets are supplied.",
+    "Use submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md and submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv as the closure checklist.",
+    "Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders."
   ],
   "code_structure": {
     "dataset": "datasets/triair_dataset.py",
@@ -3559,16 +3637,22 @@
     "postprocessing_tools": "rarepdet/tools/"
   },
   "recent_modified_files": [
-    "M runs/phase7a_asset_readiness_report.md",
-    "?? rarepdet/tools/eval_dronevehicle_modality_specific.py",
-    "?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py",
+    "M  docs/EXPERIMENT_STATUS.md",
+    "M  docs/TASK_BLOCKER.md",
+    "M  rarepdet/tools/generate_handoff.py",
+    "M  rarepdet/tools/update_project_status.py",
+    "M  runs/handoff_latest.json",
+    "M  runs/handoff_latest.md",
+    "A  runs/phase7b_publication_state_reconciliation.json",
+    "A  runs/phase7b_publication_state_reconciliation.md",
+    "A  submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md",
+    "A  submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv",
     "?? runs/component_disjoint_candidates/",
     "?? runs/v39_component_disjoint/"
   ],
   "next_recommended_tasks": [
-    "Create final SIVP figure artwork according to submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md.",
-    "Create final SIVP tables according to submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md.",
-    "Ask authors to complete submission/sivp/metadata placeholders.",
-    "Install or enable the missing local LaTeX dependencies before final PDF compilation."
+    "Collect every missing item in the Phase 7B final-submission input ledger from the authors or approved asset sources.",
+    "Replace placeholders only after the corresponding ledger row has verified source evidence.",
+    "Rerun strict preflight and final Springer sn-jnl compilation after all ledger blockers are closed."
   ]
 }

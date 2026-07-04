@@ -13,6 +13,28 @@ RUNS_DIR = PROJECT_ROOT / "runs"
 DOCS_DIR = PROJECT_ROOT / "docs"
 NEXT_TASK_PATH = DOCS_DIR / "NEXT_TASK.md"
 
+PUBLICATION_HEADLINE = {
+    "model": "R4 Reliability p=0.20",
+    "protocol": "block64_guard16_seed0",
+    "seeds": ["0", "2"],
+    "decision": "SELECT R4 AS CLEAN-SPLIT MAIN VARIANT",
+    "means": {
+        "F1@0.50": "0.920861",
+        "AP50": "0.962495",
+        "AP75": "0.891266",
+        "w/o RGB AP50": "0.916051",
+        "w/o Thermal AP50": "0.718277",
+        "w/o Event AP50": "0.961577",
+    },
+    "scope": "official clean blocked-split manuscript headline",
+    "legacy_note": "Former E0-E6 random-split results are historical/exploratory diagnostics only.",
+}
+
+PHASE7B_LEDGER_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "FINAL_SUBMISSION_INPUT_LEDGER.md"
+PHASE7B_LEDGER_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FINAL_SUBMISSION_INPUT_LEDGER.csv"
+PHASE7B_REPORT_MD = RUNS_DIR / "phase7b_publication_state_reconciliation.md"
+PHASE7B_REPORT_JSON = RUNS_DIR / "phase7b_publication_state_reconciliation.json"
+
 
 EXPERIMENTS = [
     {
@@ -108,9 +130,13 @@ def first_paragraph(text):
 
 def collect_current_task():
     sections = parse_sections(NEXT_TASK_PATH)
+    title = first_paragraph(sections.get("Title", ""))
+    current_task = first_paragraph(sections.get("Current Task", ""))
+    if current_task == "NA" and title != "NA":
+        current_task = title
     return {
         "task_file": "docs/NEXT_TASK.md",
-        "current_task": first_paragraph(sections.get("Current Task", "")),
+        "current_task": current_task,
         "goal": first_paragraph(sections.get("Goal", "")),
         "commit_message": first_paragraph(sections.get("Commit Message", "")),
     }
@@ -397,6 +423,37 @@ def collect_phase6b():
     }
 
 
+def collect_phase7b():
+    ledger_rows = read_csv(PHASE7B_LEDGER_CSV)
+    report_data = {}
+    if PHASE7B_REPORT_JSON.exists():
+        try:
+            report_data = json.loads(PHASE7B_REPORT_JSON.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            report_data = {"json_error": "Could not parse phase7b report JSON."}
+    open_counts = {}
+    for row in ledger_rows:
+        state = (row.get("current_state") or "").lower()
+        effect = (row.get("strict_preflight_effect") or "").lower()
+        is_open = "missing" in state or "pending" in state or "fail" in effect or "block" in effect
+        if is_open:
+            category = row.get("category") or "uncategorized"
+            open_counts[category] = open_counts.get(category, 0) + 1
+    return {
+        "report": str(PHASE7B_REPORT_MD) if PHASE7B_REPORT_MD.exists() else None,
+        "report_json": str(PHASE7B_REPORT_JSON) if PHASE7B_REPORT_JSON.exists() else None,
+        "ledger_md": str(PHASE7B_LEDGER_MD) if PHASE7B_LEDGER_MD.exists() else None,
+        "ledger_csv": str(PHASE7B_LEDGER_CSV) if PHASE7B_LEDGER_CSV.exists() else None,
+        "ledger_rows": len(ledger_rows),
+        "open_counts_by_category": open_counts,
+        "open_item_count": sum(open_counts.values()),
+        "command_outcomes": report_data.get("command_outcomes", []),
+        "changed_files": report_data.get("changed_files", []),
+        "residual_blockers": report_data.get("residual_blockers", []),
+        "final_commit_sha": report_data.get("final_commit_sha", "pending until commit is created"),
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -425,6 +482,7 @@ def build_handoff():
     best_ap75 = best_by(eval_results, "ap75")
     phase6a = collect_phase6a()
     phase6b = collect_phase6b()
+    phase7b = collect_phase7b()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -464,6 +522,17 @@ def build_handoff():
             "Ask authors to complete submission/sivp/metadata placeholders.",
             "Install or enable the missing local LaTeX dependencies before final PDF compilation.",
         ]
+    if phase7b["report"] or "Phase 7B" in read_text(NEXT_TASK_PATH):
+        pending = [
+            "Strict V18 preflight remains blocked until author-confirmed metadata, release metadata, TriAir licence/citation/access details, and final approved figure/table assets are supplied.",
+            "Use submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md and submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv as the closure checklist.",
+            "Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders.",
+        ]
+        next_tasks = [
+            "Collect every missing item in the Phase 7B final-submission input ledger from the authors or approved asset sources.",
+            "Replace placeholders only after the corresponding ledger row has verified source evidence.",
+            "Rerun strict preflight and final Springer sn-jnl compilation after all ledger blockers are closed.",
+        ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -490,6 +559,7 @@ def build_handoff():
             "val_boxes": 6074,
             "note": "Missing txt files are treated as empty-target images.",
         },
+        "publication_headline": PUBLICATION_HEADLINE,
         "models": {
             "E0": "5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.",
             "E1": "RGB/Thermal/Event reliability stems -> alpha fusion -> Conv(16,3) -> RepViT-M0.9 -> FPN -> FCOS.",
@@ -502,6 +572,7 @@ def build_handoff():
         },
         "core_results": eval_results,
         "best_model": {
+            "scope": "legacy_random_split_historical",
             "by_ap50": best_ap50,
             "by_ap75": best_ap75,
         },
@@ -518,6 +589,7 @@ def build_handoff():
         "phase5a": collect_phase5a(),
         "phase6a": phase6a,
         "phase6b": phase6b,
+        "phase7b": phase7b,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -535,11 +607,20 @@ def build_handoff():
 
 
 def write_markdown(data, path):
+    headline = data["publication_headline"]
+    metrics = headline["means"]
     lines = [
         "# RA-RepDet-TriAir Handoff",
         "",
         f"Generated: {data['generated_at']}",
         f"Workspace: `{data['workspace']}`",
+        "",
+        "## Publication Headline",
+        "",
+        f"- Official clean blocked-split manuscript headline: {headline['model']} on `{headline['protocol']}`, seeds {', '.join(headline['seeds'])}.",
+        f"- Controlled-seed means: F1@0.50 {metrics['F1@0.50']}, AP50 {metrics['AP50']}, AP75 {metrics['AP75']}, w/o RGB AP50 {metrics['w/o RGB AP50']}, w/o Thermal AP50 {metrics['w/o Thermal AP50']}, w/o Event AP50 {metrics['w/o Event AP50']}.",
+        f"- Phase 4B decision: {headline['decision']}.",
+        f"- Scope note: {headline['legacy_note']}",
         "",
         "## Current Active Task",
         "",
@@ -559,7 +640,9 @@ def write_markdown(data, path):
         f"- Val images / boxes: {data['dataset']['val_images']} / {data['dataset']['val_boxes']}",
         f"- Note: {data['dataset']['note']}",
         "",
-        "## Core Results",
+        "## Historical/Exploratory Random-Split Results",
+        "",
+        "- Legacy E0-E6 rows below are retained for provenance only and are not the current manuscript headline.",
         "",
         "| Method | Precision | Recall | AP50 | AP75 | GT boxes | Predictions | Mean Confidence |",
         "| --- | --- | --- | --- | --- | --- | --- | --- |",
@@ -575,10 +658,11 @@ def write_markdown(data, path):
     best_ap75 = data["best_model"]["by_ap75"] or {}
     lines += [
         "",
-        "## Best Model",
+        "## Legacy Random-Split Historical Ranking",
         "",
-        f"- Best AP50: {best_ap50.get('id', 'NA')} {best_ap50.get('method', '')} ({best_ap50.get('ap50', 'NA')})",
-        f"- Best AP75: {best_ap75.get('id', 'NA')} {best_ap75.get('method', '')} ({best_ap75.get('ap75', 'NA')})",
+        f"- Legacy random-split AP50 leader: {best_ap50.get('id', 'NA')} {best_ap50.get('method', '')} ({best_ap50.get('ap50', 'NA')})",
+        f"- Legacy random-split AP75 leader: {best_ap75.get('id', 'NA')} {best_ap75.get('method', '')} ({best_ap75.get('ap75', 'NA')})",
+        "- These rankings must not be described as the current best or manuscript-selected model.",
         "",
         "## Phase 2A Outputs",
         "",
@@ -697,6 +781,41 @@ def write_markdown(data, path):
         "- Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`" if data["phase6b"]["figure_map"] else "- Figure insertion map: NA",
         "- Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`" if data["phase6b"]["table_map"] else "- Table insertion map: NA",
         f"- Decision: {data['phase6b']['decision'] or 'NA'}",
+        "",
+        "## Phase 7B Publication-State Reconciliation",
+        "",
+        "- Reconciliation report: `runs/phase7b_publication_state_reconciliation.md`" if data["phase7b"]["report"] else "- Reconciliation report: NA",
+        "- Reconciliation JSON: `runs/phase7b_publication_state_reconciliation.json`" if data["phase7b"]["report_json"] else "- Reconciliation JSON: NA",
+        "- Input ledger: `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`" if data["phase7b"]["ledger_md"] else "- Input ledger: NA",
+        "- Input ledger CSV: `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`" if data["phase7b"]["ledger_csv"] else "- Input ledger CSV: NA",
+        f"- Ledger rows: {data['phase7b']['ledger_rows']}",
+        f"- Open ledger items: {data['phase7b']['open_item_count']}",
+        "- Open categories: "
+        + (
+            ", ".join(f"{key}={value}" for key, value in sorted(data["phase7b"]["open_counts_by_category"].items()))
+            if data["phase7b"]["open_counts_by_category"]
+            else "none"
+        ),
+        "- Command outcomes: "
+        + (
+            "; ".join(data["phase7b"]["command_outcomes"])
+            if data["phase7b"]["command_outcomes"]
+            else "see report after Phase 7B commands are run"
+        ),
+        "- Phase 7B changed files: "
+        + (
+            ", ".join(f"`{item}`" for item in data["phase7b"]["changed_files"])
+            if data["phase7b"]["changed_files"]
+            else "see git diff for current task files"
+        ),
+        "- Residual blockers: "
+        + (
+            "; ".join(data["phase7b"]["residual_blockers"])
+            if data["phase7b"]["residual_blockers"]
+            else "none recorded"
+        ),
+        f"- Final commit SHA: {data['phase7b']['final_commit_sha']}",
+        "- Phase 7B status: publication-state mismatch resolved; strict preflight remains blocked by author/asset inputs.",
         "",
         "## Model And Code Structure",
         "",
