@@ -1,108 +1,97 @@
 # Current Task
 
 ## Title
-Phase 7J — Conditional Application of Confirmed Authorship and Declarations
+Manuscript Draft A — Evidence-Locked SIVP First Draft
 
 ## Goal
-Apply only author-confirmed and Phase 7I-eligible `author_metadata` and `declarations` rows to their planned metadata and submission-source destinations. This task is conditional: it must not run beyond the eligibility check until at least one applicable row is marked `eligible_for_future_guarded_application` in `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv`.
+Write a coherent, full English first draft of the RA-RepDet SIVP manuscript from the already frozen repository evidence. Keep all author identity, affiliation, correspondence, declaration, data-governance, release/archive, environment, and final-asset fields explicitly blank or pending. This is a writing-and-consistency task only: no new experiment, metric recomputation, figure generation, data change, or claim-strengthening beyond the existing evidence.
 
 ## Read First
 1. `AGENTS.md` if it exists.
 2. `docs/PROJECT_CONTEXT.md`
 3. `docs/EXPERIMENT_STATUS.md`
 4. `runs/handoff_latest.md`
-5. `runs/phase7h_author_response_validation_report.md`
-6. `runs/phase7i_update_planning_report.md`
-7. `docs/TASK_BLOCKER.md`
-8. `docs/UPCOMING_TASKS.md`
-9. `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
-10. `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
-11. `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv`
-12. `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv`
-13. `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md`
-14. `submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md`
-15. `submission/sivp/metadata/submission_metadata.yaml`
-16. `submission/sivp/metadata/submission_metadata.tex`
-17. `submission/sivp/metadata/author_information_template.md`
-18. `submission/sivp/metadata/submission_form_answers_draft.md`
-19. `submission/sivp/metadata/author_contributions_template.md`
-20. `submission/sivp/metadata/competing_interests_statement_draft.md`
-21. `submission/sivp/metadata/ai_use_disclosure_draft.md`
-22. `main.tex`
-23. `main_sivp_snjnl.tex`
+5. `runs/phase4b_report.md`
+6. `runs/phase7b_publication_state_reconciliation.md`
+7. `runs/phase7c_table_insertion_report.md`
+8. `runs/phase7d_figure_source_lock_report.md`
+9. `runs/phase7e_candidate_render_report.md`
+10. `runs/phase7g_submission_intake_report.md`
+11. `runs/phase7h_author_response_validation_report.md`
+12. `runs/phase7i_update_planning_report.md`
+13. `docs/TASK_BLOCKER.md`
+14. `submission/sivp/tex/ra_repdet_sivp.tex`
+15. `main.tex`
+16. `main_sivp_snjnl.tex`
+17. `submission/sivp/tex/main.tex`
+18. `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`
+19. `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md`
+20. `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md`
+21. `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md`
+22. `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md`
+23. `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
 24. `scripts/preflight_submission.py`
-25. `rarepdet/tools/generate_handoff.py`
-26. `rarepdet/tools/update_project_status.py`
+25. `submission/sivp/review/static_submission_audit.py`
+26. `rarepdet/tools/generate_handoff.py`
+27. `rarepdet/tools/update_project_status.py`
 
-## Frozen Assets
-- Remote branch: `research/ra-repdet-triair`.
-- Official manuscript headline: **R4 Reliability p=0.20** on `block64_guard16_seed0`, controlled seeds `0` and `2`.
-- Phase 7C Tables 1–7 and `TAB_001` are complete and must remain unchanged.
-- Current Phase 7I plan has 29 unresolved rows and zero rows eligible for future guarded application unless authors subsequently provide confirmed input.
-- This task concerns only `AUTH_001`–`AUTH_004` and `DECL_001`–`DECL_005`; all data-governance, release/archive, figure, claim-scope, environment, and compile-readiness rows are out of scope.
-- A well-formed response is not enough: each applied row must be author-confirmed through nonblank response, confirmer identity, confirmation date, source of confirmation, and Phase 7I eligibility.
-
-## Trigger Gate
-Before any source file is edited, run Phase 7H validation and Phase 7I planning.
-
-Proceed only when at least one row in category `author_metadata` or `declarations` has:
-
-```text
-validation_state = structurally_ready_for_future_apply
-plan_state = eligible_for_future_guarded_application
-author_confirmation_complete = yes
-```
-
-If no such row exists, do not edit any metadata or TeX. Update only `docs/TASK_BLOCKER.md`, handoff/status, and a short Phase 7J blocked report stating that external author input is still required; then commit and push the safe blocked-state update.
+## Frozen Evidence and Non-Negotiable Wording
+- The publication headline is **R4 Reliability p=0.20** on clean `block64_guard16_seed0`, with controlled seeds `0` and `2`.
+- R4 headline means: F1@0.50 `0.920861`, AP50 `0.962495`, AP75 `0.891266`; synthetic no-RGB AP50 `0.916051`, no-thermal AP50 `0.718277`, no-event AP50 `0.961577`.
+- Clean split: 7439 training images, 2213 validation images, 837 guard images; zero exact RGB train/validation matches and zero same-family guard-band violations.
+- The retired random split had 153 exact RGB-content matched validation samples, or `0.072927` of validation images. Do not claim full five-channel byte duplication.
+- R0 is the matched tri-modal early-fusion baseline. R1/R2/R4 are reliability-fusion variants. R2 uses p=0.15 and R4 uses p=0.20.
+- R4 is supported as the main variant by controlled clean-split evidence. Two seeds are controlled replication only, not a statistical-significance test.
+- The YOLO11n result is an RGB-only external baseline, not a matched architecture-only ablation.
+- Missing-modality tests are synthetic modality removal, not a complete model of real sensor failures. Thermal removal remains the hardest condition.
+- Fig. 1–2 require author-approved schematic assets; Fig. 3–5 are local, ignored, non-final candidates only; Fig. 6 requires author-approved real-panel selection and composition. The six figure placeholders must remain.
+- Tables 1–7 are evidence-locked and already inserted. Do not alter table fragments or their source CSVs.
+- The manuscript must use validation-only wording. Do not introduce test-set, benchmark-SOTA, statistical-significance, causal modality-importance, release, licence, DOI, or data-redistribution claims that are not already verified in repository evidence.
 
 ## Allowed Files To Modify
 - `docs/NEXT_TASK.md`
-- `docs/UPCOMING_TASKS.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `docs/TASK_BLOCKER.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/phase7j_confirmed_authorship_declarations_report.md`
-- `runs/phase7j_confirmed_authorship_declarations_report.json`
+- `runs/manuscript_draft_a_report.md`
+- `runs/manuscript_draft_a_report.json`
 - `main.tex`
 - `main_sivp_snjnl.tex`
-- `submission/sivp/metadata/submission_metadata.yaml`
-- `submission/sivp/metadata/submission_metadata.tex`
-- `submission/sivp/metadata/author_information_template.md`
-- `submission/sivp/metadata/submission_form_answers_draft.md`
-- `submission/sivp/metadata/author_contributions_template.md`
-- `submission/sivp/metadata/competing_interests_statement_draft.md`
-- `submission/sivp/metadata/ai_use_disclosure_draft.md`
-- `submission/sivp/review/CONFIRMED_AUTHORS_DECLARATIONS_APPLICATION_CHECK.md`
-- `submission/sivp/review/CONFIRMED_AUTHORS_DECLARATIONS_APPLICATION_CHECK.csv`
+- `submission/sivp/tex/main.tex`
+- `submission/sivp/tex/ra_repdet_sivp.tex`
+- `submission/sivp/review/MANUSCRIPT_DRAFT_A_EVIDENCE_CHECK.md`
+- `submission/sivp/review/MANUSCRIPT_DRAFT_A_EVIDENCE_CHECK.csv`
+- `submission/sivp/review/manuscript_draft_evidence_check.py`
 - `rarepdet/tools/generate_handoff.py`
 - `rarepdet/tools/update_project_status.py`
 
 ## Forbidden Files To Modify
-- `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`, `AUTHOR_RESPONSE_VALIDATION.csv`, and `CONFIRMED_UPDATE_PLAN.*`; these are evidence/plan inputs and must not be overwritten.
-- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv` and `FIGURE6_PANEL_REVIEW_TEMPLATE.csv`.
-- `submission/sivp/tex/**`, including `ra_repdet_sivp.tex`.
-- All reference/BibTeX files, data-governance destinations, release/archive manifests, figures, source CSVs, table fragments, raw data, checkpoints, models, training/evaluation code, and final PDFs.
-- Do not apply data-governance, release/archive, figure, claim-scope, environment, or compile-readiness values in this task.
-- Do not infer or normalize factual values beyond exact author-confirmed input. Do not invent ORCIDs, affiliations, grants, declarations, contributor roles, disclosure text, or dates.
-- Do not run training, inference, evaluation, data mutation, network access, or LaTeX compilation.
+- All author-information, declaration, data-governance, release/archive, environment, and figure-decision templates/CSVs.
+- All BibTeX/reference files. Use only existing verified citation keys; do not add citations or bibliography entries.
+- All table fragments, table CSVs, figure traceability records, figure files, candidate PDFs, local panels, final assets, raw data, labels, checkpoints, model/training/evaluation/data-loading/split code, and final PDFs.
+- Do not change any numerical result, source value, split count, model definition, experimental protocol, or frozen evidence report.
+- Do not fill author names, affiliations, ORCIDs, emails, funding, acknowledgments, contributions, competing interests, data availability, licence, citation, release, DOI, or environment facts.
+- Do not run training, inference, evaluation, metric recomputation, data mutation, network access, figure generation, or LaTeX compilation.
 
 ## Required Commands
+Start with source and static integrity checks:
 
 ```powershell
 git switch research/ra-repdet-triair
 git pull --ff-only research research/ra-repdet-triair
 git status --short
 python scripts/preflight_submission.py --root . --allow-placeholders
-python submission/sivp/metadata/validate_author_submission_inputs.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --output-prefix submission/sivp/metadata/author_response_validation
-python submission/sivp/metadata/plan_confirmed_submission_updates.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --validation submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --figure-decisions submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv --figure6-template submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv --output-prefix submission/sivp/metadata/confirmed_update_plan
+python submission/sivp/review/static_submission_audit.py --root . --output-prefix submission/sivp/review/static_submission_source_audit
 ```
 
-If `git pull --ff-only` cannot proceed, do not reset, force-push, or rewrite history. Record the exact blocker and stop.
+If `git pull --ff-only` cannot proceed, do not reset, force-push, rewrite history, or merge unrelated histories. Record the blocker and stop.
 
-If the trigger gate fails, do not run any source-application step. Create only the blocked report/check, refresh handoff/status, then run:
+After drafting and implementing the evidence check, run:
 
 ```powershell
+python -m py_compile submission/sivp/review/manuscript_draft_evidence_check.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py
+python submission/sivp/review/manuscript_draft_evidence_check.py --root . --body submission/sivp/tex/ra_repdet_sivp.tex --main-files main.tex main_sivp_snjnl.tex submission/sivp/tex/main.tex --output-prefix submission/sivp/review/manuscript_draft_a_evidence_check
 python rarepdet/tools/generate_handoff.py
 python rarepdet/tools/update_project_status.py
 python scripts/preflight_submission.py --root . --allow-placeholders
@@ -110,46 +99,91 @@ python scripts/preflight_submission.py --root .
 powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 ```
 
-If the trigger gate passes, apply only eligible `AUTH_*` and `DECL_*` items exactly as confirmed. Then run the same final commands. Strict preflight is still expected to fail on remaining categories and final figures.
+Strict preflight is expected to remain FAIL because author, governance, release, final-figure, environment, and compile requirements are intentionally open. Do not compile LaTeX in this task.
 
-## Required Outputs
+## Required Writing Work
 
-### 1. Gated application report
-Create `runs/phase7j_confirmed_authorship_declarations_report.md` and matching JSON recording:
+### A. Title, abstract, and front matter
+Revise the title, abstract, and keyword line in all three mirrored main files so they are identical except for their existing input path. Preserve all author and declaration placeholders exactly as placeholders.
 
-- Phase 7H and Phase 7I command outcomes;
-- all examined `AUTH_*` and `DECL_*` item IDs;
-- gate status for every examined item;
-- each source destination changed, if any, and exact originating item ID;
-- before/after placeholder checks for applied destination files;
-- confirmation that no out-of-scope category was applied;
-- remaining strict-preflight blockers.
+The revised abstract must be 180–250 words and include:
 
-### 2. Application integrity check
-Create Markdown and CSV application checks. They must verify:
+- motivation for robust lightweight RGB–thermal–event UAV vehicle detection;
+- leakage-aware blocked validation protocol;
+- R4 reliability-aware fusion plus p=0.20 modality dropout;
+- exact R4 mean AP50/AP75/F1 values;
+- careful scope of missing-modality and YOLO11n comparison;
+- concise limitations: two controlled seeds, one dataset, synthetic missingness, thermal-removal weakness.
 
-- every applied value maps to one eligible plan row and its author-response confirmation metadata;
-- no pending or externally gated row was applied;
-- no duplicate or contradictory author/declaration value was placed across allowed destination files;
-- no unconfirmed author/declaration placeholder was silently removed;
-- no author identity, affiliation, ORCID, email, funding, acknowledgement, contribution, competing-interest, or AI-use declaration was invented;
-- no TeX body, figure, table, data, release/archive, model, metric, or experiment file changed;
-- strict preflight does not falsely report formal submission readiness.
+Do not call the draft final or submission-ready.
 
-### 3. Blocked state rule
-With the current known blank response template, the expected result is **BLOCKED — zero eligible author/declaration rows**. Do not treat this as an error in the validator or planner. Do not fabricate an application merely to complete the task.
+### B. Full manuscript body
+Rewrite `submission/sivp/tex/ra_repdet_sivp.tex` into a cohesive first draft using the existing section structure where possible. Preserve all seven table inputs, all six figure placeholders, labels, and existing citation keys. Target 4,500–6,500 words in prose excluding table contents, captions, references, and placeholder box text.
+
+The draft must contain these complete sections in a readable journal narrative:
+
+1. **Introduction** — operational problem, tri-modal opportunity, leakage-aware rationale, bounded contributions.
+2. **Related Work** — UAV vehicle detection, visible/thermal/event perception, missing-modality robustness, and the methodological importance of leakage-aware validation. Use only current citations.
+3. **Method** — five-channel input, R0 matched early-fusion baseline, reliability estimator and softmax gating, modality-dropout training/inference distinction, precise architecture description only where repository evidence supports it.
+4. **Dataset and Leakage-Aware Evaluation Protocol** — local TriAir representation, empty-label handling, duplicate audit, blocked split, guard band, headline evidence rule.
+5. **Experiments** — reproducibility settings, controlled ablation, synthetic missing-modality robustness, external RGB-only baseline, efficiency/reliability-weight observations, qualitative-results scope.
+6. **Discussion** — explain what the evidence supports and does not support. Include: R4’s AP50 improvement over R0, external-baseline comparison caveat, observed alpha behavior is not causal importance, no statistical significance claim, and why thermal removal is a limitation.
+7. **Limitations** — retain/expand only supported limits: two seeds, one dataset, synthetic missingness, thermal removal, missing final panel/asset approval, and validation-only scope.
+8. **Conclusion** — conservative summary of contribution and evidence.
+
+Use precise cross-references to Tables 1–7 and Fig. 1–6. For Figs. 1–6 retain the existing final-artwork-pending language. Do not pretend a local candidate or panel inventory is a final figure.
+
+### C. Required numeric integrity
+All manuscript numeric tokens that state headline evidence must exactly match the frozen facts above. Preserve all already inserted Table 1–7 values and do not copy unverified values into narrative text.
+
+At minimum, the prose must include and correctly contextualize:
+
+- R4: AP50 `0.962495`, AP75 `0.891266`, F1 `0.920861`;
+- split sizes `7439`, `2213`, `837`;
+- duplicate-audit values `153` and `0.072927`;
+- controlled seeds `0` and `2`;
+- modality-dropout p `0.20`;
+- no-RGB, no-thermal, and no-event R4 AP50 means `0.916051`, `0.718277`, `0.961577`.
+
+### D. Manuscript Draft A evidence check
+Create `submission/sivp/review/manuscript_draft_evidence_check.py` and matching Markdown/CSV reports.
+
+The script must be CPU-only and read-only with respect to manuscript sources. It must:
+
+- accept `--root`, `--body`, `--main-files`, and `--output-prefix`;
+- verify the three mirrored main files have identical title, abstract, keywords, author-placeholder lines, declaration-placeholder blocks, and title/abstract do not contain author-confirmed or final-submission claims;
+- verify the body retains six figure placeholders, seven table inputs, all existing body labels, and no `TABLE PLACEHOLDER`;
+- verify required frozen numeric tokens and wording guards: `validation`, `two seeds` or equivalent, no explicit `test set` claim, no `statistically significant`, no `state-of-the-art`, no unverified `DOI`, and no author name replacement;
+- compare frozen Table 1–7 source/fragment file hashes or unchanged Git content where feasible without modifying them;
+- report prose word count, section headings, required keywords, warning-only placeholder state, and any integrity error;
+- exit nonzero for source mismatch, missing required token, body placeholder/table regression, author placeholder changes, forbidden claim wording, or inconsistent mirrored main files;
+- write only its requested reports.
+
+### E. Report, handoff, and blocker status
+Create `runs/manuscript_draft_a_report.md` and matching JSON documenting:
+
+- starting source state;
+- prose word count and section inventory;
+- title/abstract change summary;
+- frozen-evidence audit outcome;
+- confirmation that Tables 1–7, six figure placeholders, author/declaration fields, and all external blockers were preserved;
+- strict-preflight expected outcome;
+- remaining work after Draft A: author inputs, final figures, governance/release facts, environment record, strict preflight, and compile review.
+
+Update `docs/TASK_BLOCKER.md` and status/handoff to state that a complete evidence-locked manuscript **first draft** exists, but is not final/submission-ready and still carries all external blockers. Keep the R4 clean blocked-split headline first; E0–E6 remain historical/exploratory only.
 
 ## Acceptance Criteria
-- No application occurs without the Trigger Gate passing for the relevant row.
-- With blank current author-response inputs, only safe blocked-state documents/handoff/status are changed.
-- With valid confirmed input later, only eligible `AUTH_*`/`DECL_*` values are written to their planned destinations, preserving exact author-confirmed text.
-- All applied fields are traceable to response/validation/plan artifacts.
-- All out-of-scope categories remain untouched.
-- Placeholder-mode preflight is documented; strict preflight remains truthfully FAIL until later phases close all other categories.
-- Commit only allowed files and push.
+- The three main files contain identical revised title, abstract, keywords, author placeholders, and declaration placeholders.
+- `ra_repdet_sivp.tex` is a coherent 4,500–6,500 word English manuscript first draft with all required sections.
+- All seven existing table inputs and six figure placeholders/labels remain intact.
+- No tables, figures, source CSVs, references, model/training/data/evaluation files, author templates, or final assets change.
+- The evidence check passes with zero integrity errors; intentional author and final-figure placeholders are warnings, not silently removed.
+- Placeholder-mode preflight is documented. Strict preflight remains truthfully FAIL.
+- No training, inference, metric computation, network access, image generation, or LaTeX compilation occurs.
+- Commit only allowed writing/review/status files and push.
 
 ## Commit Message
-`docs: apply confirmed authorship and declarations conditionally`
+`docs: draft evidence-locked SIVP manuscript`
 
 ## Completion / Blocker Rule
-Run only after the Trigger Gate is met. Otherwise write the blocked-state report and stop. Never use this task to infer missing facts or to close submission blockers without documentary evidence.
+Write the complete first draft from frozen evidence and preserve all intentionally pending fields. If a requested claim lacks repository support, omit it or state it as a limitation; do not guess. Stop after Draft A and do not claim final or submission-ready status.
