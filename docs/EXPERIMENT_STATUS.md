@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-07-04T15:08:26
+Generated: 2026-07-04T15:40:57
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Publication headline model
@@ -91,8 +91,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7F - Author Figure Review Intake and Fig. 6 Panel Inventory
-- Goal: Prepare author-review decisions for Fig. 1-6 and run a local-only Fig. 6 panel inventory without approving, generating, or inserting final figure assets.
+- Current Task: Phase 7G - Expanded Submission Ledger, Author Intake, and Static Audit Batch
+- Goal: Reconcile the completed table ledger state, create a fillable author-submission intake package, run static SIVP source audits, and document the remaining closure dependencies without changing experimental evidence, manuscript source TeX, or final assets.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -327,8 +327,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Template/LaTeX source files: 16
-- Metadata template files: 8
-- Review/audit files: 18
+- Metadata template files: 11
+- Review/audit files: 26
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
 
 ## Phase 7B outputs
@@ -383,13 +383,30 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Fig. 6 inventory-check rows: 1
 - Decision: AUTHOR FIGURE REVIEW INTAKE AND FIG. 6 LOCAL PANEL INVENTORY COMPLETED; FINAL FIGURE AND EXTERNAL AUTHOR/METADATA BLOCKERS REMAIN OPEN
 
+## Phase 7G outputs
+
+- Submission intake report: `runs/phase7g_submission_intake_report.md`
+- Submission intake JSON: `runs/phase7g_submission_intake_report.json`
+- Author intake packet: `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`
+- Author response CSV: `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
+- Environment record template: `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`
+- Closure roadmap: `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`
+- Static submission source audit: `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md` and `.csv`
+- Figure/table crosswalk: `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md` and `.csv`
+- Reproducibility closure audit: `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md` and `.csv`
+- Completeness check: `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md` and `.csv`
+- Author-response rows: 29
+- Figure/table crosswalk rows: 13
+- Static-audit rows: 10
+- Decision: TABLE LEDGER RECONCILED; AUTHOR INTAKE AND STATIC AUDIT PACKAGE READY FOR AUTHOR INPUT; STRICT PREFLIGHT REMAINS BLOCKED BY NON-TABLE EXTERNAL INPUTS
+
 
 ## Pending tasks
 
-- Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved Fig. 1-6 assets, final environment record, and final compile readiness are supplied.
-- Author review packet and decision templates now exist, but every Fig. 1-6 author decision remains pending.
-- Fig. 6 local panel inventory found 20 locally existing manifest panels, but no panel selection, crop/redaction, or final composition is approved.
-- Local Fig. 3-5 candidate PDFs and the Fig. 6 path-level inventory JSON remain ignored/untracked review inputs, not publication assets.
+- Strict V18 preflight remains blocked by author-confirmed metadata, declarations, TriAir governance facts, release/archive metadata, final approved Fig. 1-6 assets, claim-scope approval, final environment record, and final compile readiness.
+- TAB_001 is reconciled as complete after Phase 7C; no open table_asset blocker remains.
+- Author submission intake now covers 29 unresolved ledger items with blank response fields, and static source audit passes structural checks only.
+- Do not treat placeholder-mode preflight PASS or static-audit PASS as formal submission readiness.
 
 ## Known metric caveats
 
@@ -412,6 +429,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 7D locks figure sources and candidate-build specifications only; it does not generate or approve final figure artwork.
 - Phase 7E generates local ignored Fig. 3-5 candidate PDFs for author review only; they are not final assets and are not inserted into LaTeX.
 - Phase 7F creates review templates and a local Fig. 6 inventory only; it does not approve assets, select panels, insert figures, or change evidence.
+- Phase 7G reconciles the completed table ledger row and creates author-intake/static-audit documentation only; it does not approve assets, insert final figures, modify source TeX, or close external metadata requirements.
 
 ## Important research decisions
 
@@ -437,6 +455,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 7D distinguishes author-design Fig. 1-2, frozen-CSV candidate-spec Fig. 3-5, and local-panel-dependent Fig. 6 without changing final artwork placeholders.
 - Phase 7E local Fig. 3-5 candidate renders await author review; final Fig. 1-6 assets remain missing until approved PDFs are supplied.
 - Phase 7F records that Fig. 6 has 20 locally existing manifest panels, but author selection and final composition approval are still required.
+- Phase 7G records that `TAB_001` is complete and no open table_asset blocker remains; all non-table author, governance, release, claim, environment, figure, and compile blockers still require confirmation.
 
 ## Files or scripts currently under review
 
@@ -456,5 +475,6 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - `runs/phase7d_figure_source_lock_report.md`
 - `runs/phase7e_candidate_render_report.md`
 - `runs/phase7f_author_review_intake_report.md`
+- `runs/phase7g_submission_intake_report.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`

@@ -59,6 +59,20 @@ PHASE7F_PANEL_TEMPLATE_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "F
 PHASE7F_PANEL_TEMPLATE_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_REVIEW_TEMPLATE.csv"
 PHASE7F_PANEL_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_INVENTORY_CHECK.md"
 PHASE7F_PANEL_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_INVENTORY_CHECK.csv"
+PHASE7G_REPORT_MD = RUNS_DIR / "phase7g_submission_intake_report.md"
+PHASE7G_REPORT_JSON = RUNS_DIR / "phase7g_submission_intake_report.json"
+PHASE7G_AUTHOR_PACKET_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "AUTHOR_SUBMISSION_INPUT_PACKET.md"
+PHASE7G_AUTHOR_RESPONSES_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "AUTHOR_SUBMISSION_INPUT_RESPONSES.csv"
+PHASE7G_ENV_TEMPLATE_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "ENVIRONMENT_RECORD_TEMPLATE.md"
+PHASE7G_ROADMAP_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "SUBMISSION_CLOSURE_ROADMAP.md"
+PHASE7G_COMPLETENESS_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "SUBMISSION_INPUT_COMPLETENESS_CHECK.md"
+PHASE7G_COMPLETENESS_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "SUBMISSION_INPUT_COMPLETENESS_CHECK.csv"
+PHASE7G_STATIC_AUDIT_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "STATIC_SUBMISSION_SOURCE_AUDIT.md"
+PHASE7G_STATIC_AUDIT_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "STATIC_SUBMISSION_SOURCE_AUDIT.csv"
+PHASE7G_CROSSWALK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_TABLE_CROSSWALK.md"
+PHASE7G_CROSSWALK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_TABLE_CROSSWALK.csv"
+PHASE7G_REPRO_AUDIT_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "REPRODUCIBILITY_CLOSURE_AUDIT.md"
+PHASE7G_REPRO_AUDIT_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "REPRODUCIBILITY_CLOSURE_AUDIT.csv"
 
 
 EXPERIMENTS = [
@@ -460,10 +474,24 @@ def collect_phase7b():
     for row in ledger_rows:
         state = (row.get("current_state") or "").lower()
         effect = (row.get("strict_preflight_effect") or "").lower()
-        is_open = "missing" in state or "pending" in state or "fail" in effect or "block" in effect
+        is_open = not state.startswith("complete") and (
+            "missing" in state or "pending" in state or "fail" in effect or "block" in effect
+        )
         if is_open:
             category = row.get("category") or "uncategorized"
             open_counts[category] = open_counts.get(category, 0) + 1
+    residual_blockers = report_data.get("residual_blockers", [])
+    if "table_asset" not in open_counts:
+        scrubbed = []
+        for blocker in residual_blockers:
+            blocker = blocker.replace("final publication Tables 1-7 remain pending; ", "")
+            blocker = blocker.replace("final publication Tables 1-7 remain pending", "")
+            blocker = blocker.replace("table placeholders remain pending; ", "")
+            blocker = blocker.replace("table placeholders remain pending", "")
+            blocker = blocker.strip(" ;")
+            if blocker:
+                scrubbed.append(blocker)
+        residual_blockers = scrubbed
     return {
         "report": str(PHASE7B_REPORT_MD) if PHASE7B_REPORT_MD.exists() else None,
         "report_json": str(PHASE7B_REPORT_JSON) if PHASE7B_REPORT_JSON.exists() else None,
@@ -474,7 +502,7 @@ def collect_phase7b():
         "open_item_count": sum(open_counts.values()),
         "command_outcomes": report_data.get("command_outcomes", []),
         "changed_files": report_data.get("changed_files", []),
-        "residual_blockers": report_data.get("residual_blockers", []),
+        "residual_blockers": residual_blockers,
         "final_commit_sha": report_data.get("final_commit_sha", "pending until commit is created"),
     }
 
@@ -582,6 +610,45 @@ def collect_phase7f():
     }
 
 
+def collect_phase7g():
+    report_data = {}
+    if PHASE7G_REPORT_JSON.exists():
+        try:
+            report_data = json.loads(PHASE7G_REPORT_JSON.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            report_data = {"json_error": "Could not parse phase7g report JSON."}
+    after_counts = report_data.get("after_reconciliation", {})
+    remaining = report_data.get("remaining_strict_preflight_blockers", [])
+    return {
+        "report": str(PHASE7G_REPORT_MD) if PHASE7G_REPORT_MD.exists() else None,
+        "report_json": str(PHASE7G_REPORT_JSON) if PHASE7G_REPORT_JSON.exists() else None,
+        "author_packet": str(PHASE7G_AUTHOR_PACKET_MD) if PHASE7G_AUTHOR_PACKET_MD.exists() else None,
+        "author_responses_csv": str(PHASE7G_AUTHOR_RESPONSES_CSV) if PHASE7G_AUTHOR_RESPONSES_CSV.exists() else None,
+        "environment_template": str(PHASE7G_ENV_TEMPLATE_MD) if PHASE7G_ENV_TEMPLATE_MD.exists() else None,
+        "roadmap": str(PHASE7G_ROADMAP_MD) if PHASE7G_ROADMAP_MD.exists() else None,
+        "completeness": str(PHASE7G_COMPLETENESS_MD) if PHASE7G_COMPLETENESS_MD.exists() else None,
+        "completeness_csv": str(PHASE7G_COMPLETENESS_CSV) if PHASE7G_COMPLETENESS_CSV.exists() else None,
+        "static_audit": str(PHASE7G_STATIC_AUDIT_MD) if PHASE7G_STATIC_AUDIT_MD.exists() else None,
+        "static_audit_csv": str(PHASE7G_STATIC_AUDIT_CSV) if PHASE7G_STATIC_AUDIT_CSV.exists() else None,
+        "crosswalk": str(PHASE7G_CROSSWALK_MD) if PHASE7G_CROSSWALK_MD.exists() else None,
+        "crosswalk_csv": str(PHASE7G_CROSSWALK_CSV) if PHASE7G_CROSSWALK_CSV.exists() else None,
+        "repro_audit": str(PHASE7G_REPRO_AUDIT_MD) if PHASE7G_REPRO_AUDIT_MD.exists() else None,
+        "repro_audit_csv": str(PHASE7G_REPRO_AUDIT_CSV) if PHASE7G_REPRO_AUDIT_CSV.exists() else None,
+        "ledger_total": after_counts.get("ledger_total", count_csv_rows(PHASE7B_LEDGER_CSV)),
+        "resolved_count": after_counts.get("resolved_count", 0),
+        "unresolved_count": after_counts.get("unresolved_count", 0),
+        "response_rows": count_csv_rows(PHASE7G_AUTHOR_RESPONSES_CSV),
+        "crosswalk_rows": count_csv_rows(PHASE7G_CROSSWALK_CSV),
+        "static_audit_result": report_data.get("static_audit_result", "pending"),
+        "placeholder_preflight_result": report_data.get("placeholder_preflight_result", "pending"),
+        "strict_preflight_result": report_data.get("strict_preflight_result", "pending"),
+        "remaining_blockers": remaining,
+        "command_outcomes": report_data.get("command_outcomes", []),
+        "changed_files": report_data.get("changed_files", []),
+        "final_commit_sha": report_data.get("final_commit_sha", "pending until commit is created"),
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -615,6 +682,7 @@ def build_handoff():
     phase7d = collect_phase7d()
     phase7e = collect_phase7e()
     phase7f = collect_phase7f()
+    phase7g = collect_phase7g()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -715,6 +783,19 @@ def build_handoff():
             "Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and approved final Fig. 1-6 assets.",
             "Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.",
         ]
+    if phase7g["report"] or "Phase 7G" in read_text(NEXT_TASK_PATH):
+        pending = [
+            "Strict V18 preflight remains blocked by author-confirmed metadata, declarations, TriAir governance facts, release/archive metadata, final approved Fig. 1-6 assets, claim-scope approval, final environment record, and final compile readiness.",
+            "TAB_001 is reconciled as complete after Phase 7C; no open table_asset blocker remains.",
+            "Author submission intake now covers 29 unresolved ledger items with blank response fields, and static source audit passes structural checks only.",
+            "Do not treat placeholder-mode preflight PASS or static-audit PASS as formal submission readiness.",
+        ]
+        next_tasks = [
+            "Collect completed author responses in submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv.",
+            "Collect author-approved final Fig. 1-6 assets and Fig. 6 panel-selection/composition decisions before replacing figure placeholders.",
+            "Collect TriAir governance, release/archive, claim-scope, and environment confirmations.",
+            "Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.",
+        ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -776,6 +857,7 @@ def build_handoff():
         "phase7d": phase7d,
         "phase7e": phase7e,
         "phase7f": phase7f,
+        "phase7g": phase7g,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -1171,6 +1253,53 @@ def write_markdown(data, path):
         ),
         f"- Final commit SHA: {data['phase7f']['final_commit_sha']}",
         "- Phase 7F status: author review intake and Fig. 6 local panel inventory completed; strict preflight remains blocked by author decisions, final figure assets, and external metadata inputs.",
+        "",
+        "## Phase 7G Expanded Submission Intake And Static Audit",
+        "",
+        "- Submission intake report: `runs/phase7g_submission_intake_report.md`" if data["phase7g"]["report"] else "- Submission intake report: NA",
+        "- Submission intake JSON: `runs/phase7g_submission_intake_report.json`" if data["phase7g"]["report_json"] else "- Submission intake JSON: NA",
+        "- Author intake packet: `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`" if data["phase7g"]["author_packet"] else "- Author intake packet: NA",
+        "- Author response CSV: `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`" if data["phase7g"]["author_responses_csv"] else "- Author response CSV: NA",
+        "- Environment template: `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`" if data["phase7g"]["environment_template"] else "- Environment template: NA",
+        "- Closure roadmap: `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`" if data["phase7g"]["roadmap"] else "- Closure roadmap: NA",
+        "- Static audit: `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md` and `.csv`"
+        if data["phase7g"]["static_audit"] and data["phase7g"]["static_audit_csv"]
+        else "- Static audit: NA",
+        "- Figure/table crosswalk: `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md` and `.csv`"
+        if data["phase7g"]["crosswalk"] and data["phase7g"]["crosswalk_csv"]
+        else "- Figure/table crosswalk: NA",
+        "- Reproducibility closure audit: `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md` and `.csv`"
+        if data["phase7g"]["repro_audit"] and data["phase7g"]["repro_audit_csv"]
+        else "- Reproducibility closure audit: NA",
+        "- Completeness check: `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md` and `.csv`"
+        if data["phase7g"]["completeness"] and data["phase7g"]["completeness_csv"]
+        else "- Completeness check: NA",
+        f"- Ledger counts after reconciliation: total={data['phase7g']['ledger_total']}; resolved={data['phase7g']['resolved_count']}; unresolved={data['phase7g']['unresolved_count']}",
+        f"- Author-response rows: {data['phase7g']['response_rows']}",
+        f"- Figure/table crosswalk rows: {data['phase7g']['crosswalk_rows']}",
+        f"- Static audit result: {data['phase7g']['static_audit_result']}",
+        f"- Placeholder-mode preflight result: {data['phase7g']['placeholder_preflight_result']}",
+        f"- Strict preflight result: {data['phase7g']['strict_preflight_result']}",
+        "- Command outcomes: "
+        + (
+            "; ".join(data["phase7g"]["command_outcomes"])
+            if data["phase7g"]["command_outcomes"]
+            else "see report after Phase 7G commands are run"
+        ),
+        "- Phase 7G changed files: "
+        + (
+            ", ".join(f"`{item}`" for item in data["phase7g"]["changed_files"])
+            if data["phase7g"]["changed_files"]
+            else "see git diff for current task files"
+        ),
+        "- Residual blockers: "
+        + (
+            "; ".join(data["phase7g"]["remaining_blockers"])
+            if data["phase7g"]["remaining_blockers"]
+            else "none recorded"
+        ),
+        f"- Final commit SHA: {data['phase7g']['final_commit_sha']}",
+        "- Phase 7G status: table ledger reconciled and author intake/static audit package completed; strict preflight remains blocked by non-table external inputs and final figure assets.",
         "",
         "## Model And Code Structure",
         "",

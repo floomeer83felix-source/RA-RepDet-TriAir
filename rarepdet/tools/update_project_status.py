@@ -56,6 +56,20 @@ PHASE7F_PANEL_TEMPLATE_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "F
 PHASE7F_PANEL_TEMPLATE_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_REVIEW_TEMPLATE.csv"
 PHASE7F_PANEL_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_INVENTORY_CHECK.md"
 PHASE7F_PANEL_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE6_PANEL_INVENTORY_CHECK.csv"
+PHASE7G_REPORT = RUNS_DIR / "phase7g_submission_intake_report.md"
+PHASE7G_REPORT_JSON = RUNS_DIR / "phase7g_submission_intake_report.json"
+PHASE7G_AUTHOR_PACKET_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "AUTHOR_SUBMISSION_INPUT_PACKET.md"
+PHASE7G_AUTHOR_RESPONSES_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "AUTHOR_SUBMISSION_INPUT_RESPONSES.csv"
+PHASE7G_ENV_TEMPLATE_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "ENVIRONMENT_RECORD_TEMPLATE.md"
+PHASE7G_ROADMAP_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "SUBMISSION_CLOSURE_ROADMAP.md"
+PHASE7G_STATIC_AUDIT_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "STATIC_SUBMISSION_SOURCE_AUDIT.md"
+PHASE7G_STATIC_AUDIT_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "STATIC_SUBMISSION_SOURCE_AUDIT.csv"
+PHASE7G_CROSSWALK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_TABLE_CROSSWALK.md"
+PHASE7G_CROSSWALK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_TABLE_CROSSWALK.csv"
+PHASE7G_REPRO_AUDIT_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "REPRODUCIBILITY_CLOSURE_AUDIT.md"
+PHASE7G_REPRO_AUDIT_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "REPRODUCIBILITY_CLOSURE_AUDIT.csv"
+PHASE7G_COMPLETENESS_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "SUBMISSION_INPUT_COMPLETENESS_CHECK.md"
+PHASE7G_COMPLETENESS_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "SUBMISSION_INPUT_COMPLETENESS_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -324,6 +338,19 @@ def build_status():
     phase7f_decision_rows = count_csv_rows(PHASE7F_DECISIONS_CSV)
     phase7f_panel_template_rows = count_csv_rows(PHASE7F_PANEL_TEMPLATE_CSV)
     phase7f_panel_check_rows = count_csv_rows(PHASE7F_PANEL_CHECK_CSV)
+    phase7g_report_exists = PHASE7G_REPORT.exists()
+    phase7g_report_json_exists = PHASE7G_REPORT_JSON.exists()
+    phase7g_author_packet_exists = PHASE7G_AUTHOR_PACKET_MD.exists()
+    phase7g_author_responses_exists = PHASE7G_AUTHOR_RESPONSES_CSV.exists()
+    phase7g_env_template_exists = PHASE7G_ENV_TEMPLATE_MD.exists()
+    phase7g_roadmap_exists = PHASE7G_ROADMAP_MD.exists()
+    phase7g_static_audit_exists = PHASE7G_STATIC_AUDIT_MD.exists() and PHASE7G_STATIC_AUDIT_CSV.exists()
+    phase7g_crosswalk_exists = PHASE7G_CROSSWALK_MD.exists() and PHASE7G_CROSSWALK_CSV.exists()
+    phase7g_repro_audit_exists = PHASE7G_REPRO_AUDIT_MD.exists() and PHASE7G_REPRO_AUDIT_CSV.exists()
+    phase7g_completeness_exists = PHASE7G_COMPLETENESS_MD.exists() and PHASE7G_COMPLETENESS_CSV.exists()
+    phase7g_author_response_rows = count_csv_rows(PHASE7G_AUTHOR_RESPONSES_CSV)
+    phase7g_crosswalk_rows = count_csv_rows(PHASE7G_CROSSWALK_CSV)
+    phase7g_static_audit_rows = count_csv_rows(PHASE7G_STATIC_AUDIT_CSV)
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -384,6 +411,23 @@ def build_status():
             )
             else "pending"
         )
+    if "Phase 7G" in next_text:
+        active_status = (
+            "completed"
+            if (
+                phase7g_report_exists
+                and phase7g_report_json_exists
+                and phase7g_author_packet_exists
+                and phase7g_author_responses_exists
+                and phase7g_env_template_exists
+                and phase7g_roadmap_exists
+                and phase7g_static_audit_exists
+                and phase7g_crosswalk_exists
+                and phase7g_repro_audit_exists
+                and phase7g_completeness_exists
+            )
+            else "pending"
+        )
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -414,6 +458,8 @@ def build_status():
         current_task = "Phase 7E - Local Non-Final Candidate Renders for Fig. 3-5"
     if "Phase 7F" in next_text:
         current_task = "Phase 7F - Author Figure Review Intake and Fig. 6 Panel Inventory"
+    if "Phase 7G" in next_text:
+        current_task = "Phase 7G - Expanded Submission Ledger, Author Intake, and Static Audit Batch"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -467,6 +513,12 @@ def build_status():
         current_goal = (
             "Prepare author-review decisions for Fig. 1-6 and run a local-only Fig. 6 panel inventory "
             "without approving, generating, or inserting final figure assets."
+        )
+    if "Phase 7G" in next_text:
+        current_goal = (
+            "Reconcile the completed table ledger state, create a fillable author-submission intake package, "
+            "run static SIVP source audits, and document the remaining closure dependencies without changing "
+            "experimental evidence, manuscript source TeX, or final assets."
         )
 
     lines = [
@@ -930,6 +982,25 @@ def build_status():
         if phase7f_report_exists
         else "- Decision: NA",
         "",
+        "## Phase 7G outputs",
+        "",
+        "- Submission intake report: `runs/phase7g_submission_intake_report.md`" if phase7g_report_exists else "- Submission intake report: NA",
+        "- Submission intake JSON: `runs/phase7g_submission_intake_report.json`" if phase7g_report_json_exists else "- Submission intake JSON: NA",
+        "- Author intake packet: `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`" if phase7g_author_packet_exists else "- Author intake packet: NA",
+        "- Author response CSV: `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`" if phase7g_author_responses_exists else "- Author response CSV: NA",
+        "- Environment record template: `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`" if phase7g_env_template_exists else "- Environment record template: NA",
+        "- Closure roadmap: `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`" if phase7g_roadmap_exists else "- Closure roadmap: NA",
+        "- Static submission source audit: `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md` and `.csv`" if phase7g_static_audit_exists else "- Static submission source audit: NA",
+        "- Figure/table crosswalk: `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md` and `.csv`" if phase7g_crosswalk_exists else "- Figure/table crosswalk: NA",
+        "- Reproducibility closure audit: `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md` and `.csv`" if phase7g_repro_audit_exists else "- Reproducibility closure audit: NA",
+        "- Completeness check: `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md` and `.csv`" if phase7g_completeness_exists else "- Completeness check: NA",
+        f"- Author-response rows: {phase7g_author_response_rows if phase7g_author_responses_exists else 'NA'}",
+        f"- Figure/table crosswalk rows: {phase7g_crosswalk_rows if phase7g_crosswalk_exists else 'NA'}",
+        f"- Static-audit rows: {phase7g_static_audit_rows if phase7g_static_audit_exists else 'NA'}",
+        "- Decision: TABLE LEDGER RECONCILED; AUTHOR INTAKE AND STATIC AUDIT PACKAGE READY FOR AUTHOR INPUT; STRICT PREFLIGHT REMAINS BLOCKED BY NON-TABLE EXTERNAL INPUTS"
+        if phase7g_report_exists
+        else "- Decision: NA",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -959,6 +1030,7 @@ def build_status():
         "- Phase 7D locks figure sources and candidate-build specifications only; it does not generate or approve final figure artwork.",
         "- Phase 7E generates local ignored Fig. 3-5 candidate PDFs for author review only; they are not final assets and are not inserted into LaTeX.",
         "- Phase 7F creates review templates and a local Fig. 6 inventory only; it does not approve assets, select panels, insert figures, or change evidence.",
+        "- Phase 7G reconciles the completed table ledger row and creates author-intake/static-audit documentation only; it does not approve assets, insert final figures, modify source TeX, or close external metadata requirements.",
         "",
         "## Important research decisions",
         "",
@@ -984,6 +1056,7 @@ def build_status():
         "- Phase 7D distinguishes author-design Fig. 1-2, frozen-CSV candidate-spec Fig. 3-5, and local-panel-dependent Fig. 6 without changing final artwork placeholders.",
         "- Phase 7E local Fig. 3-5 candidate renders await author review; final Fig. 1-6 assets remain missing until approved PDFs are supplied.",
         "- Phase 7F records that Fig. 6 has 20 locally existing manifest panels, but author selection and final composition approval are still required.",
+        "- Phase 7G records that `TAB_001` is complete and no open table_asset blocker remains; all non-table author, governance, release, claim, environment, figure, and compile blockers still require confirmation.",
         "",
         "## Files or scripts currently under review",
         "",
@@ -1003,6 +1076,7 @@ def build_status():
         "- `runs/phase7d_figure_source_lock_report.md`",
         "- `runs/phase7e_candidate_render_report.md`",
         "- `runs/phase7f_author_review_intake_report.md`",
+        "- `runs/phase7g_submission_intake_report.md`",
         "- `runs/handoff_latest.md`",
         "- `runs/handoff_latest.json`",
         "",

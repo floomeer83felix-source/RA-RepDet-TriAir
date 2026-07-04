@@ -1,0 +1,11 @@
+check_id,scope,status,severity,details
+SRC_001,required source entries,pass,info,"All required source-entry files exist: main.tex, main_sivp_snjnl.tex, references.bib, submission/sivp/tex/main.tex, submission/sivp/tex/ra_repdet_sivp.tex, submission/sivp/tex/references.bib"
+TEX_001,table inputs,pass,info,"All 7 table inputs resolve: submission/sivp/tables/Table_1_dataset_and_clean_split.tex, submission/sivp/tables/Table_2_implementation_and_reproducibility.tex, submission/sivp/tables/Table_3_controlled_ablation.tex, submission/sivp/tables/Table_4_missing_modality_robustness.tex, submission/sivp/tables/Table_5_rgb_only_external_baseline.tex, submission/sivp/tables/Table_6_efficiency_and_convergence.tex, submission/sivp/tables/Table_7_reliability_weight_audit.tex"
+TEX_002,placeholder strings,pass,info,TABLE PLACEHOLDER count=0; figure placeholder boxes=6; literal Final artwork pending occurrences including captions=12.
+TEX_003,labels,pass,info,All 13 body labels are unique.
+BIB_001,citation keys,pass,info,All 25 cited keys exist in references.bib.
+BIB_002,unused BibTeX keys,pass,info,No unused BibTeX keys in root references.bib.
+TRACE_001,table traceability,pass,info,All 7 table labels map through body inputs to 7 table traceability rows.
+TRACE_002,figure traceability,pass,info,All 6 figure labels have corresponding Fig. 1-6 traceability rows.
+READY_001,readiness interpretation,warning,warning,Placeholder-mode preflight PASS remains structural only and is not formal submission readiness.
+WRITE_001,source modification guard,pass,info,"Audit writes only Markdown/CSV reports and does not open source TeX, BibTeX, traceability CSVs, tables, or figures for writing."

@@ -1,0 +1,25 @@
+# Submission Input Completeness Check
+
+Status: ready for author intake. This is not formal submission readiness.
+
+| check_id | scope | status | value | evidence | notes |
+| --- | --- | --- | --- | --- | --- |
+| COMP_001 | canonical ledger total | pass | 30 | `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv` | Ledger total is unchanged after Phase 7G reconciliation. |
+| COMP_002 | resolved item count | pass | 1 | `TAB_001` current_state | Only `TAB_001` is resolved. |
+| COMP_003 | unresolved item count | pass | 29 | ledger total minus resolved count | All unresolved items remain represented in the response template. |
+| COMP_004 | `TAB_001` resolved state | pass | complete - evidence-locked Tables 1-7 inserted in Phase 7C | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | Table placeholders are not open blockers. |
+| COMP_005 | author_metadata unresolved count | pass | 4 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | `AUTH_001`-`AUTH_004` remain pending author confirmation. |
+| COMP_006 | declarations unresolved count | pass | 5 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | `DECL_001`-`DECL_005` remain pending author confirmation. |
+| COMP_007 | data_governance unresolved count | pass | 4 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | `DATA_001`-`DATA_004` remain pending author confirmation. |
+| COMP_008 | release_archive unresolved count | pass | 6 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | `REL_001`-`REL_006` remain pending author confirmation. |
+| COMP_009 | figure_asset unresolved count | pass | 6 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | `FIG_001`-`FIG_006` remain pending author confirmation. |
+| COMP_010 | claim_scope unresolved count | pass | 2 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | `CLAIM_001`-`CLAIM_002` remain pending author confirmation. |
+| COMP_011 | environment unresolved count | pass | 1 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | `ENV_001` remains pending author confirmation. |
+| COMP_012 | compile_readiness unresolved count | pass | 1 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | `TEX_001` remains pending author confirmation. |
+| COMP_013 | table_asset resolved/unresolved count | pass | resolved 1; unresolved 0 | `FINAL_SUBMISSION_INPUT_LEDGER.csv` | No open table_asset blocker remains. |
+| COMP_014 | response template row count | pass | 29 | `AUTHOR_SUBMISSION_INPUT_RESPONSES.csv` | Resolved `TAB_001` is excluded. |
+| COMP_015 | response-only fields blank | pass | 0 prefilled response-only cells | `AUTHOR_SUBMISSION_INPUT_RESPONSES.csv` | `author_response`, `confirmed_by`, `confirmation_date`, and `source_of_confirmation` are blank for every row. |
+| COMP_016 | unresolved item preservation | pass | 29 of 29 unresolved items represented | ledger and response CSV comparison | No unresolved ledger item was silently removed. |
+| COMP_017 | static audit outcome | pass | PASS | `STATIC_SUBMISSION_SOURCE_AUDIT.md` | Static source checks passed with one readiness-interpretation warning. |
+| COMP_018 | strict preflight expected outcome | warning | expected FAIL | `scripts/preflight_submission.py --root .` | Remaining blocker categories: author_metadata, declarations, data_governance, release_archive, figure_asset, claim_scope, environment, compile_readiness. |
+| COMP_019 | author intake readiness | pass | ready for author intake | Phase 7G completeness check | Ready for intake only; not formal submission readiness. |

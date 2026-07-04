@@ -2,22 +2,24 @@
 
 ## Task
 
-Execute `docs/NEXT_TASK.md` for Phase 7F: create an author figure review packet, decision templates, a safe Fig. 6 review template, and a local-only Fig. 6 panel inventory while preserving all figure placeholders and final-asset blockers.
+Execute `docs/NEXT_TASK.md` for Phase 7G: reconcile the completed table ledger state, create a fillable author-submission intake package, run static source audits, document figure/table and reproducibility closure state, update handoff/status, and preserve all final-submission blockers that still require external confirmation.
 
 ## Blocking Condition
 
-Phase 7F completes review intake, not final submission readiness. The review packet exists, the Fig. 6 local inventory found 20 locally existing panel files from 20 manifest rows, and the path-level JSON remains ignored and untracked at `runs/local_candidate_figures/phase7f/fig6_panel_inventory.json`.
+Phase 7G completed documentation and static validation only. `TAB_001` is now resolved because Phase 7C inserted evidence-locked Tables 1-7, and the static audit confirms zero `TABLE PLACEHOLDER` strings in the SIVP body. No open table_asset blocker remains.
 
-Figure readiness detail:
+Strict V18 final-submission preflight still fails because non-table external inputs and final figure assets remain unresolved:
 
-- Fig. 1 `Fig1_overall_architecture.pdf`: author-design schematic decision still required.
-- Fig. 2 `Fig2_leakage_aware_protocol.pdf`: author-design schematic decision still required.
-- Fig. 3 `Fig3_controlled_ablation.pdf`: local non-final candidate remains available for author review only; final artwork is still missing.
-- Fig. 4 `Fig4_missing_modality_robustness.pdf`: local non-final candidate remains available for author review only; final artwork is still missing.
-- Fig. 5 `Fig5_reliability_weight_audit.pdf`: local non-final candidate remains available for author review only; final artwork is still missing.
-- Fig. 6 `Fig6_qualitative_results.pdf`: local panel inventory is complete, but author panel selection, crop/redaction decisions, and final composition approval are still required.
+- author_metadata: final author names, affiliations, ORCID decisions, and corresponding email.
+- declarations: funding, acknowledgments, contributions, competing interests, and AI-use disclosure.
+- data_governance: TriAir citation, version/provider, licence/access terms, and redistribution restrictions.
+- release_archive: public URL or no-release policy, release tag, immutable source identifier, archive date, release licence, and DOI state.
+- figure_asset: approved final Fig. 1-6 PDF assets are absent; Fig. 1-2 still require author-designed schematics; Fig. 3-5 candidates are non-final review inputs only; Fig. 6 still requires author panel selection, crop/redaction decisions, and final composition approval.
+- claim_scope: authors must approve validation-only wording or provide new approved held-out evidence before any stronger claim.
+- environment: final hardware/software record still needs author or research-owner confirmation.
+- compile_readiness: final Springer `sn-jnl` compile must wait until strict preflight passes and final assets exist.
 
-No author approval, approver identity, approval date, final asset authorization, local panel selection, figure placeholder replacement, or final asset generation was performed. The remaining blocker is strict V18 final-submission preflight. The repository still lacks author-confirmed metadata, TriAir citation/licence/access facts, release/archive metadata, final approved Fig. 1-6 assets, claim-scope approval, final environment details, and final compile readiness.
+No author fact, approver identity, approval date, public release value, dataset licence/access statement, DOI, final figure asset, Fig. 6 panel selection, final figure insertion, manuscript claim change, or final PDF compile was produced in Phase 7G.
 
 ## Failed Command
 
@@ -43,20 +45,22 @@ RESULT: FAIL
 
 ## Attempted Fixes
 
-- Ran the required branch switch and fast-forward pull before Phase 7F edits.
-- Ran `git status --short`; unrelated pre-existing untracked files were present before task edits and are not part of Phase 7F.
-- Ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result before Phase 7F edits: `PASS` with expected warnings.
-- Ran `python submission/sivp/figures/figure_candidate_build.py --dry-run --root .`; result: `PASS`.
-- Read the required Phase 7F context files, SIVP source files, figure build specifications, review checks, manifest, preflight script, and handoff/status generators.
-- Added `submission/sivp/figures/qualitative_panel_inventory.py` with local-only dry-run inventory behavior.
-- Ran the Fig. 6 inventory command and wrote exactly one ignored local JSON file under `runs/local_candidate_figures/phase7f/`.
-- Verified the local inventory JSON is ignored by Git with `git check-ignore -v`.
-- Created `submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md`.
-- Created `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv` with all approvals pending.
-- Created `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md` and `.csv` using only safe manifest metadata.
-- Created `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md` and `.csv` using aggregate non-sensitive results only.
-- Created `runs/phase7f_author_review_intake_report.md` and `.json`.
-- No GPU training, GPU inference sweep, metric-changing evaluation, split mutation, source-data mutation, source CSV change, core model/dataset/evaluation change, final figure generation, candidate PDF generation, LaTeX figure insertion, or final PDF compile was executed.
+- Ran the required branch switch and fast-forward pull before Phase 7G edits.
+- Ran `git status --short`; unrelated pre-existing untracked files were present before task edits and are not part of Phase 7G.
+- Ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result: `PASS` with expected warnings.
+- Reconciled `TAB_001` in both canonical ledger formats to the completed Phase 7C table state.
+- Created `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`.
+- Created `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv` with 29 unresolved rows, excluding resolved `TAB_001`, and leaving all response/confirmation fields blank.
+- Created `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md` with only repository-documented experimental settings prefilled.
+- Created and ran `submission/sivp/review/static_submission_audit.py`; result: `PASS`.
+- Created `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md` and `.csv`.
+- Created `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md` and `.csv` with 13 assets.
+- Created `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md` and `.csv`.
+- Created `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`.
+- Created `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md` and `.csv`.
+- Created `runs/phase7g_submission_intake_report.md` and `.json`.
+- Updated handoff/status generators to report Phase 7G outputs and to avoid counting complete ledger rows as open blockers.
+- No GPU training, GPU inference sweep, metric-changing evaluation, split mutation, source-data mutation, source CSV change, core model/dataset/evaluation change, final figure generation, candidate PDF generation, LaTeX figure insertion, strict-rule weakening, or final PDF compile was executed.
 
 ## Related Files
 
@@ -65,27 +69,31 @@ RESULT: FAIL
 - `docs/TASK_BLOCKER.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/phase7f_author_review_intake_report.md`
-- `runs/phase7f_author_review_intake_report.json`
-- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md`
-- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv`
-- `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md`
-- `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv`
-- `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md`
-- `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.csv`
-- `submission/sivp/figures/qualitative_panel_inventory.py`
-- `scripts/preflight_submission.py`
+- `runs/phase7g_submission_intake_report.md`
+- `runs/phase7g_submission_intake_report.json`
+- `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
+- `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
+- `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`
+- `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
+- `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`
+- `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`
+- `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md`
+- `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.csv`
+- `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md`
+- `submission/sivp/review/FIGURE_TABLE_CROSSWALK.csv`
+- `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md`
+- `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.csv`
+- `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md`
+- `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.csv`
+- `submission/sivp/review/static_submission_audit.py`
 - `rarepdet/tools/generate_handoff.py`
 - `rarepdet/tools/update_project_status.py`
-
-Local-only untracked output:
-
-- `runs/local_candidate_figures/phase7f/fig6_panel_inventory.json`
+- `scripts/preflight_submission.py`
 
 ## Repair Option 1
 
-Authors complete the Phase 7F decision templates: provide or approve Fig. 1-2 schematic sources, approve or request revisions to Fig. 3-5 candidates, select Fig. 6 panels, and approve any crop/redaction and final composition. Then generate only approved final assets, rerun strict preflight, and compile the final Springer `sn-jnl` package.
+Authors complete `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`, the existing figure decision files, and the Fig. 6 review template. Then add only confirmed metadata, approved final Fig. 1-6 PDFs, approved data-governance/release/environment facts, rerun strict preflight, and compile the final Springer `sn-jnl` package.
 
 ## Repair Option 2
 
-Keep the repository as a pre-submission readiness package with completed evidence-locked tables, locked figure sources, local non-final Fig. 3-5 candidates, and a safe Fig. 6 panel inventory. Continue using placeholder-mode preflight as a structural check and keep strict mode blocked until every remaining author, asset, data-governance, release, environment, and compile-readiness item is closed.
+Keep the repository as a pre-submission readiness package with completed evidence-locked tables, source-locked figures, blank author intake fields, and static audit evidence. Continue using placeholder-mode preflight only as a structural check until every remaining author, asset, data-governance, release, claim-scope, environment, and compile-readiness item is closed.

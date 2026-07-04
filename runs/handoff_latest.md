@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-04T15:08:26
+Generated: 2026-07-04T15:40:57
 Workspace: `E:\RepViT-main`
 
 ## Publication Headline
@@ -13,9 +13,9 @@ Workspace: `E:\RepViT-main`
 ## Current Active Task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7F — Author Figure Review Intake and Fig. 6 Panel Inventory
-- Goal: Prepare a clear author-review packet for the three local, non-final Fig. 3–5 candidates; make the Fig. 1–2 schematic decisions explicit; and perform a local-only inventory of real Fig. 6 validation panels referenced by the existing qualitative manifest. This task organizes review evidence and decisions. It must not approve assets on the authors’ behalf, generate final figures, insert figures into LaTeX, or change research evidence.
-- Commit Message: `docs: add author figure review intake and panel inventory`
+- Current Task: Phase 7G — Expanded Submission Ledger, Author Intake, and Static Audit Batch
+- Goal: Complete a larger batch of **non-experimental, evidence-preserving submission-readiness tasks** in one pass:
+- Commit Message: `docs: expand submission audit and author intake package`
 
 ## Dataset
 
@@ -158,8 +158,8 @@ Workspace: `E:\RepViT-main`
 - BibTeX references: `submission/sivp/tex/references.bib`
 - Phase 6B report: `runs/phase6b_sivp_preparation_report.md`
 - Template/LaTeX source files: 16
-- Metadata template files: 8
-- Review/audit files: 18
+- Metadata template files: 11
+- Review/audit files: 26
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
@@ -171,11 +171,11 @@ Workspace: `E:\RepViT-main`
 - Input ledger: `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
 - Input ledger CSV: `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
 - Ledger rows: 30
-- Open ledger items: 30
-- Open categories: author_metadata=4, claim_scope=2, compile_readiness=1, data_governance=4, declarations=5, environment=1, figure_asset=6, release_archive=6, table_asset=1
+- Open ledger items: 29
+- Open categories: author_metadata=4, claim_scope=2, compile_readiness=1, data_governance=4, declarations=5, environment=1, figure_asset=6, release_archive=6
 - Command outcomes: git switch research/ra-repdet-triair: PASS; git pull --ff-only research research/ra-repdet-triair: PASS; git status --short: PASS; unrelated untracked files existed before Phase 7B edits; python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings; python rarepdet/tools/generate_handoff.py: PASS; python rarepdet/tools/update_project_status.py: PASS; python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings after reconciliation; python scripts/preflight_submission.py --root .: FAIL as expected on unresolved author metadata, placeholders, table placeholders and missing final Fig. 1-6 assets
 - Phase 7B changed files: `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, `runs/handoff_latest.md`, `runs/handoff_latest.json`, `runs/phase7b_publication_state_reconciliation.md`, `runs/phase7b_publication_state_reconciliation.json`, `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`, `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`, `rarepdet/tools/generate_handoff.py`, `rarepdet/tools/update_project_status.py`
-- Residual blockers: author-confirmed metadata and declarations are missing; TriAir citation/version/licence/access/redistribution facts are missing; public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing; final approved Fig. 1-6 assets are missing; final publication Tables 1-7 remain pending; validation-only wording approval or independent held-out evidence decision is missing; final hardware/software environment record is missing; strict V18 preflight and final Springer sn-jnl compile remain blocked
+- Residual blockers: author-confirmed metadata and declarations are missing; TriAir citation/version/licence/access/redistribution facts are missing; public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing; final approved Fig. 1-6 assets are missing; validation-only wording approval or independent held-out evidence decision is missing; final hardware/software environment record is missing; strict V18 preflight and final Springer sn-jnl compile remain blocked
 - Final commit SHA: pending until the completion commit is created
 - Phase 7B status: publication-state mismatch resolved; strict preflight remains blocked by author/asset inputs.
 
@@ -244,6 +244,30 @@ Workspace: `E:\RepViT-main`
 - Final commit SHA: pending until completion commit is created
 - Phase 7F status: author review intake and Fig. 6 local panel inventory completed; strict preflight remains blocked by author decisions, final figure assets, and external metadata inputs.
 
+## Phase 7G Expanded Submission Intake And Static Audit
+
+- Submission intake report: `runs/phase7g_submission_intake_report.md`
+- Submission intake JSON: `runs/phase7g_submission_intake_report.json`
+- Author intake packet: `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`
+- Author response CSV: `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
+- Environment template: `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`
+- Closure roadmap: `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`
+- Static audit: `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md` and `.csv`
+- Figure/table crosswalk: `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md` and `.csv`
+- Reproducibility closure audit: `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md` and `.csv`
+- Completeness check: `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md` and `.csv`
+- Ledger counts after reconciliation: total=30; resolved=1; unresolved=29
+- Author-response rows: 29
+- Figure/table crosswalk rows: 13
+- Static audit result: PASS
+- Placeholder-mode preflight result: PASS with expected warnings
+- Strict preflight result: expected FAIL
+- Command outcomes: git switch research/ra-repdet-triair: PASS; git pull --ff-only research research/ra-repdet-triair: PASS, fast-forwarded to 2f4dba1; python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings; python -m py_compile rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py submission/sivp/review/static_submission_audit.py: PASS; python submission/sivp/review/static_submission_audit.py --root . --output-prefix submission/sivp/review/static_submission_source_audit: PASS; Author-response CSV validation: PASS, rows=29, response-only fields prefilled=0; python scripts/preflight_submission.py --root .: expected FAIL
+- Phase 7G changed files: `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, `runs/handoff_latest.md`, `runs/handoff_latest.json`, `runs/phase7g_submission_intake_report.md`, `runs/phase7g_submission_intake_report.json`, `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`, `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`, `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`, `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`, `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`, `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`, `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md`, `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.csv`, `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md`, `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.csv`, `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md`, `submission/sivp/review/FIGURE_TABLE_CROSSWALK.csv`, `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md`, `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.csv`, `submission/sivp/review/static_submission_audit.py`, `rarepdet/tools/generate_handoff.py`, `rarepdet/tools/update_project_status.py`
+- Residual blockers: author_metadata; declarations; data_governance; release_archive; figure_asset; claim_scope; environment; compile_readiness
+- Final commit SHA: pending until commit is created
+- Phase 7G status: table ledger reconciled and author intake/static audit package completed; strict preflight remains blocked by non-table external inputs and final figure assets.
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -266,10 +290,10 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved Fig. 1-6 assets, final environment record, and final compile readiness are supplied.
-- Author review packet and decision templates now exist, but every Fig. 1-6 author decision remains pending.
-- Fig. 6 local panel inventory found 20 locally existing manifest panels, but no panel selection, crop/redaction, or final composition is approved.
-- Local Fig. 3-5 candidate PDFs and the Fig. 6 path-level inventory JSON remain ignored/untracked review inputs, not publication assets.
+- Strict V18 preflight remains blocked by author-confirmed metadata, declarations, TriAir governance facts, release/archive metadata, final approved Fig. 1-6 assets, claim-scope approval, final environment record, and final compile readiness.
+- TAB_001 is reconciled as complete after Phase 7C; no open table_asset blocker remains.
+- Author submission intake now covers 29 unresolved ledger items with blank response fields, and static source audit passes structural checks only.
+- Do not treat placeholder-mode preflight PASS or static-audit PASS as formal submission readiness.
 
 ## Recently Modified Files
 
@@ -279,21 +303,29 @@ Workspace: `E:\RepViT-main`
 - ` M rarepdet/tools/update_project_status.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- `A  runs/phase7f_author_review_intake_report.json`
+- `A  runs/phase7g_submission_intake_report.json`
+- ` M submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
+- ` M submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
 - `?? runs/component_disjoint_candidates/`
-- `?? runs/phase7f_author_review_intake_report.md`
+- `?? runs/phase7g_submission_intake_report.md`
 - `?? runs/v39_component_disjoint/`
-- `?? submission/sivp/figures/qualitative_panel_inventory.py`
-- `?? submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv`
-- `?? submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md`
-- `?? submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.csv`
-- `?? submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md`
-- `?? submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv`
-- `?? submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.md`
+- `?? submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`
+- `?? submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
+- `?? submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`
+- `?? submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`
+- `?? submission/sivp/review/FIGURE_TABLE_CROSSWALK.csv`
+- `?? submission/sivp/review/FIGURE_TABLE_CROSSWALK.md`
+- `?? submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.csv`
+- `?? submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md`
+- `?? submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.csv`
+- `?? submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md`
+- `?? submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.csv`
+- `?? submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md`
+- `?? submission/sivp/review/static_submission_audit.py`
 
 ## Next Recommended Tasks
 
-- Collect written author decisions in submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv.
-- Collect Fig. 6 panel selections and crop/redaction decisions in submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv.
-- Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and approved final Fig. 1-6 assets.
+- Collect completed author responses in submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv.
+- Collect author-approved final Fig. 1-6 assets and Fig. 6 panel-selection/composition decisions before replacing figure placeholders.
+- Collect TriAir governance, release/archive, claim-scope, and environment confirmations.
 - Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.
