@@ -42,6 +42,12 @@ PHASE7D_TRACEABILITY_CSV = PROJECT_ROOT / "submission" / "sivp" / "figures" / "F
 PHASE7D_BUILD_SPEC_MD = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_BUILD_SPEC.md"
 PHASE7D_REVIEW_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_CHECK.md"
 PHASE7D_REVIEW_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_CHECK.csv"
+PHASE7E_REPORT = RUNS_DIR / "phase7e_candidate_render_report.md"
+PHASE7E_REPORT_JSON = RUNS_DIR / "phase7e_candidate_render_report.json"
+PHASE7E_MANIFEST_MD = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_CANDIDATE_RENDER_MANIFEST.md"
+PHASE7E_MANIFEST_CSV = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_CANDIDATE_RENDER_MANIFEST.csv"
+PHASE7E_RENDER_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_RENDER_CHECK.md"
+PHASE7E_RENDER_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_RENDER_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -295,6 +301,12 @@ def build_status():
     phase7d_review_check_exists = PHASE7D_REVIEW_CHECK_MD.exists() and PHASE7D_REVIEW_CHECK_CSV.exists()
     phase7d_traceability_rows = count_csv_rows(PHASE7D_TRACEABILITY_CSV)
     phase7d_review_check_rows = count_csv_rows(PHASE7D_REVIEW_CHECK_CSV)
+    phase7e_report_exists = PHASE7E_REPORT.exists()
+    phase7e_report_json_exists = PHASE7E_REPORT_JSON.exists()
+    phase7e_manifest_exists = PHASE7E_MANIFEST_MD.exists() and PHASE7E_MANIFEST_CSV.exists()
+    phase7e_render_check_exists = PHASE7E_RENDER_CHECK_MD.exists() and PHASE7E_RENDER_CHECK_CSV.exists()
+    phase7e_manifest_rows = count_csv_rows(PHASE7E_MANIFEST_CSV)
+    phase7e_render_check_rows = count_csv_rows(PHASE7E_RENDER_CHECK_CSV)
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -336,6 +348,12 @@ def build_status():
             )
             else "pending"
         )
+    if "Phase 7E" in next_text:
+        active_status = (
+            "completed"
+            if phase7e_report_exists and phase7e_report_json_exists and phase7e_manifest_exists and phase7e_render_check_exists
+            else "pending"
+        )
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -362,6 +380,8 @@ def build_status():
         current_task = "Phase 7C - Evidence-Locked SIVP Table Insertion"
     if "Phase 7D" in next_text:
         current_task = "Phase 7D - Candidate Figure Source Lock and Build Specification"
+    if "Phase 7E" in next_text:
+        current_task = "Phase 7E - Local Non-Final Candidate Renders for Fig. 3-5"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -405,6 +425,11 @@ def build_status():
         current_goal = (
             "Prepare a reproducible, evidence-locked build specification for the six SIVP figures without generating, "
             "committing, or inserting final figure files."
+        )
+    if "Phase 7E" in next_text:
+        current_goal = (
+            "Create reproducible, local-only candidate renders for Fig. 3, Fig. 4, and Fig. 5 for author review, "
+            "without committing candidate PDFs or inserting final figure assets."
         )
 
     lines = [
@@ -841,6 +866,18 @@ def build_status():
         if phase7d_report_exists
         else "- Decision: NA",
         "",
+        "## Phase 7E outputs",
+        "",
+        "- Candidate render report: `runs/phase7e_candidate_render_report.md`" if phase7e_report_exists else "- Candidate render report: NA",
+        "- Candidate render JSON: `runs/phase7e_candidate_render_report.json`" if phase7e_report_json_exists else "- Candidate render JSON: NA",
+        "- Candidate render manifest: `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md` and `.csv`" if phase7e_manifest_exists else "- Candidate render manifest: NA",
+        "- Candidate render check: `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md` and `.csv`" if phase7e_render_check_exists else "- Candidate render check: NA",
+        f"- Manifest rows: {phase7e_manifest_rows if phase7e_manifest_exists else 'NA'}",
+        f"- Render-check rows: {phase7e_render_check_rows if phase7e_render_check_exists else 'NA'}",
+        "- Decision: LOCAL NON-FINAL FIG. 3-5 CANDIDATES GENERATED FOR AUTHOR REVIEW; FINAL FIGURE AND EXTERNAL AUTHOR/METADATA BLOCKERS REMAIN OPEN"
+        if phase7e_report_exists
+        else "- Decision: NA",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -868,6 +905,7 @@ def build_status():
         "- Phase 7B reconciles publication-state documentation only; it does not change metrics, checkpoints, splits, source data, or model code.",
         "- Phase 7C inserts table assets only from frozen source CSVs; it does not change metrics, source evidence, checkpoints, splits, source data, or model code.",
         "- Phase 7D locks figure sources and candidate-build specifications only; it does not generate or approve final figure artwork.",
+        "- Phase 7E generates local ignored Fig. 3-5 candidate PDFs for author review only; they are not final assets and are not inserted into LaTeX.",
         "",
         "## Important research decisions",
         "",
@@ -891,6 +929,7 @@ def build_status():
         "- Phase 7B final-submission ledger is the closure checklist for strict V18 preflight blockers.",
         "- Phase 7C removes final table placeholders by inserting evidence-locked table fragments; final figure and author/metadata blockers remain external.",
         "- Phase 7D distinguishes author-design Fig. 1-2, frozen-CSV candidate-spec Fig. 3-5, and local-panel-dependent Fig. 6 without changing final artwork placeholders.",
+        "- Phase 7E local Fig. 3-5 candidate renders await author review; final Fig. 1-6 assets remain missing until approved PDFs are supplied.",
         "",
         "## Files or scripts currently under review",
         "",
@@ -907,6 +946,7 @@ def build_status():
         "- `rarepdet/tools/build_clean_block64_summary.py`",
         "- `submission/sivp/figures/figure_candidate_build.py`",
         "- `runs/phase7d_figure_source_lock_report.md`",
+        "- `runs/phase7e_candidate_render_report.md`",
         "- `runs/handoff_latest.md`",
         "- `runs/handoff_latest.json`",
         "",

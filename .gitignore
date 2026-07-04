@@ -21,6 +21,7 @@ runs/**/qualitative_cases/
 runs/local_split_audit_panels/
 runs/local_yolo11n_rgb_cache/
 runs/local_clean_qualitative_panels/
+runs/local_candidate_figures/
 runs/**/training_curves/
 runs/**/paper_tables/*.png
 runs/**/profile_*/
@@ -164,3 +165,6 @@ runs/Y11n_rgb*_block64g16_e50/**
 !runs/Y11n_rgb*_block64g16_e50/eval_project/
 !runs/Y11n_rgb*_block64g16_e50/eval_project/*.csv
 !runs/Y11n_rgb*_block64g16_e50/eval_project/*.txt
+
+# Phase 7E local-only figure candidates.
+runs/local_candidate_figures/

@@ -1,0 +1,14 @@
+check_id,scope,status,evidence,notes
+source_hash_fig3,Fig. 3,pass,"23e2984adac08ebd6584e1c8d56f82d3cdd0dfb9e5e32047d5064481076d21dc matched Phase 7D",Validated before and after rendering.
+source_hash_fig4,Fig. 4,pass,"aea82341ac37547ece40428e56bd3d98fabf299304a4b24067a7705eaf642fde matched Phase 7D",Validated before and after rendering.
+source_hash_fig5,Fig. 5,pass,"ef93dca475e9a1fa704856952951fbe47ebb701c9e559ea60abf46d861a1239c matched Phase 7D",Validated before and after rendering.
+candidate_pdfs_exist,Fig. 3-5,pass,"Fig3=27440 bytes; Fig4=26852 bytes; Fig5=25510 bytes",All expected local PDFs exist and are nonzero.
+candidate_filenames,Fig. 3-5,pass,"Fig3_controlled_ablation_candidate.pdf; Fig4_missing_modality_robustness_candidate.pdf; Fig5_reliability_weight_audit_candidate.pdf",Every candidate filename ends `_candidate.pdf`.
+local_manifest_not_final,local JSON,pass,"runs/local_candidate_figures/phase7e/candidate_render_manifest.json has final_asset_status=not_final and every generated asset is not_final",Local JSON is ignored and not committed.
+git_ignore_status,local candidates,pass,"git check-ignore -v points to .gitignore:170:runs/local_candidate_figures/ for all three candidate PDFs",Candidate paths are ignored.
+git_status_absent,local candidates,pass,"git status --short does not list runs/local_candidate_figures/phase7e outputs",Local outputs are absent from status.
+no_final_pdf_assets,Fig. 1-6,pass,"no final Fig1-Fig6 PDFs exist under figures/ or submission/sivp/figures/",No final asset was created.
+body_placeholders_retained,SIVP body,pass,"submission/sivp/tex/ra_repdet_sivp.tex still contains six Final artwork pending figure placeholders",No includegraphics insertion.
+fig1_fig2_fig6_unresolved,Fig. 1-2 and Fig. 6,pass,"Fig. 1-2 remain author-design required; Fig. 6 remains local-panel inventory required",Out of scope for Phase 7E.
+strict_preflight_expected_fail,preflight,pass,"strict preflight remains expected to fail on final figures and external author/metadata inputs",Do not claim final readiness.
+pdf_text_provenance,Fig. 3-5,pass,"pdftotext found CANDIDATE NOT FINAL, source path, and sha256 text in each candidate PDF",Visible provenance/watermark text is present in PDF text extraction.

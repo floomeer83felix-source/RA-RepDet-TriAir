@@ -1,0 +1,129 @@
+{
+  "phase": "Phase 7E",
+  "title": "Local Non-Final Candidate Renders for Fig. 3-5",
+  "generated": "2026-07-04",
+  "workspace": "E:/RepViT-main",
+  "baseline_commit_inspected": "a37e81e5249dca722178c6b1a9ee3697bf8b3038",
+  "source_validation": [
+    {
+      "figure_id": "Fig. 3",
+      "source": "manuscript/figures/fig3_controlled_ablation_source.csv",
+      "sha256": "23e2984adac08ebd6584e1c8d56f82d3cdd0dfb9e5e32047d5064481076d21dc",
+      "headers": ["Variant", "Seed", "F1", "AP50", "AP75"],
+      "row_count": 8,
+      "numerical_token_count": 40,
+      "validation_status": "pass"
+    },
+    {
+      "figure_id": "Fig. 4",
+      "source": "manuscript/figures/fig4_missing_modality_source.csv",
+      "sha256": "aea82341ac37547ece40428e56bd3d98fabf299304a4b24067a7705eaf642fde",
+      "headers": ["Variant", "Seed", "Condition", "AP50"],
+      "row_count": 18,
+      "numerical_token_count": 55,
+      "validation_status": "pass"
+    },
+    {
+      "figure_id": "Fig. 5",
+      "source": "manuscript/figures/fig5_reliability_weight_source.csv",
+      "sha256": "ef93dca475e9a1fa704856952951fbe47ebb701c9e559ea60abf46d861a1239c",
+      "headers": ["Seed", "Mode", "alpha_rgb_mean", "alpha_thermal_mean", "alpha_event_mean", "alpha_rgb_std", "alpha_thermal_std", "alpha_event_std"],
+      "row_count": 8,
+      "numerical_token_count": 56,
+      "validation_status": "pass"
+    }
+  ],
+  "local_candidates": [
+    {
+      "figure_id": "Fig. 3",
+      "path": "runs/local_candidate_figures/phase7e/Fig3_controlled_ablation_candidate.pdf",
+      "bytes": 27440,
+      "local_only_status": "ignored and intentionally untracked",
+      "final_asset_status": "not_final"
+    },
+    {
+      "figure_id": "Fig. 4",
+      "path": "runs/local_candidate_figures/phase7e/Fig4_missing_modality_robustness_candidate.pdf",
+      "bytes": 26852,
+      "local_only_status": "ignored and intentionally untracked",
+      "final_asset_status": "not_final"
+    },
+    {
+      "figure_id": "Fig. 5",
+      "path": "runs/local_candidate_figures/phase7e/Fig5_reliability_weight_audit_candidate.pdf",
+      "bytes": 25510,
+      "local_only_status": "ignored and intentionally untracked",
+      "final_asset_status": "not_final"
+    }
+  ],
+  "local_json_manifest": {
+    "path": "runs/local_candidate_figures/phase7e/candidate_render_manifest.json",
+    "bytes": 2548,
+    "final_asset_status": "not_final",
+    "local_only_status": "ignored and intentionally untracked"
+  },
+  "visual_design_conformance": [
+    "Fig. 3 uses three labeled panels for F1@0.50, AP50, and AP75; both seeds are shown as distinct points; no error bars or significance marks are drawn.",
+    "Fig. 4 shows all 18 source rows once as condition/variant/seed points on an AP50 axis; thermal-removal weakness remains visible.",
+    "Fig. 5 uses two seed panels with alpha_rgb, alpha_thermal, and alpha_event means; provided std columns are used only as labeled +/- std variability bars.",
+    "Each candidate PDF includes visible CANDIDATE — NOT FINAL text plus source path and SHA256 provenance."
+  ],
+  "non_modification_confirmation": [
+    "Source CSVs, metrics, models, datasets, splits, checkpoints, final assets, SIVP LaTeX body, and final PDFs were unchanged.",
+    "No Fig. 1, Fig. 2, Fig. 6, final Fig. 1-6 PDF, qualitative panel, model output, GPU inference, training, metric recomputation, split mutation, source-data mutation, or LaTeX compilation was run."
+  ],
+  "command_outcomes": [
+    "git switch research/ra-repdet-triair: PASS",
+    "git pull --ff-only research research/ra-repdet-triair: PASS",
+    "git status --short: PASS; unrelated pre-existing untracked files remain outside this task",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings before Phase 7E edits",
+    "python submission/sivp/figures/figure_candidate_build.py --dry-run --root .: PASS before rendering",
+    "python -m py_compile submission/sivp/figures/figure_candidate_build.py: PASS",
+    "git check-ignore -v candidate paths: PASS after adding .gitignore rule",
+    "python submission/sivp/figures/figure_candidate_build.py --render-candidates --root . --output-dir runs/local_candidate_figures/phase7e: PASS",
+    "python submission/sivp/figures/figure_candidate_build.py --dry-run --root .: PASS after rendering",
+    "pdftotext provenance check: PASS for all three candidate PDFs",
+    "python -m py_compile submission/sivp/figures/figure_candidate_build.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py: PASS",
+    "python rarepdet/tools/generate_handoff.py: PASS",
+    "python rarepdet/tools/update_project_status.py: PASS",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings after Phase 7E",
+    "python scripts/preflight_submission.py --root .: FAIL as expected on unresolved author metadata, final artwork placeholders, release/data placeholders, and missing Fig. 1-6 assets"
+  ],
+  "changed_files": [
+    ".gitignore",
+    "docs/EXPERIMENT_STATUS.md",
+    "docs/TASK_BLOCKER.md",
+    "runs/handoff_latest.md",
+    "runs/handoff_latest.json",
+    "runs/phase7e_candidate_render_report.md",
+    "runs/phase7e_candidate_render_report.json",
+    "submission/sivp/figures/figure_candidate_build.py",
+    "submission/sivp/figures/FIGURE_BUILD_SPEC.md",
+    "submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md",
+    "submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.csv",
+    "submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md",
+    "submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.csv",
+    "rarepdet/tools/generate_handoff.py",
+    "rarepdet/tools/update_project_status.py"
+  ],
+  "local_uncommitted_outputs": [
+    "runs/local_candidate_figures/phase7e/Fig3_controlled_ablation_candidate.pdf",
+    "runs/local_candidate_figures/phase7e/Fig4_missing_modality_robustness_candidate.pdf",
+    "runs/local_candidate_figures/phase7e/Fig5_reliability_weight_audit_candidate.pdf",
+    "runs/local_candidate_figures/phase7e/candidate_render_manifest.json"
+  ],
+  "residual_blockers": [
+    "candidate Fig. 3-5 PDFs await author review and are not publication assets",
+    "final approved Fig. 1-6 assets are still missing",
+    "Fig. 1-2 require author-approved schematic/Visio-style design sources",
+    "Fig. 6 requires verified local real validation panel inventory and author-approved selection",
+    "author-confirmed metadata and declarations are missing",
+    "TriAir citation, version, licence, access, and redistribution facts are missing",
+    "public release/archive URL, tag, commit/archive hash, date, licence, and DOI facts are missing",
+    "validation-only wording approval or independent held-out evidence decision is missing",
+    "final hardware/software environment record is missing",
+    "strict V18 preflight and final Springer sn-jnl compile remain blocked"
+  ],
+  "decision": "LOCAL NON-FINAL FIG. 3-5 CANDIDATES GENERATED FOR AUTHOR REVIEW; FINAL FIGURE AND EXTERNAL AUTHOR/METADATA BLOCKERS REMAIN OPEN",
+  "final_commit_sha": "pending until completion commit is created"
+}

@@ -10,6 +10,14 @@ Phase 7D locks sources and build rules for the six SIVP figures. It does not gen
 - Candidate files, rendered images, PDFs, SVGs, JPGs, PNGs, EPS files, local qualitative panels, final `Fig1`-`Fig6` PDFs, and final compiled PDFs must not be committed unless a later task explicitly approves final assets.
 - Visual integrity rules: no data interpolation; no redrawing detection outputs; no synthetic qualitative panels; no unstated statistical error bars; no visual manipulation that changes interpretation; no omission of thermal-removal weakness; no promotion of legacy random-split E-runs as the manuscript headline.
 
+## Phase 7E Local Candidate Render Policy
+
+- Local review-only candidate PDFs for Fig. 3, Fig. 4, and Fig. 5 may be generated only under `runs/local_candidate_figures/phase7e/`.
+- Required local-only outputs are `Fig3_controlled_ablation_candidate.pdf`, `Fig4_missing_modality_robustness_candidate.pdf`, `Fig5_reliability_weight_audit_candidate.pdf`, and `candidate_render_manifest.json`.
+- Each PDF must visibly state `CANDIDATE — NOT FINAL`, include the source CSV path and SHA256, and preserve all source rows according to the figure-specific rules below.
+- These local candidates are not final artwork, not publication assets, not author-approved, and must not be copied to `submission/sivp/figures/`, `figures/`, or `manuscript/figures/`.
+- The SIVP LaTeX body must keep the existing `Final artwork pending` placeholders until final author-approved assets exist.
+
 ## Fig. 1 Overall Architecture
 
 - Target asset: `Fig1_overall_architecture.pdf`.
@@ -44,6 +52,7 @@ Phase 7D locks sources and build rules for the six SIVP figures. It does not gen
 - Candidate plot plan: three-panel grouped point/bar comparison; x-axis is variant (`R0 Early Fusion`, `R1 Reliability p=0.00`, `R2 Reliability p=0.15`, `R4 Reliability p=0.20`); seed 0 and seed 2 are shown as legend entries or overlaid points; y-axis units are F1@0.50, AP50, and AP75 in unitless [0, 1] metric units.
 - Error-bar policy: no statistical error bars. If an aggregate appears, show seed points and optionally a min-max whisker labeled only as the two-seed range.
 - Source-to-panel mapping: `F1` to panel A, `AP50` to panel B, and `AP75` to panel C.
+- Phase 7E local candidate design: three labeled panels `(a) F1@0.50`, `(b) AP50`, and `(c) AP75`; both seeds appear as distinct overlaid points for every variant and metric; no mean line, error bar, p-value, or significance mark is drawn.
 
 ## Fig. 4 Missing-Modality Robustness
 
@@ -58,6 +67,7 @@ Phase 7D locks sources and build rules for the six SIVP figures. It does not gen
 - Legend entries: R1 seed 0/2, R2 seed 0/2, R4 seed 0/2; alternatively variant means with seed points overlaid.
 - Error-bar policy: no statistical error bars. Optional min-max whiskers must be labeled as the two-seed range.
 - Source-to-panel mapping: the three condition values can be separate panels or x-axis groups, but every CSV row must remain represented.
+- Phase 7E local candidate design: all 18 rows appear exactly once as seed points, grouped by condition and variant. The thermal-removal weakness remains visible on the same AP50 scale as the other conditions.
 
 ## Fig. 5 Reliability-Weight Audit
 
@@ -72,6 +82,7 @@ Phase 7D locks sources and build rules for the six SIVP figures. It does not gen
 - Legend entries: `alpha_rgb`, `alpha_thermal`, `alpha_event`.
 - Error-bar policy: use only the provided `alpha_*_std` columns if variability bars are shown. Do not infer confidence intervals or statistical significance.
 - Source-to-panel mapping: mean columns map to plotted point/bar heights; std columns map only to explicitly labeled variability bars.
+- Phase 7E local candidate design: two panels, one per seed; each source row appears as a mode group with `alpha_rgb`, `alpha_thermal`, and `alpha_event` bars; the provided std columns are shown only as labeled `+/- std` variability bars.
 
 ## Fig. 6 Qualitative Detection Panels
 

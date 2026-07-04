@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-07-04T13:00:50
+Generated: 2026-07-04T14:48:29
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Publication headline model
@@ -91,8 +91,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7D - Candidate Figure Source Lock and Build Specification
-- Goal: Prepare a reproducible, evidence-locked build specification for the six SIVP figures without generating, committing, or inserting final figure files.
+- Current Task: Phase 7E - Local Non-Final Candidate Renders for Fig. 3-5
+- Goal: Create reproducible, local-only candidate renders for Fig. 3, Fig. 4, and Fig. 5 for author review, without committing candidate PDFs or inserting final figure assets.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -328,7 +328,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Template/LaTeX source files: 16
 - Metadata template files: 8
-- Review/audit files: 10
+- Review/audit files: 12
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
 
 ## Phase 7B outputs
@@ -360,11 +360,21 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Review-check rows: 10
 - Decision: FIGURE SOURCES LOCKED; CANDIDATE BUILD SPEC READY FOR FIG. 3-5; STRICT PREFLIGHT REMAINS BLOCKED BY FINAL FIGURE AND EXTERNAL AUTHOR/METADATA INPUTS
 
+## Phase 7E outputs
+
+- Candidate render report: `runs/phase7e_candidate_render_report.md`
+- Candidate render JSON: `runs/phase7e_candidate_render_report.json`
+- Candidate render manifest: `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md` and `.csv`
+- Candidate render check: `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md` and `.csv`
+- Manifest rows: 6
+- Render-check rows: 13
+- Decision: LOCAL NON-FINAL FIG. 3-5 CANDIDATES GENERATED FOR AUTHOR REVIEW; FINAL FIGURE AND EXTERNAL AUTHOR/METADATA BLOCKERS REMAIN OPEN
+
 
 ## Pending tasks
 
 - Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved Fig. 1-6 assets, final environment record, and final compile readiness are supplied.
-- Fig. 3-5 now have evidence-locked candidate build specifications from frozen CSV sources, but no final artwork or candidate artwork has been generated.
+- Local non-final Fig. 3-5 candidate PDFs exist under runs/local_candidate_figures/phase7e/ for author review only and remain ignored/untracked.
 - Fig. 1-2 still require author-approved schematic design sources, and Fig. 6 still requires verified local real validation panels.
 - Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders and final figures are approved.
 
@@ -387,6 +397,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 7B reconciles publication-state documentation only; it does not change metrics, checkpoints, splits, source data, or model code.
 - Phase 7C inserts table assets only from frozen source CSVs; it does not change metrics, source evidence, checkpoints, splits, source data, or model code.
 - Phase 7D locks figure sources and candidate-build specifications only; it does not generate or approve final figure artwork.
+- Phase 7E generates local ignored Fig. 3-5 candidate PDFs for author review only; they are not final assets and are not inserted into LaTeX.
 
 ## Important research decisions
 
@@ -410,6 +421,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 7B final-submission ledger is the closure checklist for strict V18 preflight blockers.
 - Phase 7C removes final table placeholders by inserting evidence-locked table fragments; final figure and author/metadata blockers remain external.
 - Phase 7D distinguishes author-design Fig. 1-2, frozen-CSV candidate-spec Fig. 3-5, and local-panel-dependent Fig. 6 without changing final artwork placeholders.
+- Phase 7E local Fig. 3-5 candidate renders await author review; final Fig. 1-6 assets remain missing until approved PDFs are supplied.
 
 ## Files or scripts currently under review
 
@@ -426,5 +438,6 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - `rarepdet/tools/build_clean_block64_summary.py`
 - `submission/sivp/figures/figure_candidate_build.py`
 - `runs/phase7d_figure_source_lock_report.md`
+- `runs/phase7e_candidate_render_report.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`

@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-04T13:00:50
+Generated: 2026-07-04T14:48:29
 Workspace: `E:\RepViT-main`
 
 ## Publication Headline
@@ -13,9 +13,9 @@ Workspace: `E:\RepViT-main`
 ## Current Active Task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7D — Candidate Figure Source Lock and Build Specification
-- Goal: Prepare a reproducible, evidence-locked build specification for the six SIVP figures without generating, committing, or inserting final figure files. The task must distinguish figures that can be built from frozen project evidence (Fig. 3–5), the qualitative-panel dependency (Fig. 6), and figures that require author-approved visual design or Visio source (Fig. 1–2).
-- Commit Message: `docs: lock figure sources and candidate build spec`
+- Current Task: Phase 7E — Local Non-Final Candidate Renders for Fig. 3–5
+- Goal: Create reproducible, local-only candidate renders for the three quantitative figures whose sources are frozen and validated: Fig. 3, Fig. 4, and Fig. 5. These outputs are strictly for author review. They must be visibly marked **CANDIDATE — NOT FINAL**, remain untracked, and must not be inserted into the SIVP LaTeX body or treated as approved publication assets.
+- Commit Message: `docs: add local candidate renders for figures 3-5`
 
 ## Dataset
 
@@ -159,7 +159,7 @@ Workspace: `E:\RepViT-main`
 - Phase 6B report: `runs/phase6b_sivp_preparation_report.md`
 - Template/LaTeX source files: 16
 - Metadata template files: 8
-- Review/audit files: 10
+- Review/audit files: 12
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
@@ -210,6 +210,22 @@ Workspace: `E:\RepViT-main`
 - Final commit SHA: pending until completion commit is created
 - Phase 7D status: figure sources locked; candidate build spec ready for Fig. 3-5; strict preflight remains blocked by final figure and external author/metadata inputs.
 
+## Phase 7E Local Candidate Renders
+
+- Candidate render report: `runs/phase7e_candidate_render_report.md`
+- Candidate render JSON: `runs/phase7e_candidate_render_report.json`
+- Candidate render manifest: `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md` and `.csv`
+- Candidate render check: `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md` and `.csv`
+- Manifest rows: 6
+- Render-check rows: 13
+- Local candidates: Fig. 3=runs/local_candidate_figures/phase7e/Fig3_controlled_ablation_candidate.pdf (27440 bytes, not_final); Fig. 4=runs/local_candidate_figures/phase7e/Fig4_missing_modality_robustness_candidate.pdf (26852 bytes, not_final); Fig. 5=runs/local_candidate_figures/phase7e/Fig5_reliability_weight_audit_candidate.pdf (25510 bytes, not_final)
+- Local uncommitted outputs: `runs/local_candidate_figures/phase7e/Fig3_controlled_ablation_candidate.pdf`, `runs/local_candidate_figures/phase7e/Fig4_missing_modality_robustness_candidate.pdf`, `runs/local_candidate_figures/phase7e/Fig5_reliability_weight_audit_candidate.pdf`, `runs/local_candidate_figures/phase7e/candidate_render_manifest.json`
+- Command outcomes: git switch research/ra-repdet-triair: PASS; git pull --ff-only research research/ra-repdet-triair: PASS; git status --short: PASS; unrelated pre-existing untracked files remain outside this task; python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings before Phase 7E edits; python submission/sivp/figures/figure_candidate_build.py --dry-run --root .: PASS before rendering; python -m py_compile submission/sivp/figures/figure_candidate_build.py: PASS; git check-ignore -v candidate paths: PASS after adding .gitignore rule; python submission/sivp/figures/figure_candidate_build.py --render-candidates --root . --output-dir runs/local_candidate_figures/phase7e: PASS; python submission/sivp/figures/figure_candidate_build.py --dry-run --root .: PASS after rendering; pdftotext provenance check: PASS for all three candidate PDFs; python -m py_compile submission/sivp/figures/figure_candidate_build.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py: PASS; python rarepdet/tools/generate_handoff.py: PASS; python rarepdet/tools/update_project_status.py: PASS; python scripts/preflight_submission.py --root . --allow-placeholders: PASS with expected warnings after Phase 7E; python scripts/preflight_submission.py --root .: FAIL as expected on unresolved author metadata, final artwork placeholders, release/data placeholders, and missing Fig. 1-6 assets
+- Phase 7E changed files: `.gitignore`, `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, `runs/handoff_latest.md`, `runs/handoff_latest.json`, `runs/phase7e_candidate_render_report.md`, `runs/phase7e_candidate_render_report.json`, `submission/sivp/figures/figure_candidate_build.py`, `submission/sivp/figures/FIGURE_BUILD_SPEC.md`, `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md`, `submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.csv`, `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md`, `submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.csv`, `rarepdet/tools/generate_handoff.py`, `rarepdet/tools/update_project_status.py`
+- Residual blockers: candidate Fig. 3-5 PDFs await author review and are not publication assets; final approved Fig. 1-6 assets are still missing; Fig. 1-2 require author-approved schematic/Visio-style design sources; Fig. 6 requires verified local real validation panel inventory and author-approved selection; author-confirmed metadata and declarations are missing; TriAir citation, version, licence, access, and redistribution facts are missing; public release/archive URL, tag, commit/archive hash, date, licence, and DOI facts are missing; validation-only wording approval or independent held-out evidence decision is missing; final hardware/software environment record is missing; strict V18 preflight and final Springer sn-jnl compile remain blocked
+- Final commit SHA: pending until completion commit is created
+- Phase 7E status: local non-final Fig. 3-5 candidates generated for author review; strict preflight remains blocked by final figure and external author/metadata inputs.
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -233,33 +249,33 @@ Workspace: `E:\RepViT-main`
 ## Current Pending Experiments
 
 - Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved Fig. 1-6 assets, final environment record, and final compile readiness are supplied.
-- Fig. 3-5 now have evidence-locked candidate build specifications from frozen CSV sources, but no final artwork or candidate artwork has been generated.
+- Local non-final Fig. 3-5 candidate PDFs exist under runs/local_candidate_figures/phase7e/ for author review only and remain ignored/untracked.
 - Fig. 1-2 still require author-approved schematic design sources, and Fig. 6 still requires verified local real validation panels.
 - Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders and final figures are approved.
 
 ## Recently Modified Files
 
-- `M docs/EXPERIMENT_STATUS.md`
+- `M .gitignore`
+- ` M docs/EXPERIMENT_STATUS.md`
 - ` M docs/TASK_BLOCKER.md`
 - ` M rarepdet/tools/generate_handoff.py`
 - ` M rarepdet/tools/update_project_status.py`
 - ` M runs/handoff_latest.json`
 - ` M runs/handoff_latest.md`
-- ` M submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
+- `A  runs/phase7e_candidate_render_report.json`
+- ` M submission/sivp/figures/FIGURE_BUILD_SPEC.md`
+- ` M submission/sivp/figures/figure_candidate_build.py`
 - `?? runs/component_disjoint_candidates/`
-- `?? runs/phase7d_figure_source_lock_report.json`
-- `?? runs/phase7d_figure_source_lock_report.md`
+- `?? runs/phase7e_candidate_render_report.md`
 - `?? runs/v39_component_disjoint/`
-- `?? submission/sivp/figures/FIGURE_BUILD_SPEC.md`
-- `?? submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.csv`
-- `?? submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md`
-- `?? submission/sivp/figures/figure_candidate_build.py`
-- `?? submission/sivp/review/FIGURE_CANDIDATE_CHECK.csv`
-- `?? submission/sivp/review/FIGURE_CANDIDATE_CHECK.md`
+- `?? submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.csv`
+- `?? submission/sivp/figures/FIGURE_CANDIDATE_RENDER_MANIFEST.md`
+- `?? submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.csv`
+- `?? submission/sivp/review/FIGURE_CANDIDATE_RENDER_CHECK.md`
 
 ## Next Recommended Tasks
 
+- Review the local Fig. 3-5 candidate PDFs with the authors and collect approval or requested edits.
 - Collect author-approved Fig. 1-2 schematic designs and verify Fig. 6 local qualitative panel selections.
-- If separately approved, render only local untracked *_candidate.* Fig. 3-5 candidates outside the final asset path for author review.
 - Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and final approved Fig. 1-6 assets.
 - Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.
