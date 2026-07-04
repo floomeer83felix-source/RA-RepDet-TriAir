@@ -7,9 +7,9 @@ This file is a forward task queue. It is not the active execution entry point. C
 
 ## Current Active Task
 
-- `docs/NEXT_TASK.md`: Phase 7J - Conditional Application of Confirmed Authorship and Declarations.
-- Trigger: run only when at least one `author_metadata` or `declarations` row is `eligible_for_future_guarded_application` in `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv`.
-- Current known state: 29 unresolved rows and zero eligible rows; do not execute source application until author confirmations are supplied.
+- `docs/NEXT_TASK.md`: Manuscript Draft A — Evidence-Locked SIVP First Draft.
+- Scope: write and evidence-audit the manuscript title, abstract, and body while retaining author/declaration placeholders, all frozen tables, six final-artwork-pending figure placeholders, and every external submission blocker.
+- This editorial task is independent of the conditional author-input workflow. It does not authorize applying author metadata or declarations.
 
 ## Queue Discipline
 
@@ -19,6 +19,20 @@ This file is a forward task queue. It is not the active execution entry point. C
 - Do not fabricate author metadata, data-governance facts, release URLs, DOIs, approvals, environment facts, or figure decisions.
 - Do not run training, GPU inference, metric recomputation, split mutation, source-data mutation, network access, or LaTeX compilation unless a promoted task explicitly allows it.
 - Treat `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.*` as a future-planning artifact only. It is not authorization to apply values.
+- Treat Manuscript Draft A as a writing artifact, not a final or submission-ready package.
+
+---
+
+## Manuscript Draft A — Evidence-Locked SIVP First Draft
+
+### Trigger
+Run now. Frozen evidence, inserted tables, existing citation keys, and draft source files are already available.
+
+### Allowed Scope
+Revise the three mirrored main files and the SIVP body to form a coherent English first draft. Preserve author/declaration placeholders, all final-figure placeholders, frozen metrics, tables, labels, and existing citations.
+
+### Cannot Run Until
+No external confirmation is required to write a first draft. However, Draft A may not fill author information, declarations, data governance, release/archive metadata, environment facts, final figures, or claim-scope decisions.
 
 ---
 
