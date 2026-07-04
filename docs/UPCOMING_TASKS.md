@@ -7,7 +7,9 @@ This file is a forward task queue. It is not the active execution entry point. C
 
 ## Current Active Task
 
-- `docs/NEXT_TASK.md`: Phase 7I - Confirmation-Gated Submission Update Planning.
+- `docs/NEXT_TASK.md`: Phase 7J - Conditional Application of Confirmed Authorship and Declarations.
+- Trigger: run only when at least one `author_metadata` or `declarations` row is `eligible_for_future_guarded_application` in `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv`.
+- Current known state: 29 unresolved rows and zero eligible rows; do not execute source application until author confirmations are supplied.
 
 ## Queue Discipline
 
