@@ -1,0 +1,11 @@
+check_id,scope,status,evidence,notes
+figure_traceability_rows,Fig. 1-6,pass,FIGURE_SOURCE_TRACEABILITY.csv contains 6 rows,Each figure has exactly one traceability row.
+fig3_source_verified,Fig. 3,pass,"path=manuscript/figures/fig3_controlled_ablation_source.csv; headers=Variant|Seed|F1|AP50|AP75; rows=8; numerical_tokens=40; sha256=23e2984adac08ebd6584e1c8d56f82d3cdd0dfb9e5e32047d5064481076d21dc",Verified by dry-run script.
+fig4_source_verified,Fig. 4,pass,"path=manuscript/figures/fig4_missing_modality_source.csv; headers=Variant|Seed|Condition|AP50; rows=18; numerical_tokens=55; sha256=aea82341ac37547ece40428e56bd3d98fabf299304a4b24067a7705eaf642fde",Verified by dry-run script.
+fig5_source_verified,Fig. 5,pass,"path=manuscript/figures/fig5_reliability_weight_source.csv; headers=Seed|Mode|alpha_rgb_mean|alpha_thermal_mean|alpha_event_mean|alpha_rgb_std|alpha_thermal_std|alpha_event_std; rows=8; numerical_tokens=56; sha256=ef93dca475e9a1fa704856952951fbe47ebb701c9e559ea60abf46d861a1239c",Verified by dry-run script.
+fig1_fig2_not_final,Fig. 1-2,pass,"current_state=author-design required; author_approval_required=yes",Not represented as approved or final.
+fig6_not_generated,Fig. 6,pass,"current_state=local-panel inventory required; manifest rows=20; manifest sha256=966a81923d5a91bd4d65578e7d607bc989769bad37489b90e56df76724989608",Not represented as generated without real local panels.
+no_final_pdf_assets,Fig. 1-6,pass,"no final Fig1-Fig6 PDFs exist under figures/ or submission/sivp/figures/",This task does not add final figure PDFs.
+dry_run_no_artifacts,Fig. 3-5,pass,"figure_candidate_build.py --dry-run validates sources only and writes no PDF/PNG/SVG/JPG/EPS output",No image/PDF artifact was written by dry run.
+body_placeholders_retained,SIVP body,pass,"submission/sivp/tex/ra_repdet_sivp.tex still contains six Final artwork pending figure placeholders",Expected for Phase 7D.
+strict_preflight_expected_fail,preflight,pass,"strict preflight remains expected to fail on figure assets and external author/metadata inputs",Do not claim final submission readiness.

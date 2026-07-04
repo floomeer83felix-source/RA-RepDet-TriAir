@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-07-04T12:23:26
+Generated: 2026-07-04T13:00:50
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Publication headline model
@@ -91,8 +91,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7C - Evidence-Locked SIVP Table Insertion
-- Goal: Replace seven SIVP table placeholders with publication-ready LaTeX fragments generated only from the existing frozen manuscript/table CSV evidence.
+- Current Task: Phase 7D - Candidate Figure Source Lock and Build Specification
+- Goal: Prepare a reproducible, evidence-locked build specification for the six SIVP figures without generating, committing, or inserting final figure files.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -328,7 +328,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Template/LaTeX source files: 16
 - Metadata template files: 8
-- Review/audit files: 8
+- Review/audit files: 10
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
 
 ## Phase 7B outputs
@@ -349,11 +349,23 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Rendering-check rows: 14
 - Decision: TABLE PLACEHOLDERS REMOVED; STRICT PREFLIGHT REMAINS BLOCKED BY NON-TABLE AUTHOR/ASSET INPUTS
 
+## Phase 7D outputs
+
+- Figure source-lock report: `runs/phase7d_figure_source_lock_report.md`
+- Figure source-lock JSON: `runs/phase7d_figure_source_lock_report.json`
+- Figure traceability: `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md` and `.csv`
+- Figure build spec: `submission/sivp/figures/FIGURE_BUILD_SPEC.md`
+- Figure candidate check: `submission/sivp/review/FIGURE_CANDIDATE_CHECK.md` and `.csv`
+- Traceability rows: 6
+- Review-check rows: 10
+- Decision: FIGURE SOURCES LOCKED; CANDIDATE BUILD SPEC READY FOR FIG. 3-5; STRICT PREFLIGHT REMAINS BLOCKED BY FINAL FIGURE AND EXTERNAL AUTHOR/METADATA INPUTS
+
 
 ## Pending tasks
 
-- Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved figures, final environment record, and final compile readiness are supplied.
-- Final table placeholders have been removed and replaced with evidence-locked table fragments from unchanged manuscript/table CSV sources.
+- Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved Fig. 1-6 assets, final environment record, and final compile readiness are supplied.
+- Fig. 3-5 now have evidence-locked candidate build specifications from frozen CSV sources, but no final artwork or candidate artwork has been generated.
+- Fig. 1-2 still require author-approved schematic design sources, and Fig. 6 still requires verified local real validation panels.
 - Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders and final figures are approved.
 
 ## Known metric caveats
@@ -374,6 +386,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 7A is an asset-readiness and metadata-intake phase; it must not change clean-split metrics or retrain models.
 - Phase 7B reconciles publication-state documentation only; it does not change metrics, checkpoints, splits, source data, or model code.
 - Phase 7C inserts table assets only from frozen source CSVs; it does not change metrics, source evidence, checkpoints, splits, source data, or model code.
+- Phase 7D locks figure sources and candidate-build specifications only; it does not generate or approve final figure artwork.
 
 ## Important research decisions
 
@@ -396,6 +409,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 7A starts from the completed Phase 6B SIVP source skeleton and should replace placeholders only after author approval.
 - Phase 7B final-submission ledger is the closure checklist for strict V18 preflight blockers.
 - Phase 7C removes final table placeholders by inserting evidence-locked table fragments; final figure and author/metadata blockers remain external.
+- Phase 7D distinguishes author-design Fig. 1-2, frozen-CSV candidate-spec Fig. 3-5, and local-panel-dependent Fig. 6 without changing final artwork placeholders.
 
 ## Files or scripts currently under review
 
@@ -410,5 +424,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - `rarepdet/tools/build_rgb_separation_subsets.py`
 - `rarepdet/tools/validate_clean_block64_protocol.py`
 - `rarepdet/tools/build_clean_block64_summary.py`
+- `submission/sivp/figures/figure_candidate_build.py`
+- `runs/phase7d_figure_source_lock_report.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`

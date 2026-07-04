@@ -38,6 +38,13 @@ PHASE7C_REPORT_MD = RUNS_DIR / "phase7c_table_insertion_report.md"
 PHASE7C_REPORT_JSON = RUNS_DIR / "phase7c_table_insertion_report.json"
 PHASE7C_RENDER_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "TABLE_RENDERING_CHECK.md"
 PHASE7C_TRACEABILITY_MD = PROJECT_ROOT / "submission" / "sivp" / "tables" / "TABLE_SOURCE_TRACEABILITY.md"
+PHASE7D_REPORT_MD = RUNS_DIR / "phase7d_figure_source_lock_report.md"
+PHASE7D_REPORT_JSON = RUNS_DIR / "phase7d_figure_source_lock_report.json"
+PHASE7D_TRACEABILITY_MD = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_SOURCE_TRACEABILITY.md"
+PHASE7D_TRACEABILITY_CSV = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_SOURCE_TRACEABILITY.csv"
+PHASE7D_BUILD_SPEC_MD = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_BUILD_SPEC.md"
+PHASE7D_REVIEW_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_CHECK.md"
+PHASE7D_REVIEW_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -479,6 +486,32 @@ def collect_phase7c():
     }
 
 
+def collect_phase7d():
+    report_data = {}
+    if PHASE7D_REPORT_JSON.exists():
+        try:
+            report_data = json.loads(PHASE7D_REPORT_JSON.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            report_data = {"json_error": "Could not parse phase7d report JSON."}
+    return {
+        "report": str(PHASE7D_REPORT_MD) if PHASE7D_REPORT_MD.exists() else None,
+        "report_json": str(PHASE7D_REPORT_JSON) if PHASE7D_REPORT_JSON.exists() else None,
+        "traceability": str(PHASE7D_TRACEABILITY_MD) if PHASE7D_TRACEABILITY_MD.exists() else None,
+        "traceability_csv": str(PHASE7D_TRACEABILITY_CSV) if PHASE7D_TRACEABILITY_CSV.exists() else None,
+        "build_spec": str(PHASE7D_BUILD_SPEC_MD) if PHASE7D_BUILD_SPEC_MD.exists() else None,
+        "review_check": str(PHASE7D_REVIEW_CHECK_MD) if PHASE7D_REVIEW_CHECK_MD.exists() else None,
+        "review_check_csv": str(PHASE7D_REVIEW_CHECK_CSV) if PHASE7D_REVIEW_CHECK_CSV.exists() else None,
+        "traceability_rows": count_csv_rows(PHASE7D_TRACEABILITY_CSV),
+        "review_check_rows": count_csv_rows(PHASE7D_REVIEW_CHECK_CSV),
+        "figure_readiness": report_data.get("figure_readiness", []),
+        "dry_run_result": report_data.get("dry_run_result", {}),
+        "command_outcomes": report_data.get("command_outcomes", []),
+        "changed_files": report_data.get("changed_files", []),
+        "residual_blockers": report_data.get("residual_blockers", []),
+        "final_commit_sha": report_data.get("final_commit_sha", "pending until commit is created"),
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -509,6 +542,7 @@ def build_handoff():
     phase6b = collect_phase6b()
     phase7b = collect_phase7b()
     phase7c = collect_phase7c()
+    phase7d = collect_phase7d()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -570,6 +604,19 @@ def build_handoff():
             "Rerun strict V18 preflight after the remaining ledger blockers are closed.",
             "Compile the final Springer sn-jnl PDF only after strict preflight passes.",
         ]
+    if phase7d["report"] or "Phase 7D" in read_text(NEXT_TASK_PATH):
+        pending = [
+            "Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved Fig. 1-6 assets, final environment record, and final compile readiness are supplied.",
+            "Fig. 3-5 now have evidence-locked candidate build specifications from frozen CSV sources, but no final artwork or candidate artwork has been generated.",
+            "Fig. 1-2 still require author-approved schematic design sources, and Fig. 6 still requires verified local real validation panels.",
+            "Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders and final figures are approved.",
+        ]
+        next_tasks = [
+            "Collect author-approved Fig. 1-2 schematic designs and verify Fig. 6 local qualitative panel selections.",
+            "If separately approved, render only local untracked *_candidate.* Fig. 3-5 candidates outside the final asset path for author review.",
+            "Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and final approved Fig. 1-6 assets.",
+            "Rerun strict V18 preflight and compile the final Springer sn-jnl PDF only after every remaining blocker is closed.",
+        ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -628,6 +675,7 @@ def build_handoff():
         "phase6b": phase6b,
         "phase7b": phase7b,
         "phase7c": phase7c,
+        "phase7d": phase7d,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -883,6 +931,50 @@ def write_markdown(data, path):
         ),
         f"- Final commit SHA: {data['phase7c']['final_commit_sha']}",
         "- Phase 7C status: table placeholders removed; strict preflight remains blocked by non-table external inputs.",
+        "",
+        "## Phase 7D Figure Source Lock",
+        "",
+        "- Figure source-lock report: `runs/phase7d_figure_source_lock_report.md`" if data["phase7d"]["report"] else "- Figure source-lock report: NA",
+        "- Figure source-lock JSON: `runs/phase7d_figure_source_lock_report.json`" if data["phase7d"]["report_json"] else "- Figure source-lock JSON: NA",
+        "- Figure traceability: `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md` and `.csv`"
+        if data["phase7d"]["traceability"] and data["phase7d"]["traceability_csv"]
+        else "- Figure traceability: NA",
+        "- Figure build spec: `submission/sivp/figures/FIGURE_BUILD_SPEC.md`" if data["phase7d"]["build_spec"] else "- Figure build spec: NA",
+        "- Figure candidate check: `submission/sivp/review/FIGURE_CANDIDATE_CHECK.md` and `.csv`"
+        if data["phase7d"]["review_check"] and data["phase7d"]["review_check_csv"]
+        else "- Figure candidate check: NA",
+        f"- Traceability rows: {data['phase7d']['traceability_rows']}",
+        f"- Review-check rows: {data['phase7d']['review_check_rows']}",
+        f"- Dry-run result: {data['phase7d']['dry_run_result'].get('status', 'pending')}",
+        "- Figure readiness states: "
+        + (
+            "; ".join(
+                f"{row.get('figure_id', 'NA')}={row.get('current_state', 'NA')}"
+                for row in data["phase7d"]["figure_readiness"]
+            )
+            if data["phase7d"]["figure_readiness"]
+            else "none recorded"
+        ),
+        "- Command outcomes: "
+        + (
+            "; ".join(data["phase7d"]["command_outcomes"])
+            if data["phase7d"]["command_outcomes"]
+            else "see report after Phase 7D commands are run"
+        ),
+        "- Phase 7D changed files: "
+        + (
+            ", ".join(f"`{item}`" for item in data["phase7d"]["changed_files"])
+            if data["phase7d"]["changed_files"]
+            else "see git diff for current task files"
+        ),
+        "- Residual blockers: "
+        + (
+            "; ".join(data["phase7d"]["residual_blockers"])
+            if data["phase7d"]["residual_blockers"]
+            else "none recorded"
+        ),
+        f"- Final commit SHA: {data['phase7d']['final_commit_sha']}",
+        "- Phase 7D status: figure sources locked; candidate build spec ready for Fig. 3-5; strict preflight remains blocked by final figure and external author/metadata inputs.",
         "",
         "## Model And Code Structure",
         "",

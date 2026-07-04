@@ -35,6 +35,13 @@ PHASE7C_TRACEABILITY_MD = PROJECT_ROOT / "submission" / "sivp" / "tables" / "TAB
 PHASE7C_TRACEABILITY_CSV = PROJECT_ROOT / "submission" / "sivp" / "tables" / "TABLE_SOURCE_TRACEABILITY.csv"
 PHASE7C_RENDER_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "TABLE_RENDERING_CHECK.md"
 PHASE7C_RENDER_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "TABLE_RENDERING_CHECK.csv"
+PHASE7D_REPORT = RUNS_DIR / "phase7d_figure_source_lock_report.md"
+PHASE7D_REPORT_JSON = RUNS_DIR / "phase7d_figure_source_lock_report.json"
+PHASE7D_TRACEABILITY_MD = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_SOURCE_TRACEABILITY.md"
+PHASE7D_TRACEABILITY_CSV = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_SOURCE_TRACEABILITY.csv"
+PHASE7D_BUILD_SPEC_MD = PROJECT_ROOT / "submission" / "sivp" / "figures" / "FIGURE_BUILD_SPEC.md"
+PHASE7D_REVIEW_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_CHECK.md"
+PHASE7D_REVIEW_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FIGURE_CANDIDATE_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -281,6 +288,13 @@ def build_status():
     phase7c_render_check_exists = PHASE7C_RENDER_CHECK_MD.exists() and PHASE7C_RENDER_CHECK_CSV.exists()
     phase7c_traceability_rows = count_csv_rows(PHASE7C_TRACEABILITY_CSV)
     phase7c_render_check_rows = count_csv_rows(PHASE7C_RENDER_CHECK_CSV)
+    phase7d_report_exists = PHASE7D_REPORT.exists()
+    phase7d_report_json_exists = PHASE7D_REPORT_JSON.exists()
+    phase7d_traceability_exists = PHASE7D_TRACEABILITY_MD.exists() and PHASE7D_TRACEABILITY_CSV.exists()
+    phase7d_build_spec_exists = PHASE7D_BUILD_SPEC_MD.exists()
+    phase7d_review_check_exists = PHASE7D_REVIEW_CHECK_MD.exists() and PHASE7D_REVIEW_CHECK_CSV.exists()
+    phase7d_traceability_rows = count_csv_rows(PHASE7D_TRACEABILITY_CSV)
+    phase7d_review_check_rows = count_csv_rows(PHASE7D_REVIEW_CHECK_CSV)
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -310,6 +324,18 @@ def build_status():
             if phase7c_report_exists and phase7c_report_json_exists and phase7c_traceability_exists and phase7c_render_check_exists
             else "pending"
         )
+    if "Phase 7D" in next_text:
+        active_status = (
+            "completed"
+            if (
+                phase7d_report_exists
+                and phase7d_report_json_exists
+                and phase7d_traceability_exists
+                and phase7d_build_spec_exists
+                and phase7d_review_check_exists
+            )
+            else "pending"
+        )
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -334,6 +360,8 @@ def build_status():
         current_task = "Phase 7B - Publication-State Reconciliation and Submission-Input Ledger"
     if "Phase 7C" in next_text:
         current_task = "Phase 7C - Evidence-Locked SIVP Table Insertion"
+    if "Phase 7D" in next_text:
+        current_task = "Phase 7D - Candidate Figure Source Lock and Build Specification"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -372,6 +400,11 @@ def build_status():
         current_goal = (
             "Replace seven SIVP table placeholders with publication-ready LaTeX fragments generated only from the "
             "existing frozen manuscript/table CSV evidence."
+        )
+    if "Phase 7D" in next_text:
+        current_goal = (
+            "Prepare a reproducible, evidence-locked build specification for the six SIVP figures without generating, "
+            "committing, or inserting final figure files."
         )
 
     lines = [
@@ -795,6 +828,19 @@ def build_status():
         f"- Rendering-check rows: {phase7c_render_check_rows if phase7c_render_check_exists else 'NA'}",
         "- Decision: TABLE PLACEHOLDERS REMOVED; STRICT PREFLIGHT REMAINS BLOCKED BY NON-TABLE AUTHOR/ASSET INPUTS" if phase7c_report_exists else "- Decision: NA",
         "",
+        "## Phase 7D outputs",
+        "",
+        "- Figure source-lock report: `runs/phase7d_figure_source_lock_report.md`" if phase7d_report_exists else "- Figure source-lock report: NA",
+        "- Figure source-lock JSON: `runs/phase7d_figure_source_lock_report.json`" if phase7d_report_json_exists else "- Figure source-lock JSON: NA",
+        "- Figure traceability: `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md` and `.csv`" if phase7d_traceability_exists else "- Figure traceability: NA",
+        "- Figure build spec: `submission/sivp/figures/FIGURE_BUILD_SPEC.md`" if phase7d_build_spec_exists else "- Figure build spec: NA",
+        "- Figure candidate check: `submission/sivp/review/FIGURE_CANDIDATE_CHECK.md` and `.csv`" if phase7d_review_check_exists else "- Figure candidate check: NA",
+        f"- Traceability rows: {phase7d_traceability_rows if phase7d_traceability_exists else 'NA'}",
+        f"- Review-check rows: {phase7d_review_check_rows if phase7d_review_check_exists else 'NA'}",
+        "- Decision: FIGURE SOURCES LOCKED; CANDIDATE BUILD SPEC READY FOR FIG. 3-5; STRICT PREFLIGHT REMAINS BLOCKED BY FINAL FIGURE AND EXTERNAL AUTHOR/METADATA INPUTS"
+        if phase7d_report_exists
+        else "- Decision: NA",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -821,6 +867,7 @@ def build_status():
         "- Phase 7A is an asset-readiness and metadata-intake phase; it must not change clean-split metrics or retrain models.",
         "- Phase 7B reconciles publication-state documentation only; it does not change metrics, checkpoints, splits, source data, or model code.",
         "- Phase 7C inserts table assets only from frozen source CSVs; it does not change metrics, source evidence, checkpoints, splits, source data, or model code.",
+        "- Phase 7D locks figure sources and candidate-build specifications only; it does not generate or approve final figure artwork.",
         "",
         "## Important research decisions",
         "",
@@ -843,6 +890,7 @@ def build_status():
         "- Phase 7A starts from the completed Phase 6B SIVP source skeleton and should replace placeholders only after author approval.",
         "- Phase 7B final-submission ledger is the closure checklist for strict V18 preflight blockers.",
         "- Phase 7C removes final table placeholders by inserting evidence-locked table fragments; final figure and author/metadata blockers remain external.",
+        "- Phase 7D distinguishes author-design Fig. 1-2, frozen-CSV candidate-spec Fig. 3-5, and local-panel-dependent Fig. 6 without changing final artwork placeholders.",
         "",
         "## Files or scripts currently under review",
         "",
@@ -857,6 +905,8 @@ def build_status():
         "- `rarepdet/tools/build_rgb_separation_subsets.py`",
         "- `rarepdet/tools/validate_clean_block64_protocol.py`",
         "- `rarepdet/tools/build_clean_block64_summary.py`",
+        "- `submission/sivp/figures/figure_candidate_build.py`",
+        "- `runs/phase7d_figure_source_lock_report.md`",
         "- `runs/handoff_latest.md`",
         "- `runs/handoff_latest.json`",
         "",
