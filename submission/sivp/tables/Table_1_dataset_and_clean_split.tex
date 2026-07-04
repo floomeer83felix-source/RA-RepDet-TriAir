@@ -1,0 +1,20 @@
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+Item & Value & Source & Notes \\
+\midrule
+All TriAir samples & 10489 & runs/handoff\_latest.md & All .npy samples are the dataset basis. \\
+Samples with label txt & 9751 & runs/handoff\_latest.md & Existing YOLO-format label files. \\
+Samples without label txt & 738 & runs/handoff\_latest.md & Treated as empty-target images. \\
+Empty label txt files & 1 & runs/handoff\_latest.md & Treated as empty-target images. \\
+Total valid boxes & 30634 & runs/handoff\_latest.md & Single class: vehicle. \\
+Random split exact RGB-matched validation samples & 153 & runs/phase3c\_report.md & Former random split is historical diagnostics only. \\
+Clean split candidate & block64\_guard16\_seed0 & runs/clean\_block64g16\_protocol.md & Frozen split used for headline evidence. \\
+Clean train images & 7439 & runs/clean\_block64g16\_protocol.md & Guard samples excluded. \\
+Clean validation images & 2213 & runs/clean\_block64g16\_protocol.md & Validation boxes = 5904. \\
+Guard images & 837 & runs/clean\_block64g16\_protocol.md & Excluded from train and validation. \\
+Clean exact RGB train/validation matches & 0 & runs/clean\_block64g16\_protocol.md & Required integrity check. \\
+Same-family guard violations & 0 & runs/clean\_block64g16\_protocol.md & Required integrity check. \\
+\bottomrule
+\end{tabular}%
+}

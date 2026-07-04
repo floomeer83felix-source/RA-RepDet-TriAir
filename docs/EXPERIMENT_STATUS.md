@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-07-04T11:23:19
+Generated: 2026-07-04T12:23:26
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Publication headline model
@@ -91,8 +91,8 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 ## Current active task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7B - Publication-State Reconciliation and Submission-Input Ledger
-- Goal: Reconcile the official clean blocked-split R4 manuscript headline with legacy random-split summaries and create the strict-preflight final-submission input ledger.
+- Current Task: Phase 7C - Evidence-Locked SIVP Table Insertion
+- Goal: Replace seven SIVP table placeholders with publication-ready LaTeX fragments generated only from the existing frozen manuscript/table CSV evidence.
 - Status: completed
 
 ## Phase 2B ACRF outputs
@@ -328,7 +328,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Template/LaTeX source files: 16
 - Metadata template files: 8
-- Review/audit files: 6
+- Review/audit files: 8
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
 
 ## Phase 7B outputs
@@ -339,12 +339,22 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Input ledger rows: 30
 - Decision: PUBLICATION-STATE MISMATCH RESOLVED; STRICT PREFLIGHT REMAINS BLOCKED BY AUTHOR/ASSET INPUTS
 
+## Phase 7C outputs
+
+- Table insertion report: `runs/phase7c_table_insertion_report.md`
+- Table insertion JSON: `runs/phase7c_table_insertion_report.json`
+- Source traceability: `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md` and `.csv`
+- Rendering check: `submission/sivp/review/TABLE_RENDERING_CHECK.md` and `.csv`
+- Traceability rows: 7
+- Rendering-check rows: 14
+- Decision: TABLE PLACEHOLDERS REMOVED; STRICT PREFLIGHT REMAINS BLOCKED BY NON-TABLE AUTHOR/ASSET INPUTS
+
 
 ## Pending tasks
 
-- Strict V18 preflight remains blocked until author-confirmed metadata, release metadata, TriAir licence/citation/access details, and final approved figure/table assets are supplied.
-- Use submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md and submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv as the closure checklist.
-- Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders.
+- Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved figures, final environment record, and final compile readiness are supplied.
+- Final table placeholders have been removed and replaced with evidence-locked table fragments from unchanged manuscript/table CSV sources.
+- Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders and final figures are approved.
 
 ## Known metric caveats
 
@@ -363,6 +373,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 6B dry-run compilation was skipped if the local LaTeX environment lacks required Springer dependencies.
 - Phase 7A is an asset-readiness and metadata-intake phase; it must not change clean-split metrics or retrain models.
 - Phase 7B reconciles publication-state documentation only; it does not change metrics, checkpoints, splits, source data, or model code.
+- Phase 7C inserts table assets only from frozen source CSVs; it does not change metrics, source evidence, checkpoints, splits, source data, or model code.
 
 ## Important research decisions
 
@@ -384,6 +395,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Phase 6B decision gate: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA.
 - Phase 7A starts from the completed Phase 6B SIVP source skeleton and should replace placeholders only after author approval.
 - Phase 7B final-submission ledger is the closure checklist for strict V18 preflight blockers.
+- Phase 7C removes final table placeholders by inserting evidence-locked table fragments; final figure and author/metadata blockers remain external.
 
 ## Files or scripts currently under review
 

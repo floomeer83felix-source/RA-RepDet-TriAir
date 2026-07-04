@@ -1,0 +1,241 @@
+{
+  "generated": "2026-07-04",
+  "workspace": "E:\\RepViT-main",
+  "baseline_commit_inspected": "48d67fd267c199364adff4c14a9ec9c8f842dcf5",
+  "final_commit_sha": "pending until the completion commit is created",
+  "table_mappings": [
+    {
+      "table": "Table 1",
+      "source_csv": "manuscript/tables/Table_1_dataset_and_clean_split.csv",
+      "fragment": "submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
+      "source_row_count": 12,
+      "rendered_row_count": 12,
+      "source_header": "Item | Value | Source | Notes",
+      "rendered_header": "Item | Value | Source | Notes",
+      "numeric_token_comparison": "pass: source=20 rendered=20",
+      "row_representation": "pass"
+    },
+    {
+      "table": "Table 2",
+      "source_csv": "manuscript/tables/Table_2_implementation_and_reproducibility.csv",
+      "fragment": "submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
+      "source_row_count": 12,
+      "rendered_row_count": 12,
+      "source_header": "Item | Value | Source | Notes",
+      "rendered_header": "Item | Value | Source | Notes",
+      "numeric_token_comparison": "pass: source=25 rendered=25",
+      "row_representation": "pass"
+    },
+    {
+      "table": "Table 3",
+      "source_csv": "manuscript/tables/Table_3_controlled_ablation.csv",
+      "fragment": "submission/sivp/tables/Table_3_controlled_ablation.tex",
+      "source_row_count": 20,
+      "rendered_row_count": 20,
+      "source_header": "Variant | Seed | Row Type | Dropout Ratio | P@0.50 | R@0.50 | F1@0.50 | AP50 | AP75 | Source",
+      "rendered_header": "Variant | Seed | Row Type | Dropout Ratio | P@0.50 | R@0.50 | F1@0.50 | AP50 | AP75 | Source",
+      "numeric_token_comparison": "pass: source=175 rendered=175",
+      "row_representation": "pass"
+    },
+    {
+      "table": "Table 4",
+      "source_csv": "manuscript/tables/Table_4_missing_modality_robustness.csv",
+      "fragment": "submission/sivp/tables/Table_4_missing_modality_robustness.tex",
+      "source_row_count": 27,
+      "rendered_row_count": 27,
+      "source_header": "Variant | Seed | Condition | AP50 | Row Type | Mean | Min | Max | Range | Source",
+      "rendered_header": "Variant | Seed | Condition | AP50 | Row Type | Mean | Min | Max | Range | Source",
+      "numeric_token_comparison": "pass: source=136 rendered=136",
+      "row_representation": "pass"
+    },
+    {
+      "table": "Table 5",
+      "source_csv": "manuscript/tables/Table_5_rgb_only_external_baseline.csv",
+      "fragment": "submission/sivp/tables/Table_5_rgb_only_external_baseline.tex",
+      "source_row_count": 14,
+      "rendered_row_count": 14,
+      "source_header": "Method | Input | Seed | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence | Row Type | Source",
+      "rendered_header": "Method | Input | Seed | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence | Row Type | Source",
+      "numeric_token_comparison": "pass: source=121 rendered=121",
+      "row_representation": "pass"
+    },
+    {
+      "table": "Table 6",
+      "source_csv": "manuscript/tables/Table_6_efficiency_and_convergence.csv",
+      "fragment": "submission/sivp/tables/Table_6_efficiency_and_convergence.tex",
+      "source_row_count": 12,
+      "rendered_row_count": 12,
+      "source_header": "Group | Model | Path or Seed | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean | Best Epoch | Best AP50 | Status | Source | Notes",
+      "rendered_header": "Group | Model | Path or Seed | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean | Best Epoch | Best AP50 | Status | Source | Notes",
+      "numeric_token_comparison": "pass: source=57 rendered=57",
+      "row_representation": "pass"
+    },
+    {
+      "table": "Table 7",
+      "source_csv": "manuscript/tables/Table_7_reliability_weight_audit.csv",
+      "fragment": "submission/sivp/tables/Table_7_reliability_weight_audit.tex",
+      "source_row_count": 8,
+      "rendered_row_count": 8,
+      "source_header": "Variant | Seed | Mode | Samples | alpha_rgb_mean | alpha_rgb_std | alpha_thermal_mean | alpha_thermal_std | alpha_event_mean | alpha_event_std | dominant_rgb | dominant_thermal | dominant_event | Source",
+      "rendered_header": "Variant | Seed | Mode | Samples | alpha_rgb_mean | alpha_rgb_std | alpha_thermal_mean | alpha_thermal_std | alpha_event_mean | alpha_event_std | dominant_rgb | dominant_thermal | dominant_event | Source",
+      "numeric_token_comparison": "pass: source=96 rendered=96",
+      "row_representation": "pass"
+    }
+  ],
+  "verification_outcomes": [
+    {
+      "check_id": "all_fragments_exist",
+      "check": "all 7 input fragments exist",
+      "status": "pass",
+      "notes": ""
+    },
+    {
+      "check_id": "body_table_placeholders_removed",
+      "check": "body contains zero TABLE PLACEHOLDER strings",
+      "status": "pass",
+      "notes": "count=0"
+    },
+    {
+      "check_id": "body_table_inputs_count",
+      "check": "body contains 7 table fragment inputs",
+      "status": "pass",
+      "notes": "count=7"
+    },
+    {
+      "check_id": "source_csvs_unchanged",
+      "check": "all 7 source CSVs are unchanged by this task",
+      "status": "pass",
+      "notes": "no source CSV diff"
+    },
+    {
+      "check_id": "table_1_rows_once",
+      "check": "Table 1 source rows represented exactly once",
+      "status": "pass",
+      "notes": "source_rows=12; represented_once=12"
+    },
+    {
+      "check_id": "table_2_rows_once",
+      "check": "Table 2 source rows represented exactly once",
+      "status": "pass",
+      "notes": "source_rows=12; represented_once=12"
+    },
+    {
+      "check_id": "table_3_rows_once",
+      "check": "Table 3 source rows represented exactly once",
+      "status": "pass",
+      "notes": "source_rows=20; represented_once=20"
+    },
+    {
+      "check_id": "table_4_rows_once",
+      "check": "Table 4 source rows represented exactly once",
+      "status": "pass",
+      "notes": "source_rows=27; represented_once=27"
+    },
+    {
+      "check_id": "table_5_rows_once",
+      "check": "Table 5 source rows represented exactly once",
+      "status": "pass",
+      "notes": "source_rows=14; represented_once=14"
+    },
+    {
+      "check_id": "table_6_rows_once",
+      "check": "Table 6 source rows represented exactly once",
+      "status": "pass",
+      "notes": "source_rows=12; represented_once=12"
+    },
+    {
+      "check_id": "table_7_rows_once",
+      "check": "Table 7 source rows represented exactly once",
+      "status": "pass",
+      "notes": "source_rows=8; represented_once=8"
+    },
+    {
+      "check_id": "table3_table4_clean_split_evidence",
+      "check": "Table 3 and Table 4 use clean blocked-split R0/R1/R2/R4 evidence rather than legacy E0-E6 headline wording",
+      "status": "pass",
+      "notes": "clean_names_ok=True; legacy_promoted=False"
+    },
+    {
+      "check_id": "width_layout_warnings",
+      "check": "potential width/layout warnings",
+      "status": "warning",
+      "notes": "Table 2: resizebox used for 4 columns or long text cells; Table 3: resizebox used for 10 columns or long text cells; Table 4: resizebox used for 10 columns or long text cells; Table 5: resizebox used for 13 columns or long text cells; Table 6: resizebox used for 12 columns or long text cells; Table 7: resizebox used for 14 columns or long text cells"
+    },
+    {
+      "check_id": "expected_strict_preflight",
+      "check": "expected strict-preflight result after table insertion",
+      "status": "warning",
+      "notes": "strict preflight should still fail on author metadata, figure assets, release/data governance, environment and compile readiness, but not table placeholders"
+    }
+  ],
+  "table_validation_outcome": "pass",
+  "remaining_strict_preflight_blockers": [
+    "author-confirmed metadata and declarations are missing",
+    "TriAir citation/version/licence/access/redistribution facts are missing",
+    "public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing",
+    "final approved Fig. 1-6 assets are missing",
+    "validation-only wording approval or independent held-out evidence decision is missing",
+    "final hardware/software environment record is missing",
+    "strict V18 preflight and final Springer sn-jnl compile remain blocked"
+  ],
+  "non_modification_confirmation": {
+    "scientific_metrics_changed": false,
+    "source_evidence_csv_changed": false,
+    "models_changed": false,
+    "datasets_changed": false,
+    "splits_changed": false,
+    "weights_or_checkpoints_changed": false,
+    "figures_or_final_pdf_changed": false,
+    "training_or_gpu_inference_run": false,
+    "numerical_evaluation_run": false
+  },
+  "compile_limitation": "No final PDF compile was attempted; strict preflight remains blocked by external author/asset inputs and final figure assets.",
+  "command_outcomes": [
+    "git switch research/ra-repdet-triair: PASS",
+    "git pull --ff-only research research/ra-repdet-triair: PASS",
+    "git status --short: PASS; unrelated untracked files existed before Phase 7C edits",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings before table insertion",
+    "table fragment generation: PASS; 7 fragments created from unchanged source CSVs",
+    "table rendering check: PASS; 12 pass and 2 warning checks",
+    "python -m py_compile rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py: PASS",
+    "python rarepdet/tools/generate_handoff.py: PASS",
+    "python rarepdet/tools/update_project_status.py: PASS",
+    "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings after table insertion; no TABLE PLACEHOLDER warning remains",
+    "python scripts/preflight_submission.py --root .: FAIL as expected on author metadata, final artwork placeholders, release/data placeholders and missing Fig. 1-6 assets; no TABLE PLACEHOLDER failure remains"
+  ],
+  "changed_files": [
+    "docs/EXPERIMENT_STATUS.md",
+    "docs/TASK_BLOCKER.md",
+    "runs/handoff_latest.md",
+    "runs/handoff_latest.json",
+    "runs/phase7c_table_insertion_report.md",
+    "runs/phase7c_table_insertion_report.json",
+    "submission/sivp/tex/ra_repdet_sivp.tex",
+    "submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
+    "submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
+    "submission/sivp/tables/Table_3_controlled_ablation.tex",
+    "submission/sivp/tables/Table_4_missing_modality_robustness.tex",
+    "submission/sivp/tables/Table_5_rgb_only_external_baseline.tex",
+    "submission/sivp/tables/Table_6_efficiency_and_convergence.tex",
+    "submission/sivp/tables/Table_7_reliability_weight_audit.tex",
+    "submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md",
+    "submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv",
+    "submission/sivp/review/TABLE_RENDERING_CHECK.md",
+    "submission/sivp/review/TABLE_RENDERING_CHECK.csv",
+    "rarepdet/tools/generate_handoff.py",
+    "rarepdet/tools/update_project_status.py"
+  ],
+  "residual_blockers": [
+    "author-confirmed metadata and declarations are missing",
+    "TriAir citation/version/licence/access/redistribution facts are missing",
+    "public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing",
+    "final approved Fig. 1-6 assets are missing",
+    "validation-only wording approval or independent held-out evidence decision is missing",
+    "final hardware/software environment record is missing",
+    "strict V18 preflight and final Springer sn-jnl compile remain blocked"
+  ],
+  "preflight_outcomes": {
+    "placeholder_mode": "PASS with warnings; table placeholder warning removed",
+    "strict_mode": "FAIL as expected on non-table external inputs and missing final figure assets"
+  }
+}

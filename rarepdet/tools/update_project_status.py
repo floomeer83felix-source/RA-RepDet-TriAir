@@ -29,6 +29,12 @@ PUBLICATION_HEADLINE = {
 PHASE7B_REPORT = RUNS_DIR / "phase7b_publication_state_reconciliation.md"
 PHASE7B_LEDGER_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "FINAL_SUBMISSION_INPUT_LEDGER.md"
 PHASE7B_LEDGER_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FINAL_SUBMISSION_INPUT_LEDGER.csv"
+PHASE7C_REPORT = RUNS_DIR / "phase7c_table_insertion_report.md"
+PHASE7C_REPORT_JSON = RUNS_DIR / "phase7c_table_insertion_report.json"
+PHASE7C_TRACEABILITY_MD = PROJECT_ROOT / "submission" / "sivp" / "tables" / "TABLE_SOURCE_TRACEABILITY.md"
+PHASE7C_TRACEABILITY_CSV = PROJECT_ROOT / "submission" / "sivp" / "tables" / "TABLE_SOURCE_TRACEABILITY.csv"
+PHASE7C_RENDER_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "TABLE_RENDERING_CHECK.md"
+PHASE7C_RENDER_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "TABLE_RENDERING_CHECK.csv"
 
 
 EXPERIMENTS = [
@@ -269,6 +275,12 @@ def build_status():
     phase7b_ledger_md_exists = PHASE7B_LEDGER_MD.exists()
     phase7b_ledger_csv_exists = PHASE7B_LEDGER_CSV.exists()
     phase7b_ledger_rows = count_csv_rows(PHASE7B_LEDGER_CSV)
+    phase7c_report_exists = PHASE7C_REPORT.exists()
+    phase7c_report_json_exists = PHASE7C_REPORT_JSON.exists()
+    phase7c_traceability_exists = PHASE7C_TRACEABILITY_MD.exists() and PHASE7C_TRACEABILITY_CSV.exists()
+    phase7c_render_check_exists = PHASE7C_RENDER_CHECK_MD.exists() and PHASE7C_RENDER_CHECK_CSV.exists()
+    phase7c_traceability_rows = count_csv_rows(PHASE7C_TRACEABILITY_CSV)
+    phase7c_render_check_rows = count_csv_rows(PHASE7C_RENDER_CHECK_CSV)
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -292,6 +304,12 @@ def build_status():
         active_status = "pending"
     if "Phase 7B" in next_text:
         active_status = "completed" if phase7b_report_exists and phase7b_ledger_md_exists and phase7b_ledger_csv_exists else "pending"
+    if "Phase 7C" in next_text:
+        active_status = (
+            "completed"
+            if phase7c_report_exists and phase7c_report_json_exists and phase7c_traceability_exists and phase7c_render_check_exists
+            else "pending"
+        )
     current_task = first_paragraph(next_sections.get("Current Task", "NA"))
     current_goal = first_paragraph(next_sections.get("Goal", "NA"))
     if current_task == "NA" and "Phase 2B" in next_text:
@@ -314,6 +332,8 @@ def build_status():
         current_task = "Phase 7A - Final SIVP Asset Readiness and Author Metadata Intake"
     if "Phase 7B" in next_text:
         current_task = "Phase 7B - Publication-State Reconciliation and Submission-Input Ledger"
+    if "Phase 7C" in next_text:
+        current_task = "Phase 7C - Evidence-Locked SIVP Table Insertion"
     if current_task == "NA" and "Phase 3B" in next_text:
         current_task = "Phase 3B - Split Integrity and Model-Selection Audit"
     if current_task == "NA" and "Phase 3A" in next_text:
@@ -347,6 +367,11 @@ def build_status():
         current_goal = (
             "Reconcile the official clean blocked-split R4 manuscript headline with legacy random-split summaries "
             "and create the strict-preflight final-submission input ledger."
+        )
+    if "Phase 7C" in next_text:
+        current_goal = (
+            "Replace seven SIVP table placeholders with publication-ready LaTeX fragments generated only from the "
+            "existing frozen manuscript/table CSV evidence."
         )
 
     lines = [
@@ -760,6 +785,16 @@ def build_status():
         f"- Input ledger rows: {phase7b_ledger_rows if phase7b_ledger_csv_exists else 'NA'}",
         "- Decision: PUBLICATION-STATE MISMATCH RESOLVED; STRICT PREFLIGHT REMAINS BLOCKED BY AUTHOR/ASSET INPUTS" if phase7b_report_exists else "- Decision: NA",
         "",
+        "## Phase 7C outputs",
+        "",
+        "- Table insertion report: `runs/phase7c_table_insertion_report.md`" if phase7c_report_exists else "- Table insertion report: NA",
+        "- Table insertion JSON: `runs/phase7c_table_insertion_report.json`" if phase7c_report_json_exists else "- Table insertion JSON: NA",
+        "- Source traceability: `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md` and `.csv`" if phase7c_traceability_exists else "- Source traceability: NA",
+        "- Rendering check: `submission/sivp/review/TABLE_RENDERING_CHECK.md` and `.csv`" if phase7c_render_check_exists else "- Rendering check: NA",
+        f"- Traceability rows: {phase7c_traceability_rows if phase7c_traceability_exists else 'NA'}",
+        f"- Rendering-check rows: {phase7c_render_check_rows if phase7c_render_check_exists else 'NA'}",
+        "- Decision: TABLE PLACEHOLDERS REMOVED; STRICT PREFLIGHT REMAINS BLOCKED BY NON-TABLE AUTHOR/ASSET INPUTS" if phase7c_report_exists else "- Decision: NA",
+        "",
         "",
         "## Pending tasks",
         "",
@@ -785,6 +820,7 @@ def build_status():
         "- Phase 6B dry-run compilation was skipped if the local LaTeX environment lacks required Springer dependencies.",
         "- Phase 7A is an asset-readiness and metadata-intake phase; it must not change clean-split metrics or retrain models.",
         "- Phase 7B reconciles publication-state documentation only; it does not change metrics, checkpoints, splits, source data, or model code.",
+        "- Phase 7C inserts table assets only from frozen source CSVs; it does not change metrics, source evidence, checkpoints, splits, source data, or model code.",
         "",
         "## Important research decisions",
         "",
@@ -806,6 +842,7 @@ def build_status():
         f"- Phase 6B decision gate: {phase6b_decision or 'NA'}.",
         "- Phase 7A starts from the completed Phase 6B SIVP source skeleton and should replace placeholders only after author approval.",
         "- Phase 7B final-submission ledger is the closure checklist for strict V18 preflight blockers.",
+        "- Phase 7C removes final table placeholders by inserting evidence-locked table fragments; final figure and author/metadata blockers remain external.",
         "",
         "## Files or scripts currently under review",
         "",

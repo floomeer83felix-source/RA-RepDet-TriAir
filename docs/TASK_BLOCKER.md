@@ -2,13 +2,20 @@
 
 ## Task
 
-Execute `docs/NEXT_TASK.md` for Phase 7B: reconcile the official R4 clean blocked-split publication state, create the final-submission input ledger, refresh handoff/status, and push the documentation/tooling update.
+Execute `docs/NEXT_TASK.md` for Phase 7C: replace the seven SIVP table placeholders with evidence-locked LaTeX table fragments generated only from the existing frozen `manuscript/tables/` CSV files, refresh handoff/status, and push the documentation/table-asset update.
 
 ## Blocking Condition
 
-The publication-state documentation mismatch has been resolved: `R4 Reliability p=0.20` on `block64_guard16_seed0`, controlled seeds `0` and `2`, is now the official manuscript headline in the generated status and handoff. Legacy E0-E6 random-split results are retained only as historical/exploratory diagnostics.
+The table-placeholder blocker has been resolved. `submission/sivp/tex/ra_repdet_sivp.tex` now contains seven `\input{../tables/...}` references, and the body contains zero `TABLE PLACEHOLDER` strings. The validation records are:
 
-The remaining blocker is strict V18 final-submission preflight. The repository still lacks author-confirmed metadata, TriAir citation/licence/access facts, release/archive metadata, final approved Fig. 1-6 assets, final publication tables, claim-scope approval, final environment details, and final compile readiness. The new ledger at `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md` and `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv` is the closure checklist.
+- `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`
+- `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv`
+- `submission/sivp/review/TABLE_RENDERING_CHECK.md`
+- `submission/sivp/review/TABLE_RENDERING_CHECK.csv`
+- `runs/phase7c_table_insertion_report.md`
+- `runs/phase7c_table_insertion_report.json`
+
+The remaining blocker is strict V18 final-submission preflight. The repository still lacks author-confirmed metadata, TriAir citation/licence/access facts, release/archive metadata, final approved Fig. 1-6 assets, claim-scope approval, final environment details, and final compile readiness.
 
 ## Failed Command
 
@@ -27,7 +34,6 @@ FAIL: Placeholder or unverified field remains in archive_manifest.txt: /AUTHOR_(
 FAIL: Placeholder or unverified field remains in main.tex: /AUTHOR CONFIRMATION REQUIRED/
 FAIL: Placeholder or unverified field remains in SUBMISSION_PRECHECK_V18.md: /NOT PROVIDED/
 FAIL: Placeholder or unverified field remains in submission\sivp\tex\ra_repdet_sivp.tex: /Final artwork pending/
-FAIL: Placeholder or unverified field remains in submission\sivp\tex\ra_repdet_sivp.tex: /TABLE PLACEHOLDER/
 FAIL: Placeholder or unverified field remains in main.tex: /PLACEHOLDER/
 FAIL: Missing final figure assets: figures/Fig1_overall_architecture.pdf, figures/Fig2_leakage_aware_protocol.pdf, figures/Fig3_controlled_ablation.pdf, figures/Fig4_missing_modality_robustness.pdf, figures/Fig5_reliability_weight_audit.pdf, figures/Fig6_qualitative_results.pdf
 RESULT: FAIL
@@ -35,17 +41,24 @@ RESULT: FAIL
 
 ## Attempted Fixes
 
-- Ran the required branch switch and fast-forward pull before Phase 7B edits.
-- Read the required context, Phase 4B decision, clean-split protocol, Phase 7A readiness report, preflight script, figure/table insertion maps, and handoff/status generators.
-- Updated `rarepdet/tools/generate_handoff.py` so regenerated handoff puts the clean blocked-split R4 publication headline first and labels E0-E6 as legacy random-split historical diagnostics.
-- Updated `rarepdet/tools/update_project_status.py` so regenerated experiment status puts the clean blocked-split R4 publication headline first and labels E0-E6 as historical/exploratory random-split results.
-- Created the final-submission input ledger in Markdown and CSV with 30 open items across author metadata, declarations, data governance, release/archive, figures, tables, claim scope, environment, and compile readiness.
-- Created `runs/phase7b_publication_state_reconciliation.md` and `.json`.
+- Ran the required branch switch and fast-forward pull before Phase 7C edits.
+- Ran `git status --short`; only unrelated pre-existing untracked files were present before task edits.
+- Ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result before table insertion: `PASS` with expected warnings including table placeholders.
+- Read the required Phase 7C context, SIVP body, table insertion map, seven source CSV files, preflight script, and handoff/status generators.
+- Generated seven standalone table fragments under `submission/sivp/tables/` from the matching `manuscript/tables/` CSV files.
+- Replaced all seven table placeholders in `submission/sivp/tex/ra_repdet_sivp.tex` with matching `\input{../tables/...}` references.
+- Created source traceability and rendering-check Markdown/CSV files.
+- Created `runs/phase7c_table_insertion_report.md` and `.json`.
+- Verified every source row is represented exactly once in its fragment.
+- Verified source CSV numerical-token comparisons all pass.
+- Verified Table 3 and Table 4 preserve clean blocked-split R0/R1/R2/R4 evidence rather than legacy E0-E6 headline wording.
+- Verified no `manuscript/tables/*.csv` source evidence file changed.
+- Ran `python -m py_compile rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py`; result: `PASS`.
 - Ran `python rarepdet/tools/generate_handoff.py`; result: `PASS`.
 - Ran `python rarepdet/tools/update_project_status.py`; result: `PASS`.
-- Ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result: `PASS` with expected warnings.
-- Ran strict `python scripts/preflight_submission.py --root .`; result: `FAIL` as expected on unresolved external inputs.
-- No GPU training, GPU inference sweep, metric-changing evaluation, split mutation, source-data mutation, or core model/dataset/evaluation change was executed.
+- Ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result after table insertion: `PASS` with expected non-table warnings and no table-placeholder warning.
+- Ran strict `python scripts/preflight_submission.py --root .`; result: `FAIL` as expected on unresolved non-table inputs.
+- No GPU training, GPU inference sweep, metric-changing evaluation, split mutation, source-data mutation, core model/dataset/evaluation change, source CSV change, final figure generation, or final PDF compile was executed.
 
 ## Related Files
 
@@ -54,22 +67,28 @@ RESULT: FAIL
 - `docs/TASK_BLOCKER.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/phase7b_publication_state_reconciliation.md`
-- `runs/phase7b_publication_state_reconciliation.json`
-- `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
-- `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
-- `AUTHOR_FINAL_INPUTS_REQUIRED_V18.md`
-- `scripts/preflight_submission.py`
-- `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
-- `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
+- `runs/phase7c_table_insertion_report.md`
+- `runs/phase7c_table_insertion_report.json`
 - `submission/sivp/tex/ra_repdet_sivp.tex`
+- `submission/sivp/tables/Table_1_dataset_and_clean_split.tex`
+- `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`
+- `submission/sivp/tables/Table_3_controlled_ablation.tex`
+- `submission/sivp/tables/Table_4_missing_modality_robustness.tex`
+- `submission/sivp/tables/Table_5_rgb_only_external_baseline.tex`
+- `submission/sivp/tables/Table_6_efficiency_and_convergence.tex`
+- `submission/sivp/tables/Table_7_reliability_weight_audit.tex`
+- `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`
+- `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv`
+- `submission/sivp/review/TABLE_RENDERING_CHECK.md`
+- `submission/sivp/review/TABLE_RENDERING_CHECK.csv`
+- `scripts/preflight_submission.py`
 - `rarepdet/tools/generate_handoff.py`
 - `rarepdet/tools/update_project_status.py`
 
 ## Repair Option 1
 
-Authors provide all missing factual inputs and approved assets listed in the Phase 7B ledger. Then replace placeholders, insert final figures/tables, rerun strict preflight, and compile the final Springer `sn-jnl` package.
+Authors provide all remaining factual inputs and approved final Fig. 1-6 assets. Then replace placeholders, rerun strict preflight, and compile the final Springer `sn-jnl` package.
 
 ## Repair Option 2
 
-Keep the repository as a pre-submission readiness package. Use the placeholder-mode preflight PASS as a structural check, keep strict mode blocked, and do not label the package as formally submission-ready until every ledger item is closed.
+Keep the repository as a pre-submission readiness package with completed evidence-locked tables. Use the placeholder-mode preflight PASS as a structural check, keep strict mode blocked, and do not label the package as formally submission-ready until every remaining non-table blocker is closed.

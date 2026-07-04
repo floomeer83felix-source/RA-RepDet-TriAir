@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-04T11:23:19
+Generated: 2026-07-04T12:23:25
 Workspace: `E:\RepViT-main`
 
 ## Publication Headline
@@ -13,9 +13,9 @@ Workspace: `E:\RepViT-main`
 ## Current Active Task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7B — Publication-State Reconciliation and Submission-Input Ledger
-- Goal: Resolve the documentation inconsistency between the frozen blocked-split manuscript conclusion and legacy random-split summaries, then create one auditable ledger of author-provided and asset-provided requirements for strict SIVP preflight. This is a documentation and tooling task only; it must not retrain, re-evaluate, or change any scientific evidence.
-- Commit Message: `docs: reconcile R4 publication status and submission ledger`
+- Current Task: Phase 7C — Evidence-Locked SIVP Table Insertion
+- Goal: Replace the seven SIVP manuscript table placeholders with publication-ready LaTeX tables generated exclusively from the existing frozen CSV evidence. This task advances submission assets without changing any experiment, metric, model, split, dataset, or claim scope.
+- Commit Message: docs: insert evidence-locked SIVP tables
 
 ## Dataset
 
@@ -159,7 +159,7 @@ Workspace: `E:\RepViT-main`
 - Phase 6B report: `runs/phase6b_sivp_preparation_report.md`
 - Template/LaTeX source files: 16
 - Metadata template files: 8
-- Review/audit files: 6
+- Review/audit files: 8
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
@@ -178,6 +178,20 @@ Workspace: `E:\RepViT-main`
 - Residual blockers: author-confirmed metadata and declarations are missing; TriAir citation/version/licence/access/redistribution facts are missing; public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing; final approved Fig. 1-6 assets are missing; final publication Tables 1-7 remain pending; validation-only wording approval or independent held-out evidence decision is missing; final hardware/software environment record is missing; strict V18 preflight and final Springer sn-jnl compile remain blocked
 - Final commit SHA: pending until the completion commit is created
 - Phase 7B status: publication-state mismatch resolved; strict preflight remains blocked by author/asset inputs.
+
+## Phase 7C Evidence-Locked Table Insertion
+
+- Table insertion report: `runs/phase7c_table_insertion_report.md`
+- Table insertion JSON: `runs/phase7c_table_insertion_report.json`
+- Source traceability: `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`
+- Rendering check: `submission/sivp/review/TABLE_RENDERING_CHECK.md`
+- Table fragments inserted: 7
+- Table validation outcome: pass
+- Command outcomes: git switch research/ra-repdet-triair: PASS; git pull --ff-only research research/ra-repdet-triair: PASS; git status --short: PASS; unrelated untracked files existed before Phase 7C edits; python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings before table insertion; table fragment generation: PASS; 7 fragments created from unchanged source CSVs; table rendering check: PASS; 12 pass and 2 warning checks; python -m py_compile rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py: PASS; python rarepdet/tools/generate_handoff.py: PASS; python rarepdet/tools/update_project_status.py: PASS; python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings after table insertion; no TABLE PLACEHOLDER warning remains; python scripts/preflight_submission.py --root .: FAIL as expected on author metadata, final artwork placeholders, release/data placeholders and missing Fig. 1-6 assets; no TABLE PLACEHOLDER failure remains
+- Phase 7C changed files: `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, `runs/handoff_latest.md`, `runs/handoff_latest.json`, `runs/phase7c_table_insertion_report.md`, `runs/phase7c_table_insertion_report.json`, `submission/sivp/tex/ra_repdet_sivp.tex`, `submission/sivp/tables/Table_1_dataset_and_clean_split.tex`, `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`, `submission/sivp/tables/Table_3_controlled_ablation.tex`, `submission/sivp/tables/Table_4_missing_modality_robustness.tex`, `submission/sivp/tables/Table_5_rgb_only_external_baseline.tex`, `submission/sivp/tables/Table_6_efficiency_and_convergence.tex`, `submission/sivp/tables/Table_7_reliability_weight_audit.tex`, `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`, `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv`, `submission/sivp/review/TABLE_RENDERING_CHECK.md`, `submission/sivp/review/TABLE_RENDERING_CHECK.csv`, `rarepdet/tools/generate_handoff.py`, `rarepdet/tools/update_project_status.py`
+- Residual blockers: author-confirmed metadata and declarations are missing; TriAir citation/version/licence/access/redistribution facts are missing; public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing; final approved Fig. 1-6 assets are missing; validation-only wording approval or independent held-out evidence decision is missing; final hardware/software environment record is missing; strict V18 preflight and final Springer sn-jnl compile remain blocked
+- Final commit SHA: pending until the completion commit is created
+- Phase 7C status: table placeholders removed; strict preflight remains blocked by non-table external inputs.
 
 ## Model And Code Structure
 
@@ -201,27 +215,38 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Strict V18 preflight remains blocked until author-confirmed metadata, release metadata, TriAir licence/citation/access details, and final approved figure/table assets are supplied.
-- Use submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md and submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv as the closure checklist.
-- Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders.
+- Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved figures, final environment record, and final compile readiness are supplied.
+- Final table placeholders have been removed and replaced with evidence-locked table fragments from unchanged manuscript/table CSV sources.
+- Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders and final figures are approved.
 
 ## Recently Modified Files
 
 - `M  docs/EXPERIMENT_STATUS.md`
+- `M  docs/NEXT_TASK.md`
 - `M  docs/TASK_BLOCKER.md`
 - `M  rarepdet/tools/generate_handoff.py`
 - `M  rarepdet/tools/update_project_status.py`
 - `M  runs/handoff_latest.json`
 - `M  runs/handoff_latest.md`
-- `A  runs/phase7b_publication_state_reconciliation.json`
-- `A  runs/phase7b_publication_state_reconciliation.md`
-- `A  submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
-- `A  submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
+- `A  runs/phase7c_table_insertion_report.json`
+- `A  runs/phase7c_table_insertion_report.md`
+- `A  submission/sivp/review/TABLE_RENDERING_CHECK.csv`
+- `A  submission/sivp/review/TABLE_RENDERING_CHECK.md`
+- `A  submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv`
+- `A  submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`
+- `A  submission/sivp/tables/Table_1_dataset_and_clean_split.tex`
+- `A  submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`
+- `A  submission/sivp/tables/Table_3_controlled_ablation.tex`
+- `A  submission/sivp/tables/Table_4_missing_modality_robustness.tex`
+- `A  submission/sivp/tables/Table_5_rgb_only_external_baseline.tex`
+- `A  submission/sivp/tables/Table_6_efficiency_and_convergence.tex`
+- `A  submission/sivp/tables/Table_7_reliability_weight_audit.tex`
+- `M  submission/sivp/tex/ra_repdet_sivp.tex`
 - `?? runs/component_disjoint_candidates/`
 - `?? runs/v39_component_disjoint/`
 
 ## Next Recommended Tasks
 
-- Collect every missing item in the Phase 7B final-submission input ledger from the authors or approved asset sources.
-- Replace placeholders only after the corresponding ledger row has verified source evidence.
-- Rerun strict preflight and final Springer sn-jnl compilation after all ledger blockers are closed.
+- Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and approved final Fig. 1-6 assets.
+- Rerun strict V18 preflight after the remaining ledger blockers are closed.
+- Compile the final Springer sn-jnl PDF only after strict preflight passes.

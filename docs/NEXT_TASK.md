@@ -164,7 +164,7 @@ Refresh `runs/handoff_latest.md` and `.json` and `docs/EXPERIMENT_STATUS.md`. Th
 - Commit all permitted outputs and push the branch.
 
 ## Commit Message
-`docs: insert evidence-locked SIVP tables`
+docs: insert evidence-locked SIVP tables
 
 ## Completion / Blocker Rule
 Complete the table-only asset task, refresh handoff/status, commit, and push. If source CSV structure cannot be rendered safely without changing values or if a template dependency is ambiguous, write the issue in `docs/TASK_BLOCKER.md`, commit the traceability findings, and stop. Do not alter experimental evidence or lower strict-preflight standards.

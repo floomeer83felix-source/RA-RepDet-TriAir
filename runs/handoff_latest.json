@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-07-04T11:23:19",
+  "generated_at": "2026-07-04T12:23:25",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -12,24 +12,35 @@
     ],
     "status_short": [
       "M  docs/EXPERIMENT_STATUS.md",
+      "M  docs/NEXT_TASK.md",
       "M  docs/TASK_BLOCKER.md",
       "M  rarepdet/tools/generate_handoff.py",
       "M  rarepdet/tools/update_project_status.py",
       "M  runs/handoff_latest.json",
       "M  runs/handoff_latest.md",
-      "A  runs/phase7b_publication_state_reconciliation.json",
-      "A  runs/phase7b_publication_state_reconciliation.md",
-      "A  submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md",
-      "A  submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv",
+      "A  runs/phase7c_table_insertion_report.json",
+      "A  runs/phase7c_table_insertion_report.md",
+      "A  submission/sivp/review/TABLE_RENDERING_CHECK.csv",
+      "A  submission/sivp/review/TABLE_RENDERING_CHECK.md",
+      "A  submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv",
+      "A  submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md",
+      "A  submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
+      "A  submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
+      "A  submission/sivp/tables/Table_3_controlled_ablation.tex",
+      "A  submission/sivp/tables/Table_4_missing_modality_robustness.tex",
+      "A  submission/sivp/tables/Table_5_rgb_only_external_baseline.tex",
+      "A  submission/sivp/tables/Table_6_efficiency_and_convergence.tex",
+      "A  submission/sivp/tables/Table_7_reliability_weight_audit.tex",
+      "M  submission/sivp/tex/ra_repdet_sivp.tex",
       "?? runs/component_disjoint_candidates/",
       "?? runs/v39_component_disjoint/"
     ]
   },
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "current_task": "Phase 7B \u2014 Publication-State Reconciliation and Submission-Input Ledger",
-    "goal": "Resolve the documentation inconsistency between the frozen blocked-split manuscript conclusion and legacy random-split summaries, then create one auditable ledger of author-provided and asset-provided requirements for strict SIVP preflight. This is a documentation and tooling task only; it must not retrain, re-evaluate, or change any scientific evidence.",
-    "commit_message": "`docs: reconcile R4 publication status and submission ledger`"
+    "current_task": "Phase 7C \u2014 Evidence-Locked SIVP Table Insertion",
+    "goal": "Replace the seven SIVP manuscript table placeholders with publication-ready LaTeX tables generated exclusively from the existing frozen CSV evidence. This task advances submission assets without changing any experiment, metric, model, split, dataset, or claim scope.",
+    "commit_message": "docs: insert evidence-locked SIVP tables"
   },
   "dataset": {
     "root": "D:\\download\\triair",
@@ -3564,7 +3575,7 @@
     "report": "E:\\RepViT-main\\runs\\phase6b_sivp_preparation_report.md",
     "decision": "READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA",
     "metadata_count": 8,
-    "review_count": 6,
+    "review_count": 8,
     "tex_source_count": 16,
     "figure_map": "E:\\RepViT-main\\submission\\sivp\\figures\\FINAL_ASSET_INSERTION_MAP.md",
     "table_map": "E:\\RepViT-main\\submission\\sivp\\tables\\FINAL_TABLE_INSERTION_MAP.md"
@@ -3621,10 +3632,141 @@
     ],
     "final_commit_sha": "pending until the completion commit is created"
   },
+  "phase7c": {
+    "report": "E:\\RepViT-main\\runs\\phase7c_table_insertion_report.md",
+    "report_json": "E:\\RepViT-main\\runs\\phase7c_table_insertion_report.json",
+    "render_check": "E:\\RepViT-main\\submission\\sivp\\review\\TABLE_RENDERING_CHECK.md",
+    "traceability": "E:\\RepViT-main\\submission\\sivp\\tables\\TABLE_SOURCE_TRACEABILITY.md",
+    "table_mappings": [
+      {
+        "table": "Table 1",
+        "source_csv": "manuscript/tables/Table_1_dataset_and_clean_split.csv",
+        "fragment": "submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
+        "source_row_count": 12,
+        "rendered_row_count": 12,
+        "source_header": "Item | Value | Source | Notes",
+        "rendered_header": "Item | Value | Source | Notes",
+        "numeric_token_comparison": "pass: source=20 rendered=20",
+        "row_representation": "pass"
+      },
+      {
+        "table": "Table 2",
+        "source_csv": "manuscript/tables/Table_2_implementation_and_reproducibility.csv",
+        "fragment": "submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
+        "source_row_count": 12,
+        "rendered_row_count": 12,
+        "source_header": "Item | Value | Source | Notes",
+        "rendered_header": "Item | Value | Source | Notes",
+        "numeric_token_comparison": "pass: source=25 rendered=25",
+        "row_representation": "pass"
+      },
+      {
+        "table": "Table 3",
+        "source_csv": "manuscript/tables/Table_3_controlled_ablation.csv",
+        "fragment": "submission/sivp/tables/Table_3_controlled_ablation.tex",
+        "source_row_count": 20,
+        "rendered_row_count": 20,
+        "source_header": "Variant | Seed | Row Type | Dropout Ratio | P@0.50 | R@0.50 | F1@0.50 | AP50 | AP75 | Source",
+        "rendered_header": "Variant | Seed | Row Type | Dropout Ratio | P@0.50 | R@0.50 | F1@0.50 | AP50 | AP75 | Source",
+        "numeric_token_comparison": "pass: source=175 rendered=175",
+        "row_representation": "pass"
+      },
+      {
+        "table": "Table 4",
+        "source_csv": "manuscript/tables/Table_4_missing_modality_robustness.csv",
+        "fragment": "submission/sivp/tables/Table_4_missing_modality_robustness.tex",
+        "source_row_count": 27,
+        "rendered_row_count": 27,
+        "source_header": "Variant | Seed | Condition | AP50 | Row Type | Mean | Min | Max | Range | Source",
+        "rendered_header": "Variant | Seed | Condition | AP50 | Row Type | Mean | Min | Max | Range | Source",
+        "numeric_token_comparison": "pass: source=136 rendered=136",
+        "row_representation": "pass"
+      },
+      {
+        "table": "Table 5",
+        "source_csv": "manuscript/tables/Table_5_rgb_only_external_baseline.csv",
+        "fragment": "submission/sivp/tables/Table_5_rgb_only_external_baseline.tex",
+        "source_row_count": 14,
+        "rendered_row_count": 14,
+        "source_header": "Method | Input | Seed | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence | Row Type | Source",
+        "rendered_header": "Method | Input | Seed | Precision | Recall | F1 | AP50 | AP75 | GT boxes | Predictions | Mean Confidence | Row Type | Source",
+        "numeric_token_comparison": "pass: source=121 rendered=121",
+        "row_representation": "pass"
+      },
+      {
+        "table": "Table 6",
+        "source_csv": "manuscript/tables/Table_6_efficiency_and_convergence.csv",
+        "fragment": "submission/sivp/tables/Table_6_efficiency_and_convergence.tex",
+        "source_row_count": 12,
+        "rendered_row_count": 12,
+        "source_header": "Group | Model | Path or Seed | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean | Best Epoch | Best AP50 | Status | Source | Notes",
+        "rendered_header": "Group | Model | Path or Seed | Params | FPS mean | Latency ms/img mean | CUDA Memory MB mean | Best Epoch | Best AP50 | Status | Source | Notes",
+        "numeric_token_comparison": "pass: source=57 rendered=57",
+        "row_representation": "pass"
+      },
+      {
+        "table": "Table 7",
+        "source_csv": "manuscript/tables/Table_7_reliability_weight_audit.csv",
+        "fragment": "submission/sivp/tables/Table_7_reliability_weight_audit.tex",
+        "source_row_count": 8,
+        "rendered_row_count": 8,
+        "source_header": "Variant | Seed | Mode | Samples | alpha_rgb_mean | alpha_rgb_std | alpha_thermal_mean | alpha_thermal_std | alpha_event_mean | alpha_event_std | dominant_rgb | dominant_thermal | dominant_event | Source",
+        "rendered_header": "Variant | Seed | Mode | Samples | alpha_rgb_mean | alpha_rgb_std | alpha_thermal_mean | alpha_thermal_std | alpha_event_mean | alpha_event_std | dominant_rgb | dominant_thermal | dominant_event | Source",
+        "numeric_token_comparison": "pass: source=96 rendered=96",
+        "row_representation": "pass"
+      }
+    ],
+    "table_validation_outcome": "pass",
+    "command_outcomes": [
+      "git switch research/ra-repdet-triair: PASS",
+      "git pull --ff-only research research/ra-repdet-triair: PASS",
+      "git status --short: PASS; unrelated untracked files existed before Phase 7C edits",
+      "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings before table insertion",
+      "table fragment generation: PASS; 7 fragments created from unchanged source CSVs",
+      "table rendering check: PASS; 12 pass and 2 warning checks",
+      "python -m py_compile rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py: PASS",
+      "python rarepdet/tools/generate_handoff.py: PASS",
+      "python rarepdet/tools/update_project_status.py: PASS",
+      "python scripts/preflight_submission.py --root . --allow-placeholders: PASS with warnings after table insertion; no TABLE PLACEHOLDER warning remains",
+      "python scripts/preflight_submission.py --root .: FAIL as expected on author metadata, final artwork placeholders, release/data placeholders and missing Fig. 1-6 assets; no TABLE PLACEHOLDER failure remains"
+    ],
+    "changed_files": [
+      "docs/EXPERIMENT_STATUS.md",
+      "docs/TASK_BLOCKER.md",
+      "runs/handoff_latest.md",
+      "runs/handoff_latest.json",
+      "runs/phase7c_table_insertion_report.md",
+      "runs/phase7c_table_insertion_report.json",
+      "submission/sivp/tex/ra_repdet_sivp.tex",
+      "submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
+      "submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
+      "submission/sivp/tables/Table_3_controlled_ablation.tex",
+      "submission/sivp/tables/Table_4_missing_modality_robustness.tex",
+      "submission/sivp/tables/Table_5_rgb_only_external_baseline.tex",
+      "submission/sivp/tables/Table_6_efficiency_and_convergence.tex",
+      "submission/sivp/tables/Table_7_reliability_weight_audit.tex",
+      "submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md",
+      "submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv",
+      "submission/sivp/review/TABLE_RENDERING_CHECK.md",
+      "submission/sivp/review/TABLE_RENDERING_CHECK.csv",
+      "rarepdet/tools/generate_handoff.py",
+      "rarepdet/tools/update_project_status.py"
+    ],
+    "residual_blockers": [
+      "author-confirmed metadata and declarations are missing",
+      "TriAir citation/version/licence/access/redistribution facts are missing",
+      "public release/archive URL, tag, commit/archive hash, date, licence and DOI facts are missing",
+      "final approved Fig. 1-6 assets are missing",
+      "validation-only wording approval or independent held-out evidence decision is missing",
+      "final hardware/software environment record is missing",
+      "strict V18 preflight and final Springer sn-jnl compile remain blocked"
+    ],
+    "final_commit_sha": "pending until the completion commit is created"
+  },
   "current_pending_experiments": [
-    "Strict V18 preflight remains blocked until author-confirmed metadata, release metadata, TriAir licence/citation/access details, and final approved figure/table assets are supplied.",
-    "Use submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md and submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv as the closure checklist.",
-    "Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders."
+    "Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved figures, final environment record, and final compile readiness are supplied.",
+    "Final table placeholders have been removed and replaced with evidence-locked table fragments from unchanged manuscript/table CSV sources.",
+    "Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders and final figures are approved."
   ],
   "code_structure": {
     "dataset": "datasets/triair_dataset.py",
@@ -3638,21 +3780,32 @@
   },
   "recent_modified_files": [
     "M  docs/EXPERIMENT_STATUS.md",
+    "M  docs/NEXT_TASK.md",
     "M  docs/TASK_BLOCKER.md",
     "M  rarepdet/tools/generate_handoff.py",
     "M  rarepdet/tools/update_project_status.py",
     "M  runs/handoff_latest.json",
     "M  runs/handoff_latest.md",
-    "A  runs/phase7b_publication_state_reconciliation.json",
-    "A  runs/phase7b_publication_state_reconciliation.md",
-    "A  submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md",
-    "A  submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv",
+    "A  runs/phase7c_table_insertion_report.json",
+    "A  runs/phase7c_table_insertion_report.md",
+    "A  submission/sivp/review/TABLE_RENDERING_CHECK.csv",
+    "A  submission/sivp/review/TABLE_RENDERING_CHECK.md",
+    "A  submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.csv",
+    "A  submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md",
+    "A  submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
+    "A  submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
+    "A  submission/sivp/tables/Table_3_controlled_ablation.tex",
+    "A  submission/sivp/tables/Table_4_missing_modality_robustness.tex",
+    "A  submission/sivp/tables/Table_5_rgb_only_external_baseline.tex",
+    "A  submission/sivp/tables/Table_6_efficiency_and_convergence.tex",
+    "A  submission/sivp/tables/Table_7_reliability_weight_audit.tex",
+    "M  submission/sivp/tex/ra_repdet_sivp.tex",
     "?? runs/component_disjoint_candidates/",
     "?? runs/v39_component_disjoint/"
   ],
   "next_recommended_tasks": [
-    "Collect every missing item in the Phase 7B final-submission input ledger from the authors or approved asset sources.",
-    "Replace placeholders only after the corresponding ledger row has verified source evidence.",
-    "Rerun strict preflight and final Springer sn-jnl compilation after all ledger blockers are closed."
+    "Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and approved final Fig. 1-6 assets.",
+    "Rerun strict V18 preflight after the remaining ledger blockers are closed.",
+    "Compile the final Springer sn-jnl PDF only after strict preflight passes."
   ]
 }

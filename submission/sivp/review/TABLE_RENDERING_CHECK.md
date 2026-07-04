@@ -1,0 +1,20 @@
+# Table Rendering Check
+
+Generated: 2026-07-04
+
+| Check ID | Check | Status | Notes |
+| --- | --- | --- | --- |
+| all_fragments_exist | all 7 input fragments exist | pass |  |
+| body_table_placeholders_removed | body contains zero TABLE PLACEHOLDER strings | pass | count=0 |
+| body_table_inputs_count | body contains 7 table fragment inputs | pass | count=7 |
+| source_csvs_unchanged | all 7 source CSVs are unchanged by this task | pass | no source CSV diff |
+| table_1_rows_once | Table 1 source rows represented exactly once | pass | source_rows=12; represented_once=12 |
+| table_2_rows_once | Table 2 source rows represented exactly once | pass | source_rows=12; represented_once=12 |
+| table_3_rows_once | Table 3 source rows represented exactly once | pass | source_rows=20; represented_once=20 |
+| table_4_rows_once | Table 4 source rows represented exactly once | pass | source_rows=27; represented_once=27 |
+| table_5_rows_once | Table 5 source rows represented exactly once | pass | source_rows=14; represented_once=14 |
+| table_6_rows_once | Table 6 source rows represented exactly once | pass | source_rows=12; represented_once=12 |
+| table_7_rows_once | Table 7 source rows represented exactly once | pass | source_rows=8; represented_once=8 |
+| table3_table4_clean_split_evidence | Table 3 and Table 4 use clean blocked-split R0/R1/R2/R4 evidence rather than legacy E0-E6 headline wording | pass | clean_names_ok=True; legacy_promoted=False |
+| width_layout_warnings | potential width/layout warnings | warning | Table 2: resizebox used for 4 columns or long text cells; Table 3: resizebox used for 10 columns or long text cells; Table 4: resizebox used for 10 columns or long text cells; Table 5: resizebox used for 13 columns or long text cells; Table 6: resizebox used for 12 columns or long text cells; Table 7: resizebox used for 14 columns or long text cells |
+| expected_strict_preflight | expected strict-preflight result after table insertion | warning | strict preflight should still fail on author metadata, figure assets, release/data governance, environment and compile readiness, but not table placeholders |

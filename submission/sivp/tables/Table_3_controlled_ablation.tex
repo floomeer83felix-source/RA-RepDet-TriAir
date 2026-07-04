@@ -1,0 +1,28 @@
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llllllllll@{}}
+\toprule
+Variant & Seed & Row Type & Dropout Ratio & P@0.50 & R@0.50 & F1@0.50 & AP50 & AP75 & Source \\
+\midrule
+R0 Early Fusion & 0 & per-seed & NA & 0.890591 & 0.896172 & 0.893373 & 0.938560 & 0.827560 & runs/clean\_block64g16\_seed\_replication.csv \\
+R0 Early Fusion & 2 & per-seed & NA & 0.902247 & 0.891091 & 0.896634 & 0.937711 & 0.831114 & runs/clean\_block64g16\_seed\_replication.csv \\
+R1 Reliability p=0.00 & 0 & per-seed & 0.00 & 0.890553 & 0.916497 & 0.903339 & 0.952112 & 0.889847 & runs/clean\_block64g16\_seed\_replication.csv \\
+R1 Reliability p=0.00 & 2 & per-seed & 0.00 & 0.920263 & 0.899221 & 0.909620 & 0.954378 & 0.893068 & runs/clean\_block64g16\_seed\_replication.csv \\
+R2 Reliability p=0.15 & 0 & per-seed & 0.15 & 0.906797 & 0.912940 & 0.909858 & 0.961573 & 0.899166 & runs/clean\_block64g16\_seed\_replication.csv \\
+R2 Reliability p=0.15 & 2 & per-seed & 0.15 & 0.916368 & 0.909383 & 0.912862 & 0.957739 & 0.870351 & runs/clean\_block64g16\_seed\_replication.csv \\
+R4 Reliability p=0.20 & 0 & per-seed & 0.20 & 0.938850 & 0.920562 & 0.929616 & 0.965012 & 0.895019 & runs/clean\_block64g16\_seed\_replication.csv \\
+R4 Reliability p=0.20 & 2 & per-seed & 0.20 & 0.906763 & 0.917514 & 0.912107 & 0.959977 & 0.887513 & runs/clean\_block64g16\_seed\_replication.csv \\
+R0 Early Fusion & 0,2 & F1@0.50 mean/min/max/range & NA & NA & NA & 0.895004 & NA & NA & min=0.893373; max=0.896634; range=0.003261 \\
+R0 Early Fusion & 0,2 & AP50 mean/min/max/range & NA & NA & NA & NA & 0.938136 & NA & min=0.937711; max=0.938560; range=0.000849 \\
+R0 Early Fusion & 0,2 & AP75 mean/min/max/range & NA & NA & NA & NA & NA & 0.829337 & min=0.827560; max=0.831114; range=0.003554 \\
+R1 Reliability p=0.00 & 0,2 & F1@0.50 mean/min/max/range & 0.00 & NA & NA & 0.906479 & NA & NA & min=0.903339; max=0.909620; range=0.006281 \\
+R1 Reliability p=0.00 & 0,2 & AP50 mean/min/max/range & 0.00 & NA & NA & NA & 0.953245 & NA & min=0.952112; max=0.954378; range=0.002266 \\
+R1 Reliability p=0.00 & 0,2 & AP75 mean/min/max/range & 0.00 & NA & NA & NA & NA & 0.891458 & min=0.889847; max=0.893068; range=0.003221 \\
+R2 Reliability p=0.15 & 0,2 & F1@0.50 mean/min/max/range & 0.15 & NA & NA & 0.911360 & NA & NA & min=0.909858; max=0.912862; range=0.003004 \\
+R2 Reliability p=0.15 & 0,2 & AP50 mean/min/max/range & 0.15 & NA & NA & NA & 0.959656 & NA & min=0.957739; max=0.961573; range=0.003834 \\
+R2 Reliability p=0.15 & 0,2 & AP75 mean/min/max/range & 0.15 & NA & NA & NA & NA & 0.884759 & min=0.870351; max=0.899166; range=0.028815 \\
+R4 Reliability p=0.20 & 0,2 & F1@0.50 mean/min/max/range & 0.20 & NA & NA & 0.920861 & NA & NA & min=0.912107; max=0.929616; range=0.017509 \\
+R4 Reliability p=0.20 & 0,2 & AP50 mean/min/max/range & 0.20 & NA & NA & NA & 0.962495 & NA & min=0.959977; max=0.965012; range=0.005035 \\
+R4 Reliability p=0.20 & 0,2 & AP75 mean/min/max/range & 0.20 & NA & NA & NA & NA & 0.891266 & min=0.887513; max=0.895019; range=0.007506 \\
+\bottomrule
+\end{tabular}%
+}

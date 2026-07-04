@@ -34,6 +34,10 @@ PHASE7B_LEDGER_MD = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "FINAL_S
 PHASE7B_LEDGER_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "FINAL_SUBMISSION_INPUT_LEDGER.csv"
 PHASE7B_REPORT_MD = RUNS_DIR / "phase7b_publication_state_reconciliation.md"
 PHASE7B_REPORT_JSON = RUNS_DIR / "phase7b_publication_state_reconciliation.json"
+PHASE7C_REPORT_MD = RUNS_DIR / "phase7c_table_insertion_report.md"
+PHASE7C_REPORT_JSON = RUNS_DIR / "phase7c_table_insertion_report.json"
+PHASE7C_RENDER_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "TABLE_RENDERING_CHECK.md"
+PHASE7C_TRACEABILITY_MD = PROJECT_ROOT / "submission" / "sivp" / "tables" / "TABLE_SOURCE_TRACEABILITY.md"
 
 
 EXPERIMENTS = [
@@ -454,6 +458,27 @@ def collect_phase7b():
     }
 
 
+def collect_phase7c():
+    report_data = {}
+    if PHASE7C_REPORT_JSON.exists():
+        try:
+            report_data = json.loads(PHASE7C_REPORT_JSON.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            report_data = {"json_error": "Could not parse phase7c report JSON."}
+    return {
+        "report": str(PHASE7C_REPORT_MD) if PHASE7C_REPORT_MD.exists() else None,
+        "report_json": str(PHASE7C_REPORT_JSON) if PHASE7C_REPORT_JSON.exists() else None,
+        "render_check": str(PHASE7C_RENDER_CHECK_MD) if PHASE7C_RENDER_CHECK_MD.exists() else None,
+        "traceability": str(PHASE7C_TRACEABILITY_MD) if PHASE7C_TRACEABILITY_MD.exists() else None,
+        "table_mappings": report_data.get("table_mappings", []),
+        "table_validation_outcome": report_data.get("table_validation_outcome", "pending"),
+        "command_outcomes": report_data.get("command_outcomes", []),
+        "changed_files": report_data.get("changed_files", []),
+        "residual_blockers": report_data.get("residual_blockers", []),
+        "final_commit_sha": report_data.get("final_commit_sha", "pending until commit is created"),
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -483,6 +508,7 @@ def build_handoff():
     phase6a = collect_phase6a()
     phase6b = collect_phase6b()
     phase7b = collect_phase7b()
+    phase7c = collect_phase7c()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -532,6 +558,17 @@ def build_handoff():
             "Collect every missing item in the Phase 7B final-submission input ledger from the authors or approved asset sources.",
             "Replace placeholders only after the corresponding ledger row has verified source evidence.",
             "Rerun strict preflight and final Springer sn-jnl compilation after all ledger blockers are closed.",
+        ]
+    if phase7c["report"] or "Phase 7C" in read_text(NEXT_TASK_PATH):
+        pending = [
+            "Strict V18 preflight remains blocked until author-confirmed metadata, TriAir governance facts, release metadata, final approved figures, final environment record, and final compile readiness are supplied.",
+            "Final table placeholders have been removed and replaced with evidence-locked table fragments from unchanged manuscript/table CSV sources.",
+            "Do not claim formal SIVP submission readiness or compile a final PDF until strict preflight passes without placeholders and final figures are approved.",
+        ]
+        next_tasks = [
+            "Collect author-confirmed metadata, TriAir governance facts, release/archive metadata, final environment details, and approved final Fig. 1-6 assets.",
+            "Rerun strict V18 preflight after the remaining ledger blockers are closed.",
+            "Compile the final Springer sn-jnl PDF only after strict preflight passes.",
         ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
@@ -590,6 +627,7 @@ def build_handoff():
         "phase6a": phase6a,
         "phase6b": phase6b,
         "phase7b": phase7b,
+        "phase7c": phase7c,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -816,6 +854,35 @@ def write_markdown(data, path):
         ),
         f"- Final commit SHA: {data['phase7b']['final_commit_sha']}",
         "- Phase 7B status: publication-state mismatch resolved; strict preflight remains blocked by author/asset inputs.",
+        "",
+        "## Phase 7C Evidence-Locked Table Insertion",
+        "",
+        "- Table insertion report: `runs/phase7c_table_insertion_report.md`" if data["phase7c"]["report"] else "- Table insertion report: NA",
+        "- Table insertion JSON: `runs/phase7c_table_insertion_report.json`" if data["phase7c"]["report_json"] else "- Table insertion JSON: NA",
+        "- Source traceability: `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`" if data["phase7c"]["traceability"] else "- Source traceability: NA",
+        "- Rendering check: `submission/sivp/review/TABLE_RENDERING_CHECK.md`" if data["phase7c"]["render_check"] else "- Rendering check: NA",
+        f"- Table fragments inserted: {len(data['phase7c']['table_mappings'])}",
+        f"- Table validation outcome: {data['phase7c']['table_validation_outcome']}",
+        "- Command outcomes: "
+        + (
+            "; ".join(data["phase7c"]["command_outcomes"])
+            if data["phase7c"]["command_outcomes"]
+            else "see report after Phase 7C commands are run"
+        ),
+        "- Phase 7C changed files: "
+        + (
+            ", ".join(f"`{item}`" for item in data["phase7c"]["changed_files"])
+            if data["phase7c"]["changed_files"]
+            else "see git diff for current task files"
+        ),
+        "- Residual blockers: "
+        + (
+            "; ".join(data["phase7c"]["residual_blockers"])
+            if data["phase7c"]["residual_blockers"]
+            else "none recorded"
+        ),
+        f"- Final commit SHA: {data['phase7c']['final_commit_sha']}",
+        "- Phase 7C status: table placeholders removed; strict preflight remains blocked by non-table external inputs.",
         "",
         "## Model And Code Structure",
         "",
