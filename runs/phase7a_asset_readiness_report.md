@@ -30,6 +30,7 @@ followed by official Springer `sn-jnl` PDF compilation only after the strict pre
 - Refreshed `runs/handoff_latest.md`, `runs/handoff_latest.json`, and `docs/EXPERIMENT_STATUS.md`.
 - No GPU training, GPU inference, or metric-changing evaluation was executed.
 - `git pull --ff-only research research/ra-repdet-triair` remains blocked because the local and remote branches have diverged.
+- Local refresh commit was created, but `git push research research/ra-repdet-triair` was rejected as non-fast-forward; see `docs/TASK_BLOCKER.md`.
 
 ## Strict Preflight Blockers
 

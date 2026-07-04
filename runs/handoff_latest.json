@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-07-04T09:23:27",
+  "generated_at": "2026-07-04T09:36:37",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -11,18 +11,12 @@
       "research\thttps://github.com/floomeer83felix-source/RA-RepDet-TriAir.git (push)"
     ],
     "status_short": [
-      "M docs/EXPERIMENT_STATUS.md",
-      " M runs/handoff_latest.json",
-      " M runs/handoff_latest.md",
+      "M docs/TASK_BLOCKER.md",
       " M runs/phase7a_asset_readiness_report.md",
-      "?? RA_RepDet_V23_StandardizedReevaluation_Handoff/",
       "?? rarepdet/tools/eval_dronevehicle_modality_specific.py",
       "?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py",
-      "?? reproducibility/",
-      "?? results_v23/",
       "?? runs/component_disjoint_candidates/",
-      "?? runs/v39_component_disjoint/",
-      "?? submission/RA_RepDet_SIVP_v35_DroneVehicleModalitySpecific/"
+      "?? runs/v39_component_disjoint/"
     ]
   },
   "current_task": {
@@ -3566,18 +3560,12 @@
     "postprocessing_tools": "rarepdet/tools/"
   },
   "recent_modified_files": [
-    "M docs/EXPERIMENT_STATUS.md",
-    " M runs/handoff_latest.json",
-    " M runs/handoff_latest.md",
+    "M docs/TASK_BLOCKER.md",
     " M runs/phase7a_asset_readiness_report.md",
-    "?? RA_RepDet_V23_StandardizedReevaluation_Handoff/",
     "?? rarepdet/tools/eval_dronevehicle_modality_specific.py",
     "?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py",
-    "?? reproducibility/",
-    "?? results_v23/",
     "?? runs/component_disjoint_candidates/",
-    "?? runs/v39_component_disjoint/",
-    "?? submission/RA_RepDet_SIVP_v35_DroneVehicleModalitySpecific/"
+    "?? runs/v39_component_disjoint/"
   ],
   "next_recommended_tasks": [
     "Create final SIVP figure artwork according to submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md.",
