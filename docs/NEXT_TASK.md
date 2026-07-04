@@ -1,93 +1,73 @@
 # Current Task
 
 ## Title
-Phase 7G — Expanded Submission Ledger, Author Intake, and Static Audit Batch
+Phase 7H — Author-Response Validation Gate and Application Readiness
 
 ## Goal
-Complete a larger batch of **non-experimental, evidence-preserving submission-readiness tasks** in one pass:
+Build a safe, report-only validation gate for the 29 unresolved author-input rows created in Phase 7G. The gate must identify which supplied responses are structurally ready to apply, which are incomplete, and which require external verification. It must not write author facts, figures, release values, or metadata into any manuscript or submission source file.
 
-1. reconcile the canonical submission ledger with completed table insertion;
-2. create a fillable author-input package for remaining external facts and approvals;
-3. audit static SIVP source consistency, citations, labels, table/figure crosswalks, and reproducibility closure requirements;
-4. produce a clear dependency-ordered closure roadmap.
-
-This task is documentation and static validation only. It must not alter experiments, metrics, model code, source data, manuscript claims, final TeX content, figure assets, or publication metadata.
+## Why This Task Exists
+Phase 7G reconciled the table ledger and created blank response templates. The next reliable step is to validate incoming author responses before any future task applies them to TeX, metadata, references, archive manifests, or final assets. This prevents an accidental conversion of partial or unverified information into publication facts.
 
 ## Read First
 - `AGENTS.md` if it exists.
 - `docs/PROJECT_CONTEXT.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `runs/handoff_latest.md`
-- `runs/phase4b_report.md`
-- `runs/phase7b_publication_state_reconciliation.md`
-- `runs/phase7c_table_insertion_report.md`
-- `runs/phase7d_figure_source_lock_report.md`
-- `runs/phase7e_candidate_render_report.md`
-- `runs/phase7f_author_review_intake_report.md`
-- `docs/TASK_BLOCKER.md`
-- `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
-- `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
-- `submission/sivp/review/TABLE_RENDERING_CHECK.md`
-- `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`
-- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_PACKET.md`
-- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv`
-- `submission/sivp/review/FIGURE6_PANEL_INVENTORY_CHECK.md`
-- `submission/sivp/figures/FIGURE_SOURCE_TRACEABILITY.md`
-- `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
-- `submission/sivp/tex/main.tex`
-- `submission/sivp/tex/ra_repdet_sivp.tex`
-- `submission/sivp/tex/references.bib`
-- `main.tex`
-- `main_sivp_snjnl.tex`
-- `scripts/preflight_submission.py`
-- `rarepdet/tools/generate_handoff.py`
-- `rarepdet/tools/update_project_status.py`
-
-## Frozen Facts
-- The official manuscript headline is **R4 Reliability p=0.20** on `block64_guard16_seed0`, controlled seeds `0` and `2`.
-- Publication headline means: F1@0.50 `0.920861`, AP50 `0.962495`, AP75 `0.891266`, w/o RGB AP50 `0.916051`, w/o Thermal AP50 `0.718277`, w/o Event AP50 `0.961577`.
-- Phase 4B decision: `SELECT R4 AS CLEAN-SPLIT MAIN VARIANT`.
-- Phase 7C completed evidence-locked insertion of Tables 1–7. The SIVP body has zero `TABLE PLACEHOLDER` strings, every table fragment is traceable to an unchanged source CSV, and strict preflight no longer has a table-placeholder failure.
-- Phase 7E Fig. 3–5 PDFs are local, ignored, visibly non-final candidates only. Phase 7F confirmed that 20/20 Fig. 6 manifest entries have locally existing panels, but author selection and final composition remain pending.
-- Fig. 1–2 remain author-design/Visio dependencies. The six figure placeholders remain intentional until final approved assets exist.
-- Any unresolved external field must remain `missing — author confirmation required`, `pending author review`, or another equally explicit pending state.
-
-## Allowed Files To Modify
-- `docs/NEXT_TASK.md`
-- `docs/EXPERIMENT_STATUS.md`
-- `docs/TASK_BLOCKER.md`
-- `runs/handoff_latest.md`
-- `runs/handoff_latest.json`
 - `runs/phase7g_submission_intake_report.md`
-- `runs/phase7g_submission_intake_report.json`
+- `docs/TASK_BLOCKER.md`
+- `docs/UPCOMING_TASKS.md`
 - `submission/sivp/metadata/FINAL_SUBMISSION_INPUT_LEDGER.md`
 - `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
 - `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md`
 - `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
 - `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md`
-- `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`
 - `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.md`
-- `submission/sivp/review/SUBMISSION_INPUT_COMPLETENESS_CHECK.csv`
-- `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.md`
-- `submission/sivp/review/STATIC_SUBMISSION_SOURCE_AUDIT.csv`
-- `submission/sivp/review/FIGURE_TABLE_CROSSWALK.md`
-- `submission/sivp/review/FIGURE_TABLE_CROSSWALK.csv`
-- `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.md`
-- `submission/sivp/review/REPRODUCIBILITY_CLOSURE_AUDIT.csv`
-- `submission/sivp/review/static_submission_audit.py`
+- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv`
+- `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv`
+- `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md`
+- `scripts/preflight_submission.py`
+- `rarepdet/tools/generate_handoff.py`
+- `rarepdet/tools/update_project_status.py`
+
+## Frozen Facts
+- Official manuscript headline: **R4 Reliability p=0.20** on `block64_guard16_seed0`, controlled seeds `0` and `2`.
+- Phase 7C Tables 1–7 are complete and evidence-locked. `TAB_001` is resolved and must not reappear as an open table blocker.
+- Phase 7G has 30 canonical ledger items: 1 resolved and 29 unresolved author/external-input items.
+- The response template contains blank author-response/confirmation fields by design. Blank rows are pending, not confirmed.
+- Fig. 3–5 candidates are local, ignored, and non-final. Fig. 1–2 require author-design decisions; Fig. 6 needs author panel selection. No figure decision is presumed approved.
+- Strict preflight must remain FAIL until every required external fact and final approved asset is genuinely available.
+
+## Allowed Files To Modify
+- `docs/NEXT_TASK.md`
+- `docs/UPCOMING_TASKS.md`
+- `docs/EXPERIMENT_STATUS.md`
+- `docs/TASK_BLOCKER.md`
+- `runs/handoff_latest.md`
+- `runs/handoff_latest.json`
+- `runs/phase7h_author_response_validation_report.md`
+- `runs/phase7h_author_response_validation_report.json`
+- `submission/sivp/metadata/validate_author_submission_inputs.py`
+- `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md`
+- `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv`
+- `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md`
+- `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv`
+- `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md`
+- `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv`
 - `rarepdet/tools/generate_handoff.py`
 - `rarepdet/tools/update_project_status.py`
 
 ## Forbidden Files To Modify
-- All training, model, dataset, loss, evaluation, data-loading, and split-generation files.
-- All source evidence CSVs, raw data, labels, checkpoints, weights, candidate/final figure files, local qualitative panel files, table fragments, manuscript body TeX, final PDFs, and prior experimental outputs.
-- Do not modify `submission/sivp/tex/ra_repdet_sivp.tex`, `main.tex`, or `main_sivp_snjnl.tex` in this task.
-- Do not add or infer author identities, affiliations, emails, ORCIDs, funding, declarations, data licences, citations, access terms, release URLs, tags, commit hashes, archive dates, DOI values, hardware facts, or approvals.
-- Do not approve candidates, choose Fig. 6 panels, remove figure blockers, run training, run inference, recompute metrics, mutate data, or run LaTeX compilation.
-- Do not weaken `scripts/preflight_submission.py` or edit strict placeholder rules.
+- `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`: do not populate or alter author responses in this task.
+- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv` and `FIGURE6_PANEL_REVIEW_TEMPLATE.csv`: do not populate approvals or selections.
+- All manuscript TeX (`main.tex`, `main_sivp_snjnl.tex`, `submission/sivp/tex/**`).
+- All model, training, dataset, evaluation, loss, split, or data-loading files.
+- All source evidence CSVs, raw data, labels, weights, checkpoints, candidate/final figures, local panels, release/archive manifests, references, and final PDFs.
+- Do not create or infer author identities, affiliations, emails, ORCIDs, funding, declarations, dataset citations, licences, release URLs, tags, commit hashes, archive dates, DOIs, hardware information, approvals, or figure selections.
+- Do not modify strict preflight rules, run training/inference/evaluation, mutate data, or run LaTeX compilation.
 
 ## Required Commands
-Start with safe verification:
+Start with repository and template verification:
 
 ```powershell
 git switch research/ra-repdet-triair
@@ -96,12 +76,12 @@ git status --short
 python scripts/preflight_submission.py --root . --allow-placeholders
 ```
 
-If `git pull --ff-only` cannot proceed because of genuine local/remote divergence, do not use `--allow-unrelated-histories`, reset, force push, or rewrite history. Record the blocker in `docs/TASK_BLOCKER.md`, commit only safe partial outputs if possible, and stop.
+If the fast-forward pull cannot proceed, do not rewrite history, force push, reset, or merge unrelated histories. Record the blocker and stop.
 
-Run the static audit only after implementing it:
+Then run the new validator in report-only mode:
 
 ```powershell
-python submission/sivp/review/static_submission_audit.py --root . --output-prefix submission/sivp/review/static_submission_source_audit
+python submission/sivp/metadata/validate_author_submission_inputs.py --root . --responses submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv --ledger submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv --output-prefix submission/sivp/metadata/author_response_validation
 ```
 
 Then run:
@@ -114,159 +94,104 @@ python scripts/preflight_submission.py --root .
 powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 ```
 
-Strict preflight is expected to remain FAIL. Do not weaken the validator or claim a final-submission PASS.
+Strict preflight is expected to remain FAIL. Do not claim that a structural validation PASS is a formal submission PASS.
 
 ## Required Work
 
-### A. Canonical submission-ledger reconciliation
-Update `FINAL_SUBMISSION_INPUT_LEDGER.md` and its CSV counterpart so `TAB_001` reflects Phase 7C completion:
+### 1. Report-only response validator
+Create `submission/sivp/metadata/validate_author_submission_inputs.py`.
 
-- Current state: `complete — evidence-locked Tables 1–7 inserted in Phase 7C`.
-- Evidence: `runs/phase7c_table_insertion_report.md`, `submission/sivp/tables/TABLE_SOURCE_TRACEABILITY.md`, and `submission/sivp/review/TABLE_RENDERING_CHECK.md`.
-- Strict-preflight effect: table-placeholder failure is resolved; only non-table blockers remain.
-- Action to close: `none for table placeholders; final visual compile review remains pending under TEX_001`.
+It must:
 
-Recompute status/handoff open-item counts so tables are not listed as an open `table_asset` blocker. Preserve Phase 7B provenance and add a factual Phase 7G reconciliation note.
+- Accept `--root`, `--responses`, `--ledger`, and `--output-prefix`.
+- Read the Phase 7G response CSV and canonical ledger CSV without modifying either.
+- Validate that every unresolved ledger `item_id` appears exactly once in the response CSV, while resolved `TAB_001` does not appear as a response requirement.
+- Classify every row into one of: `pending_author_response`, `response_present_needs_confirmation`, `structurally_ready_for_future_apply`, `invalid_or_incomplete`, or `external_verification_required`.
+- Treat blank `author_response`, `confirmed_by`, `confirmation_date`, or `source_of_confirmation` fields as pending/incomplete—not confirmed.
+- Perform only conservative structural checks. Examples:
+  - date field, when present, must use `YYYY-MM-DD`;
+  - email field, when present, must have a basic email shape;
+  - ORCID, when supplied, must have a basic ORCID-style shape;
+  - DOI, URL, release tag, and citation fields may be checked for nonblank/format shape only, never independently asserted true;
+  - approval fields require a nonblank confirmer, confirmation date, and source-of-confirmation before being classified ready.
+- Never download external resources, query release services, inspect private data, or validate facts against the internet.
+- Never write to the response CSV, ledger, TeX, reference files, metadata manifests, or figure-decision files.
+- Write only its requested Markdown/CSV report outputs plus an optional JSON summary next to the output prefix.
+- Exit nonzero only on structural integrity errors such as missing required columns, duplicate item IDs, response items absent from ledger, or ledger unresolved items missing from the response template. It must exit zero when all entries are simply blank/pending.
 
-### B. Fillable author-submission intake package
-Create `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_PACKET.md` with a clear opening statement that it is a fillable intake packet, not a completed submission form, and no field may be completed by inference.
+### 2. Validation report and readiness map
+Create:
 
-Organize remaining unresolved facts and approvals into these sections:
+- `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.md`
+- `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv`
+- `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.md`
+- `submission/sivp/metadata/METADATA_APPLICATION_READINESS_MAP.csv`
 
-1. Publication authorship and corresponding contact.
-2. Funding, acknowledgments, contributions, competing interests, and AI-use disclosure.
-3. TriAir citation, version/provider, licence, access terms, and redistribution restrictions.
-4. Code/archive/release decision: public URL or explicit no-release policy, release tag, immutable source identifier, archive date, licence, DOI if any.
-5. Figure decisions: Fig. 1–2 design decision, Fig. 3–5 candidate approve/revise decision, Fig. 6 panel-selection/composition decision. Reference existing figure-review files; do not repeat panel identifiers or local paths.
-6. Claim scope: validation-only wording approval versus a future independent held-out-evidence decision.
-7. Final training/evaluation environment record.
-8. Final Springer `sn-jnl` compile owner/readiness.
+These must include:
 
-For each item provide: exact response requested, destination files after confirmation, `Current status: pending author confirmation`, and a brief caution where publisher/provider terms must be respected.
+- ledger total, resolved count, unresolved count, template response-row count;
+- classification counts by category and readiness state;
+- every unresolved item ID with status and the minimum missing fields needed for advancement;
+- the exact repository destinations that a future *application task* may update only after the row is structurally ready and author-confirmed;
+- a distinction between structurally ready and externally verified: e.g., a well-formed TriAir licence response still may need provider verification, and a well-formed release URL still may need release-owner confirmation;
+- a clear statement that the report does not modify or confirm any factual submission value.
 
-Create `AUTHOR_SUBMISSION_INPUT_RESPONSES.csv` with one row per unresolved ledger item, excluding resolved `TAB_001`, using:
+### 3. Gate review check
+Create:
 
-```text
-item_id,category,exact_required_input,current_status,author_response,confirmed_by,confirmation_date,source_of_confirmation,repository_destination,validation_rule,notes
-```
+- `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.md`
+- `submission/sivp/review/AUTHOR_RESPONSE_GATE_CHECK.csv`
 
-All response and confirmation fields must be blank. Do not prefill factual content.
+Include checks for:
 
-### C. Environment record template
-Create `submission/sivp/metadata/ENVIRONMENT_RECORD_TEMPLATE.md` with fields for:
+- canonical ledger has 30 rows, with `TAB_001` resolved;
+- response template has exactly 29 rows and excludes `TAB_001`;
+- no unknown or duplicate response item ID;
+- no response-only field was auto-filled by this task;
+- no author fact, approval, asset, source CSV, TeX file, figure file, or manifest changed;
+- validator execution outcome;
+- expected strict-preflight state.
 
-- training hardware: GPU model/count/memory, CPU, RAM;
-- OS;
-- Python;
-- PyTorch/Torchvision;
-- CUDA/cuDNN;
-- key package versions;
-- training image size, batch size, seed list, epoch count;
-- profiling protocol: batch size, warmup, timed iterations, repeats;
-- person confirming the record and date.
+### 4. Queue and workflow update
+Update `docs/UPCOMING_TASKS.md` so the next stages after this validation gate are explicit:
 
-Only prepopulate values directly documented in repository evidence, including image size `640`, controlled seeds `0, 2`, and 50 epochs where supported by the existing clean-split report. Leave machine-specific facts blank.
+- Phase 7I — Conditional Application of Confirmed Author Metadata and Declarations.
+- Phase 7J — Conditional Application of Confirmed Data Governance and Release/Archive Facts.
+- Phase 7K — Conditional Final Figure Asset Workflow after author decisions.
+- Phase 7L — Environment Record and Reproducibility Metadata Closure.
+- Phase 7M — Strict Preflight Closure Check.
+- Phase 7N — Springer `sn-jnl` Compile Dry Run.
+- Phase 7O — Final Submission Bundle Assembly.
+- Phase 8A — Optional post-submission research continuation.
 
-### D. Static submission-source audit
-Create `submission/sivp/review/static_submission_audit.py`. It must be CPU-only, read-only with respect to source TeX/Bib/CSV files, and must not import model or training code.
+For each queued stage, include trigger, allowed scope, and a statement that it cannot run until the preceding external confirmations/approvals are available.
 
-It must inspect these static conditions and output matching Markdown and CSV reports:
+### 5. Report, blocker, and handoff
+Create `runs/phase7h_author_response_validation_report.md` and matching JSON containing:
 
-1. Required source-entry files exist: root `main.tex`, `main_sivp_snjnl.tex`, SIVP main/body TeX, and `references.bib`.
-2. All `\input{...}` table references from the SIVP body resolve to existing files; count should be seven.
-3. The SIVP body has zero `TABLE PLACEHOLDER` strings and exactly six intentional `Final artwork pending` figure placeholders.
-4. All `\label{...}` values in the SIVP body are unique.
-5. All `\cite{...}` keys used in the SIVP body exist in `references.bib`; report unused BibTeX keys as warning only.
-6. Table labels and figure labels listed in the body have a matching source/status row in the table/figure traceability documentation when applicable.
-7. Static checks must not interpret a placeholder-mode preflight PASS as formal submission readiness.
-8. Do not modify TeX, BibTeX, tables, figures, or figures placeholders.
+- validator behavior and command outcome;
+- ledger/template counts and response readiness counts;
+- any structural integrity error;
+- no-application/no-inference confirmation;
+- remaining strict-preflight blockers;
+- a concise list of what authors must provide next.
 
-The script must accept `--root` and `--output-prefix`, write only the requested Markdown/CSV reports, and exit nonzero for missing required source files, broken table inputs, duplicate labels, or missing cited BibTeX keys. It may emit warnings for intentional figure placeholders, unused BibTeX keys, and unavailable final compile dependencies.
+Update `docs/TASK_BLOCKER.md` to say that the response-validation gate exists but no unresolved author fact or final figure blocker is closed until confirmed values and approvals are supplied.
 
-### E. Figure/table crosswalk
-Create `FIGURE_TABLE_CROSSWALK.md` and CSV. Include every Table 1–7 and Fig. 1–6 with:
-
-```text
-asset_id,asset_type,caption_or_purpose,manuscript_label,source_or_traceability_path,current_state,final_asset_required,author_action_required,strict_preflight_effect,notes
-```
-
-Facts required:
-
-- Tables 1–7: evidence-locked and inserted; final visual compile review remains pending.
-- Fig. 1–2: author-design required.
-- Fig. 3–5: local non-final candidate available; author review required; final PDF absent.
-- Fig. 6: local panel inventory complete; author selection/composition required; final PDF absent.
-
-Do not call any asset final or approved.
-
-### F. Reproducibility closure audit
-Create `REPRODUCIBILITY_CLOSURE_AUDIT.md` and CSV. Audit only repository-documentable state:
-
-- canonical clean split and R4 headline provenance;
-- source locations for the frozen split protocol, controlled-seed report, table traceability, figure traceability, and local candidate rules;
-- whether raw data, checkpoints, or local candidate PDFs are tracked in Git according to repository inspection;
-- which release/metadata facts remain author-owned;
-- whether a final environment record is present or pending;
-- whether final compilation is possible now or blocked.
-
-Use statuses `pass`, `warning`, `blocker`, and `pending author confirmation`. Do not claim data/code release readiness or an archive DOI.
-
-### G. Submission-closure roadmap
-Create `submission/sivp/metadata/SUBMISSION_CLOSURE_ROADMAP.md` with a dependency-ordered sequence:
-
-1. author responses and metadata confirmation;
-2. figure decisions and final approved Fig. 1–6 assets;
-3. final release/data-governance decision;
-4. environment confirmation;
-5. strict preflight;
-6. final Springer `sn-jnl` compile;
-7. author visual review of tables/final figures;
-8. final archive/release tag/immutable source record;
-9. formal submission handoff.
-
-For every step include inputs, owner category, verification action, and block-if-missing condition. Do not add dates or promise completion timing.
-
-### H. Completeness check and report
-Create `SUBMISSION_INPUT_COMPLETENESS_CHECK.md` and CSV containing:
-
-- canonical ledger total count;
-- resolved count and unresolved count by category;
-- explicit `TAB_001` resolved state;
-- number of response-template rows;
-- check that no response-only field was prefilled;
-- check that no unresolved item was silently removed;
-- static-audit outcome;
-- strict-preflight expected outcome and remaining blocker categories;
-- status `ready for author intake` unless a consistency error exists.
-
-Create `runs/phase7g_submission_intake_report.md` and matching JSON containing:
-
-- ledger inconsistency corrected;
-- counts before/after reconciliation;
-- package, template, environment-record, static-audit, crosswalk, reproducibility-audit, and roadmap locations;
-- confirmation that no author facts or assets were invented, generated, approved, or inserted;
-- remaining strict-preflight blockers.
-
-Update `docs/TASK_BLOCKER.md` to remove only the obsolete table-placeholder/table-asset blocker. Retain all figure, author/metadata, data-governance, release/archive, claim-scope, environment, and compile-readiness blockers.
-
-Refresh `runs/handoff_latest.md` / `.json` and `docs/EXPERIMENT_STATUS.md`. R4 on the frozen blocked split must remain first; E0–E6 remain historical/exploratory. Do not describe the intake package or audit outputs as formal submission readiness.
+Refresh handoff/status. Maintain the R4 clean blocked-split headline first and historical-only E0–E6 language.
 
 ## Acceptance Criteria
-- `TAB_001` is resolved in both ledger formats and no generated status/handoff calls it an open table blocker.
-- The author-response CSV includes every unresolved ledger item, excludes resolved `TAB_001`, and contains no fabricated factual response.
-- The intake packet routes every item to a destination and defers figure approvals to the existing review files.
-- Environment template prepopulates only repository-documented experimental facts; system-specific fields remain blank.
-- Static audit passes required structural checks or reports clear blockers without modifying source TeX/Bib files.
-- Crosswalk contains all 13 manuscript assets; no figure is mislabeled as final.
-- Reproducibility audit distinguishes verified repository facts from author-owned release/environment requirements.
-- Completeness check reconciles totals and open categories accurately.
-- Placeholder-mode preflight is executed and documented. Strict preflight remains truthfully FAIL because figures and external author-provided facts remain unresolved.
-- No manuscript TeX, experiment, model, dataset, metric, source CSV, candidate/final asset, or final PDF changes.
-- No training, GPU inference, evaluation, source-data mutation, or LaTeX compilation occurs.
-- Commit only allowed files and push.
+- Validator is CPU-only, report-only, and does not edit the response template or any submission/manuscript source.
+- With the current blank template, validator exits successfully, reports 29 pending items, and does not classify any factual item as author-confirmed.
+- All template/ledger linkage checks pass; `TAB_001` remains resolved and absent from unresolved-response requirements.
+- The readiness map identifies destinations without copying any facts into those destinations.
+- Queue is updated with dependency-ordered conditional tasks.
+- Placeholder-mode preflight is recorded; strict preflight remains truthfully FAIL on external facts/final assets.
+- No training, inference, evaluation, data mutation, metric change, source CSV change, figure generation, asset insertion, TeX update, or final PDF compile occurs.
+- Commit only allowed code/documentation files and push.
 
 ## Commit Message
-`docs: expand submission audit and author intake package`
+`docs: add author response validation gate`
 
 ## Completion Rule
-Complete the full documentation/static-audit batch, refresh handoff/status, commit only allowed files, and push. If any audit result cannot be reconciled without guessing, record the discrepancy in `docs/TASK_BLOCKER.md`, commit safe partial outputs, and stop. Do not claim formal submission readiness.
+Complete the report-only validation gate, refresh handoff/status, commit, and push. Stop after reporting readiness. Do not apply any response or claim formal submission readiness.
