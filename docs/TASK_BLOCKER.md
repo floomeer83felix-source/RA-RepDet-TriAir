@@ -2,91 +2,97 @@
 
 ## Task
 
-Execute `docs/NEXT_TASK.md` for Phase 7I: create a confirmation-gated, report-only future update plan from the Phase 7H validation results.
+Execute `docs/V39_TASK_NOTES.md` on branch `research/ra-repdet-triair`: audit the candidate component-disjoint split, then only if the audit passes complete the missing V39 reliability `p=0.20` condition twice, aggregate two-run means, and run missing-channel plus efficiency evaluation for the selected reliability setting.
 
 ## Blocking Condition
 
-Phase 7I creates a dry-run application plan, but it does not close any unresolved author, figure, release, data-governance, claim, environment, or compile-readiness blocker. The current author-response template still has 29 blank response rows. The Phase 7H validator reports all 29 as `pending_author_response`, and the Phase 7I planner reports 29 plan rows with zero `eligible_for_future_guarded_application` rows.
+The required pre-run split audit did not pass, so the V39 continuation gate is blocked before any new `p=0.20` training can start.
 
-`TAB_001` remains resolved from Phase 7C/7G and is absent from the Phase 7I unresolved plan. Strict V18 final-submission preflight still fails because external facts and final approved assets are absent.
+The generic train/validation split audit found no path overlap and no exact `.npy` byte duplicates, but returned `CAUTION: near-duplicate or adjacent-frame review required`. A V39-specific component-disjoint audit then failed the explicit continuation gate because the candidate split still contains same-family train/validation ID distances within the intended 16-frame guard band and exact RGB-content overlap between guard and train/validation partitions.
 
-Remaining blocker categories:
+Key V39 component-disjoint audit results:
 
-- author_metadata: final author names, affiliations, ORCID decisions, and corresponding email are unconfirmed.
-- declarations: funding, acknowledgments, contributions, competing interests, and AI-use disclosure are unconfirmed.
-- data_governance: TriAir citation, version/provider, licence/access terms, and redistribution restrictions are unconfirmed and externally unverified.
-- release_archive: public URL or no-release policy, release tag, immutable source identifier, archive date, release licence, and DOI state are unconfirmed and externally unverified.
-- figure_asset: approved final Fig. 1-6 PDF assets are absent; all figure decisions remain pending, and Fig. 6 still requires author panel selection/composition approval.
-- claim_scope: authors must approve validation-only wording or provide approved held-out evidence before stronger claims.
-- environment: final hardware/software record still needs author or research-owner confirmation.
-- compile_readiness: final strict preflight and Springer `sn-jnl` compile remain blocked until all external facts and final assets exist.
+- train rows: 7439; validation rows: 2213; guard rows: 837.
+- train/validation path overlap: 0.
+- train/validation exact RGB-content overlap groups: 0.
+- train/guard exact RGB-content overlap groups: 4.
+- validation/guard exact RGB-content overlap groups: 5.
+- same-family train/validation guard-band-16 violations: 353.
+- minimum same-family train/validation ID distance: 1.
+- component-disjoint audit status: FAIL.
 
-No author fact, approver identity, approval date, public release value, dataset licence/access statement, DOI, final figure asset, Fig. 6 panel selection, final figure insertion, manuscript claim change, response-template edit, destination metadata edit, release/archive manifest edit, or final PDF compile was produced in Phase 7I.
+Because `docs/V39_TASK_NOTES.md` says to complete new runs only if the audit passes, no `reliability_p020_seed*_e50` run was started, no training core file was modified, and the manuscript was not edited.
 
 ## Failed Command
 
 ```powershell
-python scripts/preflight_submission.py --root .
+@'
+# read-only V39 component-disjoint split audit using rarepdet.tools.split_audit_common
+'@ | C:\Users\xinnan\.conda\envs\pytorch\python.exe -
+```
+
+The generic audit command that preceded it was:
+
+```powershell
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/audit_split_integrity.py --data D:\download\triair --train-split E:\RepViT-main\runs\component_disjoint_candidates\candidate_component_disjoint_v1_train.txt --val-split E:\RepViT-main\runs\component_disjoint_candidates\candidate_component_disjoint_v1_val.txt --out runs\v39_component_disjoint_split_audit
 ```
 
 ## Last Error Lines
 
 ```text
-RA-RepDet SIVP preflight
-root: E:\RepViT-main
-allow_placeholders: False
-FAIL: Placeholder or unverified field remains in main.tex: /\[[A-Z0-9 _/-]*(AUTHOR|AFFILIATION|EMAIL|FUNDING|ACKNOWLEDG|COMPETING|CONTRIBUTION|DATA AVAILABILITY)[A-Z0-9 _/-]*\]/
-FAIL: Placeholder or unverified field remains in archive_manifest.txt: /AUTHOR_(REQUIRED|CONFIRMATION_REQUIRED|CONFIRMATION REQUIRED)/
-FAIL: Placeholder or unverified field remains in main.tex: /AUTHOR CONFIRMATION REQUIRED/
-FAIL: Placeholder or unverified field remains in SUBMISSION_PRECHECK_V18.md: /NOT PROVIDED/
-FAIL: Placeholder or unverified field remains in submission\sivp\tex\ra_repdet_sivp.tex: /Final artwork pending/
-FAIL: Placeholder or unverified field remains in main.tex: /PLACEHOLDER/
-FAIL: Missing final figure assets: figures/Fig1_overall_architecture.pdf, figures/Fig2_leakage_aware_protocol.pdf, figures/Fig3_controlled_ablation.pdf, figures/Fig4_missing_modality_robustness.pdf, figures/Fig5_reliability_weight_audit.pdf, figures/Fig6_qualitative_results.pdf
-RESULT: FAIL
+train-val_exact_rgb_group_count: 0
+train-guard_exact_rgb_group_count: 4
+val-guard_exact_rgb_group_count: 5
+same_family_train_val_guard_band_16_violations: 353
+same_family_train_val_nearest_id_min: 1
+same_family_train_val_nearest_id_p50: 32
+component_disjoint_audit_status: FAIL
+PASS requires counts, uniqueness, split disjointness, zero train-val exact RGB overlap, and zero same-family guard-band violations.
+```
+
+The preceding generic audit also reported:
+
+```text
+path_overlap_count: 0
+exact_sha256_duplicate_pairs: 0
+signature_distance_min: 0.000000
+fraction_signature_distance_<=0: 0.000452
+final_status: CAUTION: near-duplicate or adjacent-frame review required
 ```
 
 ## Attempted Fixes
 
-- Ran the required branch switch and fast-forward pull before Phase 7I edits.
-- Ran `git status --short`; unrelated pre-existing untracked files remained outside the task.
-- Ran `python scripts/preflight_submission.py --root . --allow-placeholders`; result: `PASS` with expected warnings.
-- Reran `submission/sivp/metadata/validate_author_submission_inputs.py`; result: `PASS`, 29 `pending_author_response` rows.
-- Created `submission/sivp/metadata/plan_confirmed_submission_updates.py` as a CPU-only, report-only planner with no apply mode.
-- Ran the planner on the current blank response, validation, ledger, figure-decision, and Fig. 6 decision-template inputs; result: `PASS`, 29 plan rows and zero eligible rows.
-- Created `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md`, `.csv`, and `.json`.
-- Created `submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md` and `.csv`.
-- Updated `docs/UPCOMING_TASKS.md` with non-overlapping conditional phases 7J-7P and 8A.
-- No response CSV, figure decision CSV, Fig. 6 panel template, TeX source, metadata destination, reference file, release/archive manifest, figure asset, source CSV, model code, dataset code, training code, evaluation code, strict preflight rule, metric, checkpoint, split, raw data, local panel, or final PDF was modified.
+- Ran the required branch switch and fast-forward pull before starting.
+- Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, `docs/EXPERIMENT_STATUS.md`, `docs/NEXT_TASK.md`, `docs/V39_TASK_NOTES.md`, and `docs/V39_COMPONENT_DISJOINT_COMPLETION_TASK.md`.
+- Confirmed that current V39 artifacts include early, reliability `p=0.00`, and reliability `p=0.15`, but no completed reliability `p=0.20` condition.
+- Ran the existing project split-integrity audit on the V39 candidate train/validation files.
+- Ran a V39-specific component-disjoint audit for split counts, split uniqueness, path overlap, exact RGB-content overlap, and same-family guard-band violations.
+- Wrote audit outputs under `runs/v39_component_disjoint_split_audit/`.
+- Stopped before any new training because the audit did not pass.
+- Did not modify protected training core files, model files, dataset code, manuscript files, checkpoints, raw data, labels, or final assets.
 
 ## Related Files
 
-- `docs/NEXT_TASK.md`
-- `docs/UPCOMING_TASKS.md`
-- `docs/EXPERIMENT_STATUS.md`
+- `docs/V39_TASK_NOTES.md`
+- `docs/V39_COMPONENT_DISJOINT_COMPLETION_TASK.md`
 - `docs/TASK_BLOCKER.md`
-- `runs/handoff_latest.md`
-- `runs/handoff_latest.json`
-- `runs/phase7i_update_planning_report.md`
-- `runs/phase7i_update_planning_report.json`
-- `submission/sivp/metadata/plan_confirmed_submission_updates.py`
-- `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md`
-- `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv`
-- `submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json`
-- `submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md`
-- `submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv`
-- `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv`
-- `submission/sivp/metadata/AUTHOR_RESPONSE_VALIDATION.csv`
-- `submission/sivp/review/FINAL_SUBMISSION_INPUT_LEDGER.csv`
-- `submission/sivp/review/AUTHOR_FIGURE_REVIEW_DECISIONS.csv`
-- `submission/sivp/review/FIGURE6_PANEL_REVIEW_TEMPLATE.csv`
-- `scripts/preflight_submission.py`
-- `rarepdet/tools/generate_handoff.py`
-- `rarepdet/tools/update_project_status.py`
+- `runs/component_disjoint_candidates/candidate_component_disjoint_v1_train.txt`
+- `runs/component_disjoint_candidates/candidate_component_disjoint_v1_val.txt`
+- `runs/component_disjoint_candidates/candidate_component_disjoint_v1_guard_unchanged.txt`
+- `runs/v39_component_disjoint_split_audit/split_integrity_summary.md`
+- `runs/v39_component_disjoint_split_audit/split_integrity_summary.csv`
+- `runs/v39_component_disjoint_split_audit/split_integrity_exact_duplicates.csv`
+- `runs/v39_component_disjoint_split_audit/split_integrity_nearest_pairs.csv`
+- `runs/v39_component_disjoint_split_audit/split_integrity_manual_review.csv`
+- `runs/v39_component_disjoint_split_audit/component_disjoint_audit_summary.md`
+- `runs/v39_component_disjoint_split_audit/component_disjoint_audit_summary.csv`
+- `runs/v39_component_disjoint_split_audit/component_disjoint_exact_rgb_pairs.csv`
+- `runs/v39_component_disjoint_split_audit/component_disjoint_guard_band_violations_sample.csv`
 
 ## Repair Option 1
 
-Authors complete `submission/sivp/metadata/AUTHOR_SUBMISSION_INPUT_RESPONSES.csv` with responses, confirmer identity, confirmation date, and source of confirmation. Rerun the Phase 7H validator and Phase 7I planner. Promote Phase 7J only for author_metadata and declarations rows that become eligible for future guarded application.
+Regenerate the component-disjoint candidate split with the same intended V39 validation-only design but enforce all continuation gates explicitly: train/validation/guard path disjointness, zero train/validation exact RGB-content overlap, zero guard/train and guard/validation exact RGB-content overlap if guard is treated as held-out exclusion evidence, and zero same-family train/validation ID distances within the chosen guard band. Rerun the audits, then start the two reliability `p=0.20` runs only after the replacement split passes.
 
 ## Repair Option 2
 
-Keep the repository at the dry-run planning stage. Continue using `CONFIRMED_UPDATE_PLAN.*` and `CONFIRMED_UPDATE_PLAN_CHECK.*` to identify missing confirmation and external evidence, and do not apply any author, asset, data-governance, release, claim, environment, or compile-readiness value until the corresponding future phase is explicitly eligible.
+Keep the current candidate split as exploratory-only V39 evidence and explicitly relax the gate for adjacent-frame guard-band violations. This would allow `p=0.20` training to proceed, but the resulting evidence should be labeled validation-only and leakage-risk-qualified, not as component-disjoint confirmation. This option requires explicit user/research-owner approval before starting any new training.

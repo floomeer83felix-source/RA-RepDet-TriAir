@@ -1,6 +1,6 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-07-04T19:10:25",
+  "generated_at": "2026-07-05T14:53:04",
   "workspace": "E:\\RepViT-main",
   "git": {
     "branch": "research/ra-repdet-triair",
@@ -12,30 +12,19 @@
     ],
     "status_short": [
       "M docs/EXPERIMENT_STATUS.md",
-      " M docs/NEXT_TASK.md",
       " M docs/TASK_BLOCKER.md",
-      " M docs/UPCOMING_TASKS.md",
-      " M rarepdet/tools/generate_handoff.py",
-      " M rarepdet/tools/update_project_status.py",
-      " M runs/handoff_latest.json",
-      " M runs/handoff_latest.md",
-      "A  runs/phase7i_update_planning_report.json",
-      "?? runs/component_disjoint_candidates/",
-      "?? runs/phase7i_update_planning_report.md",
-      "?? runs/v39_component_disjoint/",
-      "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv",
-      "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json",
-      "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md",
-      "?? submission/sivp/metadata/plan_confirmed_submission_updates.py",
-      "?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv",
-      "?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md"
+      "?? rarepdet/tools/eval_dronevehicle_modality_specific.py",
+      "?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py",
+      "?? runs/v39_component_disjoint_blocker.md",
+      "?? runs/v39_component_disjoint_split_audit/"
     ]
   },
   "current_task": {
-    "task_file": "docs/NEXT_TASK.md",
-    "current_task": "Phase 7I \u2014 Confirmation-Gated Submission Update Planning",
-    "goal": "Create a CPU-only, report-only planner that converts the Phase 7H validation results into an auditable *future update plan*. The planner must state which confirmed inputs could eventually be applied, which destination files would be affected, and which external checks still block application. It must never edit manuscript TeX, metadata destinations, references, release manifests, figure assets, or the author-response template.",
-    "commit_message": "docs: add confirmation-gated update planner"
+    "task_file": "docs/V39_TASK_NOTES.md",
+    "current_task": "V39 Component-Disjoint Validation Completion",
+    "goal": "Audit the candidate component-disjoint split, then only if the audit passes complete reliability p=0.20 seeds 0 and 2, aggregate two-run means, and run missing-channel plus efficiency evaluation for the selected reliability setting.",
+    "status": "blocked before new training because the V39 component-disjoint audit failed",
+    "commit_message": "docs: report V39 component-disjoint audit blocker"
   },
   "dataset": {
     "root": "D:\\download\\triair",
@@ -3570,7 +3559,7 @@
     "report": "E:\\RepViT-main\\runs\\phase6b_sivp_preparation_report.md",
     "decision": "READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA",
     "metadata_count": 14,
-    "review_count": 30,
+    "review_count": 31,
     "tex_source_count": 16,
     "figure_map": "E:\\RepViT-main\\submission\\sivp\\figures\\FINAL_ASSET_INSERTION_MAP.md",
     "table_map": "E:\\RepViT-main\\submission\\sivp\\tables\\FINAL_TABLE_INSERTION_MAP.md"
@@ -4324,23 +4313,11 @@
   },
   "recent_modified_files": [
     "M docs/EXPERIMENT_STATUS.md",
-    " M docs/NEXT_TASK.md",
     " M docs/TASK_BLOCKER.md",
-    " M docs/UPCOMING_TASKS.md",
-    " M rarepdet/tools/generate_handoff.py",
-    " M rarepdet/tools/update_project_status.py",
-    " M runs/handoff_latest.json",
-    " M runs/handoff_latest.md",
-    "A  runs/phase7i_update_planning_report.json",
-    "?? runs/component_disjoint_candidates/",
-    "?? runs/phase7i_update_planning_report.md",
-    "?? runs/v39_component_disjoint/",
-    "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv",
-    "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json",
-    "?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md",
-    "?? submission/sivp/metadata/plan_confirmed_submission_updates.py",
-    "?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv",
-    "?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md"
+    "?? rarepdet/tools/eval_dronevehicle_modality_specific.py",
+    "?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py",
+    "?? runs/v39_component_disjoint_blocker.md",
+    "?? runs/v39_component_disjoint_split_audit/"
   ],
   "next_recommended_tasks": [
     "Authors must complete the response template plus figure decision files with confirmation metadata and external evidence where required.",

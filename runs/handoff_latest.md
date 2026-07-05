@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-04T19:10:25
+Generated: 2026-07-05T14:53:04
 Workspace: `E:\RepViT-main`
 
 ## Publication Headline
@@ -12,10 +12,10 @@ Workspace: `E:\RepViT-main`
 
 ## Current Active Task
 
-- Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7I — Confirmation-Gated Submission Update Planning
-- Goal: Create a CPU-only, report-only planner that converts the Phase 7H validation results into an auditable *future update plan*. The planner must state which confirmed inputs could eventually be applied, which destination files would be affected, and which external checks still block application. It must never edit manuscript TeX, metadata destinations, references, release manifests, figure assets, or the author-response template.
-- Commit Message: docs: add confirmation-gated update planner
+- Task file: `docs/V39_TASK_NOTES.md`
+- Current Task: V39 Component-Disjoint Validation Completion
+- Goal: Audit the candidate component-disjoint split, then only if the audit passes complete reliability p=0.20 seeds 0 and 2, aggregate two-run means, and run missing-channel plus efficiency evaluation for the selected reliability setting.
+- Status: blocked before new training because the V39 component-disjoint audit failed.
 
 ## Dataset
 
@@ -159,7 +159,7 @@ Workspace: `E:\RepViT-main`
 - Phase 6B report: `runs/phase6b_sivp_preparation_report.md`
 - Template/LaTeX source files: 16
 - Metadata template files: 14
-- Review/audit files: 30
+- Review/audit files: 31
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
@@ -338,26 +338,22 @@ Workspace: `E:\RepViT-main`
 ## Recently Modified Files
 
 - `M docs/EXPERIMENT_STATUS.md`
-- ` M docs/NEXT_TASK.md`
 - ` M docs/TASK_BLOCKER.md`
-- ` M docs/UPCOMING_TASKS.md`
-- ` M rarepdet/tools/generate_handoff.py`
-- ` M rarepdet/tools/update_project_status.py`
-- ` M runs/handoff_latest.json`
-- ` M runs/handoff_latest.md`
-- `A  runs/phase7i_update_planning_report.json`
-- `?? runs/component_disjoint_candidates/`
-- `?? runs/phase7i_update_planning_report.md`
-- `?? runs/v39_component_disjoint/`
-- `?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.csv`
-- `?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.json`
-- `?? submission/sivp/metadata/CONFIRMED_UPDATE_PLAN.md`
-- `?? submission/sivp/metadata/plan_confirmed_submission_updates.py`
-- `?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.csv`
-- `?? submission/sivp/review/CONFIRMED_UPDATE_PLAN_CHECK.md`
+- `?? rarepdet/tools/eval_dronevehicle_modality_specific.py`
+- `?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py`
+- `?? runs/v39_component_disjoint_blocker.md`
+- `?? runs/v39_component_disjoint_split_audit/`
+
+## V39 Blocker
+
+- Required pre-run audit did not pass, so reliability p=0.20 V39 training was not started.
+- Generic split audit: no train/validation path overlap and no exact `.npy` duplicates, but near-signature review remains CAUTION.
+- Component-disjoint gate: FAIL with 353 same-family train/validation guard-band-16 violations, 4 train/guard exact RGB-content groups, and 5 validation/guard exact RGB-content groups.
+- Evidence files: `docs/TASK_BLOCKER.md`, `runs/v39_component_disjoint_blocker.md`, and `runs/v39_component_disjoint_split_audit/`.
 
 ## Next Recommended Tasks
 
+- Regenerate and re-audit the V39 component-disjoint split, or explicitly approve exploratory-only continuation before launching reliability p=0.20 V39 runs.
 - Authors must complete the response template plus figure decision files with confirmation metadata and external evidence where required.
 - Rerun the Phase 7H validator and Phase 7I planner after responses or figure decisions are supplied.
 - Promote Phase 7J only for eligible author_metadata/declaration rows.

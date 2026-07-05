@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-07-04T19:10:25
+Generated: 2026-07-05T14:53:04
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Publication headline model
@@ -90,10 +90,10 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Current active task
 
-- Task file: `docs/NEXT_TASK.md`
-- Current Task: Phase 7I - Confirmation-Gated Submission Update Planning
-- Goal: Convert Phase 7H validation results into a report-only future update plan without editing manuscript TeX, metadata destinations, references, release manifests, figure assets, or response templates.
-- Status: completed
+- Task file: `docs/V39_TASK_NOTES.md`
+- Current Task: V39 Component-Disjoint Validation Completion
+- Goal: Audit the candidate component-disjoint split, then only if the audit passes complete reliability p=0.20 seeds 0 and 2, aggregate two-run means, and run missing-channel plus efficiency evaluation for the selected reliability setting.
+- Status: blocked before new training because the V39 split audit failed.
 
 ## Phase 2B ACRF outputs
 
@@ -328,7 +328,7 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Template/LaTeX source files: 16
 - Metadata template files: 14
-- Review/audit files: 30
+- Review/audit files: 31
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
 
 ## Phase 7B outputs
@@ -424,9 +424,20 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 - Plan-check rows: 10
 - Decision: REPORT-ONLY CONFIRMATION-GATED UPDATE PLAN CREATED; CURRENT TEMPLATE HAS ZERO ELIGIBLE ROWS
 
+## V39 component-disjoint audit blocker
+
+- Task notes: `docs/V39_TASK_NOTES.md`
+- Blocker report: `docs/TASK_BLOCKER.md`
+- V39 blocker summary: `runs/v39_component_disjoint_blocker.md`
+- Audit directory: `runs/v39_component_disjoint_split_audit/`
+- Generic split audit status: CAUTION; no train/validation path overlap and no exact `.npy` byte duplicates, but near-signature review is required.
+- Component-disjoint gate status: FAIL.
+- Gate metrics: train/validation exact RGB-content groups 0; train/guard exact RGB-content groups 4; validation/guard exact RGB-content groups 5; same-family train/validation guard-band-16 violations 353; minimum same-family train/validation ID distance 1.
+- Decision: do not start reliability p=0.20 V39 runs until the split is regenerated and passes, or until the research owner explicitly relaxes the V39 gate for exploratory-only evidence.
 
 ## Pending tasks
 
+- V39 is blocked at the pre-run split audit gate; reliability p=0.20 seed 0/2 runs, four-variant aggregation, missing-channel evaluation, and efficiency profiling were not started.
 - Phase 7I dry-run update plan exists and currently reports 29 plan rows with zero eligible_for_future_guarded_application rows.
 - Figure rows remain awaiting_figure_decision; all non-figure rows remain pending_author_response under the current blank response template.
 - TAB_001 remains resolved and absent from unresolved planning work; no open table_asset blocker remains.

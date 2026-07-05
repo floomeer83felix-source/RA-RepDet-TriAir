@@ -1,0 +1,4 @@
+pair,exact_rgb_group_count,train_matched_images,val_matched_images,guard_matched_images
+train-val,0,0,0,
+train-guard,4,4,,4
+val-guard,5,,5,5
