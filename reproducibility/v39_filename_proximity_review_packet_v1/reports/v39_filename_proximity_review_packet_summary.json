@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-07-05T19:55:23",
+  "git_commit": "8e4f314cacaee9427b69acc23af3c69ded51a1e6",
+  "total_cluster_count": 70,
+  "total_pair_count": 353,
+  "selected_pair_count": 265,
+  "preliminary_label_counts": {
+    "adjacent_or_near_identical": 70
+  },
+  "priority_counts": {
+    "1": 70
+  },
+  "clusters_marked_high_priority": 70,
+  "source_lock_status": "PASS",
+  "author_review_csv": "reproducibility/v39_filename_proximity_review_packet_v1/reviewer_forms/filename_proximity_author_review.csv",
+  "html_index": "reproducibility/v39_filename_proximity_review_packet_v1/html_index/index.html",
+  "print_packet_pdf": "reproducibility/v39_filename_proximity_review_packet_v1/reports/v39_filename_proximity_human_review_packet.pdf",
+  "pair_review_pdf_count": 70,
+  "cluster_overview_png_count": 70,
+  "training_started": false,
+  "split_changed": false,
+  "manuscript_changed": false,
+  "model_changed": false,
+  "evaluator_changed": false,
+  "raw_data_changed": false,
+  "guard_partition_changed": false,
+  "filename_proximity_statement": "Filename numeric ID proximity is a diagnostic proxy only; it is not verified capture-session metadata and does not prove temporal leakage by itself."
+}
