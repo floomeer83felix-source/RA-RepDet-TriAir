@@ -1,0 +1,3 @@
+metric,value,pass_condition,status
+human_adjudicated_adjacency_cross_partition_edges,0,0,PASS
+human_adjudicated_adjacency_total_edges,353,record,PASS

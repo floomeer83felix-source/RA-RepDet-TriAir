@@ -1,0 +1,25 @@
+# V40 Source Lock
+
+- Generated: 2026-07-05T23:53:27
+- Git commit: `a484a6165d2ce4078f7e68dbb79debcaba04ba81`
+- Environment: Python 3.12.7 on Windows-11-10.0.26200-SP0
+- Stage status: `passed`
+
+| Role | Path | Exists | Bytes | SHA-256 |
+| --- | --- | --- | ---: | --- |
+| v39_train_manifest | `runs/component_disjoint_candidates/candidate_component_disjoint_v1_train.txt` | yes | 220328 | `7fbe6372f9eca8ef2a1a9e33c3f2bbf72078a50c62a8ffcdaf06c348e8c0a7b6` |
+| v39_validation_manifest | `runs/component_disjoint_candidates/candidate_component_disjoint_v1_val.txt` | yes | 65491 | `e454695b35a4867d5f58f4351a96156436b38a02fad1e90d573e30352fd6bd3c` |
+| v39_guard_manifest_archival | `runs/component_disjoint_candidates/candidate_component_disjoint_v1_guard_unchanged.txt` | yes | 24774 | `25a57cea733a218ce2bbd37b22acdf76722cdcc3856861020017340357b338a8` |
+| original_graph_nodes | `reproducibility/v39_filename_proximity_review_packet_v1/input_snapshot/original_candidate_graph_component_nodes__component_nodes.csv` | yes | 155045 | `c1bb610c8a5ee3b58681ff3696d3f540fcce1cf28c365b611802d6915ddd1d97` |
+| original_graph_edges | `reproducibility/v39_filename_proximity_review_packet_v1/input_snapshot/original_candidate_graph_component_edges__component_edges.csv` | yes | 1276204 | `c90ff6c2714a4c9c37ef95f5dc84c9b88f3031fcf5c5beecfed04583b2725dfe` |
+| original_graph_components | `reproducibility/v39_filename_proximity_review_packet_v1/input_snapshot/original_candidate_graph_components__components.csv` | yes | 118909 | `207265c295a67e6edba327164483a2b859a27e92c36375d627d1e2e9cc9fe6b5` |
+| reviewed_41_assignment | `reproducibility/v39_filename_proximity_review_packet_v1/input_snapshot/reviewed_41_component_assignment__reviewed_41_component_assignment.csv` | yes | 2412 | `e217dc1aedc929332bb63633b3045833847aa7106ea26c880f535be374e6b24f` |
+| filename_cluster_manifest | `reproducibility/v39_filename_proximity_review_packet_v1/manifests/cluster_manifest.csv` | yes | 28048 | `7bbde841946c6c7b54bb102cc9576a903712ebc24570113d7b730138cd640254` |
+| filename_all_pair_manifest | `reproducibility/v39_filename_proximity_review_packet_v1/manifests/all_pair_manifest.csv` | yes | 96914 | `f88aab03790262aae0d756a2ae7508115d8a34ea4f76f609bb78ad7c48a7e0a9` |
+| filename_selected_pair_manifest | `reproducibility/v39_filename_proximity_review_packet_v1/manifests/selected_pair_manifest.csv` | yes | 87582 | `c69e511aec3ee5ec62908f448a0ee9cd08bcc83ba0d43058ea8ca4162c4a1d95` |
+| completed_author_review_csv | `reproducibility/v39_filename_proximity_review_packet_v1/reviewer_forms/filename_proximity_author_review.csv` | yes | 38480 | `c03f78562c8b003f2b4d5e13389d7ffa32f0ca2b44a4c9f7beb4e412a9f45143` |
+| blank_author_review_template_copy | `reproducibility/v40_expanded_adjacency_component_split_v2/source_lock/filename_proximity_author_review_blank_template_before_v40_confirmation.csv` | yes | 26161 | `6912353bd9bd05f2ea17e2b212fab8aabd389bc234e424eed783799c217dd995` |
+| v39_audit_scope_resolution | `reproducibility/v39_audit_scope_resolution/V39_AUDIT_SCOPE_RESOLUTION.md` | yes | 1677 | `fad947edf5c7a0bac0638cd450d960084f2fed8ad4e407bfe12c5381f8ccd532` |
+| record_v40_human_review_confirmation | `reproducibility/v40_expanded_adjacency_component_split_v2/scripts/record_v40_human_review_confirmation.py` | yes | 4184 | `057ea75512d26986c44cec701020afdc4e88b3a552bb4f7bd6586eb5c809d334` |
+| build_v40_expanded_adjacency_split_v2 | `reproducibility/v40_expanded_adjacency_component_split_v2/scripts/build_v40_expanded_adjacency_split_v2.py` | yes | 42153 | `f8910439ffd73c38b6a9456ba36be3e2a523af827a79d7943aac80f86fec678b` |
+| audit_v40_expanded_adjacency_split_v2 | `reproducibility/v40_expanded_adjacency_component_split_v2/scripts/audit_v40_expanded_adjacency_split_v2.py` | yes | 21746 | `b00b93817f9cd9cd6bca97e68b128a61747e9bbb30d64a08c1818e8a4fbeb6f3` |

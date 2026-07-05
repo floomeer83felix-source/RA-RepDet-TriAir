@@ -1,0 +1,7 @@
+metric,value,expected,status
+reported_validation_gt_boxes,5867,5867,PASS
+independent_assignment_validation_gt_boxes,5867,5867,PASS
+frozen_v39_validation_gt_boxes,5931,record,PASS
+reported_validation_gt_abs_diff,64,64,PASS
+independent_validation_gt_abs_diff,64,64,PASS
+assignment_accounting_pass,True,True,PASS

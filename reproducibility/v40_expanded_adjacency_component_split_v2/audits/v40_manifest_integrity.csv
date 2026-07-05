@@ -1,0 +1,9 @@
+metric,value,pass_condition,status
+train_count,7439,7439,PASS
+validation_count,2213,2213,PASS
+train_plus_validation_count,9652,9652,PASS
+sample_id_path_overlap,0,0,PASS
+manifest_duplicates,0,0,PASS
+missing_universe_samples,0,0,PASS
+extra_universe_samples,0,0,PASS
+guard_unchanged_archival,yes,yes,PASS

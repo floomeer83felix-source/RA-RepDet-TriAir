@@ -1,0 +1,8 @@
+metric,value
+universe_samples,9652
+original_unique_edges,8574
+human_adjudicated_edges,353
+extended_edge_rows,8927
+extended_components,5515
+components_with_human_adjudicated_edges,40
+required_phrase,human-adjudicated adjacent-or-near-identical component
