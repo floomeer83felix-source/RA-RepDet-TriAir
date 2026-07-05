@@ -1,0 +1,31 @@
+RarePDet eval results
+====================
+model: early
+weights: E:\RepViT-main\runs\v39_component_disjoint\early_seed2_e50\weights\best.pt
+checkpoint_sha256: 278892c5b10b7a4a77ad3773214b141c50daf11f147ba1a8920e58087d6ab8e8
+split_file: E:\RepViT-main\runs\component_disjoint_candidates\candidate_component_disjoint_v1_val.txt
+split_sha256: e454695b35a4867d5f58f4351a96156436b38a02fad1e90d573e30352fd6bd3c
+git_commit: 693277e7691eb553312754390569482d6aaa2686
+seed: 2
+detector_score_thr: 0.001
+metric_score_thr: 0.5
+nms_thresh: 0.6
+detections_per_img: 100
+images: 2213
+Precision: 0.808696
+Recall: 0.909459
+F1: 0.856123
+AP50: 0.934822
+AP75: 0.781736
+GT boxes: 5931
+Predictions: 6670
+Mean Confidence: 0.738049
+FPS: 26.44
+runtime_seconds: 83.713
+python: 3.9.21
+pytorch: 2.5.1
+torchvision: 0.20.1
+timm: 1.0.22
+torch_cuda: 12.4
+cuda_available: True
+gpu: NVIDIA GeForce RTX 3090

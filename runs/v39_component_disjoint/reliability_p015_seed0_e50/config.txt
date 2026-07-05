@@ -1,0 +1,24 @@
+RarePDet experiment config
+==========================
+batch_size: 4
+data: D:\download\triair
+device: cuda
+epochs: 50
+img_size: 640
+lr: 0.0001
+modality_dropout: 0.15
+model: reliability
+num_workers: 0
+out: runs/v39_component_disjoint/reliability_p015_seed0_e50
+seed: 0
+train_split: E:\RepViT-main\runs\component_disjoint_candidates\candidate_component_disjoint_v1_train.txt
+val_split: E:\RepViT-main\runs\component_disjoint_candidates\candidate_component_disjoint_v1_val.txt
+requested_seed: 0
+deterministic_algorithms: warn_only
+cudnn_deterministic: True
+cudnn_benchmark: False
+train_samples: 7439
+val_samples: 2213
+params: 6593293
+gflops: skipped (no project-compatible detector GFLOPs helper wired yet)
+fps: reported as eval_fps in train_log.txt after validation
