@@ -1,0 +1,15 @@
+{
+  "components_with_human_adjudicated_edges": 40,
+  "extended_components": 5515,
+  "extended_edge_rows": 8927,
+  "generated_at": "2026-07-05T23:11:25",
+  "git_commit": "042a321ee416712b18c11b0bde3ea7425549c545",
+  "human_adjudicated_edges": 353,
+  "original_unique_edges": 8574,
+  "required_phrase": "human-adjudicated adjacent-or-near-identical component",
+  "status": "PASS",
+  "universe_samples": 9652,
+  "v39_guard_count_archival": 837,
+  "v39_train_count": 7439,
+  "v39_validation_count": 2213
+}

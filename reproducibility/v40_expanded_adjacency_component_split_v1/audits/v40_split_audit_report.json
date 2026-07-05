@@ -15,12 +15,6 @@
   "model_changed": false,
   "moved_samples_relative_to_v39": 122,
   "original_edges": 8574,
-  "output_paths": {
-    "audit_report": "reproducibility/v40_expanded_adjacency_component_split_v1/audits/v40_split_audit_report.md",
-    "rerun_handoff": "reproducibility/v40_expanded_adjacency_component_split_v1/reports/V40_RERUN_HANDOFF.md",
-    "train_manifest": "reproducibility/v40_expanded_adjacency_component_split_v1/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
-    "validation_manifest": "reproducibility/v40_expanded_adjacency_component_split_v1/manifests/v40_expanded_adjacency_component_disjoint_val.txt"
-  },
   "pass_audit_counts": {
     "decoded_rgb_exact_pairs": 0,
     "dhash_le4_pairs": 0,

@@ -1,0 +1,5 @@
+metric,value,pass_condition,status
+extended_graph_cross_partition_edges,0,0,PASS
+extended_components_represented_in_both_partitions,0,0,PASS
+extended_component_count,5515,record,PASS
+extended_edge_count,8927,record,PASS

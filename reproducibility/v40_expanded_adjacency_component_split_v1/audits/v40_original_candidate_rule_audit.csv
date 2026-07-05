@@ -1,0 +1,6 @@
+metric,value,pass_condition,status
+decoded_rgb_exact_train_validation_pairs,0,0,PASS
+phash_le4_train_validation_pairs,0,0,PASS
+dhash_le4_train_validation_pairs,0,0,PASS
+original_candidate_graph_cross_partition_edges,0,0,PASS
+original_candidate_components_represented_in_both_partitions,0,0,PASS
