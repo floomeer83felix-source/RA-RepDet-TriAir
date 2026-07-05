@@ -1,0 +1,41 @@
+{
+  "adjacency_edge_authorized_labels": [
+    "exact_duplicate",
+    "adjacent_or_near_identical"
+  ],
+  "adjacency_edge_cluster_ids": [],
+  "author_review_row_count": 70,
+  "author_review_unique_cluster_count": 70,
+  "cluster_manifest_count": 70,
+  "data_changed": false,
+  "duplicate_cluster_ids": [],
+  "environment": {
+    "cwd": "E:\\RepViT-main",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.7"
+  },
+  "evaluation_started": false,
+  "evaluator_changed": false,
+  "expected_cluster_count": 70,
+  "final_label_counts": {
+    "adjacent_or_near_identical": 0,
+    "exact_duplicate": 0,
+    "false_candidate": 0,
+    "same_scene_distinct_observation": 0,
+    "uncertain": 0
+  },
+  "generated_at": "2026-07-05T22:10:49",
+  "git_commit": "044660f3e847149839d90590bf57236f421f16e0",
+  "graph_construction_started": false,
+  "label_changed": false,
+  "manuscript_changed": false,
+  "missing_cluster_ids_from_author_review": [],
+  "missing_or_invalid_row_count": 70,
+  "model_changed": false,
+  "profiling_started": false,
+  "stage_a_status": "blocked",
+  "status": "V40_HUMAN_REVIEW_GATE_BLOCKED",
+  "training_started": false,
+  "unexpected_author_review_cluster_ids": [],
+  "v39_artifact_changed": false
+}
