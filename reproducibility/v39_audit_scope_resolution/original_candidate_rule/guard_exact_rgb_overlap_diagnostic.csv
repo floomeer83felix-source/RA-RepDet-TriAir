@@ -1,0 +1,4 @@
+partition_pair,exact_rgb_group_count,exact_rgb_pair_count
+train-validation,0,0
+train-guard,4,4
+validation-guard,5,5

@@ -1,0 +1,13 @@
+metric,value,notes
+exact_decoded_rgb_train_validation_pairs,0,decoded RGB SHA-256 exact train/validation pairs
+phash_le4_train_validation_pairs,0,locked pHash Hamming <= 4 train/validation pairs
+dhash_le4_train_validation_pairs,0,locked dHash Hamming <= 4 train/validation pairs
+candidate_graph_cross_split_edges,0,direct high-risk candidate edges crossing current V39 train/validation
+secondary_review_component_cross_split_edges,0,retained reviewed-component secondary edges crossing current V39 train/validation
+candidate_components_represented_in_both_train_validation,0,locked components containing both current train and validation samples
+reviewed_components_total,41,previously reviewed train/validation perceptual components
+reviewed_components_wholly_assigned_to_one_side,41,reviewed components wholly in current train or current validation
+reviewed_components_split_across_train_validation,0,reviewed components split across current train and validation
+train_guard_exact_rgb_groups,4,guard diagnostic only; guard is not an independent test partition
+validation_guard_exact_rgb_groups,5,guard diagnostic only; guard is not an independent test partition
+missing_required_original_inputs,0,none

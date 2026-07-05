@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-07-05T16:02:26",
+  "git_commit": "578be1dd5f5633c01c47ed3606e48a651f20bdc6",
+  "status": "V39_ORIGINAL_COMPONENT_RULE_PASS_FILENAME_DIAGNOSTIC_PENDING",
+  "audit_a": {
+    "exact_decoded_rgb_train_validation_pairs": 0,
+    "phash_le4_train_validation_pairs": 0,
+    "dhash_le4_train_validation_pairs": 0,
+    "candidate_graph_cross_split_edges": 0,
+    "secondary_review_component_cross_split_edges": 0,
+    "candidate_components_represented_in_both_train_validation": 0
+  },
+  "reviewed_41_components": {
+    "reviewed_components_total": 41,
+    "reviewed_components_wholly_assigned_to_one_side": 41,
+    "reviewed_components_split_across_train_validation": 0
+  },
+  "audit_b": {
+    "filename_proximity_pair_count": 353,
+    "family_counts": {
+      "frame": 114,
+      "nframe": 239
+    },
+    "id_distance_distribution": {
+      "1": 76,
+      "2": 44,
+      "3": 31,
+      "4": 28,
+      "5": 26,
+      "6": 20,
+      "7": 16,
+      "8": 12,
+      "9": 12,
+      "10": 13,
+      "11": 14,
+      "12": 13,
+      "13": 12,
+      "14": 12,
+      "15": 12,
+      "16": 12
+    },
+    "covered_by_original_candidate_graph": 0,
+    "covered_by_reviewed_41_component": 0,
+    "not_covered_by_original_graph": 353,
+    "uncovered_cluster_count": 70,
+    "human_review_shortlist_count": 70
+  },
+  "guard_overlap": {
+    "train-validation": 0,
+    "train-guard": 4,
+    "validation-guard": 5
+  },
+  "guard_overlap_statement": "Guard overlap disqualifies the guard partition from independent-test use, but does not by itself determine train/validation component integrity.",
+  "missing_original_inputs": [],
+  "training_started": false,
+  "split_changed": false,
+  "manuscript_changed": false,
+  "next_gate": "No new V39 training until filename-proximity review is completed, or until future claims are explicitly narrowed to the fixed perceptual candidate rule."
+}
