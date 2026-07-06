@@ -1,0 +1,44 @@
+{
+  "device_preference": "cuda",
+  "device_used": "cuda",
+  "loader": {
+    "batch_size": 1,
+    "dataset_len": 2213,
+    "num_workers": 0,
+    "sample_image_shape": [
+      5,
+      301,
+      391
+    ],
+    "sample_path": "D:\\download\\triair\\data\\images\\frame_00192.npy",
+    "shuffle": false,
+    "split": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+    "target_loaded_but_not_scored": true
+  },
+  "models_checked": [
+    {
+      "experimental_result_recorded": false,
+      "forward_completed": true,
+      "mode": "eval",
+      "model_type": "early",
+      "output_keys": [
+        "boxes",
+        "labels",
+        "scores"
+      ]
+    },
+    {
+      "experimental_result_recorded": false,
+      "forward_completed": true,
+      "mode": "eval",
+      "model_type": "reliability",
+      "output_keys": [
+        "boxes",
+        "labels",
+        "scores"
+      ]
+    }
+  ],
+  "note": "One validation-batch loader read plus eval-mode forward passes only; no loss, optimizer step, checkpoint, metric computation, or result recording.",
+  "status": "PASS"
+}

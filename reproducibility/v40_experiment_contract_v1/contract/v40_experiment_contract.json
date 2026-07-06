@@ -1,0 +1,104 @@
+{
+  "dataset": {
+    "channels": "RGB channels 0-2, thermal channel 3, event channel 4; mode=rgbte.",
+    "class_mapping": "TriAir raw class 0 is shifted to torchvision foreground label 1; background remains 0.",
+    "image_dir": "D:\\download\\triair\\data\\images",
+    "label_count_method": "Resolve each manifest entry to a .npy image, match the label txt by unique stem under the TriAir label directory, count non-empty txt rows as GT boxes, and count missing txt files as zero-target images.",
+    "label_dir": "D:\\download\\triair\\data\\labels",
+    "root": "D:\\download\\triair"
+  },
+  "evaluation_recipe": {
+    "ap_definition": "Project-local single-class score-ranked AP at IoU 0.50 and 0.75 from rarepdet/metrics.py; not COCO AP50:95 and not pycocotools.",
+    "batch_size": 4,
+    "detections_per_img": 100,
+    "detector_score_thr": 0.001,
+    "evaluator_path": "rarepdet/eval_map.py",
+    "img_size": 640,
+    "metric_score_thr": 0.5,
+    "metrics_path": "rarepdet/metrics.py",
+    "nms_thresh": 0.6,
+    "num_workers": 0
+  },
+  "evidence_scope": "validation-only evidence on the V40 v2 expanded-adjacency component-disjoint split",
+  "gate0_status": "V40_V2_READY_FOR_FROZEN_RERUN",
+  "generated_at": "2026-07-06T09:07:21",
+  "input_commit": "e338ef259b8df123de8b1a9ed8f1f750000cdbfc",
+  "manifests": {
+    "train": {
+      "count": 7439,
+      "gt_boxes": 22480,
+      "path": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "sha256": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f"
+    },
+    "validation": {
+      "count": 2213,
+      "gt_boxes": 5867,
+      "path": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f"
+    }
+  },
+  "model_source": {
+    "fc_os_anchor_sizes": "((4,), (8,), (16,), (32,))",
+    "fpn_out_channels": 128,
+    "model_name": "repvit_m0_9.dist_300e_in1k",
+    "num_classes": 2,
+    "pretrained": false,
+    "relevant_file_hashes": {
+      "datasets/triair_dataset.py": "f3592421394c465f469c45410e1981613223634e0dd3cfffded281777ddad705",
+      "docs/PRE_MANUSCRIPT_V40_MASTER_PLAN.md": "d041b0f211dad88796fdd703d7aed514c83a63d54adf42910c9b47b7fb5b9c63",
+      "docs/STANDARDIZED_EVALUATION_V23.md": "541a6ded71f28063ebcedeb7a084ad2a532af8e8017281c89f19ac8223885f22",
+      "docs/V40_CONTRACT_NEXT_TASK.md": "6b550278e27d7e17c23953405d7fbab235993ec93c694314ef29f8d81c1afc6a",
+      "rarepdet/data.py": "d90c472cc320ccc8553bb827487b4052a5973cdd08db7e4972a5d59499381931",
+      "rarepdet/eval_map.py": "94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715",
+      "rarepdet/metrics.py": "6ffa798647376594befc45f89ebb1aa1a5fbe3b50e5f484e7804c22bac13b081",
+      "rarepdet/models/availability_reliability_fusion_fcos.py": "57480137c0891d2dd0851d40f80ceb0cc147274b4933a04ab08c12a814ce9c45",
+      "rarepdet/models/early_fusion_fcos.py": "c2ad086c6dc0f0d1f390462184d496931d62ddf4c3e25c5816335f1b8c7db9f8",
+      "rarepdet/models/repvit_fpn_backbone.py": "a4ece2af4ec4e2280180c0bda3879f627d5b5340f589ffe6c0d50d4f7fe30a7f",
+      "rarepdet/train_early_fusion.py": "d9cae1e22e41ad0c7cfab13bf83ac058b5335cd1fcc41e3da9b1f8c53d05167a",
+      "reproducibility/v40_expanded_adjacency_component_split_v2/audits/v40_split_audit_report.json": "25e27fd0ecdffdc6758fd97c343df2c2196c83daacbba676ae590d8cff48eda4",
+      "reproducibility/v40_expanded_adjacency_component_split_v2/audits/v40_split_audit_report.md": "8aa75778bea5f6a38052a2c422e3f6e15718e3b8e58c30b50de385fd57d30a7b",
+      "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+      "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "reproducibility/v40_expanded_adjacency_component_split_v2/reports/V40_V2_EXPANDED_ADJACENCY_SPLIT_STATUS.json": "1a962a4c6e1349abb084ad971f83aac3f8b125b36a1107fe88360894b236a010",
+      "reproducibility/v40_expanded_adjacency_component_split_v2/reports/V40_V2_EXPANDED_ADJACENCY_SPLIT_STATUS.md": "60c7b62c354ee98e942d17018dc4065ef3b32605ff013779f834e03114b7378b",
+      "reproducibility/v40_experiment_contract_v1/scripts/build_v40_experiment_contract.py": "983c728a02724a972afd23eea45b5b7790ab73a3f17c1abd7029ac14ac5586c9",
+      "reproducibility/v40_experiment_contract_v1/scripts/validate_v40_experiment_contract.py": "61998b105ed973f60ecda595bb089e2b44ef5e61058eb456f6a49df9c027a913",
+      "requirements.txt": "4e4d4bfeeb9d5f0b4c81273fe5b5c9613fa895fc3622bc37b46c8ec05f239b99"
+    }
+  },
+  "no_adaptive_changes_rule": "No model, loader, optimizer, scheduler, augmentation, threshold, checkpoint-selection, seed, split, command, or output-naming setting may be changed because of V40 validation performance.",
+  "output_commit": "PENDING_FINAL_COMMIT_RECORDED_IN_GIT_HISTORY_AND_FINAL_RESPONSE",
+  "output_directory_naming": "runs/v40_expanded_adjacency/{run_id}",
+  "prohibited_tuning_actions": [
+    "Do not start p=0.20 or any other V40 training until this contract is accepted.",
+    "Do not change V40 v2 train, validation, or guard manifests.",
+    "Do not use the guard partition for model selection or performance reporting.",
+    "Do not change raw data, labels, model code, loader code, trainer core, evaluator core, or prior V38/V39 artifacts.",
+    "Do not use AP, F1, loss, predictions, confidence, checkpoints, or qualitative images to change split or training settings.",
+    "Do not use DroneVehicle or any external data in the V40 evidence pipeline.",
+    "Do not run robustness, profiling, qualitative, manuscript, or submission work under Gate 1.",
+    "Do not selectively retry a weak-scoring run; resolve technical failures only by documented full-contract policy.",
+    "Do not call finish_task.ps1 for V40 master-plan gates."
+  ],
+  "required_phrase": "human-adjudicated adjacent-or-near-identical component",
+  "run_seeds": [
+    0,
+    2
+  ],
+  "schema_version": "v40_experiment_contract_v1",
+  "selection_rule": "Choose one reliability-dropout setting only after all six reliability runs finish: highest two-run mean AP50, then highest two-run mean F1, then highest two-run mean AP75, with exact-tie fallback p=0.00 then p=0.15 then p=0.20.",
+  "status": "V40_EXPERIMENT_CONTRACT_PASS",
+  "training_recipe": {
+    "augmentations": "No mosaic, mixup, crop, flip, color jitter, or spatial augmentation in the project DetectionTriAirDataset path; modality dropout is the only training-time augmentation and is locked per run.",
+    "batch_size": 4,
+    "checkpoint_policy": "trainer writes weights/last.pt each epoch and weights/best.pt when in-training validation AP50 improves under the frozen trainer recipe",
+    "data_loader": "train DataLoader batch_size=4 shuffle=True num_workers=0 collate_fn=datasets.triair_dataset.collate_fn pin_memory=True on CUDA with seeded CPU generator; validation DataLoader shuffle=False.",
+    "deterministic_settings": "Seeds 0 and 2 set Python random, NumPy, torch, CUDA manual_seed_all, cudnn.deterministic=True, cudnn.benchmark=False, torch deterministic algorithms warn_only when supported.",
+    "epochs": 50,
+    "img_size": 640,
+    "learning_rate": 0.0001,
+    "optimizer": "torch.optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-4)",
+    "scheduler": "none in trainer source",
+    "trainer_path": "rarepdet/train_early_fusion.py"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "dronevehicle_changed": false,
+  "gate0_status": "V40_V2_READY_FOR_FROZEN_RERUN",
+  "generated_at": "2026-07-06T09:07:21",
+  "guard_used_for_model_selection": false,
+  "input_commit": "e338ef259b8df123de8b1a9ed8f1f750000cdbfc",
+  "labels_changed": false,
+  "manuscript_changed": false,
+  "metric_evaluation_started": false,
+  "model_or_training_core_changed": false,
+  "next_allowed_action": "Gate 2 core V40 fusion comparison under this frozen contract only.",
+  "output_commit": "PENDING_FINAL_COMMIT_RECORDED_IN_GIT_HISTORY_AND_FINAL_RESPONSE",
+  "profiling_started": false,
+  "raw_data_changed": false,
+  "robustness_started": false,
+  "source_lock_manifest_sha256": "1b88ccaac3f84ad83b75e460e2e56611507e222654d02c69d378e98f0491d3c6",
+  "status": "V40_EXPERIMENT_CONTRACT_PASS",
+  "train_count": 7439,
+  "training_started": false,
+  "validation_count": 2213,
+  "validation_gt_boxes": 5867
+}
