@@ -1,98 +1,60 @@
 # Task Blocker
 
-## Task
+## Current Task
 
-Execute `docs/V39_TASK_NOTES.md` on branch `research/ra-repdet-triair`: audit the candidate component-disjoint split, then only if the audit passes complete the missing V39 reliability `p=0.20` condition twice, aggregate two-run means, and run missing-channel plus efficiency evaluation for the selected reliability setting.
+Execute `docs/NEXT_TASK.md` on branch `research/ra-repdet-triair`:
 
-## Blocking Condition
+**V40 — Repair, Freeze, and Validate a Truly Component-Disjoint TriAir Split.**
 
-The required pre-run split audit did not pass, so the V39 continuation gate is blocked before any new `p=0.20` training can start.
+The immediate work is CPU-only deterministic split repair and strict auditing. GPU training for R4 `p=0.20` seeds 0 and 2 is conditionally allowed only after the new split passes every cross-partition component, exact-RGB, and same-family guard-band criterion.
 
-The generic train/validation split audit found no path overlap and no exact `.npy` byte duplicates, but returned `CAUTION: near-duplicate or adjacent-frame review required`. A V39-specific component-disjoint audit then failed the explicit continuation gate because the candidate split still contains same-family train/validation ID distances within the intended 16-frame guard band and exact RGB-content overlap between guard and train/validation partitions.
+## Inherited V39 Failure
 
-Key V39 component-disjoint audit results:
+The V39 candidate component-disjoint split is not eligible for additional training. Its pre-run audit failed the explicit continuation gate.
 
-- train rows: 7439; validation rows: 2213; guard rows: 837.
-- train/validation path overlap: 0.
-- train/validation exact RGB-content overlap groups: 0.
-- train/guard exact RGB-content overlap groups: 4.
-- validation/guard exact RGB-content overlap groups: 5.
-- same-family train/validation guard-band-16 violations: 353.
-- minimum same-family train/validation ID distance: 1.
-- component-disjoint audit status: FAIL.
+| diagnostic | observed value |
+| --- | ---: |
+| train rows | 7439 |
+| validation rows | 2213 |
+| guard rows | 837 |
+| train/validation path overlap | 0 |
+| train/validation exact RGB-content groups | 0 |
+| train/guard exact RGB-content groups | 4 |
+| validation/guard exact RGB-content groups | 5 |
+| same-family train/validation guard-band-16 violations | 353 |
+| minimum same-family train/validation ID distance | 1 |
+| V39 component-disjoint audit | FAIL |
 
-Because `docs/V39_TASK_NOTES.md` says to complete new runs only if the audit passes, no `reliability_p020_seed*_e50` run was started, no training core file was modified, and the manuscript was not edited.
+The generic integrity audit also recorded a near-duplicate/adjacent-frame caution. No V39 R4 `p=0.20` training was started after the failure.
 
-## Failed Command
+## V40 Continuation Gate
 
-```powershell
-@'
-# read-only V39 component-disjoint split audit using rarepdet.tools.split_audit_common
-'@ | C:\Users\xinnan\.conda\envs\pytorch\python.exe -
-```
+Before any GPU command, the replacement V40 split must prove all of the following:
 
-The generic audit command that preceded it was:
+1. every local sample is assigned once and only once to train, validation, or guard;
+2. complete transitive components are assigned to only one partition;
+3. pairwise train/validation/guard path overlaps are zero;
+4. pairwise exact RGB-content overlap groups are zero;
+5. pairwise same-family ID-distance-16 violations are zero;
+6. repeated deterministic generation yields identical split SHA256 values; and
+7. the audit has no unresolved error.
 
-```powershell
-C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/audit_split_integrity.py --data D:\download\triair --train-split E:\RepViT-main\runs\component_disjoint_candidates\candidate_component_disjoint_v1_train.txt --val-split E:\RepViT-main\runs\component_disjoint_candidates\candidate_component_disjoint_v1_val.txt --out runs\v39_component_disjoint_split_audit
-```
+A failed V40 audit is a valid blocked outcome. It must be committed with quantified diagnostics, refreshed handoff/status, and no GPU run.
 
-## Last Error Lines
+## What Is Blocked
 
-```text
-train-val_exact_rgb_group_count: 0
-train-guard_exact_rgb_group_count: 4
-val-guard_exact_rgb_group_count: 5
-same_family_train_val_guard_band_16_violations: 353
-same_family_train_val_nearest_id_min: 1
-same_family_train_val_nearest_id_p50: 32
-component_disjoint_audit_status: FAIL
-PASS requires counts, uniqueness, split disjointness, zero train-val exact RGB overlap, and zero same-family guard-band violations.
-```
+Until V40 passes, do not:
 
-The preceding generic audit also reported:
+- train R4 `p=0.20` on the V39 candidate split;
+- relabel V39 as clean, component-disjoint, or manuscript-grade evidence;
+- replace the official R4 `block64_guard16_seed0` manuscript headline;
+- edit manuscript sources, Tables 1--7, figures, submission metadata, author declarations, or release records;
+- commit raw data, `.npy` samples, checkpoints, weights, prediction dumps, or visual artifacts.
 
-```text
-path_overlap_count: 0
-exact_sha256_duplicate_pairs: 0
-signature_distance_min: 0.000000
-fraction_signature_distance_<=0: 0.000452
-final_status: CAUTION: near-duplicate or adjacent-frame review required
-```
+## Required Follow-On Evidence
 
-## Attempted Fixes
+After V40, the research-evidence queue is V41 public-protocol baseline/cross-dataset feasibility, V42 realistic degradation stress tests, V43 three-seed uncertainty extension, V44 qualitative error taxonomy, and V45 evidence reconciliation. See `docs/SCI_EVIDENCE_STRENGTHENING_PLAN.md` and `docs/UPCOMING_TASKS.md`.
 
-- Ran the required branch switch and fast-forward pull before starting.
-- Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, `docs/EXPERIMENT_STATUS.md`, `docs/NEXT_TASK.md`, `docs/V39_TASK_NOTES.md`, and `docs/V39_COMPONENT_DISJOINT_COMPLETION_TASK.md`.
-- Confirmed that current V39 artifacts include early, reliability `p=0.00`, and reliability `p=0.15`, but no completed reliability `p=0.20` condition.
-- Ran the existing project split-integrity audit on the V39 candidate train/validation files.
-- Ran a V39-specific component-disjoint audit for split counts, split uniqueness, path overlap, exact RGB-content overlap, and same-family guard-band violations.
-- Wrote audit outputs under `runs/v39_component_disjoint_split_audit/`.
-- Stopped before any new training because the audit did not pass.
-- Did not modify protected training core files, model files, dataset code, manuscript files, checkpoints, raw data, labels, or final assets.
+## Branch Discipline
 
-## Related Files
-
-- `docs/V39_TASK_NOTES.md`
-- `docs/V39_COMPONENT_DISJOINT_COMPLETION_TASK.md`
-- `docs/TASK_BLOCKER.md`
-- `runs/component_disjoint_candidates/candidate_component_disjoint_v1_train.txt`
-- `runs/component_disjoint_candidates/candidate_component_disjoint_v1_val.txt`
-- `runs/component_disjoint_candidates/candidate_component_disjoint_v1_guard_unchanged.txt`
-- `runs/v39_component_disjoint_split_audit/split_integrity_summary.md`
-- `runs/v39_component_disjoint_split_audit/split_integrity_summary.csv`
-- `runs/v39_component_disjoint_split_audit/split_integrity_exact_duplicates.csv`
-- `runs/v39_component_disjoint_split_audit/split_integrity_nearest_pairs.csv`
-- `runs/v39_component_disjoint_split_audit/split_integrity_manual_review.csv`
-- `runs/v39_component_disjoint_split_audit/component_disjoint_audit_summary.md`
-- `runs/v39_component_disjoint_split_audit/component_disjoint_audit_summary.csv`
-- `runs/v39_component_disjoint_split_audit/component_disjoint_exact_rgb_pairs.csv`
-- `runs/v39_component_disjoint_split_audit/component_disjoint_guard_band_violations_sample.csv`
-
-## Repair Option 1
-
-Regenerate the component-disjoint candidate split with the same intended V39 validation-only design but enforce all continuation gates explicitly: train/validation/guard path disjointness, zero train/validation exact RGB-content overlap, zero guard/train and guard/validation exact RGB-content overlap if guard is treated as held-out exclusion evidence, and zero same-family train/validation ID distances within the chosen guard band. Rerun the audits, then start the two reliability `p=0.20` runs only after the replacement split passes.
-
-## Repair Option 2
-
-Keep the current candidate split as exploratory-only V39 evidence and explicitly relax the gate for adjacent-frame guard-band violations. This would allow `p=0.20` training to proceed, but the resulting evidence should be labeled validation-only and leakage-risk-qualified, not as component-disjoint confirmation. This option requires explicit user/research-owner approval before starting any new training.
+All V40--V45 work must remain on `research/ra-repdet-triair` unless the user explicitly approves a different branch strategy. Use fast-forward pulls only; do not reset, force-push, or rewrite history.
