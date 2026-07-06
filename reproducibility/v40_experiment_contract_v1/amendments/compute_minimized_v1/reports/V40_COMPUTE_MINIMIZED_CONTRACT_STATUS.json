@@ -1,0 +1,75 @@
+{
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.7"
+  },
+  "evaluation_recipe": {
+    "ap_definition": "Project-local single-class score-ranked AP at IoU 0.50 and 0.75 from rarepdet/metrics.py; not COCO AP50:95 and not pycocotools.",
+    "batch_size": 4,
+    "detections_per_img": 100,
+    "detector_score_thr": 0.001,
+    "evaluator_path": "rarepdet/eval_map.py",
+    "img_size": 640,
+    "metric_score_thr": 0.5,
+    "metrics_path": "rarepdet/metrics.py",
+    "nms_thresh": 0.6,
+    "num_workers": 0
+  },
+  "evaluator_hash": "94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715",
+  "evidence_scope": "validation-only evidence on the V40 v2 expanded-adjacency component-disjoint split",
+  "forbidden_v40_runs": [
+    "reliability p=0.00",
+    "reliability p=0.20"
+  ],
+  "generated_at": "2026-07-06T09:23:13",
+  "input_commit": "d463914f5b7df77d9624f574e01c54f75b38b83d",
+  "launch_scope_status": "compute-minimized four-run V40-v2 plan",
+  "manifest_hashes": {
+    "train": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+    "validation": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f"
+  },
+  "no_forbidden_work": {
+    "checkpoint_created": false,
+    "dronevehicle_changed": false,
+    "external_data_used": false,
+    "loss_or_validation_iteration_run": false,
+    "manuscript_changed": false,
+    "metric_evaluation_started": false,
+    "profiling_started": false,
+    "qualitative_started": false,
+    "result_recorded": false,
+    "robustness_started": false,
+    "training_started": false
+  },
+  "original_contract_preserved_as": "archival evidence",
+  "original_contract_status": "V40_EXPERIMENT_CONTRACT_PASS",
+  "output_commit": "PENDING_FINAL_COMMIT_RECORDED_IN_GIT_HISTORY_AND_FINAL_RESPONSE",
+  "output_root": "runs/v40_expanded_adjacency_v2_compute_minimized",
+  "paper_comparison": "matched early fusion versus the pre-specified reliability-aware p=0.15 configuration",
+  "pre_specification": "Reliability-aware p=0.15 is pre-specified from archived development evidence before any V40 result is viewed. It is not selected or optimized on V40.",
+  "replaced_selection_rule": "No V40 dropout selection is performed. The paper comparison is limited to matched early fusion versus the pre-specified reliability-aware p=0.15 configuration.",
+  "run_ids": [
+    "matched_early_seed0",
+    "matched_early_seed2",
+    "reliability_p015_seed0",
+    "reliability_p015_seed2"
+  ],
+  "schema_version": "v40_compute_minimized_contract_amendment_v1",
+  "source_lock_manifest_sha256": "bf9f1283682e29bbc77a8293e934609af32e7d243676a76a01f325ec3dc850e2",
+  "status": "V40_COMPUTE_MINIMIZED_CONTRACT_READY",
+  "supersedes_for_launch_scope": "reproducibility/v40_experiment_contract_v1/contract/v40_experiment_contract.json",
+  "trainer_hash": "d9cae1e22e41ad0c7cfab13bf83ac058b5335cd1fcc41e3da9b1f8c53d05167a",
+  "training_recipe": {
+    "augmentations": "No mosaic, mixup, crop, flip, color jitter, or spatial augmentation in the project DetectionTriAirDataset path; modality dropout is the only training-time augmentation and is locked per run.",
+    "batch_size": 4,
+    "checkpoint_policy": "trainer writes weights/last.pt each epoch and weights/best.pt when in-training validation AP50 improves under the frozen trainer recipe",
+    "data_loader": "train DataLoader batch_size=4 shuffle=True num_workers=0 collate_fn=datasets.triair_dataset.collate_fn pin_memory=True on CUDA with seeded CPU generator; validation DataLoader shuffle=False.",
+    "deterministic_settings": "Seeds 0 and 2 set Python random, NumPy, torch, CUDA manual_seed_all, cudnn.deterministic=True, cudnn.benchmark=False, torch deterministic algorithms warn_only when supported.",
+    "epochs": 50,
+    "img_size": 640,
+    "learning_rate": 0.0001,
+    "optimizer": "torch.optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-4)",
+    "scheduler": "none in trainer source",
+    "trainer_path": "rarepdet/train_early_fusion.py"
+  }
+}

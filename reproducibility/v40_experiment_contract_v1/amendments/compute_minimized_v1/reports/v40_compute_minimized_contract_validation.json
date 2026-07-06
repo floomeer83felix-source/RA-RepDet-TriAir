@@ -1,0 +1,358 @@
+{
+  "checks": [
+    {
+      "check": "amendment_status",
+      "expected": "V40_COMPUTE_MINIMIZED_CONTRACT_READY",
+      "observed": "V40_COMPUTE_MINIMIZED_CONTRACT_READY",
+      "status": "PASS"
+    },
+    {
+      "check": "status_report_status",
+      "expected": "V40_COMPUTE_MINIMIZED_CONTRACT_READY",
+      "observed": "V40_COMPUTE_MINIMIZED_CONTRACT_READY",
+      "status": "PASS"
+    },
+    {
+      "check": "original_contract_preserved_as_archival",
+      "expected": "archival evidence",
+      "observed": "archival evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "run_count",
+      "expected": 4,
+      "observed": 4,
+      "status": "PASS"
+    },
+    {
+      "check": "exact_run_ids",
+      "expected": "matched_early_seed0,matched_early_seed2,reliability_p015_seed0,reliability_p015_seed2",
+      "observed": "matched_early_seed0,matched_early_seed2,reliability_p015_seed0,reliability_p015_seed2",
+      "status": "PASS"
+    },
+    {
+      "check": "seeds",
+      "expected": "0,2",
+      "observed": "0,2",
+      "status": "PASS"
+    },
+    {
+      "check": "model_dropout_scope",
+      "expected": "[('early', '0.00'), ('reliability', '0.15')]",
+      "observed": "[('early', '0.00'), ('reliability', '0.15')]",
+      "status": "PASS"
+    },
+    {
+      "check": "command_template_count",
+      "expected": 4,
+      "observed": 4,
+      "status": "PASS"
+    },
+    {
+      "check": "train_manifest_hash_matches_original",
+      "expected": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+      "observed": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+      "status": "PASS"
+    },
+    {
+      "check": "validation_manifest_hash_matches_original",
+      "expected": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "observed": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "status": "PASS"
+    },
+    {
+      "check": "train_manifest_count",
+      "expected": 7439,
+      "observed": 7439,
+      "status": "PASS"
+    },
+    {
+      "check": "validation_manifest_count",
+      "expected": 2213,
+      "observed": 2213,
+      "status": "PASS"
+    },
+    {
+      "check": "evaluator_hash_matches_original",
+      "expected": "94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715",
+      "observed": "94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715",
+      "status": "PASS"
+    },
+    {
+      "check": "trainer_hash_matches_original",
+      "expected": "d9cae1e22e41ad0c7cfab13bf83ac058b5335cd1fcc41e3da9b1f8c53d05167a",
+      "observed": "d9cae1e22e41ad0c7cfab13bf83ac058b5335cd1fcc41e3da9b1f8c53d05167a",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed0_epochs",
+      "expected": 50,
+      "observed": "50",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed0_img_size",
+      "expected": 640,
+      "observed": "640",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed0_batch_size",
+      "expected": 4,
+      "observed": "4",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed0_train_manifest",
+      "expected": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "observed": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed0_validation_manifest",
+      "expected": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "observed": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed2_epochs",
+      "expected": 50,
+      "observed": "50",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed2_img_size",
+      "expected": 640,
+      "observed": "640",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed2_batch_size",
+      "expected": 4,
+      "observed": "4",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed2_train_manifest",
+      "expected": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "observed": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "status": "PASS"
+    },
+    {
+      "check": "matched_early_seed2_validation_manifest",
+      "expected": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "observed": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed0_epochs",
+      "expected": 50,
+      "observed": "50",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed0_img_size",
+      "expected": 640,
+      "observed": "640",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed0_batch_size",
+      "expected": 4,
+      "observed": "4",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed0_train_manifest",
+      "expected": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "observed": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed0_validation_manifest",
+      "expected": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "observed": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed2_epochs",
+      "expected": 50,
+      "observed": "50",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed2_img_size",
+      "expected": 640,
+      "observed": "640",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed2_batch_size",
+      "expected": 4,
+      "observed": "4",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed2_train_manifest",
+      "expected": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "observed": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt",
+      "status": "PASS"
+    },
+    {
+      "check": "reliability_p015_seed2_validation_manifest",
+      "expected": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "observed": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_--epochs 50",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_--batch-size 4",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_--img-size 640",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_--lr 1e-4",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_--detector-score-thr 0.001",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_--metric-score-thr 0.50",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_--nms-thresh 0.6",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_--detections-per-img 100",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_contain_runs/v40_expanded_adjacency_v2_compute_minimized",
+      "expected": "True",
+      "observed": "True",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_reliability_p000",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_reliability_p020",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_p=0.00",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_p=0.20",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_runs/v40_expanded_adjacency/",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_eval_missing_modality",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_profile_",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_DroneVehicle",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "commands_exclude_finish_task.ps1",
+      "expected": "False",
+      "observed": "False",
+      "status": "PASS"
+    },
+    {
+      "check": "source_lock_hashes_current",
+      "expected": "all_match",
+      "observed": "all_match",
+      "status": "PASS"
+    },
+    {
+      "check": "no_forbidden_work_flags_false",
+      "expected": "all_false",
+      "observed": "{\"checkpoint_created\": false, \"dronevehicle_changed\": false, \"external_data_used\": false, \"loss_or_validation_iteration_run\": false, \"manuscript_changed\": false, \"metric_evaluation_started\": false, \"profiling_started\": false, \"qualitative_started\": false, \"result_recorded\": false, \"robustness_started\": false, \"training_started\": false}",
+      "status": "PASS"
+    },
+    {
+      "check": "planned_output_root_has_no_artifacts",
+      "expected": "none",
+      "observed": "none",
+      "status": "PASS"
+    },
+    {
+      "check": "master_plan_disallowed_phrases_absent",
+      "expected": "none",
+      "observed": "none",
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "amendment_status": "V40_COMPUTE_MINIMIZED_CONTRACT_READY",
+    "checks_failed": 0,
+    "checks_total": 56,
+    "generated_at": "2026-07-06T09:23:21",
+    "input_commit": "d463914f5b7df77d9624f574e01c54f75b38b83d",
+    "output_commit": "PENDING_FINAL_COMMIT_RECORDED_IN_GIT_HISTORY_AND_FINAL_RESPONSE",
+    "run_count": 4,
+    "run_ids": [
+      "matched_early_seed0",
+      "matched_early_seed2",
+      "reliability_p015_seed0",
+      "reliability_p015_seed2"
+    ],
+    "status": "PASS",
+    "train_manifest_sha256": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+    "validation_manifest_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f"
+  }
+}
