@@ -3,4 +3,10 @@
 \section{Expanded Literature Positioning}
 \label{app:literature-positioning}
 
-This draft appendix records the expanded literature base used to position RA-RepDet.
+This draft appendix records the expanded literature base used to position RA-RepDet. It distinguishes formal peer-reviewed journal articles from leading computer-vision and machine-learning conference papers. Journal quartiles depend on the reporting year and subject category used by the submitting institution; the final author team should therefore verify the applicable JCR or SJR rule before formal submission.
+
+\subsection{Detection, UAV, and Remote-Sensing Context}
+
+Generic object-detection surveys describe the evolution from proposal-based pipelines to dense one-stage and transformer-based detectors \cite{Liu2020GenericOD,Zhao2019ODReview,Zou2023OD20Years}. For aerial and remote-sensing images, small targets, scale changes, crowded layouts, and arbitrary orientations remain central challenges \cite{Cheng2016RSODSurvey,Zhu2017DLRemoteSensing,Ma2019DLRemoteSensing,Deng2018MultiscaleRSOD,Wu2022UAVSurvey}. These findings motivate the multi-scale FPN--FCOS detector used here, but they do not imply that RA-RepDet replaces specialized oriented-box or transformer detectors.
+
+The top-conference lineage is represented by Faster R-CNN, SSD, YOLO, FPN, RetinaNet, and FCOS \cite{FasterRCNN2015,SSD2016,YOLO2016,FPN2017,RetinaNet2017,FCOS2019}. Deformable convolution, ATSS, DETR, Deformable DETR, and DINO illustrate later localization and assignment developments \cite{DeformableConv2017,ATSS2020,DETR2020,DeformableDETR2021,DINO2023}. DOTA, VisDrone, and UAVDT provide complementary aerial-object detection contexts \cite{DOTA2018,VisDrone2018,UAVDT2018}.
