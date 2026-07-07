@@ -1,0 +1,33 @@
+\section{Method}
+\subsection{Problem Formulation and Detector Interface}
+Each observation is a five-channel tensor
+\begin{equation}
+\mathbf{x}=[\mathbf{x}_{\mathrm{rgb}},\mathbf{x}_{\mathrm{th}},\mathbf{x}_{\mathrm{ev}}],
+\end{equation}
+where $\mathbf{x}_{\mathrm{rgb}}\in\mathbb{R}^{3\times H\times W}$, $\mathbf{x}_{\mathrm{th}}\in\mathbb{R}^{1\times H\times W}$, and $\mathbf{x}_{\mathrm{ev}}\in\mathbb{R}^{1\times H\times W}$. The task is single-class vehicle detection. Raw TriAir class 0 is mapped to the foreground label used by the detector, with background retained as label 0.
+
+The downstream detector is common to both systems: a RepViT-M0.9 backbone, an FPN with 128 output channels, and an FCOS head. The common detector interface makes the comparison a system-level contrast between two fusion/training choices rather than a comparison of unrelated architectures.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig1_method.pdf}
+\caption{RA-RepDet. RGB, thermal, and event inputs are first encoded by modality-specific stems. A small image-level reliability module produces softmax fusion weights, the weighted feature is projected to the shared detector interface, and a RepViT-FPN-FCOS stack produces vehicle detections. Modality dropout is used only during training.}
+\label{fig:method}
+\end{figure*}
+
+\subsection{Matched Early Fusion}
+The matched early-fusion baseline first projects the five input channels to three channels using a learned $1\times1$ convolution. The resulting representation enters the same RepViT-FPN-FCOS detector. It therefore has access to all five channels but does not form explicit modality-specific features or sample-dependent modality weights.
+
+\subsection{Reliability-Aware Fusion}
+The reliability-aware model processes RGB, thermal, and event inputs through separate $3\times3$ convolution--batch-normalization--SiLU stems. Each stem produces a 16-channel feature map, denoted by $\mathbf{F}_{\mathrm{rgb}}$, $\mathbf{F}_{\mathrm{th}}$, and $\mathbf{F}_{\mathrm{ev}}$. Global average pooling yields one descriptor per stem. The descriptors are concatenated and passed through a small two-layer multilayer perceptron to generate three logits. The fusion weights are
+\begin{equation}
+\boldsymbol{\alpha}=\operatorname{softmax}\left(g\left([\operatorname{GAP}(\mathbf{F}_{\mathrm{rgb}});\operatorname{GAP}(\mathbf{F}_{\mathrm{th}});\operatorname{GAP}(\mathbf{F}_{\mathrm{ev}})]\right)\right),
+\end{equation}
+where $\boldsymbol{\alpha}=[\alpha_{\mathrm{rgb}},\alpha_{\mathrm{th}},\alpha_{\mathrm{ev}}]$ and the three entries sum to one. The fused feature is
+\begin{equation}
+\mathbf{F}_{\mathrm{fuse}}=\alpha_{\mathrm{rgb}}\mathbf{F}_{\mathrm{rgb}}+\alpha_{\mathrm{th}}\mathbf{F}_{\mathrm{th}}+\alpha_{\mathrm{ev}}\mathbf{F}_{\mathrm{ev}}.
+\end{equation}
+A projection converts $\mathbf{F}_{\mathrm{fuse}}$ to the three-channel interface expected by the shared backbone. The gate is a learned feature-mixture mechanism; its weights are not calibrated probabilities of physical sensor health.
+
+\subsection{Modality-Dropout Training}
+For the reliability-aware model, RGB channels $0{:}3$, thermal channel 3, and event channel 4 are independently zeroed during training with probability $p=0.15$. If all three groups are selected, one group is restored uniformly at random so that at least one stream remains. The $p=0.15$ setting was fixed for the V40 comparison before the V40 result was examined. Ordinary full-modality inference supplies all available streams.
