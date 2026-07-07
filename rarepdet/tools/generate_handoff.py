@@ -90,6 +90,10 @@ PHASE7I_PLAN_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRME
 PHASE7I_PLAN_JSON = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRMED_UPDATE_PLAN.json"
 PHASE7I_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "CONFIRMED_UPDATE_PLAN_CHECK.md"
 PHASE7I_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "CONFIRMED_UPDATE_PLAN_CHECK.csv"
+V40_REPORT_MD = RUNS_DIR / "phase_v40_component_disjoint_report.md"
+V40_REPORT_JSON = RUNS_DIR / "phase_v40_component_disjoint_report.json"
+V40_SPLIT_BUILD_SUMMARY = RUNS_DIR / "component_disjoint_v40" / "split_build_summary.csv"
+V40_AUDIT_CSV = RUNS_DIR / "v40_component_disjoint" / "split_audit.csv"
 
 
 EXPERIMENTS = [
@@ -155,6 +159,15 @@ def read_csv(path):
         return []
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         return list(csv.DictReader(f))
+
+
+def read_json(path):
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
 
 
 def read_text(path):
@@ -741,6 +754,30 @@ def collect_phase7i():
     }
 
 
+def collect_v40_component_disjoint():
+    build_rows = read_csv(V40_SPLIT_BUILD_SUMMARY)
+    audit_rows = read_csv(V40_AUDIT_CSV)
+    build = {row.get("metric"): row.get("value") for row in build_rows}
+    audit = {row.get("metric"): row.get("value") for row in audit_rows}
+    return {
+        "report": V40_REPORT_MD.exists(),
+        "report_json": V40_REPORT_JSON.exists(),
+        "build_summary": V40_SPLIT_BUILD_SUMMARY.exists(),
+        "audit": V40_AUDIT_CSV.exists(),
+        "status": read_json(V40_REPORT_JSON).get("status", "NA") if V40_REPORT_JSON.exists() else "NA",
+        "component_gate": audit.get("final_component_disjoint_gate", "NA"),
+        "inventory_count": build.get("inventory_count", audit.get("complete_inventory_count", "NA")),
+        "component_count": build.get("component_count", audit.get("component_count", "NA")),
+        "largest_component_size": build.get("largest_component_size", audit.get("largest_component_size", "NA")),
+        "achieved_train": build.get("achieved_train", audit.get("train_rows", "NA")),
+        "achieved_val": build.get("achieved_val", audit.get("val_rows", "NA")),
+        "achieved_guard": build.get("achieved_guard", audit.get("guard_rows", "NA")),
+        "train_sha256": build.get("train_sha256", audit.get("train_sha256", "NA")),
+        "val_sha256": build.get("val_sha256", audit.get("val_sha256", "NA")),
+        "guard_sha256": build.get("guard_sha256", audit.get("guard_sha256", "NA")),
+    }
+
+
 def read_last_nonempty_line(path):
     if not path.exists():
         return None
@@ -777,6 +814,7 @@ def build_handoff():
     phase7g = collect_phase7g()
     phase7h = collect_phase7h()
     phase7i = collect_phase7i()
+    v40_component_disjoint = collect_v40_component_disjoint()
     pending = [
         "Use runs/phase5a_report.md as the paper-readiness decision gate once Phase 5A completes.",
         "Former random-split results are historical diagnostics only and must not be paper headline results.",
@@ -917,6 +955,18 @@ def build_handoff():
             "Promote Phase 7J only for eligible author_metadata/declaration rows.",
             "Keep data governance, release/archive, final figures, environment, strict preflight, compile, and final bundle assembly gated by Phases 7K-7P.",
         ]
+    if v40_component_disjoint["report"] or "V40" in read_text(NEXT_TASK_PATH):
+        pending = [
+            "V40 component-disjoint split build and strict CPU audit passed.",
+            "R4 reliability p=0.20 seed 0/2 training and standardized CUDA evaluation are deferred because the GPU was already busy for this task.",
+            "Do not run synthetic missingness, aggregate, or efficiency packaging until both deferred R4 V40 runs and standardized evaluations complete.",
+            "Keep V40 validation evidence separate from the official manuscript headline until a later explicit evidence-review decision.",
+        ]
+        next_tasks = [
+            "When GPU is available, run exactly one V40 R4 p=0.20 training/evaluation job at a time for seeds 0 and 2.",
+            "After both V40 R4 standardized evaluations complete, create the two-seed aggregate, synthetic missingness, and efficiency package.",
+            "Do not modify manuscript/submission files or commit raw data, checkpoints, weights, prediction dumps, or visual artifacts.",
+        ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -981,6 +1031,7 @@ def build_handoff():
         "phase7g": phase7g,
         "phase7h": phase7h,
         "phase7i": phase7i,
+        "v40_component_disjoint": v40_component_disjoint,
         "current_pending_experiments": pending,
         "code_structure": {
             "dataset": "datasets/triair_dataset.py",
@@ -1517,6 +1568,17 @@ def write_markdown(data, path):
         ),
         f"- Final commit SHA: {data['phase7i']['final_commit_sha']}",
         "- Phase 7I status: report-only dry-run plan completed; no author facts, destination metadata, TeX, figures, release manifests, or final assets are applied.",
+        "",
+        "## V40 Component-Disjoint Split Audit",
+        "",
+        "- Report: `runs/phase_v40_component_disjoint_report.md`" if data["v40_component_disjoint"]["report"] else "- Report: NA",
+        "- Report JSON: `runs/phase_v40_component_disjoint_report.json`" if data["v40_component_disjoint"]["report_json"] else "- Report JSON: NA",
+        f"- Status: {data['v40_component_disjoint']['status']}",
+        f"- Final component-disjoint gate: {data['v40_component_disjoint']['component_gate']}",
+        f"- Inventory/components/largest component: {data['v40_component_disjoint']['inventory_count']} / {data['v40_component_disjoint']['component_count']} / {data['v40_component_disjoint']['largest_component_size']}",
+        f"- Achieved train/val/guard rows: {data['v40_component_disjoint']['achieved_train']} / {data['v40_component_disjoint']['achieved_val']} / {data['v40_component_disjoint']['achieved_guard']}",
+        f"- Split SHA256 train/val/guard: {data['v40_component_disjoint']['train_sha256']} / {data['v40_component_disjoint']['val_sha256']} / {data['v40_component_disjoint']['guard_sha256']}",
+        "- GPU work: skipped/deferred by user constraint; no V40 R4 p=0.20 training or CUDA evaluation was started in this task.",
         "",
         "## Model And Code Structure",
         "",

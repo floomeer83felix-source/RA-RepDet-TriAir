@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-05T14:53:04
+Generated: 2026-07-07T16:10:35
 Workspace: `E:\RepViT-main`
 
 ## Publication Headline
@@ -12,10 +12,10 @@ Workspace: `E:\RepViT-main`
 
 ## Current Active Task
 
-- Task file: `docs/V39_TASK_NOTES.md`
-- Current Task: V39 Component-Disjoint Validation Completion
-- Goal: Audit the candidate component-disjoint split, then only if the audit passes complete reliability p=0.20 seeds 0 and 2, aggregate two-run means, and run missing-channel plus efficiency evaluation for the selected reliability setting.
-- Status: blocked before new training because the V39 component-disjoint audit failed.
+- Task file: `docs/NEXT_TASK.md`
+- Current Task: V40 — Repair, Freeze, and Validate a Truly Component-Disjoint TriAir Split
+- Goal: Repair the failed V39 candidate component-disjoint split before any new model training. Build and audit a deterministic split in which connected components induced by exact RGB-content identity and same-family temporal proximity cannot cross train, validation, or guard partitions. Only if the replacement split passes every strict gate may the task train and evaluate the missing R4 reliability model (`p=0.20`) for seeds `0` and `2` under the existing V39 protocol.
+- Commit Message: `results: audit and complete V40 component-disjoint validation`
 
 ## Dataset
 
@@ -157,9 +157,9 @@ Workspace: `E:\RepViT-main`
 - Body LaTeX source: `submission/sivp/tex/ra_repdet_sivp.tex`
 - BibTeX references: `submission/sivp/tex/references.bib`
 - Phase 6B report: `runs/phase6b_sivp_preparation_report.md`
-- Template/LaTeX source files: 16
+- Template/LaTeX source files: 21
 - Metadata template files: 14
-- Review/audit files: 31
+- Review/audit files: 32
 - Figure insertion map: `submission/sivp/figures/FINAL_ASSET_INSERTION_MAP.md`
 - Table insertion map: `submission/sivp/tables/FINAL_TABLE_INSERTION_MAP.md`
 - Decision: READY FOR ASSISTANT FINAL FIGURES, TABLES, AND AUTHOR METADATA
@@ -307,6 +307,17 @@ Workspace: `E:\RepViT-main`
 - Final commit SHA: pending until commit is created
 - Phase 7I status: report-only dry-run plan completed; no author facts, destination metadata, TeX, figures, release manifests, or final assets are applied.
 
+## V40 Component-Disjoint Split Audit
+
+- Report: `runs/phase_v40_component_disjoint_report.md`
+- Report JSON: `runs/phase_v40_component_disjoint_report.json`
+- Status: AUDIT_PASSED_GPU_DEFERRED
+- Final component-disjoint gate: PASS
+- Inventory/components/largest component: 10489 / 45 / 4077
+- Achieved train/val/guard rows: 7439 / 2213 / 837
+- Split SHA256 train/val/guard: 5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303 / 2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b / 9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e
+- GPU work: skipped/deferred by user constraint; no V40 R4 p=0.20 training or CUDA evaluation was started in this task.
+
 ## Model And Code Structure
 
 - E0: 5-channel early fusion -> 1x1 Conv(5,3) -> RepViT-M0.9 -> FPN -> FCOS.
@@ -329,32 +340,30 @@ Workspace: `E:\RepViT-main`
 
 ## Current Pending Experiments
 
-- Phase 7I dry-run update plan exists and currently reports 29 plan rows with zero eligible_for_future_guarded_application rows.
-- Figure rows remain awaiting_figure_decision; all non-figure rows remain pending_author_response under the current blank response template.
-- TAB_001 remains resolved and absent from unresolved planning work; no open table_asset blocker remains.
-- Strict V18 preflight remains blocked by unresolved author metadata, declarations, data governance, release/archive facts, final Fig. 1-6 assets, claim-scope approval, environment record, and compile readiness.
-- Do not apply any planned row until a future promoted phase confirms eligibility and required external evidence.
+- V40 component-disjoint split build and strict CPU audit passed.
+- R4 reliability p=0.20 seed 0/2 training and standardized CUDA evaluation are deferred because the GPU was already busy for this task.
+- Do not run synthetic missingness, aggregate, or efficiency packaging until both deferred R4 V40 runs and standardized evaluations complete.
+- Keep V40 validation evidence separate from the official manuscript headline until a later explicit evidence-review decision.
 
 ## Recently Modified Files
 
 - `M docs/EXPERIMENT_STATUS.md`
 - ` M docs/TASK_BLOCKER.md`
+- ` M rarepdet/tools/generate_handoff.py`
+- ` M rarepdet/tools/update_project_status.py`
+- ` M runs/handoff_latest.json`
+- ` M runs/handoff_latest.md`
+- `?? rarepdet/tools/audit_component_disjoint_split.py`
+- `?? rarepdet/tools/build_component_disjoint_split.py`
 - `?? rarepdet/tools/eval_dronevehicle_modality_specific.py`
 - `?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py`
-- `?? runs/v39_component_disjoint_blocker.md`
-- `?? runs/v39_component_disjoint_split_audit/`
-
-## V39 Blocker
-
-- Required pre-run audit did not pass, so reliability p=0.20 V39 training was not started.
-- Generic split audit: no train/validation path overlap and no exact `.npy` duplicates, but near-signature review remains CAUTION.
-- Component-disjoint gate: FAIL with 353 same-family train/validation guard-band-16 violations, 4 train/guard exact RGB-content groups, and 5 validation/guard exact RGB-content groups.
-- Evidence files: `docs/TASK_BLOCKER.md`, `runs/v39_component_disjoint_blocker.md`, and `runs/v39_component_disjoint_split_audit/`.
+- `?? runs/component_disjoint_v40/`
+- `?? runs/phase_v40_component_disjoint_report.json`
+- `?? runs/phase_v40_component_disjoint_report.md`
+- `?? runs/v40_component_disjoint/`
 
 ## Next Recommended Tasks
 
-- Regenerate and re-audit the V39 component-disjoint split, or explicitly approve exploratory-only continuation before launching reliability p=0.20 V39 runs.
-- Authors must complete the response template plus figure decision files with confirmation metadata and external evidence where required.
-- Rerun the Phase 7H validator and Phase 7I planner after responses or figure decisions are supplied.
-- Promote Phase 7J only for eligible author_metadata/declaration rows.
-- Keep data governance, release/archive, final figures, environment, strict preflight, compile, and final bundle assembly gated by Phases 7K-7P.
+- When GPU is available, run exactly one V40 R4 p=0.20 training/evaluation job at a time for seeds 0 and 2.
+- After both V40 R4 standardized evaluations complete, create the two-seed aggregate, synthetic missingness, and efficiency package.
+- Do not modify manuscript/submission files or commit raw data, checkpoints, weights, prediction dumps, or visual artifacts.

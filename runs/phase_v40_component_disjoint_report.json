@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-07-07T16:05:00",
+  "task_file": "docs/NEXT_TASK.md",
+  "branch": "research/ra-repdet-triair",
+  "starting_commit": "fd0a83d99857b1291f75bbe627152a58ee599002",
+  "status": "AUDIT_PASSED_GPU_DEFERRED",
+  "user_constraint": "GPU is busy; GPU-required tasks skipped/deferred.",
+  "split_build": {
+    "inventory_count": 10489,
+    "unique_paths": 10489,
+    "component_count": 45,
+    "largest_component_size": 4077,
+    "target_counts": {
+      "train": 7439,
+      "val": 2213,
+      "guard": 837
+    },
+    "achieved_counts": {
+      "train": 7439,
+      "val": 2213,
+      "guard": 837
+    },
+    "split_sha256": {
+      "train": "5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303",
+      "val": "2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b",
+      "guard": "9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e"
+    },
+    "deterministic_rerun_consistency": "pass"
+  },
+  "audit": {
+    "final_component_disjoint_gate": "PASS",
+    "missing_inventory_paths": 0,
+    "unknown_assigned_paths": 0,
+    "duplicate_assigned_paths": 0,
+    "path_overlaps": {
+      "train_val": 0,
+      "train_guard": 0,
+      "val_guard": 0
+    },
+    "exact_rgb_overlap_groups": {
+      "train_val": 0,
+      "train_guard": 0,
+      "val_guard": 0
+    },
+    "same_family_distance_16_violation_pairs": {
+      "train_val": 0,
+      "train_guard": 0,
+      "val_guard": 0
+    },
+    "min_same_family_id_distance": {
+      "train_val": 17,
+      "train_guard": 17,
+      "val_guard": 17
+    },
+    "component_crossing_count": 0
+  },
+  "label_inventory": {
+    "train": {
+      "images": 7439,
+      "gt_boxes": 23011,
+      "empty_target_images": 738
+    },
+    "val": {
+      "images": 2213,
+      "gt_boxes": 6359,
+      "empty_target_images": 1
+    },
+    "guard": {
+      "images": 837,
+      "gt_boxes": 1264,
+      "empty_target_images": 0
+    }
+  },
+  "deferred_gpu_work": [
+    "R4 reliability p=0.20 seed 0 training",
+    "R4 reliability p=0.20 seed 0 standardized CUDA evaluation",
+    "R4 reliability p=0.20 seed 2 training",
+    "R4 reliability p=0.20 seed 2 standardized CUDA evaluation",
+    "conditional synthetic missingness aggregate",
+    "conditional efficiency profiling"
+  ],
+  "prohibited_work_performed": {
+    "training": false,
+    "cuda_evaluation": false,
+    "synthetic_missingness": false,
+    "efficiency_profiling": false,
+    "manuscript_or_submission_edits": false,
+    "raw_data_or_checkpoint_commit": false
+  }
+}

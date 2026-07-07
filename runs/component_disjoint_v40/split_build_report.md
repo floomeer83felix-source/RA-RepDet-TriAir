@@ -1,0 +1,74 @@
+# V40 Component-Disjoint Split Build
+
+This CPU-only build assigns complete transitive components to train, validation, or guard. Components are induced by exact RGB-content SHA256 identity and same-family numeric-ID distance less than or equal to the configured guard distance.
+
+## Summary
+
+| metric | value | notes |
+| --- | --- | --- |
+| data_root | D:\download\triair | Local inventory root. |
+| inventory_count | 10489 | All discovered .npy image samples. |
+| unique_paths | 10489 | Unique relative paths in inventory. |
+| component_count | 45 | Transitive components after exact-RGB and same-family proximity edges. |
+| largest_component_size | 4077 | Largest connected component size. |
+| guard_distance | 16 | Same-family ID distance used for component edges. |
+| target_train | 7439 | Requested train count. |
+| target_val | 2213 | Requested validation count. |
+| target_guard | 837 | Requested guard count. |
+| achieved_train | 7439 | Whole-component allocation count. |
+| train_sha256 | 5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303 | SHA256 of split text entries. |
+| achieved_val | 2213 | Whole-component allocation count. |
+| val_sha256 | 2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b | SHA256 of split text entries. |
+| achieved_guard | 837 | Whole-component allocation count. |
+| guard_sha256 | 9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e | SHA256 of split text entries. |
+| deterministic_rerun_consistency | pass | Second in-process build produced identical split entries. |
+
+## Component Allocation
+
+| component_id | allocated_split | component_size | gt_boxes | min_rel_path | component_provenance |
+| --- | --- | --- | --- | --- | --- |
+| C00001 | train | 4077 | 11157 | data/images/frame_00000.npy | frame_distance_le_16 |
+| C00002 | train | 1580 | 7630 | data/images/nframe_00710.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00003 | val | 686 | 1660 | data/images/nframe_07344.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00004 | train | 625 | 1419 | data/images/nframe_04933.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00005 | val | 564 | 2740 | data/images/nframe_08176.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00006 | train | 532 | 1660 | data/images/nframe_02419.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00007 | val | 328 | 661 | data/images/nframe_04242.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00008 | guard | 261 | 436 | data/images/nframe_03277.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00009 | val | 198 | 583 | data/images/nframe_03836.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00010 | train | 194 | 433 | data/images/nframe_06360.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00011 | guard | 179 | 282 | data/images/nframe_04671.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00012 | val | 175 | 319 | data/images/nframe_08871.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00013 | train | 148 | 322 | data/images/nframe_09793.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00014 | guard | 140 | 243 | data/images/nframe_07107.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00015 | train | 126 | 195 | data/images/nframe_05599.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00016 | val | 96 | 131 | data/images/nframe_06928.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00017 | guard | 92 | 133 | data/images/nframe_09331.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00018 | val | 86 | 177 | data/images/nframe_09095.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00019 | guard | 72 | 75 | data/images/nframe_03628.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00020 | train | 69 | 96 | data/images/nframe_06601.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00021 | guard | 67 | 69 | data/images/nframe_09205.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00022 | train | 46 | 46 | data/images/nframe_06721.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00023 | val | 45 | 49 | data/images/nframe_09542.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00024 | train | 25 | 25 | data/images/nframe_03793.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00025 | val | 25 | 30 | data/images/nframe_04093.npy | exact_rgb_sha256;nframe_distance_le_16 |
+| C00026 | guard | 13 | 13 | data/images/nframe_03066.npy | nframe_distance_le_16 |
+| C00027 | train | 11 | 22 | data/images/nframe_09466.npy | nframe_distance_le_16 |
+| C00028 | guard | 5 | 5 | data/images/nframe_04906.npy | nframe_distance_le_16 |
+| C00029 | val | 3 | 3 | data/images/nframe_03740.npy | nframe_distance_le_16 |
+| C00030 | guard | 3 | 3 | data/images/nframe_06900.npy | nframe_distance_le_16 |
+| C00031 | val | 2 | 2 | data/images/nframe_05759.npy | nframe_distance_le_16 |
+| C00032 | train | 2 | 2 | data/images/nframe_07303.npy | nframe_distance_le_16 |
+| C00033 | guard | 2 | 2 | data/images/nframe_10979.npy | nframe_distance_le_16 |
+| C00034 | val | 1 | 0 | data/images/nframe_00619.npy | singleton |
+| C00035 | val | 1 | 1 | data/images/nframe_03009.npy | singleton |
+| C00036 | train | 1 | 1 | data/images/nframe_03140.npy | singleton |
+| C00037 | val | 1 | 1 | data/images/nframe_03193.npy | singleton |
+| C00038 | guard | 1 | 1 | data/images/nframe_03723.npy | singleton |
+| C00039 | train | 1 | 1 | data/images/nframe_04200.npy | singleton |
+| C00040 | guard | 1 | 1 | data/images/nframe_05806.npy | singleton |
+| C00041 | val | 1 | 1 | data/images/nframe_07061.npy | singleton |
+| C00042 | train | 1 | 1 | data/images/nframe_08791.npy | singleton |
+| C00043 | guard | 1 | 1 | data/images/nframe_08847.npy | singleton |
+| C00044 | val | 1 | 1 | data/images/nframe_10765.npy | singleton |
+| C00045 | train | 1 | 1 | data/images/nframe_11134.npy | singleton |

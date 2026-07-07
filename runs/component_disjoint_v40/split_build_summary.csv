@@ -1,0 +1,17 @@
+metric,value,notes
+data_root,D:\download\triair,Local inventory root.
+inventory_count,10489,All discovered .npy image samples.
+unique_paths,10489,Unique relative paths in inventory.
+component_count,45,Transitive components after exact-RGB and same-family proximity edges.
+largest_component_size,4077,Largest connected component size.
+guard_distance,16,Same-family ID distance used for component edges.
+target_train,7439,Requested train count.
+target_val,2213,Requested validation count.
+target_guard,837,Requested guard count.
+achieved_train,7439,Whole-component allocation count.
+train_sha256,5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303,SHA256 of split text entries.
+achieved_val,2213,Whole-component allocation count.
+val_sha256,2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b,SHA256 of split text entries.
+achieved_guard,837,Whole-component allocation count.
+guard_sha256,9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e,SHA256 of split text entries.
+deterministic_rerun_consistency,pass,Second in-process build produced identical split entries.

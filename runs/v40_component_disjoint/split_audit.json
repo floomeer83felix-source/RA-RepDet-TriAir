@@ -1,0 +1,280 @@
+{
+  "generated_at": "2026-07-07T16:04:21",
+  "data_root": "D:\\download\\triair",
+  "guard_distance": 16,
+  "split_files": {
+    "train": "runs\\component_disjoint_v40\\train.txt",
+    "val": "runs\\component_disjoint_v40\\val.txt",
+    "guard": "runs\\component_disjoint_v40\\guard.txt"
+  },
+  "split_sha256": {
+    "train": "5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303",
+    "val": "2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b",
+    "guard": "9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e"
+  },
+  "final_component_disjoint_gate": "PASS",
+  "failed_metrics": [],
+  "missing_inventory_path_examples": [],
+  "unknown_assigned_path_examples": [],
+  "duplicate_assigned_path_examples": [],
+  "summary_rows": [
+    {
+      "metric": "complete_inventory_count",
+      "value": 10489,
+      "status": "info",
+      "notes": "All discovered local .npy image samples."
+    },
+    {
+      "metric": "unique_inventory_paths",
+      "value": 10489,
+      "status": "pass",
+      "notes": "Unique relative paths in local inventory."
+    },
+    {
+      "metric": "assigned_total_rows",
+      "value": 10489,
+      "status": "info",
+      "notes": "Rows across train, validation, and guard split files."
+    },
+    {
+      "metric": "assigned_unique_paths",
+      "value": 10489,
+      "status": "info",
+      "notes": "Unique assigned relative paths."
+    },
+    {
+      "metric": "missing_inventory_paths",
+      "value": 0,
+      "status": "pass",
+      "notes": "Local inventory paths absent from all split files."
+    },
+    {
+      "metric": "unknown_assigned_paths",
+      "value": 0,
+      "status": "pass",
+      "notes": "Split rows not present in local inventory."
+    },
+    {
+      "metric": "duplicate_assigned_paths",
+      "value": 0,
+      "status": "pass",
+      "notes": "Paths assigned more than once across all partitions."
+    },
+    {
+      "metric": "component_count",
+      "value": 45,
+      "status": "info",
+      "notes": "Transitive component count in full inventory."
+    },
+    {
+      "metric": "largest_component_size",
+      "value": 4077,
+      "status": "info",
+      "notes": "Largest connected component size."
+    },
+    {
+      "metric": "train_sha256",
+      "value": "5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303",
+      "status": "info",
+      "notes": "SHA256 of split text entries."
+    },
+    {
+      "metric": "val_sha256",
+      "value": "2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b",
+      "status": "info",
+      "notes": "SHA256 of split text entries."
+    },
+    {
+      "metric": "guard_sha256",
+      "value": "9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e",
+      "status": "info",
+      "notes": "SHA256 of split text entries."
+    },
+    {
+      "metric": "deterministic_rerun_consistency",
+      "value": "pass",
+      "status": "pass",
+      "notes": "manifest hashes match actual split files and builder rerun consistency is true"
+    },
+    {
+      "metric": "train_rows",
+      "value": 7439,
+      "status": "info",
+      "notes": "Split rows."
+    },
+    {
+      "metric": "train_gt_boxes",
+      "value": 23011,
+      "status": "info",
+      "notes": "Total label rows/boxes."
+    },
+    {
+      "metric": "train_images_with_gt",
+      "value": 6701,
+      "status": "info",
+      "notes": "Images with at least one label row."
+    },
+    {
+      "metric": "train_empty_target_images",
+      "value": 738,
+      "status": "info",
+      "notes": "Images with zero label rows, including missing label files."
+    },
+    {
+      "metric": "val_rows",
+      "value": 2213,
+      "status": "info",
+      "notes": "Split rows."
+    },
+    {
+      "metric": "val_gt_boxes",
+      "value": 6359,
+      "status": "info",
+      "notes": "Total label rows/boxes."
+    },
+    {
+      "metric": "val_images_with_gt",
+      "value": 2212,
+      "status": "info",
+      "notes": "Images with at least one label row."
+    },
+    {
+      "metric": "val_empty_target_images",
+      "value": 1,
+      "status": "info",
+      "notes": "Images with zero label rows, including missing label files."
+    },
+    {
+      "metric": "guard_rows",
+      "value": 837,
+      "status": "info",
+      "notes": "Split rows."
+    },
+    {
+      "metric": "guard_gt_boxes",
+      "value": 1264,
+      "status": "info",
+      "notes": "Total label rows/boxes."
+    },
+    {
+      "metric": "guard_images_with_gt",
+      "value": 837,
+      "status": "info",
+      "notes": "Images with at least one label row."
+    },
+    {
+      "metric": "guard_empty_target_images",
+      "value": 0,
+      "status": "info",
+      "notes": "Images with zero label rows, including missing label files."
+    },
+    {
+      "metric": "train_val_path_overlap",
+      "value": 0,
+      "status": "pass",
+      "notes": "Identical relative paths across partitions."
+    },
+    {
+      "metric": "train_val_exact_rgb_overlap_groups",
+      "value": 0,
+      "status": "pass",
+      "notes": "Unique exact RGB-content SHA256 groups shared across partitions."
+    },
+    {
+      "metric": "train_val_same_family_distance_16_violation_pairs",
+      "value": 0,
+      "status": "pass",
+      "notes": "Cross-partition same-family ID pairs inside the guard distance."
+    },
+    {
+      "metric": "train_val_same_family_distance_16_violating_records",
+      "value": 0,
+      "status": "pass",
+      "notes": "Records in the second partition with at least one nearby record in the first partition."
+    },
+    {
+      "metric": "train_val_min_same_family_id_distance",
+      "value": "17",
+      "status": "pass",
+      "notes": "Minimum cross-partition same-family numeric ID distance."
+    },
+    {
+      "metric": "train_guard_path_overlap",
+      "value": 0,
+      "status": "pass",
+      "notes": "Identical relative paths across partitions."
+    },
+    {
+      "metric": "train_guard_exact_rgb_overlap_groups",
+      "value": 0,
+      "status": "pass",
+      "notes": "Unique exact RGB-content SHA256 groups shared across partitions."
+    },
+    {
+      "metric": "train_guard_same_family_distance_16_violation_pairs",
+      "value": 0,
+      "status": "pass",
+      "notes": "Cross-partition same-family ID pairs inside the guard distance."
+    },
+    {
+      "metric": "train_guard_same_family_distance_16_violating_records",
+      "value": 0,
+      "status": "pass",
+      "notes": "Records in the second partition with at least one nearby record in the first partition."
+    },
+    {
+      "metric": "train_guard_min_same_family_id_distance",
+      "value": "17",
+      "status": "pass",
+      "notes": "Minimum cross-partition same-family numeric ID distance."
+    },
+    {
+      "metric": "val_guard_path_overlap",
+      "value": 0,
+      "status": "pass",
+      "notes": "Identical relative paths across partitions."
+    },
+    {
+      "metric": "val_guard_exact_rgb_overlap_groups",
+      "value": 0,
+      "status": "pass",
+      "notes": "Unique exact RGB-content SHA256 groups shared across partitions."
+    },
+    {
+      "metric": "val_guard_same_family_distance_16_violation_pairs",
+      "value": 0,
+      "status": "pass",
+      "notes": "Cross-partition same-family ID pairs inside the guard distance."
+    },
+    {
+      "metric": "val_guard_same_family_distance_16_violating_records",
+      "value": 0,
+      "status": "pass",
+      "notes": "Records in the second partition with at least one nearby record in the first partition."
+    },
+    {
+      "metric": "val_guard_min_same_family_id_distance",
+      "value": "17",
+      "status": "pass",
+      "notes": "Minimum cross-partition same-family numeric ID distance."
+    },
+    {
+      "metric": "assigned_paths_missing_component_id",
+      "value": 0,
+      "status": "pass",
+      "notes": "Assigned paths that could not be mapped to a rebuilt component."
+    },
+    {
+      "metric": "component_crossing_count",
+      "value": 0,
+      "status": "pass",
+      "notes": "No connected component crosses partitions."
+    },
+    {
+      "metric": "final_component_disjoint_gate",
+      "value": "PASS",
+      "status": "pass",
+      "notes": "Hard continuation gate for V40 GPU work."
+    }
+  ]
+}

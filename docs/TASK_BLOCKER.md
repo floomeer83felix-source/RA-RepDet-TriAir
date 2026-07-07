@@ -6,7 +6,44 @@ Execute `docs/NEXT_TASK.md` on branch `research/ra-repdet-triair`:
 
 **V40 — Repair, Freeze, and Validate a Truly Component-Disjoint TriAir Split.**
 
-The immediate work is CPU-only deterministic split repair and strict auditing. GPU training for R4 `p=0.20` seeds 0 and 2 is conditionally allowed only after the new split passes every cross-partition component, exact-RGB, and same-family guard-band criterion.
+The CPU-only deterministic split repair and strict audit have now passed. GPU training for R4 `p=0.20` seeds 0 and 2 is conditionally allowed by the audit gate, but it was not started in the current run because the user stated that the GPU already has another task running.
+
+## Current V40 Status
+
+| diagnostic | observed value |
+| --- | ---: |
+| status | AUDIT_PASSED_GPU_DEFERRED |
+| complete inventory rows | 10489 |
+| component count | 45 |
+| largest component size | 4077 |
+| train rows | 7439 |
+| validation rows | 2213 |
+| guard rows | 837 |
+| deterministic rerun consistency | pass |
+| final component-disjoint gate | PASS |
+| train/validation path overlap | 0 |
+| train/guard path overlap | 0 |
+| validation/guard path overlap | 0 |
+| train/validation exact RGB-content groups | 0 |
+| train/guard exact RGB-content groups | 0 |
+| validation/guard exact RGB-content groups | 0 |
+| train/validation same-family distance-16 violation pairs | 0 |
+| train/guard same-family distance-16 violation pairs | 0 |
+| validation/guard same-family distance-16 violation pairs | 0 |
+| component crossing count | 0 |
+
+Evidence files:
+
+- `runs/component_disjoint_v40/train.txt`
+- `runs/component_disjoint_v40/val.txt`
+- `runs/component_disjoint_v40/guard.txt`
+- `runs/component_disjoint_v40/split_manifest.csv`
+- `runs/component_disjoint_v40/split_manifest.json`
+- `runs/v40_component_disjoint/split_audit.md`
+- `runs/v40_component_disjoint/split_audit.csv`
+- `runs/v40_component_disjoint/split_audit.json`
+- `runs/phase_v40_component_disjoint_report.md`
+- `runs/phase_v40_component_disjoint_report.json`
 
 ## Inherited V39 Failure
 
@@ -39,13 +76,15 @@ Before any GPU command, the replacement V40 split must prove all of the followin
 6. repeated deterministic generation yields identical split SHA256 values; and
 7. the audit has no unresolved error.
 
-A failed V40 audit is a valid blocked outcome. It must be committed with quantified diagnostics, refreshed handoff/status, and no GPU run.
+The current V40 audit passed all listed checks. The remaining work is deferred GPU execution, not an audit blocker.
 
 ## What Is Blocked
 
-Until V40 passes, do not:
+Until the deferred V40 GPU stage is explicitly resumed, do not:
 
-- train R4 `p=0.20` on the V39 candidate split;
+- train R4 `p=0.20` on the failed V39 candidate split;
+- start overlapping GPU jobs;
+- run synthetic missingness, aggregate, or efficiency packaging before both V40 R4 seed runs and standardized evaluations complete;
 - relabel V39 as clean, component-disjoint, or manuscript-grade evidence;
 - replace the official R4 `block64_guard16_seed0` manuscript headline;
 - edit manuscript sources, Tables 1--7, figures, submission metadata, author declarations, or release records;

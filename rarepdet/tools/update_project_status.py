@@ -87,6 +87,10 @@ PHASE7I_PLAN_CSV = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRME
 PHASE7I_PLAN_JSON = PROJECT_ROOT / "submission" / "sivp" / "metadata" / "CONFIRMED_UPDATE_PLAN.json"
 PHASE7I_CHECK_MD = PROJECT_ROOT / "submission" / "sivp" / "review" / "CONFIRMED_UPDATE_PLAN_CHECK.md"
 PHASE7I_CHECK_CSV = PROJECT_ROOT / "submission" / "sivp" / "review" / "CONFIRMED_UPDATE_PLAN_CHECK.csv"
+V40_REPORT = RUNS_DIR / "phase_v40_component_disjoint_report.md"
+V40_REPORT_JSON = RUNS_DIR / "phase_v40_component_disjoint_report.json"
+V40_SPLIT_BUILD_SUMMARY = RUNS_DIR / "component_disjoint_v40" / "split_build_summary.csv"
+V40_AUDIT_CSV = RUNS_DIR / "v40_component_disjoint" / "split_audit.csv"
 
 
 EXPERIMENTS = [
@@ -252,6 +256,27 @@ def handoff_pending_tasks():
     return items or ["NA"]
 
 
+def collect_v40_component_disjoint():
+    build_rows = read_csv(V40_SPLIT_BUILD_SUMMARY)
+    audit_rows = read_csv(V40_AUDIT_CSV)
+    build = {row.get("metric"): row.get("value") for row in build_rows}
+    audit = {row.get("metric"): row.get("value") for row in audit_rows}
+    return {
+        "report_exists": V40_REPORT.exists(),
+        "report_json_exists": V40_REPORT_JSON.exists(),
+        "gate": audit.get("final_component_disjoint_gate", "NA"),
+        "inventory_count": build.get("inventory_count", audit.get("complete_inventory_count", "NA")),
+        "component_count": build.get("component_count", audit.get("component_count", "NA")),
+        "largest_component_size": build.get("largest_component_size", audit.get("largest_component_size", "NA")),
+        "achieved_train": build.get("achieved_train", audit.get("train_rows", "NA")),
+        "achieved_val": build.get("achieved_val", audit.get("val_rows", "NA")),
+        "achieved_guard": build.get("achieved_guard", audit.get("guard_rows", "NA")),
+        "train_sha256": build.get("train_sha256", audit.get("train_sha256", "NA")),
+        "val_sha256": build.get("val_sha256", audit.get("val_sha256", "NA")),
+        "guard_sha256": build.get("guard_sha256", audit.get("guard_sha256", "NA")),
+    }
+
+
 def build_status():
     next_sections = parse_sections(NEXT_TASK_PATH)
     eval_rows = collect_eval_results()
@@ -384,6 +409,7 @@ def build_status():
     phase7i_check_exists = PHASE7I_CHECK_MD.exists() and PHASE7I_CHECK_CSV.exists()
     phase7i_plan_rows = count_csv_rows(PHASE7I_PLAN_CSV)
     phase7i_check_rows = count_csv_rows(PHASE7I_CHECK_CSV)
+    v40_component_disjoint = collect_v40_component_disjoint()
 
     next_text = read_text(NEXT_TASK_PATH)
     active_status = "pending"
@@ -1100,6 +1126,16 @@ def build_status():
         "- Decision: REPORT-ONLY CONFIRMATION-GATED UPDATE PLAN CREATED; CURRENT TEMPLATE HAS ZERO ELIGIBLE ROWS"
         if phase7i_report_exists
         else "- Decision: NA",
+        "",
+        "## V40 component-disjoint outputs",
+        "",
+        "- Report: `runs/phase_v40_component_disjoint_report.md`" if v40_component_disjoint["report_exists"] else "- Report: NA",
+        "- Report JSON: `runs/phase_v40_component_disjoint_report.json`" if v40_component_disjoint["report_json_exists"] else "- Report JSON: NA",
+        f"- Final component-disjoint gate: {v40_component_disjoint['gate']}",
+        f"- Inventory/components/largest component: {v40_component_disjoint['inventory_count']} / {v40_component_disjoint['component_count']} / {v40_component_disjoint['largest_component_size']}",
+        f"- Achieved train/val/guard rows: {v40_component_disjoint['achieved_train']} / {v40_component_disjoint['achieved_val']} / {v40_component_disjoint['achieved_guard']}",
+        f"- Split SHA256 train/val/guard: {v40_component_disjoint['train_sha256']} / {v40_component_disjoint['val_sha256']} / {v40_component_disjoint['guard_sha256']}",
+        "- Decision: AUDIT PASSED; GPU R4 p=0.20 training/evaluation deferred because GPU was busy for this task",
         "",
         "",
         "## Pending tasks",
