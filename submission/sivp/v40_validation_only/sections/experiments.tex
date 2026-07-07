@@ -1,0 +1,53 @@
+\section{Experiments and Results}
+\subsection{Frozen Training and Evaluation Protocol}
+Both model groups use the same V40-v2 manifests, 50 epochs, $640\times640$ inputs, batch size 4, learning rate $10^{-4}$, AdamW, no mosaic/mixup/crop/flip/color-jitter augmentation, and fixed seeds 0 and 2. The detector score threshold is 0.001, the NMS threshold is 0.6, and at most 100 detections are retained per image. Precision, recall, and F1 use an operating threshold of 0.50. AP50 and AP75 are project-local single-class score-ranked AP values based on greedy one-to-one matching; they are not COCO AP50:95.
+
+Within each run, the frozen trainer retains the checkpoint with the highest in-training validation AP50. The evidence is therefore validation-model-selection evidence, not an independent test. No V40 hyperparameter sweep is performed.
+
+\subsection{Full-Input Comparison}
+The pre-specified reliability-aware $p=0.15$ system has higher two-run mean precision, recall, F1, AP50, and AP75 than matched early fusion. The AP50, AP75, and F1 differences are $+0.0177$, $+0.0552$, and $+0.0188$, respectively. The reliability system has a smaller two-run AP50 range, but two seeds are not enough for a broad stability claim.
+
+\begin{table*}[t]
+\centering
+\caption{V40-v2 full-input validation results. The reliability-aware $p=0.15$ setting was pre-specified before V40 results; no V40 dropout sweep or optimal-dropout claim is made. Range is the minimum--maximum range across two fixed seeds.}
+\label{tab:core}
+\scriptsize
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Model group & Statistic & Precision & Recall & F1 & AP50 & AP75\\
+\midrule
+Matched early fusion & seed 0 & 0.9092 & 0.8955 & 0.9023 & 0.9455 & 0.8411\\
+Matched early fusion & seed 2 & 0.9284 & 0.8485 & 0.8866 & 0.9361 & 0.8004\\
+Matched early fusion & mean & 0.9188 & 0.8720 & 0.8945 & 0.9408 & 0.8208\\
+Matched early fusion & range & 0.0192 & 0.0470 & 0.0157 & 0.0094 & 0.0407\\
+\midrule
+Reliability-aware $p=0.15$ & seed 0 & 0.9333 & 0.8972 & 0.9149 & 0.9584 & 0.8952\\
+Reliability-aware $p=0.15$ & seed 2 & 0.9213 & 0.9022 & 0.9116 & 0.9588 & 0.8567\\
+Reliability-aware $p=0.15$ & mean & \textbf{0.9273} & \textbf{0.8997} & \textbf{0.9133} & \textbf{0.9586} & \textbf{0.8760}\\
+Reliability-aware $p=0.15$ & range & 0.0120 & 0.0049 & 0.0033 & 0.0004 & 0.0385\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig3_core_results.pdf}
+\caption{Two-run means for full-input V40-v2 validation. Error bars are population standard deviations over the two fixed seeds and are descriptive only.}
+\label{fig:core}
+\end{figure}
+
+\subsection{Image-Level Bootstrap Uncertainty}
+V40 validation images are resampled 2,000 times with a fixed bootstrap seed. Each resample computes the metric for each fixed checkpoint, averages the two checkpoints within a model group, and calculates the reliability-minus-early difference. Images with no ground-truth boxes remain in the resampling frame. All percentile intervals for AP50, AP75, and F1 are positive: AP50 $+0.0177$ [$+0.0153$, $+0.0203$], AP75 $+0.0553$ [$+0.0483$, $+0.0622$], and F1 $+0.0187$ [$+0.0150$, $+0.0226$]. These intervals are conditional on the fixed checkpoints and validation partition and are not used for model selection.
+
+\subsection{Synthetic Channel Removal}
+One channel group is deterministically set to zero at a time while model weights, thresholds, and postprocessing are fixed. Reliability-aware fusion retains higher AP50 under all three removals: RGB removed, 0.8985 versus 0.7379; thermal removed, 0.7030 versus 0.3648; event removed, 0.9582 versus 0.9339. This deterministic zero-channel intervention does not emulate measured physical sensor outages, temporal misalignment, or cross-device deployment failures.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig4_channel_removal.pdf}
+\caption{AP50 under deterministic synthetic channel removal. Reliability-aware $p=0.15$ retains higher AP50 under all four input conditions.}
+\label{fig:removal}
+\end{figure}
+
+\subsection{Efficiency}
+The reliability-aware model adds 1,684 parameters and approximately 0.77 GFLOPs under the reported profiling convention. With batch size 1 and image size 640, its mean median raw-forward latency is 10.61 ms compared with 10.43 ms for early fusion, and its detector-inference latency is 23.30 ms compared with 22.89 ms. Its observed peak CUDA-memory range is also higher. Raw-forward timing covers the backbone call only; detector inference includes transform, backbone, head, NMS, and postprocessing, but excludes data loading and file I/O. Thus the reliability-aware system should not be described as faster.
