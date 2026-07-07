@@ -1,0 +1,19 @@
+{
+  "ap50": 0.9361328482627869,
+  "ap75": 0.8004389405250549,
+  "checkpoint_sha256": "b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e",
+  "eval_results_csv": "runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/standardized_eval/eval_results.csv",
+  "eval_results_json": "runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/standardized_eval/eval_results.json",
+  "eval_results_txt": "runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/standardized_eval/eval_results.txt",
+  "f1": 0.88663282571912,
+  "gt_boxes": 5867,
+  "model": "early",
+  "model_group": "matched_early",
+  "precision": 0.928384930995897,
+  "predictions": 5362,
+  "recall": 0.8484745184932674,
+  "run_id": "matched_early_seed2",
+  "seed": "2",
+  "standard_evaluator_path": "rarepdet/eval_map.py",
+  "standard_evaluator_sha256": "94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715"
+}

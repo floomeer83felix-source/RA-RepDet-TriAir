@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-07-07T10:22:20",
+  "prohibited_work": {
+    "bootstrap": false,
+    "dronevehicle": false,
+    "finish_task": false,
+    "manuscript": false,
+    "p000_training": false,
+    "p020_training": false,
+    "profiling": false,
+    "qualitative": false,
+    "robustness": false
+  },
+  "run_ids": [
+    "matched_early_seed0",
+    "matched_early_seed2",
+    "reliability_p015_seed0",
+    "reliability_p015_seed2"
+  ],
+  "standardized_evaluation_completed": true,
+  "status": "V40_FOUR_RUN_EXECUTION_COMPLETE",
+  "training_started": true
+}

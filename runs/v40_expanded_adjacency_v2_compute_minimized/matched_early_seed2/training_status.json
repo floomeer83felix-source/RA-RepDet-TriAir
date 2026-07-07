@@ -1,0 +1,19 @@
+{
+  "best_checkpoint": "runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/weights/best.pt",
+  "best_checkpoint_exists": true,
+  "epoch_50_seen_in_train_log": true,
+  "last_checkpoint": "runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/weights/last.pt",
+  "last_checkpoint_exists": true,
+  "run_id": "matched_early_seed2",
+  "status": "PASS",
+  "training_complete_seen_in_train_log": true,
+  "training_result": {
+    "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe rarepdet/train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2",
+    "ended_at": "2026-07-06T22:22:17",
+    "returncode": 0,
+    "runtime_seconds": 20517.15890097618,
+    "started_at": "2026-07-06T16:40:19",
+    "stderr": "runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/execution_logs/training_stderr.log",
+    "stdout": "runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/execution_logs/training_stdout.log"
+  }
+}

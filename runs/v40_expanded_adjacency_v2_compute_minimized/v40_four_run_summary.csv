@@ -1,0 +1,15 @@
+row_type,run_id,model_group,model,seed,precision,recall,f1,ap50,ap75,gt_boxes,predictions,checkpoint_sha256,eval_results_txt,eval_results_json
+per_run,matched_early_seed0,matched_early,early,0,0.9091538328430524,0.8955173001534004,0.902284046024386,0.945548951625824,0.8410928845405579,5867,5779,23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602,runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed0/standardized_eval/eval_results.txt,runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed0/standardized_eval/eval_results.json
+per_run,matched_early_seed2,matched_early,early,2,0.928384930995897,0.8484745184932674,0.88663282571912,0.9361328482627869,0.8004389405250549,5867,5362,b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e,runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/standardized_eval/eval_results.txt,runs/v40_expanded_adjacency_v2_compute_minimized/matched_early_seed2/standardized_eval/eval_results.json
+per_run,reliability_p015_seed0,reliability_p015,reliability,0,0.9333333333333333,0.8972217487642747,0.9149213522203875,0.9583612680435181,0.8952142000198364,5867,5640,4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436,runs/v40_expanded_adjacency_v2_compute_minimized/reliability_p015_seed0/standardized_eval/eval_results.txt,runs/v40_expanded_adjacency_v2_compute_minimized/reliability_p015_seed0/standardized_eval/eval_results.json
+per_run,reliability_p015_seed2,reliability_p015,reliability,2,0.9213228894691036,0.9021646497358105,0.9116431277988287,0.9587774276733398,0.8567192554473877,5867,5745,27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415,runs/v40_expanded_adjacency_v2_compute_minimized/reliability_p015_seed2/standardized_eval/eval_results.txt,runs/v40_expanded_adjacency_v2_compute_minimized/reliability_p015_seed2/standardized_eval/eval_results.json
+aggregate,,matched_early,,,0.9187693819194747,,,,,,,,metric=precision; range=0.019231098152844628; std=0.009615549076422314,
+aggregate,,matched_early,,,,0.8719959093233338,,,,,,,metric=recall; range=0.04704278166013298; std=0.02352139083006649,
+aggregate,,matched_early,,,,,0.8944584358717531,,,,,,metric=f1; range=0.015651220305266; std=0.007825610152633,
+aggregate,,matched_early,,,,,,0.9408408999443054,,,,,metric=ap50; range=0.00941610336303711; std=0.004708051681518555,
+aggregate,,matched_early,,,,,,,0.8207659125328064,,,,metric=ap75; range=0.04065394401550293; std=0.020326972007751465,
+aggregate,,reliability_p015,,,0.9273281114012184,,,,,,,,metric=precision; range=0.01201044386422978; std=0.00600522193211489,
+aggregate,,reliability_p015,,,,0.8996931992500425,,,,,,,metric=recall; range=0.004942900971535713; std=0.0024714504857678565,
+aggregate,,reliability_p015,,,,,0.9132822400096081,,,,,,metric=f1; range=0.003278224421558784; std=0.001639112210779392,
+aggregate,,reliability_p015,,,,,,0.958569347858429,,,,,metric=ap50; range=0.00041615962982177734; std=0.00020807981491088867,
+aggregate,,reliability_p015,,,,,,,0.8759667277336121,,,,metric=ap75; range=0.03849494457244873; std=0.019247472286224365,

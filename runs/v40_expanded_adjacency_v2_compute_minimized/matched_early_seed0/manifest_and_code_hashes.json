@@ -1,0 +1,13 @@
+{
+  "evaluator_sha256": "94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715",
+  "expected_evaluator_sha256": "94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715",
+  "expected_train_manifest_sha256": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+  "expected_trainer_sha256": "d9cae1e22e41ad0c7cfab13bf83ac058b5335cd1fcc41e3da9b1f8c53d05167a",
+  "expected_validation_manifest_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+  "generated_at": "2026-07-06T10:23:22",
+  "run_id": "matched_early_seed0",
+  "status": "PASS",
+  "train_manifest_sha256": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+  "trainer_sha256": "d9cae1e22e41ad0c7cfab13bf83ac058b5335cd1fcc41e3da9b1f8c53d05167a",
+  "validation_manifest_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f"
+}
