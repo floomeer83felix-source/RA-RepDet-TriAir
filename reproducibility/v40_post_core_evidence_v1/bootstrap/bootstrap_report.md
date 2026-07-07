@@ -1,0 +1,15 @@
+# V40 Bootstrap Inference
+
+- Resamples: `2000`
+- Bootstrap seed: `20260707`
+- Resampling unit: V40 validation image.
+- Images with no GT boxes are retained; they contribute false positives when predictions are present and zero GT to denominators.
+- Use: descriptive uncertainty evidence only; not used to select or change a model.
+
+## 95% Percentile Confidence Intervals
+
+| comparison | metric | resamples | bootstrap_seed | resampling_unit | mean_difference | median_difference | ci95_low_percentile | ci95_high_percentile | interpretation |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| reliability_p015_minus_matched_early | ap50 | 2000 | 20260707 | V40 validation image | 0.017728451787788167 | 0.017707346904498544 | 0.015256388005846302 | 0.020347639975607523 | descriptive uncertainty evidence only; not used for model selection |
+| reliability_p015_minus_matched_early | ap75 | 2000 | 20260707 | V40 validation image | 0.05531997401242881 | 0.055327848153059744 | 0.048323405159029074 | 0.06222237985849988 | descriptive uncertainty evidence only; not used for model selection |
+| reliability_p015_minus_matched_early | f1 | 2000 | 20260707 | V40 validation image | 0.018736217762584575 | 0.018710963262967506 | 0.014979827442707127 | 0.022624657627203396 | descriptive uncertainty evidence only; not used for model selection |

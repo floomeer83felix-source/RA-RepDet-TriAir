@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-07-07T13:01:03",
+  "prohibited_work": {
+    "dronevehicle": false,
+    "external_data": false,
+    "finish_task": false,
+    "guard_evaluation": false,
+    "manuscript_work": false,
+    "p000_or_p020_run": false,
+    "training": false,
+    "tuning": false
+  },
+  "readiness_status": "PRE_MANUSCRIPT_VALIDATION_ONLY_READY",
+  "runtime_seconds": 2879.1970578,
+  "stage_status": {
+    "contract": "PASS",
+    "core_runs": "PASS",
+    "split_audit": "PASS",
+    "stage_a_source_lock": "PASS",
+    "stage_b_channel_removal": "PASS",
+    "stage_c_efficiency": "PASS",
+    "stage_d_bootstrap": "PASS",
+    "stage_e_qualitative": "PASS",
+    "stage_f_reproducibility_provenance": "PASS",
+    "stage_g_readiness": "PASS"
+  },
+  "status": "V40_POST_CORE_EVIDENCE_COMPLETE"
+}

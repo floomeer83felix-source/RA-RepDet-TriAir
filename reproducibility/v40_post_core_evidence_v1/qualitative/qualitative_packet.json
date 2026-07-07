@@ -1,0 +1,79 @@
+{
+  "assets": [
+    {
+      "asset_path": "reproducibility/v40_post_core_evidence_v1/qualitative/review_assets/v40_qualitative_01_nframe_07725.png",
+      "asset_sha256": "e1c889c05fdba509ef79beab00f705512f65ea85a3316e107db7f4ad6afa887b",
+      "claims": "none; review packet only",
+      "sample_id": "nframe_07725",
+      "selection_rank": 1,
+      "visual_convention": "RGB image; GT boxes green; predictions with score >= 0.50 yellow; all-modal only"
+    },
+    {
+      "asset_path": "reproducibility/v40_post_core_evidence_v1/qualitative/review_assets/v40_qualitative_02_nframe_07435.png",
+      "asset_sha256": "9ade3ab3c54c142f416e0e527ecff964df55d4af7df3de5a2b8c39c29a6f619e",
+      "claims": "none; review packet only",
+      "sample_id": "nframe_07435",
+      "selection_rank": 2,
+      "visual_convention": "RGB image; GT boxes green; predictions with score >= 0.50 yellow; all-modal only"
+    },
+    {
+      "asset_path": "reproducibility/v40_post_core_evidence_v1/qualitative/review_assets/v40_qualitative_03_nframe_07948.png",
+      "asset_sha256": "96bad7535a77524a7a595ebe86d6cac0a5537c926330c8bbb26f59daed67b841",
+      "claims": "none; review packet only",
+      "sample_id": "nframe_07948",
+      "selection_rank": 3,
+      "visual_convention": "RGB image; GT boxes green; predictions with score >= 0.50 yellow; all-modal only"
+    },
+    {
+      "asset_path": "reproducibility/v40_post_core_evidence_v1/qualitative/review_assets/v40_qualitative_04_nframe_03921.png",
+      "asset_sha256": "3c32fc9480470e293a89c29dcc069e90df9a53cc11574c0a91145972909d0469",
+      "claims": "none; review packet only",
+      "sample_id": "nframe_03921",
+      "selection_rank": 4,
+      "visual_convention": "RGB image; GT boxes green; predictions with score >= 0.50 yellow; all-modal only"
+    },
+    {
+      "asset_path": "reproducibility/v40_post_core_evidence_v1/qualitative/review_assets/v40_qualitative_05_nframe_01208.png",
+      "asset_sha256": "603e681ee66aa168fc668453aa59f5173bdfa6f79da59606a6f74909c78eb9ab",
+      "claims": "none; review packet only",
+      "sample_id": "nframe_01208",
+      "selection_rank": 5,
+      "visual_convention": "RGB image; GT boxes green; predictions with score >= 0.50 yellow; all-modal only"
+    },
+    {
+      "asset_path": "reproducibility/v40_post_core_evidence_v1/qualitative/review_assets/v40_qualitative_06_nframe_07440.png",
+      "asset_sha256": "76e137231d28571105cde50752b8e8253fca7bd0313526526f2637be9e4a9d79",
+      "claims": "none; review packet only",
+      "sample_id": "nframe_07440",
+      "selection_rank": 6,
+      "visual_convention": "RGB image; GT boxes green; predictions with score >= 0.50 yellow; all-modal only"
+    },
+    {
+      "asset_path": "reproducibility/v40_post_core_evidence_v1/qualitative/review_assets/v40_qualitative_07_frame_02259.png",
+      "asset_sha256": "2c4dd6a6732b26624e613938378b308a4a7938b6384fdfbaeea31d5cbe4092cf",
+      "claims": "none; review packet only",
+      "sample_id": "frame_02259",
+      "selection_rank": 7,
+      "visual_convention": "RGB image; GT boxes green; predictions with score >= 0.50 yellow; all-modal only"
+    },
+    {
+      "asset_path": "reproducibility/v40_post_core_evidence_v1/qualitative/review_assets/v40_qualitative_08_frame_02296.png",
+      "asset_sha256": "6ffbb2f5636a8825023306545dc0b797f31dfac4570f0ea1f0d2bb5d96ff8b3f",
+      "claims": "none; review packet only",
+      "sample_id": "frame_02296",
+      "selection_rank": 8,
+      "visual_convention": "RGB image; GT boxes green; predictions with score >= 0.50 yellow; all-modal only"
+    }
+  ],
+  "display_threshold": 0.5,
+  "generated_at": "2026-07-07T12:59:44",
+  "not_selected_by": [
+    "appearance",
+    "score",
+    "error",
+    "confidence",
+    "loss",
+    "result_quality"
+  ],
+  "selection_rule": "sort stable validation sample IDs on SHA-256 and take the first eight"
+}

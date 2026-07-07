@@ -1,0 +1,92 @@
+{
+  "cache_manifest": [
+    {
+      "bytes_before_deletion": 14080422,
+      "deletion_exclusion_policy": "Transient local prediction cache was hashed, consumed for bootstrap, and deleted before commit.",
+      "path_deleted": "reproducibility/v40_post_core_evidence_v1/bootstrap/_local_prediction_cache/matched_early_seed0_all_modal_prediction_cache.jsonl",
+      "retained_in_git": false,
+      "rows": 2213,
+      "run_id": "matched_early_seed0",
+      "schema": "JSONL rows with sample_id, image_index, gt_box_count, pred_boxes_xyxy, pred_scores, pred_labels.",
+      "sha256_before_deletion": "194295b8e1557c589b70e65420c1c48cc253a7361b7dfb4550daae955b9c2d29"
+    },
+    {
+      "bytes_before_deletion": 14327689,
+      "deletion_exclusion_policy": "Transient local prediction cache was hashed, consumed for bootstrap, and deleted before commit.",
+      "path_deleted": "reproducibility/v40_post_core_evidence_v1/bootstrap/_local_prediction_cache/matched_early_seed2_all_modal_prediction_cache.jsonl",
+      "retained_in_git": false,
+      "rows": 2213,
+      "run_id": "matched_early_seed2",
+      "schema": "JSONL rows with sample_id, image_index, gt_box_count, pred_boxes_xyxy, pred_scores, pred_labels.",
+      "sha256_before_deletion": "6aa342dc7bbfd0c1df7871fbeb310d5406b598326023fb912f63769f5a5b4593"
+    },
+    {
+      "bytes_before_deletion": 14286515,
+      "deletion_exclusion_policy": "Transient local prediction cache was hashed, consumed for bootstrap, and deleted before commit.",
+      "path_deleted": "reproducibility/v40_post_core_evidence_v1/bootstrap/_local_prediction_cache/reliability_p015_seed0_all_modal_prediction_cache.jsonl",
+      "retained_in_git": false,
+      "rows": 2213,
+      "run_id": "reliability_p015_seed0",
+      "schema": "JSONL rows with sample_id, image_index, gt_box_count, pred_boxes_xyxy, pred_scores, pred_labels.",
+      "sha256_before_deletion": "1edd885f164b86286c925a117a30758e2852a8678c1cd7a727093ef01a3fcd52"
+    },
+    {
+      "bytes_before_deletion": 14294047,
+      "deletion_exclusion_policy": "Transient local prediction cache was hashed, consumed for bootstrap, and deleted before commit.",
+      "path_deleted": "reproducibility/v40_post_core_evidence_v1/bootstrap/_local_prediction_cache/reliability_p015_seed2_all_modal_prediction_cache.jsonl",
+      "retained_in_git": false,
+      "rows": 2213,
+      "run_id": "reliability_p015_seed2",
+      "schema": "JSONL rows with sample_id, image_index, gt_box_count, pred_boxes_xyxy, pred_scores, pred_labels.",
+      "sha256_before_deletion": "fa2fb50d12b05aee80d8d29695d7087d928ce6677d6f214da30fea4ae8f96c8a"
+    }
+  ],
+  "ci_summary": [
+    {
+      "bootstrap_seed": 20260707,
+      "ci95_high_percentile": 0.020347639975607523,
+      "ci95_low_percentile": 0.015256388005846302,
+      "comparison": "reliability_p015_minus_matched_early",
+      "interpretation": "descriptive uncertainty evidence only; not used for model selection",
+      "mean_difference": 0.017728451787788167,
+      "median_difference": 0.017707346904498544,
+      "metric": "ap50",
+      "resamples": 2000,
+      "resampling_unit": "V40 validation image"
+    },
+    {
+      "bootstrap_seed": 20260707,
+      "ci95_high_percentile": 0.06222237985849988,
+      "ci95_low_percentile": 0.048323405159029074,
+      "comparison": "reliability_p015_minus_matched_early",
+      "interpretation": "descriptive uncertainty evidence only; not used for model selection",
+      "mean_difference": 0.05531997401242881,
+      "median_difference": 0.055327848153059744,
+      "metric": "ap75",
+      "resamples": 2000,
+      "resampling_unit": "V40 validation image"
+    },
+    {
+      "bootstrap_seed": 20260707,
+      "ci95_high_percentile": 0.022624657627203396,
+      "ci95_low_percentile": 0.014979827442707127,
+      "comparison": "reliability_p015_minus_matched_early",
+      "interpretation": "descriptive uncertainty evidence only; not used for model selection",
+      "mean_difference": 0.018736217762584575,
+      "median_difference": 0.018710963262967506,
+      "metric": "f1",
+      "resamples": 2000,
+      "resampling_unit": "V40 validation image"
+    }
+  ],
+  "generated_at": "2026-07-07T12:59:41",
+  "protocol": {
+    "bootstrap_seed": 20260707,
+    "empty_gt_images": "retained in the resampling frame; they contribute false positives when predictions are present and zero GT to denominators",
+    "groups": "each resample computes each fixed checkpoint metric, averages the two checkpoints within each model group, then differences reliability_p015 minus matched_early",
+    "metric_implementation": "project-local single-class AP/F1 logic consistent with rarepdet/metrics.py",
+    "raw_prediction_cache": "transient local JSONL caches were hashed and deleted before commit",
+    "resamples": 2000,
+    "resampling_unit": "V40 validation image"
+  }
+}

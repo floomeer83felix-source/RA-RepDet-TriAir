@@ -1,0 +1,45 @@
+{
+  "author_held_provenance_evidence": "local dataset root and repository split manifests only",
+  "dataset_formal_name": "TriAir",
+  "generated_at": "2026-07-07T13:01:03",
+  "guard_policy": "guard manifest is archival/non-test and was not evaluated",
+  "local_alias": "D:\\download\\triair",
+  "public_shareable_assets": "source code, split manifests, hashes, aggregate reports, rendered review packet; not raw data or weights",
+  "unresolved_gaps": [
+    "public URL not verified",
+    "license not verified",
+    "dataset version not verified",
+    "redistribution terms not verified",
+    "temporal metadata not independently verified"
+  ],
+  "verified_from_local_files": [
+    {
+      "empty_label_txt_files": 1,
+      "gt_boxes": 22480,
+      "images": 7439,
+      "images_with_label_txt": 7011,
+      "images_without_label_txt": 428,
+      "split": "train",
+      "split_file": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt"
+    },
+    {
+      "empty_label_txt_files": 0,
+      "gt_boxes": 5867,
+      "images": 2213,
+      "images_with_label_txt": 1971,
+      "images_without_label_txt": 242,
+      "split": "validation",
+      "split_file": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt"
+    },
+    {
+      "empty_label_txt_files": 0,
+      "gt_boxes": 2287,
+      "images": 837,
+      "images_with_label_txt": 769,
+      "images_without_label_txt": 68,
+      "split": "guard_archival_non_test",
+      "split_file": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_guard_unchanged_archival.txt"
+    }
+  ],
+  "verified_license_access_facts": "unverified in this task"
+}

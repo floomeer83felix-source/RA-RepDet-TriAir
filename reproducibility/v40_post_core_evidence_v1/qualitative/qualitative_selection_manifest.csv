@@ -1,0 +1,9 @@
+index,sample_id,selection_sha256,image_path,label_state,gt_boxes,selection_rank,selection_rule
+2074,nframe_07725,00040a6daac1448f2091aaa6657593b6b067c3946279d1e0404f87f37c1cdb84,D:\download\triair\data\images\nframe_07725.npy,labeled,3,1,sort validation sample_id by SHA-256 and take first eight
+1849,nframe_07435,001c4bf9c91b4d7317bbc92c4428ecb72cbbf7ce8a694c7fcb9e0a519e45fdcf,D:\download\triair\data\images\nframe_07435.npy,labeled,3,2,sort validation sample_id by SHA-256 and take first eight
+2126,nframe_07948,00201ac3c3583b2734ff4d2a6ccb7f519f49b2b8a6bc139459c8c1e1a6eb1da8,D:\download\triair\data\images\nframe_07948.npy,labeled,1,3,sort validation sample_id by SHA-256 and take first eight
+1414,nframe_03921,003e8eccee505e52c72705ee583ef0d87cb00f83d3c1cba53d3a9455877cc0d9,D:\download\triair\data\images\nframe_03921.npy,labeled,5,4,sort validation sample_id by SHA-256 and take first eight
+978,nframe_01208,0049619f8050afc84b02e85c560e0dfc966200b51cbd9b0b1d214db53161a236,D:\download\triair\data\images\nframe_01208.npy,labeled,4,5,sort validation sample_id by SHA-256 and take first eight
+1854,nframe_07440,0057a27f15805992e1fb7e7ba9d3d59d19c9277b16f63a43d51b93f6b6dccd08,D:\download\triair\data\images\nframe_07440.npy,labeled,3,6,sort validation sample_id by SHA-256 and take first eight
+635,frame_02259,006586187748d12f733d205a936902d091dc794a370b583af8c5fe71bf132c8d,D:\download\triair\data\images\frame_02259.npy,missing_txt,0,7,sort validation sample_id by SHA-256 and take first eight
+672,frame_02296,00695ea15fcc8b65404fbfe25e30f98feaf02b8cf5259265cf62fee50db82f71,D:\download\triair\data\images\frame_02296.npy,missing_txt,0,8,sort validation sample_id by SHA-256 and take first eight

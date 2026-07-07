@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-07-07T13:01:03",
+  "not_permitted_claims": [
+    "independent testing",
+    "external generalization",
+    "V40-optimal dropout",
+    "physical sensor failure robustness"
+  ],
+  "permitted_scope": "validation-only manuscript drafting",
+  "readiness_matrix": [
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "V40-v2 split audit pass",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "contract/amendment pass",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "all four core runs completed",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "source lock complete",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "channel removal complete",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "efficiency complete",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "bootstrap complete",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "deterministic qualitative packet complete",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "reproducibility/provenance complete",
+      "status": "PASS"
+    },
+    {
+      "notes": "validation-only manuscript scope",
+      "requirement": "limitations registered",
+      "status": "PASS"
+    }
+  ],
+  "stage_status": {
+    "contract": "PASS",
+    "core_runs": "PASS",
+    "split_audit": "PASS",
+    "stage_a_source_lock": "PASS",
+    "stage_b_channel_removal": "PASS",
+    "stage_c_efficiency": "PASS",
+    "stage_d_bootstrap": "PASS",
+    "stage_e_qualitative": "PASS",
+    "stage_f_reproducibility_provenance": "PASS",
+    "stage_g_readiness": "PASS"
+  },
+  "status": "PRE_MANUSCRIPT_VALIDATION_ONLY_READY"
+}
