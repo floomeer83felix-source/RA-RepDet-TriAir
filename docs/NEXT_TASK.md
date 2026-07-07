@@ -1,149 +1,192 @@
 # Current Task
 
 ## Title
-V40 — Repair, Freeze, and Validate a Truly Component-Disjoint TriAir Split
+
+V41 paired seed1 completion on the frozen V40 component-disjoint development-validation protocol.
 
 ## Goal
-Repair the failed V39 candidate component-disjoint split before any new model training. Build and audit a deterministic split in which connected components induced by exact RGB-content identity and same-family temporal proximity cannot cross train, validation, or guard partitions. Only if the replacement split passes every strict gate may the task train and evaluate the missing R4 reliability model (`p=0.20`) for seeds `0` and `2` under the existing V39 protocol.
 
-This task strengthens validation evidence; it does **not** replace the publication headline. The current manuscript headline remains R4 `p=0.20` on `block64_guard16_seed0`, seeds 0 and 2, until a later evidence-review decision explicitly changes it.
+Run **only** the paired seed1 comparison under the frozen V40 protocol:
+
+- `matched_early` with modality dropout `0.00`;
+- `reliability_p015` with modality dropout `0.15`.
+
+First check whether a complete, auditable local seed1 pair can be reused exactly. Reuse is allowed only when both seed1 models satisfy every provenance requirement below. Otherwise train exactly these two seed1 models, serially, then evaluate both only on the frozen V40 development-validation split.
+
+Do not run any other seed, p value, ablation, modality baseline, guard/test audit, synthetic channel-removal experiment, COCO evaluator, degradation experiment, efficiency profile, gate analysis, manuscript update, or release task.
 
 ## Read First
-1. `AGENTS.md` if it exists.
-2. `docs/PROJECT_CONTEXT.md`
-3. `docs/EXPERIMENT_STATUS.md`
-4. `docs/TASK_BLOCKER.md`
-5. `runs/handoff_latest.md`
-6. `docs/V39_TASK_NOTES.md`
-7. `docs/V39_COMPONENT_DISJOINT_COMPLETION_TASK.md`
-8. `runs/v39_component_disjoint_summary.md`
-9. `runs/component_disjoint_candidates/candidate_component_disjoint_v1_train.txt`
-10. `runs/component_disjoint_candidates/candidate_component_disjoint_v1_val.txt`
-11. `runs/component_disjoint_candidates/candidate_component_disjoint_v1_guard_unchanged.txt`
-12. `rarepdet/tools/split_audit_common.py`
-13. `rarepdet/tools/audit_split_integrity.py`
-14. `rarepdet/train_early_fusion.py`
-15. `rarepdet/eval_map.py`
-16. `runs/manuscript_scientific_publishability_assessment.md`
+
+1. `AGENTS.md`
+2. `PROJECT_PROFILE.md`
+3. `docs/PROJECT_CONTEXT.md`
+4. `docs/V40_PUBLICATION_SNAPSHOT.md`
+5. `docs/REPRODUCIBILITY.md`
+6. `reproducibility/v40_post_core_evidence_v1/source_lock/source_lock_manifest.md`
+7. `runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json`
+8. `runs/handoff_latest.md`
 
 ## Frozen Assets
-- Official manuscript headline remains R4 Reliability `p=0.20` on `block64_guard16_seed0`, controlled seeds `0` and `2`: F1@0.50 `0.920861`, AP50 `0.962495`, AP75 `0.891266`.
-- The existing V39 candidate split is **failed evidence**, not an eligible training split: 7439 train, 2213 validation, 837 guard; zero train/validation exact RGB groups but 4 train/guard exact RGB groups, 5 validation/guard exact RGB groups, 353 same-family train/validation guard-band-16 violations, and minimum same-family train/validation ID distance of 1.
-- V39 early, reliability `p=0.00`, and reliability `p=0.15` outputs remain historical candidate evidence only. Do not modify or overwrite them.
-- Current model architecture, source data, labels, training implementation, evaluation implementation, frozen Tables 1--7, manuscript source, and existing publication headline are frozen.
-- Existing V39 protocol for any permitted R4 completion: model `reliability`; modality dropout `0.20`; epochs `50`; image size `640`; batch size `4`; learning rate `0.0001`; workers `0`; deterministic seed settings; standardized `eval_map.py` metrics with detector score threshold `0.001`, metric score threshold `0.50`, NMS `0.6`, detections per image `100`.
+
+- Baseline evidence commit: `b37db7025413dd80016ac5d23f63e8e1737472e6`.
+- Dataset root: `D:\download\triair`.
+- Train manifest:
+  `reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt`
+  - SHA256: `f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f`
+- Development-validation manifest:
+  `reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt`
+  - SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`
+- Guard is archival/non-test and is strictly out of scope. Do not read, inspect, audit, evaluate, copy, or include any guard sample in this task.
+- Frozen evaluator: `rarepdet/eval_map.py`
+  - SHA256: `94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715`
+- Frozen project-local metrics: `rarepdet/metrics.py`
+  - SHA256: `6ffa798647376594befc45f89ebb1aa1a5fbe3b50e5f484e7804c22bac13b081`
+- Frozen training setup:
+  - seed: `1`
+  - epochs: `50`
+  - image size: `640`
+  - batch size: `4`
+  - learning rate: `1e-4`
+  - workers: `0`
+  - optimizer: AdamW as implemented by the existing frozen training runner
+  - device: one CUDA GPU only
+  - checkpoint rule: choose `best.pt` solely by highest V40 development-validation AP50
+- Model settings:
+  - early: `--model early --modality-dropout 0.00`
+  - reliability: `--model reliability --modality-dropout 0.15`
+- Standardized evaluation convention:
+  - detector-output candidate threshold: `0.001`
+  - P/R/F1 threshold: `0.50`
+  - NMS threshold: `0.6`
+  - maximum detections/image: `100`
+  - AP50/AP75 are project-local single-class metrics, not COCO AP50:95
 
 ## Allowed Files To Modify
+
 - `docs/NEXT_TASK.md`
-- `docs/UPCOMING_TASKS.md`
-- `docs/TASK_BLOCKER.md`
 - `docs/EXPERIMENT_STATUS.md`
+- `docs/TASK_BLOCKER.md`
+- `docs/V41_*`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/v40_component_disjoint/**`
-- `runs/component_disjoint_v40/**`
-- `runs/phase_v40_component_disjoint_report.md`
-- `runs/phase_v40_component_disjoint_report.json`
-- `rarepdet/tools/build_component_disjoint_split.py`
-- `rarepdet/tools/audit_component_disjoint_split.py`
-- `rarepdet/tools/generate_handoff.py`
-- `rarepdet/tools/update_project_status.py`
+- `runs/v41_q1_upgrade/seed1/**`
+- `reproducibility/v41_q1_upgrade/seed1/**`
+- New V41-only audit/reporting scripts under `rarepdet/tools/v41_seed1_*`
 
 ## Forbidden Files To Modify
-- `data/**`, `labels/**`, raw `.npy` samples, source dataset manifests, original split files, and any existing V39 candidate split or output.
-- Checkpoints, weights, raw prediction dumps, image/video artifacts, and final PDFs. Keep all heavy artifacts local and out of Git.
-- `datasets/**`, `rarepdet/data/**`, `rarepdet/models/**`, `rarepdet/train_early_fusion.py`, `rarepdet/eval_map.py`, and all other training/evaluation core code.
-- `main.tex`, `main_sivp_snjnl.tex`, `submission/sivp/**`, tables, figures, references, author metadata, declarations, release files, and final submission assets.
-- Do not alter the R4 manuscript headline, previously frozen clean-split values, or V39 historical outputs.
-- Do not use network access, data mutation, force-push, branch rewrite, or concurrent GPU runs.
+
+- Any existing V40/V39 directories, manifests, reports, source locks, logs, checkpoints, or evidence packages.
+- `rarepdet/train_early_fusion.py`
+- `rarepdet/eval_map.py`
+- `rarepdet/metrics.py`
+- `rarepdet/data.py`
+- `datasets/triair_dataset.py`
+- `rarepdet/models/early_fusion_fcos.py`
+- `rarepdet/models/repvit_fpn_backbone.py`
+- `requirements.txt`, environment lock files, default configuration files, manuscript files, or release files.
+- Raw data, labels, `.npy` arrays, checkpoints, prediction caches, or large images.
+- Any path under or referring to the guard partition.
 
 ## Required Commands
 
-### A. Start on the correct branch
+### 1. Verify the frozen contract before reuse or training
+
+Create a V41-only verifier and run:
 
 ```powershell
-git switch research/ra-repdet-triair
-git pull --ff-only research research/ra-repdet-triair
-git status --short
+python rarepdet/tools/v41_seed1_verify_contract.py --repo . --source-lock reproducibility/v40_post_core_evidence_v1/source_lock/source_lock_manifest.md --train-manifest reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt --val-manifest reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt --out runs/v41_q1_upgrade/seed1/contract
 ```
 
-If the fast-forward pull cannot proceed, do not reset, merge unrelated histories, or force-push. Record the blocker and stop.
+The report must record manifest hashes, hashes of the frozen evaluator/metrics/data adapter/model builders/training runner, Python/package versions, GPU information, and pass/fail status. It must fail closed. Any mismatch blocks the task.
 
-### B. Repair and audit the split before GPU work
+### 2. Audit whether an existing seed1 pair is reusable
 
-Implement deterministic CPU-only tools using `rarepdet/tools/split_audit_common.py` helpers. The split-builder must construct a transitive component graph over the complete local inventory using both of these undirected edge rules:
-
-1. identical exact RGB-content SHA256; and
-2. same parsed family (`frame` or `nframe`) with absolute numeric-ID distance less than or equal to 16.
-
-Assign complete connected components, never individual samples, to train, validation, or guard. Aim for the existing counts 7439/2213/837, but do not break a component to force exact counts. If exact counts are infeasible, minimize deviation from the target proportions and report the component-size reason.
+Create a V41-only audit tool and run:
 
 ```powershell
-python -m py_compile rarepdet/tools/build_component_disjoint_split.py rarepdet/tools/audit_component_disjoint_split.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py
-python rarepdet/tools/build_component_disjoint_split.py --data D:\download\triair --target-train 7439 --target-val 2213 --target-guard 837 --guard-distance 16 --output-dir runs/component_disjoint_v40
-python rarepdet/tools/audit_component_disjoint_split.py --data D:\download\triair --train-split runs/component_disjoint_v40/train.txt --val-split runs/component_disjoint_v40/val.txt --guard-split runs/component_disjoint_v40/guard.txt --guard-distance 16 --output-prefix runs/v40_component_disjoint/split_audit
+python rarepdet/tools/v41_seed1_reuse_audit.py --repo . --workspace E:\RepViT-main --train-manifest reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt --val-manifest reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt --out runs/v41_q1_upgrade/seed1/reuse_audit
 ```
 
-The builder and auditor must report: complete inventory count; unique paths; component count; largest-component size; target and achieved partition counts; component allocation; pairwise path overlaps; pairwise exact RGB-content overlap groups; pairwise same-family distance-16 violations; minimum cross-partition same-family ID distance; component-crossing count; split SHA256 values; deterministic rerun consistency; and label/box inventory by split.
+Search local workspace and preserved local handoff locations for both:
 
-### C. Hard continuation gate
+- a `matched_early` seed1 `best.pt`;
+- a `reliability_p015` seed1 `best.pt`.
 
-Do not start training unless the audit reports all of the following:
+Set `reuse_verdict=ELIGIBLE_PAIRED_SEED1_REUSE` only if both candidates meet every condition:
 
-- all local samples are allocated exactly once to one of train, validation, or guard;
-- zero pairwise path overlaps across train/validation/guard;
-- zero pairwise exact RGB-content overlap groups across train/validation/guard;
-- zero pairwise same-family distance-16 violations across train/validation/guard;
-- zero connected components crossing partitions;
-- deterministic rerun reproduces identical split SHA256 values; and
-- no unresolved audit error.
+1. Both checkpoint files exist and their SHA256 hashes are recorded.
+2. Both have intact training logs and full configuration snapshots.
+3. Both use the exact frozen train/validation manifest hashes.
+4. Both match the required frozen source/evaluator hashes.
+5. Both use seed1, 50 epochs, 640 input, batch size 4, LR `1e-4`, workers 0, and frozen optimizer behavior.
+6. Early uses dropout `0.00`; reliability uses dropout `0.15`.
+7. Both choose `best.pt` solely by V40 development-validation AP50.
+8. Both can be re-evaluated with the frozen evaluator without checkpoint modification.
+9. The pair was not selected post hoc because of performance.
 
-If any condition fails, write the audit report, update `docs/TASK_BLOCKER.md`, handoff, and status, commit the CPU-only blocked result, and stop. Do not train.
+If any condition is not fully verified, set `reuse_verdict=NOT_ELIGIBLE_FOR_REUSE`; do not use either candidate in results, and run both fresh seed1 trainings below. Never create a hybrid pair with one reused and one newly trained checkpoint.
 
-### D. Conditional R4 completion after a passing audit only
+### 3. Fresh training only when reuse is not eligible
 
-Run exactly one GPU job at a time. Use the new V40 split and preserve all V39 settings.
+Run serially, one GPU process at a time:
 
 ```powershell
-python rarepdet/train_early_fusion.py --model reliability --modality-dropout 0.20 --data D:\download\triair --train-split runs/component_disjoint_v40/train.txt --val-split runs/component_disjoint_v40/val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 0.0001 --num-workers 0 --seed 0 --out runs/v40_component_disjoint/reliability_p020_seed0_e50
-python rarepdet/eval_map.py --model reliability --data D:\download\triair --split-file runs/component_disjoint_v40/val.txt --weights runs/v40_component_disjoint/reliability_p020_seed0_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/v40_component_disjoint/reliability_p020_seed0_e50/standardized_eval/eval_results.txt
-
-python rarepdet/train_early_fusion.py --model reliability --modality-dropout 0.20 --data D:\download\triair --train-split runs/component_disjoint_v40/train.txt --val-split runs/component_disjoint_v40/val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 0.0001 --num-workers 0 --seed 2 --out runs/v40_component_disjoint/reliability_p020_seed2_e50
-python rarepdet/eval_map.py --model reliability --data D:\download\triair --split-file runs/component_disjoint_v40/val.txt --weights runs/v40_component_disjoint/reliability_p020_seed2_e50/weights/best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out runs/v40_component_disjoint/reliability_p020_seed2_e50/standardized_eval/eval_results.txt
+python rarepdet/train_early_fusion.py --model early --data D:\download\triair --train-split reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt --val-split reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out runs/v41_q1_upgrade/seed1/matched_early_seed1
 ```
-
-### E. Conditional V40 aggregate and robustness package
-
-Only after both standardized R4 evaluations complete, create CPU-only aggregate tables from the recorded CSV outputs. Run the same synthetic `w/o RGB`, `w/o Thermal`, and `w/o Event` conditions for each R4 seed using the established V39-compatible evaluation path. Record efficiency with the existing project profiling path, using the same checkpoint-selection and measurement conditions as prior results. Do not claim comparisons to V39 early/p=0.00/p=0.15 unless all variants use the same audited V40 split.
-
-Finally run:
 
 ```powershell
-python rarepdet/tools/generate_handoff.py
-python rarepdet/tools/update_project_status.py
-powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
+python rarepdet/train_early_fusion.py --model reliability --data D:\download\triair --train-split reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt --val-split reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 1 --out runs/v41_q1_upgrade/seed1/reliability_p015_seed1
 ```
+
+Do not change any parameter after seeing the first run. Do not run retries with changed settings. Do not start seeds3/4.
+
+### 4. Frozen standardized development-validation evaluation
+
+For the verified reused pair or the fresh pair:
+
+1. Recover the exact V40 standardized evaluation command from V40 run metadata and save it verbatim in `runs/v41_q1_upgrade/seed1/frozen_evaluation_command.md`.
+2. Verify the command preserves the frozen candidate threshold, P/R/F1 threshold, NMS, and maximum-detection convention.
+3. Evaluate each seed1 checkpoint once on the V40 development-validation manifest.
+4. Do not evaluate guard samples or any candidate test split.
+5. Do not run channel removal, COCO, degradation, efficiency, qualitative, or gate analyses.
 
 ## Required Outputs
-- `runs/component_disjoint_v40/train.txt`, `val.txt`, and `guard.txt` only if a deterministic split can be built.
-- `runs/component_disjoint_v40/split_manifest.csv` and `.json` with component IDs, allocated split, path, family, numeric ID, RGB hash, and provenance.
-- `runs/v40_component_disjoint/split_audit.md`, `.csv`, and `.json`.
-- `runs/phase_v40_component_disjoint_report.md` and `.json`.
-- If and only if the audit passes: R4 seed-0 and seed-2 configs, standardized evaluation CSVs, a two-seed aggregate CSV/Markdown report, synthetic-missingness CSV/Markdown report, and efficiency report under `runs/v40_component_disjoint/`.
-- Updated task blocker, experiment status, and handoff that clearly distinguish `blocked`, `audit-passed`, and `R4-completed` states.
+
+- `runs/v41_q1_upgrade/seed1/contract/contract_verification.md`
+- `runs/v41_q1_upgrade/seed1/contract/contract_verification.json`
+- `runs/v41_q1_upgrade/seed1/reuse_audit/seed1_reuse_audit.md`
+- `runs/v41_q1_upgrade/seed1/reuse_audit/seed1_reuse_audit.json`
+- `runs/v41_q1_upgrade/seed1/frozen_evaluation_command.md`
+- `runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv`
+- `runs/v41_q1_upgrade/seed1/seed1_per_run_summary.md`
+- `runs/v41_q1_upgrade/seed1/seed1_pair_comparison.md`
+- `runs/v41_q1_upgrade/seed1/source_lock_seed1.md`
+- `runs/v41_q1_upgrade/seed1/source_lock_seed1.json`
+- Updated `docs/EXPERIMENT_STATUS.md`
+- Updated `runs/handoff_latest.md`
+- Updated `runs/handoff_latest.json`
+
+Do not commit checkpoints. Reports must include both seed1 rows, checkpoint hashes, exact commands, manifest hashes, source hashes, Precision, Recall, F1, AP50, AP75, and paired reliability-minus-early differences.
+
+A combined seed0/1/2 table is permitted only as `three-seed interim development-validation summary`. It must not be called a final stability result, statistical-significance result, independent-test result, or manuscript-final aggregate.
 
 ## Acceptance Criteria
-- The work occurs on `research/ra-repdet-triair` and the report records the starting commit SHA.
-- The old V39 candidate is never overwritten or relabeled as passing.
-- The V40 component graph uses both exact RGB identity and same-family distance-16 relations transitively.
-- Training never begins before the strict audit passes.
-- A blocked result is successful completion if the new split cannot meet all strict criteria; it must include quantified failure diagnostics and no GPU run.
-- If training is reached, exactly two R4 p=0.20 runs use seeds 0 and 2, unchanged V39 hyperparameters, standardized evaluation, and no overlapping GPU jobs.
-- No raw data, checkpoints, weights, prediction dumps, figures, manuscript files, tables, references, or submission metadata are committed.
-- V40 evidence remains validation-only and separate from the official manuscript headline until an explicit later decision.
+
+- Contract verification passes before reuse or training.
+- Exactly one complete paired seed1 result exists: both verified reuse or both fresh training.
+- No hybrid reuse/fresh pair is used.
+- Fresh training, if needed, uses only the frozen settings and runs serially.
+- Both checkpoints are selected only by V40 development-validation AP50.
+- Both evaluations use only the frozen development-validation manifest and standardized convention.
+- No guard access/evaluation and no out-of-scope experiment occurs.
+- All lightweight reports and hashes are committed; no raw data or checkpoint is committed.
 
 ## Commit Message
-`results: audit and complete V40 component-disjoint validation`
+
+`v41: add paired seed1 development validation evidence`
 
 ## Completion / Blocker Rule
-A passing split audit is the gate for every GPU command in this task. If split repair cannot satisfy the strict component-disjoint criteria, commit the auditable blocked state and stop. If the audit passes but either R4 run or standardized evaluation fails, retain completed evidence, record the exact failed stage, do not substitute another checkpoint or seed, and stop. Do not edit the manuscript in this task.
+
+On completion, update `docs/EXPERIMENT_STATUS.md`, `runs/handoff_latest.md`, and `runs/handoff_latest.json`, commit, and push.
+
+If contract verification fails, a candidate cannot be verified, fresh training cannot start, a required configuration/log/checkpoint is missing, or protocol ambiguity occurs, write `docs/TASK_BLOCKER.md` with the exact command, timestamp, paths, observed hashes, and minimal action needed. Commit and push the blocker state. Do not start any other seed or later V41 stage.
