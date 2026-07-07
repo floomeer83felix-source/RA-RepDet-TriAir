@@ -1,0 +1,42 @@
+% V40 validation-only manuscript draft. Compile from this directory.
+% Evidence: V40-v2 expanded-adjacency component-disjoint validation only.
+\documentclass[pdflatex,sn-basic,Numbered,iicol]{../tex/sn-jnl}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{enumitem}
+\usepackage{placeins}
+\hypersetup{hidelinks}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlist[itemize]{leftmargin=*,nosep,topsep=1pt}
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+
+\title[Reliability-aware RGB-thermal-event fusion]{Reliability-Aware RGB-Thermal-Event Fusion for Lightweight UAV Vehicle Detection with Expanded-Adjacency Component-Disjoint Validation}
+
+\author*[1]{\fnm{Nan} \sur{Xin}}\email{floomeer83felix@gmail.com}
+\author[1]{\fnm{Xueting} \sur{Jin}}
+\affil*[1]{\orgname{Anhui Police College}, \orgaddress{\city{Hefei}, \state{Anhui}, \country{China}}}
+
+\abstract{RGB, thermal, and event observations can provide complementary information for UAV vehicle detection, but apparent gains can be overstated when visually adjacent observations cross a training-validation boundary. We present a lightweight reliability-aware RGB-thermal-event detector built from modality-specific stems, a softmax fusion gate, and a RepViT-FPN-FCOS detector. The reliability-aware configuration uses modality dropout with a pre-specified probability of 0.15; it is compared with a matched early-fusion baseline using the same downstream detector, training recipe, and two fixed random seeds. We construct a V40-v2 validation protocol by assigning connected components of a fixed graph to one partition, where graph edges arise from exact RGB matches, perceptual-hash candidates, and human-adjudicated adjacent-or-near-identical observations. The resulting validation partition contains 2,213 images and 5,867 vehicle boxes. Reliability-aware fusion improves two-run mean AP50 from 0.9408 to 0.9586, AP75 from 0.8208 to 0.8760, and F1 from 0.8945 to 0.9133. Image-level bootstrap intervals for the reliability-minus-early differences remain positive for AP50, AP75, and F1. Under deterministic synthetic removal of RGB, thermal, or event channels, the reliability-aware system retains higher AP50 than matched early fusion. The evidence is limited to one local tri-modal representation, a validation-only protocol, two fixed checkpoints per model group, and synthetic channel removal; it does not establish independent-test performance, external generalization, or physical sensor-failure robustness.}
+
+\keywords{UAV vehicle detection; RGB-thermal-event fusion; reliability-aware fusion; modality dropout; component-disjoint validation; multi-sensor perception.}
+
+\begin{document}
+\raggedbottom
+\maketitle
+
+\input{sections/intro_related}
+\input{sections/method}
+\input{sections/protocol}
+\input{sections/experiments}
+\input{sections/discussion_declarations}
+\input{sections/references}
+
+\end{document}
