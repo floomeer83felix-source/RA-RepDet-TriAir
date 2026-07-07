@@ -1,6 +1,6 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-07T16:10:35
+Generated: 2026-07-08T03:00:47
 Workspace: `E:\RepViT-main`
 
 ## Publication Headline
@@ -13,9 +13,9 @@ Workspace: `E:\RepViT-main`
 ## Current Active Task
 
 - Task file: `docs/NEXT_TASK.md`
-- Current Task: V40 — Repair, Freeze, and Validate a Truly Component-Disjoint TriAir Split
-- Goal: Repair the failed V39 candidate component-disjoint split before any new model training. Build and audit a deterministic split in which connected components induced by exact RGB-content identity and same-family temporal proximity cannot cross train, validation, or guard partitions. Only if the replacement split passes every strict gate may the task train and evaluate the missing R4 reliability model (`p=0.20`) for seeds `0` and `2` under the existing V39 protocol.
-- Commit Message: `results: audit and complete V40 component-disjoint validation`
+- Current Task: Fresh paired seed1 training and V40 development-validation evaluation.
+- Goal: Run exactly two **fresh** seed1 trainings on the frozen V40 component-disjoint train/development-validation split:
+- Commit Message: `v41: add fresh paired seed1 development validation evidence`
 
 ## Dataset
 
@@ -311,12 +311,16 @@ Workspace: `E:\RepViT-main`
 
 - Report: `runs/phase_v40_component_disjoint_report.md`
 - Report JSON: `runs/phase_v40_component_disjoint_report.json`
-- Status: AUDIT_PASSED_GPU_DEFERRED
+- Status: R4-completed
 - Final component-disjoint gate: PASS
 - Inventory/components/largest component: 10489 / 45 / 4077
 - Achieved train/val/guard rows: 7439 / 2213 / 837
 - Split SHA256 train/val/guard: 5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303 / 2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b / 9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e
-- GPU work: skipped/deferred by user constraint; no V40 R4 p=0.20 training or CUDA evaluation was started in this task.
+- R4 standardized AP50 mean/stdev: 0.905095 / 0.000848
+- R4 standardized AP75 mean/stdev: 0.751747 / 0.010678
+- Missing-modality AP50 mean full/no_rgb/no_thermal/no_event: 0.905095 / 0.909699 / 0.377464 / 0.898558
+- Efficiency Params/GFLOPs/FPS/latency_ms: 6593293 / 105.981501 / 51.074976 / 19.579060
+- GPU work: completed sequentially for V40 R4 p=0.20 seeds 0 and 2; no overlapping GPU jobs were run.
 
 ## Model And Code Structure
 
@@ -341,29 +345,16 @@ Workspace: `E:\RepViT-main`
 ## Current Pending Experiments
 
 - V40 component-disjoint split build and strict CPU audit passed.
-- R4 reliability p=0.20 seed 0/2 training and standardized CUDA evaluation are deferred because the GPU was already busy for this task.
-- Do not run synthetic missingness, aggregate, or efficiency packaging until both deferred R4 V40 runs and standardized evaluations complete.
+- R4 reliability p=0.20 seed 0/2 training, standardized CUDA evaluation, synthetic missingness, and efficiency profiling are complete.
 - Keep V40 validation evidence separate from the official manuscript headline until a later explicit evidence-review decision.
+- Do not commit raw data, checkpoints, weights, prediction dumps, or visual artifacts.
 
 ## Recently Modified Files
 
-- `M docs/EXPERIMENT_STATUS.md`
-- ` M docs/TASK_BLOCKER.md`
-- ` M rarepdet/tools/generate_handoff.py`
-- ` M rarepdet/tools/update_project_status.py`
-- ` M runs/handoff_latest.json`
-- ` M runs/handoff_latest.md`
-- `?? rarepdet/tools/audit_component_disjoint_split.py`
-- `?? rarepdet/tools/build_component_disjoint_split.py`
-- `?? rarepdet/tools/eval_dronevehicle_modality_specific.py`
-- `?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py`
-- `?? runs/component_disjoint_v40/`
-- `?? runs/phase_v40_component_disjoint_report.json`
-- `?? runs/phase_v40_component_disjoint_report.md`
-- `?? runs/v40_component_disjoint/`
+- `?? .codex_tmp_untracked_v40/`
 
 ## Next Recommended Tasks
 
-- When GPU is available, run exactly one V40 R4 p=0.20 training/evaluation job at a time for seeds 0 and 2.
-- After both V40 R4 standardized evaluations complete, create the two-seed aggregate, synthetic missingness, and efficiency package.
-- Do not modify manuscript/submission files or commit raw data, checkpoints, weights, prediction dumps, or visual artifacts.
+- Review whether V40 validation-only results should supersede or qualify the prior V39/R4 clean blocked-split manuscript claim.
+- If approved later, promote only lightweight V40 CSV/Markdown evidence into manuscript tables through an explicit manuscript-update task.
+- Keep checkpoints, weights, raw data, prediction dumps, and visual artifacts local.

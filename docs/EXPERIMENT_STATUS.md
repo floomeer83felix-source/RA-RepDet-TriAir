@@ -1,6 +1,6 @@
 # Experiment Status
 
-Generated: 2026-07-07T16:11:04
+Generated: 2026-07-08T03:00:48
 Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 ## Publication headline model
@@ -428,19 +428,24 @@ Handoff source: `E:\RepViT-main\runs\handoff_latest.md`
 
 - Report: `runs/phase_v40_component_disjoint_report.md`
 - Report JSON: `runs/phase_v40_component_disjoint_report.json`
+- Status: R4-completed
 - Final component-disjoint gate: PASS
 - Inventory/components/largest component: 10489 / 45 / 4077
 - Achieved train/val/guard rows: 7439 / 2213 / 837
 - Split SHA256 train/val/guard: 5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303 / 2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b / 9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e
-- Decision: AUDIT PASSED; GPU R4 p=0.20 training/evaluation deferred because GPU was busy for this task
+- R4 standardized AP50 mean/stdev: 0.905095 / 0.000848
+- R4 standardized AP75 mean/stdev: 0.751747 / 0.010678
+- Missing-modality AP50 mean full/no_rgb/no_thermal/no_event: 0.905095 / 0.909699 / 0.377464 / 0.898558
+- Efficiency Params/GFLOPs/FPS/latency_ms: 6593293 / 105.981501 / 51.074976 / 19.579060
+- Decision: R4-COMPLETED as validation-only V40 evidence; do not promote into manuscript headline without explicit later approval
 
 
 ## Pending tasks
 
 - V40 component-disjoint split build and strict CPU audit passed.
-- R4 reliability p=0.20 seed 0/2 training and standardized CUDA evaluation are deferred because the GPU was already busy for this task.
-- Do not run synthetic missingness, aggregate, or efficiency packaging until both deferred R4 V40 runs and standardized evaluations complete.
+- R4 reliability p=0.20 seed 0/2 training, standardized CUDA evaluation, synthetic missingness, and efficiency profiling are complete.
 - Keep V40 validation evidence separate from the official manuscript headline until a later explicit evidence-review decision.
+- Do not commit raw data, checkpoints, weights, prediction dumps, or visual artifacts.
 
 ## Known metric caveats
 

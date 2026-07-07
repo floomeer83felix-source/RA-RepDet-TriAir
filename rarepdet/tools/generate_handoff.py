@@ -759,12 +759,16 @@ def collect_v40_component_disjoint():
     audit_rows = read_csv(V40_AUDIT_CSV)
     build = {row.get("metric"): row.get("value") for row in build_rows}
     audit = {row.get("metric"): row.get("value") for row in audit_rows}
+    report_data = read_json(V40_REPORT_JSON) if V40_REPORT_JSON.exists() else {}
+    eval_summary = {row.get("metric"): row for row in report_data.get("standardized_eval_summary", [])}
+    missing_summary = {row.get("Mode"): row for row in report_data.get("missing_modality_summary", [])}
+    efficiency = report_data.get("efficiency", {})
     return {
         "report": V40_REPORT_MD.exists(),
         "report_json": V40_REPORT_JSON.exists(),
         "build_summary": V40_SPLIT_BUILD_SUMMARY.exists(),
         "audit": V40_AUDIT_CSV.exists(),
-        "status": read_json(V40_REPORT_JSON).get("status", "NA") if V40_REPORT_JSON.exists() else "NA",
+        "status": report_data.get("status", "NA"),
         "component_gate": audit.get("final_component_disjoint_gate", "NA"),
         "inventory_count": build.get("inventory_count", audit.get("complete_inventory_count", "NA")),
         "component_count": build.get("component_count", audit.get("component_count", "NA")),
@@ -775,6 +779,18 @@ def collect_v40_component_disjoint():
         "train_sha256": build.get("train_sha256", audit.get("train_sha256", "NA")),
         "val_sha256": build.get("val_sha256", audit.get("val_sha256", "NA")),
         "guard_sha256": build.get("guard_sha256", audit.get("guard_sha256", "NA")),
+        "ap50_mean": eval_summary.get("ap50", {}).get("mean", "NA"),
+        "ap50_stdev": eval_summary.get("ap50", {}).get("stdev", "NA"),
+        "ap75_mean": eval_summary.get("ap75", {}).get("mean", "NA"),
+        "ap75_stdev": eval_summary.get("ap75", {}).get("stdev", "NA"),
+        "full_missing_ap50_mean": missing_summary.get("full", {}).get("AP50_mean", "NA"),
+        "no_rgb_ap50_mean": missing_summary.get("no_rgb", {}).get("AP50_mean", "NA"),
+        "no_thermal_ap50_mean": missing_summary.get("no_thermal", {}).get("AP50_mean", "NA"),
+        "no_event_ap50_mean": missing_summary.get("no_event", {}).get("AP50_mean", "NA"),
+        "efficiency_fps": efficiency.get("FPS", "NA"),
+        "latency_ms": efficiency.get("Latency ms/img", "NA"),
+        "gflops": efficiency.get("GFLOPs", "NA"),
+        "params": efficiency.get("Params", "NA"),
     }
 
 
@@ -956,17 +972,30 @@ def build_handoff():
             "Keep data governance, release/archive, final figures, environment, strict preflight, compile, and final bundle assembly gated by Phases 7K-7P.",
         ]
     if v40_component_disjoint["report"] or "V40" in read_text(NEXT_TASK_PATH):
-        pending = [
-            "V40 component-disjoint split build and strict CPU audit passed.",
-            "R4 reliability p=0.20 seed 0/2 training and standardized CUDA evaluation are deferred because the GPU was already busy for this task.",
-            "Do not run synthetic missingness, aggregate, or efficiency packaging until both deferred R4 V40 runs and standardized evaluations complete.",
-            "Keep V40 validation evidence separate from the official manuscript headline until a later explicit evidence-review decision.",
-        ]
-        next_tasks = [
-            "When GPU is available, run exactly one V40 R4 p=0.20 training/evaluation job at a time for seeds 0 and 2.",
-            "After both V40 R4 standardized evaluations complete, create the two-seed aggregate, synthetic missingness, and efficiency package.",
-            "Do not modify manuscript/submission files or commit raw data, checkpoints, weights, prediction dumps, or visual artifacts.",
-        ]
+        if v40_component_disjoint["status"] == "R4-completed":
+            pending = [
+                "V40 component-disjoint split build and strict CPU audit passed.",
+                "R4 reliability p=0.20 seed 0/2 training, standardized CUDA evaluation, synthetic missingness, and efficiency profiling are complete.",
+                "Keep V40 validation evidence separate from the official manuscript headline until a later explicit evidence-review decision.",
+                "Do not commit raw data, checkpoints, weights, prediction dumps, or visual artifacts.",
+            ]
+            next_tasks = [
+                "Review whether V40 validation-only results should supersede or qualify the prior V39/R4 clean blocked-split manuscript claim.",
+                "If approved later, promote only lightweight V40 CSV/Markdown evidence into manuscript tables through an explicit manuscript-update task.",
+                "Keep checkpoints, weights, raw data, prediction dumps, and visual artifacts local.",
+            ]
+        else:
+            pending = [
+                "V40 component-disjoint split build and strict CPU audit passed.",
+                "R4 reliability p=0.20 seed 0/2 training and standardized CUDA evaluation are deferred because the GPU was already busy for this task.",
+                "Do not run synthetic missingness, aggregate, or efficiency packaging until both deferred R4 V40 runs and standardized evaluations complete.",
+                "Keep V40 validation evidence separate from the official manuscript headline until a later explicit evidence-review decision.",
+            ]
+            next_tasks = [
+                "When GPU is available, run exactly one V40 R4 p=0.20 training/evaluation job at a time for seeds 0 and 2.",
+                "After both V40 R4 standardized evaluations complete, create the two-seed aggregate, synthetic missingness, and efficiency package.",
+                "Do not modify manuscript/submission files or commit raw data, checkpoints, weights, prediction dumps, or visual artifacts.",
+            ]
     status_short = git_lines(["status", "--short"])
     branch = git_lines(["branch", "--show-current"])
     remotes = git_lines(["remote", "-v"])
@@ -1578,7 +1607,11 @@ def write_markdown(data, path):
         f"- Inventory/components/largest component: {data['v40_component_disjoint']['inventory_count']} / {data['v40_component_disjoint']['component_count']} / {data['v40_component_disjoint']['largest_component_size']}",
         f"- Achieved train/val/guard rows: {data['v40_component_disjoint']['achieved_train']} / {data['v40_component_disjoint']['achieved_val']} / {data['v40_component_disjoint']['achieved_guard']}",
         f"- Split SHA256 train/val/guard: {data['v40_component_disjoint']['train_sha256']} / {data['v40_component_disjoint']['val_sha256']} / {data['v40_component_disjoint']['guard_sha256']}",
-        "- GPU work: skipped/deferred by user constraint; no V40 R4 p=0.20 training or CUDA evaluation was started in this task.",
+        f"- R4 standardized AP50 mean/stdev: {data['v40_component_disjoint']['ap50_mean']} / {data['v40_component_disjoint']['ap50_stdev']}",
+        f"- R4 standardized AP75 mean/stdev: {data['v40_component_disjoint']['ap75_mean']} / {data['v40_component_disjoint']['ap75_stdev']}",
+        f"- Missing-modality AP50 mean full/no_rgb/no_thermal/no_event: {data['v40_component_disjoint']['full_missing_ap50_mean']} / {data['v40_component_disjoint']['no_rgb_ap50_mean']} / {data['v40_component_disjoint']['no_thermal_ap50_mean']} / {data['v40_component_disjoint']['no_event_ap50_mean']}",
+        f"- Efficiency Params/GFLOPs/FPS/latency_ms: {data['v40_component_disjoint']['params']} / {data['v40_component_disjoint']['gflops']} / {data['v40_component_disjoint']['efficiency_fps']} / {data['v40_component_disjoint']['latency_ms']}",
+        "- GPU work: completed sequentially for V40 R4 p=0.20 seeds 0 and 2; no overlapping GPU jobs were run.",
         "",
         "## Model And Code Structure",
         "",

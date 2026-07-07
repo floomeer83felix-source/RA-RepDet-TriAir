@@ -2,6 +2,7 @@
 """Update docs/EXPERIMENT_STATUS.md from lightweight experiment summaries."""
 
 import csv
+import json
 from datetime import datetime
 from pathlib import Path
 
@@ -112,6 +113,15 @@ def read_text(path):
     if not path.exists():
         return ""
     return path.read_text(encoding="utf-8")
+
+
+def read_json(path):
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
 
 
 def read_key_values(path):
@@ -261,9 +271,14 @@ def collect_v40_component_disjoint():
     audit_rows = read_csv(V40_AUDIT_CSV)
     build = {row.get("metric"): row.get("value") for row in build_rows}
     audit = {row.get("metric"): row.get("value") for row in audit_rows}
+    report_data = read_json(V40_REPORT_JSON)
+    eval_summary = {row.get("metric"): row for row in report_data.get("standardized_eval_summary", [])}
+    missing_summary = {row.get("Mode"): row for row in report_data.get("missing_modality_summary", [])}
+    efficiency = report_data.get("efficiency", {})
     return {
         "report_exists": V40_REPORT.exists(),
         "report_json_exists": V40_REPORT_JSON.exists(),
+        "status": report_data.get("status", "NA"),
         "gate": audit.get("final_component_disjoint_gate", "NA"),
         "inventory_count": build.get("inventory_count", audit.get("complete_inventory_count", "NA")),
         "component_count": build.get("component_count", audit.get("component_count", "NA")),
@@ -274,6 +289,18 @@ def collect_v40_component_disjoint():
         "train_sha256": build.get("train_sha256", audit.get("train_sha256", "NA")),
         "val_sha256": build.get("val_sha256", audit.get("val_sha256", "NA")),
         "guard_sha256": build.get("guard_sha256", audit.get("guard_sha256", "NA")),
+        "ap50_mean": eval_summary.get("ap50", {}).get("mean", "NA"),
+        "ap50_stdev": eval_summary.get("ap50", {}).get("stdev", "NA"),
+        "ap75_mean": eval_summary.get("ap75", {}).get("mean", "NA"),
+        "ap75_stdev": eval_summary.get("ap75", {}).get("stdev", "NA"),
+        "full_missing_ap50_mean": missing_summary.get("full", {}).get("AP50_mean", "NA"),
+        "no_rgb_ap50_mean": missing_summary.get("no_rgb", {}).get("AP50_mean", "NA"),
+        "no_thermal_ap50_mean": missing_summary.get("no_thermal", {}).get("AP50_mean", "NA"),
+        "no_event_ap50_mean": missing_summary.get("no_event", {}).get("AP50_mean", "NA"),
+        "params": efficiency.get("Params", "NA"),
+        "gflops": efficiency.get("GFLOPs", "NA"),
+        "efficiency_fps": efficiency.get("FPS", "NA"),
+        "latency_ms": efficiency.get("Latency ms/img", "NA"),
     }
 
 
@@ -1131,11 +1158,16 @@ def build_status():
         "",
         "- Report: `runs/phase_v40_component_disjoint_report.md`" if v40_component_disjoint["report_exists"] else "- Report: NA",
         "- Report JSON: `runs/phase_v40_component_disjoint_report.json`" if v40_component_disjoint["report_json_exists"] else "- Report JSON: NA",
+        f"- Status: {v40_component_disjoint['status']}",
         f"- Final component-disjoint gate: {v40_component_disjoint['gate']}",
         f"- Inventory/components/largest component: {v40_component_disjoint['inventory_count']} / {v40_component_disjoint['component_count']} / {v40_component_disjoint['largest_component_size']}",
         f"- Achieved train/val/guard rows: {v40_component_disjoint['achieved_train']} / {v40_component_disjoint['achieved_val']} / {v40_component_disjoint['achieved_guard']}",
         f"- Split SHA256 train/val/guard: {v40_component_disjoint['train_sha256']} / {v40_component_disjoint['val_sha256']} / {v40_component_disjoint['guard_sha256']}",
-        "- Decision: AUDIT PASSED; GPU R4 p=0.20 training/evaluation deferred because GPU was busy for this task",
+        f"- R4 standardized AP50 mean/stdev: {v40_component_disjoint['ap50_mean']} / {v40_component_disjoint['ap50_stdev']}",
+        f"- R4 standardized AP75 mean/stdev: {v40_component_disjoint['ap75_mean']} / {v40_component_disjoint['ap75_stdev']}",
+        f"- Missing-modality AP50 mean full/no_rgb/no_thermal/no_event: {v40_component_disjoint['full_missing_ap50_mean']} / {v40_component_disjoint['no_rgb_ap50_mean']} / {v40_component_disjoint['no_thermal_ap50_mean']} / {v40_component_disjoint['no_event_ap50_mean']}",
+        f"- Efficiency Params/GFLOPs/FPS/latency_ms: {v40_component_disjoint['params']} / {v40_component_disjoint['gflops']} / {v40_component_disjoint['efficiency_fps']} / {v40_component_disjoint['latency_ms']}",
+        "- Decision: R4-COMPLETED as validation-only V40 evidence; do not promote into manuscript headline without explicit later approval",
         "",
         "",
         "## Pending tasks",

@@ -1,0 +1,10 @@
+Model: reliability
+Img Size: 640
+Batch Size: 1
+Params: 6593293
+Trainable Params: 6593293
+GFLOPs: 105.981501
+GFLOPs Note: detector
+FPS: 51.074976
+Latency ms/img: 19.579060
+CUDA max memory MB: 236.40

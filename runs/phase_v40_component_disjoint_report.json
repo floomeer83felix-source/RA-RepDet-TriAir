@@ -1,90 +1,219 @@
 {
-  "generated_at": "2026-07-07T16:05:00",
-  "task_file": "docs/NEXT_TASK.md",
-  "branch": "research/ra-repdet-triair",
-  "starting_commit": "fd0a83d99857b1291f75bbe627152a58ee599002",
-  "status": "AUDIT_PASSED_GPU_DEFERRED",
-  "user_constraint": "GPU is busy; GPU-required tasks skipped/deferred.",
-  "split_build": {
+  "task": "V40 component-disjoint validation",
+  "status": "R4-completed",
+  "generated_at": "2026-07-08T02:54:22",
+  "current_git_commit": "548de1f23ac718e78ab6209fea52024cba3a0a25",
+  "starting_commit_sha_recorded": "548de1f23ac718e78ab6209fea52024cba3a0a25",
+  "split": {
+    "train_rows": 7439,
+    "val_rows": 2213,
+    "guard_rows": 837,
     "inventory_count": 10489,
-    "unique_paths": 10489,
-    "component_count": 45,
+    "components": 45,
     "largest_component_size": 4077,
-    "target_counts": {
-      "train": 7439,
-      "val": 2213,
-      "guard": 837
-    },
-    "achieved_counts": {
-      "train": 7439,
-      "val": 2213,
-      "guard": 837
-    },
-    "split_sha256": {
-      "train": "5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303",
-      "val": "2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b",
-      "guard": "9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e"
-    },
-    "deterministic_rerun_consistency": "pass"
+    "guard_distance": 16,
+    "train_sha256_builder": "5fc7b1b2cab42e1ab7411d13e3fcfd7e19d61eb009b1900701b023d74e8fb303",
+    "val_sha256_builder": "2903f4747031386f4ee7f45a87a369e20f7cd11a8a9033f930971a5b6656788b",
+    "guard_sha256_builder": "9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e",
+    "deterministic_rerun_consistency": true
   },
   "audit": {
-    "final_component_disjoint_gate": "PASS",
-    "missing_inventory_paths": 0,
-    "unknown_assigned_paths": 0,
+    "final_gate": "PASS",
+    "failed_metrics": [],
+    "train_val_distance16_violation_pairs": 0,
+    "train_guard_distance16_violation_pairs": 0,
+    "val_guard_distance16_violation_pairs": 0,
+    "component_crossing_count": 0,
     "duplicate_assigned_paths": 0,
-    "path_overlaps": {
-      "train_val": 0,
-      "train_guard": 0,
-      "val_guard": 0
-    },
-    "exact_rgb_overlap_groups": {
-      "train_val": 0,
-      "train_guard": 0,
-      "val_guard": 0
-    },
-    "same_family_distance_16_violation_pairs": {
-      "train_val": 0,
-      "train_guard": 0,
-      "val_guard": 0
-    },
-    "min_same_family_id_distance": {
-      "train_val": 17,
-      "train_guard": 17,
-      "val_guard": 17
-    },
-    "component_crossing_count": 0
+    "unknown_assigned_paths": 0,
+    "missing_inventory_paths": 0
   },
-  "label_inventory": {
-    "train": {
-      "images": 7439,
-      "gt_boxes": 23011,
-      "empty_target_images": 738
+  "standardized_eval_by_seed": [
+    {
+      "seed": "0",
+      "precision": "0.872663",
+      "recall": "0.851392",
+      "f1": "0.861896",
+      "AP50": "0.905695",
+      "AP75": "0.744196",
+      "FPS_eval": "23.320844",
+      "runtime_seconds": "94.894",
+      "checkpoint_sha256": "077a2897eb03065d15aeb0b1d4427e6a9776c679f2045351005a777bf24f3420",
+      "split_sha256_eval_recorded": "06d17e63b8a479a3344494332cc6156bfd08306bc6a00ae88173a8f4f1df7d23"
     },
-    "val": {
-      "images": 2213,
-      "gt_boxes": 6359,
-      "empty_target_images": 1
-    },
-    "guard": {
-      "images": 837,
-      "gt_boxes": 1264,
-      "empty_target_images": 0
+    {
+      "seed": "2",
+      "precision": "0.889808",
+      "recall": "0.829218",
+      "f1": "0.858445",
+      "AP50": "0.904495",
+      "AP75": "0.759297",
+      "FPS_eval": "25.915243",
+      "runtime_seconds": "85.394",
+      "checkpoint_sha256": "eeba2e02d79a92486618a60e01e90d70c39fb04885a20625eedb5217d154acf6",
+      "split_sha256_eval_recorded": "06d17e63b8a479a3344494332cc6156bfd08306bc6a00ae88173a8f4f1df7d23"
     }
-  },
-  "deferred_gpu_work": [
-    "R4 reliability p=0.20 seed 0 training",
-    "R4 reliability p=0.20 seed 0 standardized CUDA evaluation",
-    "R4 reliability p=0.20 seed 2 training",
-    "R4 reliability p=0.20 seed 2 standardized CUDA evaluation",
-    "conditional synthetic missingness aggregate",
-    "conditional efficiency profiling"
   ],
-  "prohibited_work_performed": {
-    "training": false,
-    "cuda_evaluation": false,
-    "synthetic_missingness": false,
-    "efficiency_profiling": false,
-    "manuscript_or_submission_edits": false,
-    "raw_data_or_checkpoint_commit": false
-  }
+  "standardized_eval_summary": [
+    {
+      "metric": "precision",
+      "mean": "0.881235",
+      "stdev": "0.012123",
+      "seed0": "0.872663",
+      "seed2": "0.889808"
+    },
+    {
+      "metric": "recall",
+      "mean": "0.840305",
+      "stdev": "0.015679",
+      "seed0": "0.851392",
+      "seed2": "0.829218"
+    },
+    {
+      "metric": "f1",
+      "mean": "0.860171",
+      "stdev": "0.002440",
+      "seed0": "0.861896",
+      "seed2": "0.858445"
+    },
+    {
+      "metric": "ap50",
+      "mean": "0.905095",
+      "stdev": "0.000848",
+      "seed0": "0.905695",
+      "seed2": "0.904495"
+    },
+    {
+      "metric": "ap75",
+      "mean": "0.751747",
+      "stdev": "0.010678",
+      "seed0": "0.744196",
+      "seed2": "0.759297"
+    },
+    {
+      "metric": "fps",
+      "mean": "24.618043",
+      "stdev": "1.834517",
+      "seed0": "23.320844",
+      "seed2": "25.915243"
+    },
+    {
+      "metric": "runtime_seconds",
+      "mean": "90.143705",
+      "stdev": "6.717437",
+      "seed0": "94.893650",
+      "seed2": "85.393760"
+    },
+    {
+      "metric": "predictions",
+      "mean": "6065.000000",
+      "stdev": "196.575685",
+      "seed0": "6204.000000",
+      "seed2": "5926.000000"
+    },
+    {
+      "metric": "mean_confidence",
+      "mean": "0.728131",
+      "stdev": "0.013507",
+      "seed0": "0.718580",
+      "seed2": "0.737682"
+    }
+  ],
+  "missing_modality_summary": [
+    {
+      "Mode": "event_only",
+      "AP50_mean": "0.014163",
+      "AP50_stdev": "0.007060",
+      "AP75_mean": "0.000381",
+      "AP75_stdev": "0.000323",
+      "F1_mean": "0.005123",
+      "F1_stdev": "0.007244",
+      "seed0_AP50": "0.009171",
+      "seed2_AP50": "0.019156"
+    },
+    {
+      "Mode": "full",
+      "AP50_mean": "0.905095",
+      "AP50_stdev": "0.000848",
+      "AP75_mean": "0.751747",
+      "AP75_stdev": "0.010678",
+      "F1_mean": "0.860171",
+      "F1_stdev": "0.002440",
+      "seed0_AP50": "0.905695",
+      "seed2_AP50": "0.904495"
+    },
+    {
+      "Mode": "no_event",
+      "AP50_mean": "0.898558",
+      "AP50_stdev": "0.002077",
+      "AP75_mean": "0.736471",
+      "AP75_stdev": "0.014336",
+      "F1_mean": "0.856483",
+      "F1_stdev": "0.003025",
+      "seed0_AP50": "0.897090",
+      "seed2_AP50": "0.900027"
+    },
+    {
+      "Mode": "no_rgb",
+      "AP50_mean": "0.909699",
+      "AP50_stdev": "0.000031",
+      "AP75_mean": "0.761876",
+      "AP75_stdev": "0.008406",
+      "F1_mean": "0.863383",
+      "F1_stdev": "0.000583",
+      "seed0_AP50": "0.909721",
+      "seed2_AP50": "0.909677"
+    },
+    {
+      "Mode": "no_thermal",
+      "AP50_mean": "0.377464",
+      "AP50_stdev": "0.015269",
+      "AP75_mean": "0.040594",
+      "AP75_stdev": "0.004845",
+      "F1_mean": "0.421595",
+      "F1_stdev": "0.008881",
+      "seed0_AP50": "0.366667",
+      "seed2_AP50": "0.388261"
+    },
+    {
+      "Mode": "rgb_only",
+      "AP50_mean": "0.377355",
+      "AP50_stdev": "0.010632",
+      "AP75_mean": "0.038548",
+      "AP75_stdev": "0.006400",
+      "F1_mean": "0.422670",
+      "F1_stdev": "0.004226",
+      "seed0_AP50": "0.369837",
+      "seed2_AP50": "0.384873"
+    },
+    {
+      "Mode": "thermal_only",
+      "AP50_mean": "0.909995",
+      "AP50_stdev": "0.000539",
+      "AP75_mean": "0.768866",
+      "AP75_stdev": "0.004257",
+      "F1_mean": "0.863699",
+      "F1_stdev": "0.001576",
+      "seed0_AP50": "0.910376",
+      "seed2_AP50": "0.909613"
+    }
+  ],
+  "efficiency": {
+    "Model": "reliability",
+    "Img Size": "640",
+    "Batch Size": "1",
+    "Params": "6593293",
+    "Trainable Params": "6593293",
+    "GFLOPs": "105.981501",
+    "GFLOPs Note": "detector",
+    "FPS": "51.074976",
+    "Latency ms/img": "19.579060",
+    "CUDA max memory MB": "236.40"
+  },
+  "warnings": [
+    "PyTorch emitted a CuBLAS deterministic warning during training because CUBLAS_WORKSPACE_CONFIG was not set before launch; training used warn_only deterministic algorithms as recorded in train logs.",
+    "Evaluation emitted the expected torch.load weights_only FutureWarning; no evaluation failure occurred.",
+    "V40 evidence is validation-only and does not update manuscript headline claims."
+  ],
+  "artifact_policy": "Checkpoints, weights, prediction dumps, images, and manuscript/submission artifacts remain local and must not be committed."
 }

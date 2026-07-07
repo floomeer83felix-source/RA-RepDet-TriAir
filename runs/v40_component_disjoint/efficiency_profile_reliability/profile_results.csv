@@ -1,0 +1,2 @@
+Model,Img Size,Batch Size,Params,Trainable Params,GFLOPs,GFLOPs Note,FPS,Latency ms/img,CUDA max memory MB
+reliability,640,1,6593293,6593293,105.981501,detector,51.074976,19.579060,236.40
