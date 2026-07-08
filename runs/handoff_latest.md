@@ -358,3 +358,29 @@ Workspace: `E:\RepViT-main`
 - Review whether V40 validation-only results should supersede or qualify the prior V39/R4 clean blocked-split manuscript claim.
 - If approved later, promote only lightweight V40 CSV/Markdown evidence into manuscript tables through an explicit manuscript-update task.
 - Keep checkpoints, weights, raw data, prediction dumps, and visual artifacts local.
+
+## V41 fresh paired seed1 development-validation outputs
+
+- Generated: 2026-07-09T00:54:22
+- Status: COMPLETE.
+- Scope: exactly two fresh seed1 trainings on the frozen V40 train/development-validation split.
+- Guard/non-test partition: not accessed, inspected, copied, or evaluated.
+- Contract verification: `runs/v41_q1_upgrade/seed1/contract/contract_verification.md` (PASS).
+- Frozen train/val manifest SHA256: `f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f` / `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`.
+- Standardized evaluation: detector threshold 0.001, P/R/F1 threshold 0.50, NMS 0.6, max detections/image 100, project-local AP50/AP75.
+
+| Run | Precision | Recall | F1 | AP50 | AP75 | Checkpoint SHA256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| matched_early_seed1 | 0.860109 | 0.910687 | 0.884676 | 0.942953 | 0.794412 | 60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804 |
+| reliability_p015_seed1 | 0.877880 | 0.928754 | 0.902601 | 0.955687 | 0.877982 | a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d |
+
+| Delta reliability p=0.15 - early | Value |
+| --- | --- |
+| precision | +0.017770 |
+| recall | +0.018067 |
+| f1 | +0.017925 |
+| ap50 | +0.012734 |
+| ap75 | +0.083570 |
+
+- Required reports: `runs/v41_q1_upgrade/seed1/frozen_evaluation_command.md`, `seed1_per_run_summary.csv/md`, `seed1_pair_comparison.md`, and `source_lock_seed1.md/json`.
+- Note: this is development-validation evidence only, not a manuscript-final or independent-test claim.
