@@ -1,5 +1,5 @@
 % !TEX root = main.tex
-% PRE-FINAL SIVP placeholder source. Not for submission.
+% PRE-FINAL SIVP source. Final figure assets and bibliography closure remain to be checked locally.
 \documentclass[pdflatex,iicol,sn-mathphys-num]{sn-jnl}
 
 \usepackage{graphicx}
@@ -12,16 +12,16 @@
 
 \begin{document}
 
-\title[RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection]{RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection under Leakage-Aware Evaluation}
+\title[RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for UAV Vehicle Detection]{RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection with Component-Disjoint Validation}
 
 \author*[1]{\fnm{Nan} \sur{Xin}}\email{floomeer83felix@gmail.com}
 \author[1]{\fnm{Xueting} \sur{Jin}}
 
 \affil*[1]{\orgname{Anhui Police College}, \orgaddress{\city{Hefei}, \state{Anhui}, \country{China}}}
 
-\abstract{Lightweight vehicle detection from unmanned-aerial-vehicle imagery benefits from complementary sensing, but multi-modal fusion results can be difficult to interpret when evaluation splits contain visually related samples or when validation evidence is overstated as deployment robustness. This paper studies a compact RGB--thermal--event detector based on a RepViT--FPN--FCOS stack and compares a matched early-fusion front end with a reliability-aware front end using modality-specific stems, softmax fusion, and modality-dropout training. The evaluation is intentionally scoped to a frozen component-disjoint development-validation protocol for a locally represented TriAir dataset. Across three paired seeds, reliability-aware fusion with modality dropout $p=0.15$ improves the matched early-fusion baseline by descriptive mean deltas of +0.0185 F1, +0.0161 AP50, and +0.0647 AP75 using project-local AP metrics. The model adds only a small number of front-end parameters relative to the shared detector stack. We also document the validation-only boundary, split-audit provenance, and limitations of the evidence, including the absence of an independent locked evaluation partition, COCO AP50:95 evaluation, and physical sensor-failure experiments. The resulting study provides an auditable validation-only assessment of reliability-aware tri-modal fusion for lightweight UAV vehicle detection.}
+\abstract{Lightweight UAV vehicle detection can benefit from complementary RGB, thermal, and event cues, but validation results can be optimistic when visually related samples appear across training and validation partitions. This paper presents RA-RepDet, a compact RepViT--FPN--FCOS detector that compares matched early fusion with a reliability-aware front end using modality-specific stems, softmax fusion, and modality-dropout training. Evaluation is intentionally scoped to a frozen component-disjoint development-validation protocol on the publicly available TriAir dataset. Across three paired seeds, reliability-aware fusion with modality dropout $p=0.15$ improves the matched early-fusion baseline by descriptive mean deltas of +0.0185 F1, +0.0161 AP50, and +0.0647 AP75 using project-local AP metrics. The method adds only a small number of front-end parameters relative to the shared detector stack. The study provides an auditable validation-only assessment of reliability-aware tri-modal fusion and explicitly avoids claims of independent-test generalization, COCO AP50:95 performance, or physical sensor-failure robustness.}
 
-\keywords{UAV vehicle detection, RGB--thermal--event fusion, reliability-aware fusion, RepViT--FCOS, development-validation evidence, leakage-aware evaluation}
+\keywords{UAV vehicle detection, RGB--thermal--event fusion, reliability-aware fusion, RepViT--FCOS, component-disjoint validation, development-validation evidence}
 
 \maketitle
 
@@ -43,7 +43,10 @@ Nan Xin conceived the study, designed the method, implemented the experiments, p
 Not applicable.
 
 \bmhead{Data Availability}
-The dataset used for the experiments in this study is the publicly available TriAir dataset. The authors do not redistribute the original dataset files. Source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables generated in this work are available in the current project repository. Use of the original dataset is subject to the terms specified by its original provider.
+The dataset used for the experiments in this study is the publicly available TriAir dataset. The authors do not redistribute the original dataset files. Use of the original dataset is subject to the terms specified by its original provider.
+
+\bmhead{Code Availability}
+Source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables generated in this work are available in the current project repository.
 
 \bibliography{references,references_literature_pack,references_fusion_event,references_evaluation_efficiency,references_top_conferences}
 
