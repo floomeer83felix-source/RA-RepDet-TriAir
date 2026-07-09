@@ -3,81 +3,57 @@
   "generated_at": "2026-07-09",
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "current_task": "V41 interim development-validation consolidation and status cleanup",
-    "status": "complete",
-    "commit_message": "v41: consolidate three-seed interim development validation evidence"
+    "current_task": "V41 SIVP manuscript alignment with three-seed validation-only evidence",
+    "status": "HANDOFF_TO_CODEX",
+    "commit_message": "submission: align SIVP draft with V41 validation-only evidence"
   },
   "blocker": {
     "status": "NO_ACTIVE_BLOCKER",
-    "path": "docs/TASK_BLOCKER.md",
-    "note": "Older V40 GPU-deferred blocker is historical and no longer the active task state."
+    "path": "docs/TASK_BLOCKER.md"
   },
-  "inputs": {
-    "v40_summary": "runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json",
-    "seed1_summary": "runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv",
-    "seed1_source_lock": "runs/v41_q1_upgrade/seed1/source_lock_seed1.md/json",
-    "seed1_completion_commit": "5d839ae900849919189edff4bdd364f42c043b86"
+  "assistant_completed": [
+    "Prepared V41 SIVP claim ledger",
+    "Prepared V41 replacement text",
+    "Prepared V41 manuscript alignment plan",
+    "Prepared Table_8_three_seed_interim_devval.tex",
+    "Updated docs/NEXT_TASK.md for Codex",
+    "Updated docs/EXPERIMENT_STATUS.md",
+    "Updated runs/handoff_latest.md/json"
+  ],
+  "codex_next": {
+    "target": "submission/sivp/tex/ra_repdet_sivp.tex",
+    "read_first": [
+      "submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md",
+      "submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md",
+      "submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md",
+      "submission/sivp/tables/Table_8_three_seed_interim_devval.tex",
+      "runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md"
+    ],
+    "required_local_work": [
+      "Rewrite active manuscript narrative from R4 p=0.20 seed0/2 block64_guard16 to reliability p=0.15 seed0/1/2 V40 development-validation",
+      "Insert Table_8 or equivalent values as the active main results table",
+      "Run claim scans",
+      "Run python scripts/preflight_submission.py --root . --allow-placeholders",
+      "Compile LaTeX if local environment is available",
+      "Update status and handoff"
+    ]
   },
   "interim_devval": {
     "status": "V41_INTERIM_DEVVAL_CONSOLIDATION_COMPLETE",
     "claim_boundary": "three-seed interim development-validation descriptive summary only",
     "paired_delta_summary": [
-      {
-        "metric": "precision",
-        "mean_delta": 0.011629268842,
-        "sample_sd_delta": 0.0165013067,
-        "n_seed_pairs": 3
-      },
-      {
-        "metric": "recall",
-        "mean_delta": 0.024487245043,
-        "sample_sd_delta": 0.026580838289,
-        "n_seed_pairs": 3
-      },
-      {
-        "metric": "f1",
-        "mean_delta": 0.018524117987,
-        "sample_sd_delta": 0.006208235832,
-        "n_seed_pairs": 3
-      },
-      {
-        "metric": "ap50",
-        "mean_delta": 0.016063610713,
-        "sample_sd_delta": 0.005699420814,
-        "n_seed_pairs": 3
-      },
-      {
-        "metric": "ap75",
-        "mean_delta": 0.06465725104,
-        "sample_sd_delta": 0.016414562315,
-        "n_seed_pairs": 3
-      }
-    ],
-    "evidence_files": [
-      "runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.csv",
-      "runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md",
-      "runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.json",
-      "runs/v41_q1_upgrade/interim_devval/interim_claim_boundary.md",
-      "docs/V41_INTERIM_DEVVAL_STATUS.md",
-      "rarepdet/tools/v41_interim_devval_consolidate.py"
-    ],
-    "no_new_actions": [
-      "no training",
-      "no evaluation",
-      "no checkpoint loading",
-      "no raw data access",
-      "no prediction-cache access",
-      "no guard/test access",
-      "no manuscript rewriting"
+      {"metric": "precision", "mean_delta": 0.011629268842, "sample_sd_delta": 0.0165013067, "n_seed_pairs": 3},
+      {"metric": "recall", "mean_delta": 0.024487245043, "sample_sd_delta": 0.026580838289, "n_seed_pairs": 3},
+      {"metric": "f1", "mean_delta": 0.018524117987, "sample_sd_delta": 0.006208235832, "n_seed_pairs": 3},
+      {"metric": "ap50", "mean_delta": 0.016063610713, "sample_sd_delta": 0.005699420814, "n_seed_pairs": 3},
+      {"metric": "ap75", "mean_delta": 0.06465725104, "sample_sd_delta": 0.016414562315, "n_seed_pairs": 3}
     ]
   },
-  "remaining_limitations": [
-    "validation-only evidence",
-    "three seed pairs only",
-    "no independent test",
-    "no causal ablations",
-    "no COCO metrics",
-    "unresolved provider provenance",
-    "incomplete label-quality review"
+  "assistant_could_not_complete": [
+    "Full LaTeX source rewrite and compile in local SIVP template environment",
+    "Final artwork verification",
+    "Author metadata/declaration finalization",
+    "TriAir provider/license/version/redistribution/synchronization verification",
+    "New experiments, independent test, COCO metrics, causal ablations, label-quality review"
   ]
 }
