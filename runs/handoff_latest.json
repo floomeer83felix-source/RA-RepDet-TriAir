@@ -3,9 +3,9 @@
   "generated_at": "2026-07-09",
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "user_explicit_task": "V44 SIVP submission preflight and template compile",
-    "status": "V44_SIVP_SUBMISSION_PREFLIGHT_COMPLETE",
-    "commit_message": "submission: complete V44 SIVP submission preflight"
+    "user_explicit_task": "V45 strict SIVP reviewer pass and revision",
+    "status": "V45_STRICT_REVIEW_REVISION_COMPLETE",
+    "commit_message": "submission: complete V45 strict reviewer revision"
   },
   "blocker": {
     "status": "NO_ACTIVE_BLOCKER",
@@ -19,35 +19,36 @@
     "new_evaluation_run": false,
     "external_data_work": false,
     "metric_recomputation": false,
-    "manuscript_preflight": true,
+    "strict_review": true,
     "template_compile": true
   },
-  "v44_submission_preflight": {
+  "v45_strict_review": {
     "status": "COMPLETE",
-    "report": "runs/v44_submission_preflight/V44_SUBMISSION_PREFLIGHT_REPORT.md",
-    "pdf": "RA_RepDet_SIVP_V44_submission_preflight_snjnl.pdf",
+    "review_report": "submission/sivp/review/STRICT_REVIEWER_REPORT_V45.md",
+    "compile_report": "runs/v45_strict_review/STRICT_REVIEW_AND_COMPILE_REPORT.md",
+    "pdf": "RA_RepDet_SIVP_V45_strict_review_revised_snjnl.pdf",
     "page_count": 10,
-    "claim_scan": {
-      "active_validation_only_wording": false,
-      "positive_external_generalization_claim": false,
-      "positive_statistical_significance_claim": false,
-      "positive_optimal_dropout_claim": false,
-      "positive_coco_ap5095_claim": false,
-      "positive_real_sensor_failure_robustness_claim": false,
-      "restricted_terms_only_as_cautions": true
-    },
+    "manuscript_changes": [
+      "tightened abstract in submission/sivp/tex/main.tex",
+      "tightened abstract in root main.tex",
+      "tightened abstract in root main_sivp_snjnl.tex",
+      "explicitly stated same-dataset guard evidence",
+      "explicitly stated smaller held-out gains and mixed per-seed F1/AP75 deltas",
+      "kept bounded within-dataset claim boundary"
+    ],
     "compile": {
       "template": "sn-jnl class with sn-basic bibliography style from previously provided SIVP source package",
       "latexmk_pdf": true,
       "bibtex_closure": true,
       "bibtex_command": "/usr/bin/bibtex.original",
       "bibtex_note": "sandbox bibtex symlink is broken; bibtex.original was used",
-      "undefined_citations": false,
-      "undefined_references": false,
       "render_pages": 10,
-      "obvious_page_clipping": false,
-      "minor_overfull_hbox_pt": 22.33
+      "obvious_page_clipping": false
     }
+  },
+  "v44_submission_preflight": {
+    "status": "COMPLETE",
+    "report": "runs/v44_submission_preflight/V44_SUBMISSION_PREFLIGHT_REPORT.md"
   },
   "v43_manuscript_integration": {
     "status": "COMPLETE",
@@ -57,7 +58,6 @@
   "v42_locked_guard": {
     "status": "COMPLETE",
     "source_commit": "187632960a4093778d83c3383e7f5540723a60e1",
-    "output_dir": "runs/v42_locked_guard_heldout",
     "guard_manifest": "runs/component_disjoint_v40/guard.txt",
     "guard_rows": 837,
     "guard_gt_boxes": 1264,
