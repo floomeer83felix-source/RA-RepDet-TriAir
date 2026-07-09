@@ -5,13 +5,13 @@ Generated: 2026-07-09
 ## Current Task State
 
 - Task file: `docs/NEXT_TASK.md`
-- Current task: V41 SIVP manuscript polish and PDF preview
-- Status: `POLISHED_PREVIEW_READY`
+- Current task: V41 SIVP reviewer-style manuscript polish and PDF preview
+- Status: `REVIEWER_POLISHED_PREVIEW_READY`
 - Active blocker: `NO_ACTIVE_BLOCKER`
 
 ## What Assistant/Codex Completed
 
-Completed the SIVP manuscript alignment and polishing from existing V41 evidence only. No training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed.
+Completed the SIVP manuscript alignment, simulated reviewer review, and reviewer-style polishing from existing V41 evidence only. No training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed.
 
 Files updated or recorded:
 
@@ -23,6 +23,7 @@ Files updated or recorded:
 - `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`
 - `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
 - `submission/sivp/tex/related_work_literature_expansion.tex`
+- `submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md`
 - `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md`
 - `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md`
 - `submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md`
@@ -49,29 +50,30 @@ Files updated or recorded:
 - Data availability: the experimental dataset is the publicly available TriAir dataset; original files are not redistributed.
 - Code availability: source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
 
-## Manuscript Polish Notes
+## Reviewer-style Manuscript Notes
 
 - Active result remains reliability-aware `p=0.15` versus matched early fusion on seed0/seed1/seed2.
 - Main evidence is explicitly three-seed interim development-validation descriptive evidence on the frozen V40 component-disjoint development-validation split.
-- `Table_1_dataset_and_clean_split.tex` now uses V40 component-disjoint split wording and development-validation box count 5867.
-- `Table_2_implementation_and_reproducibility.tex` now uses seed0/seed1/seed2 and p=0.15 active setting.
+- `Table_1_dataset_and_clean_split.tex` uses V40 component-disjoint split wording and development-validation box count 5867.
+- `Table_2_implementation_and_reproducibility.tex` uses seed0/seed1/seed2 and p=0.15 active setting.
 - `Table_8_three_seed_interim_devval.tex` remains the active main result table.
 - R4 `p=0.20` and block64/guard16 are not active manuscript claims.
-- The related-work appendix now avoids draft-screening, quartile, and internal-review language.
+- Explicit `Final artwork pending` figure placeholders were replaced by simple in-manuscript schematic/table figures for architecture, split workflow, and paired deltas.
+- The related-work appendix avoids draft-screening, quartile, and internal-review language.
 
 ## PDF Preview
 
-A compiled reading/layout preview was generated in the assistant sandbox as `RA_RepDet_SIVP_V41_polished_compiled_preview.pdf`.
+A compiled reading/layout preview was generated in the assistant sandbox as `RA_RepDet_SIVP_V41_reviewer_polished_preview.pdf`.
 
 Because the assistant sandbox does not contain the Springer `sn-jnl` class or full repository clone, the preview was compiled with a temporary article-style wrapper and a simplified references note. It is suitable for reading/layout review, not final Springer/SIVP submission.
 
 ## Residual Submission Blockers
 
-- Final Fig. 1--6 assets are missing.
-- Public release/archive DOI and release metadata remain unresolved.
+- Full Springer `sn-jnl` class build and BibTeX/cross-reference closure require local toolchain repair.
+- Simple text schematics can optionally be replaced with higher-resolution vector artwork.
+- Public release/archive DOI and release metadata remain unresolved if required by the submission workflow.
 - TriAir provider, version, license, redistribution, and synchronization facts remain author-confirmation items beyond naming the public dataset.
 - Label-quality review remains incomplete.
-- Full Springer `sn-jnl` class build and BibTeX/cross-reference closure require local toolchain repair.
 
 ## Three-Seed Interim Development-Validation Summary
 
@@ -93,6 +95,5 @@ Disallowed wording: independent test, external generalization, statistical signi
 
 ## What Remains Out Of Scope
 
-- Final figure/artwork verification.
 - TriAir provider URL, version, license, redistribution rights, synchronization details, or official event representation verification.
 - New experiments, independent test creation, COCO AP50:95, causal ablations, or label-quality review.
