@@ -3,18 +3,19 @@
 \toprule
 Item & Value & Source & Notes \\
 \midrule
-All TriAir samples & 10489 & runs/handoff\_latest.md & All .npy samples are the dataset basis. \\
-Samples with label txt & 9751 & runs/handoff\_latest.md & Existing YOLO-format label files. \\
-Samples without label txt & 738 & runs/handoff\_latest.md & Treated as empty-target images. \\
-Empty label txt files & 1 & runs/handoff\_latest.md & Treated as empty-target images. \\
-Total valid boxes & 30634 & runs/handoff\_latest.md & Single class: vehicle. \\
-Random split exact RGB-matched validation samples & 153 & runs/phase3c\_report.md & Former random split is historical diagnostics only. \\
-Clean split candidate & block64\_guard16\_seed0 & runs/clean\_block64g16\_protocol.md & Frozen split used for headline evidence. \\
-Clean train images & 7439 & runs/clean\_block64g16\_protocol.md & Guard samples excluded. \\
-Clean validation images & 2213 & runs/clean\_block64g16\_protocol.md & Validation boxes = 5904. \\
-Guard images & 837 & runs/clean\_block64g16\_protocol.md & Excluded from train and validation. \\
-Clean exact RGB train/validation matches & 0 & runs/clean\_block64g16\_protocol.md & Required integrity check. \\
-Same-family guard violations & 0 & runs/clean\_block64g16\_protocol.md & Required integrity check. \\
+Dataset & TriAir & Public dataset & RGB--thermal--event UAV vehicle detection data. \\
+Local sample inventory & 10489 & Project inventory & Five-channel RGB--thermal--event samples. \\
+Samples with label txt & 9751 & Project inventory & Existing YOLO-format label files. \\
+Samples without label txt & 738 & Project inventory & Treated as empty-target images. \\
+Empty label txt files & 1 & Project inventory & Treated as empty-target images. \\
+Total valid boxes & 30634 & Project inventory & Single class: vehicle. \\
+Historical random-split RGB-overlap findings & 153 validation samples & Split audit & Diagnostic only; not active headline evidence. \\
+Active split protocol & V40 component-disjoint & Source-lock package & Frozen train/development-validation split. \\
+Training images & 7439 & V40 manifests & Used for active seed0/1/2 runs. \\
+Development-validation images & 2213 & V40 manifests & Active validation manifest. \\
+Development-validation boxes & 5867 & V40 manifests & Vehicle boxes in active validation manifest. \\
+Archival guard samples & 837 & V40 split records & Not used as an evaluation partition. \\
+Cross-partition graph edges & 0 & Split audit & Within the defined component-disjoint graph. \\
 \bottomrule
 \end{tabular}%
 }
