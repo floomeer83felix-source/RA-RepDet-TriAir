@@ -4,11 +4,11 @@ Generated: 2026-07-09
 
 ## Current Status
 
-`V41_SIVP_MANUSCRIPT_ALIGNMENT_COMPLETE_AUTHOR_AND_DATA_METADATA_PARTIAL`
+`V41_SIVP_MANUSCRIPT_ALIGNMENT_COMPLETE_DECLARATIONS_PARTIAL`
 
-The V41 three-seed interim development-validation evidence is consolidated, and the active SIVP LaTeX narrative has been aligned to the validation-only evidence state. The user-provided author names, affiliation, corresponding-author email, and public-dataset availability wording have now been inserted into the active SIVP entry files.
+The V41 three-seed interim development-validation evidence is consolidated, and the active SIVP LaTeX narrative has been aligned to the validation-only evidence state. The user-provided author names, affiliation, corresponding-author email, public-dataset availability wording, and declaration statements for no funding, no competing interests, author contributions, and no acknowledgments have now been inserted into the active SIVP entry files.
 
-No new training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed. Manuscript edits were limited to SIVP LaTeX metadata/narrative alignment and local preflight/compile recording.
+No new training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed. Manuscript edits were limited to SIVP LaTeX metadata/declaration/narrative alignment and local preflight/compile recording.
 
 ## Evidence Inputs
 
@@ -29,9 +29,13 @@ No new training, evaluation, guard/test access, checkpoint loading, raw data acc
   - root `main.tex`
   - root `main_sivp_snjnl.tex`
 
-## Data availability wording inserted
+## Declarations inserted
 
-The SIVP entry files now state that the experimental dataset is the publicly available TriAir dataset, that the authors do not redistribute original dataset files, and that source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
+- Funding: no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+- Competing interests: the authors declare no competing interests.
+- Author contributions: Nan Xin conceived/designed/implemented/evaluated/analyzed/drafted; Xueting Jin supervised, contributed to design/interpretation, and reviewed/revised; both authors read and approved the final manuscript.
+- Acknowledgments: not applicable.
+- Data availability: TriAir is named as the publicly available dataset; original files are not redistributed; source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
 
 ## Three-seed interim development-validation descriptive summary
 
@@ -77,7 +81,6 @@ Disallowed wording: independent test, external generalization, statistical signi
 ## Work intentionally left for final submission
 
 - Final artwork for Fig. 1--6.
-- Funding, competing interests, author contributions, and acknowledgments.
 - Public release/archive DOI and release metadata.
 - TriAir provider/license/version/redistribution/synchronization details beyond naming the public dataset.
 - Full BibTeX/cross-reference closure after local toolchain repair.
