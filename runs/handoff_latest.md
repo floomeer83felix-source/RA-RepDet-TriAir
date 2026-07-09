@@ -5,39 +5,35 @@ Generated: 2026-07-09
 ## Current Task State
 
 - Task file: `docs/NEXT_TASK.md`
-- User-explicit task: V42 locked held-out guard evaluation
-- Status: `V42_LOCKED_HELDOUT_GUARD_EVALUATION_COMPLETE`
+- User-explicit task: V43 SIVP integration of V42 locked held-out guard evidence
+- Status: `V43_SIVP_HELDOUT_GUARD_INTEGRATION_COMPLETE`
 - Active blocker: `NO_ACTIVE_BLOCKER`
 
-`docs/NEXT_TASK.md` still describes the prior V41 manuscript task. The latest user instruction explicitly changed the active scope to V42 guard evaluation, and this handoff records that executed scope.
+## What Assistant Completed
 
-## What Assistant/Codex Completed
+Integrated the completed V42 locked held-out guard evaluation into the active SIVP manuscript. No new training, tuning, checkpoint selection, split modification, robustness, profiling, external-data work, or additional evaluation was performed.
 
-Completed six fixed-checkpoint evaluations on the frozen V40 component-disjoint guard manifest:
+## Manuscript Files Updated
 
-- `matched_early_seed0`
-- `matched_early_seed1`
-- `matched_early_seed2`
-- `reliability_p015_seed0`
-- `reliability_p015_seed1`
-- `reliability_p015_seed2`
+- `submission/sivp/tex/ra_repdet_sivp.tex`
+- `submission/sivp/tex/main.tex`
+- `main.tex`
+- `main_sivp_snjnl.tex`
+- `submission/sivp/tables/Table_1_dataset_and_clean_split.tex`
+- `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`
+- `submission/sivp/tables/Table_9_locked_heldout_guard.tex`
+- `submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md`
+- `docs/EXPERIMENT_STATUS.md`
+- `runs/handoff_latest.md/json`
 
-No training, tuning, checkpoint selection, split modification, robustness, profiling, manuscript work, DroneVehicle work, or `finish_task.ps1` was performed.
+## Evidence State After V43
 
-## Outputs
+The paper is no longer described as validation-only. The active evidence is:
 
-- `runs/v42_locked_guard_heldout/heldout_guard_source_lock.md`
-- `runs/v42_locked_guard_heldout/heldout_guard_source_lock.json`
-- `runs/v42_locked_guard_heldout/heldout_guard_summary.md`
-- `runs/v42_locked_guard_heldout/heldout_guard_summary.json`
-- `runs/v42_locked_guard_heldout/heldout_guard_per_run_summary.csv`
-- `runs/v42_locked_guard_heldout/heldout_guard_paired_deltas.csv`
-- `runs/v42_locked_guard_heldout/heldout_guard_paired_delta_aggregates.csv`
-- `runs/v42_locked_guard_heldout/heldout_guard_claim_boundary.md`
-- Per-run standardized guard eval outputs under `runs/v42_locked_guard_heldout/<run>/standardized_guard_eval/`.
-- Report generator: `rarepdet/tools/build_v42_guard_summary.py`.
+1. Three-seed component-disjoint development-validation evidence.
+2. Locked same-dataset TriAir held-out guard evaluation using six fixed checkpoints.
 
-## Guard Source Lock
+## V42 Guard Source Lock
 
 - Source manifest: `runs/component_disjoint_v40/guard.txt`
 - Rows: 837 images
@@ -47,20 +43,19 @@ No training, tuning, checkpoint selection, split modification, robustness, profi
 - Evaluator: `rarepdet/eval_map.py` SHA256 `94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715`
 - Metrics helper: `rarepdet/metrics.py` SHA256 `6ffa798647376594befc45f89ebb1aa1a5fbe3b50e5f484e7804c22bac13b081`
 
-The archival guard at `reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_guard_unchanged_archival.txt` has a different normalized hash and was not used.
+## Development-validation Summary
 
-## Held-out Guard Per-run Results
+Reliability-aware `p=0.15` minus matched early fusion, paired by seed:
 
-| Run | Precision | Recall | F1 | AP50 | AP75 |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| matched_early_seed0 | 0.938534 | 0.942247 | 0.940387 | 0.965299 | 0.923818 |
-| matched_early_seed1 | 0.878990 | 0.936709 | 0.906932 | 0.954007 | 0.894974 |
-| matched_early_seed2 | 0.937147 | 0.920095 | 0.928543 | 0.957160 | 0.883246 |
-| reliability_p015_seed0 | 0.937451 | 0.936709 | 0.937080 | 0.966926 | 0.929140 |
-| reliability_p015_seed1 | 0.894619 | 0.946994 | 0.920061 | 0.964380 | 0.912660 |
-| reliability_p015_seed2 | 0.932243 | 0.946994 | 0.939560 | 0.970845 | 0.866755 |
+| Metric | Mean delta | Sample SD | n seed pairs |
+| --- | ---: | ---: | ---: |
+| Precision | +0.011629 | 0.016501 | 3 |
+| Recall | +0.024487 | 0.026581 | 3 |
+| F1 | +0.018524 | 0.006208 | 3 |
+| AP50 | +0.016064 | 0.005699 | 3 |
+| AP75 | +0.064657 | 0.016415 | 3 |
 
-## Three-seed Held-out Guard Paired Deltas
+## Held-out Guard Summary
 
 Reliability-aware `p=0.15` minus matched early fusion, paired by seed:
 
@@ -72,16 +67,24 @@ Reliability-aware `p=0.15` minus matched early fusion, paired by seed:
 | AP50 | +0.008562 | 0.006229 | 3 |
 | AP75 | +0.002173 | 0.017305 | 3 |
 
+Per-seed guard deltas:
+
+| Seed | Precision | Recall | F1 | AP50 | AP75 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 0 | -0.001084 | -0.005538 | -0.003307 | +0.001628 | +0.005322 |
+| 1 | +0.015628 | +0.010285 | +0.013129 | +0.010372 | +0.017686 |
+| 2 | -0.004904 | +0.026899 | +0.011018 | +0.013685 | -0.016491 |
+
 ## Claim Boundary
 
-Allowed wording: locked held-out guard evaluation on the frozen V40 component-disjoint guard manifest, with descriptive three-seed paired comparisons between matched early fusion and reliability-aware `p=0.15`.
+Allowed wording: component-disjoint development-validation evidence plus locked same-dataset held-out TriAir guard evaluation, using descriptive three-seed paired comparisons between matched early fusion and reliability-aware `p=0.15`.
 
 Disallowed wording: external dataset generalization, independent public benchmark test, training-time model selection or tuning using guard results, statistical significance, optimal dropout, calibrated physical sensor reliability, real sensor-fault robustness, or COCO AP@[0.50:0.95].
 
-## What Remains Out Of Scope
+## Remaining Submission Items
 
-- p=0.00 or p=0.20 runs.
-- Any new training or checkpoint selection.
-- Robustness, profiling, qualitative, bootstrap, or external-data work.
-- SIVP manuscript update from the new guard evidence.
-- DroneVehicle work.
+- Real Springer `sn-jnl` class build and BibTeX/cross-reference closure.
+- Optional replacement of simple text schematics with high-resolution vector artwork.
+- Public release/archive DOI and release metadata if required by the submission workflow.
+- TriAir provider URL, version, license, redistribution rights, synchronization details, or official event representation verification.
+- No external-data generalization, COCO AP50:95, or causal ablation has been added.
