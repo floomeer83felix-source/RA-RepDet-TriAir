@@ -1,0 +1,23 @@
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=E:\RepViT-main\runs\v41_q1_upgrade\sivp_alignment\latex_build main.tex
+EXIT_CODE: 1
+latexmk.exe :
+At line:8 char:1
++ & latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=$build ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Sorry, but latexmk.exe did not succeed for the following reason:
+
+  MiKTeX could not find the script engine 'perl' which is required to execute 'latexmk'.
+
+Remedy:
+
+  Make sure 'perl' is installed on your system.
+
+The log file hopefully contains the information to get MiKTeX going again:
+
+  C:\Users\xinnan\AppData\Local\MiKTeX\miktex\log\latexmk.log
+
+For more information, visit: https://miktex.org/kb/fix-script-engine-not-found
+latexmk: major issue: So far, you have not checked for MiKTeX updates.

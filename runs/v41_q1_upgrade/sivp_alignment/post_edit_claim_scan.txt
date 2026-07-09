@@ -1,0 +1,9 @@
+p=0.20 0
+R4 0
+block64 0
+guard16 0
+independent test 1
+external generalization 1
+statistical significance 1
+optimal 0
+physical sensor 3

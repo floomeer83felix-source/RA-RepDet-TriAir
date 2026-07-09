@@ -1,0 +1,5 @@
+COMMANDS:
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory "E:\RepViT-main\runs\v41_q1_upgrade\sivp_alignment\pdflatex_full_build" main.tex
+bibtex main (from build directory)
+pdflatex twice
+STATUS: first pdflatex pass completed and generated a PDF; bibtex did not finish before the command timeout and was stopped manually. Build products were removed after logging.

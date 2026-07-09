@@ -1,0 +1,33 @@
+COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe C:\Users\xinnan\.codex\plugins\cache\openai-bundled\latex\0.2.4\scripts\compile_latex.py E:\RepViT-main\submission\sivp\tex\main.tex --json
+EXIT_CODE: 1
+python.exe : Exception in thread Thread-3:
+At line:7 char:1
++ & 'C:\Users\xinnan\.conda\envs\pytorch\python.exe' $script $main --js ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Exception in thread Thread-3::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Traceback (most recent call last):
+  File "C:\Users\xinnan\.conda\envs\pytorch\lib\threading.py", line 980, in _bootstrap_inner
+    self.run()
+  File "C:\Users\xinnan\.conda\envs\pytorch\lib\threading.py", line 917, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\xinnan\.conda\envs\pytorch\lib\subprocess.py", line 1495, in _readerthread
+    buffer.append(fh.read())
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xbf in position 78: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\xinnan\.codex\plugins\cache\openai-bundled\latex\0.2.4\scripts\compile_latex.py", line 486, in <module
+>
+    raise SystemExit(main())
+  File "C:\Users\xinnan\.codex\plugins\cache\openai-bundled\latex\0.2.4\scripts\compile_latex.py", line 413, in main
+    texlive_detection = detect_texlive() if args.compiler in {"auto", "texlive"} else None
+  File "C:\Users\xinnan\.codex\plugins\cache\openai-bundled\latex\0.2.4\scripts\detect_texlive.py", line 103, in detect
+_texlive
+    "version": tool_version(tool, path, search_path=search_path) if path else None,
+  File "C:\Users\xinnan\.codex\plugins\cache\openai-bundled\latex\0.2.4\scripts\detect_texlive.py", line 92, in tool_ve
+rsion
+    _code, output = run_tool(version_args, search_path=search_path, timeout_sec=5)
+  File "C:\Users\xinnan\.codex\plugins\cache\openai-bundled\latex\0.2.4\scripts\detect_texlive.py", line 74, in run_too
+l
+    return completed.returncode, completed.stdout.strip()
+AttributeError: 'NoneType' object has no attribute 'strip'

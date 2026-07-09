@@ -1,0 +1,48 @@
+## main.tex
+p=0.20 0
+R4 0
+block64 0
+guard16 0
+independent test 0
+external generalization 0
+statistical significance 0
+optimal 0
+physical sensor 1
+test set 0
+held-out test 0
+## main_sivp_snjnl.tex
+p=0.20 0
+R4 0
+block64 0
+guard16 0
+independent test 0
+external generalization 0
+statistical significance 0
+optimal 0
+physical sensor 1
+test set 0
+held-out test 0
+## submission\sivp\tex\main.tex
+p=0.20 0
+R4 0
+block64 0
+guard16 0
+independent test 0
+external generalization 0
+statistical significance 0
+optimal 0
+physical sensor 1
+test set 0
+held-out test 0
+## submission\sivp\tex\ra_repdet_sivp.tex
+p=0.20 0
+R4 0
+block64 0
+guard16 0
+independent test 1
+external generalization 1
+statistical significance 1
+optimal 0
+physical sensor 3
+test set 0
+held-out test 0

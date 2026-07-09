@@ -1,0 +1,3 @@
+BibTeX was invoked during the attempted full pdflatex -> bibtex -> pdflatex -> pdflatex sequence.
+
+The process did not complete before the command timeout and was stopped manually. No BibTeX diagnostic output was emitted before termination.

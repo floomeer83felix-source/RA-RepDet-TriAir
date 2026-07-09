@@ -1,0 +1,722 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(sn-jnl.cls
+Document Class: sn-jnl 2019/11/18 v0.1: An authoring template for Springer Jour
+nal articles
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/base\fleqn.clo)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
+) (C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/sttools\cuted.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics\rotating.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
+cfg)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.de
+f))) (C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty))
+
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/threeparttable\threepa
+rttable.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/appendix\appendix.sty)
+ (C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.st
+y)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefin
+ekeys.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.
+sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmd
+s.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.
+sty)))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\getti
+tlestring.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.st
+y)))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.
+sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcal
+c.sty)))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfi
+lecheck.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\unique
+counter.sty)))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/base\fix-cm.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1enc.def))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty)
+)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty)
+
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
+ftex.def)
+No file main.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
+kii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
+base.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.
+cfg))
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx
+)) (C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\xinnan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(ra_repdet_sivp.tex
+Underfull \hbox (badness 1178) in paragraph at lines 5--6
+\OT1/cmr/m/n/10 Vehi-cle detec-tion in such imagery is dif-fi-cult
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+[1{C:/Users/xinnan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+
+Package natbib Warning: Citation `RepViT2024' on page 2 undefined on input line
+ 9.
+
+
+Package natbib Warning: Citation `FPN2017' on page 2 undefined on input line 9.
+
+
+
+Package natbib Warning: Citation `FCOS2019' on page 2 undefined on input line 9
+.
+
+
+Underfull \hbox (badness 3679) in paragraph at lines 9--10
+\OT1/cmr/m/n/10 RGB--thermal--event detec-tor built around a
+
+Underfull \hbox (badness 2119) in paragraph at lines 11--12
+[]\OT1/cmr/m/n/10 The claim bound-ary is inten-tion-ally nar-
+
+Underfull \hbox (badness 3333) in paragraph at lines 11--12
+\OT1/cmr/m/n/10 row. The reported AP50 and AP75 val-ues
+
+Package natbib Warning: Citation `VisDrone2018' on page 2 undefined on input li
+ne 24.
+
+
+Package natbib Warning: Citation `UAVDT2018' on page 2 undefined on input line
+24.
+
+
+Package natbib Warning: Citation `FasterRCNN2015' on page 2 undefined on input
+line 24.
+
+
+Package natbib Warning: Citation `RetinaNet2017' on page 2 undefined on input l
+ine 24.
+
+
+Package natbib Warning: Citation `FCOS2019' on page 2 undefined on input line 2
+4.
+
+
+Package natbib Warning: Citation `RepViT2024' on page 2 undefined on input line
+ 26.
+
+
+Package natbib Warning: Citation `FPN2017' on page 2 undefined on input line 26
+.
+
+
+Underfull \hbox (badness 1478) in paragraph at lines 26--27
+[]\OT1/cmr/m/n/10 The present work adopts an FCOS head
+
+Package natbib Warning: Citation `KAIST2015' on page 2 undefined on input line
+30.
+
+
+Package natbib Warning: Citation `FLIRADAS' on page 2 undefined on input line 3
+0.
+
+
+Package natbib Warning: Citation `LLVIP2021' on page 2 undefined on input line
+30.
+
+
+Package natbib Warning: Citation `DroneVehicle2021' on page 2 undefined on inpu
+t line 30.
+
+
+Package natbib Warning: Citation `Gallego2020EventSurvey' on page 2 undefined o
+n input line 30.
+
+
+Package natbib Warning: Citation `MVSEC2018' on page 2 undefined on input line
+30.
+
+
+Package natbib Warning: Citation `DSEC2021' on page 2 undefined on input line 3
+0.
+
+
+Package natbib Warning: Citation `Gen1Events' on page 2 undefined on input line
+ 30.
+
+
+Underfull \hbox (badness 1394) in paragraph at lines 30--31
+\OT1/cmr/m/n/10 Visible and ther-mal sens-ing have been com-
+
+Underfull \hbox (badness 1286) in paragraph at lines 30--31
+\OT1/cmr/m/n/10 strengths dif-fer across illu-mi-na-tion and heat-
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+[2]
+
+Package natbib Warning: Citation `CrossModalDistillation2016' on page 3 undefin
+ed on input line 32.
+
+
+Package natbib Warning: Citation `ModalityHallucination2016' on page 3 undefine
+d on input line 32.
+
+
+Package natbib Warning: Citation `ModDrop2016' on page 3 undefined on input lin
+e 36.
+
+
+Package natbib Warning: Citation `HeMIS2016' on page 3 undefined on input line
+36.
+
+
+Package natbib Warning: Citation `Recht2019ImageNet' on page 3 undefined on inp
+ut line 42.
+
+
+Package natbib Warning: Citation `Northcutt2021LabelErrors' on page 3 undefined
+ on input line 42.
+
+
+Package natbib Warning: Citation `Kapoor2023Leakage' on page 3 undefined on inp
+ut line 42.
+
+
+Package natbib Warning: Citation `TorchvisionFCOS' on page 3 undefined on input
+ line 52.
+
+
+LaTeX Warning: Reference `fig:fig-1-overall-architecture-and-training-inference
+-flow' on page 3 undefined on input line 54.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+[3]
+Underfull \hbox (badness 6608) in paragraph at lines 69--70
+\OT1/cmr/m/n/10 mal and event inputs each use a cor-re-
+
+Overfull \hbox (22.33174pt too wide) detected at line 74
+[][][][] \OT1/cmr/m/n/10 = [] [] \OML/cmm/m/it/10.03749 ;
+
+Underfull \hbox (badness 1521) in paragraph at lines 89--90
+[]\OT1/cmr/m/n/10 The paper reports results on this locally
+
+Underfull \hbox (badness 1264) in paragraph at lines 93--94
+\OT1/cmr/m/n/10 match in train-ing, cor-re-spond-ing to 0.072927
+
+LaTeX Warning: Reference `fig:fig-2-component-disjoint-split-audit-workflow' on
+ page 4 undefined on input line 95.
+
+
+Underfull \hbox (badness 4168) in paragraph at lines 95--96
+[]\OT1/cmr/m/n/10 The active evi-dence uses a frozen V40
+(../tables/Table_1_dataset_and_clean_split.tex)
+
+LaTeX Warning: Reference `tab:implementation-and-reproducibility-settings' on p
+age 4 undefined on input line 115.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+[4] (../tables/Table_2_implementation_and_reproducibility.tex)
+
+LaTeX Warning: Reference `tab:v41-three-seed-interim-devval' on page 5 undefine
+d on input line 126.
+
+
+Underfull \hbox (badness 2521) in paragraph at lines 126--127
+\OT1/cmr/m/n/10 reports seed-level results, paired deltas, and
+
+Underfull \hbox (badness 1226) in paragraph at lines 128--129
+\OT1/cmr/m/n/10 Pre-ci-sion improves on aver-age by $+0\OML/cmm/m/it/10.03749 :
+\OT1/cmr/m/n/10 011629$,
+
+Underfull \hbox (badness 1430) in paragraph at lines 130--131
+[]\OT1/cmr/m/n/10 These results sup-port the reliability-aware
+
+Underfull \hbox (badness 1019) in paragraph at lines 130--131
+\OT1/cmr/m/n/10 col. They do not con-sti-tute independent-test,
+(../tables/Table_8_three_seed_interim_devval.tex)
+
+LaTeX Warning: Reference `tab:v41-three-seed-interim-devval' on page 5 undefine
+d on input line 136.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+\OT1/cmr/m/n/10 Earlier project arti-facts include RGB-only
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+\OT1/cmr/m/n/10 external-baseline, effi-ciency, reliability-weight,
+
+Underfull \hbox (badness 6220) in paragraph at lines 136--137
+\OT1/cmr/m/n/10 syn-thetic miss-ing-ness, and qualitative-review
+
+Underfull \hbox (badness 1082) in paragraph at lines 138--139
+\OT1/cmr/m/n/10 be read as zero-channel stress tests and not
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+[5]
+Underfull \hbox (badness 2229) in paragraph at lines 174--175
+\OT1/cmr/m/n/10 claim. By using a frozen component-disjoint
+
+Underfull \hbox (badness 1584) in paragraph at lines 180--181
+\OT1/cmr/m/n/10 sep-a-rate the causal con-tri-bu-tions of sep-a-rate
+
+Underfull \hbox (badness 1496) in paragraph at lines 180--181
+\OT1/cmr/m/n/10 chan-nel removal, where reported in aux-il-iary
+
+Underfull \hbox (badness 1038) in paragraph at lines 180--181
+\OT1/cmr/m/n/10 mate-rial, should be inter-preted only as zero-
+
+Underfull \hbox (badness 5133) in paragraph at lines 182--183
+\OT1/cmr/m/n/10 fund-ing, con-flicts, con-tri-bu-tions, acknowl-edg-
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+[6]
+Underfull \hbox (badness 3758) in paragraph at lines 186--187
+\OT1/cmr/m/n/10 RA-RepDet demon-strates that a lightweight
+) (related_work_literature_expansion.tex
+Underfull \hbox (badness 1360) in paragraph at lines 188--2
+\OT1/cmr/m/n/10 validation-only assess-ment of tri-modal fusion
+
+Underfull \hbox (badness 2707) in paragraph at lines 6--7
+\OT1/cmr/m/n/10 lead-ing computer-vision and machine-learning
+
+Package natbib Warning: Citation `Liu2020GenericOD' on page 7 undefined on inpu
+t line 10.
+
+
+Package natbib Warning: Citation `Zhao2019ODReview' on page 7 undefined on inpu
+t line 10.
+
+
+Package natbib Warning: Citation `Zou2023OD20Years' on page 7 undefined on inpu
+t line 10.
+
+
+Package natbib Warning: Citation `Cheng2016RSODSurvey' on page 7 undefined on i
+nput line 10.
+
+
+Package natbib Warning: Citation `Zhu2017DLRemoteSensing' on page 7 undefined o
+n input line 10.
+
+
+Package natbib Warning: Citation `Ma2019DLRemoteSensing' on page 7 undefined on
+ input line 10.
+
+
+Package natbib Warning: Citation `Deng2018MultiscaleRSOD' on page 7 undefined o
+n input line 10.
+
+
+Package natbib Warning: Citation `Wu2022UAVSurvey' on page 7 undefined on input
+ line 10.
+
+
+Package natbib Warning: Citation `FasterRCNN2015' on page 7 undefined on input
+line 12.
+
+
+Package natbib Warning: Citation `SSD2016' on page 7 undefined on input line 12
+.
+
+
+Package natbib Warning: Citation `YOLO2016' on page 7 undefined on input line 1
+2.
+
+
+Package natbib Warning: Citation `FPN2017' on page 7 undefined on input line 12
+.
+
+
+Package natbib Warning: Citation `RetinaNet2017' on page 7 undefined on input l
+ine 12.
+
+
+Package natbib Warning: Citation `FCOS2019' on page 7 undefined on input line 1
+2.
+
+
+Package natbib Warning: Citation `DeformableConv2017' on page 7 undefined on in
+put line 12.
+
+
+Package natbib Warning: Citation `ATSS2020' on page 7 undefined on input line 1
+2.
+
+
+Package natbib Warning: Citation `DETR2020' on page 7 undefined on input line 1
+2.
+
+
+Package natbib Warning: Citation `DeformableDETR2021' on page 7 undefined on in
+put line 12.
+
+
+Package natbib Warning: Citation `DINO2023' on page 7 undefined on input line 1
+2.
+
+
+Package natbib Warning: Citation `DOTA2018' on page 7 undefined on input line 1
+2.
+
+
+Package natbib Warning: Citation `VisDrone2018' on page 7 undefined on input li
+ne 12.
+
+
+Package natbib Warning: Citation `UAVDT2018' on page 7 undefined on input line
+12.
+
+
+Package natbib Warning: Citation `Baltrusaitis2019MMLSurvey' on page 7 undefine
+d on input line 16.
+
+
+Package natbib Warning: Citation `Ramachandram2017DeepMultimodal' on page 7 und
+efined on input line 16.
+
+
+Package natbib Warning: Citation `Li2013GuidedFiltering' on page 7 undefined on
+ input line 16.
+
+
+Package natbib Warning: Citation `Ma2019InfraredSurvey' on page 7 undefined on
+input line 16.
+
+
+Package natbib Warning: Citation `Li2019DenseFuse' on page 7 undefined on input
+ line 16.
+
+
+Package natbib Warning: Citation `Ma2019FusionGAN' on page 7 undefined on input
+ line 16.
+
+
+Package natbib Warning: Citation `Zhang2020IFCNN' on page 7 undefined on input
+line 16.
+
+
+Package natbib Warning: Citation `Li2021RFNNest' on page 7 undefined on input l
+ine 16.
+
+
+Package natbib Warning: Citation `Xu2022U2Fusion' on page 7 undefined on input
+line 16.
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 16--17
+\OT1/cmr/m/n/10 co-learning as dif-fer-ent tech-ni-cal prob-lems [\OT1/cmr/bx/n
+/10.03749 ?
+
+Package natbib Warning: Citation `Gallego2022EventSurvey' on page 7 undefined o
+n input line 18.
+
+
+Package natbib Warning: Citation `Mueggler2017EventDataset' on page 7 undefined
+ on input line 18.
+
+
+Package natbib Warning: Citation `Zhu2018MVSEC' on page 7 undefined on input li
+ne 18.
+
+
+Package natbib Warning: Citation `Gehrig2021DSEC' on page 7 undefined on input
+line 18.
+
+
+Package natbib Warning: Citation `KAIST2015' on page 7 undefined on input line
+18.
+
+
+Package natbib Warning: Citation `LLVIP2021ICCVW' on page 7 undefined on input
+line 18.
+
+
+Package natbib Warning: Citation `DroneVehicle2021ICCVW' on page 7 undefined on
+ input line 18.
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 18--19
+\OT1/cmr/m/n/10 chan-nel and there-fore makes no claim about
+
+Package natbib Warning: Citation `ModDrop2016' on page 7 undefined on input lin
+e 22.
+
+
+Package natbib Warning: Citation `HeMIS2016' on page 7 undefined on input line
+22.
+
+
+Package natbib Warning: Citation `CrossModalDistillation2016' on page 7 undefin
+ed on input line 22.
+
+
+Package natbib Warning: Citation `ModalityHallucination2016' on page 7 undefine
+d on input line 22.
+
+
+Package natbib Warning: Citation `Srivastava2014Dropout' on page 7 undefined on
+ input line 22.
+
+
+Package natbib Warning: Citation `Everingham2010VOC' on page 7 undefined on inp
+ut line 22.
+
+
+Package natbib Warning: Citation `Russakovsky2015ImageNet' on page 7 undefined
+on input line 22.
+
+
+Package natbib Warning: Citation `Geiger2013KITTI' on page 7 undefined on input
+ line 22.
+
+
+Package natbib Warning: Citation `Cawley2010JMLR' on page 7 undefined on input
+line 22.
+
+
+Package natbib Warning: Citation `Kapoor2023Patterns' on page 7 undefined on in
+put line 22.
+
+
+Package natbib Warning: Citation `Northcutt2021LabelErrors' on page 7 undefined
+ on input line 22.
+
+
+Package natbib Warning: Citation `Recht2019ImageNet' on page 7 undefined on inp
+ut line 22.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--23
+\OT1/cmr/m/n/10 The missing-modality inter-ven-tion in this
+
+Underfull \hbox (badness 1796) in paragraph at lines 22--23
+\OT1/cmr/m/n/10 manuscript is related to broader mul-ti-modal
+
+Underfull \hbox (badness 1442) in paragraph at lines 22--23
+\OT1/cmr/m/n/10 rather than a com-plete physical-sensor-failure
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+[7]
+
+Package natbib Warning: Citation `Krizhevsky2017CACM' on page 8 undefined on in
+put line 24.
+
+
+Package natbib Warning: Citation `Khan2020CNN' on page 8 undefined on input lin
+e 24.
+
+
+Package natbib Warning: Citation `Sze2017EfficientDNN' on page 8 undefined on i
+nput line 24.
+
+
+Package natbib Warning: Citation `Cheng2018CompressionSurvey' on page 8 undefin
+ed on input line 24.
+
+
+Package natbib Warning: Citation `MobileNetV2_2018' on page 8 undefined on inpu
+t line 24.
+
+
+Package natbib Warning: Citation `EfficientNet2019' on page 8 undefined on inpu
+t line 24.
+
+
+Package natbib Warning: Citation `MobileNetV3_2019' on page 8 undefined on inpu
+t line 24.
+
+
+Package natbib Warning: Citation `RepVGG2021' on page 8 undefined on input line
+ 24.
+
+
+Package natbib Warning: Citation `RepViT2024CVPR' on page 8 undefined on input
+line 24.
+
+
+Package natbib Warning: Citation `Khan2022TransformersVision' on page 8 undefin
+ed on input line 24.
+
+
+Package natbib Warning: Citation `Han2023VisionTransformer' on page 8 undefined
+ on input line 24.
+
+
+Package natbib Warning: Citation `ViT2021' on page 8 undefined on input line 24
+.
+
+
+Package natbib Warning: Citation `Swin2021' on page 8 undefined on input line 2
+4.
+
+
+Package natbib Warning: Citation `Shorten2019Augmentation' on page 8 undefined
+on input line 24.
+
+
+Package natbib Warning: Citation `Alzubaidi2021DLReview' on page 8 undefined on
+ input line 24.
+
+
+Package natbib Warning: Citation `Minaee2022SegmentationSurvey' on page 8 undef
+ined on input line 24.
+
+
+Package natbib Warning: Citation `Voulodimos2018DLVision' on page 8 undefined o
+n input line 24.
+
+)
+Underfull \hbox (badness 2790) in paragraph at lines 28--31
+\OT1/cmr/m/n/10 The expanded bib-li-og-ra-phy con-tains 37 for-
+
+Package hyperref Warning: Difference (3) between bookmark levels is greater
+(hyperref)                than one, level fixed on input line 35.
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater
+(hyperref)                than one, level fixed on input line 38.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+ []\OT1/cmr/bx/n/10.03749 Competing Inter-ests.[][] \OT1/cmr/m/n/10 [COM-PET-IN
+G
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 INTER-ESTS STATE-MENT - AUTHOR
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+ []\OT1/cmr/bx/n/10.03749 Author Con-tri-bu-tions.[][] \OT1/cmr/m/n/10 [AUTHOR
+CON-
+
+Underfull \hbox (badness 1360) in paragraph at lines 41--42
+\OT1/cmr/m/n/10 TRI-BU-TIONS - AUTHOR CON-FIR-MA-TION
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+ []\OT1/cmr/bx/n/10.03749 Acknowledgments.[][] \OT1/cmr/m/n/10 [ACKNOWL-
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+\OT1/cmr/m/n/10 EDG-MENTS OR NONE - AUTHOR
+
+Underfull \hbox (badness 2521) in paragraph at lines 47--48
+ []\OT1/cmr/bx/n/10.03749 Data Avail-abil-ity.[][] \OT1/cmr/m/n/10 [DATA AVAIL-
+ABIL-ITY
+
+Underfull \hbox (badness 1776) in paragraph at lines 47--48
+\OT1/cmr/m/n/10 STATE-MENT - AUTHOR CON-FIR-MA-TION
+No file main.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+[8]
+(E:\RepViT-main\runs\v41_q1_upgrade\sivp_alignment\pdflatex_full_build\main.aux
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)<C:/Users/xinnan/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/xinnan/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Use
+rs/xinnan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pf
+b><C:/Users/xinnan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmbx9.pfb><C:/Users/xinnan/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmmi10.pfb><C:/Users/xinnan/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmmi7.pfb><C:/Users/xinnan/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/xinnan/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/xinnan/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/xinnan/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/x
+innan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
+/Users/xinnan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8
+.pfb><C:/Users/xinnan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr9.pfb><C:/Users/xinnan/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb><C:/Users/xinnan/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmsy7.pfb><C:/Users/xinnan/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on E:\RepViT-main\runs\v41_q1_upgrade\sivp_alignment\pdflatex_fu
+ll_build\main.pdf (8 pages, 253446 bytes).
+Transcript written on E:\RepViT-main\runs\v41_q1_upgrade\sivp_alignment\pdflate
+x_full_build\main.log.
+pdflatex.exe : pdflatex: major issue: So far, you have not checked for MiKTeX updates.
+At line:13 char:1
++ & pdflatex -interaction=nonstopmode -halt-on-error -output-directory  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (pdflatex: major...MiKTeX updates.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError

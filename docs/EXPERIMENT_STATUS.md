@@ -4,11 +4,11 @@ Generated: 2026-07-09
 
 ## Current Status
 
-`V41_SIVP_ALIGNMENT_PACKAGE_PREPARED_FOR_CODEX`
+`V41_SIVP_MANUSCRIPT_ALIGNMENT_COMPLETE`
 
-The V41 three-seed interim development-validation evidence is consolidated, and a manuscript-alignment package has been prepared for Codex to apply to the LaTeX source and run local preflight/compile checks.
+The V41 three-seed interim development-validation evidence is consolidated, and the active SIVP LaTeX narrative has been aligned to the validation-only evidence state.
 
-No new training, evaluation, guard/test access, checkpoint loading, raw data access, prediction-cache access, or manuscript rewriting was performed after the interim consolidation package. The assistant prepared safe review/table/handoff inputs and a Codex task.
+No new training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed. Manuscript edits were limited to SIVP LaTeX alignment and local preflight/compile recording.
 
 ## Evidence Inputs
 
@@ -56,12 +56,24 @@ Allowed wording: three-seed interim development-validation descriptive evidence 
 
 Disallowed wording: independent test, external generalization, statistical significance, manuscript-final aggregate, optimal dropout, calibrated sensor reliability, or physical sensor-fault robustness.
 
-## Work intentionally left for Codex/local environment
+## SIVP manuscript alignment completed
 
-- Apply replacement text to `submission/sivp/tex/ra_repdet_sivp.tex`.
-- Insert `Table_8_three_seed_interim_devval.tex` or equivalent values into the active main results table.
-- Run preflight and, if available, local LaTeX compile.
-- Record residual blockers for final artwork, author metadata, declarations, data/code availability, public archive/DOI, and TriAir provider/license/version details.
+- Updated `submission/sivp/tex/ra_repdet_sivp.tex` so the active narrative uses reliability-aware `p=0.15` versus matched early fusion across seed0/seed1/seed2 on the frozen V40 component-disjoint development-validation split.
+- Updated `submission/sivp/tex/main.tex`, root `main.tex`, and `main_sivp_snjnl.tex` abstracts/keywords so active entry points match the V41 validation-only claim boundary.
+- Inserted `submission/sivp/tables/Table_8_three_seed_interim_devval.tex` as the active main results table.
+- Recorded pre-edit and post-edit claim scans under `runs/v41_q1_upgrade/sivp_alignment/`.
+- Post-edit body scan: `p=0.20`, `R4`, `block64`, `guard16`, and `optimal` are zero; remaining high-risk terms occur only as limitation/claim-boundary wording.
+- `python scripts/preflight_submission.py --root . --allow-placeholders`: PASS with expected warnings for author placeholders and missing final figure assets.
+- Local LaTeX: direct MiKTeX `pdflatex` pass generated an 8-page PDF during checking, confirming TeX/table syntax integration. Build products were removed after logging.
+- `latexmk` is unavailable because MiKTeX lacks Perl; full BibTeX multi-pass compile timed out and remains a local toolchain/bibliography closure item.
+
+## Work intentionally left for final submission
+
+- Final artwork for Fig. 1--6.
+- Author metadata, declarations, funding, conflicts, contributions, acknowledgments, and data/code availability.
+- Public archive/DOI and release metadata.
+- TriAir provider/license/version/redistribution/synchronization details.
+- Full BibTeX/cross-reference closure after local toolchain repair.
 
 ## Remaining scientific limitations
 

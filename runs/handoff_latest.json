@@ -4,7 +4,7 @@
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
     "current_task": "V41 SIVP manuscript alignment with three-seed validation-only evidence",
-    "status": "HANDOFF_TO_CODEX",
+    "status": "COMPLETE",
     "commit_message": "submission: align SIVP draft with V41 validation-only evidence"
   },
   "blocker": {
@@ -12,31 +12,29 @@
     "path": "docs/TASK_BLOCKER.md"
   },
   "assistant_completed": [
-    "Prepared V41 SIVP claim ledger",
-    "Prepared V41 replacement text",
-    "Prepared V41 manuscript alignment plan",
-    "Prepared Table_8_three_seed_interim_devval.tex",
-    "Updated docs/NEXT_TASK.md for Codex",
+    "Aligned submission/sivp/tex/ra_repdet_sivp.tex to V41 validation-only evidence",
+    "Aligned submission/sivp/tex/main.tex plus root main.tex/main_sivp_snjnl.tex abstracts and keywords",
+    "Inserted Table_8_three_seed_interim_devval.tex as the active main results table",
+    "Recorded pre-edit and post-edit claim scans",
+    "Recorded post-edit claim scan review",
+    "Ran preflight with placeholders allowed: PASS with expected warnings",
+    "Ran local MiKTeX pdflatex: PASS first pass; build products removed after logging",
+    "Recorded latexmk wrapper and BibTeX residual toolchain limitations",
     "Updated docs/EXPERIMENT_STATUS.md",
     "Updated runs/handoff_latest.md/json"
   ],
-  "codex_next": {
-    "target": "submission/sivp/tex/ra_repdet_sivp.tex",
-    "read_first": [
-      "submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md",
-      "submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md",
-      "submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md",
-      "submission/sivp/tables/Table_8_three_seed_interim_devval.tex",
-      "runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md"
-    ],
-    "required_local_work": [
-      "Rewrite active manuscript narrative from R4 p=0.20 seed0/2 block64_guard16 to reliability p=0.15 seed0/1/2 V40 development-validation",
-      "Insert Table_8 or equivalent values as the active main results table",
-      "Run claim scans",
-      "Run python scripts/preflight_submission.py --root . --allow-placeholders",
-      "Compile LaTeX if local environment is available",
-      "Update status and handoff"
-    ]
+  "sivp_alignment": {
+    "status": "COMPLETE",
+    "active_claim": "reliability-aware p=0.15 versus matched early fusion, seed0/seed1/seed2, frozen V40 component-disjoint development-validation split",
+    "claim_boundary": "three-seed interim development-validation descriptive evidence only",
+    "pre_edit_claim_scan": "runs/v41_q1_upgrade/sivp_alignment/pre_edit_claim_scan.txt",
+    "post_edit_claim_scan": "runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan.txt",
+    "post_edit_claim_scan_review": "runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan_review.md",
+    "preflight_allow_placeholders": "runs/v41_q1_upgrade/sivp_alignment/preflight_allow_placeholders.txt",
+    "preflight_result": "PASS with expected placeholder/final-figure warnings",
+    "pdflatex_result": "PASS first pass; generated 8-page PDF during local check; build products removed after logging",
+    "latexmk_result": "Unavailable because MiKTeX lacks Perl",
+    "bibtex_result": "Full BibTeX multi-pass compile timed out and remains a local toolchain/bibliography closure item"
   },
   "interim_devval": {
     "status": "V41_INTERIM_DEVVAL_CONSOLIDATION_COMPLETE",
@@ -49,11 +47,12 @@
       {"metric": "ap75", "mean_delta": 0.06465725104, "sample_sd_delta": 0.016414562315, "n_seed_pairs": 3}
     ]
   },
-  "assistant_could_not_complete": [
-    "Full LaTeX source rewrite and compile in local SIVP template environment",
-    "Final artwork verification",
-    "Author metadata/declaration finalization",
-    "TriAir provider/license/version/redistribution/synchronization verification",
-    "New experiments, independent test, COCO metrics, causal ablations, label-quality review"
+  "residual_submission_blockers": [
+    "Final Fig. 1-6 assets are missing",
+    "Author metadata, affiliations, emails, funding, competing interests, contributions, acknowledgments, and data availability remain placeholders",
+    "Public release/archive DOI and data-governance facts remain unresolved",
+    "TriAir provider/version/license/redistribution/synchronization verification remains author-confirmation work",
+    "Label-quality review remains incomplete",
+    "Full BibTeX/cross-reference closure requires local toolchain repair"
   ]
 }
