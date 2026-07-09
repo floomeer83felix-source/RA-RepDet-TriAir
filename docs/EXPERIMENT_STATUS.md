@@ -4,11 +4,11 @@ Generated: 2026-07-09
 
 ## Current Status
 
-`V44_SIVP_SUBMISSION_PREFLIGHT_COMPLETE`
+`V45_STRICT_REVIEW_REVISION_COMPLETE`
 
-The V42 locked held-out guard evaluation has been integrated into the active SIVP manuscript, and a V44 submission preflight has been completed. The paper is no longer described as validation-only. The active claim is now: three-seed component-disjoint development-validation evidence plus a locked same-dataset TriAir held-out guard evaluation using fixed seed0/seed1/seed2 checkpoints.
+A strict simulated SIVP reviewer pass has been completed after V44 preflight. The manuscript remains based on component-disjoint development-validation plus locked same-dataset TriAir held-out guard evaluation. The paper is not described as validation-only, and the strict reviewer pass further tightened the abstract to state that the held-out guard is same-dataset evidence, that the held-out gains are smaller than development-validation gains, and that per-seed held-out F1/AP75 deltas are mixed.
 
-No new training, hyperparameter tuning, checkpoint selection, split modification, robustness experiment, profiling run, external-data evaluation, or metric recomputation was performed during V44. The task performed manuscript-facing claim scan, template compile preflight, render verification, and status/handoff updates only.
+No new training, hyperparameter tuning, checkpoint selection, split modification, robustness experiment, profiling run, external-data evaluation, or metric recomputation was performed during V45. The task performed reviewer-style critique, manuscript wording revisions, template compile, render verification, and status/handoff updates only.
 
 ## Evidence Inputs
 
@@ -17,35 +17,23 @@ No new training, hyperparameter tuning, checkpoint selection, split modification
 - V42 summary: `runs/v42_locked_guard_heldout/heldout_guard_summary.md/json`.
 - V42 claim boundary: `runs/v42_locked_guard_heldout/heldout_guard_claim_boundary.md`.
 - V44 preflight report: `runs/v44_submission_preflight/V44_SUBMISSION_PREFLIGHT_REPORT.md`.
-- Guard source manifest: `runs/component_disjoint_v40/guard.txt`.
-- Guard rows: 837 images.
-- Guard GT boxes: 1264.
-- Guard normalized LF SHA256: `9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e`.
-- Guard raw file SHA256 recorded by evaluator: `0cf3270c0a73d03caf8d698bb4e9ddb0adba46e688c52d8589f57ea12488881f`.
-- Evaluator: `rarepdet/eval_map.py` SHA256 `94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715`.
-- Metrics helper: `rarepdet/metrics.py` SHA256 `6ffa798647376594befc45f89ebb1aa1a5fbe3b50e5f484e7804c22bac13b081`.
+- V45 strict review report: `submission/sivp/review/STRICT_REVIEWER_REPORT_V45.md`.
+- V45 compile report: `runs/v45_strict_review/STRICT_REVIEW_AND_COMPILE_REPORT.md`.
 
-## Manuscript updates already integrated
+## V45 manuscript updates
 
-- Updated `submission/sivp/tex/ra_repdet_sivp.tex` to include V42 held-out guard evidence in the Introduction, protocol, Results, Discussion, Limitations, and Conclusion.
-- Updated `submission/sivp/tex/main.tex`, root `main.tex`, and `main_sivp_snjnl.tex` title/abstract/keywords to describe component-disjoint development-validation plus locked held-out guard evaluation.
-- Created `submission/sivp/tables/Table_9_locked_heldout_guard.tex` as the active held-out guard result table.
-- Updated `submission/sivp/tables/Table_1_dataset_and_clean_split.tex` to include held-out guard images and boxes.
-- Updated `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex` to include fixed-checkpoint guard evaluation.
-- Updated `submission/sivp/tex/related_work_literature_expansion.tex` to match the V43/V44 claim boundary and avoid overlong citation-key lines in template preflight.
-- Updated `submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md` to reflect the stronger V42 evidence state.
+- Added `submission/sivp/review/STRICT_REVIEWER_REPORT_V45.md`.
+- Tightened the abstract in `submission/sivp/tex/main.tex`, root `main.tex`, and root `main_sivp_snjnl.tex`.
+- The abstract now explicitly states that the 837-image guard check is a same-dataset evaluation and that the held-out guard mean gains are smaller with mixed per-seed F1/AP75 deltas.
+- The active claim boundary remains component-disjoint development-validation plus locked same-dataset held-out TriAir guard evaluation.
 
-## V44 preflight results
+## V45 compile and render verification
 
-- Claim scan: no active `validation-only` wording remains in the checked manuscript text.
-- No positive claim of external generalization, statistical significance, optimal dropout, COCO AP50:95 performance, or real sensor-failure robustness was found.
-- Remaining restricted terms occur as explicit cautionary/negative claim-boundary statements.
-- Springer-style template compile: completed in the assistant sandbox using `sn-jnl.cls` and `sn-basic.bst` from the previously provided SIVP source package.
-- BibTeX/cross-reference closure: completed in the sandbox using `/usr/bin/bibtex.original` because the sandbox `bibtex` symlink is broken.
-- Output PDF: `RA_RepDet_SIVP_V44_submission_preflight_snjnl.pdf`.
+- Output PDF: `RA_RepDet_SIVP_V45_strict_review_revised_snjnl.pdf`.
 - Page count: 10 pages.
-- Render verification: 10 pages rendered; no obvious page-level clipping or broken pages observed.
-- Minor residual layout warning: one overfull hbox of approximately 22.33 pt around a displayed equation/table-area line.
+- Springer-style template compile completed in the assistant sandbox using `sn-jnl.cls` and `sn-basic.bst` from the previously provided SIVP source package.
+- BibTeX/cross-reference closure completed using `/usr/bin/bibtex.original` because the sandbox `bibtex` symlink is broken.
+- Render verification: 10 pages rendered with no obvious page-level clipping or broken pages observed.
 
 ## Development-validation descriptive summary
 
