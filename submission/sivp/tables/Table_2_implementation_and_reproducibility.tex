@@ -3,18 +3,20 @@
 \toprule
 Item & Value & Source & Notes \\
 \midrule
-Detector family & RepViT-M0.9 + FPN + FCOS & rarepdet/models/ & Torchvision FCOS head with custom backbone. \\
-Input representation & 5 channels: RGB, thermal, event & datasets/triair\_dataset.py & Images are emitted as CxHxW float32 tensors. \\
-Early-fusion baseline & Conv2d(5,3,1) -> RepViT -> FPN -> FCOS & rarepdet/models/early\_fusion\_fcos.py & Matched tri-modal baseline R0. \\
-Reliability fusion & RGB/T/E stems -> softmax alpha -> Conv2d(16,3,1) & rarepdet/models/reliability\_fusion\_fcos.py & Used by R1/R2/R4. \\
-FPN input channels & [48, 96, 192, 384] & tools/check\_repvit\_features.py & RepViT-M0.9 feature map channels. \\
-FPN output channels & 128 & rarepdet/models/repvit\_fpn\_backbone.py & Shared by controlled variants. \\
-Class handling & TriAir class 0 -> torchvision label 1 & rarepdet/train\_early\_fusion.py & Background remains label 0. \\
-Image size & 640 & runs/*/config.txt & Used for controlled clean-split runs. \\
-Training length & 50 epochs & runs/clean\_block64g16\_convergence.csv & Convergence audit is descriptive. \\
-Controlled seeds & 0 and 2 & runs/seed\_reproducibility\_smoke.md & Replication only, no statistical significance claim. \\
-AP implementation & project-local AP50/AP75 & rarepdet/eval\_map.py & No pycocotools dependency. \\
-YOLO baseline & YOLO11n RGB-only & runs/yolo11n\_rgb\_baseline\_protocol.md & External comparison, not architecture-only ablation. \\
+Detector stack & RepViT-M0.9 + FPN + FCOS & Model code & Shared by active comparison. \\
+Input representation & 5 channels: RGB, thermal, event & Dataset loader & CxHxW float32 tensors. \\
+Matched early fusion & Conv2d(5,3,1) -> RepViT -> FPN -> FCOS & Model code & Active baseline. \\
+Reliability-aware fusion & RGB/T/E stems -> softmax alpha -> Conv2d(16,3,1) & Model code & Active p=0.15 comparison. \\
+FPN input channels & [48, 96, 192, 384] & RepViT feature check & RepViT-M0.9 feature map channels. \\
+FPN output channels & 128 & Backbone wrapper & Shared by active comparison. \\
+Class handling & TriAir class 0 -> torchvision label 1 & Training code & Background remains label 0. \\
+Image size & 640 & Run configs & Used for active development-validation runs. \\
+Training length & 50 epochs & Run configs & Best checkpoint selected by validation AP50. \\
+Active seeds & 0, 1, and 2 & V40/V41 reports & Three paired development-validation seeds. \\
+Modality dropout & p=0.15 & V41 source lock & Reliability-aware active configuration. \\
+Evaluation convention & threshold 0.001, NMS 0.6, max 100 detections/image & Evaluation source lock & Shared project-local evaluator. \\
+AP implementation & project-local AP50/AP75 & eval\_map.py & Not COCO AP50:95. \\
+Guard/test access & none & Handoff/status records & No independent test claim. \\
 \bottomrule
 \end{tabular}%
 }
