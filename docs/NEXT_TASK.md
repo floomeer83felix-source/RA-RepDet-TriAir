@@ -2,19 +2,18 @@
 
 ## Title
 
-V41 SIVP manuscript alignment with three-seed validation-only evidence.
+V46 COCO metrics and causal fusion ablations.
 
 ## Goal
 
-Revise the SIVP LaTeX manuscript so its active narrative uses the current V41 evidence state:
+Strengthen the SIVP evidence package by adding project-consistent COCO-style AP@[0.50:0.95] evaluation and causal fusion ablations, without using held-out guard results for model selection or tuning.
 
-- matched early fusion vs reliability-aware fusion with modality dropout `p=0.15`;
-- seed0, seed1, and seed2;
-- frozen V40 component-disjoint development-validation split;
-- three-seed interim development-validation descriptive summary;
-- project-local AP50/AP75, not COCO AP50:95.
+The task has two parts:
 
-This is a manuscript-alignment task only. Do not run training or new evaluation. Do not create new metrics. Do not touch guard/test data. Do not make the manuscript claim independent testing, external generalization, statistical significance, final proof, optimal dropout, calibrated sensor reliability, or physical sensor-failure robustness.
+1. Add COCO-style AP metrics for the already fixed matched early and reliability-aware `p=0.15` seed0/seed1/seed2 checkpoints on the frozen V40 development-validation manifest and the locked V40 same-dataset guard manifest.
+2. Run a minimal causal ablation package to separate, as much as practical, the contributions of stems, dynamic softmax gating, and modality dropout.
+
+This is an evidence-generation task. Do not modify the SIVP manuscript text unless explicitly required for recording generated tables after the evidence is complete. Do not use guard results to tune, select, or discard models.
 
 ## Read First
 
@@ -22,150 +21,208 @@ This is a manuscript-alignment task only. Do not run training or new evaluation.
 2. `PROJECT_PROFILE.md`
 3. `docs/PROJECT_CONTEXT.md`
 4. `docs/EXPERIMENT_STATUS.md`
-5. `docs/V41_INTERIM_DEVVAL_STATUS.md`
-6. `docs/TASK_BLOCKER.md`
+5. `docs/TASK_BLOCKER.md`
+6. `docs/NEXT_TASK.md`
 7. `runs/handoff_latest.md`
-8. `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
-9. `runs/v41_q1_upgrade/interim_devval/interim_claim_boundary.md`
-10. `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md`
-11. `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md`
-12. `submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md`
-13. `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
-14. `submission/sivp/tex/ra_repdet_sivp.tex`
-15. `submission/sivp/tex/main.tex`
+8. `runs/handoff_latest.json`
+9. `runs/v42_locked_guard_heldout/heldout_guard_source_lock.md`
+10. `runs/v42_locked_guard_heldout/heldout_guard_summary.md`
+11. `runs/v42_locked_guard_heldout/heldout_guard_claim_boundary.md`
+12. `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
+13. `runs/v41_q1_upgrade/interim_devval/interim_claim_boundary.md`
+14. `submission/sivp/review/STRICT_REVIEWER_REPORT_V45.md`
+15. `runs/v45_strict_review/STRICT_REVIEW_AND_COMPILE_REPORT.md`
+16. `rarepdet/eval_map.py`
+17. `rarepdet/metrics.py`
+18. Existing training/evaluation entry scripts and configs needed to reproduce the fixed V40/V41 runs.
 
 ## Frozen Assets
 
-- V41 interim dev-val package: `runs/v41_q1_upgrade/interim_devval/`.
-- V41 fresh seed1 completion commit: `5d839ae900849919189edff4bdd364f42c043b86`.
-- Latest assistant-prepared alignment package includes:
-  - `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
-  - `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md`
-  - `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md`
-  - `submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md`
-- Active quantitative values must come only from:
-  - `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.csv`
-  - `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
-  - `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.json`
-- Claim boundary: validation-only; three seed pairs only; no independent test; no COCO AP50:95; no causal ablation; no final submission proof.
+- Active development-validation split: frozen V40 component-disjoint development-validation manifest.
+- Locked same-dataset guard manifest: `runs/component_disjoint_v40/guard.txt`.
+- V42 guard source lock and claim boundary are frozen.
+- Existing fixed checkpoints for matched early and reliability-aware `p=0.15`, seed0/seed1/seed2, must remain unchanged.
+- Existing V40/V41/V42 result packages must remain immutable except for new V46 cross-reference reports.
+- Guard results must not be used for training, tuning, checkpoint reselection, threshold selection, dropout selection, or ablation selection.
 
 ## Allowed Files To Modify
 
 - `docs/NEXT_TASK.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `docs/TASK_BLOCKER.md`
-- `docs/V41_INTERIM_DEVVAL_STATUS.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/v41_q1_upgrade/sivp_alignment/**`
-- `submission/sivp/tex/ra_repdet_sivp.tex`
-- `submission/sivp/tex/main.tex` only if needed for table inclusion or compile wiring
-- `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
-- New review outputs under `submission/sivp/review/V41_*`
+- New directory: `runs/v46_coco_ablation/**`
+- New or modified reporting/evaluation scripts under `rarepdet/tools/**`
+- New or modified evaluation metric helpers under `rarepdet/metrics.py` or a new `rarepdet/coco_metrics.py` only if needed for COCO-style AP computation
+- New ablation config files under `configs/**` only if the repository already uses that config pattern
+- New review tables under `submission/sivp/tables/Table_10_*` or `Table_11_*` only after metrics are generated and source-locked
+- New review notes under `submission/sivp/review/V46_*`
 
 ## Forbidden Files To Modify
 
-- Any training, evaluation, metrics, data-loader, or model code outside a new review/reporting script if needed.
-- Existing V40/V39 result directories, manifests, source locks, checkpoints, or evidence packages.
-- Existing V41 seed1 evidence files under `runs/v41_q1_upgrade/seed1/**`.
-- Raw data, labels, checkpoints, prediction caches, images, `.npy` arrays, or guard/test files.
-- Figures or final artwork assets unless the user explicitly provides approved assets.
-- Bibliography facts, author metadata, declarations, funding, conflicts, contributions, acknowledgments, data/code availability, repository archive DOI, or TriAir license/provider details unless author-confirmed.
+- Raw data, labels, images, videos, `.npy` arrays, prediction caches not created by this task, secrets, or checkpoints.
+- Existing V40/V41/V42 source-lock files, manifests, metrics CSV/JSON/MD, or checkpoint hashes.
+- Existing training data splits or guard manifest.
+- Any model-selection result based on guard performance.
+- SIVP main manuscript narrative files unless the generated evidence is complete and the change is limited to adding a clearly bounded future-ready evidence table or note.
+- Repository default branch, release metadata, archive DOI, or public data-governance claims unless explicitly authorized by the user.
 
 ## Required Commands
 
-### 1. Inspect active manuscript claims
+### 1. Create V46 output directory and source lock
 
-Run text checks before editing:
-
-```powershell
-python - <<'PY'
-from pathlib import Path
-p=Path('submission/sivp/tex/ra_repdet_sivp.tex')
-text=p.read_text(encoding='utf-8')
-for s in ['p=0.20','R4','block64','guard16','independent test','external generalization','statistical significance','optimal','physical sensor']:
-    print(s, text.lower().count(s.lower()))
-PY
-```
-
-Record the output in `runs/v41_q1_upgrade/sivp_alignment/pre_edit_claim_scan.txt`.
-
-### 2. Apply V41 replacement text
-
-Use `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md` and `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md` to revise `submission/sivp/tex/ra_repdet_sivp.tex`.
-
-Minimum required manuscript changes:
-
-1. Replace active R4 p=0.20 / seed0,2 / block64_guard16 headline with reliability-aware `p=0.15` seed0/1/2 V40 component-disjoint development-validation wording.
-2. Replace or rewrite the contribution list so it matches V41 p=0.15 seed0/1/2 validation-only evidence.
-3. Insert `submission/sivp/tables/Table_8_three_seed_interim_devval.tex` as the active main results table, or integrate the exact same values into the active main result table.
-4. Rewrite Results so the active quantitative claim is the three-seed paired delta summary:
-   - F1 mean paired delta `+0.018524`, sample SD `0.006208`;
-   - AP50 mean paired delta `+0.016064`, sample SD `0.005699`;
-   - AP75 mean paired delta `+0.064657`, sample SD `0.016415`.
-5. Rewrite Discussion and Limitations to state validation-only, three seed pairs only, no independent test, no COCO AP50:95, no causal ablation, unresolved provenance, and incomplete label-quality review.
-6. Remove R4 p=0.20 and block64_guard16 from the active headline narrative. They may remain only if clearly labeled historical/provenance and not used as the main result.
-
-### 3. Run post-edit claim scan
-
-Run the same scan and save it to:
+Create:
 
 ```text
-runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan.txt
+runs/v46_coco_ablation/
 ```
 
-Explain any remaining high-risk terms in:
+Write a source lock before running new evaluation/training:
 
 ```text
-runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan_review.md
+runs/v46_coco_ablation/source_lock_v46.md
+runs/v46_coco_ablation/source_lock_v46.json
 ```
 
-### 4. Run preflight/compile checks
+The source lock must include:
 
-At minimum:
+- current commit SHA;
+- branch name;
+- training/dev-val/guard manifest paths and SHA256 values;
+- evaluator script SHA256 values;
+- checkpoint paths and SHA256 values for the six fixed baseline/main runs;
+- exact environment summary;
+- explicit statement that guard is not used for tuning or selection.
 
-```powershell
-python scripts/preflight_submission.py --root . --allow-placeholders
-```
+### 2. Add COCO-style AP@[0.50:0.95] evaluation
 
-If a local LaTeX environment is available, also compile the SIVP source and record the command and outcome. Save outputs under:
+Implement or reuse a project-local COCO-style AP routine that computes at least:
+
+- AP@[0.50:0.95] averaged over IoU thresholds 0.50:0.05:0.95;
+- AP50;
+- AP75;
+- per-threshold AP values if practical.
+
+Run it on the six fixed checkpoints:
+
+- matched early seed0/seed1/seed2;
+- reliability-aware `p=0.15` seed0/seed1/seed2.
+
+Evaluate both:
+
+- frozen V40 development-validation manifest;
+- locked V40 guard manifest.
+
+Save outputs:
 
 ```text
-runs/v41_q1_upgrade/sivp_alignment/
+runs/v46_coco_ablation/coco_devval_per_run.csv
+runs/v46_coco_ablation/coco_guard_per_run.csv
+runs/v46_coco_ablation/coco_devval_paired_deltas.csv
+runs/v46_coco_ablation/coco_guard_paired_deltas.csv
+runs/v46_coco_ablation/coco_metric_summary.md
+runs/v46_coco_ablation/coco_metric_summary.json
 ```
 
-Do not treat missing final artwork, author metadata, or external data-governance facts as solved. Record them as residual submission blockers.
+### 3. Run minimal causal ablations
+
+Run ablations on the frozen V40 development-validation protocol first. Do not evaluate ablation variants on guard until the dev-val ablation package and checkpoint-selection rule are frozen.
+
+Minimum ablation variants:
+
+1. `matched_early`: existing matched early fusion baseline.
+2. `ra_full_p015`: existing reliability-aware full model with modality dropout `p=0.15`.
+3. `ra_no_moddrop`: reliability-aware stems + dynamic softmax gate with modality dropout disabled.
+4. `ra_static_equal`: modality-specific stems with static equal-weight fusion, no dynamic gate.
+5. `ra_stems_concat_or_project`: modality-specific stems with a deterministic learned projection but no dynamic gate, if implementation is straightforward.
+6. `early_moddrop`: matched early fusion with training-time modality dropout, if implementation is straightforward and scientifically valid.
+
+For any ablation variant that is not feasible without risky architecture surgery, write a blocker note explaining why and skip only that variant. Do not invent results.
+
+Use seeds `0, 1, 2` if GPU/time allows. If GPU/time is insufficient, run seed0 first and write a partial-completion report with exact commands, runtime, and blocker details.
+
+Training rules:
+
+- Use the same training length, input size, optimizer, evaluator convention, and checkpoint-selection rule as the active V40/V41 comparison unless an explicit source-lock note explains why not.
+- Select best checkpoint only by development-validation AP50 or the pre-existing project rule; do not use guard.
+- After ablation checkpoints are frozen, optional guard evaluation may be run once and labelled as post-selection guard check.
+
+Save outputs:
+
+```text
+runs/v46_coco_ablation/ablation_train_commands.txt
+runs/v46_coco_ablation/ablation_devval_per_run.csv
+runs/v46_coco_ablation/ablation_devval_summary.md
+runs/v46_coco_ablation/ablation_devval_summary.json
+runs/v46_coco_ablation/ablation_guard_per_run.csv        # only if guard is run after freezing
+runs/v46_coco_ablation/ablation_guard_summary.md         # only if guard is run after freezing
+runs/v46_coco_ablation/ablation_guard_summary.json       # only if guard is run after freezing
+runs/v46_coco_ablation/ablation_claim_boundary.md
+```
+
+### 4. Claim scan and reporting
+
+Run a scan over all new V46 reports for prohibited overclaims:
+
+```text
+external generalization
+independent public benchmark
+statistical significance
+optimal dropout
+calibrated sensor reliability
+real sensor-fault robustness
+COCO proof
+```
+
+Save:
+
+```text
+runs/v46_coco_ablation/v46_claim_scan.txt
+runs/v46_coco_ablation/v46_claim_scan_review.md
+```
+
+### 5. Preflight checks
+
+Run appropriate tests/preflight commands for any changed code. At minimum, run a smoke test for the COCO AP routine on a tiny known input or one short prediction file if available.
+
+Save command outputs:
+
+```text
+runs/v46_coco_ablation/preflight_commands.txt
+runs/v46_coco_ablation/preflight_outputs.txt
+```
 
 ## Required Outputs
 
-- Updated `submission/sivp/tex/ra_repdet_sivp.tex`.
-- `runs/v41_q1_upgrade/sivp_alignment/pre_edit_claim_scan.txt`.
-- `runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan.txt`.
-- `runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan_review.md`.
-- `runs/v41_q1_upgrade/sivp_alignment/preflight_allow_placeholders.txt`.
-- Compile log if LaTeX is available, or `runs/v41_q1_upgrade/sivp_alignment/compile_not_run.md` if it is not available.
-- Updated `docs/EXPERIMENT_STATUS.md`.
-- Updated `runs/handoff_latest.md`.
-- Updated `runs/handoff_latest.json`.
-- Updated `docs/TASK_BLOCKER.md` only if a real blocker appears.
+- `runs/v46_coco_ablation/source_lock_v46.md/json`
+- COCO-style metric outputs listed above
+- Ablation outputs listed above, or a precise partial-completion/blocker report
+- `runs/v46_coco_ablation/v46_claim_scan.txt`
+- `runs/v46_coco_ablation/v46_claim_scan_review.md`
+- `runs/v46_coco_ablation/preflight_commands.txt`
+- `runs/v46_coco_ablation/preflight_outputs.txt`
+- Updated `docs/EXPERIMENT_STATUS.md`
+- Updated `runs/handoff_latest.md`
+- Updated `runs/handoff_latest.json`
+- Updated `docs/TASK_BLOCKER.md` only if a real blocker appears
 
 ## Acceptance Criteria
 
-- The manuscript active result is V41 reliability-aware `p=0.15` vs matched early fusion across seed0/1/2.
-- The manuscript no longer presents R4 p=0.20 or block64_guard16 seed0/2 as the current headline result.
-- The main table contains the three paired seeds and the descriptive mean ± sample SD paired deltas.
-- All strong claims are restricted to validation-only wording.
-- No new training or evaluation is run.
-- No raw data, checkpoint, prediction cache, guard/test file, or new figure asset is touched.
-- Preflight output is recorded.
-- Residual blockers are explicitly listed rather than silently omitted.
+- COCO-style AP@[0.50:0.95] is reported for the six fixed matched early / RA `p=0.15` seed0/1/2 checkpoints on development-validation and guard, or a precise blocker explains why it cannot be computed.
+- Causal ablation variants are trained/evaluated on the frozen development-validation protocol, or infeasible variants are explicitly documented.
+- Guard is not used for model selection, threshold tuning, dropout selection, or ablation selection.
+- All outputs include exact commands, source locks, checkpoint hashes, manifest hashes, and claim boundaries.
+- No raw data, existing checkpoints, existing evidence packages, or split manifests are modified.
+- No claim of external generalization, statistical significance, optimal dropout, calibrated sensor reliability, real sensor-fault robustness, or COCO AP proof is introduced.
+- If full seed0/1/2 ablation is not feasible, a partial result plus blocker report is committed rather than fabricated.
 
 ## Commit Message
 
-`submission: align SIVP draft with V41 validation-only evidence`
+`eval: add V46 COCO metrics and causal ablation evidence`
 
 ## Completion / Blocker Rule
 
 On completion, update `docs/EXPERIMENT_STATUS.md`, `runs/handoff_latest.md`, and `runs/handoff_latest.json`; commit and push.
 
-If the manuscript cannot be edited safely, LaTeX table inclusion breaks compilation, preflight cannot run, or active-claim ambiguity remains, write `docs/TASK_BLOCKER.md` with the exact file, command, observed issue, and minimal action needed. Commit and push the blocker state. Do not invent results or relax the claim boundary.
+If COCO AP computation, ablation training, checkpoint discovery, GPU execution, or guard-boundary enforcement cannot be completed safely, write `docs/TASK_BLOCKER.md` with the exact file, command, observed issue, and minimal action needed. Commit and push the blocker state. Do not invent results, do not relax the claim boundary, and do not use guard results for tuning or selection.
