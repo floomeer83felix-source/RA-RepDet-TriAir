@@ -4,11 +4,11 @@ Generated: 2026-07-09
 
 ## Current Status
 
-`V41_SIVP_POLISHED_PREVIEW_READY`
+`V41_SIVP_REVIEWER_POLISHED_PREVIEW_READY`
 
-The V41 three-seed interim development-validation evidence is consolidated, and the active SIVP LaTeX narrative has been aligned to the validation-only evidence state. The manuscript text has now been polished, declaration statements have been inserted, key tables have been aligned to the V40/V41 evidence state, and an assistant-side PDF preview has been compiled for reading/layout review.
+The V41 three-seed interim development-validation evidence is consolidated, and the active SIVP LaTeX narrative has been aligned to the validation-only evidence state. A simulated SIVP reviewer pass has now been completed: the manuscript text was polished, explicit missing-artwork placeholders were removed, simple in-manuscript schematic/table figures were inserted, key tables were aligned to the V40/V41 evidence state, and an assistant-side PDF preview was compiled for reading/layout review.
 
-No new training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed. Manuscript edits were limited to SIVP LaTeX metadata/declaration/narrative/table alignment and local PDF preview compilation.
+No new training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed. Manuscript edits were limited to SIVP LaTeX metadata/declaration/narrative/table/figure alignment and local PDF preview compilation.
 
 ## Evidence Inputs
 
@@ -18,19 +18,12 @@ No new training, evaluation, guard/test access, checkpoint loading, raw data acc
 - V41 seed1 completion commit: `5d839ae900849919189edff4bdd364f42c043b86`.
 - Three-seed package: `runs/v41_q1_upgrade/interim_devval/`.
 
-## Author metadata inserted
+## Author metadata and declarations
 
 - Authors: Nan Xin and Xueting Jin.
 - Corresponding author: Nan Xin.
 - Affiliation: Anhui Police College, Hefei, Anhui, China.
 - Corresponding email: `floomeer83felix@gmail.com`.
-- Updated entry files:
-  - `submission/sivp/tex/main.tex`
-  - root `main.tex`
-  - root `main_sivp_snjnl.tex`
-
-## Declarations inserted
-
 - Funding: no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
 - Competing interests: the authors declare no competing interests.
 - Author contributions: Nan Xin conceived/designed/implemented/evaluated/analyzed/drafted; Xueting Jin supervised, contributed to design/interpretation, and reviewed/revised; both authors read and approved the final manuscript.
@@ -38,14 +31,16 @@ No new training, evaluation, guard/test access, checkpoint loading, raw data acc
 - Data availability: TriAir is named as the publicly available dataset; original files are not redistributed.
 - Code availability: source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
 
-## Polished SIVP manuscript updates
+## Reviewer-style polish updates
 
+- Added `submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md`.
 - Polished `submission/sivp/tex/ra_repdet_sivp.tex` for journal-style wording, clearer claim boundaries, and updated limitations.
+- Replaced explicit `Final artwork pending` placeholder figures with simple in-manuscript schematic/table figures for architecture, split workflow, and paired deltas.
 - Updated the title/abstract/keywords in `submission/sivp/tex/main.tex`, root `main.tex`, and root `main_sivp_snjnl.tex` to use component-disjoint validation wording.
 - Updated `submission/sivp/tables/Table_1_dataset_and_clean_split.tex` to remove old block64/guard16 wording and align with V40 component-disjoint evidence.
 - Updated `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex` to report seed0/seed1/seed2 and reliability-aware p=0.15 as the active setting.
 - Polished `submission/sivp/tex/related_work_literature_expansion.tex` to remove draft-screening/quartile language and keep the appendix as technical context only.
-- Recorded the assistant-side PDF preview compile in `runs/v41_q1_upgrade/sivp_alignment/polished_preview_compile.md`.
+- Recorded the reviewer-polished assistant-side PDF preview compile in `runs/v41_q1_upgrade/sivp_alignment/polished_preview_compile.md`.
 
 ## Three-seed interim development-validation descriptive summary
 
@@ -75,14 +70,14 @@ Disallowed wording: independent test, external generalization, statistical signi
 
 ## PDF preview note
 
-A compiled preview PDF was generated in the assistant sandbox using a temporary article-style wrapper because the hosted environment does not include the Springer `sn-jnl` class or a full repository clone. The preview is suitable for reading/layout review but is not a final Springer/SIVP submission build.
+A compiled reviewer-polished preview PDF was generated in the assistant sandbox using a temporary article-style wrapper because the hosted environment does not include the Springer `sn-jnl` class or a full repository clone. The preview is suitable for reading/layout review but is not a final Springer/SIVP submission build.
 
 ## Work intentionally left for final submission
 
-- Final artwork for Fig. 1--6.
-- Public release/archive DOI and release metadata.
+- Real Springer `sn-jnl` class build and BibTeX/cross-reference closure after local toolchain repair.
+- Optional replacement of simple text schematics with high-resolution vector artwork.
+- Public release/archive DOI and release metadata if required by the submission workflow.
 - TriAir provider/license/version/redistribution/synchronization details beyond naming the public dataset.
-- Full Springer `sn-jnl` class build and BibTeX/cross-reference closure after local toolchain repair.
 
 ## Remaining scientific limitations
 
