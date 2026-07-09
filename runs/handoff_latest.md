@@ -5,23 +5,39 @@ Generated: 2026-07-09
 ## Current Task State
 
 - Task file: `docs/NEXT_TASK.md`
-- Current task: V41 interim development-validation consolidation and status cleanup
-- Status: `COMPLETE`
-- Commit message: `v41: consolidate three-seed interim development validation evidence`
+- Current task: V41 SIVP manuscript alignment with three-seed validation-only evidence
+- Status: `HANDOFF_TO_CODEX`
 - Active blocker: `NO_ACTIVE_BLOCKER`
 
-## Completed Work
+## What Assistant Completed
 
-The current repository state consolidates existing lightweight V40 and V41 seed1 report artifacts into a three-seed interim development-validation descriptive package.
+Prepared a safe SIVP manuscript-alignment package from existing evidence only. No training, evaluation, guard/test access, checkpoint loading, raw data access, prediction-cache access, or direct LaTeX manuscript rewriting was performed in this assistant step.
 
-No training, evaluation, guard/test access, checkpoint loading, raw data access, prediction-cache access, or manuscript rewriting was performed in this consolidation task.
+Files prepared:
 
-## Inputs
+- `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
+- `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md`
+- `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md`
+- `submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md`
+- `docs/NEXT_TASK.md`
+- updated `docs/EXPERIMENT_STATUS.md`
 
-- V40 seed0/seed2 source: `runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json`
-- V41 fresh seed1 source: `runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv`
-- V41 seed1 source lock: `runs/v41_q1_upgrade/seed1/source_lock_seed1.md/json`
-- V41 seed1 completion commit: `5d839ae900849919189edff4bdd364f42c043b86`
+## Codex Next Task
+
+Codex should execute `docs/NEXT_TASK.md`.
+
+Primary target:
+
+- `submission/sivp/tex/ra_repdet_sivp.tex`
+
+Required local work:
+
+1. Replace the active R4 p=0.20 / seed0,2 / block64_guard16 narrative with reliability-aware p=0.15 seed0/1/2 V40 component-disjoint development-validation wording.
+2. Insert `Table_8_three_seed_interim_devval.tex` or equivalent values into the active main results table.
+3. Apply validation-only claim boundary throughout abstract, contributions, results, discussion, limitations, and conclusion.
+4. Run manuscript claim scans and preflight.
+5. Compile if local LaTeX is available.
+6. Update status and handoff.
 
 ## Three-Seed Interim Development-Validation Summary
 
@@ -35,29 +51,17 @@ Reliability p=0.15 minus matched early, paired by seed:
 | AP50 | +0.016064 | 0.005699 | 3 |
 | AP75 | +0.064657 | 0.016415 | 3 |
 
-Per-seed paired deltas:
-
-| Seed | Precision | Recall | F1 | AP50 | AP75 |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| 0 | +0.024180 | +0.001704 | +0.012637 | +0.012812 | +0.054121 |
-| 1 | +0.017770 | +0.018067 | +0.017925 | +0.012734 | +0.083570 |
-| 2 | -0.007062 | +0.053690 | +0.025010 | +0.022645 | +0.056280 |
-
-## Evidence Files
-
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.csv`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.json`
-- `runs/v41_q1_upgrade/interim_devval/interim_claim_boundary.md`
-- `docs/V41_INTERIM_DEVVAL_STATUS.md`
-- `rarepdet/tools/v41_interim_devval_consolidate.py`
-
 ## Claim Boundary
 
 Allowed wording: three-seed interim development-validation descriptive evidence on the frozen V40 component-disjoint development-validation split.
 
-Disallowed wording: independent test, external generalization, statistical significance, manuscript-final aggregate, optimal dropout, calibrated sensor reliability, or physical sensor-fault robustness.
+Disallowed wording: independent test, external generalization, statistical significance, manuscript-final aggregate, optimal dropout, calibrated sensor reliability, or physical sensor-failure robustness.
 
-## Recommended Next Decisions
+## What Assistant Could Not Complete Safely
 
-Since seed3/seed4 are not planned now, the next useful non-GPU work is manuscript/document alignment with the three-seed interim evidence and limitation boundary, or a data/provenance/label-quality audit task. Avoid new model modules until the evidence gaps are explicitly prioritized.
+- Full LaTeX source rewrite, because the local source must be edited and compiled together with the SIVP template and table wiring.
+- Springer/SIVP LaTeX compilation.
+- Final figure/artwork verification.
+- Author metadata, declarations, funding, conflicts, contributions, acknowledgments, or data/code availability finalization.
+- TriAir provider URL, version, license, redistribution rights, synchronization details, or official event representation verification.
+- New experiments, independent test creation, COCO AP50:95, causal ablations, or label-quality review.
