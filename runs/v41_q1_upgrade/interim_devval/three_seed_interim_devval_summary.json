@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-07-09",
+  "status": "V41_INTERIM_DEVVAL_CONSOLIDATION_COMPLETE",
+  "claim_boundary": "three-seed interim development-validation descriptive summary only",
+  "inputs": {
+    "v40_summary": "runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json",
+    "seed1_summary": "runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv",
+    "seed1_source_lock": "runs/v41_q1_upgrade/seed1/source_lock_seed1.json"
+  },
+  "per_run": [
+    {
+      "seed": "0",
+      "model_group": "matched_early",
+      "model": "early",
+      "run_id": "matched_early_seed0",
+      "evidence_source": "V40",
+      "precision": 0.9091538328430524,
+      "recall": 0.8955173001534004,
+      "f1": 0.902284046024386,
+      "ap50": 0.945548951625824,
+      "ap75": 0.8410928845405579,
+      "checkpoint_sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602",
+      "source_reference": "runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json"
+    },
+    {
+      "seed": "0",
+      "model_group": "reliability_p015",
+      "model": "reliability",
+      "run_id": "reliability_p015_seed0",
+      "evidence_source": "V40",
+      "precision": 0.9333333333333333,
+      "recall": 0.8972217487642747,
+      "f1": 0.9149213522203875,
+      "ap50": 0.9583612680435181,
+      "ap75": 0.8952142000198364,
+      "checkpoint_sha256": "4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436",
+      "source_reference": "runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json"
+    },
+    {
+      "seed": "1",
+      "model_group": "matched_early",
+      "model": "early",
+      "run_id": "matched_early_seed1",
+      "evidence_source": "V41_seed1",
+      "precision": 0.8601094655505473,
+      "recall": 0.9106868927901823,
+      "f1": 0.8846758837652123,
+      "ap50": 0.9429527521133423,
+      "ap75": 0.79441237449646,
+      "checkpoint_sha256": "60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804",
+      "source_reference": "runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv"
+    },
+    {
+      "seed": "1",
+      "model_group": "reliability_p015",
+      "model": "reliability",
+      "run_id": "reliability_p015_seed1",
+      "evidence_source": "V41_seed1",
+      "precision": 0.8778798131142259,
+      "recall": 0.9287540480654508,
+      "f1": 0.9026006294517146,
+      "ap50": 0.9556866884231567,
+      "ap75": 0.877982497215271,
+      "checkpoint_sha256": "a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d",
+      "source_reference": "runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv"
+    },
+    {
+      "seed": "2",
+      "model_group": "matched_early",
+      "model": "early",
+      "run_id": "matched_early_seed2",
+      "evidence_source": "V40",
+      "precision": 0.928384930995897,
+      "recall": 0.8484745184932674,
+      "f1": 0.88663282571912,
+      "ap50": 0.9361328482627869,
+      "ap75": 0.8004389405250549,
+      "checkpoint_sha256": "b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e",
+      "source_reference": "runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json"
+    },
+    {
+      "seed": "2",
+      "model_group": "reliability_p015",
+      "model": "reliability",
+      "run_id": "reliability_p015_seed2",
+      "evidence_source": "V40",
+      "precision": 0.9213228894691036,
+      "recall": 0.9021646497358105,
+      "f1": 0.9116431277988287,
+      "ap50": 0.9587774276733398,
+      "ap75": 0.8567192554473877,
+      "checkpoint_sha256": "27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415",
+      "source_reference": "runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json"
+    }
+  ],
+  "paired_deltas": [
+    {
+      "seed": "0",
+      "comparison": "reliability_p015_minus_matched_early",
+      "precision": 0.024179500490280947,
+      "recall": 0.0017044486108743762,
+      "f1": 0.012637306196001452,
+      "ap50": 0.012812316417694092,
+      "ap75": 0.054121315479278564
+    },
+    {
+      "seed": "1",
+      "comparison": "reliability_p015_minus_matched_early",
+      "precision": 0.017770347563678568,
+      "recall": 0.018067155275268476,
+      "f1": 0.017924745686502264,
+      "ap50": 0.012733936309814453,
+      "ap75": 0.08357012271881104
+    },
+    {
+      "seed": "2",
+      "comparison": "reliability_p015_minus_matched_early",
+      "precision": -0.007062041526793461,
+      "recall": 0.05369013124254307,
+      "f1": 0.02501030207970867,
+      "ap50": 0.02264457941055298,
+      "ap75": 0.056280314922332764
+    }
+  ],
+  "delta_summary": [
+    {
+      "metric": "precision",
+      "mean_delta": 0.011629268842388685,
+      "sample_sd_delta": 0.016501306699681875,
+      "n_seed_pairs": 3
+    },
+    {
+      "metric": "recall",
+      "mean_delta": 0.024487245042895307,
+      "sample_sd_delta": 0.026580838288858294,
+      "n_seed_pairs": 3
+    },
+    {
+      "metric": "f1",
+      "mean_delta": 0.018524117987404127,
+      "sample_sd_delta": 0.006208235832414489,
+      "n_seed_pairs": 3
+    },
+    {
+      "metric": "ap50",
+      "mean_delta": 0.016063610712687176,
+      "sample_sd_delta": 0.00569942081373581,
+      "n_seed_pairs": 3
+    },
+    {
+      "metric": "ap75",
+      "mean_delta": 0.06465725104014079,
+      "sample_sd_delta": 0.016414562315187158,
+      "n_seed_pairs": 3
+    }
+  ],
+  "limitations": [
+    "development-validation only",
+    "three seed pairs only",
+    "no independent test",
+    "no causal ablations",
+    "no COCO metrics",
+    "no guard/test access in this consolidation task",
+    "unresolved provider provenance",
+    "incomplete label-quality review"
+  ]
+}
