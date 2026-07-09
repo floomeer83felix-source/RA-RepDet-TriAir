@@ -1,0 +1,28 @@
+% Evidence source: runs/v42_locked_guard_heldout/heldout_guard_summary.md/json
+% Claim boundary: locked same-dataset held-out TriAir guard evaluation; descriptive only.
+\begin{table*}[t]
+\caption{Locked held-out guard evaluation on the frozen V40 guard manifest. Values use the project-local evaluator and are descriptive only.}
+\label{tab:v42-heldout-guard}
+\centering
+\small
+\begin{tabular}{llrrrrr}
+\hline
+Seed & Method & Precision & Recall & F1 & AP50 & AP75 \\
+\hline
+0 & matched early & 0.938534 & 0.942247 & 0.940387 & 0.965299 & 0.923818 \\
+0 & reliability p=0.15 & 0.937451 & 0.936709 & 0.937080 & 0.966926 & 0.929140 \\
+1 & matched early & 0.878990 & 0.936709 & 0.906932 & 0.954007 & 0.894974 \\
+1 & reliability p=0.15 & 0.894619 & 0.946994 & 0.920061 & 0.964380 & 0.912660 \\
+2 & matched early & 0.937147 & 0.920095 & 0.928543 & 0.957160 & 0.883246 \\
+2 & reliability p=0.15 & 0.932243 & 0.946994 & 0.939560 & 0.970845 & 0.866755 \\
+\hline
+\multicolumn{7}{l}{Paired delta: reliability p=0.15 minus matched early} \\
+0 & delta & -0.001084 & -0.005538 & -0.003307 & +0.001628 & +0.005322 \\
+1 & delta & +0.015628 & +0.010285 & +0.013129 & +0.010372 & +0.017686 \\
+2 & delta & -0.004904 & +0.026899 & +0.011018 & +0.013685 & -0.016491 \\
+\hline
+\multicolumn{2}{l}{Mean paired delta} & +0.003213 & +0.010549 & +0.006946 & +0.008562 & +0.002173 \\
+\multicolumn{2}{l}{Sample SD of paired delta} & 0.010920 & 0.016220 & 0.008943 & 0.006229 & 0.017305 \\
+\hline
+\end{tabular}
+\end{table*}
