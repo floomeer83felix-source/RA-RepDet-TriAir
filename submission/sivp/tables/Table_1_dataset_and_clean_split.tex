@@ -10,11 +10,12 @@ Samples without label txt & 738 & Project inventory & Treated as empty-target im
 Empty label txt files & 1 & Project inventory & Treated as empty-target images. \\
 Total valid boxes & 30634 & Project inventory & Single class: vehicle. \\
 Historical random-split RGB-overlap findings & 153 validation samples & Split audit & Diagnostic only; not active headline evidence. \\
-Active split protocol & V40 component-disjoint & Source-lock package & Frozen train/development-validation split. \\
-Training images & 7439 & V40 manifests & Used for active seed0/1/2 runs. \\
-Development-validation images & 2213 & V40 manifests & Active validation manifest. \\
-Development-validation boxes & 5867 & V40 manifests & Vehicle boxes in active validation manifest. \\
-Archival guard samples & 837 & V40 split records & Not used as an evaluation partition. \\
+Active split protocol & V40 component-disjoint & Source-lock package & Frozen train/development-validation/guard split. \\
+Training images & 7439 & V40 manifests & Used for active seed0/1/2 training. \\
+Development-validation images & 2213 & V40 manifests & Used for checkpoint selection. \\
+Development-validation boxes & 5867 & V40 manifests & Vehicle boxes in active development-validation manifest. \\
+Held-out guard images & 837 & V42 source lock & Locked same-dataset guard evaluation only. \\
+Held-out guard boxes & 1264 & V42 summary & Vehicle boxes in locked guard manifest. \\
 Cross-partition graph edges & 0 & Split audit & Within the defined component-disjoint graph. \\
 \bottomrule
 \end{tabular}%
