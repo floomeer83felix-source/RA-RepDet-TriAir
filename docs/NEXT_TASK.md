@@ -2,15 +2,19 @@
 
 ## Title
 
-V41 interim development-validation consolidation and status cleanup.
+V41 SIVP manuscript alignment with three-seed validation-only evidence.
 
 ## Goal
 
-Consolidate the completed V40 seed0/seed2 evidence and the fresh V41 seed1 evidence into one auditable **three-seed interim development-validation package** without running any new training or evaluation.
+Revise the SIVP LaTeX manuscript so its active narrative uses the current V41 evidence state:
 
-This task exists because seed3/seed4 are not planned now. It must improve repository clarity, remove stale blocker confusion, and create a clean evidence handoff for manuscript-revision planning while preserving the validation-only claim boundary.
+- matched early fusion vs reliability-aware fusion with modality dropout `p=0.15`;
+- seed0, seed1, and seed2;
+- frozen V40 component-disjoint development-validation split;
+- three-seed interim development-validation descriptive summary;
+- project-local AP50/AP75, not COCO AP50:95.
 
-Do **not** run any GPU job. Do **not** train seed3/seed4. Do **not** evaluate guard/test data. Do **not** run p=0.20, p=0.00, ablations, modality baselines, COCO metrics, synthetic channel removal, degradation, efficiency profiling, gate analysis, or manuscript rewriting.
+This is a manuscript-alignment task only. Do not run training or new evaluation. Do not create new metrics. Do not touch guard/test data. Do not make the manuscript claim independent testing, external generalization, statistical significance, final proof, optimal dropout, calibrated sensor reliability, or physical sensor-failure robustness.
 
 ## Read First
 
@@ -18,26 +22,32 @@ Do **not** run any GPU job. Do **not** train seed3/seed4. Do **not** evaluate gu
 2. `PROJECT_PROFILE.md`
 3. `docs/PROJECT_CONTEXT.md`
 4. `docs/EXPERIMENT_STATUS.md`
-5. `runs/handoff_latest.md`
+5. `docs/V41_INTERIM_DEVVAL_STATUS.md`
 6. `docs/TASK_BLOCKER.md`
-7. `docs/V40_PUBLICATION_SNAPSHOT.md`
-8. `docs/REPRODUCIBILITY.md`
-9. `runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json`
-10. `runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv`
-11. `runs/v41_q1_upgrade/seed1/seed1_pair_comparison.md`
-12. `runs/v41_q1_upgrade/seed1/source_lock_seed1.md`
+7. `runs/handoff_latest.md`
+8. `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
+9. `runs/v41_q1_upgrade/interim_devval/interim_claim_boundary.md`
+10. `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md`
+11. `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md`
+12. `submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md`
+13. `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
+14. `submission/sivp/tex/ra_repdet_sivp.tex`
+15. `submission/sivp/tex/main.tex`
 
 ## Frozen Assets
 
-- V40 evidence-package commit: `b37db7025413dd80016ac5d23f63e8e1737472e6`.
+- V41 interim dev-val package: `runs/v41_q1_upgrade/interim_devval/`.
 - V41 fresh seed1 completion commit: `5d839ae900849919189edff4bdd364f42c043b86`.
-- Train manifest SHA256: `f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f`.
-- Development-validation manifest SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`.
-- Standardized evaluation convention: detector threshold `0.001`, P/R/F1 threshold `0.50`, NMS `0.6`, max detections/image `100`, project-local AP50/AP75.
-- Available seed pairs for this consolidation only:
-  - seed0: V40 `matched_early_seed0` and `reliability_p015_seed0`.
-  - seed1: fresh V41 `matched_early_seed1` and `reliability_p015_seed1`.
-  - seed2: V40 `matched_early_seed2` and `reliability_p015_seed2`.
+- Latest assistant-prepared alignment package includes:
+  - `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
+  - `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md`
+  - `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md`
+  - `submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md`
+- Active quantitative values must come only from:
+  - `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.csv`
+  - `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
+  - `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.json`
+- Claim boundary: validation-only; three seed pairs only; no independent test; no COCO AP50:95; no causal ablation; no final submission proof.
 
 ## Allowed Files To Modify
 
@@ -47,113 +57,115 @@ Do **not** run any GPU job. Do **not** train seed3/seed4. Do **not** evaluate gu
 - `docs/V41_INTERIM_DEVVAL_STATUS.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/v41_q1_upgrade/interim_devval/**`
-- New V41-only reporting script under `rarepdet/tools/v41_interim_*`
+- `runs/v41_q1_upgrade/sivp_alignment/**`
+- `submission/sivp/tex/ra_repdet_sivp.tex`
+- `submission/sivp/tex/main.tex` only if needed for table inclusion or compile wiring
+- `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
+- New review outputs under `submission/sivp/review/V41_*`
 
 ## Forbidden Files To Modify
 
-- Any existing V40/V39 result directory, manifest, report, source lock, checkpoint, or evidence package.
-- Existing seed1 run directories and reports under `runs/v41_q1_upgrade/seed1/**` except reading them.
-- `rarepdet/train_early_fusion.py`
-- `rarepdet/eval_map.py`
-- `rarepdet/metrics.py`
-- `rarepdet/data.py`
-- `datasets/triair_dataset.py`
-- `rarepdet/models/**`
-- Requirements, environment locks, default configs, manuscript source, tables, figures, release files, data, labels, checkpoints, raw images, `.npy` arrays, or prediction caches.
-- Any guard/test partition file or output.
+- Any training, evaluation, metrics, data-loader, or model code outside a new review/reporting script if needed.
+- Existing V40/V39 result directories, manifests, source locks, checkpoints, or evidence packages.
+- Existing V41 seed1 evidence files under `runs/v41_q1_upgrade/seed1/**`.
+- Raw data, labels, checkpoints, prediction caches, images, `.npy` arrays, or guard/test files.
+- Figures or final artwork assets unless the user explicitly provides approved assets.
+- Bibliography facts, author metadata, declarations, funding, conflicts, contributions, acknowledgments, data/code availability, repository archive DOI, or TriAir license/provider details unless author-confirmed.
 
 ## Required Commands
 
-### 1. Verify available evidence files
+### 1. Inspect active manuscript claims
 
-Create a V41-only reporting tool and run:
+Run text checks before editing:
 
 ```powershell
-python rarepdet/tools/v41_interim_devval_consolidate.py --repo . --v40-summary runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json --seed1-summary runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv --seed1-source-lock runs/v41_q1_upgrade/seed1/source_lock_seed1.json --out runs/v41_q1_upgrade/interim_devval
+python - <<'PY'
+from pathlib import Path
+p=Path('submission/sivp/tex/ra_repdet_sivp.tex')
+text=p.read_text(encoding='utf-8')
+for s in ['p=0.20','R4','block64','guard16','independent test','external generalization','statistical significance','optimal','physical sensor']:
+    print(s, text.lower().count(s.lower()))
+PY
 ```
 
-The tool must fail closed if any required input is missing or malformed. It must read only existing report files and lightweight source-lock metadata; it must not load checkpoints, raw data, predictions, or guard/test manifests.
+Record the output in `runs/v41_q1_upgrade/sivp_alignment/pre_edit_claim_scan.txt`.
 
-### 2. Build a three-seed interim development-validation table
+### 2. Apply V41 replacement text
 
-Create:
+Use `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md` and `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md` to revise `submission/sivp/tex/ra_repdet_sivp.tex`.
 
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.csv`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.json`
+Minimum required manuscript changes:
 
-The table must contain seed0, seed1, and seed2 paired rows for:
+1. Replace active R4 p=0.20 / seed0,2 / block64_guard16 headline with reliability-aware `p=0.15` seed0/1/2 V40 component-disjoint development-validation wording.
+2. Replace or rewrite the contribution list so it matches V41 p=0.15 seed0/1/2 validation-only evidence.
+3. Insert `submission/sivp/tables/Table_8_three_seed_interim_devval.tex` as the active main results table, or integrate the exact same values into the active main result table.
+4. Rewrite Results so the active quantitative claim is the three-seed paired delta summary:
+   - F1 mean paired delta `+0.018524`, sample SD `0.006208`;
+   - AP50 mean paired delta `+0.016064`, sample SD `0.005699`;
+   - AP75 mean paired delta `+0.064657`, sample SD `0.016415`.
+5. Rewrite Discussion and Limitations to state validation-only, three seed pairs only, no independent test, no COCO AP50:95, no causal ablation, unresolved provenance, and incomplete label-quality review.
+6. Remove R4 p=0.20 and block64_guard16 from the active headline narrative. They may remain only if clearly labeled historical/provenance and not used as the main result.
 
-- `matched_early`
-- `reliability_p015`
+### 3. Run post-edit claim scan
 
-For each seed/model row, report Precision, Recall, F1, AP50, AP75, checkpoint SHA256 if available, source file references, and whether the row came from V40 or V41-seed1 evidence.
+Run the same scan and save it to:
 
-Also report reliability-minus-early paired deltas for every seed and descriptive mean ± sample SD across the three seed-level deltas. Label all statistics exactly as:
+```text
+runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan.txt
+```
 
-`three-seed interim development-validation descriptive summary`
+Explain any remaining high-risk terms in:
 
-Do not use the terms final, significant, independent test, external generalization, or manuscript-final aggregate.
+```text
+runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan_review.md
+```
 
-### 3. Clean stale blocker state
+### 4. Run preflight/compile checks
 
-`docs/TASK_BLOCKER.md` currently may still describe the older V40 GPU-deferred task. Replace it with a short current-state note only if no active blocker exists:
+At minimum:
 
-- title: `# Task Blocker`
-- status: `NO_ACTIVE_BLOCKER`
-- explain that the old V40 GPU-deferred blocker is historical and seed1 fresh evidence is complete.
-- do not delete historical evidence files.
+```powershell
+python scripts/preflight_submission.py --root . --allow-placeholders
+```
 
-If an actual blocker is found while consolidating, keep `docs/TASK_BLOCKER.md` as an active blocker and stop.
+If a local LaTeX environment is available, also compile the SIVP source and record the command and outcome. Save outputs under:
 
-### 4. Update status and handoff
+```text
+runs/v41_q1_upgrade/sivp_alignment/
+```
 
-Update:
-
-- `docs/V41_INTERIM_DEVVAL_STATUS.md`
-- `docs/EXPERIMENT_STATUS.md`
-- `runs/handoff_latest.md`
-- `runs/handoff_latest.json`
-
-These files must state:
-
-- seed1 fresh paired evidence is complete;
-- seed0/1/2 interim development-validation evidence is consolidated;
-- no seed3/seed4 are planned in the current task;
-- no guard/test evaluation was run;
-- no new training or evaluation was run in this consolidation task;
-- remaining scientific limitations remain: validation-only, three seeds only, no independent test, no causal ablations, no COCO metrics, unresolved provider provenance, and incomplete label-quality review.
+Do not treat missing final artwork, author metadata, or external data-governance facts as solved. Record them as residual submission blockers.
 
 ## Required Outputs
 
-- `rarepdet/tools/v41_interim_devval_consolidate.py`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.csv`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.json`
-- `runs/v41_q1_upgrade/interim_devval/interim_claim_boundary.md`
-- `docs/V41_INTERIM_DEVVAL_STATUS.md`
-- Updated `docs/TASK_BLOCKER.md`
-- Updated `docs/EXPERIMENT_STATUS.md`
-- Updated `runs/handoff_latest.md`
-- Updated `runs/handoff_latest.json`
+- Updated `submission/sivp/tex/ra_repdet_sivp.tex`.
+- `runs/v41_q1_upgrade/sivp_alignment/pre_edit_claim_scan.txt`.
+- `runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan.txt`.
+- `runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan_review.md`.
+- `runs/v41_q1_upgrade/sivp_alignment/preflight_allow_placeholders.txt`.
+- Compile log if LaTeX is available, or `runs/v41_q1_upgrade/sivp_alignment/compile_not_run.md` if it is not available.
+- Updated `docs/EXPERIMENT_STATUS.md`.
+- Updated `runs/handoff_latest.md`.
+- Updated `runs/handoff_latest.json`.
+- Updated `docs/TASK_BLOCKER.md` only if a real blocker appears.
 
 ## Acceptance Criteria
 
-- No training or evaluation command is executed.
-- No checkpoint, raw data, prediction cache, image artifact, or guard/test file is read or committed.
-- Seed0/1/2 values are copied only from existing V40 and V41 seed1 report artifacts.
-- The consolidated summary includes all three paired seeds and all five metrics: Precision, Recall, F1, AP50, AP75.
-- Delta calculations are reproducible from the CSV/JSON outputs.
-- `docs/TASK_BLOCKER.md` no longer presents the old V40 GPU-deferred state as an active blocker unless a new real blocker is discovered.
-- All wording remains development-validation-only and does not claim independent testing, final manuscript proof, statistical significance, or external generalization.
+- The manuscript active result is V41 reliability-aware `p=0.15` vs matched early fusion across seed0/1/2.
+- The manuscript no longer presents R4 p=0.20 or block64_guard16 seed0/2 as the current headline result.
+- The main table contains the three paired seeds and the descriptive mean ± sample SD paired deltas.
+- All strong claims are restricted to validation-only wording.
+- No new training or evaluation is run.
+- No raw data, checkpoint, prediction cache, guard/test file, or new figure asset is touched.
+- Preflight output is recorded.
+- Residual blockers are explicitly listed rather than silently omitted.
 
 ## Commit Message
 
-`v41: consolidate three-seed interim development validation evidence`
+`submission: align SIVP draft with V41 validation-only evidence`
 
 ## Completion / Blocker Rule
 
 On completion, update `docs/EXPERIMENT_STATUS.md`, `runs/handoff_latest.md`, and `runs/handoff_latest.json`; commit and push.
 
-If any required V40 or seed1 evidence file is missing, inconsistent, malformed, or ambiguous, write `docs/TASK_BLOCKER.md` with the exact file path, observed issue, command, timestamp, and minimal action needed. Commit and push the blocker state. Do not invent missing results or start any experiment.
+If the manuscript cannot be edited safely, LaTeX table inclusion breaks compilation, preflight cannot run, or active-claim ambiguity remains, write `docs/TASK_BLOCKER.md` with the exact file, command, observed issue, and minimal action needed. Commit and push the blocker state. Do not invent results or relax the claim boundary.
