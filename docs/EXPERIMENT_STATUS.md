@@ -4,11 +4,11 @@ Generated: 2026-07-09
 
 ## Current Status
 
-`V41_SIVP_MANUSCRIPT_ALIGNMENT_COMPLETE_DECLARATIONS_PARTIAL`
+`V41_SIVP_POLISHED_PREVIEW_READY`
 
-The V41 three-seed interim development-validation evidence is consolidated, and the active SIVP LaTeX narrative has been aligned to the validation-only evidence state. The user-provided author names, affiliation, corresponding-author email, public-dataset availability wording, and declaration statements for no funding, no competing interests, author contributions, and no acknowledgments have now been inserted into the active SIVP entry files.
+The V41 three-seed interim development-validation evidence is consolidated, and the active SIVP LaTeX narrative has been aligned to the validation-only evidence state. The manuscript text has now been polished, declaration statements have been inserted, key tables have been aligned to the V40/V41 evidence state, and an assistant-side PDF preview has been compiled for reading/layout review.
 
-No new training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed. Manuscript edits were limited to SIVP LaTeX metadata/declaration/narrative alignment and local preflight/compile recording.
+No new training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed. Manuscript edits were limited to SIVP LaTeX metadata/declaration/narrative/table alignment and local PDF preview compilation.
 
 ## Evidence Inputs
 
@@ -35,7 +35,17 @@ No new training, evaluation, guard/test access, checkpoint loading, raw data acc
 - Competing interests: the authors declare no competing interests.
 - Author contributions: Nan Xin conceived/designed/implemented/evaluated/analyzed/drafted; Xueting Jin supervised, contributed to design/interpretation, and reviewed/revised; both authors read and approved the final manuscript.
 - Acknowledgments: not applicable.
-- Data availability: TriAir is named as the publicly available dataset; original files are not redistributed; source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
+- Data availability: TriAir is named as the publicly available dataset; original files are not redistributed.
+- Code availability: source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
+
+## Polished SIVP manuscript updates
+
+- Polished `submission/sivp/tex/ra_repdet_sivp.tex` for journal-style wording, clearer claim boundaries, and updated limitations.
+- Updated the title/abstract/keywords in `submission/sivp/tex/main.tex`, root `main.tex`, and root `main_sivp_snjnl.tex` to use component-disjoint validation wording.
+- Updated `submission/sivp/tables/Table_1_dataset_and_clean_split.tex` to remove old block64/guard16 wording and align with V40 component-disjoint evidence.
+- Updated `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex` to report seed0/seed1/seed2 and reliability-aware p=0.15 as the active setting.
+- Polished `submission/sivp/tex/related_work_literature_expansion.tex` to remove draft-screening/quartile language and keep the appendix as technical context only.
+- Recorded the assistant-side PDF preview compile in `runs/v41_q1_upgrade/sivp_alignment/polished_preview_compile.md`.
 
 ## Three-seed interim development-validation descriptive summary
 
@@ -57,33 +67,22 @@ Per-seed paired deltas:
 | 1 | +0.017770 | +0.018067 | +0.017925 | +0.012734 | +0.083570 |
 | 2 | -0.007062 | +0.053690 | +0.025010 | +0.022645 | +0.056280 |
 
-## SIVP manuscript alignment completed
-
-- Updated `submission/sivp/tex/ra_repdet_sivp.tex` so the active narrative uses reliability-aware `p=0.15` versus matched early fusion across seed0/seed1/seed2 on the frozen V40 component-disjoint development-validation split.
-- Updated `submission/sivp/tex/main.tex`, root `main.tex`, and `main_sivp_snjnl.tex` abstracts/keywords so active entry points match the V41 validation-only claim boundary.
-- Inserted `submission/sivp/tables/Table_8_three_seed_interim_devval.tex` as the active main results table.
-- Recorded pre-edit and post-edit claim scans under `runs/v41_q1_upgrade/sivp_alignment/`.
-- Post-edit body scan: `p=0.20`, `R4`, `block64`, `guard16`, and `optimal` are zero; remaining high-risk terms occur only as limitation/claim-boundary wording.
-- `python scripts/preflight_submission.py --root . --allow-placeholders`: PASS with expected warnings for placeholders and missing final figure assets.
-- Local LaTeX: direct MiKTeX `pdflatex` pass generated an 8-page PDF during checking, confirming TeX/table syntax integration. Build products were removed after logging.
-- `latexmk` is unavailable because MiKTeX lacks Perl; full BibTeX multi-pass compile timed out and remains a local toolchain/bibliography closure item.
-
-## Task blocker state
-
-`docs/TASK_BLOCKER.md` records `NO_ACTIVE_BLOCKER`. The older V40 GPU-deferred blocker is historical and no longer represents the active task state.
-
-## Current claim boundary
+## Claim boundary
 
 Allowed wording: three-seed interim development-validation descriptive evidence on the frozen V40 component-disjoint development-validation split.
 
 Disallowed wording: independent test, external generalization, statistical significance, manuscript-final aggregate, optimal dropout, calibrated sensor reliability, or physical sensor-fault robustness.
+
+## PDF preview note
+
+A compiled preview PDF was generated in the assistant sandbox using a temporary article-style wrapper because the hosted environment does not include the Springer `sn-jnl` class or a full repository clone. The preview is suitable for reading/layout review but is not a final Springer/SIVP submission build.
 
 ## Work intentionally left for final submission
 
 - Final artwork for Fig. 1--6.
 - Public release/archive DOI and release metadata.
 - TriAir provider/license/version/redistribution/synchronization details beyond naming the public dataset.
-- Full BibTeX/cross-reference closure after local toolchain repair.
+- Full Springer `sn-jnl` class build and BibTeX/cross-reference closure after local toolchain repair.
 
 ## Remaining scientific limitations
 
