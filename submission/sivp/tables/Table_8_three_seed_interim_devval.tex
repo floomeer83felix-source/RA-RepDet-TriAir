@@ -1,0 +1,28 @@
+% Evidence source: runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.csv
+% Claim boundary: three-seed interim development-validation descriptive summary only.
+\begin{table*}[t]
+\caption{Three-seed interim development-validation summary on the frozen V40 component-disjoint split. Values are project-local AP50/AP75 and descriptive only.}
+\label{tab:v41-three-seed-interim-devval}
+\centering
+\small
+\begin{tabular}{llrrrrr}
+\hline
+Seed & Method & Precision & Recall & F1 & AP50 & AP75 \\
+\hline
+0 & matched early & 0.909154 & 0.895517 & 0.902284 & 0.945549 & 0.841093 \\
+0 & reliability p=0.15 & 0.933333 & 0.897222 & 0.914921 & 0.958361 & 0.895214 \\
+1 & matched early & 0.860109 & 0.910687 & 0.884676 & 0.942953 & 0.794412 \\
+1 & reliability p=0.15 & 0.877880 & 0.928754 & 0.902601 & 0.955687 & 0.877982 \\
+2 & matched early & 0.928385 & 0.848475 & 0.886633 & 0.936133 & 0.800439 \\
+2 & reliability p=0.15 & 0.921323 & 0.902165 & 0.911643 & 0.958777 & 0.856719 \\
+\hline
+\multicolumn{7}{l}{Paired delta: reliability p=0.15 minus matched early} \\
+0 & delta & +0.024180 & +0.001704 & +0.012637 & +0.012812 & +0.054121 \\
+1 & delta & +0.017770 & +0.018067 & +0.017925 & +0.012734 & +0.083570 \\
+2 & delta & -0.007062 & +0.053690 & +0.025010 & +0.022645 & +0.056280 \\
+\hline
+\multicolumn{2}{l}{Mean paired delta} & +0.011629 & +0.024487 & +0.018524 & +0.016064 & +0.064657 \\
+\multicolumn{2}{l}{Sample SD of paired delta} & 0.016501 & 0.026581 & 0.006208 & 0.005699 & 0.016415 \\
+\hline
+\end{tabular}
+\end{table*}
