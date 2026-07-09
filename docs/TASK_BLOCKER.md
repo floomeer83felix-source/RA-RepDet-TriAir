@@ -4,8 +4,8 @@ Status: `NO_ACTIVE_BLOCKER`
 
 Generated: 2026-07-09
 
-There is no active blocker for the current V41 interim development-validation consolidation state.
+There is no active blocker for the current V42 locked held-out guard evaluation state.
 
-Historical note: an older V40 GPU-deferred blocker described a prior component-disjoint split-repair task and is no longer the active task state. The V41 fresh paired seed1 development-validation evidence is complete, and the current interim consolidation uses only existing lightweight V40 and V41 seed1 report artifacts.
+The V42 task evaluated only the six fixed seed0/seed1/seed2 checkpoints on `runs/component_disjoint_v40/guard.txt`. No training, tuning, checkpoint selection, split modification, robustness experiment, profiling run, manuscript work, DroneVehicle work, or `finish_task.ps1` run was performed.
 
-No training, evaluation, guard/test access, checkpoint loading, raw data access, prediction-cache access, or manuscript rewriting was performed by the consolidation task.
+The only source clarification is that `reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_guard_unchanged_archival.txt` has the same row count but different content from `runs/component_disjoint_v40/guard.txt`; V42 used the guard manifest that matches `runs/component_disjoint_v40/split_manifest.json`.

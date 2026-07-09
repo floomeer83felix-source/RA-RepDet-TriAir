@@ -3,78 +3,69 @@
   "generated_at": "2026-07-09",
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "current_task": "V41 SIVP reviewer-style manuscript polish and PDF preview",
-    "status": "REVIEWER_POLISHED_PREVIEW_READY",
-    "commit_message": "submission: reviewer-polish SIVP manuscript and preview PDF"
+    "user_explicit_task": "V42 locked held-out guard evaluation",
+    "status": "V42_LOCKED_HELDOUT_GUARD_EVALUATION_COMPLETE",
+    "commit_message": "eval: add V42 locked held-out guard results",
+    "note": "docs/NEXT_TASK.md still describes the prior V41 manuscript task; the latest user instruction explicitly changed scope to V42 guard evaluation."
   },
   "blocker": {
     "status": "NO_ACTIVE_BLOCKER",
     "path": "docs/TASK_BLOCKER.md"
   },
-  "author_metadata": {
-    "authors": ["Nan Xin", "Xueting Jin"],
-    "corresponding_author": "Nan Xin",
-    "affiliation": "Anhui Police College, Hefei, Anhui, China",
-    "corresponding_email": "floomeer83felix@gmail.com"
+  "scope_controls": {
+    "training_run": false,
+    "tuning_run": false,
+    "checkpoint_selection_using_guard": false,
+    "split_modified": false,
+    "manuscript_modified": false,
+    "dronevehicle_work": false,
+    "finish_task_ps1_run": false
   },
-  "declarations": {
-    "funding": "This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.",
-    "competing_interests": "The authors declare that they have no competing interests.",
-    "author_contributions": "Nan Xin conceived the study, designed the method, implemented the experiments, performed the evaluation, analyzed the results, and drafted the manuscript. Xueting Jin supervised the research, contributed to the study design and result interpretation, and reviewed and revised the manuscript. Both authors read and approved the final manuscript.",
-    "acknowledgments": "Not applicable.",
-    "data_availability": "The dataset used for the experiments in this study is the publicly available TriAir dataset. The authors do not redistribute the original dataset files. Use of the original dataset is subject to the terms specified by its original provider.",
-    "code_availability": "Source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables generated in this work are available in the current project repository."
-  },
-  "reviewer_polish_updates": {
+  "v42_locked_guard": {
     "status": "COMPLETE",
-    "review_file": "submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md",
-    "files": [
-      "submission/sivp/tex/ra_repdet_sivp.tex",
-      "submission/sivp/tex/main.tex",
-      "main.tex",
-      "main_sivp_snjnl.tex",
-      "submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
-      "submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
-      "submission/sivp/tex/related_work_literature_expansion.tex"
-    ],
-    "notes": [
-      "Updated title/abstract/keywords to component-disjoint validation wording",
-      "Aligned dataset and reproducibility tables to V40/V41 evidence",
-      "Removed internal draft-screening/quartile tone from the appendix",
-      "Replaced explicit Final artwork pending placeholders with simple schematic/table figures",
-      "Maintained validation-only claim boundary"
-    ]
-  },
-  "pdf_preview": {
-    "status": "GENERATED_IN_ASSISTANT_SANDBOX",
-    "file": "RA_RepDet_SIVP_V41_reviewer_polished_preview.pdf",
-    "pages": 6,
-    "verification": "Rendered 6 pages using the PDF skill render workflow; no obvious clipping was observed in contact-sheet review.",
-    "limitation": "Compiled with a temporary article-style wrapper because the assistant sandbox does not contain the Springer sn-jnl class or full repository clone; suitable for reading/layout review, not final Springer submission."
-  },
-  "sivp_alignment": {
-    "status": "COMPLETE",
-    "active_claim": "reliability-aware p=0.15 versus matched early fusion, seed0/seed1/seed2, frozen V40 component-disjoint development-validation split",
-    "claim_boundary": "three-seed interim development-validation descriptive evidence only",
-    "latexmk_result": "Unavailable in prior MiKTeX run because MiKTeX lacks Perl",
-    "bibtex_result": "Full Springer/BibTeX multi-pass compile remains a local toolchain closure item"
-  },
-  "interim_devval": {
-    "status": "V41_INTERIM_DEVVAL_CONSOLIDATION_COMPLETE",
-    "claim_boundary": "three-seed interim development-validation descriptive summary only",
+    "output_dir": "runs/v42_locked_guard_heldout",
+    "source_lock": "runs/v42_locked_guard_heldout/heldout_guard_source_lock.json",
+    "summary": "runs/v42_locked_guard_heldout/heldout_guard_summary.json",
+    "claim_boundary": "runs/v42_locked_guard_heldout/heldout_guard_claim_boundary.md",
+    "guard_manifest": "runs/component_disjoint_v40/guard.txt",
+    "guard_rows": 837,
+    "guard_gt_boxes": 1264,
+    "guard_normalized_lf_sha256": "9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e",
+    "guard_raw_file_sha256": "0cf3270c0a73d03caf8d698bb4e9ddb0adba46e688c52d8589f57ea12488881f",
+    "non_source_archival_guard": {
+      "path": "reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_guard_unchanged_archival.txt",
+      "used": false,
+      "reason": "Different content from runs/component_disjoint_v40/guard.txt."
+    },
+    "fixed_eval_settings": {
+      "img_size": 640,
+      "device": "cuda",
+      "batch_size": 4,
+      "num_workers": 0,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100
+    },
     "paired_delta_summary": [
-      {"metric": "precision", "mean_delta": 0.011629268842, "sample_sd_delta": 0.0165013067, "n_seed_pairs": 3},
-      {"metric": "recall", "mean_delta": 0.024487245043, "sample_sd_delta": 0.026580838289, "n_seed_pairs": 3},
-      {"metric": "f1", "mean_delta": 0.018524117987, "sample_sd_delta": 0.006208235832, "n_seed_pairs": 3},
-      {"metric": "ap50", "mean_delta": 0.016063610713, "sample_sd_delta": 0.005699420814, "n_seed_pairs": 3},
-      {"metric": "ap75", "mean_delta": 0.06465725104, "sample_sd_delta": 0.016414562315, "n_seed_pairs": 3}
-    ]
-  },
-  "residual_submission_blockers": [
-    "Full Springer sn-jnl class build and BibTeX/cross-reference closure require local toolchain repair",
-    "Simple text schematics can optionally be replaced with higher-resolution vector artwork",
-    "Public release/archive DOI and release metadata remain unresolved if required by the submission workflow",
-    "TriAir provider/version/license/redistribution/synchronization verification remains author-confirmation work beyond naming the public dataset",
-    "Label-quality review remains incomplete"
-  ]
+      {"metric": "precision", "mean_delta": 0.003213, "sample_sd_delta": 0.01092, "n_seed_pairs": 3},
+      {"metric": "recall", "mean_delta": 0.010549, "sample_sd_delta": 0.01622, "n_seed_pairs": 3},
+      {"metric": "f1", "mean_delta": 0.006946, "sample_sd_delta": 0.008943, "n_seed_pairs": 3},
+      {"metric": "ap50", "mean_delta": 0.008562, "sample_sd_delta": 0.006229, "n_seed_pairs": 3},
+      {"metric": "ap75", "mean_delta": 0.002173, "sample_sd_delta": 0.017305, "n_seed_pairs": 3}
+    ],
+    "claim_boundary": {
+      "allowed": "Locked held-out guard evaluation on the frozen V40 component-disjoint guard manifest, with descriptive three-seed paired comparisons between matched early fusion and reliability-aware p=0.15.",
+      "disallowed": [
+        "external dataset generalization",
+        "independent public benchmark test",
+        "training-time model selection or tuning using guard results",
+        "statistical significance",
+        "optimal dropout",
+        "calibrated physical sensor reliability",
+        "real sensor-fault robustness",
+        "COCO AP@[0.50:0.95]"
+      ]
+    }
+  }
 }

@@ -4,87 +4,72 @@ Generated: 2026-07-09
 
 ## Current Status
 
-`V41_SIVP_REVIEWER_POLISHED_PREVIEW_READY`
+`V42_LOCKED_HELDOUT_GUARD_EVALUATION_COMPLETE`
 
-The V41 three-seed interim development-validation evidence is consolidated, and the active SIVP LaTeX narrative has been aligned to the validation-only evidence state. A simulated SIVP reviewer pass has now been completed: the manuscript text was polished, explicit missing-artwork placeholders were removed, simple in-manuscript schematic/table figures were inserted, key tables were aligned to the V40/V41 evidence state, and an assistant-side PDF preview was compiled for reading/layout review.
+The V42 locked held-out guard evaluation is complete. Six fixed checkpoints were evaluated on the frozen V40 component-disjoint guard manifest: matched early fusion seed0/seed1/seed2 and reliability-aware fusion with modality dropout `p=0.15` seed0/seed1/seed2.
 
-No new training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed. Manuscript edits were limited to SIVP LaTeX metadata/declaration/narrative/table/figure alignment and local PDF preview compilation.
+No training, hyperparameter tuning, checkpoint selection, split modification, robustness experiment, profiling run, manuscript edit, DroneVehicle work, or `finish_task.ps1` run was performed. The task used the user's explicit V42 guard-evaluation scope; `docs/NEXT_TASK.md` still describes the prior V41 manuscript task and was not used to expand scope.
 
 ## Evidence Inputs
 
-- V40 seed0/seed2 source: `runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json`.
-- V41 fresh seed1 source: `runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv`.
-- V41 seed1 source lock: `runs/v41_q1_upgrade/seed1/source_lock_seed1.md/json`.
-- V41 seed1 completion commit: `5d839ae900849919189edff4bdd364f42c043b86`.
-- Three-seed package: `runs/v41_q1_upgrade/interim_devval/`.
+- V42 source lock: `runs/v42_locked_guard_heldout/heldout_guard_source_lock.md/json`.
+- V42 summary: `runs/v42_locked_guard_heldout/heldout_guard_summary.md/json`.
+- V42 claim boundary: `runs/v42_locked_guard_heldout/heldout_guard_claim_boundary.md`.
+- Guard source manifest: `runs/component_disjoint_v40/guard.txt`.
+- Guard normalized LF SHA256: `9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e`.
+- Guard raw file SHA256 recorded by evaluator: `0cf3270c0a73d03caf8d698bb4e9ddb0adba46e688c52d8589f57ea12488881f`.
+- Evaluator: `rarepdet/eval_map.py` SHA256 `94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715`.
+- Metrics helper: `rarepdet/metrics.py` SHA256 `6ffa798647376594befc45f89ebb1aa1a5fbe3b50e5f484e7804c22bac13b081`.
 
-## Author metadata and declarations
+## Guard Source Clarification
 
-- Authors: Nan Xin and Xueting Jin.
-- Corresponding author: Nan Xin.
-- Affiliation: Anhui Police College, Hefei, Anhui, China.
-- Corresponding email: `floomeer83felix@gmail.com`.
-- Funding: no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
-- Competing interests: the authors declare no competing interests.
-- Author contributions: Nan Xin conceived/designed/implemented/evaluated/analyzed/drafted; Xueting Jin supervised, contributed to design/interpretation, and reviewed/revised; both authors read and approved the final manuscript.
-- Acknowledgments: not applicable.
-- Data availability: TriAir is named as the publicly available dataset; original files are not redistributed.
-- Code availability: source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
+The V42 source manifest is `runs/component_disjoint_v40/guard.txt`, which matches the normalized guard hash declared in `runs/component_disjoint_v40/split_manifest.json`.
 
-## Reviewer-style polish updates
+`reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_guard_unchanged_archival.txt` has the same row count but different content and was not used for V42 evaluation.
 
-- Added `submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md`.
-- Polished `submission/sivp/tex/ra_repdet_sivp.tex` for journal-style wording, clearer claim boundaries, and updated limitations.
-- Replaced explicit `Final artwork pending` placeholder figures with simple in-manuscript schematic/table figures for architecture, split workflow, and paired deltas.
-- Updated the title/abstract/keywords in `submission/sivp/tex/main.tex`, root `main.tex`, and root `main_sivp_snjnl.tex` to use component-disjoint validation wording.
-- Updated `submission/sivp/tables/Table_1_dataset_and_clean_split.tex` to remove old block64/guard16 wording and align with V40 component-disjoint evidence.
-- Updated `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex` to report seed0/seed1/seed2 and reliability-aware p=0.15 as the active setting.
-- Polished `submission/sivp/tex/related_work_literature_expansion.tex` to remove draft-screening/quartile language and keep the appendix as technical context only.
-- Recorded the reviewer-polished assistant-side PDF preview compile in `runs/v41_q1_upgrade/sivp_alignment/polished_preview_compile.md`.
+## Fixed Checkpoints
 
-## Three-seed interim development-validation descriptive summary
+| Run | Model | Seed | Checkpoint SHA256 | Source |
+| --- | --- | ---: | --- | --- |
+| matched_early_seed0 | early | 0 | `23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602` | V40 compute-minimized |
+| matched_early_seed1 | early | 1 | `60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804` | V41 fresh paired seed1 |
+| matched_early_seed2 | early | 2 | `b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e` | V40 compute-minimized |
+| reliability_p015_seed0 | reliability | 0 | `4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436` | V40 compute-minimized |
+| reliability_p015_seed1 | reliability | 1 | `a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d` | V41 fresh paired seed1 |
+| reliability_p015_seed2 | reliability | 2 | `27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415` | V40 compute-minimized |
 
-Reliability p=0.15 minus matched early, paired by seed:
+## Held-out Guard Descriptive Summary
+
+Reliability-aware `p=0.15` minus matched early fusion, paired by seed:
 
 | Metric | Mean delta | Sample SD | n seed pairs |
 | --- | ---: | ---: | ---: |
-| Precision | +0.011629 | 0.016501 | 3 |
-| Recall | +0.024487 | 0.026581 | 3 |
-| F1 | +0.018524 | 0.006208 | 3 |
-| AP50 | +0.016064 | 0.005699 | 3 |
-| AP75 | +0.064657 | 0.016415 | 3 |
+| Precision | +0.003213 | 0.010920 | 3 |
+| Recall | +0.010549 | 0.016220 | 3 |
+| F1 | +0.006946 | 0.008943 | 3 |
+| AP50 | +0.008562 | 0.006229 | 3 |
+| AP75 | +0.002173 | 0.017305 | 3 |
 
 Per-seed paired deltas:
 
 | Seed | Precision | Recall | F1 | AP50 | AP75 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| 0 | +0.024180 | +0.001704 | +0.012637 | +0.012812 | +0.054121 |
-| 1 | +0.017770 | +0.018067 | +0.017925 | +0.012734 | +0.083570 |
-| 2 | -0.007062 | +0.053690 | +0.025010 | +0.022645 | +0.056280 |
+| 0 | -0.001084 | -0.005538 | -0.003307 | +0.001628 | +0.005322 |
+| 1 | +0.015628 | +0.010285 | +0.013129 | +0.010372 | +0.017686 |
+| 2 | -0.004904 | +0.026899 | +0.011018 | +0.013685 | -0.016491 |
 
-## Claim boundary
+## Claim Boundary
 
-Allowed wording: three-seed interim development-validation descriptive evidence on the frozen V40 component-disjoint development-validation split.
+Allowed wording: locked held-out guard evaluation on the frozen V40 component-disjoint guard manifest, with descriptive three-seed paired comparisons between matched early fusion and reliability-aware `p=0.15`.
 
-Disallowed wording: independent test, external generalization, statistical significance, manuscript-final aggregate, optimal dropout, calibrated sensor reliability, or physical sensor-fault robustness.
+Disallowed wording: external dataset generalization, independent public benchmark test, training-time model selection or tuning using guard results, statistical significance, optimal dropout, calibrated physical sensor reliability, real sensor-fault robustness, or COCO AP@[0.50:0.95].
 
-## PDF preview note
+## Remaining Scientific Limitations
 
-A compiled reviewer-polished preview PDF was generated in the assistant sandbox using a temporary article-style wrapper because the hosted environment does not include the Springer `sn-jnl` class or a full repository clone. The preview is suitable for reading/layout review but is not a final Springer/SIVP submission build.
-
-## Work intentionally left for final submission
-
-- Real Springer `sn-jnl` class build and BibTeX/cross-reference closure after local toolchain repair.
-- Optional replacement of simple text schematics with high-resolution vector artwork.
-- Public release/archive DOI and release metadata if required by the submission workflow.
-- TriAir provider/license/version/redistribution/synchronization details beyond naming the public dataset.
-
-## Remaining scientific limitations
-
-- Validation-only evidence.
-- Three seed pairs only; seed3/seed4 are not planned in the current line.
-- No independent test.
-- No causal ablations separating stems, dynamic gate, and dropout.
-- No COCO mAP@[0.50:0.95] package.
+- The guard partition is within the TriAir project dataset, not an external dataset.
+- The evidence is descriptive with three seed pairs only.
+- The guard results must not be used for future model selection without rewriting the claim boundary.
+- No causal ablation separates stems, dynamic gate, and modality dropout.
+- No COCO mAP@[0.50:0.95] package is available.
 - Dataset provider provenance remains only partially resolved by naming TriAir as public.
 - Label-quality review remains incomplete.
