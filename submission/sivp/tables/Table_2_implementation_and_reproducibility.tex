@@ -10,13 +10,13 @@ Reliability-aware fusion & RGB/T/E stems -> softmax alpha -> Conv2d(16,3,1) & Mo
 FPN input channels & [48, 96, 192, 384] & RepViT feature check & RepViT-M0.9 feature map channels. \\
 FPN output channels & 128 & Backbone wrapper & Shared by active comparison. \\
 Class handling & TriAir class 0 -> torchvision label 1 & Training code & Background remains label 0. \\
-Image size & 640 & Run configs & Used for active development-validation runs. \\
-Training length & 50 epochs & Run configs & Best checkpoint selected by validation AP50. \\
-Active seeds & 0, 1, and 2 & V40/V41 reports & Three paired development-validation seeds. \\
+Image size & 640 & Run configs & Used for active development-validation and guard evaluation. \\
+Training length & 50 epochs & Run configs & Best checkpoint selected by development-validation AP50. \\
+Active seeds & 0, 1, and 2 & V40/V41/V42 reports & Three paired seed checkpoints. \\
 Modality dropout & p=0.15 & V41 source lock & Reliability-aware active configuration. \\
+Held-out guard evaluation & fixed checkpoints only & V42 source lock & No training, tuning, or checkpoint reselection. \\
 Evaluation convention & threshold 0.001, NMS 0.6, max 100 detections/image & Evaluation source lock & Shared project-local evaluator. \\
 AP implementation & project-local AP50/AP75 & eval\_map.py & Not COCO AP50:95. \\
-Guard/test access & none & Handoff/status records & No independent test claim. \\
 \bottomrule
 \end{tabular}%
 }
