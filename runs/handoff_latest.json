@@ -4,25 +4,24 @@
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
     "current_task": "V41 SIVP manuscript alignment with three-seed validation-only evidence",
-    "status": "COMPLETE",
+    "status": "COMPLETE_AUTHOR_METADATA_PARTIAL",
     "commit_message": "submission: align SIVP draft with V41 validation-only evidence"
   },
   "blocker": {
     "status": "NO_ACTIVE_BLOCKER",
     "path": "docs/TASK_BLOCKER.md"
   },
-  "assistant_completed": [
-    "Aligned submission/sivp/tex/ra_repdet_sivp.tex to V41 validation-only evidence",
-    "Aligned submission/sivp/tex/main.tex plus root main.tex/main_sivp_snjnl.tex abstracts and keywords",
-    "Inserted Table_8_three_seed_interim_devval.tex as the active main results table",
-    "Recorded pre-edit and post-edit claim scans",
-    "Recorded post-edit claim scan review",
-    "Ran preflight with placeholders allowed: PASS with expected warnings",
-    "Ran local MiKTeX pdflatex: PASS first pass; build products removed after logging",
-    "Recorded latexmk wrapper and BibTeX residual toolchain limitations",
-    "Updated docs/EXPERIMENT_STATUS.md",
-    "Updated runs/handoff_latest.md/json"
-  ],
+  "author_metadata": {
+    "authors": ["Nan Xin", "Xueting Jin"],
+    "corresponding_author": "Nan Xin",
+    "affiliation": "Anhui Police College, Hefei, Anhui, China",
+    "corresponding_email": "floomeer83felix@gmail.com",
+    "updated_files": [
+      "submission/sivp/tex/main.tex",
+      "main.tex",
+      "main_sivp_snjnl.tex"
+    ]
+  },
   "sivp_alignment": {
     "status": "COMPLETE",
     "active_claim": "reliability-aware p=0.15 versus matched early fusion, seed0/seed1/seed2, frozen V40 component-disjoint development-validation split",
@@ -49,7 +48,7 @@
   },
   "residual_submission_blockers": [
     "Final Fig. 1-6 assets are missing",
-    "Author metadata, affiliations, emails, funding, competing interests, contributions, acknowledgments, and data availability remain placeholders",
+    "Funding, competing interests, author contributions, acknowledgments, and data availability remain placeholders",
     "Public release/archive DOI and data-governance facts remain unresolved",
     "TriAir provider/version/license/redistribution/synchronization verification remains author-confirmation work",
     "Label-quality review remains incomplete",
