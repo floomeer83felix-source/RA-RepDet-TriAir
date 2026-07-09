@@ -4,18 +4,19 @@ Generated: 2026-07-09
 
 ## Current Status
 
-`V41_INTERIM_DEVVAL_CONSOLIDATION_COMPLETE`
+`V41_SIVP_ALIGNMENT_PACKAGE_PREPARED_FOR_CODEX`
 
-Current active evidence package: `runs/v41_q1_upgrade/interim_devval/`.
+The V41 three-seed interim development-validation evidence is consolidated, and a manuscript-alignment package has been prepared for Codex to apply to the LaTeX source and run local preflight/compile checks.
 
-This repository state consolidates V40 seed0/seed2 and V41 fresh seed1 evidence into a three-seed interim development-validation descriptive summary. No new training, evaluation, guard/test access, checkpoint loading, raw data access, prediction-cache access, or manuscript rewriting was performed by the consolidation task.
+No new training, evaluation, guard/test access, checkpoint loading, raw data access, prediction-cache access, or manuscript rewriting was performed after the interim consolidation package. The assistant prepared safe review/table/handoff inputs and a Codex task.
 
-## Inputs
+## Evidence Inputs
 
 - V40 seed0/seed2 source: `runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json`.
 - V41 fresh seed1 source: `runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv`.
 - V41 seed1 source lock: `runs/v41_q1_upgrade/seed1/source_lock_seed1.md/json`.
 - V41 seed1 completion commit: `5d839ae900849919189edff4bdd364f42c043b86`.
+- Three-seed package: `runs/v41_q1_upgrade/interim_devval/`.
 
 ## Three-seed interim development-validation descriptive summary
 
@@ -37,18 +38,17 @@ Per-seed paired deltas:
 | 1 | +0.017770 | +0.018067 | +0.017925 | +0.012734 | +0.083570 |
 | 2 | -0.007062 | +0.053690 | +0.025010 | +0.022645 | +0.056280 |
 
-## Evidence files
+## SIVP alignment files prepared
 
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.csv`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.md`
-- `runs/v41_q1_upgrade/interim_devval/three_seed_interim_devval_summary.json`
-- `runs/v41_q1_upgrade/interim_devval/interim_claim_boundary.md`
-- `docs/V41_INTERIM_DEVVAL_STATUS.md`
-- `rarepdet/tools/v41_interim_devval_consolidate.py`
+- `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
+- `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md`
+- `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md`
+- `submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md`
+- `docs/NEXT_TASK.md` now hands off LaTeX editing, preflight, and compile/logging to Codex.
 
 ## Task blocker state
 
-`docs/TASK_BLOCKER.md` now records `NO_ACTIVE_BLOCKER`. The older V40 GPU-deferred blocker is historical and no longer represents the active task state.
+`docs/TASK_BLOCKER.md` records `NO_ACTIVE_BLOCKER`. The older V40 GPU-deferred blocker is historical and no longer represents the active task state.
 
 ## Current claim boundary
 
@@ -56,7 +56,14 @@ Allowed wording: three-seed interim development-validation descriptive evidence 
 
 Disallowed wording: independent test, external generalization, statistical significance, manuscript-final aggregate, optimal dropout, calibrated sensor reliability, or physical sensor-fault robustness.
 
-## Remaining limitations
+## Work intentionally left for Codex/local environment
+
+- Apply replacement text to `submission/sivp/tex/ra_repdet_sivp.tex`.
+- Insert `Table_8_three_seed_interim_devval.tex` or equivalent values into the active main results table.
+- Run preflight and, if available, local LaTeX compile.
+- Record residual blockers for final artwork, author metadata, declarations, data/code availability, public archive/DOI, and TriAir provider/license/version details.
+
+## Remaining scientific limitations
 
 - Validation-only evidence.
 - Three seed pairs only; seed3/seed4 are not planned in the current line.
