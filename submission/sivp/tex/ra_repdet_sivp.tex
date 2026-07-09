@@ -2,28 +2,28 @@
 
 \section{Introduction}
 
-Unmanned aerial vehicles (UAVs) are increasingly used for road monitoring, traffic understanding, emergency response, and perimeter observation. Vehicle detection in such imagery is difficult because targets are often small, viewpoint changes rapidly, backgrounds are cluttered, and illumination can vary substantially within a flight. Lightweight detectors are attractive for this setting, but lightweight processing must be paired with an evaluation protocol that does not overstate performance through visually related train--validation samples.
+Unmanned aerial vehicles (UAVs) are increasingly used for road monitoring, traffic understanding, emergency response, and perimeter observation. Vehicle detection in UAV imagery is difficult because targets are often small, viewpoints vary rapidly, backgrounds are cluttered, and illumination may change substantially within a single flight. Lightweight detectors are attractive for such platforms, but compact inference should not be paired with an evaluation protocol that overstates performance through visually related training and validation samples.
 
-RGB cameras provide color, texture, and spatial detail, but their usefulness can decrease under low light, glare, shadows, or adverse contrast. Thermal sensing can preserve heat-related contrast when visible appearance is less informative, while event sensing provides sparse temporal-change cues with high dynamic range. These modalities are complementary, but complementarity alone does not guarantee that a detector will combine them effectively. A fusion front end can over-rely on one stream, and evaluation on an insufficiently separated split can make the resulting evidence hard to interpret.
+RGB cameras provide color, texture, and spatial detail, but their reliability can decrease under low light, glare, shadow, or poor contrast. Thermal sensing can preserve heat-related contrast when visible appearance is weak, while event sensing provides sparse temporal-change cues with high dynamic range. These modalities are complementary, yet complementarity alone does not ensure that a detector will combine them effectively. A fusion front end can over-rely on one stream, and validation on insufficiently separated samples can make the resulting evidence difficult to interpret.
 
-This paper studies RA-RepDet, a lightweight RGB--thermal--event detector built around a RepViT-M0.9 backbone \cite{RepViT2024}, feature pyramid network (FPN) \cite{FPN2017}, and FCOS anchor-free detection head \cite{FCOS2019}. The detector operates on five-channel samples composed of three RGB channels, one thermal channel, and one event channel. We compare a matched early-fusion front end with a reliability-aware front end that uses modality-specific stems, learned softmax fusion, and modality-dropout training. The active evidence in this revision is reliability-aware fusion with modality dropout \(p=0.15\) versus matched early fusion across seed0, seed1, and seed2 on a frozen V40 component-disjoint development-validation split.
+This paper presents RA-RepDet, a lightweight RGB--thermal--event vehicle detector built around a RepViT-M0.9 backbone \cite{RepViT2024}, feature pyramid network (FPN) \cite{FPN2017}, and FCOS anchor-free detection head \cite{FCOS2019}. The detector operates on five-channel samples composed of three RGB channels, one thermal channel, and one event channel. We compare a matched early-fusion front end with a reliability-aware front end that uses modality-specific stems, learned softmax fusion, and modality-dropout training. The active evidence in this revision is the reliability-aware configuration with modality dropout \(p=0.15\) compared with matched early fusion across seed0, seed1, and seed2 on a frozen V40 component-disjoint development-validation split.
 
-The claim boundary is intentionally narrow. The reported AP50 and AP75 values are project-local single-class metrics, not COCO AP50:95. The three-seed summary is descriptive development-validation evidence, not a statistical significance test, not an independent test, and not an external generalization result. Within this boundary, the contributions are as follows:
+The claim boundary is intentionally narrow. AP50 and AP75 are project-local single-class metrics rather than COCO AP50:95. The three-seed summary is descriptive development-validation evidence; it is not a statistical-significance test, not an independent test, and not an external-generalization result. Within this boundary, the contributions are as follows:
 
 \begin{enumerate}
     \item We present a lightweight RGB--thermal--event UAV vehicle detector that combines modality-specific stems, softmax reliability-aware fusion, a RepViT-M0.9 backbone, FPN, and FCOS head, together with a matched early-fusion baseline using the same detector stack.
-    \item We evaluate the reliability-aware \(p=0.15\) configuration against matched early fusion under a frozen V40 component-disjoint development-validation protocol using three paired seeds, while explicitly reporting the validation-only claim boundary.
-    \item We provide seed-level results, paired deltas, and descriptive mean \(\pm\) sample standard deviation for Precision, Recall, F1, AP50, and AP75, with AP50/AP75 treated as project-local single-class metrics rather than COCO AP50:95.
-    \item We document split integrity, source traceability, checkpoint hashes, and unresolved data-governance limitations so that the manuscript's claims remain aligned with the available evidence.
+    \item We evaluate the reliability-aware \(p=0.15\) configuration against matched early fusion under a frozen V40 component-disjoint development-validation protocol using three paired seeds.
+    \item We report seed-level results, paired deltas, and descriptive mean \(\pm\) sample standard deviation for precision, recall, F1, AP50, and AP75, while treating AP50/AP75 as project-local single-class metrics rather than COCO AP50:95.
+    \item We document split integrity, source traceability, checkpoint hashes, and data-governance limits so that the manuscript's claims remain aligned with the available evidence.
 \end{enumerate}
 
 \section{Related Work}
 
 \subsection{UAV Vehicle Detection}
 
-UAV imagery poses a demanding version of object detection because object scale, viewpoint, density, blur, and background appearance can change within and across scenes. Benchmarks such as VisDrone and UAVDT capture several of these difficulties and have encouraged methods that retain sensitivity to small and crowded targets \cite{VisDrone2018,UAVDT2018}. More broadly, modern object detection has developed through two-stage region-proposal approaches, dense one-stage detectors, and focal-loss-based treatment of class imbalance \cite{FasterRCNN2015,RetinaNet2017}. FCOS is an influential anchor-free one-stage formulation that predicts object locations directly rather than relying on hand-designed anchor boxes \cite{FCOS2019}.
+UAV imagery poses a demanding object-detection problem because object scale, viewpoint, density, blur, and background appearance can change within and across scenes. Benchmarks such as VisDrone and UAVDT capture several of these difficulties and have encouraged methods that retain sensitivity to small and crowded targets \cite{VisDrone2018,UAVDT2018}. More broadly, modern object detection has developed through two-stage proposal methods, dense one-stage detectors, and focal-loss-based treatment of class imbalance \cite{FasterRCNN2015,RetinaNet2017}. FCOS is an influential anchor-free one-stage formulation that predicts object locations directly rather than relying on hand-designed anchor boxes \cite{FCOS2019}.
 
-The present work adopts an FCOS head because the research goal is not to introduce a new detection head but to study whether a compact tri-modal front end can feed a lightweight detector effectively. RepViT provides a mobile-oriented backbone family with an efficient convolutional design \cite{RepViT2024}. Combined with an FPN \cite{FPN2017}, this design provides a practical shared architecture for a matched comparison between early fusion and reliability-aware fusion.
+The present work adopts an FCOS head because the research goal is not to introduce a new detection head, but to study whether a compact tri-modal front end can feed a lightweight detector effectively. RepViT provides a mobile-oriented backbone family with an efficient convolutional design \cite{RepViT2024}. Combined with an FPN \cite{FPN2017}, this design provides a practical shared architecture for a matched comparison between early fusion and reliability-aware fusion.
 
 \subsection{Visible, Thermal, and Event Perception}
 
@@ -33,19 +33,19 @@ In this paper, events are represented as one channel in an already constructed f
 
 \subsection{Missing-Modality Robustness and Reliability-Aware Fusion}
 
-Missing-modality learning studies cases in which one or more sources are unavailable, corrupted, or intentionally withheld. Modality dropout and hetero-modal learning are established approaches for reducing brittle reliance on a single channel \cite{ModDrop2016,HeMIS2016}. Such methods are relevant to multi-sensor UAV platforms, but robustness terminology requires care. A zeroed-channel evaluation can support a controlled stress comparison, yet it cannot reproduce all real effects of thermal drift, optical blur, temporal misalignment, sensor saturation, or field-of-view mismatch.
+Missing-modality learning studies cases in which one or more sources are unavailable, corrupted, or intentionally withheld. Modality dropout and hetero-modal learning are established approaches for reducing brittle reliance on a single channel \cite{ModDrop2016,HeMIS2016}. Such methods are relevant to multi-sensor UAV platforms, but robustness terminology requires care. A zeroed-channel evaluation can support a controlled stress comparison, yet it cannot reproduce all effects of thermal drift, optical blur, temporal misalignment, sensor saturation, or field-of-view mismatch.
 
-The reliability mechanism in this study predicts three weights from pooled modality-stem features and uses softmax normalization so that the fused representation is a convex combination of stem outputs. The purpose is to make fusion adaptive at the representation level while retaining a lightweight backbone-compatible interface. The reported gate values, where discussed, are observations of learned computation. They are not calibrated probabilities of sensor health and do not prove causal modality importance.
+The reliability mechanism in this study predicts three weights from pooled modality-stem features and uses softmax normalization so that the fused representation is a convex combination of stem outputs. The purpose is to make fusion adaptive at the representation level while retaining a lightweight backbone-compatible interface. Gate values, where discussed, are observations of learned computation. They are not calibrated probabilities of sensor health and do not prove causal modality importance.
 
 \subsection{Leakage-Aware Evaluation}
 
-Evaluation integrity is central when a dataset contains sequential, nearby, or repeated visual content. Exact duplicates, near duplicates, shared scene families, and adaptive use of validation feedback can all lead to overly favorable conclusions if not recognized. The need to consider dataset quality, overlap, and evaluation leakage has been emphasized in work on generalization and machine-learning practice \cite{Recht2019ImageNet,Northcutt2021LabelErrors,Kapoor2023Leakage}. In the present setting, exact RGB-content matches are used as a detectable signal of visual overlap. This audit does not capture every possible dependency, but it motivates a stricter component-disjoint development-validation protocol for the active evidence.
+Evaluation integrity is central when a dataset contains sequential, nearby, or repeated visual content. Exact duplicates, near duplicates, shared scene families, and adaptive use of validation feedback can all lead to overly favorable conclusions if they are not recognized. The need to consider dataset quality, overlap, and evaluation leakage has been emphasized in work on generalization and machine-learning practice \cite{Recht2019ImageNet,Northcutt2021LabelErrors,Kapoor2023Leakage}. In the present setting, exact RGB-content matches are used as a detectable signal of visual overlap. This audit does not capture every possible dependency, but it motivates a stricter component-disjoint development-validation protocol for the active evidence.
 
 \section{Method}
 
 \subsection{Problem Definition and Detector Stack}
 
-Each local TriAir sample is represented as a five-channel tensor
+Each TriAir sample is represented as a five-channel tensor
 \begin{equation}
 \mathbf{x} = [\mathbf{x}_{\mathrm{rgb}},\mathbf{x}_{\mathrm{th}},\mathbf{x}_{\mathrm{ev}}],
 \end{equation}
@@ -66,7 +66,7 @@ The matched early-fusion baseline exposes all five channels to the detector thro
 
 \subsection{Reliability-Aware Fusion with Modality Dropout}
 
-The reliability-aware variant processes RGB, thermal, and event inputs with separate stems. RGB is passed through a Conv2d\((3,16,3,\mathrm{padding}=1)\)--batch-normalization--SiLU stem, while thermal and event inputs each use a corresponding Conv2d\((1,16,3,\mathrm{padding}=1)\)--batch-normalization--SiLU stem. Let the stem outputs be \(\mathbf{F}_{\mathrm{rgb}}\), \(\mathbf{F}_{\mathrm{th}}\), and \(\mathbf{F}_{\mathrm{ev}}\). Global average pooling produces a descriptor for each stem, and a small reliability estimator maps the concatenated descriptors to three logits.
+The reliability-aware variant processes RGB, thermal, and event inputs with separate stems. RGB is passed through a Conv2d\((3,16,3,\mathrm{padding}=1)\)--batch-normalization--SiLU stem, while thermal and event inputs each use a corresponding Conv2d\((1,16,3,\mathrm{padding}=1)\)--batch-normalization--SiLU stem. Let the stem outputs be \(\mathbf{F}_{\mathrm{rgb}}\), \(\mathbf{F}_{\mathrm{th}}\), and \(\mathbf{F}_{\mathrm{ev}}\). Global average pooling produces one descriptor for each stem, and a small reliability estimator maps the concatenated descriptors to three logits.
 
 The reliability vector is normalized as
 \begin{equation}
@@ -84,15 +84,15 @@ The active reliability-aware configuration uses modality dropout with \(p=0.15\)
 
 \subsection{TriAir Representation and Labels}
 
-The local TriAir representation contains 10489 five-channel samples. Each sample combines RGB, thermal, and event information, and labels are stored as YOLO-format vehicle boxes. There are 9751 images with label text files, 738 images without label text files, and one empty label text file. Missing or empty label files are treated as empty-target images so that the sample inventory is preserved. Across the local representation, 30634 valid vehicle boxes are available.
+The experimental data are based on the publicly available TriAir dataset represented as five-channel RGB--thermal--event samples. The local representation contains 10489 samples. There are 9751 images with label text files, 738 images without label text files, and one empty label text file. Missing or empty label files are treated as empty-target images so that the sample inventory is preserved. Across the local representation, 30634 valid vehicle boxes are available.
 
-The paper reports results on this locally represented five-channel dataset and does not assert redistribution rights, license terms, or a public release policy. Those governance details remain author-confirmed submission items. The manuscript confines its data description to the repository-documented representation, label handling, and evaluation protocol.
+The paper reports results on this local five-channel representation and does not redistribute the original dataset files. The manuscript confines its data description to the dataset name, label handling, split manifests, and evaluation protocol used in this work.
 
 \subsection{Split Audit and Frozen V40 Protocol}
 
-The original random split was audited for exact RGB-content matches between training and validation samples. The audit found 153 validation samples with at least one exact RGB-content match in training, corresponding to 0.072927 of validation images. This observation does not imply full five-channel byte duplication, but it is enough to make the random split unsuitable for active headline evidence.
+The original random split was audited for exact RGB-content matches between training and validation samples. The audit found 153 validation samples with at least one exact RGB-content match in training, corresponding to 0.072927 of validation images. This observation does not imply full five-channel byte duplication, but it is sufficient to make the random split unsuitable for active headline evidence.
 
-The active evidence uses a frozen V40 component-disjoint development-validation protocol. The train and development-validation manifests have SHA256 values recorded in the source-lock package, and the V40 validation manifest contains 2213 images and 5867 vehicle boxes. Guard samples are archival/non-test samples and are not used as an evaluation partition in this manuscript revision. Figure~\ref{fig:fig-2-component-disjoint-split-audit-workflow} is reserved for the final split-audit schematic.
+The active evidence uses a frozen V40 component-disjoint development-validation protocol. The train and development-validation manifests have SHA256 values recorded in the source-lock package. The active split contains 7439 training images and 2213 development-validation images; the development-validation manifest contains 5867 vehicle boxes. Guard samples are archival/non-test samples and are not used as an evaluation partition in this manuscript revision. Figure~\ref{fig:fig-2-component-disjoint-split-audit-workflow} is reserved for the final split-audit schematic.
 
 \begin{figure*}[t]
 \centering
@@ -102,7 +102,7 @@ The active evidence uses a frozen V40 component-disjoint development-validation 
 \end{figure*}
 
 \begin{table*}[t]
-\caption{Dataset and split documentation. The active development-validation evidence uses the frozen V40 component-disjoint validation manifest; governance fields remain author-confirmation items.}
+\caption{Dataset and split documentation. The active development-validation evidence uses the frozen V40 component-disjoint validation manifest.}
 \label{tab:dataset-and-clean-blocked-split}
 \centering
 \input{../tables/Table_1_dataset_and_clean_split.tex}
@@ -112,7 +112,7 @@ The active evidence uses a frozen V40 component-disjoint development-validation 
 
 \subsection{Experimental Settings}
 
-The active comparison uses matched early fusion and reliability-aware \(p=0.15\) fusion trained for 50 epochs with seed0, seed1, and seed2. Input images are resized to 640. Precision, recall, F1, AP50, and AP75 are computed with the project-local evaluator. AP50 and AP75 are therefore single-class project metrics and should not be read as COCO AP50:95. Table~\ref{tab:implementation-and-reproducibility-settings} records implementation and reproducibility settings available in the current package.
+The active comparison uses matched early fusion and reliability-aware \(p=0.15\) fusion trained for 50 epochs with seed0, seed1, and seed2. Input images are resized to 640. Precision, recall, F1, AP50, and AP75 are computed with the project-local evaluator. AP50 and AP75 are therefore single-class project metrics and should not be read as COCO AP50:95. Table~\ref{tab:implementation-and-reproducibility-settings} records the implementation and reproducibility settings used for the active comparison.
 
 \begin{table*}[t]
 \caption{Implementation and reproducibility settings.}
@@ -127,7 +127,7 @@ The primary comparison is the matched early-fusion baseline versus the reliabili
 
 Across seed0, seed1, and seed2, the reliability-aware configuration records positive descriptive paired deltas for F1, AP50, and AP75 in every seed. The mean paired deltas across the three seed pairs are \(+0.018524\) F1, \(+0.016064\) AP50, and \(+0.064657\) AP75, with sample standard deviations of 0.006208, 0.005699, and 0.016415, respectively. Precision improves on average by \(+0.011629\), although seed2 has a negative precision delta, while recall improves on average by \(+0.024487\).
 
-These results support the reliability-aware \(p=0.15\) front end as the stronger configuration under this development-validation protocol. They do not constitute independent-test, statistical-significance, external-generalization, or final-submission evidence.
+These results support the reliability-aware \(p=0.15\) front end as the stronger configuration under this development-validation protocol. They do not constitute independent-test, statistical-significance, external-generalization, or final deployment evidence.
 
 \input{../tables/Table_8_three_seed_interim_devval.tex}
 
@@ -135,7 +135,7 @@ These results support the reliability-aware \(p=0.15\) front end as the stronger
 
 Earlier project artifacts include RGB-only external-baseline, efficiency, reliability-weight, synthetic missingness, and qualitative-review material. In this manuscript alignment, those materials are treated as contextual or pending-review evidence rather than the active headline result. The active quantitative claim is the three-seed paired development-validation comparison in Table~\ref{tab:v41-three-seed-interim-devval}.
 
-The RGB-only YOLO11n rows remain useful as an external reference, but they are not a matched architecture ablation because they change both input modality and detector implementation. Synthetic channel-removal rows, where retained in supplementary review material, should be read as zero-channel stress tests and not as physical sensor-failure robustness. Reliability weights are learned softmax outputs and not calibrated sensor reliability scores.
+The RGB-only YOLO11n rows remain useful as an external reference, but they are not a matched architecture ablation because they change both input modality and detector implementation. Synthetic channel-removal rows, where retained in supplementary review material, should be read as zero-channel stress tests rather than physical sensor-failure robustness. Reliability weights are learned softmax outputs and not calibrated sensor-reliability scores.
 
 \begin{figure*}[t]
 \centering
@@ -169,7 +169,7 @@ The RGB-only YOLO11n rows remain useful as an external reference, but they are n
 
 The V41 evidence supports a bounded conclusion: under the frozen V40 component-disjoint development-validation protocol, the reliability-aware \(p=0.15\) front end shows positive descriptive paired deltas over matched early fusion for F1, AP50, and AP75 across three paired seeds. The comparison is informative because the detector stack, input size, split, and evaluator are held fixed while the fusion front end differs.
 
-The result should not be overinterpreted. The current comparison evaluates a combined front-end and training configuration, not a fully separated causal mechanism. Separate stems, softmax gating, and modality dropout may each contribute to the observed behavior, but the present package does not isolate them. The sample standard deviations describe variation across three seed pairs only and are not a substitute for a larger uncertainty analysis.
+The result should not be overinterpreted. The current comparison evaluates a combined front-end and training configuration, not a fully separated causal mechanism. Separate stems, softmax gating, and modality dropout may each contribute to the observed behavior, but the present evidence does not isolate them. The sample standard deviations describe variation across three seed pairs only and are not a substitute for a larger uncertainty analysis.
 
 The split audit is part of the research contribution rather than only a preprocessing detail. A random split with documented exact RGB-content overlap may still be useful for exploratory development, but it should not carry the active claim. By using a frozen component-disjoint development-validation protocol, the manuscript prioritizes a more conservative and auditable validation statement.
 
@@ -179,10 +179,10 @@ This study is intentionally validation-only. The main evidence consists of three
 
 The current comparison also evaluates a combined reliability-aware front end and modality-dropout training configuration; it does not fully separate the causal contributions of separate stems, dynamic gating, and dropout. Synthetic channel removal, where reported in auxiliary material, should be interpreted only as zero-channel stress testing and not as physical sensor-failure robustness. Reliability-gate outputs are not calibrated sensor-reliability probabilities.
 
-TriAir provider, version, license, redistribution rights, synchronization details, and a complete label-quality review remain author-confirmation or future-work items. The manuscript also remains pre-final because author metadata, declarations, funding, conflicts, contributions, acknowledgments, data/code availability, public archive or DOI information, final environment records, and final approved artwork are not yet closed.
+The original TriAir files are not redistributed by this work, and use of the dataset remains subject to the terms specified by its original provider. Dataset versioning, official synchronization details, and a complete label-quality review remain important items for stronger future evidence. In addition, final figure artwork and a fully closed multi-pass bibliography build are submission-packaging items rather than additional scientific results.
 
 \section{Conclusion}
 
 RA-RepDet demonstrates that a lightweight reliability-aware RGB--thermal--event fusion front end can improve a matched early-fusion baseline under a frozen component-disjoint development-validation protocol. Across three paired seeds, the reliability-aware \(p=0.15\) configuration shows positive descriptive mean deltas for F1, AP50, and AP75 while preserving a compact detector design.
 
-The contribution is therefore an auditable validation-only assessment of tri-modal fusion rather than a claim of independent-test generalization or physical sensor-failure robustness. Future work should add an independent locked evaluation partition, COCO-style metrics, stronger causal ablations, external or cross-scene validation, completed data-provenance review, and completed label-quality audit.
+The contribution is therefore an auditable validation-only assessment of tri-modal fusion rather than a claim of independent-test generalization or physical sensor-failure robustness. Future work should add an independent locked evaluation partition, COCO-style metrics, stronger causal ablations, external or cross-scene validation, completed dataset-governance review, and completed label-quality audit.
