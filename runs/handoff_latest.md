@@ -6,7 +6,7 @@ Generated: 2026-07-09
 
 - Task file: `docs/NEXT_TASK.md`
 - Current task: V41 SIVP manuscript alignment with three-seed validation-only evidence
-- Status: `COMPLETE_AUTHOR_AND_DATA_METADATA_PARTIAL`
+- Status: `COMPLETE_DECLARATIONS_PARTIAL`
 - Active blocker: `NO_ACTIVE_BLOCKER`
 
 ## What Assistant/Codex Completed
@@ -40,9 +40,13 @@ Files updated or recorded:
 - Corresponding email: `floomeer83felix@gmail.com`.
 - Updated SIVP entry files: `submission/sivp/tex/main.tex`, root `main.tex`, and root `main_sivp_snjnl.tex`.
 
-## Data Availability Inserted
+## Declarations Inserted
 
-The SIVP entry files now state that the experimental dataset is the publicly available TriAir dataset, that the authors do not redistribute original dataset files, and that source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
+- Funding: no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+- Competing interests: the authors declare no competing interests.
+- Author contributions: Nan Xin conceived/designed/implemented/evaluated/analyzed/drafted; Xueting Jin supervised, contributed to design/interpretation, and reviewed/revised; both authors read and approved the final manuscript.
+- Acknowledgments: not applicable.
+- Data availability: the experimental dataset is the publicly available TriAir dataset; original files are not redistributed; source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
 
 ## Completion Notes
 
@@ -57,7 +61,6 @@ The SIVP entry files now state that the experimental dataset is the publicly ava
 ## Residual Submission Blockers
 
 - Final Fig. 1--6 assets are missing.
-- Funding, competing interests, author contributions, and acknowledgments remain placeholders.
 - Public release/archive DOI and release metadata remain unresolved.
 - TriAir provider, version, license, redistribution, and synchronization facts remain author-confirmation items beyond naming the public dataset.
 - Label-quality review remains incomplete.
@@ -84,6 +87,5 @@ Disallowed wording: independent test, external generalization, statistical signi
 ## What Remains Out Of Scope
 
 - Final figure/artwork verification.
-- Funding, competing interests, author contributions, or acknowledgments finalization.
 - TriAir provider URL, version, license, redistribution rights, synchronization details, or official event representation verification.
 - New experiments, independent test creation, COCO AP50:95, causal ablations, or label-quality review.
