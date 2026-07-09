@@ -6,10 +6,10 @@ Generated: 2026-07-09
 
 - Task file: `docs/NEXT_TASK.md`
 - Current task: V41 SIVP manuscript alignment with three-seed validation-only evidence
-- Status: `COMPLETE`
+- Status: `COMPLETE_AUTHOR_METADATA_PARTIAL`
 - Active blocker: `NO_ACTIVE_BLOCKER`
 
-## What Assistant Completed
+## What Assistant/Codex Completed
 
 Completed the SIVP manuscript alignment from existing V41 evidence only. No training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed.
 
@@ -32,6 +32,14 @@ Files updated or recorded:
 - `docs/EXPERIMENT_STATUS.md`
 - `runs/handoff_latest.md/json`
 
+## Author Metadata Inserted
+
+- Authors: Nan Xin and Xueting Jin.
+- Corresponding author: Nan Xin.
+- Affiliation: Anhui Police College, Hefei, Anhui, China.
+- Corresponding email: `floomeer83felix@gmail.com`.
+- Updated SIVP entry files: `submission/sivp/tex/main.tex`, root `main.tex`, and root `main_sivp_snjnl.tex`.
+
 ## Completion Notes
 
 - Active result is now reliability-aware `p=0.15` versus matched early fusion on seed0/seed1/seed2.
@@ -45,7 +53,7 @@ Files updated or recorded:
 ## Residual Submission Blockers
 
 - Final Fig. 1--6 assets are missing.
-- Author metadata, affiliations, emails, funding, competing interests, contributions, acknowledgments, and data availability remain placeholders.
+- Funding, competing interests, author contributions, acknowledgments, and data availability remain placeholders.
 - Public release/archive DOI and data-governance facts remain unresolved.
 - TriAir provider, version, license, redistribution, and synchronization facts remain author-confirmation items.
 - Label-quality review remains incomplete.
@@ -72,6 +80,6 @@ Disallowed wording: independent test, external generalization, statistical signi
 ## What Remains Out Of Scope
 
 - Final figure/artwork verification.
-- Author metadata, declarations, funding, conflicts, contributions, acknowledgments, or data/code availability finalization.
+- Funding, competing interests, author contributions, acknowledgments, or data/code availability finalization.
 - TriAir provider URL, version, license, redistribution rights, synchronization details, or official event representation verification.
 - New experiments, independent test creation, COCO AP50:95, causal ablations, or label-quality review.
