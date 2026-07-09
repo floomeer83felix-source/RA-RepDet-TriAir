@@ -51,12 +51,23 @@ Each TriAir sample is represented as a five-channel tensor
 \end{equation}
 where \(\mathbf{x}_{\mathrm{rgb}}\in\mathbb{R}^{3\times H\times W}\), \(\mathbf{x}_{\mathrm{th}}\in\mathbb{R}^{1\times H\times W}\), and \(\mathbf{x}_{\mathrm{ev}}\in\mathbb{R}^{1\times H\times W}\). The task is single-class vehicle detection. At training time, TriAir class 0 is converted to torchvision label 1, while background remains label 0. The shared detector uses RepViT-M0.9 feature stages with channel sizes 48, 96, 192, and 384. An FPN maps the stage features to 128 channels, and FCOS performs dense object classification and box regression \cite{TorchvisionFCOS}.
 
-Figure~\ref{fig:fig-1-overall-architecture-and-training-inference-flow} is reserved for the final architecture schematic. The placeholder remains until author-approved artwork is supplied.
+Figure~\ref{fig:fig-1-overall-architecture-and-training-inference-flow} summarizes the active detector comparison. The matched early-fusion path uses one learned five-to-three-channel projection, whereas the reliability-aware path uses three modality stems, a softmax fusion module, and a one-by-one projection into the same detector stack.
 
 \begin{figure*}[t]
 \centering
-\fbox{\parbox{0.92\textwidth}{\centering Final artwork pending: Fig. 1 Overall reliability-aware architecture and training/inference flow}}
-\caption{Overall reliability-aware architecture and training/inference flow. Final artwork pending author approval.}
+\fbox{\begin{minipage}{0.92\textwidth}
+\centering
+\small
+\begin{tabular}{c}
+RGB, thermal, event input \\
+\hline
+Matched early fusion: \(5\)-channel input \(\rightarrow\) Conv\((5,3,1)\) \(\rightarrow\) RepViT--FPN--FCOS \(\rightarrow\) vehicle boxes \\
+\hline
+Reliability-aware fusion: RGB/T/E stems \(\rightarrow\) GAP descriptors \(\rightarrow\) softmax weights \(\boldsymbol{\alpha}\) \\
+\(\rightarrow\) weighted feature fusion \(\rightarrow\) Conv\((16,3,1)\) \(\rightarrow\) RepViT--FPN--FCOS \(\rightarrow\) vehicle boxes
+\end{tabular}
+\end{minipage}}
+\caption{Overview of the matched early-fusion baseline and the reliability-aware fusion front end. Both variants use the same RepViT--FPN--FCOS detector stack after the input projection.}
 \label{fig:fig-1-overall-architecture-and-training-inference-flow}
 \end{figure*}
 
@@ -92,12 +103,22 @@ The paper reports results on this local five-channel representation and does not
 
 The original random split was audited for exact RGB-content matches between training and validation samples. The audit found 153 validation samples with at least one exact RGB-content match in training, corresponding to 0.072927 of validation images. This observation does not imply full five-channel byte duplication, but it is sufficient to make the random split unsuitable for active headline evidence.
 
-The active evidence uses a frozen V40 component-disjoint development-validation protocol. The train and development-validation manifests have SHA256 values recorded in the source-lock package. The active split contains 7439 training images and 2213 development-validation images; the development-validation manifest contains 5867 vehicle boxes. Guard samples are archival/non-test samples and are not used as an evaluation partition in this manuscript revision. Figure~\ref{fig:fig-2-component-disjoint-split-audit-workflow} is reserved for the final split-audit schematic.
+The active evidence uses a frozen V40 component-disjoint development-validation protocol. The train and development-validation manifests have SHA256 values recorded in the source-lock package. The active split contains 7439 training images and 2213 development-validation images; the development-validation manifest contains 5867 vehicle boxes. Guard samples are archival/non-test samples and are not used as an evaluation partition in this manuscript revision. Figure~\ref{fig:fig-2-component-disjoint-split-audit-workflow} summarizes the evaluation-protocol transition.
 
 \begin{figure*}[t]
 \centering
-\fbox{\parbox{0.92\textwidth}{\centering Final artwork pending: Fig. 2 Component-disjoint split audit workflow}}
-\caption{Component-disjoint split audit workflow. Final artwork pending author approval.}
+\fbox{\begin{minipage}{0.92\textwidth}
+\centering
+\small
+\begin{tabular}{c}
+Local TriAir inventory \(\rightarrow\) exact RGB-content matching audit \\
+\(\rightarrow\) historical random split flagged by 153 matched validation samples \\
+\(\rightarrow\) component graph construction and manual adjacency review \\
+\(\rightarrow\) frozen V40 component-disjoint train/development-validation manifests \\
+\(\rightarrow\) seed0/seed1/seed2 paired development-validation comparison
+\end{tabular}
+\end{minipage}}
+\caption{Component-disjoint development-validation workflow used to replace the historical random split for active evidence.}
 \label{fig:fig-2-component-disjoint-split-audit-workflow}
 \end{figure*}
 
@@ -131,39 +152,30 @@ These results support the reliability-aware \(p=0.15\) front end as the stronger
 
 \input{../tables/Table_8_three_seed_interim_devval.tex}
 
-\subsection{External Baselines and Auxiliary Analyses}
-
-Earlier project artifacts include RGB-only external-baseline, efficiency, reliability-weight, synthetic missingness, and qualitative-review material. In this manuscript alignment, those materials are treated as contextual or pending-review evidence rather than the active headline result. The active quantitative claim is the three-seed paired development-validation comparison in Table~\ref{tab:v41-three-seed-interim-devval}.
-
-The RGB-only YOLO11n rows remain useful as an external reference, but they are not a matched architecture ablation because they change both input modality and detector implementation. Synthetic channel-removal rows, where retained in supplementary review material, should be read as zero-channel stress tests rather than physical sensor-failure robustness. Reliability weights are learned softmax outputs and not calibrated sensor-reliability scores.
-
 \begin{figure*}[t]
 \centering
-\fbox{\parbox{0.92\textwidth}{\centering Final artwork pending: Fig. 3 Three-seed development-validation paired deltas}}
-\caption{Three-seed development-validation paired deltas. Final artwork pending author approval.}
+\fbox{\begin{minipage}{0.82\textwidth}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Metric & Mean paired delta & Sample SD & Seed pairs \\
+\midrule
+F1 & +0.018524 & 0.006208 & 3 \\
+AP50 & +0.016064 & 0.005699 & 3 \\
+AP75 & +0.064657 & 0.016415 & 3 \\
+\bottomrule
+\end{tabular}
+\end{minipage}}
+\caption{Descriptive paired improvements of reliability-aware \(p=0.15\) fusion over matched early fusion on the frozen V40 development-validation split.}
 \label{fig:fig-3-three-seed-development-validation-paired-deltas}
 \end{figure*}
 
-\begin{figure*}[t]
-\centering
-\fbox{\parbox{0.92\textwidth}{\centering Final artwork pending: Fig. 4 Auxiliary synthetic stress and external-reference context}}
-\caption{Auxiliary synthetic stress and external-reference context. Final artwork pending author approval.}
-\label{fig:fig-4-auxiliary-synthetic-stress-and-external-reference-context}
-\end{figure*}
+\subsection{External Baselines and Auxiliary Analyses}
 
-\begin{figure*}[t]
-\centering
-\fbox{\parbox{0.92\textwidth}{\centering Final artwork pending: Fig. 5 Reliability-weight audit context}}
-\caption{Reliability-weight audit context. Final artwork pending author approval.}
-\label{fig:fig-5-reliability-weight-audit-context}
-\end{figure*}
+Earlier project artifacts include RGB-only external-baseline, efficiency, reliability-weight, synthetic missingness, and qualitative-review material. In this manuscript alignment, those materials are treated as contextual or pending-review evidence rather than the active headline result. The active quantitative claim is the three-seed paired development-validation comparison in Table~\ref{tab:v41-three-seed-interim-devval} and Figure~\ref{fig:fig-3-three-seed-development-validation-paired-deltas}.
 
-\begin{figure*}[t]
-\centering
-\fbox{\parbox{0.92\textwidth}{\centering Final artwork pending: Fig. 6 Qualitative detection panels}}
-\caption{Qualitative detection panels. Final artwork pending author approval.}
-\label{fig:fig-6-qualitative-detection-panels}
-\end{figure*}
+The RGB-only YOLO11n rows remain useful as an external reference, but they are not a matched architecture ablation because they change both input modality and detector implementation. Synthetic channel-removal rows, where retained in supplementary review material, should be read as zero-channel stress tests rather than physical sensor-failure robustness. Reliability weights are learned softmax outputs and not calibrated sensor-reliability scores.
 
 \section{Discussion}
 
@@ -179,7 +191,7 @@ This study is intentionally validation-only. The main evidence consists of three
 
 The current comparison also evaluates a combined reliability-aware front end and modality-dropout training configuration; it does not fully separate the causal contributions of separate stems, dynamic gating, and dropout. Synthetic channel removal, where reported in auxiliary material, should be interpreted only as zero-channel stress testing and not as physical sensor-failure robustness. Reliability-gate outputs are not calibrated sensor-reliability probabilities.
 
-The original TriAir files are not redistributed by this work, and use of the dataset remains subject to the terms specified by its original provider. Dataset versioning, official synchronization details, and a complete label-quality review remain important items for stronger future evidence. In addition, final figure artwork and a fully closed multi-pass bibliography build are submission-packaging items rather than additional scientific results.
+The original TriAir files are not redistributed by this work, and use of the dataset remains subject to the terms specified by its original provider. Dataset versioning, official synchronization details, and a complete label-quality review remain important items for stronger future evidence. In addition, the text schematics used in the current manuscript can be replaced by higher-resolution artwork during final production, and a fully closed Springer/BibTeX build remains a submission-packaging item rather than an additional scientific result.
 
 \section{Conclusion}
 
