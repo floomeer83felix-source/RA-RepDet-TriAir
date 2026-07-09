@@ -5,50 +5,58 @@ Generated: 2026-07-09
 ## Current Task State
 
 - Task file: `docs/NEXT_TASK.md`
-- User-explicit task: V44 SIVP submission preflight and template compile
-- Status: `V44_SIVP_SUBMISSION_PREFLIGHT_COMPLETE`
+- User-explicit task: V45 strict SIVP reviewer pass and revision
+- Status: `V45_STRICT_REVIEW_REVISION_COMPLETE`
 - Active blocker: `NO_ACTIVE_BLOCKER`
 
 ## What Assistant Completed
 
-Completed manuscript-facing final preflight after V43 integration of V42 locked held-out guard evidence. No new training, tuning, checkpoint selection, split modification, robustness, profiling, external-data work, metric recomputation, or additional evaluation was performed.
+Completed a strict simulated SIVP reviewer pass and manuscript-facing revision after V44 preflight. No new training, tuning, checkpoint selection, split modification, robustness, profiling, external-data work, metric recomputation, or additional evaluation was performed.
 
-## Manuscript Files Updated
+## Files Updated
 
-- `submission/sivp/tex/related_work_literature_expansion.tex`
+- `submission/sivp/tex/main.tex`
+- root `main.tex`
+- root `main_sivp_snjnl.tex`
+- `submission/sivp/review/STRICT_REVIEWER_REPORT_V45.md`
+- `runs/v45_strict_review/STRICT_REVIEW_AND_COMPILE_REPORT.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `runs/handoff_latest.md/json`
-- `runs/v44_submission_preflight/V44_SUBMISSION_PREFLIGHT_REPORT.md`
 
-The prior V43 manuscript integration had already updated:
+## Strict Reviewer Findings
 
-- `submission/sivp/tex/ra_repdet_sivp.tex`
-- `submission/sivp/tex/main.tex`
-- `main.tex`
-- `main_sivp_snjnl.tex`
-- `submission/sivp/tables/Table_1_dataset_and_clean_split.tex`
-- `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`
-- `submission/sivp/tables/Table_9_locked_heldout_guard.tex`
-- `submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md`
+Major concerns retained and explicitly handled:
 
-## Evidence State After V44
+1. The held-out guard is same-dataset evidence, not external validation.
+2. Held-out guard gains are smaller than development-validation gains.
+3. Per-seed held-out F1 and AP75 deltas are mixed.
+4. AP50/AP75 are project-local metrics, not COCO AP@[0.50:0.95].
+5. The study lacks causal ablations separating stems, softmax gating, and modality dropout.
+6. Text schematics can be replaced with polished vector artwork, but the current figures are no longer explicit placeholders.
+
+## Manuscript Changes
+
+The abstract was tightened in all active entry files. It now explicitly states:
+
+- the guard check is same-dataset;
+- held-out gains are smaller;
+- per-seed F1 and AP75 guard deltas are mixed;
+- the conclusion is a bounded within-dataset assessment.
+
+## V45 Compile and Render Verification
+
+- Output PDF: `RA_RepDet_SIVP_V45_strict_review_revised_snjnl.pdf`.
+- Page count: 10 pages.
+- Springer-style template compile completed in the assistant sandbox using `sn-jnl.cls` and `sn-basic.bst` from the previously provided SIVP source package.
+- BibTeX/cross-reference closure completed using `/usr/bin/bibtex.original` because the sandbox `bibtex` symlink is broken.
+- Render verification: 10 pages rendered with no obvious page-level clipping or broken pages observed.
+
+## Evidence State After V45
 
 The paper is no longer described as validation-only. The active evidence is:
 
 1. Three-seed component-disjoint development-validation evidence.
 2. Locked same-dataset TriAir held-out guard evaluation using six fixed checkpoints.
-
-## V44 Preflight Results
-
-- Claim scan: no active `validation-only` wording remains in the checked manuscript text.
-- No positive claim of external generalization, statistical significance, optimal dropout, COCO AP50:95 performance, or real sensor-failure robustness was found.
-- Remaining restricted terms occur as explicit cautionary/negative claim-boundary statements.
-- Springer-style template compile completed in the assistant sandbox using `sn-jnl.cls` and `sn-basic.bst` from the previously provided SIVP source package.
-- BibTeX/cross-reference closure completed in the sandbox using `/usr/bin/bibtex.original` because the sandbox `bibtex` symlink is broken.
-- Output PDF: `RA_RepDet_SIVP_V44_submission_preflight_snjnl.pdf`.
-- Page count: 10 pages.
-- Render verification: 10 pages rendered; no obvious page-level clipping or broken pages observed.
-- Minor residual layout warning: one overfull hbox of approximately 22.33 pt around a displayed equation/table-area line.
 
 ## Development-validation Summary
 
