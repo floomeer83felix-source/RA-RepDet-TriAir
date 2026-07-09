@@ -14,11 +14,10 @@
 
 \title[RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection]{RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection under Leakage-Aware Evaluation}
 
-\author*[1]{\fnm{[AUTHOR 1 GIVEN NAME]} \sur{[AUTHOR 1 FAMILY NAME]}}\email{[CORRESPONDING EMAIL]}
-\author[2]{\fnm{[AUTHOR 2 GIVEN NAME]} \sur{[AUTHOR 2 FAMILY NAME]}}\email{[AUTHOR 2 EMAIL]}
+\author*[1]{\fnm{Nan} \sur{Xin}}\email{floomeer83felix@gmail.com}
+\author[1]{\fnm{Xueting} \sur{Jin}}
 
-\affil*[1]{\orgdiv{[DEPARTMENT]}, \orgname{[AFFILIATION]}, \orgaddress{\city{[CITY]}, \country{[COUNTRY]}}}
-\affil[2]{\orgdiv{[DEPARTMENT]}, \orgname{[AFFILIATION]}, \orgaddress{\city{[CITY]}, \country{[COUNTRY]}}}
+\affil*[1]{\orgname{Anhui Police College}, \orgaddress{\city{Hefei}, \state{Anhui}, \country{China}}}
 
 \abstract{Lightweight vehicle detection from unmanned-aerial-vehicle imagery benefits from complementary sensing, but multi-modal fusion results can be difficult to interpret when evaluation splits contain visually related samples or when validation evidence is overstated as deployment robustness. This paper studies a compact RGB--thermal--event detector based on a RepViT--FPN--FCOS stack and compares a matched early-fusion front end with a reliability-aware front end using modality-specific stems, softmax fusion, and modality-dropout training. The evaluation is intentionally scoped to a frozen component-disjoint development-validation protocol for a locally represented TriAir dataset. Across three paired seeds, reliability-aware fusion with modality dropout $p=0.15$ improves the matched early-fusion baseline by descriptive mean deltas of +0.0185 F1, +0.0161 AP50, and +0.0647 AP75 using project-local AP metrics. The model adds only a small number of front-end parameters relative to the shared detector stack. We also document the validation-only boundary, split-audit provenance, and limitations of the evidence, including the absence of an independent locked evaluation partition, COCO AP50:95 evaluation, and physical sensor-failure experiments. The resulting study provides an auditable validation-only assessment of reliability-aware tri-modal fusion for lightweight UAV vehicle detection.}
 
