@@ -3,9 +3,9 @@
   "generated_at": "2026-07-09",
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "current_task": "V41 SIVP manuscript alignment with three-seed validation-only evidence",
-    "status": "COMPLETE_DECLARATIONS_PARTIAL",
-    "commit_message": "submission: align SIVP draft with V41 validation-only evidence"
+    "current_task": "V41 SIVP manuscript polish and PDF preview",
+    "status": "POLISHED_PREVIEW_READY",
+    "commit_message": "submission: polish SIVP manuscript and preview PDF"
   },
   "blocker": {
     "status": "NO_ACTIVE_BLOCKER",
@@ -27,25 +27,42 @@
     "competing_interests": "The authors declare that they have no competing interests.",
     "author_contributions": "Nan Xin conceived the study, designed the method, implemented the experiments, performed the evaluation, analyzed the results, and drafted the manuscript. Xueting Jin supervised the research, contributed to the study design and result interpretation, and reviewed and revised the manuscript. Both authors read and approved the final manuscript.",
     "acknowledgments": "Not applicable.",
-    "data_availability": "The dataset used for the experiments in this study is the publicly available TriAir dataset. The authors do not redistribute the original dataset files. Source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables generated in this work are available in the current project repository. Use of the original dataset is subject to the terms specified by its original provider.",
-    "updated_files": [
+    "data_availability": "The dataset used for the experiments in this study is the publicly available TriAir dataset. The authors do not redistribute the original dataset files. Use of the original dataset is subject to the terms specified by its original provider.",
+    "code_availability": "Source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables generated in this work are available in the current project repository."
+  },
+  "polish_updates": {
+    "status": "COMPLETE",
+    "files": [
+      "submission/sivp/tex/ra_repdet_sivp.tex",
       "submission/sivp/tex/main.tex",
       "main.tex",
-      "main_sivp_snjnl.tex"
+      "main_sivp_snjnl.tex",
+      "submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
+      "submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
+      "submission/sivp/tex/related_work_literature_expansion.tex"
+    ],
+    "notes": [
+      "Updated title/abstract/keywords to component-disjoint validation wording",
+      "Aligned dataset and reproducibility tables to V40/V41 evidence",
+      "Removed internal draft-screening/quartile tone from the appendix",
+      "Maintained validation-only claim boundary"
     ]
+  },
+  "pdf_preview": {
+    "status": "GENERATED_IN_ASSISTANT_SANDBOX",
+    "file": "RA_RepDet_SIVP_V41_polished_compiled_preview.pdf",
+    "pages": 7,
+    "verification": "Rendered 7 pages using the PDF skill render workflow; no obvious clipping was observed in contact-sheet review.",
+    "limitation": "Compiled with a temporary article-style wrapper because the assistant sandbox does not contain the Springer sn-jnl class or full repository clone; suitable for reading/layout review, not final Springer submission."
   },
   "sivp_alignment": {
     "status": "COMPLETE",
     "active_claim": "reliability-aware p=0.15 versus matched early fusion, seed0/seed1/seed2, frozen V40 component-disjoint development-validation split",
     "claim_boundary": "three-seed interim development-validation descriptive evidence only",
-    "pre_edit_claim_scan": "runs/v41_q1_upgrade/sivp_alignment/pre_edit_claim_scan.txt",
-    "post_edit_claim_scan": "runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan.txt",
-    "post_edit_claim_scan_review": "runs/v41_q1_upgrade/sivp_alignment/post_edit_claim_scan_review.md",
-    "preflight_allow_placeholders": "runs/v41_q1_upgrade/sivp_alignment/preflight_allow_placeholders.txt",
-    "preflight_result": "PASS with expected placeholder/final-figure warnings",
-    "pdflatex_result": "PASS first pass; generated 8-page PDF during local check; build products removed after logging",
-    "latexmk_result": "Unavailable because MiKTeX lacks Perl",
-    "bibtex_result": "Full BibTeX multi-pass compile timed out and remains a local toolchain/bibliography closure item"
+    "preflight_result": "Prior preflight PASS with expected placeholder/final-figure warnings",
+    "pdflatex_result": "Preview PDF compiled in assistant sandbox using fallback wrapper",
+    "latexmk_result": "Unavailable in prior MiKTeX run because MiKTeX lacks Perl",
+    "bibtex_result": "Full Springer/BibTeX multi-pass compile remains a local toolchain closure item"
   },
   "interim_devval": {
     "status": "V41_INTERIM_DEVVAL_CONSOLIDATION_COMPLETE",
@@ -63,6 +80,6 @@
     "Public release/archive DOI and release metadata remain unresolved",
     "TriAir provider/version/license/redistribution/synchronization verification remains author-confirmation work beyond naming the public dataset",
     "Label-quality review remains incomplete",
-    "Full BibTeX/cross-reference closure requires local toolchain repair"
+    "Full Springer sn-jnl class build and BibTeX/cross-reference closure require local toolchain repair"
   ]
 }
