@@ -3,9 +3,9 @@
   "generated_at": "2026-07-09",
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "current_task": "V41 SIVP manuscript polish and PDF preview",
-    "status": "POLISHED_PREVIEW_READY",
-    "commit_message": "submission: polish SIVP manuscript and preview PDF"
+    "current_task": "V41 SIVP reviewer-style manuscript polish and PDF preview",
+    "status": "REVIEWER_POLISHED_PREVIEW_READY",
+    "commit_message": "submission: reviewer-polish SIVP manuscript and preview PDF"
   },
   "blocker": {
     "status": "NO_ACTIVE_BLOCKER",
@@ -15,12 +15,7 @@
     "authors": ["Nan Xin", "Xueting Jin"],
     "corresponding_author": "Nan Xin",
     "affiliation": "Anhui Police College, Hefei, Anhui, China",
-    "corresponding_email": "floomeer83felix@gmail.com",
-    "updated_files": [
-      "submission/sivp/tex/main.tex",
-      "main.tex",
-      "main_sivp_snjnl.tex"
-    ]
+    "corresponding_email": "floomeer83felix@gmail.com"
   },
   "declarations": {
     "funding": "This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.",
@@ -30,8 +25,9 @@
     "data_availability": "The dataset used for the experiments in this study is the publicly available TriAir dataset. The authors do not redistribute the original dataset files. Use of the original dataset is subject to the terms specified by its original provider.",
     "code_availability": "Source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables generated in this work are available in the current project repository."
   },
-  "polish_updates": {
+  "reviewer_polish_updates": {
     "status": "COMPLETE",
+    "review_file": "submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md",
     "files": [
       "submission/sivp/tex/ra_repdet_sivp.tex",
       "submission/sivp/tex/main.tex",
@@ -45,22 +41,21 @@
       "Updated title/abstract/keywords to component-disjoint validation wording",
       "Aligned dataset and reproducibility tables to V40/V41 evidence",
       "Removed internal draft-screening/quartile tone from the appendix",
+      "Replaced explicit Final artwork pending placeholders with simple schematic/table figures",
       "Maintained validation-only claim boundary"
     ]
   },
   "pdf_preview": {
     "status": "GENERATED_IN_ASSISTANT_SANDBOX",
-    "file": "RA_RepDet_SIVP_V41_polished_compiled_preview.pdf",
-    "pages": 7,
-    "verification": "Rendered 7 pages using the PDF skill render workflow; no obvious clipping was observed in contact-sheet review.",
+    "file": "RA_RepDet_SIVP_V41_reviewer_polished_preview.pdf",
+    "pages": 6,
+    "verification": "Rendered 6 pages using the PDF skill render workflow; no obvious clipping was observed in contact-sheet review.",
     "limitation": "Compiled with a temporary article-style wrapper because the assistant sandbox does not contain the Springer sn-jnl class or full repository clone; suitable for reading/layout review, not final Springer submission."
   },
   "sivp_alignment": {
     "status": "COMPLETE",
     "active_claim": "reliability-aware p=0.15 versus matched early fusion, seed0/seed1/seed2, frozen V40 component-disjoint development-validation split",
     "claim_boundary": "three-seed interim development-validation descriptive evidence only",
-    "preflight_result": "Prior preflight PASS with expected placeholder/final-figure warnings",
-    "pdflatex_result": "Preview PDF compiled in assistant sandbox using fallback wrapper",
     "latexmk_result": "Unavailable in prior MiKTeX run because MiKTeX lacks Perl",
     "bibtex_result": "Full Springer/BibTeX multi-pass compile remains a local toolchain closure item"
   },
@@ -76,10 +71,10 @@
     ]
   },
   "residual_submission_blockers": [
-    "Final Fig. 1-6 assets are missing",
-    "Public release/archive DOI and release metadata remain unresolved",
+    "Full Springer sn-jnl class build and BibTeX/cross-reference closure require local toolchain repair",
+    "Simple text schematics can optionally be replaced with higher-resolution vector artwork",
+    "Public release/archive DOI and release metadata remain unresolved if required by the submission workflow",
     "TriAir provider/version/license/redistribution/synchronization verification remains author-confirmation work beyond naming the public dataset",
-    "Label-quality review remains incomplete",
-    "Full Springer sn-jnl class build and BibTeX/cross-reference closure require local toolchain repair"
+    "Label-quality review remains incomplete"
   ]
 }
