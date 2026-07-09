@@ -1,0 +1,15 @@
+row_type,seed,model_group,model,run_id,evidence_source,precision,recall,f1,ap50,ap75,checkpoint_sha256,source_reference,comparison,mean_delta,sample_sd_delta,n_seed_pairs
+per_run,0,matched_early,early,matched_early_seed0,V40,0.909153832843,0.895517300153,0.902284046024,0.945548951626,0.841092884541,23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602,runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json,,,,
+per_run,0,reliability_p015,reliability,reliability_p015_seed0,V40,0.933333333333,0.897221748764,0.914921352220,0.958361268044,0.895214200020,4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436,runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json,,,,
+per_run,1,matched_early,early,matched_early_seed1,V41_seed1,0.860109465551,0.910686892790,0.884675883765,0.942952752113,0.794412374496,60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804,runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv,,,,
+per_run,1,reliability_p015,reliability,reliability_p015_seed1,V41_seed1,0.877879813114,0.928754048065,0.902600629452,0.955686688423,0.877982497215,a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d,runs/v41_q1_upgrade/seed1/seed1_per_run_summary.csv,,,,
+per_run,2,matched_early,early,matched_early_seed2,V40,0.928384930996,0.848474518493,0.886632825719,0.936132848263,0.800438940525,b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e,runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json,,,,
+per_run,2,reliability_p015,reliability,reliability_p015_seed2,V40,0.921322889469,0.902164649736,0.911643127799,0.958777427673,0.856719255447,27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415,runs/v40_expanded_adjacency_v2_compute_minimized/v40_four_run_summary.json,,,,
+paired_delta,0,,,,,0.024179500490,0.001704448611,0.012637306196,0.012812316418,0.054121315479,,,reliability_p015_minus_matched_early,,,
+paired_delta,1,,,,,0.017770347564,0.018067155275,0.017924745687,0.012733936310,0.083570122719,,,reliability_p015_minus_matched_early,,,
+paired_delta,2,,,,,-0.007062041527,0.053690131243,0.025010302080,0.022644579411,0.056280314922,,,reliability_p015_minus_matched_early,,,
+delta_summary,,precision,,,,,,,,,,,three_seed_interim_development_validation_descriptive_summary,0.011629268842,0.016501306700,3
+delta_summary,,recall,,,,,,,,,,,three_seed_interim_development_validation_descriptive_summary,0.024487245043,0.026580838289,3
+delta_summary,,f1,,,,,,,,,,,three_seed_interim_development_validation_descriptive_summary,0.018524117987,0.006208235832,3
+delta_summary,,ap50,,,,,,,,,,,three_seed_interim_development_validation_descriptive_summary,0.016063610713,0.005699420814,3
+delta_summary,,ap75,,,,,,,,,,,three_seed_interim_development_validation_descriptive_summary,0.064657251040,0.016414562315,3
