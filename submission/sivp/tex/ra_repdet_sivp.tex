@@ -6,13 +6,14 @@ Unmanned aerial vehicles (UAVs) are increasingly used for road monitoring, traff
 
 RGB cameras provide color, texture, and spatial detail, but their reliability can decrease under low light, glare, shadow, or poor contrast. Thermal sensing can preserve heat-related contrast when visible appearance is weak, while event sensing provides sparse temporal-change cues with high dynamic range. These modalities are complementary, yet complementarity alone does not ensure that a detector will combine them effectively. A fusion front end can over-rely on one stream, and validation on insufficiently separated samples can make the resulting evidence difficult to interpret.
 
-This paper presents RA-RepDet, a lightweight RGB--thermal--event vehicle detector built around a RepViT-M0.9 backbone \cite{RepViT2024}, feature pyramid network (FPN) \cite{FPN2017}, and FCOS anchor-free detection head \cite{FCOS2019}. The detector operates on five-channel samples composed of three RGB channels, one thermal channel, and one event channel. We compare a matched early-fusion front end with a reliability-aware front end that uses modality-specific stems, learned softmax fusion, and modality-dropout training. The active evidence in this revision is the reliability-aware configuration with modality dropout \(p=0.15\) compared with matched early fusion across seed0, seed1, and seed2 on a frozen V40 component-disjoint development-validation split.
+This paper presents RA-RepDet, a lightweight RGB--thermal--event vehicle detector built around a RepViT-M0.9 backbone \cite{RepViT2024}, feature pyramid network (FPN) \cite{FPN2017}, and FCOS anchor-free detection head \cite{FCOS2019}. The detector operates on five-channel samples composed of three RGB channels, one thermal channel, and one event channel. We compare a matched early-fusion front end with a reliability-aware front end that uses modality-specific stems, learned softmax fusion, and modality-dropout training. The active evidence is the reliability-aware configuration with modality dropout \(p=0.15\) compared with matched early fusion across seed0, seed1, and seed2 on a frozen V40 component-disjoint development-validation split, followed by a locked same-dataset held-out guard evaluation using the fixed selected checkpoints.
 
-The claim boundary is intentionally narrow. AP50 and AP75 are project-local single-class metrics rather than COCO AP50:95. The three-seed summary is descriptive development-validation evidence; it is not a statistical-significance test, not an independent test, and not an external-generalization result. Within this boundary, the contributions are as follows:
+The claim boundary is intentionally narrow. AP50 and AP75 are project-local single-class metrics rather than COCO AP50:95. The development-validation summary and held-out guard evaluation are descriptive; they are not statistical-significance tests and should not be read as external-dataset generalization. Within this boundary, the contributions are as follows:
 
 \begin{enumerate}
     \item We present a lightweight RGB--thermal--event UAV vehicle detector that combines modality-specific stems, softmax reliability-aware fusion, a RepViT-M0.9 backbone, FPN, and FCOS head, together with a matched early-fusion baseline using the same detector stack.
     \item We evaluate the reliability-aware \(p=0.15\) configuration against matched early fusion under a frozen V40 component-disjoint development-validation protocol using three paired seeds.
+    \item We add a locked held-out guard evaluation on 837 within-dataset TriAir images using the six fixed seed0/seed1/seed2 checkpoints without training, hyperparameter tuning, split modification, or checkpoint reselection.
     \item We report seed-level results, paired deltas, and descriptive mean \(\pm\) sample standard deviation for precision, recall, F1, AP50, and AP75, while treating AP50/AP75 as project-local single-class metrics rather than COCO AP50:95.
     \item We document split integrity, source traceability, checkpoint hashes, and data-governance limits so that the manuscript's claims remain aligned with the available evidence.
 \end{enumerate}
@@ -39,7 +40,7 @@ The reliability mechanism in this study predicts three weights from pooled modal
 
 \subsection{Leakage-Aware Evaluation}
 
-Evaluation integrity is central when a dataset contains sequential, nearby, or repeated visual content. Exact duplicates, near duplicates, shared scene families, and adaptive use of validation feedback can all lead to overly favorable conclusions if they are not recognized. The need to consider dataset quality, overlap, and evaluation leakage has been emphasized in work on generalization and machine-learning practice \cite{Recht2019ImageNet,Northcutt2021LabelErrors,Kapoor2023Leakage}. In the present setting, exact RGB-content matches are used as a detectable signal of visual overlap. This audit does not capture every possible dependency, but it motivates a stricter component-disjoint development-validation protocol for the active evidence.
+Evaluation integrity is central when a dataset contains sequential, nearby, or repeated visual content. Exact duplicates, near duplicates, shared scene families, and adaptive use of validation feedback can all lead to overly favorable conclusions if they are not recognized. The need to consider dataset quality, overlap, and evaluation leakage has been emphasized in work on generalization and machine-learning practice \cite{Recht2019ImageNet,Northcutt2021LabelErrors,Kapoor2023Leakage}. In the present setting, exact RGB-content matches are used as a detectable signal of visual overlap. This audit does not capture every possible dependency, but it motivates a stricter component-disjoint development-validation protocol and a locked held-out guard check for the active evidence.
 
 \section{Method}
 
@@ -91,7 +92,7 @@ A projection maps the 16-channel fused tensor to the three-channel interface use
 
 The active reliability-aware configuration uses modality dropout with \(p=0.15\) during training. During ordinary full-modality inference, all available streams are provided. The method should be interpreted as a combined reliability-aware front end and modality-dropout training configuration; the current evidence does not isolate the causal contributions of separate stems, dynamic gating, and dropout.
 
-\section{Dataset and Development-Validation Protocol}
+\section{Dataset and Evaluation Protocol}
 
 \subsection{TriAir Representation and Labels}
 
@@ -99,11 +100,11 @@ The experimental data are based on the publicly available TriAir dataset represe
 
 The paper reports results on this local five-channel representation and does not redistribute the original dataset files. The manuscript confines its data description to the dataset name, label handling, split manifests, and evaluation protocol used in this work.
 
-\subsection{Split Audit and Frozen V40 Protocol}
+\subsection{Split Audit, Development-Validation, and Held-out Guard Protocol}
 
 The original random split was audited for exact RGB-content matches between training and validation samples. The audit found 153 validation samples with at least one exact RGB-content match in training, corresponding to 0.072927 of validation images. This observation does not imply full five-channel byte duplication, but it is sufficient to make the random split unsuitable for active headline evidence.
 
-The active evidence uses a frozen V40 component-disjoint development-validation protocol. The train and development-validation manifests have SHA256 values recorded in the source-lock package. The active split contains 7439 training images and 2213 development-validation images; the development-validation manifest contains 5867 vehicle boxes. Guard samples are archival/non-test samples and are not used as an evaluation partition in this manuscript revision. Figure~\ref{fig:fig-2-component-disjoint-split-audit-workflow} summarizes the evaluation-protocol transition.
+The active evidence uses a frozen V40 component-disjoint protocol. The training and development-validation manifests have SHA256 values recorded in the source-lock package. The development-validation split contains 7439 training images and 2213 development-validation images; the development-validation manifest contains 5867 vehicle boxes. After the development-validation comparison was fixed, the six selected checkpoints were evaluated once on a locked held-out guard manifest containing 837 TriAir images and 1264 vehicle boxes. The guard partition is within the same TriAir project dataset, so it is a same-dataset held-out check rather than an external-dataset test.
 
 \begin{figure*}[t]
 \centering
@@ -114,16 +115,16 @@ The active evidence uses a frozen V40 component-disjoint development-validation 
 Local TriAir inventory \(\rightarrow\) exact RGB-content matching audit \\
 \(\rightarrow\) historical random split flagged by 153 matched validation samples \\
 \(\rightarrow\) component graph construction and manual adjacency review \\
-\(\rightarrow\) frozen V40 component-disjoint train/development-validation manifests \\
-\(\rightarrow\) seed0/seed1/seed2 paired development-validation comparison
+\(\rightarrow\) frozen V40 train/development-validation manifests for model selection \\
+\(\rightarrow\) locked V40 guard manifest for one-time held-out evaluation
 \end{tabular}
 \end{minipage}}
-\caption{Component-disjoint development-validation workflow used to replace the historical random split for active evidence.}
+\caption{Component-disjoint evaluation workflow. Development-validation results are used for active comparison; the guard manifest is used only as a locked same-dataset held-out check with fixed checkpoints.}
 \label{fig:fig-2-component-disjoint-split-audit-workflow}
 \end{figure*}
 
 \begin{table*}[t]
-\caption{Dataset and split documentation. The active development-validation evidence uses the frozen V40 component-disjoint validation manifest.}
+\caption{Dataset and split documentation. The active evidence uses a frozen V40 component-disjoint development-validation split and a locked held-out guard manifest.}
 \label{tab:dataset-and-clean-blocked-split}
 \centering
 \input{../tables/Table_1_dataset_and_clean_split.tex}
@@ -144,52 +145,62 @@ The active comparison uses matched early fusion and reliability-aware \(p=0.15\)
 
 \subsection{Three-Seed Development-Validation Results}
 
-The primary comparison is the matched early-fusion baseline versus the reliability-aware \(p=0.15\) configuration on the frozen V40 component-disjoint development-validation split. Table~\ref{tab:v41-three-seed-interim-devval} reports seed-level results, paired deltas, and descriptive mean \(\pm\) sample standard deviation across the three seed pairs.
+The primary development-validation comparison is the matched early-fusion baseline versus the reliability-aware \(p=0.15\) configuration on the frozen V40 component-disjoint development-validation split. Table~\ref{tab:v41-three-seed-interim-devval} reports seed-level results, paired deltas, and descriptive mean \(\pm\) sample standard deviation across the three seed pairs.
 
 Across seed0, seed1, and seed2, the reliability-aware configuration records positive descriptive paired deltas for F1, AP50, and AP75 in every seed. The mean paired deltas across the three seed pairs are \(+0.018524\) F1, \(+0.016064\) AP50, and \(+0.064657\) AP75, with sample standard deviations of 0.006208, 0.005699, and 0.016415, respectively. Precision improves on average by \(+0.011629\), although seed2 has a negative precision delta, while recall improves on average by \(+0.024487\).
 
-These results support the reliability-aware \(p=0.15\) front end as the stronger configuration under this development-validation protocol. They do not constitute independent-test, statistical-significance, external-generalization, or final deployment evidence.
+These development-validation results support the reliability-aware \(p=0.15\) front end as the stronger configuration under this protocol. They do not constitute statistical-significance, external-generalization, or final deployment evidence.
 
 \input{../tables/Table_8_three_seed_interim_devval.tex}
+
+\subsection{Locked Held-out Guard Evaluation}
+
+After the development-validation evidence and six fixed checkpoints were frozen, the same checkpoints were evaluated once on the V40 held-out guard manifest. The guard manifest contains 837 images and 1264 vehicle boxes. It was not used for training, tuning, checkpoint selection, dropout selection, split modification, or operating-threshold changes. Table~\ref{tab:v42-heldout-guard} reports the held-out guard results.
+
+On the locked held-out guard manifest, reliability-aware \(p=0.15\) improves the three-seed mean F1 by \(+0.006946\), AP50 by \(+0.008562\), and AP75 by \(+0.002173\) relative to matched early fusion. The held-out gains are smaller than the development-validation gains, which is expected for a stricter check. The per-seed results are also mixed: seed0 has a small F1 decrease and seed2 has an AP75 decrease. Thus, the held-out guard evaluation supports the direction of the development-validation trend, especially for AP50, but it remains descriptive within-dataset held-out evidence.
+
+\input{../tables/Table_9_locked_heldout_guard.tex}
 
 \begin{figure*}[t]
 \centering
 \fbox{\begin{minipage}{0.82\textwidth}
 \centering
 \small
-\begin{tabular}{lrrr}
+\begin{tabular}{lrr}
 \toprule
-Metric & Mean paired delta & Sample SD & Seed pairs \\
+Metric & Development-validation mean delta & Held-out guard mean delta \\
 \midrule
-F1 & +0.018524 & 0.006208 & 3 \\
-AP50 & +0.016064 & 0.005699 & 3 \\
-AP75 & +0.064657 & 0.016415 & 3 \\
+F1 & +0.018524 & +0.006946 \\
+AP50 & +0.016064 & +0.008562 \\
+AP75 & +0.064657 & +0.002173 \\
 \bottomrule
 \end{tabular}
 \end{minipage}}
-\caption{Descriptive paired improvements of reliability-aware \(p=0.15\) fusion over matched early fusion on the frozen V40 development-validation split.}
+\caption{Descriptive mean paired deltas for reliability-aware \(p=0.15\) fusion over matched early fusion on development-validation and locked held-out guard partitions.}
 \label{fig:fig-3-three-seed-development-validation-paired-deltas}
 \end{figure*}
 
 \subsection{External Baselines and Auxiliary Analyses}
 
-Earlier project artifacts include RGB-only external-baseline, efficiency, reliability-weight, synthetic missingness, and qualitative-review material. In this manuscript alignment, those materials are treated as contextual or pending-review evidence rather than the active headline result. The active quantitative claim is the three-seed paired development-validation comparison in Table~\ref{tab:v41-three-seed-interim-devval} and Figure~\ref{fig:fig-3-three-seed-development-validation-paired-deltas}.
+Earlier project artifacts include RGB-only external-baseline, efficiency, reliability-weight, synthetic missingness, and qualitative-review material. In this manuscript alignment, those materials are treated as contextual or pending-review evidence rather than the active headline result. The active quantitative claim is the three-seed paired development-validation comparison in Table~\ref{tab:v41-three-seed-interim-devval} and the locked held-out guard evaluation in Table~\ref{tab:v42-heldout-guard}.
 
 The RGB-only YOLO11n rows remain useful as an external reference, but they are not a matched architecture ablation because they change both input modality and detector implementation. Synthetic channel-removal rows, where retained in supplementary review material, should be read as zero-channel stress tests rather than physical sensor-failure robustness. Reliability weights are learned softmax outputs and not calibrated sensor-reliability scores.
 
 \section{Discussion}
 
-The V41 evidence supports a bounded conclusion: under the frozen V40 component-disjoint development-validation protocol, the reliability-aware \(p=0.15\) front end shows positive descriptive paired deltas over matched early fusion for F1, AP50, and AP75 across three paired seeds. The comparison is informative because the detector stack, input size, split, and evaluator are held fixed while the fusion front end differs.
+The V41/V42 evidence supports a bounded conclusion: under the frozen V40 component-disjoint development-validation protocol, the reliability-aware \(p=0.15\) front end shows positive descriptive paired deltas over matched early fusion for F1, AP50, and AP75 across three paired seeds. A subsequent locked held-out guard evaluation with fixed checkpoints shows smaller positive mean deltas for the same metrics. The comparison is informative because the detector stack, input size, evaluator, and seeds are held fixed while the fusion front end differs.
 
-The result should not be overinterpreted. The current comparison evaluates a combined front-end and training configuration, not a fully separated causal mechanism. Separate stems, softmax gating, and modality dropout may each contribute to the observed behavior, but the present evidence does not isolate them. The sample standard deviations describe variation across three seed pairs only and are not a substitute for a larger uncertainty analysis.
+The held-out guard results are important because they reduce reliance on a single development-validation partition. However, they should not be overinterpreted. The guard partition is drawn from the same TriAir project dataset, not from an external dataset or independent public benchmark. Moreover, per-seed guard deltas are mixed for F1 and AP75. The strongest held-out pattern is AP50, which remains positive across all three seed pairs, while the broader interpretation remains descriptive.
 
-The split audit is part of the research contribution rather than only a preprocessing detail. A random split with documented exact RGB-content overlap may still be useful for exploratory development, but it should not carry the active claim. By using a frozen component-disjoint development-validation protocol, the manuscript prioritizes a more conservative and auditable validation statement.
+The current comparison evaluates a combined front-end and training configuration, not a fully separated causal mechanism. Separate stems, softmax gating, and modality dropout may each contribute to the observed behavior, but the present evidence does not isolate them. The sample standard deviations describe variation across three seed pairs only and are not a substitute for a larger uncertainty analysis.
+
+The split audit is part of the research contribution rather than only a preprocessing detail. A random split with documented exact RGB-content overlap may still be useful for exploratory development, but it should not carry the active claim. By using a frozen component-disjoint development-validation protocol and a locked same-dataset held-out guard check, the manuscript prioritizes a more conservative and auditable evaluation statement.
 
 \section{Limitations}
 
-This study is intentionally validation-only. The main evidence consists of three paired seeds on a frozen component-disjoint development-validation split, and the reported mean \(\pm\) sample standard deviation values are descriptive rather than a statistical-significance analysis. No independent locked evaluation partition, external dataset, or COCO AP50:95 evaluation is included.
+This study provides development-validation evidence plus a locked same-dataset held-out guard evaluation. It does not include an external dataset, an independent public benchmark test, or COCO AP50:95 evaluation. The reported mean \(\pm\) sample standard deviation values are descriptive rather than a statistical-significance analysis.
 
-The current comparison also evaluates a combined reliability-aware front end and modality-dropout training configuration; it does not fully separate the causal contributions of separate stems, dynamic gating, and dropout. Synthetic channel removal, where reported in auxiliary material, should be interpreted only as zero-channel stress testing and not as physical sensor-failure robustness. Reliability-gate outputs are not calibrated sensor-reliability probabilities.
+The guard results must remain a locked final check. They were not used for model selection or tuning in V42, and future use of guard results for further design choices would require rewriting the claim boundary. The current comparison also evaluates a combined reliability-aware front end and modality-dropout training configuration; it does not fully separate the causal contributions of separate stems, dynamic gating, and dropout. Synthetic channel removal, where reported in auxiliary material, should be interpreted only as zero-channel stress testing and not as physical sensor-failure robustness. Reliability-gate outputs are not calibrated sensor-reliability probabilities.
 
 The original TriAir files are not redistributed by this work, and use of the dataset remains subject to the terms specified by its original provider. Dataset versioning, official synchronization details, and a complete label-quality review remain important items for stronger future evidence. In addition, the text schematics used in the current manuscript can be replaced by higher-resolution artwork during final production, and a fully closed Springer/BibTeX build remains a submission-packaging item rather than an additional scientific result.
 
@@ -197,4 +208,4 @@ The original TriAir files are not redistributed by this work, and use of the dat
 
 RA-RepDet demonstrates that a lightweight reliability-aware RGB--thermal--event fusion front end can improve a matched early-fusion baseline under a frozen component-disjoint development-validation protocol. Across three paired seeds, the reliability-aware \(p=0.15\) configuration shows positive descriptive mean deltas for F1, AP50, and AP75 while preserving a compact detector design.
 
-The contribution is therefore an auditable validation-only assessment of tri-modal fusion rather than a claim of independent-test generalization or physical sensor-failure robustness. Future work should add an independent locked evaluation partition, COCO-style metrics, stronger causal ablations, external or cross-scene validation, completed dataset-governance review, and completed label-quality audit.
+A locked same-dataset held-out guard evaluation further supports the trend with smaller positive mean deltas for F1, AP50, and AP75, although per-seed F1 and AP75 changes are mixed. The contribution is therefore an auditable assessment of tri-modal fusion under component-disjoint development-validation and held-out TriAir guard evaluation, rather than a claim of external-dataset generalization or physical sensor-failure robustness. Future work should add an external or cross-scene evaluation, COCO-style metrics, stronger causal ablations, completed dataset-governance review, and completed label-quality audit.
