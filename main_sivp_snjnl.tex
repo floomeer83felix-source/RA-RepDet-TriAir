@@ -1,5 +1,5 @@
 % !TEX root = main.tex
-% PRE-FINAL SIVP source. Final figure assets and bibliography closure remain to be checked locally.
+% PRE-FINAL SIVP source. Final Springer/BibTeX closure remains to be checked locally.
 \documentclass[pdflatex,iicol,sn-mathphys-num]{sn-jnl}
 
 \usepackage{graphicx}
@@ -12,16 +12,16 @@
 
 \begin{document}
 
-\title[RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for UAV Vehicle Detection]{RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection with Component-Disjoint Validation}
+\title[RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for UAV Vehicle Detection]{RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection with Component-Disjoint and Held-Out Guard Evaluation}
 
 \author*[1]{\fnm{Nan} \sur{Xin}}\email{floomeer83felix@gmail.com}
 \author[1]{\fnm{Xueting} \sur{Jin}}
 
 \affil*[1]{\orgname{Anhui Police College}, \orgaddress{\city{Hefei}, \state{Anhui}, \country{China}}}
 
-\abstract{Lightweight UAV vehicle detection can benefit from complementary RGB, thermal, and event cues, but validation results can be optimistic when visually related samples appear across training and validation partitions. This paper presents RA-RepDet, a compact RepViT--FPN--FCOS detector that compares matched early fusion with a reliability-aware front end using modality-specific stems, softmax fusion, and modality-dropout training. Evaluation is intentionally scoped to a frozen component-disjoint development-validation protocol on the publicly available TriAir dataset. Across three paired seeds, reliability-aware fusion with modality dropout $p=0.15$ improves the matched early-fusion baseline by descriptive mean deltas of +0.0185 F1, +0.0161 AP50, and +0.0647 AP75 using project-local AP metrics. The method adds only a small number of front-end parameters relative to the shared detector stack. The study provides an auditable validation-only assessment of reliability-aware tri-modal fusion and explicitly avoids claims of independent-test generalization, COCO AP50:95 performance, or physical sensor-failure robustness.}
+\abstract{Lightweight UAV vehicle detection can benefit from complementary RGB, thermal, and event cues, but validation results can be optimistic when visually related samples appear across training and validation partitions. This paper presents RA-RepDet, a compact RepViT--FPN--FCOS detector that compares matched early fusion with a reliability-aware front end using modality-specific stems, softmax fusion, and modality-dropout training. Evaluation uses a frozen component-disjoint development-validation protocol on the publicly available TriAir dataset and a subsequent locked same-dataset held-out guard check. Across three paired development-validation seeds, reliability-aware fusion with modality dropout $p=0.15$ improves the matched early-fusion baseline by descriptive mean deltas of +0.0185 F1, +0.0161 AP50, and +0.0647 AP75 using project-local AP metrics. On the locked 837-image held-out guard manifest, the same fixed checkpoints show smaller descriptive mean gains of +0.0069 F1, +0.0086 AP50, and +0.0022 AP75. The study provides an auditable assessment of reliability-aware tri-modal fusion while explicitly avoiding claims of external-dataset generalization, COCO AP50:95 performance, or physical sensor-failure robustness.}
 
-\keywords{UAV vehicle detection, RGB--thermal--event fusion, reliability-aware fusion, RepViT--FCOS, component-disjoint validation, development-validation evidence}
+\keywords{UAV vehicle detection, RGB--thermal--event fusion, reliability-aware fusion, RepViT--FCOS, component-disjoint validation, held-out guard evaluation}
 
 \maketitle
 
