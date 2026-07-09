@@ -5,13 +5,13 @@ Generated: 2026-07-09
 ## Current Task State
 
 - Task file: `docs/NEXT_TASK.md`
-- Current task: V41 SIVP manuscript alignment with three-seed validation-only evidence
-- Status: `COMPLETE_DECLARATIONS_PARTIAL`
+- Current task: V41 SIVP manuscript polish and PDF preview
+- Status: `POLISHED_PREVIEW_READY`
 - Active blocker: `NO_ACTIVE_BLOCKER`
 
 ## What Assistant/Codex Completed
 
-Completed the SIVP manuscript alignment from existing V41 evidence only. No training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed.
+Completed the SIVP manuscript alignment and polishing from existing V41 evidence only. No training, evaluation, guard/test access, checkpoint loading, raw data access, or prediction-cache access was performed.
 
 Files updated or recorded:
 
@@ -19,7 +19,10 @@ Files updated or recorded:
 - `submission/sivp/tex/main.tex`
 - `main.tex`
 - `main_sivp_snjnl.tex`
+- `submission/sivp/tables/Table_1_dataset_and_clean_split.tex`
+- `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`
 - `submission/sivp/tables/Table_8_three_seed_interim_devval.tex`
+- `submission/sivp/tex/related_work_literature_expansion.tex`
 - `submission/sivp/review/V41_SIVP_CLAIM_LEDGER.md`
 - `submission/sivp/review/V41_SIVP_REPLACEMENT_TEXT.md`
 - `submission/sivp/review/V41_SIVP_MANUSCRIPT_ALIGNMENT_PLAN.md`
@@ -29,34 +32,38 @@ Files updated or recorded:
 - `runs/v41_q1_upgrade/sivp_alignment/preflight_allow_placeholders.txt`
 - `runs/v41_q1_upgrade/sivp_alignment/compile_summary.md`
 - `runs/v41_q1_upgrade/sivp_alignment/pdflatex_compile.txt`
+- `runs/v41_q1_upgrade/sivp_alignment/polished_preview_compile.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `runs/handoff_latest.md/json`
 
-## Author Metadata Inserted
+## Author Metadata and Declarations
 
 - Authors: Nan Xin and Xueting Jin.
 - Corresponding author: Nan Xin.
 - Affiliation: Anhui Police College, Hefei, Anhui, China.
 - Corresponding email: `floomeer83felix@gmail.com`.
-- Updated SIVP entry files: `submission/sivp/tex/main.tex`, root `main.tex`, and root `main_sivp_snjnl.tex`.
-
-## Declarations Inserted
-
 - Funding: no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
 - Competing interests: the authors declare no competing interests.
 - Author contributions: Nan Xin conceived/designed/implemented/evaluated/analyzed/drafted; Xueting Jin supervised, contributed to design/interpretation, and reviewed/revised; both authors read and approved the final manuscript.
 - Acknowledgments: not applicable.
-- Data availability: the experimental dataset is the publicly available TriAir dataset; original files are not redistributed; source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
+- Data availability: the experimental dataset is the publicly available TriAir dataset; original files are not redistributed.
+- Code availability: source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables are available in the current project repository.
 
-## Completion Notes
+## Manuscript Polish Notes
 
-- Active result is now reliability-aware `p=0.15` versus matched early fusion on seed0/seed1/seed2.
+- Active result remains reliability-aware `p=0.15` versus matched early fusion on seed0/seed1/seed2.
 - Main evidence is explicitly three-seed interim development-validation descriptive evidence on the frozen V40 component-disjoint development-validation split.
-- `Table_8_three_seed_interim_devval.tex` is included as the active main results table.
-- R4 `p=0.20` and block64/guard16 no longer appear in the active SIVP body or active abstracts.
-- `python scripts/preflight_submission.py --root . --allow-placeholders`: PASS with expected warnings for placeholders and missing final figures.
-- Direct MiKTeX `pdflatex` pass: PASS and generated an 8-page PDF during checking; build products were removed after logging.
-- `latexmk` remains unavailable because MiKTeX lacks Perl; full BibTeX multi-pass compile timed out and remains a residual toolchain/bibliography closure item.
+- `Table_1_dataset_and_clean_split.tex` now uses V40 component-disjoint split wording and development-validation box count 5867.
+- `Table_2_implementation_and_reproducibility.tex` now uses seed0/seed1/seed2 and p=0.15 active setting.
+- `Table_8_three_seed_interim_devval.tex` remains the active main result table.
+- R4 `p=0.20` and block64/guard16 are not active manuscript claims.
+- The related-work appendix now avoids draft-screening, quartile, and internal-review language.
+
+## PDF Preview
+
+A compiled reading/layout preview was generated in the assistant sandbox as `RA_RepDet_SIVP_V41_polished_compiled_preview.pdf`.
+
+Because the assistant sandbox does not contain the Springer `sn-jnl` class or full repository clone, the preview was compiled with a temporary article-style wrapper and a simplified references note. It is suitable for reading/layout review, not final Springer/SIVP submission.
 
 ## Residual Submission Blockers
 
@@ -64,7 +71,7 @@ Files updated or recorded:
 - Public release/archive DOI and release metadata remain unresolved.
 - TriAir provider, version, license, redistribution, and synchronization facts remain author-confirmation items beyond naming the public dataset.
 - Label-quality review remains incomplete.
-- Full BibTeX/cross-reference closure requires local toolchain repair.
+- Full Springer `sn-jnl` class build and BibTeX/cross-reference closure require local toolchain repair.
 
 ## Three-Seed Interim Development-Validation Summary
 
