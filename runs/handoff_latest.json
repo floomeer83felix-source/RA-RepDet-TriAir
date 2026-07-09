@@ -4,7 +4,7 @@
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
     "current_task": "V41 SIVP manuscript alignment with three-seed validation-only evidence",
-    "status": "COMPLETE_AUTHOR_METADATA_PARTIAL",
+    "status": "COMPLETE_AUTHOR_AND_DATA_METADATA_PARTIAL",
     "commit_message": "submission: align SIVP draft with V41 validation-only evidence"
   },
   "blocker": {
@@ -16,6 +16,16 @@
     "corresponding_author": "Nan Xin",
     "affiliation": "Anhui Police College, Hefei, Anhui, China",
     "corresponding_email": "floomeer83felix@gmail.com",
+    "updated_files": [
+      "submission/sivp/tex/main.tex",
+      "main.tex",
+      "main_sivp_snjnl.tex"
+    ]
+  },
+  "data_availability": {
+    "dataset_statement": "The dataset used for the experiments in this study is the publicly available TriAir dataset.",
+    "redistribution_statement": "The authors do not redistribute the original dataset files.",
+    "repository_statement": "Source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables generated in this work are available in the current project repository.",
     "updated_files": [
       "submission/sivp/tex/main.tex",
       "main.tex",
@@ -48,9 +58,9 @@
   },
   "residual_submission_blockers": [
     "Final Fig. 1-6 assets are missing",
-    "Funding, competing interests, author contributions, acknowledgments, and data availability remain placeholders",
-    "Public release/archive DOI and data-governance facts remain unresolved",
-    "TriAir provider/version/license/redistribution/synchronization verification remains author-confirmation work",
+    "Funding, competing interests, author contributions, and acknowledgments remain placeholders",
+    "Public release/archive DOI and release metadata remain unresolved",
+    "TriAir provider/version/license/redistribution/synchronization verification remains author-confirmation work beyond naming the public dataset",
     "Label-quality review remains incomplete",
     "Full BibTeX/cross-reference closure requires local toolchain repair"
   ]
