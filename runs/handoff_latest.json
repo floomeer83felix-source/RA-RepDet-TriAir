@@ -3,9 +3,9 @@
   "generated_at": "2026-07-09",
   "current_task": {
     "task_file": "docs/NEXT_TASK.md",
-    "user_explicit_task": "V43 SIVP integration of V42 locked held-out guard evidence",
-    "status": "V43_SIVP_HELDOUT_GUARD_INTEGRATION_COMPLETE",
-    "commit_message": "submission: integrate V42 held-out guard evidence into SIVP draft"
+    "user_explicit_task": "V44 SIVP submission preflight and template compile",
+    "status": "V44_SIVP_SUBMISSION_PREFLIGHT_COMPLETE",
+    "commit_message": "submission: complete V44 SIVP submission preflight"
   },
   "blocker": {
     "status": "NO_ACTIVE_BLOCKER",
@@ -18,23 +18,39 @@
     "split_modified": false,
     "new_evaluation_run": false,
     "external_data_work": false,
-    "manuscript_modified": true
+    "metric_recomputation": false,
+    "manuscript_preflight": true,
+    "template_compile": true
+  },
+  "v44_submission_preflight": {
+    "status": "COMPLETE",
+    "report": "runs/v44_submission_preflight/V44_SUBMISSION_PREFLIGHT_REPORT.md",
+    "pdf": "RA_RepDet_SIVP_V44_submission_preflight_snjnl.pdf",
+    "page_count": 10,
+    "claim_scan": {
+      "active_validation_only_wording": false,
+      "positive_external_generalization_claim": false,
+      "positive_statistical_significance_claim": false,
+      "positive_optimal_dropout_claim": false,
+      "positive_coco_ap5095_claim": false,
+      "positive_real_sensor_failure_robustness_claim": false,
+      "restricted_terms_only_as_cautions": true
+    },
+    "compile": {
+      "template": "sn-jnl class with sn-basic bibliography style from previously provided SIVP source package",
+      "latexmk_pdf": true,
+      "bibtex_closure": true,
+      "bibtex_command": "/usr/bin/bibtex.original",
+      "bibtex_note": "sandbox bibtex symlink is broken; bibtex.original was used",
+      "undefined_citations": false,
+      "undefined_references": false,
+      "render_pages": 10,
+      "obvious_page_clipping": false,
+      "minor_overfull_hbox_pt": 22.33
+    }
   },
   "v43_manuscript_integration": {
     "status": "COMPLETE",
-    "updated_files": [
-      "submission/sivp/tex/ra_repdet_sivp.tex",
-      "submission/sivp/tex/main.tex",
-      "main.tex",
-      "main_sivp_snjnl.tex",
-      "submission/sivp/tables/Table_1_dataset_and_clean_split.tex",
-      "submission/sivp/tables/Table_2_implementation_and_reproducibility.tex",
-      "submission/sivp/tables/Table_9_locked_heldout_guard.tex",
-      "submission/sivp/review/REVIEWER_REPORT_PRE_SUBMISSION.md",
-      "docs/EXPERIMENT_STATUS.md",
-      "runs/handoff_latest.md",
-      "runs/handoff_latest.json"
-    ],
     "active_claim": "component-disjoint development-validation evidence plus locked same-dataset held-out TriAir guard evaluation",
     "no_longer_claimed_as": "validation-only"
   },
@@ -42,24 +58,9 @@
     "status": "COMPLETE",
     "source_commit": "187632960a4093778d83c3383e7f5540723a60e1",
     "output_dir": "runs/v42_locked_guard_heldout",
-    "source_lock": "runs/v42_locked_guard_heldout/heldout_guard_source_lock.json",
-    "summary": "runs/v42_locked_guard_heldout/heldout_guard_summary.json",
-    "claim_boundary": "runs/v42_locked_guard_heldout/heldout_guard_claim_boundary.md",
     "guard_manifest": "runs/component_disjoint_v40/guard.txt",
     "guard_rows": 837,
     "guard_gt_boxes": 1264,
-    "guard_normalized_lf_sha256": "9f871c16aa60b517ffd8df530782eed1befcd652969a9f94e5cd6af5ac2c8c2e",
-    "guard_raw_file_sha256": "0cf3270c0a73d03caf8d698bb4e9ddb0adba46e688c52d8589f57ea12488881f",
-    "fixed_eval_settings": {
-      "img_size": 640,
-      "device": "cuda",
-      "batch_size": 4,
-      "num_workers": 0,
-      "detector_score_thr": 0.001,
-      "metric_score_thr": 0.5,
-      "nms_thresh": 0.6,
-      "detections_per_img": 100
-    },
     "paired_delta_summary": [
       {"metric": "precision", "mean_delta": 0.003213, "sample_sd_delta": 0.01092, "n_seed_pairs": 3},
       {"metric": "recall", "mean_delta": 0.010549, "sample_sd_delta": 0.01622, "n_seed_pairs": 3},
@@ -90,8 +91,9 @@
       "COCO AP@[0.50:0.95]"
     ]
   },
-  "residual_submission_blockers": [
-    "Full Springer sn-jnl class build and BibTeX/cross-reference closure require local toolchain repair",
+  "residual_submission_items": [
+    "Use the official Springer/SIVP template package in the final author environment",
+    "Confirm that sn-jnl.cls/sn-basic.bst are included or supplied according to the journal submission workflow",
     "Simple text schematics can optionally be replaced with higher-resolution vector artwork",
     "Public release/archive DOI and release metadata remain unresolved if required by the submission workflow",
     "TriAir provider/version/license/redistribution/synchronization verification remains author-confirmation work beyond naming the public dataset",
