@@ -1,7 +1,7 @@
 {
   "project_name": "RA-RepDet-TriAir",
   "generated_at": "2026-07-10",
-  "current_status": "V47_STRUCTURE_AND_RECENT_LITERATURE_REVISION_COMPLETE",
+  "current_status": "V47_STRUCTURE_LITERATURE_AND_COMPILE_COMPLETE",
   "queued_task": {
     "path": "docs/NEXT_TASK.md",
     "title": "V46 COCO metrics and causal fusion ablations",
@@ -13,16 +13,20 @@
     "metric_recomputation": false,
     "checkpoint_selection": false,
     "split_modified": false,
-    "guard_access": false,
+    "holdout_access": false,
     "manuscript_structure_modified": true,
-    "bibliography_modified": true
+    "bibliography_modified": true,
+    "springer_compile_completed": true
   },
   "v47_revision": {
     "status": "COMPLETE",
     "report": "runs/v47_structure_literature/STRUCTURE_AND_REFERENCE_REVISION_REPORT.md",
+    "compile_report": "runs/v47_structure_literature/V47_COMPILE_AND_CITATION_CLOSURE.md",
     "reference_ledger": "submission/sivp/review/V47_RECENT_Q12_REFERENCE_LEDGER.md",
     "recent_bibliography": "submission/sivp/tex/references_recent_q12_2023_2025.bib",
     "target_unique_cited_keys": 40,
+    "verified_unique_cited_keys": 40,
+    "missing_cited_keys": 0,
     "new_recent_journal_articles": 28,
     "existing_recent_journal_articles": 3,
     "foundational_primary_source_exceptions": 9,
@@ -43,8 +47,17 @@
       "main_sivp_snjnl.tex"
     ],
     "appendix_input_removed": true,
-    "fresh_compile_completed": false,
-    "compile_note": "Local container lacked repository/Springer class files and outbound Git access was unavailable. Previous V45 PDF predates V47."
+    "compile": {
+      "completed": true,
+      "output_pdf": "RA_RepDet_SIVP_V47_structure_recent_literature_snjnl.pdf",
+      "page_count": 10,
+      "undefined_citations": 0,
+      "undefined_cross_references": 0,
+      "rendered_pages": 10,
+      "obvious_page_clipping": false,
+      "bibtex_command": "/usr/bin/bibtex.original",
+      "note": "Springer class files were taken from the previously supplied source package for the preflight build."
+    }
   },
   "evidence_state": {
     "development_validation": "three paired seeds on frozen V40 component-disjoint development-validation",
@@ -69,9 +82,9 @@
   },
   "next_actions": [
     "Execute V46 COCO metrics and causal fusion ablations",
-    "Compile V47 with the official Springer template and close BibTeX references",
     "Add parameters, FLOPs, latency, throughput, and memory measurements",
     "Document event-channel generation and synchronization provenance",
-    "Confirm institutionally accepted quartile database edition"
+    "Confirm institutionally accepted quartile database edition",
+    "Confirm repository release/archive metadata and TriAir license/version details"
   ]
 }
