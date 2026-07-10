@@ -4,7 +4,7 @@ Generated: 2026-07-10
 
 ## Scope
 
-Reorganized the SIVP manuscript and expanded the active cited literature to approximately 40 references. No training, evaluation, checkpoint selection, metric recomputation, split modification, or guard access was performed.
+Reorganized the SIVP manuscript and expanded the active cited literature to approximately 40 references. No training, evaluation, checkpoint selection, metric recomputation, split modification, or holdout access was performed.
 
 ## Structural changes
 
@@ -52,13 +52,13 @@ Created:
 - `submission/sivp/tex/references_recent_q12_2023_2025.bib`
 - `submission/sivp/review/V47_RECENT_Q12_REFERENCE_LEDGER.md`
 
-The revised body cites exactly 40 unique BibTeX keys by design:
+The revised body cites exactly 40 unique BibTeX keys:
 
 - 28 newly added formal 2023--2024 journal articles selected from publicly verifiable Q1/Q2 journals;
 - 3 recent formal journal references already present in the repository;
 - 9 foundational original method/dataset references retained as explicitly documented provenance exceptions.
 
-No `\\nocite{*}` is used; only references cited in the manuscript should be printed by BibTeX.
+No `\nocite{*}` is used; only references cited in the manuscript are printed by BibTeX.
 
 ## Recent-journal selection boundary
 
@@ -73,6 +73,7 @@ No `\\nocite{*}` is used; only references cited in the manuscript should be prin
 - `submission/sivp/tex/references_recent_q12_2023_2025.bib`
 - `submission/sivp/review/V47_RECENT_Q12_REFERENCE_LEDGER.md`
 - `runs/v47_structure_literature/STRUCTURE_AND_REFERENCE_REVISION_REPORT.md`
+- `runs/v47_structure_literature/V47_COMPILE_AND_CITATION_CLOSURE.md`
 
 ## Evidence boundary preserved
 
@@ -83,6 +84,18 @@ The V41/V42 numerical evidence is unchanged. The manuscript continues to report:
 - project-local AP50/AP75 rather than COCO AP@[0.50:0.95];
 - no external-generalization, statistical-significance, optimal-dropout, calibrated-sensor-reliability, or physical sensor-fault claim.
 
-## Compile status
+## Compile and citation closure
 
-A fresh LaTeX compile was not run in this execution environment because the repository and Springer class files were not available in the local container, and outbound Git access was unavailable. The previous V45 Springer-style build remains the latest compiled artifact, but it predates the V47 structural and bibliography revision. A V47 compile and BibTeX closure must be run before submission.
+A fresh Springer-style V47 preflight build was completed using the `sn-jnl` class files from the previously supplied source package.
+
+- cited keys found by static scan: 40;
+- matching BibTeX entries: 40;
+- missing citations: 0;
+- undefined references after final pass: 0;
+- PDF pages: 10;
+- rendered pages inspected: 10;
+- obvious page clipping or broken pages: none observed.
+
+Output artifact: `RA_RepDet_SIVP_V47_structure_recent_literature_snjnl.pdf`.
+
+The sandbox `bibtex` symlink was unavailable, so `/usr/bin/bibtex.original` was used. Full details are recorded in `runs/v47_structure_literature/V47_COMPILE_AND_CITATION_CLOSURE.md`.
