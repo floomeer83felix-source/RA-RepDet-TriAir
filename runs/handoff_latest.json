@@ -1,90 +1,242 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-07-10",
-  "current_status": "V47_STRUCTURE_LITERATURE_AND_COMPILE_COMPLETE",
-  "queued_task": {
-    "path": "docs/NEXT_TASK.md",
+  "generated_at": "2026-07-10T22:31:56+08:00",
+  "current_task": {
+    "task_file": "docs/NEXT_TASK.md",
     "title": "V46 COCO metrics and causal fusion ablations",
-    "executed": false
-  },
-  "scope_controls": {
-    "training_run": false,
-    "evaluation_run": false,
-    "metric_recomputation": false,
-    "checkpoint_selection": false,
-    "split_modified": false,
-    "holdout_access": false,
-    "manuscript_structure_modified": true,
-    "bibliography_modified": true,
-    "springer_compile_completed": true
+    "status": "V47_STRUCTURE_LITERATURE_COMPILE_AND_V46_COCO_ABLATION_SEED0_PARTIAL_COMPLETE",
+    "commit_message": "eval: add V46 COCO metrics and causal ablation evidence"
   },
   "v47_revision": {
     "status": "COMPLETE",
     "report": "runs/v47_structure_literature/STRUCTURE_AND_REFERENCE_REVISION_REPORT.md",
     "compile_report": "runs/v47_structure_literature/V47_COMPILE_AND_CITATION_CLOSURE.md",
     "reference_ledger": "submission/sivp/review/V47_RECENT_Q12_REFERENCE_LEDGER.md",
-    "recent_bibliography": "submission/sivp/tex/references_recent_q12_2023_2025.bib",
-    "target_unique_cited_keys": 40,
-    "verified_unique_cited_keys": 40,
-    "missing_cited_keys": 0,
-    "new_recent_journal_articles": 28,
-    "existing_recent_journal_articles": 3,
-    "foundational_primary_source_exceptions": 9,
-    "quartile_interpretation": "Public JCR/SJR Q1-Q2 journal-level status; no CAS partition claim",
-    "active_structure": [
-      "Introduction",
-      "Related Work: four subsections",
-      "Method: four subsections",
-      "Dataset and Evaluation Protocol: four subsections",
-      "Results: three subsections",
-      "Discussion",
-      "Limitations",
-      "Conclusion"
-    ],
-    "entry_files": [
-      "submission/sivp/tex/main.tex",
-      "main.tex",
-      "main_sivp_snjnl.tex"
-    ],
-    "appendix_input_removed": true,
-    "compile": {
-      "completed": true,
-      "output_pdf": "RA_RepDet_SIVP_V47_structure_recent_literature_snjnl.pdf",
-      "page_count": 10,
-      "undefined_citations": 0,
-      "undefined_cross_references": 0,
-      "rendered_pages": 10,
-      "obvious_page_clipping": false,
-      "bibtex_command": "/usr/bin/bibtex.original",
-      "note": "Springer class files were taken from the previously supplied source package for the preflight build."
-    }
+    "bibliography": "submission/sivp/tex/references_recent_q12_2023_2025.bib",
+    "active_citations": 40,
+    "compile_page_count": 10,
+    "missing_citations": 0,
+    "undefined_cross_references": 0,
+    "v46_evidence_integrated_into_manuscript": false
   },
-  "evidence_state": {
-    "development_validation": "three paired seeds on frozen V40 component-disjoint development-validation",
-    "locked_holdout": "six fixed checkpoints on 837-image same-dataset TriAir holdout",
-    "metrics_unchanged": true,
-    "coco_ap5095_available": false,
-    "causal_ablation_available": false,
-    "external_generalization_available": false
+  "source_lock": {
+    "path": "runs/v46_coco_ablation/source_lock_v46.json",
+    "status": "V46_SOURCE_LOCKED_BEFORE_EXECUTION",
+    "source_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+    "branch": "research/ra-repdet-triair"
   },
-  "claim_boundary": {
-    "allowed": "component-disjoint development-validation evidence plus locked same-dataset held-out TriAir evaluation, using descriptive three-seed paired comparisons between matched early fusion and reliability-aware p=0.15",
-    "disallowed": [
-      "external dataset generalization",
-      "independent public benchmark test",
-      "training-time model selection or tuning using holdout results",
-      "statistical significance",
-      "optimal dropout",
-      "calibrated physical sensor reliability",
-      "real sensor-fault robustness",
-      "COCO AP@[0.50:0.95] until V46 is completed"
+  "blocker": {
+    "status": "PARTIAL_GPU_TIME_AND_ALLOWED_SCOPE_BLOCKER",
+    "path": "docs/TASK_BLOCKER.md",
+    "remaining": [
+      "ra_no_moddrop and early_moddrop seeds 1 and 2 require about 28-34 additional GPU hours",
+      "ra_static_equal and ra_stems_concat_or_project require protected architecture/training plumbing changes outside the V46 allowed-file list"
     ]
   },
+  "scope_controls": {
+    "new_training": true,
+    "fresh_training_seeds": [
+      0
+    ],
+    "checkpoint_selection_rule": "best development-validation project-local AP50",
+    "guard_used_for_training_or_selection": false,
+    "split_modified": false,
+    "existing_checkpoint_modified": false,
+    "manuscript_modified_by_v46": false,
+    "manuscript_modified_by_v47": true,
+    "ablation_guard_evaluation_run": false
+  },
+  "fixed_coco_evaluation": {
+    "status": "V46_FIXED_COCO_EVALUATION_COMPLETE",
+    "backend": "pycocotools.cocoeval.COCOeval",
+    "definition": {
+      "metric": "single-class COCO bbox AP",
+      "iou_thresholds": [
+        "0.50",
+        "0.55",
+        "0.60",
+        "0.65",
+        "0.70",
+        "0.75",
+        "0.80",
+        "0.85",
+        "0.90",
+        "0.95"
+      ],
+      "recall_samples": 101,
+      "area": "all",
+      "max_detections": 100,
+      "detector_score_threshold": 0.001
+    },
+    "development_validation": {
+      "ap50_95": {
+        "mean_delta": 0.035350383923796226,
+        "sample_sd_delta": 0.020586182936123215,
+        "min_delta": 0.022666102340231475,
+        "max_delta": 0.05910294338978517,
+        "n_seed_pairs": 3
+      },
+      "ap50": {
+        "mean_delta": 0.01616668257625653,
+        "sample_sd_delta": 0.005581113835517064,
+        "min_delta": 0.012856728345839286,
+        "max_delta": 0.022610394794747357,
+        "n_seed_pairs": 3
+      },
+      "ap75": {
+        "mean_delta": 0.06384399410861612,
+        "sample_sd_delta": 0.016351548725299467,
+        "min_delta": 0.05353910564982556,
+        "max_delta": 0.0826979018038152,
+        "n_seed_pairs": 3
+      },
+      "ar100": {
+        "mean_delta": 0.024799727288222218,
+        "sample_sd_delta": 0.018168143010973723,
+        "min_delta": 0.01365263337310385,
+        "max_delta": 0.04576444520197709,
+        "n_seed_pairs": 3
+      },
+      "f1": {
+        "mean_delta": 0.018524117987404127,
+        "sample_sd_delta": 0.006208235832414489,
+        "min_delta": 0.012637306196001452,
+        "max_delta": 0.02501030207970867,
+        "n_seed_pairs": 3
+      }
+    },
+    "same_dataset_guard": {
+      "ap50_95": {
+        "mean_delta": 0.006195385879256683,
+        "sample_sd_delta": 0.018736522584385948,
+        "min_delta": -0.012652653164474392,
+        "max_delta": 0.024818364402536264,
+        "n_seed_pairs": 3
+      },
+      "ap50": {
+        "mean_delta": 0.008533818377519284,
+        "sample_sd_delta": 0.005456330130120399,
+        "min_delta": 0.0027277620108961953,
+        "max_delta": 0.013555530253493875,
+        "n_seed_pairs": 3
+      },
+      "ap75": {
+        "mean_delta": 0.003257780049100415,
+        "sample_sd_delta": 0.017719240382303856,
+        "min_delta": -0.016066816826538544,
+        "max_delta": 0.018741714547461763,
+        "n_seed_pairs": 3
+      },
+      "ar100": {
+        "mean_delta": 0.006170886075949289,
+        "sample_sd_delta": 0.018646566171259756,
+        "min_delta": -0.012025316455696156,
+        "max_delta": 0.025237341772151867,
+        "n_seed_pairs": 3
+      },
+      "f1": {
+        "mean_delta": 0.006946484871191945,
+        "sample_sd_delta": 0.008942637027780097,
+        "min_delta": -0.003307352054581214,
+        "max_delta": 0.013129281279374183,
+        "n_seed_pairs": 3
+      }
+    },
+    "summary_md": "runs/v46_coco_ablation/coco_metric_summary.md",
+    "summary_json": "runs/v46_coco_ablation/coco_metric_summary.json"
+  },
+  "causal_ablation": {
+    "status": "V46_CAUSAL_ABLATION_SEED0_PARTIAL_COMPLETE",
+    "fresh_runs": [
+      {
+        "run_id": "ra_no_moddrop_seed0",
+        "variant": "ra_no_moddrop",
+        "seed": 0,
+        "checkpoint_sha256": "7c2817ff29414fcd91a9330c3f34b60dddfb505100f67810291f2e7ab09a1e5c",
+        "training_elapsed_seconds": 44398.38507294655,
+        "ap50_95": 0.7112447552783334,
+        "ap50": 0.947746927354984,
+        "ap75": 0.8661636017503372,
+        "f1": 0.9039461348333758
+      },
+      {
+        "run_id": "early_moddrop_seed0",
+        "variant": "early_moddrop",
+        "seed": 0,
+        "checkpoint_sha256": "6f4f756890a518ab750bb2be216c8a825944091e1b8d3143f4696178eb602fbf",
+        "training_elapsed_seconds": 44074.80000000002,
+        "ap50_95": 0.6726638054166754,
+        "ap50": 0.9469235629856483,
+        "ap75": 0.8135805598711372,
+        "f1": 0.9070290858725762
+      }
+    ],
+    "seed0_contrasts": [
+      {
+        "contrast": "ra_full_p015_minus_ra_no_moddrop",
+        "seed": 0,
+        "delta_ap50_95": 0.016728041218660894,
+        "delta_ap50": 0.006256158206745854,
+        "delta_ap75": 0.025162234678952622,
+        "delta_f1": 0.010975217387011682,
+        "interpretation": "Seed0 modality-dropout increment within the same reliability-stem and dynamic-gate architecture."
+      },
+      {
+        "contrast": "ra_no_moddrop_minus_matched_early",
+        "seed": 0,
+        "delta_ap50_95": 0.005938061121570581,
+        "delta_ap50": 0.006600570139093431,
+        "delta_ap75": 0.028376870970872936,
+        "delta_f1": 0.00166208880898977,
+        "interpretation": "Seed0 combined increment of modality-specific stems plus dynamic softmax gating; it does not isolate the gate alone."
+      },
+      {
+        "contrast": "early_moddrop_minus_matched_early",
+        "seed": 0,
+        "delta_ap50_95": -0.03264288874008747,
+        "delta_ap50": 0.0057772057697577095,
+        "delta_ap75": -0.024206170908327107,
+        "delta_f1": 0.004745039848190191,
+        "interpretation": "Seed0 modality-dropout increment within the matched early-fusion architecture."
+      },
+      {
+        "contrast": "ra_full_p015_minus_early_moddrop",
+        "seed": 0,
+        "delta_ap50_95": 0.05530899108031895,
+        "delta_ap50": 0.007079522576081576,
+        "delta_ap75": 0.07774527655815267,
+        "delta_f1": 0.007892266347811261,
+        "interpretation": "Seed0 architecture increment at matched modality-dropout probability; stems and dynamic gating remain bundled."
+      }
+    ],
+    "variant_status": {
+      "matched_early": "complete for existing fixed seeds 0,1,2",
+      "ra_full_p015": "complete for existing fixed seeds 0,1,2",
+      "ra_no_moddrop": "fresh V46 seed0 complete; seeds 1,2 deferred for GPU time",
+      "early_moddrop": "fresh V46 seed0 complete; seeds 1,2 deferred for GPU time",
+      "ra_static_equal": "skipped because it requires architecture/model-loading changes outside the allowed V46 file scope and protected training-core plumbing",
+      "ra_stems_concat_or_project": "skipped because it requires architecture/model-loading changes outside the allowed V46 file scope and protected training-core plumbing"
+    },
+    "summary_md": "runs/v46_coco_ablation/ablation_devval_summary.md",
+    "summary_json": "runs/v46_coco_ablation/ablation_devval_summary.json",
+    "claim_boundary": "runs/v46_coco_ablation/ablation_claim_boundary.md"
+  },
+  "verification": {
+    "project_local_ap_reproduced": true,
+    "coco_metric_smoke_test": true,
+    "claim_scan_passed": true,
+    "preflight_passed": true,
+    "preflight_output": "runs/v46_coco_ablation/preflight_outputs.txt"
+  },
+  "claim_boundary": {
+    "allowed": "descriptive three-seed COCO-style within-TriAir fixed-checkpoint comparisons plus seed0-only development-validation causal contrasts",
+    "guard": "locked same-dataset held-out evidence only; never used for tuning, selection, or ablation continuation",
+    "fresh_ablation": "seed0-only; stems and dynamic gate remain bundled without static controls"
+  },
   "next_actions": [
-    "Execute V46 COCO metrics and causal fusion ablations",
-    "Add parameters, FLOPs, latency, throughput, and memory measurements",
-    "Document event-channel generation and synchronization provenance",
-    "Confirm institutionally accepted quartile database edition",
-    "Confirm repository release/archive metadata and TriAir license/version details"
+    "Integrate V46 evidence into the V47 manuscript only in a separately authorized manuscript-update task",
+    "Run seeds 1 and 2 for ra_no_moddrop and early_moddrop only if additional GPU time is authorized",
+    "Authorize protected architecture/training changes before implementing static-equal or deterministic-projection controls",
+    "Do not use guard results for any future model or run selection"
   ]
 }

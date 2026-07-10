@@ -1,0 +1,103 @@
+generated_at: 2026-07-10T22:28:46+08:00
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe -m py_compile rarepdet/coco_metrics.py rarepdet/tools/eval_coco_map.py rarepdet/tools/smoke_test_coco_metrics.py rarepdet/tools/create_v46_source_lock.py rarepdet/tools/run_v46_fixed_coco.py rarepdet/tools/build_v46_coco_summary.py rarepdet/tools/run_v46_ablation_seed0.py rarepdet/tools/build_v46_ablation_summary.py rarepdet/tools/scan_v46_claims.py rarepdet/tools/v46_handoff.py rarepdet/tools/write_v46_blocker.py rarepdet/tools/finalize_v46_task.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py rarepdet/tools/run_v46_preflight.py =====
+return_code: 0
+
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/smoke_test_coco_metrics.py =====
+return_code: 0
+PASS: COCO metric smoke tests
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/build_v46_coco_summary.py =====
+return_code: 0
+{
+  "status": "V46_FIXED_COCO_EVALUATION_COMPLETE",
+  "devval_mean_delta_ap50_95": 0.035350383923796226,
+  "guard_mean_delta_ap50_95": 0.006195385879256683
+}
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/build_v46_ablation_summary.py =====
+return_code: 0
+{
+  "status": "V46_CAUSAL_ABLATION_SEED0_PARTIAL_COMPLETE",
+  "new_runs": [
+    "ra_no_moddrop_seed0",
+    "early_moddrop_seed0"
+  ]
+}
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/scan_v46_claims.py =====
+return_code: 0
+files_scanned=15 matches=7 unresolved=0
+
+===== COMMAND: git diff --check =====
+return_code: 0
+warning: in the working copy of 'rarepdet/tools/generate_handoff.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rarepdet/tools/update_project_status.py', LF will be replaced by CRLF the next time Git touches it
+
+===== INTERNAL EVIDENCE CHECKS =====
+PASS Python whitespace check rarepdet/coco_metrics.py
+PASS Python whitespace check rarepdet/tools/eval_coco_map.py
+PASS Python whitespace check rarepdet/tools/smoke_test_coco_metrics.py
+PASS Python whitespace check rarepdet/tools/create_v46_source_lock.py
+PASS Python whitespace check rarepdet/tools/run_v46_fixed_coco.py
+PASS Python whitespace check rarepdet/tools/build_v46_coco_summary.py
+PASS Python whitespace check rarepdet/tools/run_v46_ablation_seed0.py
+PASS Python whitespace check rarepdet/tools/build_v46_ablation_summary.py
+PASS Python whitespace check rarepdet/tools/scan_v46_claims.py
+PASS Python whitespace check rarepdet/tools/v46_handoff.py
+PASS Python whitespace check rarepdet/tools/write_v46_blocker.py
+PASS Python whitespace check rarepdet/tools/finalize_v46_task.py
+PASS Python whitespace check rarepdet/tools/generate_handoff.py
+PASS Python whitespace check rarepdet/tools/update_project_status.py
+PASS Python whitespace check rarepdet/tools/run_v46_preflight.py
+PASS manifest train sha256=f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f
+PASS manifest devval sha256=722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f
+PASS manifest guard sha256=0cf3270c0a73d03caf8d698bb4e9ddb0adba46e688c52d8589f57ea12488881f
+PASS fixed checkpoint matched_early_seed0 sha256=23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602
+PASS fixed checkpoint matched_early_seed1 sha256=60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804
+PASS fixed checkpoint matched_early_seed2 sha256=b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e
+PASS fixed checkpoint reliability_p015_seed0 sha256=4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436
+PASS fixed checkpoint reliability_p015_seed1 sha256=a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d
+PASS fixed checkpoint reliability_p015_seed2 sha256=27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415
+PASS code rarepdet/coco_metrics.py sha256=af644845bef1442ab72bd8fc07c6a74923088e864072a9f5944148e7d771f565
+PASS code rarepdet/tools/eval_coco_map.py sha256=1fe9023734de88b64f355d0a24cfb853d15a95084e233c40e0baab94015f783f
+PASS code rarepdet/tools/smoke_test_coco_metrics.py sha256=48c6579d7dda452dbc6aab9cb3bfc6875ca745a731edf3fba8a51ee2f3ef9055
+PASS code rarepdet/tools/create_v46_source_lock.py sha256=b52bcc2314dea17972a35e6170aa6605ce29ffb3dd2a9a75ad29842d720b1d88
+PASS code rarepdet/eval_map.py sha256=94557cb80ae24b8663e9eb31955afe668b994058cd8e3e7618ae33e4c0017715
+PASS code rarepdet/metrics.py sha256=6ffa798647376594befc45f89ebb1aa1a5fbe3b50e5f484e7804c22bac13b081
+PASS code rarepdet/train_early_fusion.py sha256=d9cae1e22e41ad0c7cfab13bf83ac058b5335cd1fcc41e3da9b1f8c53d05167a
+PASS code rarepdet/data.py sha256=d90c472cc320ccc8553bb827487b4052a5973cdd08db7e4972a5d59499381931
+PASS code rarepdet/models/early_fusion_fcos.py sha256=c2ad086c6dc0f0d1f390462184d496931d62ddf4c3e25c5816335f1b8c7db9f8
+PASS code rarepdet/models/repvit_fpn_backbone.py sha256=a4ece2af4ec4e2280180c0bda3879f627d5b5340f589ffe6c0d50d4f7fe30a7f
+PASS code datasets/triair_dataset.py sha256=f3592421394c465f469c45410e1981613223634e0dd3cfffded281777ddad705
+PASS required output source_lock_v46.md bytes=4940
+PASS required output source_lock_v46.json bytes=6327
+PASS required output coco_devval_per_run.csv bytes=9854
+PASS required output coco_guard_per_run.csv bytes=8865
+PASS required output coco_devval_paired_deltas.csv bytes=2415
+PASS required output coco_guard_paired_deltas.csv bytes=2452
+PASS required output coco_metric_summary.md bytes=4127
+PASS required output coco_metric_summary.json bytes=52782
+PASS required output ablation_train_commands.txt bytes=3418
+PASS required output ablation_devval_per_run.csv bytes=12445
+PASS required output ablation_devval_summary.md bytes=3538
+PASS required output ablation_devval_summary.json bytes=45131
+PASS required output ablation_claim_boundary.md bytes=1461
+PASS required output v46_claim_scan.txt bytes=1566
+PASS required output v46_claim_scan_review.md bytes=1930
+PASS fixed COCO result count=12
+PASS fresh seed0 ablation result count=2
+PASS no ablation guard evaluation outputs
+PASS ablation execution complete with guard_used=false
+PASS summary status values
+PASS claim scan unresolved affirmative matches=0
+PASS V46 partial-completion blocker recorded
+PASS project metric reproduction matched_early_seed0 ap50_delta=-1.760e-13 ap75_delta=-4.421e-13
+PASS project metric reproduction matched_early_seed1 ap50_delta=3.423e-13 ap75_delta=4.600e-13
+PASS project metric reproduction matched_early_seed2 ap50_delta=-2.132e-13 ap75_delta=5.496e-14
+PASS project metric reproduction reliability_p015_seed0 ap50_delta=-4.819e-13 ap75_delta=-1.635e-13
+PASS project metric reproduction reliability_p015_seed1 ap50_delta=1.568e-13 ap75_delta=2.710e-13
+PASS project metric reproduction reliability_p015_seed2 ap50_delta=3.398e-13 ap75_delta=3.877e-13
+
+FINAL_STATUS: PASS

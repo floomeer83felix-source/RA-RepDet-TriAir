@@ -1259,6 +1259,13 @@ def build_status():
 
 
 def main():
+    from v46_handoff import is_v46_ready, write_v46_status
+
+    if is_v46_ready(PROJECT_ROOT):
+        write_v46_status(PROJECT_ROOT)
+        print(f"Saved: {STATUS_PATH}")
+        return
+
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     STATUS_PATH.write_text(build_status(), encoding="utf-8")
     print(f"Saved: {STATUS_PATH}")

@@ -1,0 +1,30 @@
+V46 COCO-style checkpoint evaluation
+====================================
+run_id: reliability_p015_seed1
+protocol: devval
+variant: ra_full_p015
+checkpoint_sha256: a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d
+split_sha256: 722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f
+images: 2213
+gt_boxes: 5867
+detections: 221300
+AP@[0.50:0.95]: 0.722895
+AP50: 0.951538
+AP75: 0.874275
+AR100: 0.791154
+precision@0.50: 0.877880
+recall@0.50: 0.928754
+F1@0.50: 0.902601
+inference_seconds: 38.134
+metric_seconds: 53.098
+command: C:\Users\xinnan\.conda\envs\pytorch\python.exe E:\RepViT-main\rarepdet\tools\eval_coco_map.py --run-id reliability_p015_seed1 --protocol devval --variant ra_full_p015 --model reliability --seed 1 --modality-dropout 0.15 --data D:\download\triair --split-file E:\RepViT-main\reproducibility\v40_expanded_adjacency_component_split_v2\manifests\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\RepViT-main\runs\v41_q1_upgrade\seed1\reliability_p015_seed1\weights\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\RepViT-main\runs\v46_coco_ablation\raw\coco\devval\reliability_p015_seed1.json
+AP@0.50: 0.951538
+AP@0.55: 0.949030
+AP@0.60: 0.943465
+AP@0.65: 0.933159
+AP@0.70: 0.912904
+AP@0.75: 0.874275
+AP@0.80: 0.788863
+AP@0.85: 0.607208
+AP@0.90: 0.259632
+AP@0.95: 0.008879

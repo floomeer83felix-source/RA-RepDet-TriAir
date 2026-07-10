@@ -1,0 +1,43 @@
+{
+  "status": "SEED0_FEASIBLE_ABLATIONS_COMPLETE",
+  "started_at": "2026-07-10T10:00:46+08:00",
+  "selection_rule": "best development-validation project-local AP50",
+  "guard_used": false,
+  "runs": [
+    {
+      "run_id": "ra_no_moddrop_seed0",
+      "variant": "ra_no_moddrop",
+      "model": "reliability",
+      "dropout": 0.0,
+      "run_dir": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model reliability --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 0 --out E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0",
+      "train_skipped_as_complete": false,
+      "train_elapsed_seconds": 44398.38507294655,
+      "checkpoint": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "7c2817ff29414fcd91a9330c3f34b60dddfb505100f67810291f2e7ab09a1e5c",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed0 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\ablation_devval\\ra_no_moddrop_seed0.json",
+      "eval_skipped_as_complete": false,
+      "eval_elapsed_seconds": 231.9697036743164,
+      "eval_result": "E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\ablation_devval\\ra_no_moddrop_seed0.json",
+      "completed_at": "2026-07-10T22:24:37+08:00"
+    },
+    {
+      "run_id": "early_moddrop_seed0",
+      "variant": "early_moddrop",
+      "model": "early",
+      "dropout": 0.15,
+      "run_dir": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\early_moddrop_seed0",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 0 --out E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\early_moddrop_seed0",
+      "train_skipped_as_complete": true,
+      "train_elapsed_seconds": null,
+      "checkpoint": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\early_moddrop_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "6f4f756890a518ab750bb2be216c8a825944091e1b8d3143f4696178eb602fbf",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed0 --protocol ablation_devval --variant early_moddrop --model early --seed 0 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\early_moddrop_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\ablation_devval\\early_moddrop_seed0.json",
+      "eval_skipped_as_complete": false,
+      "eval_elapsed_seconds": 224.35979437828064,
+      "eval_result": "E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\ablation_devval\\early_moddrop_seed0.json",
+      "completed_at": "2026-07-10T22:28:21+08:00"
+    }
+  ],
+  "completed_at": "2026-07-10T22:28:21+08:00"
+}

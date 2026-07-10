@@ -1,62 +1,67 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-10
+Generated: 2026-07-10T22:31:56+08:00
 
-## Current Task State
+## Current task state
 
-- User-explicit completed task: V47 manuscript structure, recent journal literature revision, and compile closure
-- Status: `V47_STRUCTURE_LITERATURE_AND_COMPILE_COMPLETE`
-- Active blocker: `NO_ACTIVE_SCIENTIFIC_BLOCKER`
-- Queued evidence task: `docs/NEXT_TASK.md` still defines V46 COCO metrics and causal fusion ablations; V46 has not been executed.
+- Task: `V46 COCO metrics and causal fusion ablations`
+- Status: `V47_STRUCTURE_LITERATURE_COMPILE_AND_V46_COCO_ABLATION_SEED0_PARTIAL_COMPLETE`
+- Blocker: `PARTIAL_GPU_TIME_AND_ALLOWED_SCOPE_BLOCKER`
+- Final preflight passed: `True`
 
-## What Was Completed
+## Preserved V47 manuscript state
 
-- Reorganized the active SIVP manuscript into a clearer eight-section scientific structure.
-- Rewrote Related Work into four focused subsections.
-- Reorganized Method, Dataset/Evaluation, and Results into explicit subsections.
-- Shortened the title and reduced the contribution list to three substantive items.
-- Removed the weak literature appendix from all active entry files.
-- Reframed `guard` as `locked within-dataset holdout` in manuscript prose.
-- Corrected the interpretation of holdout difficulty and made AP50 the strongest held-out result.
-- Expanded the limitations concerning causal attribution, standard metrics, efficiency, event representation, graph completeness, and external evaluation.
-- Completed a fresh Springer-style compile, BibTeX closure, citation-key count, and PDF render review.
+The remotely completed V47 manuscript restructure, 40-reference literature package, and 10-page Springer compile closure are preserved. V46 did not edit manuscript narrative files, so the new V46 metrics are evidence-package outputs awaiting a separately authorized manuscript-integration task.
 
-## Literature Package
+- Revision report: `runs/v47_structure_literature/STRUCTURE_AND_REFERENCE_REVISION_REPORT.md`
+- Compile report: `runs/v47_structure_literature/V47_COMPILE_AND_CITATION_CLOSURE.md`
+- Active cited keys: 40; missing citations: 0; undefined cross-references: 0.
 
-Canonical files:
+## Completed fixed-checkpoint COCO evaluation
 
-- `submission/sivp/tex/references_recent_q12_2023_2025.bib`
-- `submission/sivp/review/V47_RECENT_Q12_REFERENCE_LEDGER.md`
-- `runs/v47_structure_literature/STRUCTURE_AND_REFERENCE_REVISION_REPORT.md`
-- `runs/v47_structure_literature/V47_COMPILE_AND_CITATION_CLOSURE.md`
+All six fixed matched-early and reliability-aware `p=0.15` seed0/1/2 checkpoints were evaluated on frozen development-validation and locked same-dataset guard manifests with canonical `pycocotools` bbox AP, IoU 0.50:0.05:0.95, 101 recall samples, and maxDets=100.
 
-The active body cites exactly 40 unique keys:
+| Protocol | Metric | Mean paired delta | Sample SD | Min | Max | n |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| development-validation | ap50_95 | 0.035350 | 0.020586 | 0.022666 | 0.059103 | 3 |
+| development-validation | ap50 | 0.016167 | 0.005581 | 0.012857 | 0.022610 | 3 |
+| development-validation | ap75 | 0.063844 | 0.016352 | 0.053539 | 0.082698 | 3 |
+| development-validation | ar100 | 0.024800 | 0.018168 | 0.013653 | 0.045764 | 3 |
+| same-dataset guard | ap50_95 | 0.006195 | 0.018737 | -0.012653 | 0.024818 | 3 |
+| same-dataset guard | ap50 | 0.008534 | 0.005456 | 0.002728 | 0.013556 | 3 |
+| same-dataset guard | ap75 | 0.003258 | 0.017719 | -0.016067 | 0.018742 | 3 |
+| same-dataset guard | ar100 | 0.006171 | 0.018647 | -0.012025 | 0.025237 | 3 |
 
-- 28 newly added formal 2023--2024 journal articles from publicly screened Q1/Q2 journals;
-- 3 recent formal journal references already present in the repository;
-- 9 foundational original-source exceptions retained for correct provenance.
+The guard mean AP50:95 delta is positive but smaller than development-validation, and guard seed2 is negative. The guard was not used for tuning, selection, or continuation.
 
-The ledger interprets `Q2 or above` as public JCR/SJR Q1--Q2 status. It does not claim Chinese Academy of Sciences partitions.
+## Seed0 causal ablations
 
-## Compile and Render Status
+| Contrast | Delta AP50:95 | Delta AP50 | Delta AP75 | Delta F1 |
+| --- | ---: | ---: | ---: | ---: |
+| ra_full_p015_minus_ra_no_moddrop | 0.016728 | 0.006256 | 0.025162 | 0.010975 |
+| ra_no_moddrop_minus_matched_early | 0.005938 | 0.006601 | 0.028377 | 0.001662 |
+| early_moddrop_minus_matched_early | -0.032643 | 0.005777 | -0.024206 | 0.004745 |
+| ra_full_p015_minus_early_moddrop | 0.055309 | 0.007080 | 0.077745 | 0.007892 |
 
-- Output: `RA_RepDet_SIVP_V47_structure_recent_literature_snjnl.pdf`.
-- Page count: 10.
-- Unique cited keys: 40.
-- Matching BibTeX entries: 40.
-- Missing citations: 0.
-- Undefined cross-references: 0.
-- Rendered and inspected pages: 10.
-- Obvious clipping/broken pages: none observed.
-- Tables 8 and 9 and the three-page reference list rendered within the page area.
+Fresh `ra_no_moddrop_seed0` and `early_moddrop_seed0` runs used the locked 50-epoch protocol and development-validation AP50 checkpoint selection. No ablation guard evaluation was run.
 
-## Evidence Boundary
+## Partial blockers
 
-No metrics or checkpoints changed. The manuscript remains based on three-seed component-disjoint development-validation plus a locked same-dataset holdout evaluation. COCO AP@[0.50:0.95], causal ablations, external generalization, statistical significance, calibrated physical reliability, and real sensor-fault robustness remain unclaimed.
+- ra_no_moddrop and early_moddrop seeds 1 and 2 require about 28-34 additional GPU hours.
+- ra_static_equal and ra_stems_concat_or_project require protected architecture/training plumbing changes outside the V46 allowed-file list.
 
-## Next Actions
+## Claim boundary
 
-1. Execute V46 from `docs/NEXT_TASK.md`.
-2. Add efficiency measurements and event-channel provenance documentation.
-3. Confirm the institutionally accepted quartile database edition.
-4. Confirm repository release/archive metadata and TriAir license/version details.
+- Allowed: descriptive three-seed COCO-style within-TriAir fixed-checkpoint comparisons plus seed0-only development-validation causal contrasts.
+- Guard: locked same-dataset held-out evidence only; never used for tuning, selection, or ablation continuation.
+- Fresh ablation: seed0-only; stems and dynamic gate remain bundled without static controls.
+
+## Primary outputs
+
+- `runs/v46_coco_ablation/source_lock_v46.md/json`
+- `runs/v46_coco_ablation/coco_metric_summary.md/json` and four required COCO CSV files
+- `runs/v46_coco_ablation/ablation_devval_per_run.csv`
+- `runs/v46_coco_ablation/ablation_devval_summary.md/json`
+- `runs/v46_coco_ablation/ablation_claim_boundary.md`
+- `runs/v46_coco_ablation/v46_claim_scan.txt` and review
+- `runs/v46_coco_ablation/preflight_commands.txt` and outputs

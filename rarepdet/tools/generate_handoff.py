@@ -1650,6 +1650,14 @@ def write_markdown(data, path):
 
 
 def main():
+    from v46_handoff import is_v46_ready, write_v46_handoff
+
+    if is_v46_ready(PROJECT_ROOT):
+        write_v46_handoff(PROJECT_ROOT)
+        print(f"Saved: {RUNS_DIR / 'handoff_latest.md'}")
+        print(f"Saved: {RUNS_DIR / 'handoff_latest.json'}")
+        return
+
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
     data = build_handoff()
     json_path = RUNS_DIR / "handoff_latest.json"

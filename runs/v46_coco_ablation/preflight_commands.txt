@@ -1,0 +1,6 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m py_compile rarepdet/coco_metrics.py rarepdet/tools/eval_coco_map.py rarepdet/tools/smoke_test_coco_metrics.py rarepdet/tools/create_v46_source_lock.py rarepdet/tools/run_v46_fixed_coco.py rarepdet/tools/build_v46_coco_summary.py rarepdet/tools/run_v46_ablation_seed0.py rarepdet/tools/build_v46_ablation_summary.py rarepdet/tools/scan_v46_claims.py rarepdet/tools/v46_handoff.py rarepdet/tools/write_v46_blocker.py rarepdet/tools/finalize_v46_task.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py rarepdet/tools/run_v46_preflight.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/smoke_test_coco_metrics.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/build_v46_coco_summary.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/build_v46_ablation_summary.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/scan_v46_claims.py
+git diff --check
