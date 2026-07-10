@@ -1,39 +1,41 @@
 # Experiment Status
 
-Generated: 2026-07-09
+Generated: 2026-07-10
 
 ## Current Status
 
-`V45_STRICT_REVIEW_REVISION_COMPLETE`
+`V47_STRUCTURE_AND_RECENT_LITERATURE_REVISION_COMPLETE`
 
-A strict simulated SIVP reviewer pass has been completed after V44 preflight. The manuscript remains based on component-disjoint development-validation plus locked same-dataset TriAir held-out guard evaluation. The paper is not described as validation-only, and the strict reviewer pass further tightened the abstract to state that the held-out guard is same-dataset evidence, that the held-out gains are smaller than development-validation gains, and that per-seed held-out F1/AP75 deltas are mixed.
+The SIVP manuscript structure has been reorganized and its active cited literature has been expanded to approximately 40 references. No new training, evaluation, checkpoint selection, metric recomputation, split modification, or guard access was performed. The V46 COCO-metric and causal-ablation task remains queued in `docs/NEXT_TASK.md` and has not been treated as completed evidence.
 
-No new training, hyperparameter tuning, checkpoint selection, split modification, robustness experiment, profiling run, external-data evaluation, or metric recomputation was performed during V45. The task performed reviewer-style critique, manuscript wording revisions, template compile, render verification, and status/handoff updates only.
+## V47 manuscript changes
 
-## Evidence Inputs
+- Reorganized the paper into Introduction, four-part Related Work, four-part Method, four-part Dataset and Evaluation Protocol, three-part Results, Discussion, Limitations, and Conclusion.
+- Removed the weak standalone literature appendix from the active manuscript entry files and integrated its useful scope into the main body.
+- Shortened the manuscript title to focus on RA-RepDet rather than embedding the entire evaluation protocol in the title.
+- Reduced the contribution list to three substantive contributions.
+- Replaced manuscript-facing `guard` wording with `locked within-dataset holdout` where appropriate.
+- Clarified that the locked protocol is methodologically more conservative without assuming that the holdout images are intrinsically harder.
+- Reframed the held-out conclusion around the stable AP50 trend and explicitly retained mixed F1/AP75 interpretation.
+- Expanded Limitations to cover causal ablations, COCO-style metrics, efficiency reporting, event-channel provenance, component-graph completeness, external evaluation, and data-governance gaps.
 
-- V42 commit: `187632960a4093778d83c3383e7f5540723a60e1`.
-- V42 source lock: `runs/v42_locked_guard_heldout/heldout_guard_source_lock.md/json`.
-- V42 summary: `runs/v42_locked_guard_heldout/heldout_guard_summary.md/json`.
-- V42 claim boundary: `runs/v42_locked_guard_heldout/heldout_guard_claim_boundary.md`.
-- V44 preflight report: `runs/v44_submission_preflight/V44_SUBMISSION_PREFLIGHT_REPORT.md`.
-- V45 strict review report: `submission/sivp/review/STRICT_REVIEWER_REPORT_V45.md`.
-- V45 compile report: `runs/v45_strict_review/STRICT_REVIEW_AND_COMPILE_REPORT.md`.
+## V47 literature package
 
-## V45 manuscript updates
+- New bibliography: `submission/sivp/tex/references_recent_q12_2023_2025.bib`.
+- Verification ledger: `submission/sivp/review/V47_RECENT_Q12_REFERENCE_LEDGER.md`.
+- Revision report: `runs/v47_structure_literature/STRUCTURE_AND_REFERENCE_REVISION_REPORT.md`.
+- Active manuscript target: 40 unique cited BibTeX keys.
+- Composition: 28 newly added formal 2023--2024 Q1/Q2 journal articles, 3 recent journal references already in the repository, and 9 explicitly documented foundational primary-source exceptions.
+- `Q2 or above` is interpreted as public JCR/SJR Q1--Q2 journal status, not a Chinese Academy of Sciences partition claim.
 
-- Added `submission/sivp/review/STRICT_REVIEWER_REPORT_V45.md`.
-- Tightened the abstract in `submission/sivp/tex/main.tex`, root `main.tex`, and root `main_sivp_snjnl.tex`.
-- The abstract now explicitly states that the 837-image guard check is a same-dataset evaluation and that the held-out guard mean gains are smaller with mixed per-seed F1/AP75 deltas.
-- The active claim boundary remains component-disjoint development-validation plus locked same-dataset held-out TriAir guard evaluation.
+## Evidence state
 
-## V45 compile and render verification
+The paper remains based on:
 
-- Output PDF: `RA_RepDet_SIVP_V45_strict_review_revised_snjnl.pdf`.
-- Page count: 10 pages.
-- Springer-style template compile completed in the assistant sandbox using `sn-jnl.cls` and `sn-basic.bst` from the previously provided SIVP source package.
-- BibTeX/cross-reference closure completed using `/usr/bin/bibtex.original` because the sandbox `bibtex` symlink is broken.
-- Render verification: 10 pages rendered with no obvious page-level clipping or broken pages observed.
+1. three-seed component-disjoint development-validation evidence; and
+2. locked same-dataset TriAir holdout evaluation using six fixed checkpoints.
+
+The V41/V42 numerical evidence is unchanged.
 
 ## Development-validation descriptive summary
 
@@ -47,7 +49,7 @@ Reliability-aware `p=0.15` minus matched early fusion, paired by seed:
 | AP50 | +0.016064 | 0.005699 | 3 |
 | AP75 | +0.064657 | 0.016415 | 3 |
 
-## Held-out guard descriptive summary
+## Locked holdout descriptive summary
 
 Reliability-aware `p=0.15` minus matched early fusion, paired by seed:
 
@@ -61,23 +63,19 @@ Reliability-aware `p=0.15` minus matched early fusion, paired by seed:
 
 ## Current claim boundary
 
-Allowed wording: component-disjoint development-validation evidence plus locked same-dataset held-out TriAir guard evaluation, using descriptive three-seed paired comparisons between matched early fusion and reliability-aware `p=0.15`.
+Allowed wording: component-disjoint development-validation evidence plus locked same-dataset held-out TriAir evaluation, using descriptive three-seed paired comparisons between matched early fusion and reliability-aware `p=0.15`.
 
-Disallowed wording: external dataset generalization, independent public benchmark test, training-time model selection or tuning using guard results, statistical significance, optimal dropout, calibrated physical sensor reliability, real sensor-fault robustness, or COCO AP@[0.50:0.95].
+Disallowed wording: external dataset generalization, independent public benchmark test, training-time model selection or tuning using holdout results, statistical significance, optimal dropout, calibrated physical sensor reliability, real sensor-fault robustness, or COCO AP@[0.50:0.95] until V46 is completed.
 
-## Remaining scientific limitations
+## Compile status
 
-- The held-out guard partition is within the TriAir project dataset, not an external dataset.
-- The evidence is descriptive with three seed pairs only.
-- The guard results must not be used for future model selection without rewriting the claim boundary.
-- No causal ablation separates stems, dynamic gate, and modality dropout.
-- No COCO mAP@[0.50:0.95] package is available.
-- Dataset provider provenance remains only partially resolved by naming TriAir as public.
-- Label-quality review remains incomplete.
+The previous V45 Springer-style PDF remains the latest compiled artifact and predates the V47 text/bibliography revision. A fresh V47 Springer/BibTeX compile was not possible in the current execution environment because the local container lacked the repository and class files and outbound Git access was unavailable. V47 compile and citation closure remain required before submission.
 
-## Remaining submission-packaging items
+## Remaining tasks
 
-- Use the official Springer/SIVP template package in the final author environment.
-- Confirm that `sn-jnl.cls`/`sn-basic.bst` are included or supplied according to the journal submission workflow.
-- Optional replacement of simple text schematics with high-resolution vector artwork.
-- Public release/archive DOI and release metadata if required by the submission workflow.
+- Execute V46 COCO-style metrics and causal fusion ablations from `docs/NEXT_TASK.md`.
+- Run a V47/V48 Springer `sn-jnl` compile and resolve any bibliography or layout issues.
+- Add active efficiency measurements: parameters, FLOPs, latency, throughput, and memory.
+- Confirm event-channel generation and synchronization provenance.
+- Verify the institutionally required quartile database edition.
+- Confirm repository release/archive metadata and TriAir license/version details.
