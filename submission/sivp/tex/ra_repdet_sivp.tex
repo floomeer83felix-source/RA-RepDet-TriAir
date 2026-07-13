@@ -4,23 +4,23 @@
 
 Unmanned aerial vehicles (UAVs) are increasingly used for traffic observation, emergency response, infrastructure inspection, and autonomous navigation. These applications demand detectors that can recognize small and densely distributed vehicles under rapid viewpoint changes, clutter, motion, and illumination variation. Recent reviews show that object detection has moved toward increasingly accurate multi-scale and transformer-based designs, while deployment-oriented systems still require careful control of computation and evaluation bias \cite{Zou2023OD20Years,Han2023VisionTransformer}. High-speed autonomous flight and racing further illustrate the importance of low-latency visual perception on aerial platforms \cite{Kaufmann2023ChampionDrone,Song2023AutonomousRacing}.
 
-RGB imagery provides texture and color, thermal imagery provides complementary radiometric contrast, and event sensing captures sparse brightness changes with high temporal resolution. Event-camera research has demonstrated that asynchronous sensing can support low-latency automotive perception \cite{Gehrig2024LowLatencyEvent}. However, a multi-sensor detector can still become over-dependent on a single stream, and an apparently strong result can be misleading when visually related samples cross training and evaluation partitions.
+RGB imagery provides texture and color, thermal imagery provides complementary radiometric contrast, and event sensing captures sparse brightness changes with high temporal resolution. Event-camera research has demonstrated that asynchronous sensing can support low-latency automotive perception \cite{Gehrig2024LowLatencyEvent}. However, a multi-sensor detector can still become over-dependent on one stream, and an apparently strong result can be misleading when visually related samples cross training and evaluation partitions.
 
-This paper presents RA-RepDet, a lightweight five-channel RGB--thermal--event detector built on a RepViT-M0.9 backbone, a feature pyramid network (FPN), and an FCOS detection head \cite{RepViT2024,FPN2017,FCOS2019}. We compare a matched early-fusion front end with a reliability-aware front end containing modality-specific stems, a learned softmax weighting module, and modality-dropout training. The active comparison uses the same detector stack, input resolution, evaluator, checkpoint-selection rule, and three paired seeds. Model development is performed on a frozen component-disjoint development-validation split, after which the six fixed checkpoints are evaluated on a locked within-dataset holdout containing 837 TriAir samples.
+This paper presents RA-RepDet, a lightweight five-channel RGB--thermal--event detector built on a RepViT-M0.9 backbone, a feature pyramid network (FPN), and an FCOS detection head \cite{RepViT2024,FPN2017,FCOS2019}. We compare a matched early-fusion front end with a modality-specific softmax-weighted front end. The fixed main comparison uses modality dropout with probability $p=0.15$ and is evaluated with the same detector stack, input resolution, checkpoint-selection rule, and three paired seeds. Model development uses a frozen component-disjoint development-validation split. The six fixed main checkpoints are then evaluated on a locked within-dataset holdout of 837 TriAir samples. Canonical COCO-style metrics, three-seed static-control ablations, and hardware-specific efficiency measurements are reported in addition to the original project-local metrics.
 
-The study is intentionally bounded. The currently reported AP50 and AP75 values are project-local single-class metrics rather than COCO AP@[0.50:0.95]. The three-seed summaries are descriptive and do not establish statistical significance. The locked holdout remains within TriAir and therefore does not establish external-dataset generalization. Within this scope, the contributions are:
+The evidence remains deliberately bounded. All multi-seed summaries are descriptive rather than statistical-significance tests. The locked holdout is drawn from TriAir and therefore does not establish external-dataset generalization. The softmax coefficients are adaptive representation weights rather than calibrated sensor-health probabilities. Within this scope, the contributions are:
 
 \begin{enumerate}
     \item a compact RGB--thermal--event detector that compares matched early fusion with modality-specific softmax-weighted fusion under a shared RepViT--FPN--FCOS stack;
-    \item a leakage-aware evaluation protocol based on an exact-content audit, a frozen component-disjoint development-validation split, and a locked within-dataset holdout accessed only after checkpoint selection; and
-    \item an auditable three-seed paired evaluation reporting seed-level metrics, paired deltas, source locks, checkpoint hashes, and explicit claim boundaries.
+    \item a leakage-aware evaluation protocol combining an exact-content audit, a frozen component-disjoint development-validation split, canonical COCO-style fixed-checkpoint evaluation, and a locked within-dataset holdout accessed only after model selection; and
+    \item a three-seed ablation package that contrasts equal-weight stems, deterministic learned projection, dynamic gating, and modality dropout, together with reproducible parameter, FLOP, latency, throughput, and memory measurements.
 \end{enumerate}
 
 \section{Related Work}
 
 \subsection{Lightweight UAV and Small-Object Detection}
 
-Modern object detection includes proposal-based detectors, dense one-stage detectors, and anchor-free formulations \cite{FasterRCNN2015,RetinaNet2017,FCOS2019}. FPN-style multi-scale feature aggregation remains important when objects occupy only a small fraction of an aerial image \cite{FPN2017}. UAV benchmarks such as VisDrone and UAVDT expose challenges including small object size, crowded scenes, motion, and changing viewpoints \cite{VisDrone2018,UAVDT2018}. RepViT provides a mobile-oriented convolutional backbone designed from a vision-transformer perspective and is used here as the common feature extractor for both fusion variants \cite{RepViT2024}. The present work does not propose a new detection head; it studies how a compact tri-modal front end affects an otherwise matched detector.
+Modern object detection includes proposal-based detectors, dense one-stage detectors, and anchor-free formulations \cite{FasterRCNN2015,RetinaNet2017,FCOS2019}. FPN-style multi-scale feature aggregation remains important when objects occupy only a small fraction of an aerial image \cite{FPN2017}. UAV benchmarks such as VisDrone and UAVDT expose challenges including small object size, crowded scenes, motion, and changing viewpoints \cite{VisDrone2018,UAVDT2018}. RepViT provides a mobile-oriented convolutional backbone designed from a vision-transformer perspective and is used here as the common feature extractor for all fusion variants \cite{RepViT2024}. The present work does not propose a new detection head; it studies how a compact tri-modal front end affects an otherwise matched detector.
 
 \subsection{Infrared--Visible Fusion and Multispectral Perception}
 
@@ -48,9 +48,9 @@ Each TriAir sample is represented as a five-channel tensor
 \begin{equation}
 \mathbf{x}=[\mathbf{x}_{\mathrm{rgb}},\mathbf{x}_{\mathrm{th}},\mathbf{x}_{\mathrm{ev}}],
 \end{equation}
-where \(\mathbf{x}_{\mathrm{rgb}}\in\mathbb{R}^{3\times H\times W}\), \(\mathbf{x}_{\mathrm{th}}\in\mathbb{R}^{1\times H\times W}\), and \(\mathbf{x}_{\mathrm{ev}}\in\mathbb{R}^{1\times H\times W}\). The task is single-class vehicle detection. TriAir class 0 is mapped to detector label 1, while label 0 is reserved for background.
+where $\mathbf{x}_{\mathrm{rgb}}\in\mathbb{R}^{3\times H\times W}$, $\mathbf{x}_{\mathrm{th}}\in\mathbb{R}^{1\times H\times W}$, and $\mathbf{x}_{\mathrm{ev}}\in\mathbb{R}^{1\times H\times W}$. The task is single-class vehicle detection. TriAir class 0 is mapped to detector label 1, while label 0 is reserved for background.
 
-Both fusion variants share a RepViT-M0.9 backbone with feature-stage channel sizes 48, 96, 192, and 384. An FPN maps these stages to 128 channels, and an FCOS head performs dense classification and bounding-box regression. Keeping this stack fixed makes the active comparison a front-end fusion comparison rather than a comparison between unrelated detectors.
+All variants share a RepViT-M0.9 backbone with feature-stage channel sizes 48, 96, 192, and 384. An FPN maps these stages to 128 channels, and an FCOS head performs dense classification and bounding-box regression. Keeping this stack fixed makes the active experiments front-end fusion comparisons rather than comparisons between unrelated detectors.
 
 \begin{figure*}[t]
 \centering
@@ -60,10 +60,10 @@ Both fusion variants share a RepViT-M0.9 backbone with feature-stage channel siz
 \begin{tabular}{c}
 RGB, thermal, event input \\
 \hline
-Matched early fusion: \(5\)-channel input \(\rightarrow\) Conv\((5,3,1)\) \(\rightarrow\) RepViT--FPN--FCOS \(\rightarrow\) vehicle boxes \\
+Matched early fusion: $5$-channel input $\rightarrow$ Conv$(5,3,1)$ $\rightarrow$ RepViT--FPN--FCOS $\rightarrow$ vehicle boxes \\
 \hline
-Reliability-aware fusion: RGB/T/E stems \(\rightarrow\) GAP descriptors \(\rightarrow\) softmax weights \(\boldsymbol{\alpha}\) \\
-\(\rightarrow\) weighted feature fusion \(\rightarrow\) Conv\((16,3,1)\) \(\rightarrow\) RepViT--FPN--FCOS \(\rightarrow\) vehicle boxes
+Reliability-aware fusion: RGB/T/E stems $\rightarrow$ GAP descriptors $\rightarrow$ softmax weights $\boldsymbol{\alpha}$ \\
+$\rightarrow$ weighted feature fusion $\rightarrow$ Conv$(16,3,1)$ $\rightarrow$ RepViT--FPN--FCOS $\rightarrow$ vehicle boxes
 \end{tabular}
 \end{minipage}}
 \caption{Matched early fusion and reliability-aware fusion. The detector stack after the input projection is shared.}
@@ -72,11 +72,11 @@ Reliability-aware fusion: RGB/T/E stems \(\rightarrow\) GAP descriptors \(\right
 
 \subsection{Matched Early Fusion}
 
-The matched baseline applies a learned \(1\times1\) convolution from five input channels to the three-channel RepViT interface. The projection exposes all modalities jointly to the shared detector while adding only a small input adapter. This baseline is more informative than comparing RA-RepDet with an unrelated RGB-only detector because it controls the backbone, feature pyramid, detection head, input size, and training protocol.
+The matched baseline applies a learned $1\times1$ convolution from five input channels to the three-channel RepViT interface. The projection exposes all modalities jointly to the shared detector while adding only a small input adapter. This baseline is more informative than comparing RA-RepDet with an unrelated RGB-only detector because it controls the backbone, feature pyramid, detection head, input size, and training protocol.
 
 \subsection{Modality-Specific Softmax Fusion}
 
-The reliability-aware variant uses separate RGB, thermal, and event stems. The RGB stem is Conv2d\((3,16,3,\mathrm{padding}=1)\)--batch normalization--SiLU; the thermal and event stems use corresponding one-channel inputs. Let the stem outputs be \(\mathbf{F}_{\mathrm{rgb}}\), \(\mathbf{F}_{\mathrm{th}}\), and \(\mathbf{F}_{\mathrm{ev}}\). Global average pooling generates one descriptor per modality, and a compact estimator maps their concatenation to three logits:
+The reliability-aware variant uses separate RGB, thermal, and event stems. The RGB stem is Conv2d$(3,16,3,\mathrm{padding}=1)$--batch normalization--SiLU; the thermal and event stems use corresponding one-channel inputs. Let the stem outputs be $\mathbf{F}_{\mathrm{rgb}}$, $\mathbf{F}_{\mathrm{th}}$, and $\mathbf{F}_{\mathrm{ev}}$. Global average pooling generates one descriptor per modality, and a compact estimator maps their concatenation to three logits:
 \begin{equation}
 \boldsymbol{\alpha}=\mathrm{softmax}\!\left(g\!\left([\mathrm{GAP}(\mathbf{F}_{\mathrm{rgb}});\mathrm{GAP}(\mathbf{F}_{\mathrm{th}});\mathrm{GAP}(\mathbf{F}_{\mathrm{ev}})]\right)\right).
 \end{equation}
@@ -84,11 +84,13 @@ The fused representation is
 \begin{equation}
 \mathbf{F}_{\mathrm{fuse}}=\alpha_{\mathrm{rgb}}\mathbf{F}_{\mathrm{rgb}}+\alpha_{\mathrm{th}}\mathbf{F}_{\mathrm{th}}+\alpha_{\mathrm{ev}}\mathbf{F}_{\mathrm{ev}},
 \end{equation}
-with \(\alpha_{\mathrm{rgb}}+\alpha_{\mathrm{th}}+\alpha_{\mathrm{ev}}=1\). A \(1\times1\) projection maps the 16-channel fused feature to the shared three-channel backbone interface.
+with $\alpha_{\mathrm{rgb}}+\alpha_{\mathrm{th}}+\alpha_{\mathrm{ev}}=1$. A $1\times1$ projection maps the 16-channel fused feature to the shared three-channel backbone interface.
 
-\subsection{Modality Dropout and Scope of the Mechanism}
+\subsection{Modality Dropout and Static Controls}
 
-The active reliability-aware configuration uses modality dropout with probability \(p=0.15\) during training. At ordinary full-modality inference, all available streams are supplied. The evaluated configuration therefore combines three changes relative to matched early fusion: modality-specific stems, dynamic softmax weighting, and modality-dropout training. The current V41/V42 evidence does not isolate their individual causal contributions; this is treated as a limitation and motivates the planned causal ablation package.
+The fixed main reliability-aware configuration uses modality dropout with probability $p=0.15$ during training. At ordinary full-modality inference, all available streams are supplied. This configuration was frozen before the locked holdout evaluation; the value $p=0.15$ is not claimed to be universally optimal.
+
+The causal ablation package separates the available components as follows. \emph{Early + modality dropout} applies the same $p=0.15$ training intervention to the matched early-fusion architecture. \emph{Static equal stems} retains the three modality-specific stems but replaces the dynamic gate with fixed weights $(1/3,1/3,1/3)$. \emph{Stems + learned projection} concatenates the three 16-channel stem outputs in a fixed order and maps the 48-channel tensor to 16 channels with a learned $1\times1$ projection, without a dynamic gate. \emph{Dynamic gate, no dropout} retains the stems and softmax weighting but disables modality dropout. These controls permit bounded architecture-specific contrasts; the deterministic projection does not isolate stems alone because its learned fusion layer is also changed.
 
 \section{Dataset and Evaluation Protocol}
 
@@ -108,11 +110,11 @@ The V40 protocol groups project-recorded overlap and adjacency relations into co
 \centering
 \small
 \begin{tabular}{c}
-Local TriAir inventory \(\rightarrow\) exact RGB-content audit \\
-\(\rightarrow\) historical random split flagged by 153 matched validation samples \\
-\(\rightarrow\) component construction and recorded adjacency review \\
-\(\rightarrow\) frozen train/development-validation manifests for model selection \\
-\(\rightarrow\) locked within-dataset holdout for fixed-checkpoint evaluation
+Local TriAir inventory $\rightarrow$ exact RGB-content audit \\
+$\rightarrow$ historical random split flagged by 153 matched validation samples \\
+$\rightarrow$ component construction and recorded adjacency review \\
+$\rightarrow$ frozen train/development-validation manifests for model selection \\
+$\rightarrow$ locked within-dataset holdout for fixed-checkpoint evaluation
 \end{tabular}
 \end{minipage}}
 \caption{Leakage-aware partition and evaluation workflow. The locked holdout is not used for training, tuning, or checkpoint selection.}
@@ -121,7 +123,7 @@ Local TriAir inventory \(\rightarrow\) exact RGB-content audit \\
 
 \subsection{Development-Validation and Locked Holdout}
 
-The frozen protocol contains 7439 training images and 2213 development-validation images; the development-validation partition contains 5867 boxes. Best checkpoints are selected using the predefined development-validation rule. After the main comparison and six checkpoints were frozen, matched early fusion and reliability-aware \(p=0.15\) for seed0, seed1, and seed2 were evaluated once on a locked holdout containing 837 images and 1264 boxes. Because this holdout is drawn from TriAir, it is a within-dataset holdout rather than an external test set.
+The frozen protocol contains 7439 training images and 2213 development-validation images; the development-validation partition contains 5867 boxes. Best checkpoints are selected using the predefined development-validation AP50 rule. After the original main comparison and six checkpoints were frozen, matched early fusion and full reliability-aware fusion with $p=0.15$ for seeds 0, 1, and 2 were evaluated once on a locked holdout containing 837 images and 1264 boxes. Because this holdout is drawn from TriAir, it is a within-dataset holdout rather than an external test set. The later V48 ablation variants were evaluated only on development-validation and never accessed the holdout.
 
 \begin{table*}[t]
 \caption{Dataset inventory and leakage-aware partition documentation.}
@@ -130,9 +132,13 @@ The frozen protocol contains 7439 training images and 2213 development-validatio
 \input{../tables/Table_1_dataset_and_clean_split.tex}
 \end{table*}
 
-\subsection{Training and Evaluation Conventions}
+\subsection{Training, Metrics, and Efficiency Protocol}
 
-The active models are trained for 50 epochs at an input size of 640 with seeds 0, 1, and 2. The project-local evaluator uses a detector confidence threshold of 0.001, non-maximum suppression threshold of 0.6, and at most 100 detections per image. Precision, recall, and F1 use the recorded project threshold, while AP50 and AP75 are single-class project metrics. They should not be interpreted as COCO AP@[0.50:0.95].
+The active models are trained for 50 epochs at an input size of 640 with seeds 0, 1, and 2. The detector candidate threshold is 0.001, non-maximum suppression threshold is 0.6, and at most 100 detections are retained per image. Precision, recall, F1, and the historical all-point AP50/AP75 metrics are retained for continuity with the earlier source-locked results.
+
+Canonical COCO-style bbox evaluation uses \texttt{pycocotools} at IoU thresholds 0.50:0.05:0.95, 101 recall samples, area=all, and maxDets=100. COCO AP50 and AP75 can differ slightly from the earlier all-point implementation even when predictions are unchanged. All summaries use paired seed differences and report descriptive mean and sample standard deviation.
+
+Full-detector efficiency was measured on an NVIDIA RTX 3090 with batch-one float32 input of shape $1\times5\times640\times640$. Data loading and file I/O were excluded. Ten warm-up iterations preceded 30 measured iterations, with CUDA synchronization around every timed call. Operator FLOPs were summed from profiler events; operations without a profiler FLOP estimate are not included.
 
 \begin{table*}[t]
 \caption{Implementation and reproducibility settings.}
@@ -143,63 +149,72 @@ The active models are trained for 50 epochs at an input size of 640 with seeds 0
 
 \section{Results}
 
-\subsection{Three-Seed Development-Validation Results}
+\subsection{Project-Local Development-Validation Results}
 
-Table~\ref{tab:v41-three-seed-interim-devval} reports the matched three-seed comparison on the frozen development-validation partition. Reliability-aware \(p=0.15\) has positive F1, AP50, and AP75 paired deltas for all three seeds. The mean paired improvements are \(+0.018524\) F1, \(+0.016064\) AP50, and \(+0.064657\) AP75, with sample standard deviations of 0.006208, 0.005699, and 0.016415, respectively. Precision improves by \(+0.011629\) on average, although seed2 has a negative precision delta, and recall improves by \(+0.024487\).
+Table~\ref{tab:v41-three-seed-interim-devval} reports the matched three-seed comparison on the frozen development-validation partition using the historical project-local metrics. Full reliability-aware fusion with $p=0.15$ has positive F1, AP50, and AP75 paired deltas for all three seeds. The mean paired improvements are $+0.018524$ F1, $+0.016064$ AP50, and $+0.064657$ AP75, with sample standard deviations of 0.006208, 0.005699, and 0.016415, respectively. Precision improves by $+0.011629$ on average, although seed2 has a negative precision delta, and recall improves by $+0.024487$.
 
 \input{../tables/Table_8_three_seed_interim_devval.tex}
 
 \subsection{Locked Within-Dataset Holdout Results}
 
-Table~\ref{tab:v42-heldout-guard} reports the fixed-checkpoint holdout evaluation. The three-seed mean paired improvements are \(+0.006946\) F1, \(+0.008562\) AP50, and \(+0.002173\) AP75. The AP50 delta is positive for every seed, whereas seed0 has a small negative F1 delta and seed2 has a negative AP75 delta. Thus, the holdout provides the clearest support for a modest AP50 improvement; evidence for consistently improved high-IoU localization is mixed.
+Table~\ref{tab:v42-heldout-guard} reports the historical project-local metrics for the fixed-checkpoint holdout evaluation. The three-seed mean paired improvements are $+0.006946$ F1, $+0.008562$ AP50, and $+0.002173$ AP75. The AP50 delta is positive for every seed, whereas seed0 has a small negative F1 delta and seed2 has a negative AP75 delta. Thus, the project-local holdout evidence most clearly supports a modest AP50 improvement; evidence for consistently improved high-IoU localization is mixed.
 
-The locked protocol is more conservative than repeated development-set evaluation because it prevents result-driven model selection. This methodological distinction does not imply that the holdout images are intrinsically more difficult: the absolute holdout metrics are in fact higher than the development-validation metrics for both models.
+The locked protocol is more conservative than repeated development-set evaluation because it prevents result-driven model selection. This methodological distinction does not imply that the holdout images are intrinsically more difficult: the absolute holdout metrics are higher than the development-validation metrics for both main models.
 
 \input{../tables/Table_9_locked_heldout_guard.tex}
 
-\begin{figure*}[t]
-\centering
-\fbox{\begin{minipage}{0.82\textwidth}
-\centering
-\small
-\begin{tabular}{lrr}
-\toprule
-Metric & Development-validation mean delta & Locked holdout mean delta \\
-\midrule
-F1 & +0.018524 & +0.006946 \\
-AP50 & +0.016064 & +0.008562 \\
-AP75 & +0.064657 & +0.002173 \\
-\bottomrule
-\end{tabular}
-\end{minipage}}
-\caption{Descriptive mean paired deltas for reliability-aware \(p=0.15\) over matched early fusion.}
-\label{fig:fig-3-three-seed-development-validation-paired-deltas}
-\end{figure*}
+\subsection{Canonical COCO-Style Fixed-Checkpoint Evaluation}
+
+Table~\ref{tab:v49-coco-fixed-checkpoint-summary} reports canonical COCO-style paired deltas for the same six fixed main checkpoints. On development-validation, full reliability-aware fusion with $p=0.15$ improves AP50:95 by $+0.035350\pm0.020586$ and is positive for all three seeds. On the locked holdout, the mean AP50:95 delta is smaller at $+0.006195\pm0.018737$; seed-level changes are $+0.006420$, $+0.024818$, and $-0.012653$. The holdout AP50 delta remains positive in every seed, whereas AP50:95, AP75, and AR100 include a negative seed2 result. The canonical evaluation therefore supports a clear development-validation gain and a smaller, mixed within-dataset holdout effect.
+
+\input{../tables/Table_10_coco_fixed_checkpoint_summary.tex}
+
+\subsection{Three-Seed Causal Ablations}
+
+Table~\ref{tab:v49-three-seed-causal-ablation} reports all six development-validation variants. Dynamic gating without modality dropout obtains the highest mean AP50:95, $0.725148\pm0.012112$. Relative to matched early fusion, this combined stems-and-gate configuration improves AP50:95 by $+0.044893\pm0.034142$.
+
+The static controls refine the interpretation. Static equal-weight stem fusion is below matched early fusion by $-0.017162\pm0.015385$ AP50:95. Replacing equal weights with the dynamic gate, while retaining modality-specific stems and no dropout, yields $+0.062055\pm0.018781$. Against the deterministic learned-projection control, the corresponding dynamic-gating contrast is $+0.040376\pm0.007357$. These are the strongest available mechanism-level results and indicate that input-dependent weighting, rather than separate stems alone, is the component most consistently associated with the development-validation gain.
+
+Modality dropout has a more cautious interpretation. Adding $p=0.15$ dropout to early fusion changes AP50:95 by $+0.003755\pm0.032160$. Within the reliability-aware architecture, full $p=0.15$ minus no-dropout changes AP50:95 by $-0.009542\pm0.025797$. Dropout improves some project-local operating-point metrics, including the mean F1 of the full configuration, but it does not provide a consistent AP50:95 increment across these three seeds. The experiment therefore does not support an optimal or universally beneficial dropout claim.
+
+\input{../tables/Table_11_three_seed_causal_ablation.tex}
+
+\subsection{Efficiency Profile}
+
+Table~\ref{tab:v49-efficiency-profile} shows that the full reliability-aware front end adds 1684 parameters relative to matched early fusion, an increase of approximately 0.026\%. Operator FLOPs increase from 104.762 to 105.392 GFLOPs, and mean batch-one latency changes from 40.4046 to 40.6794 ms on the recorded RTX 3090 setup. Throughput remains approximately 24.6--24.7 FPS. The additional parameter and latency costs are small, but peak allocated memory increases from 122.49 to 236.40 MiB. Consequently, the method is lightweight in parameter and latency overhead under this setup, but not memory-neutral.
+
+\input{../tables/Table_12_efficiency_profile.tex}
 
 \subsection{Interpretation and Evidence Boundary}
 
-Across partitions, the most stable holdout-supported effect is improved AP50. Recall and F1 also improve on average, suggesting that the active configuration primarily reduces missed detections rather than uniformly improving precision or high-IoU localization. The larger development-validation AP75 gain does not transfer consistently to the locked holdout and should not be used as the principal claim.
+Across the fixed main checkpoints, the most stable locked-holdout effect is improved AP50. Development-validation provides stronger evidence for AP50:95 and AP75 gains, but those high-IoU improvements do not transfer uniformly to the same-dataset holdout. The V48 ablations strengthen the mechanism account on development-validation: dynamic softmax weighting is consistently better than both equal-weight stem fusion and a deterministic learned projection. However, none of the new ablation variants was evaluated on the holdout, so their relative ordering is not a held-out conclusion.
 
-Earlier project artifacts include RGB-only detector references, efficiency summaries, learned-weight observations, synthetic channel removal, and qualitative examples. These are contextual materials rather than matched causal evidence. In particular, an RGB-only detector with a different implementation is not a controlled fusion ablation, zero-channel intervention is not physical sensor-failure testing, and learned softmax coefficients are not calibrated reliability estimates.
+Earlier project artifacts include RGB-only detector references, learned-weight observations, synthetic channel removal, and qualitative examples. These remain contextual materials rather than matched physical-fault evidence. An RGB-only detector with a different implementation is not a controlled fusion ablation, zero-channel intervention is not physical sensor-failure testing, and learned softmax coefficients are not calibrated reliability estimates.
 
 \section{Discussion}
 
-Recent fusion research increasingly connects representation learning to downstream semantic tasks, registration, and task-guided architecture design \cite{Liu2024TIMFusion,Tang2023PSFusion,Xie2023SemanticsLeadAll}. RA-RepDet follows this task-oriented direction by performing feature fusion inside a detector rather than generating a standalone fused image. Its main empirical strength is the controlled comparison and evaluation protocol: both variants share the detector stack, the development split is component-disjoint under the recorded graph, and the holdout is accessed only after checkpoint selection.
+Recent fusion research increasingly connects representation learning to downstream semantic tasks, registration, and task-guided architecture design \cite{Liu2024TIMFusion,Tang2023PSFusion,Xie2023SemanticsLeadAll}. RA-RepDet follows this task-oriented direction by performing feature fusion inside a detector rather than generating a standalone fused image. Its empirical strength is the combination of matched detector components, leakage-aware partitioning, fixed-checkpoint COCO evaluation, and explicit static controls.
 
-The results support a bounded conclusion. Reliability-aware \(p=0.15\) improves average recall, F1, and AP50 on development-validation and preserves a smaller positive AP50 trend on the locked within-dataset holdout. However, the present experiment evaluates a compound configuration. Without stems-only, static-weight, dynamic-gate-without-dropout, and early-fusion-with-dropout variants, the source of the improvement cannot be attributed specifically to the softmax gate.
+The complete ablation changes the interpretation from a compound-configuration result to a more specific, though still descriptive, mechanism account. Separate stems with fixed equal weights do not improve the matched baseline, and a deterministic learned projection provides only a small average difference. In contrast, the dynamic gate is better than both controls across all three completed seed pairs in the aggregate contrasts. This supports adaptive sample-dependent weighting as the main contributor to the observed development-validation improvement.
 
-The term reliability-aware should therefore be understood as adaptive representation weighting rather than physical reliability estimation. A stronger mechanism study would expose the detector to controlled blur, noise, intensity changes, event sparsification, and missing-channel conditions while jointly reporting gate changes and detection degradation. Even such tests would remain synthetic unless performed with actual degraded or failing sensors.
+Modality dropout should not be presented as the central mechanism. The preselected full $p=0.15$ configuration remains the only reliability-aware variant with a locked fixed-checkpoint holdout evaluation, and it improves the original matched baseline on average. Nevertheless, the later development-validation ablation shows that disabling dropout produces higher mean AP50:95. Because the no-dropout model was not evaluated on the locked holdout and the holdout must not be reused for model selection, the appropriate conclusion is not that one dropout setting is globally superior, but that dropout effects are architecture- and metric-dependent in the current three-seed evidence.
+
+The efficiency profile supports a compact implementation claim in terms of parameter count, computation, and latency. The approximately doubled peak allocated memory is an important counterpoint and may reflect intermediate feature retention in the modality-specific front end. Deployment conclusions should therefore be tied to the reported hardware and measurement procedure rather than generalized to every embedded platform.
+
+The term reliability-aware should continue to be understood as adaptive representation weighting rather than physical reliability estimation. A stronger sensor-quality study would expose the detector to controlled blur, noise, intensity changes, event sparsification, and missing-channel conditions while jointly reporting gate changes and detection degradation. Even such tests would remain synthetic unless performed with actual degraded or failing sensors.
 
 \section{Limitations}
 
-The locked holdout remains within TriAir, so the work does not establish cross-dataset or external-scene generalization. The evidence uses three seed pairs and reports descriptive mean and sample standard deviation rather than a formal significance analysis. The project-local AP50/AP75 implementation is not COCO AP@[0.50:0.95]; standard COCO-style metrics are planned as a separate source-locked evaluation.
+The locked holdout remains within TriAir, so the work does not establish cross-dataset or external-scene generalization. The evidence uses three seed pairs and reports descriptive means and sample standard deviations rather than formal significance tests. The holdout AP50:95 result is mixed across seeds, and the later V48 ablations are development-validation only.
 
-The current comparison does not isolate modality-specific stems, dynamic weighting, and modality dropout. Lightweight deployment is motivated by the RepViT-based design, but a complete active table of parameters, FLOPs, batch-one latency, throughput, and peak memory should be added before making strong deployment claims. The event-channel construction, normalization, temporal accumulation, and synchronization provenance also require fuller documentation for independent reproduction.
+The static controls improve causal interpretability but do not exhaust every factor. The equal-weight control combines modality-specific stems and fixed fusion, while the deterministic projection changes the fusion operator and therefore does not isolate stems alone. Training dynamics, initialization, and checkpoint selection may still interact with the observed differences. The current results support bounded component contrasts rather than universal causal proof.
 
-The exact-content audit captures a verified class of dependency, while the component graph is only as complete as the overlap and adjacency relations encoded by the project. Additional near-duplicate, sequence, and scene-family audits would further strengthen the split argument. Dataset provider version, license details, and the label-quality review remain incomplete. Finally, the text schematics can be replaced with polished vector artwork for final submission.
+Efficiency is measured on one RTX 3090 with float32 batch-one inference. The profiler FLOP count can omit unsupported operators, data loading is excluded, and embedded-device latency may differ substantially. The full model has small parameter and latency overhead but substantially higher peak allocated memory under the recorded procedure.
+
+The event-channel construction, normalization, temporal accumulation, and synchronization provenance require fuller documentation for independent reproduction. The exact-content audit captures a verified class of dependency, while the component graph is only as complete as the overlap and adjacency relations encoded by the project. Additional near-duplicate, sequence, and scene-family audits would further strengthen the split argument. Dataset provider version, license details, and the label-quality review also remain incomplete. Finally, the text schematics can be replaced with polished vector artwork for final production.
 
 \section{Conclusion}
 
-RA-RepDet compares matched early fusion with modality-specific softmax-weighted RGB--thermal--event fusion under a shared lightweight RepViT--FPN--FCOS detector. Three paired development-validation seeds show positive average F1, AP50, and AP75 deltas, and a locked within-dataset holdout preserves a smaller positive AP50 trend. The holdout results are mixed for F1 and AP75, so the evidence supports modest detection improvement rather than uniform gains in high-IoU localization.
+RA-RepDet compares matched early fusion with modality-specific softmax-weighted RGB--thermal--event fusion under a shared lightweight RepViT--FPN--FCOS detector. For the preselected full $p=0.15$ configuration, three paired development-validation seeds show a mean canonical AP50:95 gain of $+0.035350$, while the locked within-dataset holdout shows a smaller mean gain of $+0.006195$ with mixed seed-level outcomes. The holdout AP50 change is positive in every seed, but high-IoU and recall improvements are not uniform.
 
-The broader contribution is an auditable combination of matched model comparison, leakage-aware component-disjoint development, and fixed-checkpoint holdout evaluation. Standard COCO-style metrics, causal fusion ablations, efficiency measurements, fuller event-representation documentation, and external evaluation remain necessary to convert the present engineering validation into stronger generalization and mechanism evidence.
+The completed three-seed ablation identifies dynamic softmax weighting as the strongest supported component: the no-dropout dynamic-gate variant exceeds equal-weight stem fusion by $+0.062055$ AP50:95 and the deterministic learned-projection control by $+0.040376$ on average. Modality dropout does not add a consistent AP50:95 gain within the reliability-aware architecture and is therefore treated as a configuration-dependent regularizer rather than an optimal design choice. The full front end adds only 1684 parameters and approximately 0.27 ms mean latency on the recorded RTX 3090 setup, although peak allocated memory increases substantially. The broader contribution is an auditable combination of matched model comparison, leakage-aware component-disjoint development, canonical fixed-checkpoint evaluation, bounded causal controls, and transparent efficiency reporting. External evaluation, fuller event-representation documentation, and real sensor-quality experiments remain necessary for stronger generalization and physical-reliability claims.
