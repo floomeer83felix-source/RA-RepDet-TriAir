@@ -3,20 +3,22 @@
 \toprule
 Item & Value & Source & Notes \\
 \midrule
-Detector stack & RepViT-M0.9 + FPN + FCOS & Model code & Shared by active comparison. \\
+Detector stack & RepViT-M0.9 + FPN + FCOS & Model code & Shared by all active comparisons. \\
 Input representation & 5 channels: RGB, thermal, event & Dataset loader & CxHxW float32 tensors. \\
-Matched early fusion & Conv2d(5,3,1) -> RepViT -> FPN -> FCOS & Model code & Active baseline. \\
-Reliability-aware fusion & RGB/T/E stems -> softmax alpha -> Conv2d(16,3,1) & Model code & Active p=0.15 comparison. \\
-FPN input channels & [48, 96, 192, 384] & RepViT feature check & RepViT-M0.9 feature map channels. \\
-FPN output channels & 128 & Backbone wrapper & Shared by active comparison. \\
-Class handling & TriAir class 0 -> torchvision label 1 & Training code & Background remains label 0. \\
-Image size & 640 & Run configs & Used for active development-validation and guard evaluation. \\
+Matched early fusion & Conv2d(5,3,1) $\rightarrow$ RepViT $\rightarrow$ FPN $\rightarrow$ FCOS & Model code & Active baseline. \\
+Reliability-aware fusion & RGB/T/E stems $\rightarrow$ softmax $\boldsymbol{\alpha}$ $\rightarrow$ Conv2d(16,3,1) & Model code & Fixed main configuration uses $p=0.15$. \\
+Static controls & equal weights; concatenation + learned projection & V48 model code & No dynamic softmax gate and no modality dropout. \\
+FPN input channels & [48, 96, 192, 384] & RepViT feature check & RepViT-M0.9 feature-map channels. \\
+FPN output channels & 128 & Backbone wrapper & Shared by all variants. \\
+Class handling & TriAir class 0 $\rightarrow$ detector label 1 & Training code & Background remains label 0. \\
+Image size & 640 & Run configs & Used for development-validation and fixed holdout evaluation. \\
 Training length & 50 epochs & Run configs & Best checkpoint selected by development-validation AP50. \\
-Active seeds & 0, 1, and 2 & V40/V41/V42 reports & Three paired seed checkpoints. \\
-Modality dropout & p=0.15 & V41 source lock & Reliability-aware active configuration. \\
-Held-out guard evaluation & fixed checkpoints only & V42 source lock & No training, tuning, or checkpoint reselection. \\
-Evaluation convention & threshold 0.001, NMS 0.6, max 100 detections/image & Evaluation source lock & Shared project-local evaluator. \\
-AP implementation & project-local AP50/AP75 & eval\_map.py & Not COCO AP50:95. \\
+Active seeds & 0, 1, and 2 & V40--V48 reports & Paired descriptive comparisons. \\
+Modality dropout & $p=0.15$ or disabled & V41/V48 source locks & Architecture-specific ablation; not claimed optimal. \\
+Locked holdout evaluation & six fixed main checkpoints only & V42/V46 source locks & No V48 ablation holdout evaluation. \\
+Detector convention & score 0.001, NMS 0.6, max 100 detections/image & Evaluation source lock & Shared prediction convention. \\
+Project metrics & precision, recall, F1, all-point AP50/AP75 & eval\_map.py & Retained for continuity with V41/V42. \\
+Canonical metrics & pycocotools bbox AP50:95, AP50, AP75, AR100 & V46/V48 evaluation & 101 recall samples; area=all; maxDets=100. \\
 \bottomrule
 \end{tabular}%
 }
