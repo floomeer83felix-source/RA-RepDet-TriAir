@@ -1650,6 +1650,13 @@ def write_markdown(data, path):
 
 
 def main():
+    # V51 owns its handoff while the preregistered recovery is active.  The
+    # legacy V40--V50 writers would otherwise overwrite the V51 blocker with
+    # stale V50 text during finish_task.ps1.
+    if (RUNS_DIR / "v51_visdrone_recovery" / "cv_run_status.json").is_file():
+        print(f"Preserved V51 handoff: {RUNS_DIR / 'handoff_latest.json'}")
+        return
+
     from v50_handoff import is_v50_ready, write_v50_handoff
     from v48_handoff import is_v48_ready, write_v48_handoff
     from v46_handoff import is_v46_ready, write_v46_handoff

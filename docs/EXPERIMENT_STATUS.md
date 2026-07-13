@@ -1,45 +1,35 @@
 # Experiment Status
 
-Updated: 2026-07-13T20:18:31+08:00
+Updated: 2026-07-13T21:13:45+08:00
 
 ## Active task
 
-`V50_BLOCKED_TEST_ACCESS_ORDER_VIOLATION`
+`V51_AWAITING_GPU_AUTHORIZATION`
 
-V50 audits the local RGB-only VisDrone-SEEN derivative and separates frozen TriAir-checkpoint stress evaluation from a dataset-specific true-RGB baseline.
+V51 preserves the quarantined V50 evidence and uses a pre-registered Route-B group-disjoint cross-validation recovery protocol.
 
-## Dataset gate
+## Recovery audit
 
-- 8,629 RGB JPEG images with paired YOLO labels; linked original eight-column annotations restore ignored regions.
-- Local generator provenance validated with zero image and zero label mismatches.
-- Exact cross-split duplicates: 0; candidate filename-prefix train/devval overlaps: 24.
-- Four-wheel mapping: car, van, truck, and bus -> one vehicle class.
+- Starting commit: `520443266fb1a917e50acfbd09772b4d74f6bb00`.
+- All 29 V51 frozen artifact hashes and all V50 immutable evidence checks match.
+- No V50 queue or RGB training process remains alive.
+- Route A rejected: the local DET train/val/test-dev images all occur in V50; `seen_strict` is a subset, and the other VisDrone-named directories are derivatives/reference data.
+- Selected route: `B_GROUP_DISJOINT_CROSS_VALIDATION`; no blind or independent-test claim is allowed.
 
-## Frozen checkpoint stress result
+## Frozen folds
 
-- Status: `BLOCKED_TEST_ACCESS_ORDER_VIOLATION`.
-- Zero-shot devval outputs exist, but test outputs were generated before the three RGB checkpoints were frozen.
-- Test metrics are quarantined and are not accepted V50 final evidence.
-- RGB seed 0 was stopped during epoch 1; seeds 1 and 2 never started.
+- Fold 0: 5,761 train / 2,868 validation images; 212 / 109 groups.
+- Fold 1: 5,677 train / 2,952 validation images; 215 / 106 groups.
+- Fold 2: 5,820 train / 2,809 validation images; 215 / 106 groups.
+- The 321 filename-sequence groups are disjoint within every fold and each image appears in validation exactly once.
 
-## RGB baseline
+## GPU gate
 
-- Queue state: `BLOCKED_TEST_ACCESS_ORDER_VIOLATION`.
-- seed 0: `STOPPED_UNAUTHORIZED_EXPLORATORY_CONTINUATION`.
-- seed 1: `PENDING`.
-- seed 2: `PENDING`.
+- Queue state: `AWAITING_GPU_AUTHORIZATION`.
+- Full frozen design: 3 folds x seeds 0/1/2 = 9 from-scratch 50-epoch runs, followed by 18 frozen-checkpoint fold evaluations.
+- Estimated wall time on the local RTX 3090: 65-75 hours.
+- No V51 training or result-producing inference has started.
 
 ## Claim boundary
 
-No final V50 performance claim is accepted while the test-order violation remains unresolved.
-
-Disallowed: tri-modal external generalization, physical sensor-fault robustness, calibrated reliability, sequence-disjoint independent testing, statistical significance, universal causality, or optimal dropout.
-
-## Evidence paths
-
-- `runs/v50_visdrone_seen/dataset_audit.md`
-- `runs/v50_visdrone_seen/source_lock_v50.md`
-- `runs/v50_visdrone_seen/zero_shot_summary.md`
-- `runs/v50_visdrone_seen/rgb_summary.json`
-- `runs/v50_visdrone_seen/protocol_violation_evidence.json`
-- `runs/v50_visdrone_seen/claim_boundary.md`
+V51 Route B is RGB-only cross-validation evidence, not an independent test or tri-modal external validation. V50 test metrics remain quarantined and are excluded from V51 selection and reporting.

@@ -1259,6 +1259,12 @@ def build_status():
 
 
 def main():
+    # Keep the active V51 recovery blocker authoritative; legacy status
+    # writers only know how to summarize V40--V50 and would regress the task.
+    if (RUNS_DIR / "v51_visdrone_recovery" / "cv_run_status.json").is_file():
+        print(f"Preserved V51 status: {STATUS_PATH}")
+        return
+
     from v50_handoff import is_v50_ready, write_v50_status
     from v48_handoff import is_v48_ready, write_v48_status
     from v46_handoff import is_v46_ready, write_v46_status

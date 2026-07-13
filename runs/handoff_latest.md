@@ -1,35 +1,30 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-13T20:18:31+08:00
+Generated: 2026-07-13T21:13:45+08:00
 
 ## Current task
 
-- Title: V50 audited VisDrone-SEEN external RGB evidence
-- Status: `BLOCKED_TEST_ACCESS_ORDER_VIOLATION`.
-- Dataset identity: audited local RGB-only VisDrone-SEEN derivative.
-- Dataset audit: `runs/v50_visdrone_seen/dataset_audit.json`.
-- Source lock: `runs/v50_visdrone_seen/source_lock_v50.json`.
-- Zero-shot evaluation: devval completed, but test outputs are quarantined because they were generated before all three RGB checkpoints were frozen.
-- RGB baseline summary: `blocked_test_access_order_violation`.
+- Task: V51 clean VisDrone evidence recovery.
+- Status: `V51_AWAITING_GPU_AUTHORIZATION`.
+- Starting commit: `520443266fb1a917e50acfbd09772b4d74f6bb00`.
+- Selected route: Route B, pre-registered group-disjoint cross-validation.
+- Route A rejected because all local source DET partitions overlap V50; remaining VisDrone-named data are derivatives/reference data.
 
-## RGB run state
+## Frozen protocol
 
-- `rgb_seed0`: `STOPPED_UNAUTHORIZED_EXPLORATORY_CONTINUATION`.
-- `rgb_seed1`: `PENDING`.
-- `rgb_seed2`: `PENDING`.
+- Three folds over 8,629 images and 321 filename-sequence groups.
+- Validation fold sizes: 2,868 / 2,952 / 2,809.
+- Full design: 9 fresh RGB 50-epoch runs plus 18 frozen-checkpoint evaluations.
+- Queue requires explicit `--confirm-gpu-authorized` and has not started.
+- Estimated full-design wall time: 65-75 hours on the local RTX 3090.
 
-## Blocking protocol violation
+## Integrity
 
-- Status: `BLOCKED_TEST_ACCESS_ORDER_VIOLATION`.
-- The first zero-shot test result preceded RGB seed 0 training, while RGB seeds 1 and 2 were still pending.
-- The RGB queue was stopped immediately after detection; no RGB checkpoint was frozen.
-- Existing test metrics are retained only as violation evidence and are not accepted final V50 results.
-- Evidence: `runs/v50_visdrone_seen/protocol_violation_evidence.json`.
+- V51 tests: 4/4 pass.
+- Frozen hashes: 29/29 match.
+- V50 protocol-violation evidence remains immutable and quarantined.
+- No V50 or V51 training process is alive.
 
-## Scientific boundary
+## Claim boundary
 
-- Evidence is RGB-only external domain-shift/missing-modality stress, not tri-modal external validation.
-- Zero-filled channels are a controlled intervention, not a physical sensor-failure simulation.
-- The source split has 24 candidate filename-prefix train/devval overlaps; do not claim sequence-disjoint independent testing.
-- Negative, mixed, and near-zero outputs are preserved only as quarantined protocol evidence.
-- V49 Springer/BibTeX compile closure remains a separate pending item and was not altered by V50.
+Route B is cross-validation only, not an independent/blind test. RGB-only and zero-channel evidence cannot validate external thermal/event fusion or physical sensor failure.
