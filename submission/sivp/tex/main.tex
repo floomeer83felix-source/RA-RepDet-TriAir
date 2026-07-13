@@ -1,5 +1,5 @@
 % !TEX root = main.tex
-% PRE-FINAL SIVP source. Final Springer/BibTeX closure remains to be checked locally.
+% V49 integrated SIVP source. Springer/BibTeX closure is tracked in the V49 compile report.
 \documentclass[pdflatex,iicol,sn-mathphys-num]{sn-jnl}
 
 \usepackage{graphicx}
@@ -19,9 +19,9 @@
 
 \affil*[1]{\orgname{Anhui Police College}, \orgaddress{\city{Hefei}, \state{Anhui}, \country{China}}}
 
-\abstract{Lightweight UAV vehicle detection can benefit from complementary RGB, thermal, and event cues, but results may be optimistic when visually related samples cross training and evaluation partitions. This paper presents RA-RepDet, a compact RepViT--FPN--FCOS detector comparing matched early fusion with a reliability-aware front end using modality-specific stems, softmax fusion, and modality-dropout training. Evaluation uses a frozen component-disjoint development-validation protocol on the publicly available TriAir dataset and a subsequent locked same-dataset held-out check. Across three paired development-validation seeds, reliability-aware fusion with modality dropout $p=0.15$ achieves descriptive mean gains of +0.0185 F1, +0.0161 AP50, and +0.0647 AP75 over matched early fusion using project-local AP metrics. A locked 837-image holdout evaluation with the same fixed checkpoints shows smaller mean gains of +0.0069 F1, +0.0086 AP50, and +0.0022 AP75, with mixed per-seed F1 and AP75 deltas. The study supports a bounded within-dataset assessment of reliability-aware tri-modal fusion while explicitly avoiding claims of external-dataset generalization, COCO AP50:95 performance, or physical sensor-failure robustness.}
+\abstract{Lightweight UAV vehicle detection can benefit from complementary RGB, thermal, and event cues, but evaluation can be optimistic when visually related samples cross training and validation partitions. This paper presents RA-RepDet, a compact RepViT--FPN--FCOS detector with modality-specific stems and sample-dependent softmax fusion. Evaluation uses a frozen component-disjoint development-validation protocol on TriAir and a locked 837-image within-dataset holdout accessed only after the six main checkpoints were fixed. Across three paired seeds, the preselected full configuration with modality dropout $p=0.15$ improves canonical COCO AP50:95 over matched early fusion by $0.0354\pm0.0206$ on development-validation and by $0.0062\pm0.0187$ on the locked holdout; the holdout result is mixed across seeds, although AP50 improves in all three pairs. Three-seed development-validation ablations show that dynamic gating exceeds equal-weight stem fusion by $0.0621\pm0.0188$ AP50:95 and a deterministic learned-projection control by $0.0404\pm0.0074$. Adding $p=0.15$ modality dropout within the reliability-aware architecture changes AP50:95 by $-0.0095\pm0.0258$, so dropout is not interpreted as universally beneficial. On an RTX 3090, the full front end adds 1684 parameters and 0.27 ms mean batch-one latency, while peak allocated memory increases from 122.49 to 236.40 MiB. The evidence is descriptive and within TriAir; it does not establish external generalization, calibrated sensor reliability, or real sensor-fault robustness.}
 
-\keywords{UAV vehicle detection, RGB--thermal--event fusion, reliability-aware fusion, RepViT--FCOS, component-disjoint validation, locked holdout evaluation}
+\keywords{UAV vehicle detection, RGB--thermal--event fusion, adaptive modality weighting, COCO-style evaluation, causal ablation, leakage-aware validation}
 
 \maketitle
 
