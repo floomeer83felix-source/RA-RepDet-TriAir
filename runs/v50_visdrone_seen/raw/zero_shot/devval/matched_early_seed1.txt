@@ -1,0 +1,38 @@
+V50 external RGB evaluation
+===========================
+run_id: matched_early_seed1
+protocol: devval
+checkpoint_sha256: 60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804
+AP@[0.50:0.95]: 0.001472
+AP50: 0.005488
+AP75: 0.000857
+AR100: 0.024800
+AP small/medium/large: 0.000433 / 0.004307 / 0.008925
+adapter: RGB float32/255 followed by appended thermal=0.0,event=0.0
+command: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet\tools\eval_v50_visdrone_seen.py --run-id matched_early_seed1 --protocol devval --variant matched_early --model early --seed 1 --data D:\datasets\visdrone_seen --manifest runs\v50_visdrone_seen\manifests\devval.txt --annotations runs\v50_visdrone_seen\converted_annotations\devval.json --weights runs\v41_q1_upgrade\seed1\matched_early_seed1\weights\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --nms-thresh 0.6 --detections-per-img 100 --out-json runs\v50_visdrone_seen\raw\zero_shot\devval\matched_early_seed1.json
+
+loading annotations into memory...
+Done (t=0.08s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.17s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.80s).
+Accumulating evaluation results...
+DONE (t=0.50s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.001
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.005
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.001
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.004
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.009
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.001
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.006
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.025
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.027
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.209

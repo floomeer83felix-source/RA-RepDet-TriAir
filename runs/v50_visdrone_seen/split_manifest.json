@@ -1,0 +1,65 @@
+{
+  "candidate_sequence_overlap": {
+    "devval-test": {
+      "candidate_sequence_prefix": 0,
+      "candidate_sequence_values": [],
+      "same_stem": 0
+    },
+    "train-devval": {
+      "candidate_sequence_prefix": 24,
+      "candidate_sequence_values": [
+        "0000072",
+        "0000076",
+        "0000165",
+        "0000166",
+        "0000196",
+        "0000199",
+        "0000220",
+        "0000223",
+        "0000237",
+        "0000256",
+        "0000263",
+        "0000273",
+        "0000290",
+        "0000293",
+        "0000300",
+        "0000303",
+        "0000308",
+        "0000313",
+        "0000315",
+        "0000323",
+        "0000342",
+        "0000345",
+        "0000348",
+        "0000358"
+      ],
+      "same_stem": 0
+    },
+    "train-test": {
+      "candidate_sequence_prefix": 0,
+      "candidate_sequence_values": [],
+      "same_stem": 0
+    }
+  },
+  "exact_cross_split_duplicates": 0,
+  "generated_at": "2026-07-13T19:23:05+08:00",
+  "rule": "source-provided train/val/test-dev partition copied by the local generator",
+  "splits": {
+    "devval": {
+      "images": 548,
+      "path": "runs/v50_visdrone_seen/manifests/devval.txt",
+      "sha256": "2c70b4e6055c3e3a5641d69611cc5d3a7b32b93223ab0732af3d060be06d54ac"
+    },
+    "test": {
+      "images": 1610,
+      "path": "runs/v50_visdrone_seen/manifests/test.txt",
+      "sha256": "089a709020f4282cd0e06362a7aaa5ca072185527681d0f942486d57e0cdcab5"
+    },
+    "train": {
+      "images": 6471,
+      "path": "runs/v50_visdrone_seen/manifests/train.txt",
+      "sha256": "242715fb4e0db5776ec966578ebf3e9cfa435d6656493aca7432fe1787b3415b"
+    }
+  },
+  "test_access_rule": "test is inaccessible to tuning, threshold selection, checkpoint selection, run continuation, or architecture selection"
+}

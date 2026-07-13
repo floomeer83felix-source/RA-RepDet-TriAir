@@ -1,0 +1,336 @@
+{
+  "annotation_format": "YOLO normalized: class_id center_x center_y width height",
+  "cache_files": {
+    "labels/train.cache": {
+      "bytes": 7487524,
+      "format": "NumPy object array containing a pickle payload",
+      "header": "{'descr': '|O', 'fortran_order': False, 'shape': (), }",
+      "npy_version": [
+        1,
+        0
+      ],
+      "payload_prefix_hex": "8003636e756d70792e636f72652e6d75",
+      "safety": "inspected as raw bytes only; never unpickled",
+      "sha256": "1f4b8a37594e2de0ee4775ee59df718af1abcd510a0bb3a8ac2262eab60b54e1"
+    },
+    "labels/val.cache": {
+      "bytes": 904615,
+      "format": "NumPy object array containing a pickle payload",
+      "header": "{'descr': '|O', 'fortran_order': False, 'shape': (), }",
+      "npy_version": [
+        1,
+        0
+      ],
+      "payload_prefix_hex": "8003636e756d70792e636f72652e6d75",
+      "safety": "inspected as raw bytes only; never unpickled",
+      "sha256": "0bd44cf9962c4ac7ee8b0cf44a85471b316df86a01dc64c256973b9c2c2368e4"
+    }
+  },
+  "dataset_root": "D:\\datasets\\visdrone_seen",
+  "exact_content": {
+    "annotation_tree_sha256": "ebc2ba77cfe2ba3a2298d6f0dfe864d61e5b0749491f4933acff3f1242bf8f29",
+    "cross_split_duplicate_image_groups": [],
+    "duplicate_image_groups": [
+      [
+        "images/train/0000239_06450_d_0000017.jpg",
+        "images/train/0000239_06950_d_0000018.jpg"
+      ],
+      [
+        "images/train/9999950_00000_d_0000079.jpg",
+        "images/train/9999950_00000_d_10000080.jpg"
+      ],
+      [
+        "images/val/0000022_00000_d_0000004.jpg",
+        "images/val/0000023_00000_d_0000008.jpg"
+      ]
+    ],
+    "generation_image_mismatches": [],
+    "generation_label_mismatches": [],
+    "image_tree_sha256": "65c151e35d75bc9c8193050c4a5f0b0c30c00dc9ade244882b97d7a7145a59ae"
+  },
+  "generated_at": "2026-07-13T19:23:05+08:00",
+  "generator_script": "E:\\yolo\\yolo26-e\\create_visdrone_seen.py",
+  "generator_script_sha256": "a59532c1a6630821c7e40a3bd73b298e91e526daea9167e6b85bbc06de908bfb",
+  "local_license": null,
+  "local_readme": null,
+  "local_yaml_sha256": "cd27c9c48cf19e888cf586407991e574149f8308b944612335b511c24a7b8eaf",
+  "modalities": {
+    "decision": "RGB-only; no aligned additional modality files are present",
+    "event": false,
+    "rgb": true,
+    "thermal": false
+  },
+  "original_annotation_format": "8-column VisDrone-style rows: x,y,width,height,score,category,truncation,occlusion",
+  "provider_statement": "The target directory has no README/license. A timestamp-adjacent local generator script identifies D:/datasets/visdrone as its source; exact generation validation is recorded below.",
+  "seen_meaning": "The generator keeps YOLO IDs 0,3,4,5,8,9 in train labels and leaves val/test labels unchanged. Images are not filtered.",
+  "source_categories": {
+    "0": "pedestrian",
+    "1": "people",
+    "2": "bicycle",
+    "3": "car",
+    "4": "van",
+    "5": "truck",
+    "6": "tricycle",
+    "7": "awning-tricycle",
+    "8": "bus",
+    "9": "motor"
+  },
+  "source_root": "D:\\datasets\\visdrone",
+  "split_intersections": {
+    "devval-test": {
+      "candidate_sequence_prefix": 0,
+      "candidate_sequence_values": [],
+      "same_stem": 0
+    },
+    "train-devval": {
+      "candidate_sequence_prefix": 24,
+      "candidate_sequence_values": [
+        "0000072",
+        "0000076",
+        "0000165",
+        "0000166",
+        "0000196",
+        "0000199",
+        "0000220",
+        "0000223",
+        "0000237",
+        "0000256",
+        "0000263",
+        "0000273",
+        "0000290",
+        "0000293",
+        "0000300",
+        "0000303",
+        "0000308",
+        "0000313",
+        "0000315",
+        "0000323",
+        "0000342",
+        "0000345",
+        "0000348",
+        "0000358"
+      ],
+      "same_stem": 0
+    },
+    "train-test": {
+      "candidate_sequence_prefix": 0,
+      "candidate_sequence_values": [],
+      "same_stem": 0
+    }
+  },
+  "splits": {
+    "devval": {
+      "boxes_crossing_normalized_edges": 326,
+      "candidate_sequence_prefix_count": 76,
+      "dimensions": {
+        "1360x765": 408,
+        "1920x1080": 19,
+        "960x540": 121
+      },
+      "empty_labels": 0,
+      "formats": {
+        "JPEG": 548
+      },
+      "images": 548,
+      "labels": 548,
+      "local_directory": "val",
+      "manifest": "runs/v50_visdrone_seen/manifests/devval.txt",
+      "manifest_sha256": "2c70b4e6055c3e3a5641d69611cc5d3a7b32b93223ab0732af3d060be06d54ac",
+      "missing_labels": [],
+      "modes": {
+        "RGB": 548
+      },
+      "occlusion_counts": {
+        "0": 18205,
+        "1": 18878,
+        "2": 3086
+      },
+      "original_category_counts": {
+        "0": 1378,
+        "1": 8844,
+        "2": 5125,
+        "3": 1287,
+        "4": 14064,
+        "5": 1975,
+        "6": 750,
+        "7": 1045,
+        "8": 532,
+        "9": 251,
+        "10": 4886,
+        "11": 32
+      },
+      "original_score_counts": {
+        "0.0": 1410,
+        "1.0": 38759
+      },
+      "orphan_labels": [],
+      "source_directory": "VisDrone2019-DET-val",
+      "test_annotations_available": true,
+      "truncation_counts": {
+        "0": 38696,
+        "1": 1473
+      },
+      "yolo_class_counts": {
+        "0": 8844,
+        "1": 5125,
+        "2": 1287,
+        "3": 14064,
+        "4": 1975,
+        "5": 750,
+        "6": 1045,
+        "7": 532,
+        "8": 251,
+        "9": 4886
+      }
+    },
+    "test": {
+      "boxes_crossing_normalized_edges": 478,
+      "candidate_sequence_prefix_count": 61,
+      "dimensions": {
+        "1360x765": 167,
+        "1400x1050": 274,
+        "1400x788": 933,
+        "1916x1078": 151,
+        "1920x1080": 36,
+        "960x540": 49
+      },
+      "empty_labels": 0,
+      "formats": {
+        "JPEG": 1610
+      },
+      "images": 1610,
+      "labels": 1610,
+      "local_directory": "test",
+      "manifest": "runs/v50_visdrone_seen/manifests/test.txt",
+      "manifest_sha256": "089a709020f4282cd0e06362a7aaa5ca072185527681d0f942486d57e0cdcab5",
+      "missing_labels": [],
+      "modes": {
+        "RGB": 1610
+      },
+      "occlusion_counts": {
+        "0": 44552,
+        "1": 25977,
+        "2": 7018
+      },
+      "original_category_counts": {
+        "0": 2180,
+        "1": 21006,
+        "2": 6376,
+        "3": 1302,
+        "4": 28074,
+        "5": 5771,
+        "6": 2659,
+        "7": 530,
+        "8": 599,
+        "9": 2940,
+        "10": 5845,
+        "11": 265
+      },
+      "original_score_counts": {
+        "0.0": 2445,
+        "1.0": 75102
+      },
+      "orphan_labels": [],
+      "source_directory": "VisDrone2019-DET-test-dev",
+      "test_annotations_available": true,
+      "truncation_counts": {
+        "0": 74254,
+        "1": 3293
+      },
+      "yolo_class_counts": {
+        "0": 21006,
+        "1": 6376,
+        "2": 1302,
+        "3": 28074,
+        "4": 5771,
+        "5": 2659,
+        "6": 530,
+        "7": 599,
+        "8": 2940,
+        "9": 5845
+      }
+    },
+    "train": {
+      "boxes_crossing_normalized_edges": 2455,
+      "candidate_sequence_prefix_count": 208,
+      "dimensions": {
+        "1344x756": 1,
+        "1360x765": 743,
+        "1389x1042": 1,
+        "1398x1048": 30,
+        "1400x1050": 2498,
+        "1400x788": 1299,
+        "1916x1078": 537,
+        "1920x1080": 339,
+        "2000x1500": 772,
+        "480x360": 1,
+        "960x540": 250
+      },
+      "empty_labels": 3,
+      "formats": {
+        "JPEG": 6471
+      },
+      "images": 6471,
+      "labels": 6471,
+      "local_directory": "train",
+      "manifest": "runs/v50_visdrone_seen/manifests/train.txt",
+      "manifest_sha256": "242715fb4e0db5776ec966578ebf3e9cfa435d6656493aca7432fe1787b3415b",
+      "missing_labels": [],
+      "modes": {
+        "RGB": 6471
+      },
+      "occlusion_counts": {
+        "0": 176873,
+        "1": 142873,
+        "2": 33804
+      },
+      "original_category_counts": {
+        "0": 8813,
+        "1": 79337,
+        "2": 27059,
+        "3": 10480,
+        "4": 144867,
+        "5": 24956,
+        "6": 12875,
+        "7": 4812,
+        "8": 3246,
+        "9": 5926,
+        "10": 29647,
+        "11": 1532
+      },
+      "original_score_counts": {
+        "0.0": 10345,
+        "1.0": 343205
+      },
+      "orphan_labels": [],
+      "source_directory": "VisDrone2019-DET-train",
+      "test_annotations_available": true,
+      "truncation_counts": {
+        "0": 340094,
+        "1": 13456
+      },
+      "yolo_class_counts": {
+        "0": 79337,
+        "3": 144866,
+        "4": 24956,
+        "5": 12875,
+        "8": 5926,
+        "9": 29647
+      }
+    }
+  },
+  "triair_cross_check": {
+    "conclusion": "Raw-byte identity is impossible because every TriAir item is an NPY file and every V50 item is a JPEG. Sampled TriAir decoded dimensions (391x301) do not overlap any V50 dimension; a full cross-format perceptual duplicate claim is not made.",
+    "file_size_counts": {
+      "588583": 10489
+    },
+    "inventory_count": 10489,
+    "sample_dtype": "uint8",
+    "sample_headers_checked": 5,
+    "sample_shape": [
+      301,
+      391,
+      5
+    ]
+  }
+}

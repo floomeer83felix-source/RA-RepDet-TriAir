@@ -1,62 +1,35 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-13
+Generated: 2026-07-13T20:09:56+08:00
 
 ## Current task
 
-- Title: V49 integrate COCO metrics, causal ablations, and efficiency evidence into the SIVP manuscript
-- Status: `V49_MANUSCRIPT_INTEGRATION_DRAFT_COMPLETE_COMPILE_PENDING`
-- Training/evaluation performed in V49: `False`
-- New holdout access in V49: `False`
-- Active blocker: fresh Springer/BibTeX compile and rendered-page inspection
+- Title: V50 audited VisDrone-SEEN external RGB evidence
+- Status: `RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION`.
+- Dataset identity: audited local RGB-only VisDrone-SEEN derivative.
+- Dataset audit: `runs/v50_visdrone_seen/dataset_audit.json`.
+- Source lock: `runs/v50_visdrone_seen/source_lock_v50.json`.
+- Zero-shot evaluation: devval completed, but test outputs are quarantined because they were generated before all three RGB checkpoints were frozen.
+- RGB baseline summary: `blocked_test_access_order_violation`.
 
-## Preserved evidence
+## RGB run state
 
-- V46 canonical COCO fixed-checkpoint package: preserved.
-- V47 structure and 40-reference package: preserved.
-- V48 complete three-seed causal ablation and efficiency package: preserved.
+- `rgb_seed0`: `TRAINING`.
+- `rgb_seed1`: `PENDING`.
+- `rgb_seed2`: `PENDING`.
 
-## Manuscript files updated
+## Blocking protocol violation
 
-- `submission/sivp/tex/main.tex`
-- root `main.tex`
-- root `main_sivp_snjnl.tex`
-- `submission/sivp/tex/ra_repdet_sivp.tex`
-- `submission/sivp/tables/Table_2_implementation_and_reproducibility.tex`
+- Status: `BLOCKED_TEST_ACCESS_ORDER_VIOLATION`.
+- The first zero-shot test result preceded RGB seed 0 training, while RGB seeds 1 and 2 were still pending.
+- The RGB queue was stopped immediately after detection; no RGB checkpoint was frozen.
+- Existing test metrics are retained only as violation evidence and are not accepted final V50 results.
+- Evidence: `runs/v50_visdrone_seen/protocol_violation_evidence.json`.
 
-## New tables
+## Scientific boundary
 
-- `submission/sivp/tables/Table_10_coco_fixed_checkpoint_summary.tex`
-- `submission/sivp/tables/Table_11_three_seed_causal_ablation.tex`
-- `submission/sivp/tables/Table_12_efficiency_profile.tex`
-
-## Integrated scientific interpretation
-
-- Fixed full RA `p=0.15` versus matched early:
-  - development-validation AP50:95 delta: `+0.035350 ± 0.020586`;
-  - locked same-dataset holdout AP50:95 delta: `+0.006195 ± 0.018737`, mixed across seeds;
-  - locked-holdout AP50 delta remains positive for all three seeds.
-- Cleanest dynamic-gating contrasts on development-validation:
-  - versus static equal stems: `+0.062055 ± 0.018781` AP50:95;
-  - versus deterministic learned projection: `+0.040376 ± 0.007357` AP50:95.
-- Modality dropout increment within RA:
-  - `-0.009542 ± 0.025797` AP50:95;
-  - manuscript no longer claims optimal or universally beneficial dropout.
-- Efficiency:
-  - +1684 parameters;
-  - +0.630 GFLOPs;
-  - +0.2748 ms mean latency on RTX 3090;
-  - peak allocated memory increases from 122.49 to 236.40 MiB.
-
-## Claim boundary
-
-The manuscript remains descriptive and within TriAir. It does not claim external generalization, statistical significance, universal causal proof, calibrated sensor reliability, real sensor-fault robustness, or V48 ablation holdout performance.
-
-## Reports
-
-- `runs/v49_manuscript_integration/V49_MANUSCRIPT_INTEGRATION_REPORT.md`
-- `docs/TASK_BLOCKER.md`
-
-## Next action
-
-Compile `submission/sivp/tex/main.tex` with the Springer `sn-jnl` package and BibTeX, render every page, resolve any table/layout issues, confirm all 40 citations, and add `runs/v49_manuscript_integration/V49_COMPILE_AND_RENDER_REPORT.md`.
+- Evidence is RGB-only external domain-shift/missing-modality stress, not tri-modal external validation.
+- Zero-filled channels are a controlled intervention, not a physical sensor-failure simulation.
+- The source split has 24 candidate filename-prefix train/devval overlaps; do not claim sequence-disjoint independent testing.
+- Negative, mixed, and near-zero outputs are preserved only as quarantined protocol evidence.
+- V49 Springer/BibTeX compile closure remains a separate pending item and was not altered by V50.

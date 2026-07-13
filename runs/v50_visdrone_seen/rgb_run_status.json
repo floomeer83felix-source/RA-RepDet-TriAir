@@ -1,0 +1,42 @@
+{
+  "state": "RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION",
+  "started_at": "2026-07-13T19:56:22+08:00",
+  "updated_at": "2026-07-13T20:06:33+08:00",
+  "protocol": {
+    "epochs": 50,
+    "img_size": 640,
+    "batch_size": 4,
+    "learning_rate": 0.0001,
+    "checkpoint_selection": "highest devval canonical COCO AP50; first exact tie wins",
+    "test_access": "after all three checkpoints are frozen"
+  },
+  "zero_shot_state": "INVALIDATED_PREMATURE_TEST_ACCESS",
+  "runs": [
+    {
+      "seed": 0,
+      "state": "TRAINING",
+      "checkpoint_sha256": null,
+      "started_at": "2026-07-13T20:06:33+08:00",
+      "stopped_at": "2026-07-13T19:58:03+08:00",
+      "last_recorded_progress": "epoch 1/50 iter 400/1618"
+    },
+    {
+      "seed": 1,
+      "state": "PENDING",
+      "checkpoint_sha256": null
+    },
+    {
+      "seed": 2,
+      "state": "PENDING",
+      "checkpoint_sha256": null
+    }
+  ],
+  "test_accessed": true,
+  "test_accessed_before_rgb_checkpoints_frozen": true,
+  "first_test_result_generated_at": "2026-07-13T19:35:11+08:00",
+  "last_test_result_generated_at": "2026-07-13T19:47:52+08:00",
+  "violation_record": "runs/v50_visdrone_seen/protocol_violation_evidence.json",
+  "protocol_violation_preserved": true,
+  "continuation_scope": "train three RGB seeds and evaluate devval only",
+  "continuation_authorized_at": "2026-07-13T20:06:33+08:00"
+}

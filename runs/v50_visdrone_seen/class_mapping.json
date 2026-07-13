@@ -1,0 +1,84 @@
+{
+  "definition": "four-wheel road vehicles, consistent with the project DroneVehicle mapping",
+  "flags": "Truncation and occlusion are retained as annotation attributes and are not used to discard otherwise valid vehicle boxes.",
+  "generated_at": "2026-07-13T19:23:05+08:00",
+  "ignored_regions": "Original score=0 or category=0 boxes become category 1 COCO crowd/ignore regions for evaluation; they are not positive training boxes.",
+  "positive_original_ids": [
+    4,
+    5,
+    6,
+    9
+  ],
+  "positive_yolo_ids": [
+    3,
+    4,
+    5,
+    8
+  ],
+  "source_categories": [
+    {
+      "mapping": "background/non-target",
+      "name": "pedestrian",
+      "original_id": 1,
+      "yolo_id": 0
+    },
+    {
+      "mapping": "background/non-target",
+      "name": "people",
+      "original_id": 2,
+      "yolo_id": 1
+    },
+    {
+      "mapping": "background/non-target",
+      "name": "bicycle",
+      "original_id": 3,
+      "yolo_id": 2
+    },
+    {
+      "mapping": "vehicle",
+      "name": "car",
+      "original_id": 4,
+      "yolo_id": 3
+    },
+    {
+      "mapping": "vehicle",
+      "name": "van",
+      "original_id": 5,
+      "yolo_id": 4
+    },
+    {
+      "mapping": "vehicle",
+      "name": "truck",
+      "original_id": 6,
+      "yolo_id": 5
+    },
+    {
+      "mapping": "background/non-target",
+      "name": "tricycle",
+      "original_id": 7,
+      "yolo_id": 6
+    },
+    {
+      "mapping": "background/non-target",
+      "name": "awning-tricycle",
+      "original_id": 8,
+      "yolo_id": 7
+    },
+    {
+      "mapping": "vehicle",
+      "name": "bus",
+      "original_id": 9,
+      "yolo_id": 8
+    },
+    {
+      "mapping": "background/non-target",
+      "name": "motor",
+      "original_id": 10,
+      "yolo_id": 9
+    }
+  ],
+  "target_category": {
+    "id": 1,
+    "name": "vehicle"
+  }
+}

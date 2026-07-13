@@ -1,0 +1,56 @@
+{
+  "status": "BLOCKED_TEST_ACCESS_ORDER_VIOLATION",
+  "detected_at": "2026-07-13T19:58:03+08:00",
+  "starting_commit": "0dafe892d9ea0559a47d8150d011e2eeb277a17b",
+  "branch": "research/ra-repdet-triair",
+  "frozen_rule": {
+    "source": "runs/v50_visdrone_seen/source_lock_v50.json",
+    "source_sha256": "7e3edb48f4f9a109c8cf93751eb77a88a0a9abb93591dc40a12e75569be4c855",
+    "text": "test is inaccessible to tuning, threshold selection, checkpoint selection, run continuation, or architecture selection",
+    "rgb_checkpoint_requirement": "all three RGB checkpoints must be frozen before test access"
+  },
+  "timeline": [
+    {
+      "at": "2026-07-13T19:23:05+08:00",
+      "event": "V50 source lock generated"
+    },
+    {
+      "at": "2026-07-13T19:35:11+08:00",
+      "event": "first zero-shot test result generated",
+      "path": "runs/v50_visdrone_seen/raw/zero_shot/test/matched_early_seed0.json",
+      "sha256": "2fe3cd1388deaa6237163626f3a9b1676b4406d1c26065e323efb5969c422baf"
+    },
+    {
+      "at": "2026-07-13T19:47:52+08:00",
+      "event": "last zero-shot test result generated",
+      "path": "runs/v50_visdrone_seen/raw/zero_shot/test/reliability_p015_seed2.json",
+      "sha256": "d867e975f7c2ee6c0d6baeffa08b008824a13318583c12ea1826c754d9423d3a"
+    },
+    {
+      "at": "2026-07-13T19:56:22+08:00",
+      "event": "RGB seed 0 training started; seeds 1 and 2 still pending"
+    },
+    {
+      "at": "2026-07-13T19:58:03+08:00",
+      "event": "RGB queue parent PID 13148 and training PID 22216 stopped after violation detection"
+    }
+  ],
+  "contradictions": [
+    "The frozen source lock forbids test access before all three RGB checkpoints are frozen, but all six zero-shot test evaluations preceded RGB training.",
+    "rgb_run_status.json recorded test_accessed=false even though twelve raw test result files (six JSON plus their CSV/TXT companions) already existed.",
+    "No RGB checkpoint was frozen when test access began; seed 0 had not started and seeds 1/2 remained pending."
+  ],
+  "impact": "The current test partition can no longer satisfy the preregistered blind-test ordering. Existing test metrics are quarantined as protocol-violation evidence and are not accepted V50 final results.",
+  "training_stop": {
+    "seed": 0,
+    "last_recorded_progress": "epoch 1/50 iter 400/1618",
+    "checkpoint_frozen": false,
+    "train_log_sha256_before_status_update": "aeb41022df4ca3d7f8944c8c8cfc28c5baa4b5f3ed23f81ef2230220ef6fdc54"
+  },
+  "secondary_evidence": {
+    "project_profile_missing": true,
+    "project_profile_path": "PROJECT_PROFILE.md",
+    "runtime_exception": false,
+    "queue_launcher_stderr_bytes": 0
+  }
+}

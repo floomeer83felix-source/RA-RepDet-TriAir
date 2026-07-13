@@ -1,0 +1,9 @@
+PASS runs/v50_visdrone_seen/zero_shot_summary.md :: not tri-modal external validation
+PASS runs/v50_visdrone_seen/zero_shot_summary.md :: physical sensor-failure simulation
+PASS runs/v50_visdrone_seen/zero_shot_summary.md :: negative/mixed transfer result
+PASS runs/v50_visdrone_seen/claim_boundary.md :: Not allowed
+PASS runs/v50_visdrone_seen/claim_boundary.md :: sequence-disjoint independent testing
+PASS runs/v50_visdrone_seen/claim_boundary.md :: controlled intervention
+PASS runs/v50_visdrone_seen/dataset_audit.md :: audited local VisDrone-SEEN derivative
+PASS runs/v50_visdrone_seen/dataset_audit.md :: candidate filename-prefix overlap
+PASS no V50 manuscript files were modified

@@ -1,0 +1,48 @@
+﻿{
+  "adapter_shape": [
+    5,
+    1080,
+    1920
+  ],
+  "adapter_min": 0.0,
+  "adapter_max": 1.0,
+  "zero_channel_nonzero": 0,
+  "checkpoint_loads": {
+    "matched_early_seed0": {
+      "sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602",
+      "strict_load": "PASS"
+    },
+    "matched_early_seed1": {
+      "sha256": "60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804",
+      "strict_load": "PASS"
+    },
+    "matched_early_seed2": {
+      "sha256": "b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e",
+      "strict_load": "PASS"
+    },
+    "reliability_p015_seed0": {
+      "sha256": "4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436",
+      "strict_load": "PASS"
+    },
+    "reliability_p015_seed1": {
+      "sha256": "a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d",
+      "strict_load": "PASS"
+    },
+    "reliability_p015_seed2": {
+      "sha256": "27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415",
+      "strict_load": "PASS"
+    }
+  },
+  "rgb_loss": 2.9075284004211426,
+  "rgb_checkpoint_reload": "PASS",
+  "one_batch_metric_smoke": {
+    "ap50_95": 0.0,
+    "ap50": 0.0,
+    "ap75": 0.0,
+    "ar100": 0.0,
+    "gt_boxes": 17,
+    "ignored_regions": 1
+  },
+  "coordinate_sanity": "E:\\RepViT-main\\runs\\v50_visdrone_seen\\coordinate_sanity.jpg",
+  "status": "PASS"
+}

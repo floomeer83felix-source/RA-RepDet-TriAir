@@ -1,0 +1,30 @@
+requested_seed: 0
+deterministic_algorithms: warn_only
+cudnn_deterministic: True
+cudnn_benchmark: False
+device: cuda
+train samples: 6471
+val samples: 548
+params: 6591603
+iterations per epoch: 1618
+epoch 1/50 iter 1/1618 loss=2.8915 mean_loss=2.8915
+epoch 1/50 iter 20/1618 loss=2.4425 mean_loss=2.3599
+epoch 1/50 iter 40/1618 loss=2.1821 mean_loss=2.2837
+epoch 1/50 iter 60/1618 loss=2.1032 mean_loss=2.2203
+epoch 1/50 iter 80/1618 loss=2.0008 mean_loss=2.1821
+epoch 1/50 iter 100/1618 loss=2.0389 mean_loss=2.1519
+epoch 1/50 iter 120/1618 loss=1.7862 mean_loss=2.1054
+epoch 1/50 iter 140/1618 loss=1.8095 mean_loss=2.0656
+epoch 1/50 iter 160/1618 loss=1.8747 mean_loss=2.0289
+epoch 1/50 iter 180/1618 loss=1.7173 mean_loss=2.0001
+epoch 1/50 iter 200/1618 loss=1.7935 mean_loss=1.9768
+epoch 1/50 iter 220/1618 loss=1.6426 mean_loss=1.9587
+epoch 1/50 iter 240/1618 loss=1.6635 mean_loss=1.9382
+epoch 1/50 iter 260/1618 loss=1.6528 mean_loss=1.9205
+epoch 1/50 iter 280/1618 loss=1.6347 mean_loss=1.9030
+epoch 1/50 iter 300/1618 loss=1.6582 mean_loss=1.8883
+epoch 1/50 iter 320/1618 loss=1.6359 mean_loss=1.8751
+epoch 1/50 iter 340/1618 loss=1.6907 mean_loss=1.8653
+epoch 1/50 iter 360/1618 loss=1.6325 mean_loss=1.8576
+epoch 1/50 iter 380/1618 loss=1.6293 mean_loss=1.8472
+epoch 1/50 iter 400/1618 loss=1.5937 mean_loss=1.8360
