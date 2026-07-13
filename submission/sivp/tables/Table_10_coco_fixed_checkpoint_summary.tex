@@ -1,0 +1,16 @@
+% Evidence source: runs/v46_coco_ablation/coco_metric_summary.md/json
+% Claim boundary: descriptive three-seed within-TriAir fixed-checkpoint comparison.
+\begin{table*}[t]
+\caption{Canonical COCO-style paired deltas for reliability-aware fusion with modality dropout $p=0.15$ minus matched early fusion. Values are mean $\pm$ sample standard deviation over three paired seeds. The locked holdout is within TriAir and was not used for training or selection.}
+\label{tab:v49-coco-fixed-checkpoint-summary}
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Protocol & AP50:95 & AP50 & AP75 & AR100 \\
+\midrule
+Development-validation & $+0.035350 \pm 0.020586$ & $+0.016167 \pm 0.005581$ & $+0.063844 \pm 0.016352$ & $+0.024800 \pm 0.018168$ \\
+Locked within-dataset holdout & $+0.006195 \pm 0.018737$ & $+0.008534 \pm 0.005456$ & $+0.003258 \pm 0.017719$ & $+0.006171 \pm 0.018647$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
