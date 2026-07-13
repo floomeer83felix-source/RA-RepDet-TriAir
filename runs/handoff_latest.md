@@ -1,11 +1,11 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-13T20:11:34+08:00
+Generated: 2026-07-13T20:18:31+08:00
 
 ## Current task
 
 - Title: V50 audited VisDrone-SEEN external RGB evidence
-- Status: `RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION`.
+- Status: `BLOCKED_TEST_ACCESS_ORDER_VIOLATION`.
 - Dataset identity: audited local RGB-only VisDrone-SEEN derivative.
 - Dataset audit: `runs/v50_visdrone_seen/dataset_audit.json`.
 - Source lock: `runs/v50_visdrone_seen/source_lock_v50.json`.
@@ -14,7 +14,7 @@ Generated: 2026-07-13T20:11:34+08:00
 
 ## RGB run state
 
-- `rgb_seed0`: `TRAINING`.
+- `rgb_seed0`: `STOPPED_UNAUTHORIZED_EXPLORATORY_CONTINUATION`.
 - `rgb_seed1`: `PENDING`.
 - `rgb_seed2`: `PENDING`.
 

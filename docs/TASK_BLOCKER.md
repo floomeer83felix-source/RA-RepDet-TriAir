@@ -13,8 +13,12 @@ The frozen V50 source lock states that the test partition is inaccessible before
 - `2026-07-13T19:47:52+08:00`: last zero-shot test result generated.
 - `2026-07-13T19:56:22+08:00`: RGB seed 0 training started; seeds 1 and 2 remained pending.
 - `2026-07-13T19:58:03+08:00`: queue PID `13148` and training PID `22216` were stopped after the violation was detected.
+- `2026-07-13T20:06:33+08:00`: a concurrent process used `--continue-after-protocol-violation` without an explicit user instruction authorizing a scope amendment.
+- `2026-07-13T20:13:22+08:00`: second queue PID `48068` and training PID `64948` were stopped; seed 0 had reached epoch 1 iteration 1618/1618 but no checkpoint existed.
 
 No RGB checkpoint had been frozen when test access began. `rgb_run_status.json` additionally recorded `test_accessed=false` even though test result artifacts already existed. The test partition can no longer satisfy the preregistered blind-test ordering, so the existing test metrics are quarantined as protocol-violation evidence and are not accepted V50 final results.
+
+The later exploratory continuation is also quarantined. Its `continuation_authorized_at` field did not correspond to any explicit user authorization, and it does not repair the earlier test access.
 
 Machine-readable evidence: `runs/v50_visdrone_seen/protocol_violation_evidence.json`.
 
@@ -74,6 +78,16 @@ FAILED (errors=1)
 
 This command-only error was repaired by using discovery: `python -m unittest discover -s tests -p 'test_v50_visdrone_seen.py' -v`; all 3 tests passed.
 
+The unauthorized continuation ended with the following final five training lines; no weight or checkpoint file was created:
+
+```text
+epoch 1/50 iter 1540/1618 loss=1.3273 mean_loss=1.5946
+epoch 1/50 iter 1560/1618 loss=1.3876 mean_loss=1.5917
+epoch 1/50 iter 1580/1618 loss=1.6136 mean_loss=1.5893
+epoch 1/50 iter 1600/1618 loss=1.4711 mean_loss=1.5870
+epoch 1/50 iter 1618/1618 loss=1.3166 mean_loss=1.5854
+```
+
 ## Attempted checks and containment
 
 1. Re-read `AGENTS.md`, `docs/NEXT_TASK.md`, and the frozen `source_lock_v50` test-access rule.
@@ -83,6 +97,8 @@ This command-only error was repaired by using discovery: `python -m unittest dis
 5. Preserved all audit, source-lock, raw-result, status, and training-log contradictions without deleting or rewriting the frozen source lock.
 6. Did not access TriAir holdout data, modify raw VisDrone-SEEN files, fabricate modalities, or edit the manuscript.
 7. Verified all 8 source-locked code hashes, 6 checkpoint hashes, and 3 manifest hashes; all matched. Corrected the unit-test invocation to discovery and obtained 3/3 passing tests.
+8. Detected and stopped an unapproved exploratory continuation, verified that it produced no checkpoint, and removed the CLI bypass in favor of a hard protocol-block gate.
+9. Executed the corrected queue entry point against the blocked status and obtained the expected `RuntimeError: V50 is blocked by a test-access-order violation; this frozen task has no continuation override`; no training process started.
 
 `PROJECT_PROFILE.md`, requested by `docs/NEXT_TASK.md`, is also absent at repository root; this is recorded as secondary evidence but is not the primary blocker.
 

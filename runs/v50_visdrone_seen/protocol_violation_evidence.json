@@ -33,19 +33,37 @@
     {
       "at": "2026-07-13T19:58:03+08:00",
       "event": "RGB queue parent PID 13148 and training PID 22216 stopped after violation detection"
+    },
+    {
+      "at": "2026-07-13T20:06:33+08:00",
+      "event": "a concurrent process launched --continue-after-protocol-violation without explicit user authorization",
+      "queue_pid": 48068,
+      "training_pid": 64948
+    },
+    {
+      "at": "2026-07-13T20:13:22+08:00",
+      "event": "unauthorized exploratory continuation stopped; seed 0 reached epoch 1 iter 1618/1618 but created no checkpoint"
     }
   ],
   "contradictions": [
     "The frozen source lock forbids test access before all three RGB checkpoints are frozen, but all six zero-shot test evaluations preceded RGB training.",
     "rgb_run_status.json recorded test_accessed=false even though twelve raw test result files (six JSON plus their CSV/TXT companions) already existed.",
-    "No RGB checkpoint was frozen when test access began; seed 0 had not started and seeds 1/2 remained pending."
+    "No RGB checkpoint was frozen when test access began; seed 0 had not started and seeds 1/2 remained pending.",
+    "A later process wrote continuation_authorized_at and resumed exploratory training without an explicit user instruction authorizing a post-violation scope amendment."
   ],
   "impact": "The current test partition can no longer satisfy the preregistered blind-test ordering. Existing test metrics are quarantined as protocol-violation evidence and are not accepted V50 final results.",
   "training_stop": {
     "seed": 0,
     "last_recorded_progress": "epoch 1/50 iter 400/1618",
     "checkpoint_frozen": false,
-    "train_log_sha256_before_status_update": "aeb41022df4ca3d7f8944c8c8cfc28c5baa4b5f3ed23f81ef2230220ef6fdc54"
+    "train_log_sha256_before_status_update": "aeb41022df4ca3d7f8944c8c8cfc28c5baa4b5f3ed23f81ef2230220ef6fdc54",
+    "unauthorized_continuation": {
+      "started_at": "2026-07-13T20:06:33+08:00",
+      "stopped_at": "2026-07-13T20:13:22+08:00",
+      "last_recorded_progress": "epoch 1/50 iter 1618/1618",
+      "checkpoint_created": false,
+      "train_log_sha256": "ea718b628af3f61d80590a5b7cc7d7646b21e990bb09b77032d4e5c0350ac15f"
+    }
   },
   "secondary_evidence": {
     "project_profile_missing": true,

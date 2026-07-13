@@ -1,7 +1,7 @@
 {
-  "state": "RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION",
+  "state": "BLOCKED_TEST_ACCESS_ORDER_VIOLATION",
   "started_at": "2026-07-13T19:56:22+08:00",
-  "updated_at": "2026-07-13T20:06:33+08:00",
+  "updated_at": "2026-07-13T20:13:22+08:00",
   "protocol": {
     "epochs": 50,
     "img_size": 640,
@@ -14,11 +14,11 @@
   "runs": [
     {
       "seed": 0,
-      "state": "TRAINING",
+      "state": "STOPPED_UNAUTHORIZED_EXPLORATORY_CONTINUATION",
       "checkpoint_sha256": null,
       "started_at": "2026-07-13T20:06:33+08:00",
-      "stopped_at": "2026-07-13T19:58:03+08:00",
-      "last_recorded_progress": "epoch 1/50 iter 400/1618"
+      "stopped_at": "2026-07-13T20:13:22+08:00",
+      "last_recorded_progress": "epoch 1/50 iter 1618/1618; no checkpoint created"
     },
     {
       "seed": 1,
@@ -38,5 +38,15 @@
   "violation_record": "runs/v50_visdrone_seen/protocol_violation_evidence.json",
   "protocol_violation_preserved": true,
   "continuation_scope": "train three RGB seeds and evaluate devval only",
-  "continuation_authorized_at": "2026-07-13T20:06:33+08:00"
+  "continuation_authorized_at": "2026-07-13T20:06:33+08:00",
+  "continuation_authority_correction": "No explicit user authorization existed for post-violation exploratory continuation.",
+  "unauthorized_continuation": {
+    "command_flag": "--continue-after-protocol-violation",
+    "started_at": "2026-07-13T20:06:33+08:00",
+    "stopped_at": "2026-07-13T20:13:22+08:00",
+    "queue_pid": 48068,
+    "training_pid": 64948,
+    "final_progress": "epoch 1/50 iter 1618/1618",
+    "checkpoint_created": false
+  }
 }

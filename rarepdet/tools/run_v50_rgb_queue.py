@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import argparse
 from datetime import datetime
 import hashlib
 import json
@@ -183,21 +182,7 @@ def complete_training(seed):
     )
 
 
-def parse_args():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--continue-after-protocol-violation",
-        action="store_true",
-        help=(
-            "Continue the three RGB training runs as exploratory evidence while "
-            "preserving the V50 test-order blocker and skipping test/finalization."
-        ),
-    )
-    return parser.parse_args()
-
-
 def main():
-    args = parse_args()
     if not (OUTPUT / "source_lock_v50.json").is_file():
         raise FileNotFoundError("V50 source lock is required before training")
     if len(list((OUTPUT / "raw/zero_shot/test").glob("*.json"))) != 6:
@@ -206,24 +191,14 @@ def main():
     status = load_status()
     if status.get("state") == "COMPLETE":
         return
-    protocol_blocked = status.get("state") == "BLOCKED_TEST_ACCESS_ORDER_VIOLATION"
-    if protocol_blocked and not args.continue_after_protocol_violation:
+    if status.get("state") == "BLOCKED_TEST_ACCESS_ORDER_VIOLATION" or status.get(
+        "protocol_violation_preserved"
+    ):
         raise RuntimeError(
-            "V50 is blocked by a test-access-order violation; use "
-            "--continue-after-protocol-violation only for an explicitly authorized "
-            "exploratory training continuation"
+            "V50 is blocked by a test-access-order violation; this frozen task has "
+            "no continuation override"
         )
-    exploratory = protocol_blocked or bool(status.get("protocol_violation_preserved"))
-    if exploratory:
-        update(
-            status,
-            state="RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION",
-            protocol_violation_preserved=True,
-            continuation_scope="train three RGB seeds and evaluate devval only",
-            continuation_authorized_at=now(),
-        )
-    else:
-        update(status, state="RUNNING")
+    update(status, state="RUNNING")
     log_path = OUTPUT / "rgb_queue.log"
     try:
         with log_path.open("a", encoding="utf-8") as handle:
@@ -240,27 +215,11 @@ def main():
                 record["checkpoint_sha256"] = sha256(best)
                 update(status)
 
-            update(
-                status,
-                state=(
-                    "CHECKPOINTS_FROZEN_EXPLORATORY"
-                    if exploratory
-                    else "CHECKPOINTS_FROZEN"
-                ),
-            )
+            update(status, state="CHECKPOINTS_FROZEN")
             for seed in SEEDS:
                 path = OUTPUT / f"raw/rgb/devval/rgb_seed{seed}.json"
                 if not path.is_file():
                     run(command_for_eval(seed, "devval"), handle)
-            if exploratory:
-                update(
-                    status,
-                    state="DEVVAL_COMPLETE_EXPLORATORY_TEST_QUARANTINED",
-                    exploratory_completed_at=now(),
-                )
-                handle.write(f"EXPLORATORY QUEUE COMPLETE {now()}\n")
-                handle.flush()
-                return
             update(status, state="DEVVAL_COMPLETE")
 
             # This is the first allowed RGB-baseline test access point.

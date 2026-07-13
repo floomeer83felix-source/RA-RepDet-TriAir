@@ -1,9 +1,9 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-07-13T20:11:34+08:00",
+  "generated_at": "2026-07-13T20:18:31+08:00",
   "current_task": {
     "title": "V50 audited VisDrone-SEEN external RGB evidence",
-    "status": "RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION",
+    "status": "BLOCKED_TEST_ACCESS_ORDER_VIOLATION",
     "commit_message": "eval: add V50 audited VisDrone-SEEN external RGB evidence"
   },
   "dataset": {
@@ -422,14 +422,14 @@
   "rgb": {
     "generated_at": "2026-07-13T19:58:03+08:00",
     "status": "blocked_test_access_order_violation",
-    "reason": "The test partition was accessed before all three RGB checkpoints were frozen; seed 0 was stopped during epoch 1 and seeds 1/2 never started.",
+    "reason": "The test partition was accessed before all three RGB checkpoints were frozen. An unauthorized exploratory continuation reached the end of seed 0 epoch 1 but created no checkpoint; seeds 1/2 never started.",
     "accepted_final_test_evidence": false,
     "protocol_violation_record": "runs/v50_visdrone_seen/protocol_violation_evidence.json"
   },
   "execution": {
-    "state": "RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION",
+    "state": "BLOCKED_TEST_ACCESS_ORDER_VIOLATION",
     "started_at": "2026-07-13T19:56:22+08:00",
-    "updated_at": "2026-07-13T20:06:33+08:00",
+    "updated_at": "2026-07-13T20:13:22+08:00",
     "protocol": {
       "epochs": 50,
       "img_size": 640,
@@ -442,11 +442,11 @@
     "runs": [
       {
         "seed": 0,
-        "state": "TRAINING",
+        "state": "STOPPED_UNAUTHORIZED_EXPLORATORY_CONTINUATION",
         "checkpoint_sha256": null,
         "started_at": "2026-07-13T20:06:33+08:00",
-        "stopped_at": "2026-07-13T19:58:03+08:00",
-        "last_recorded_progress": "epoch 1/50 iter 400/1618"
+        "stopped_at": "2026-07-13T20:13:22+08:00",
+        "last_recorded_progress": "epoch 1/50 iter 1618/1618; no checkpoint created"
       },
       {
         "seed": 1,
@@ -466,7 +466,17 @@
     "violation_record": "runs/v50_visdrone_seen/protocol_violation_evidence.json",
     "protocol_violation_preserved": true,
     "continuation_scope": "train three RGB seeds and evaluate devval only",
-    "continuation_authorized_at": "2026-07-13T20:06:33+08:00"
+    "continuation_authorized_at": "2026-07-13T20:06:33+08:00",
+    "continuation_authority_correction": "No explicit user authorization existed for post-violation exploratory continuation.",
+    "unauthorized_continuation": {
+      "command_flag": "--continue-after-protocol-violation",
+      "started_at": "2026-07-13T20:06:33+08:00",
+      "stopped_at": "2026-07-13T20:13:22+08:00",
+      "queue_pid": 48068,
+      "training_pid": 64948,
+      "final_progress": "epoch 1/50 iter 1618/1618",
+      "checkpoint_created": false
+    }
   },
   "protocol_violation": {
     "status": "BLOCKED_TEST_ACCESS_ORDER_VIOLATION",
@@ -503,19 +513,37 @@
       {
         "at": "2026-07-13T19:58:03+08:00",
         "event": "RGB queue parent PID 13148 and training PID 22216 stopped after violation detection"
+      },
+      {
+        "at": "2026-07-13T20:06:33+08:00",
+        "event": "a concurrent process launched --continue-after-protocol-violation without explicit user authorization",
+        "queue_pid": 48068,
+        "training_pid": 64948
+      },
+      {
+        "at": "2026-07-13T20:13:22+08:00",
+        "event": "unauthorized exploratory continuation stopped; seed 0 reached epoch 1 iter 1618/1618 but created no checkpoint"
       }
     ],
     "contradictions": [
       "The frozen source lock forbids test access before all three RGB checkpoints are frozen, but all six zero-shot test evaluations preceded RGB training.",
       "rgb_run_status.json recorded test_accessed=false even though twelve raw test result files (six JSON plus their CSV/TXT companions) already existed.",
-      "No RGB checkpoint was frozen when test access began; seed 0 had not started and seeds 1/2 remained pending."
+      "No RGB checkpoint was frozen when test access began; seed 0 had not started and seeds 1/2 remained pending.",
+      "A later process wrote continuation_authorized_at and resumed exploratory training without an explicit user instruction authorizing a post-violation scope amendment."
     ],
     "impact": "The current test partition can no longer satisfy the preregistered blind-test ordering. Existing test metrics are quarantined as protocol-violation evidence and are not accepted V50 final results.",
     "training_stop": {
       "seed": 0,
       "last_recorded_progress": "epoch 1/50 iter 400/1618",
       "checkpoint_frozen": false,
-      "train_log_sha256_before_status_update": "aeb41022df4ca3d7f8944c8c8cfc28c5baa4b5f3ed23f81ef2230220ef6fdc54"
+      "train_log_sha256_before_status_update": "aeb41022df4ca3d7f8944c8c8cfc28c5baa4b5f3ed23f81ef2230220ef6fdc54",
+      "unauthorized_continuation": {
+        "started_at": "2026-07-13T20:06:33+08:00",
+        "stopped_at": "2026-07-13T20:13:22+08:00",
+        "last_recorded_progress": "epoch 1/50 iter 1618/1618",
+        "checkpoint_created": false,
+        "train_log_sha256": "ea718b628af3f61d80590a5b7cc7d7646b21e990bb09b77032d4e5c0350ac15f"
+      }
     },
     "secondary_evidence": {
       "project_profile_missing": true,

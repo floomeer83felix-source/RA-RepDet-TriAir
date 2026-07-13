@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-07-13T19:58:03+08:00",
   "status": "blocked_test_access_order_violation",
-  "reason": "The test partition was accessed before all three RGB checkpoints were frozen; seed 0 was stopped during epoch 1 and seeds 1/2 never started.",
+  "reason": "The test partition was accessed before all three RGB checkpoints were frozen. An unauthorized exploratory continuation reached the end of seed 0 epoch 1 but created no checkpoint; seeds 1/2 never started.",
   "accepted_final_test_evidence": false,
   "protocol_violation_record": "runs/v50_visdrone_seen/protocol_violation_evidence.json"
 }

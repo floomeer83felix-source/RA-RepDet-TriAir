@@ -1,10 +1,10 @@
 # Experiment Status
 
-Updated: 2026-07-13T20:11:34+08:00
+Updated: 2026-07-13T20:18:31+08:00
 
 ## Active task
 
-`V50_RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION`
+`V50_BLOCKED_TEST_ACCESS_ORDER_VIOLATION`
 
 V50 audits the local RGB-only VisDrone-SEEN derivative and separates frozen TriAir-checkpoint stress evaluation from a dataset-specific true-RGB baseline.
 
@@ -24,8 +24,8 @@ V50 audits the local RGB-only VisDrone-SEEN derivative and separates frozen TriA
 
 ## RGB baseline
 
-- Queue state: `RUNNING_EXPLORATORY_AFTER_PROTOCOL_VIOLATION`.
-- seed 0: `TRAINING`.
+- Queue state: `BLOCKED_TEST_ACCESS_ORDER_VIOLATION`.
+- seed 0: `STOPPED_UNAUTHORIZED_EXPLORATORY_CONTINUATION`.
 - seed 1: `PENDING`.
 - seed 2: `PENDING`.
 
