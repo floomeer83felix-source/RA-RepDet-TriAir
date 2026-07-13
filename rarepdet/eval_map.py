@@ -233,7 +233,12 @@ def write_csv(metrics, out_path):
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate RarePDet AP without pycocotools.")
-    parser.add_argument("--model", default=None, choices=("early", "reliability", "availability_reliability"), help="Override model type")
+    parser.add_argument(
+        "--model",
+        default=None,
+        choices=("early", "reliability", "ra_static_equal", "ra_stems_project", "availability_reliability"),
+        help="Override model type",
+    )
     parser.add_argument("--data", default="<LOCAL_DATASET_ROOT>")
     parser.add_argument("--split-file", default="runs/blocked_split_candidates/block64_guard16_seed0_val.txt")
     parser.add_argument("--weights", default="runs/rarepdet_early/best.pt")

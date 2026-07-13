@@ -1,0 +1,2 @@
+model_type,total_params,trainable_params,operator_flops,derived_macs,mean_latency_ms,median_latency_ms,p95_latency_ms,throughput_fps,peak_allocated_memory_mib,checkpoint,checkpoint_sha256,input_shape,precision_mode
+ra_static_equal,6592458,6592458,1054337588,527168794.0,119.45899999999997,119.45899999999997,119.45899999999997,8.37107292041621,,,NA,1x5x64x64,float32

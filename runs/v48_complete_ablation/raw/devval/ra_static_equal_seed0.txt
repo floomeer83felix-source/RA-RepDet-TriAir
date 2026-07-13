@@ -1,0 +1,30 @@
+V46 COCO-style checkpoint evaluation
+====================================
+run_id: ra_static_equal_seed0
+protocol: ablation_devval
+variant: ra_static_equal
+checkpoint_sha256: c9cfd26caf4b219b030997a93b3c549f9df6447c138df735779cf2dde6f3f2f7
+split_sha256: 722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f
+images: 2213
+gt_boxes: 5867
+detections: 221300
+AP@[0.50:0.95]: 0.670492
+AP50: 0.925747
+AP75: 0.811444
+AR100: 0.757542
+precision@0.50: 0.882495
+recall@0.50: 0.870462
+F1@0.50: 0.876437
+inference_seconds: 88.091
+metric_seconds: 150.108
+command: C:\Users\xinnan\.conda\envs\pytorch\python.exe E:\RepViT-main\rarepdet\tools\eval_coco_map.py --run-id ra_static_equal_seed0 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 0 --modality-dropout 0.00 --data D:\download\triair --split-file E:\RepViT-main\reproducibility\v40_expanded_adjacency_component_split_v2\manifests\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\RepViT-main\runs\v48_complete_ablation\training\ra_static_equal_seed0\weights\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\RepViT-main\runs\v48_complete_ablation\raw\devval\ra_static_equal_seed0.json
+AP@0.50: 0.925747
+AP@0.55: 0.919970
+AP@0.60: 0.910850
+AP@0.65: 0.894519
+AP@0.70: 0.865400
+AP@0.75: 0.811444
+AP@0.80: 0.702567
+AP@0.85: 0.485641
+AP@0.90: 0.179616
+AP@0.95: 0.009168

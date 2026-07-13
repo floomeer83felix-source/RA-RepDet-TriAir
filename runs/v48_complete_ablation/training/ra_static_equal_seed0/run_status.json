@@ -1,0 +1,30 @@
+{
+  "run_id": "ra_static_equal_seed0",
+  "variant": "ra_static_equal",
+  "model": "ra_static_equal",
+  "modality_dropout": 0.0,
+  "seed": 0,
+  "state": "COMPLETE",
+  "started_at": "2026-07-10T23:10:49+08:00",
+  "guard_used": false,
+  "checkpoint_selection_rule": "highest development-validation project-local AP50",
+  "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 0 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0",
+  "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed0 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed0.json",
+  "completed_at": "2026-07-11T11:18:21+08:00",
+  "training_runtime_seconds": 43396.20064878464,
+  "evaluation_runtime_seconds": 255.3200080394745,
+  "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt",
+  "checkpoint_sha256": "c9cfd26caf4b219b030997a93b3c549f9df6447c138df735779cf2dde6f3f2f7",
+  "selected_epoch": 5,
+  "selected_metrics": {
+    "precision": 0.1981549305507567,
+    "recall": 0.9775012783364582,
+    "ap50": 0.9283370971679688,
+    "ap75": 0.8132537603378296,
+    "gt_boxes": 5867,
+    "predictions": 28942,
+    "mean_confidence": 0.3570184466763008,
+    "eval_fps": 26.98926705561919
+  },
+  "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed0.json"
+}

@@ -1,0 +1,78 @@
+# V48 Causal Ablation and Efficiency Source Lock
+
+Generated: 2026-07-10T23:09:29+08:00
+
+Status: `V48_SOURCE_LOCKED_BEFORE_TRAINING`
+
+## Repository
+
+- Starting commit: `3d18bcc1ed402776c43b1a9aaa022ffeb3416952`
+- Branch: `research/ra-repdet-triair`
+- Working tree clean at lock time: `False`
+- Note: PROJECT_PROFILE.md requested by NEXT_TASK.md is absent from the repository root.
+
+## Frozen manifests
+
+| Role | Path | Rows | SHA256 | Normalized-LF SHA256 |
+| --- | --- | ---: | --- | --- |
+| train | `reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt` | 7439 | `f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f` | `d62cb25e7a6951e0a0da8b693a3438035fb57cf2344803a53d98f1be0369e161` |
+| devval | `reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt` | 2213 | `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f` | `c03d70dcaaa908c70a35b5c224670a4f2aa288054e6cf70d05fb110a53147a72` |
+
+## Inherited fixed checkpoint hashes
+
+| Run | Variant | Model | Seed | SHA256 |
+| --- | --- | --- | ---: | --- |
+| matched_early_seed0 | matched_early | early | 0 | `23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602` |
+| matched_early_seed1 | matched_early | early | 1 | `60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804` |
+| matched_early_seed2 | matched_early | early | 2 | `b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e` |
+| reliability_p015_seed0 | ra_full_p015 | reliability | 0 | `4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436` |
+| reliability_p015_seed1 | ra_full_p015 | reliability | 1 | `a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d` |
+| reliability_p015_seed2 | ra_full_p015 | reliability | 2 | `27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415` |
+
+## Source hashes
+
+- `rarepdet/coco_metrics.py`: `7d59ae82f07a399bb464362ab3e5e42096847eba761953555315c271dbd397e1`
+- `rarepdet/metrics.py`: `6ffa798647376594befc45f89ebb1aa1a5fbe3b50e5f484e7804c22bac13b081`
+- `rarepdet/data.py`: `d90c472cc320ccc8553bb827487b4052a5973cdd08db7e4972a5d59499381931`
+- `rarepdet/train_early_fusion.py`: `c791fc4e669320dc6b6fd984cfbd37fdf2d96daecd1e347acff33ae54ff30a2d`
+- `rarepdet/eval_map.py`: `7e5d478aa1f76425ac7ade5bab186d179250516aff9fdf98798ad1ca182e4b49`
+- `rarepdet/models/early_fusion_fcos.py`: `a2ed2bb58e33428ab3e84267782a38797bfa154cbca6ca1f386bea36bc08b425`
+- `rarepdet/models/repvit_fpn_backbone.py`: `a4ece2af4ec4e2280180c0bda3879f627d5b5340f589ffe6c0d50d4f7fe30a7f`
+- `rarepdet/models/ablation_fusion_fcos.py`: `9f5de18404c366b59a21041455c12b7c887e7a1ac31ac3a9162ab6b9d7c9f9fb`
+- `rarepdet/tools/eval_coco_map.py`: `e7af0dcd2dfb31b010c8e47f453be8b727ed63b49c9368d0918cb6ae3d5b34f5`
+- `rarepdet/tools/create_v48_source_lock.py`: `d5b5a3932392c0df95b217a00fd18e1a705c2339d6aecaa138b02f50b65effdd`
+- `rarepdet/tools/profile_v48_models.py`: `47ad8a8b7f25727d21a24df9f677784a6858829a42b6fa5ee20578bbd23b3f84`
+- `rarepdet/tools/run_v48_training.py`: `f04d7a917bc09f4c83c2e7b02c0be1770a67c40f3f658f93f6333588225abe4f`
+- `rarepdet/tools/build_v48_summary.py`: `52194544ffbab5462cd23a85cc715d10ebbe955ea253a6685cbcb26f31cb1619`
+- `rarepdet/tools/scan_v48_claims.py`: `22c50114cce3190fbcdc499d6320d8ba9c234a6a076372ed71505dd3cd132383`
+- `rarepdet/tools/run_v48_preflight.py`: `99f761adeb6abce110d593e2d3cb5e6f3a4c7e5898ac8c9089fa04e6eb6bb0c4`
+- `rarepdet/tools/run_v48_queue.py`: `74241db8b64423150aa51b45fc82be73543d858b91c51b85d705d97f503b0710`
+- `rarepdet/tools/finalize_v48_task.py`: `48fdf5379eb550d207c79a19885b67024dd6259d9353ba258e8fbde72e39d7a9`
+- `rarepdet/tools/v48_handoff.py`: `9ba8e1e3e8936ecc44282c1b0bdf1f03e5fea87f4c6be778cbcf12e1f7db878d`
+- `rarepdet/tools/generate_handoff.py`: `52b9a9d32037ef0f6b5a6a7b7de8edadcc61d1878eb82858e4c586db3c1b49e2`
+- `rarepdet/tools/update_project_status.py`: `37b4b04ab364f9a743c562edd4225de727d3a8fe692cd2f18c6611de12d197d1`
+- `tests/test_v48_ablation_fusion.py`: `6aeb30bc6a7543c8a993e8ac0fedaa655b430f610d880ecbd4ec75add584dbb8`
+- `datasets/triair_dataset.py`: `f3592421394c465f469c45410e1981613223634e0dd3cfffded281777ddad705`
+
+## Protocol
+
+- All V48 model selection uses development-validation project-local AP50 only.
+- Fresh training uses 50 epochs, batch size 4, image size 640, AdamW (lr=1e-4, weight decay=1e-4), and seeds 0/1/2 as applicable.
+- COCO-style metrics use `pycocotools.cocoeval.COCOeval` at IoU 0.50:0.05:0.95, 101 recall samples, area=all, and maxDets=100.
+
+## Locked-holdout boundary
+
+Locked holdout access is forbidden in V48: it must not be read, evaluated, predicted on, reported for, or used for training, checkpoint selection, architecture selection, seed continuation, or threshold selection.
+
+## Environment
+
+- platform: `Windows-10-10.0.26200-SP0`
+- python_executable: `C:\Users\xinnan\.conda\envs\pytorch\python.exe`
+- python: `3.9.21`
+- pytorch: `2.5.1`
+- torchvision: `0.20.1`
+- timm: `1.0.22`
+- torch_cuda: `12.4`
+- cuda_available: `True`
+- gpu: `NVIDIA GeForce RTX 3090`
+- nvidia_smi: `NVIDIA GeForce RTX 3090, 591.86, 24576 MiB`

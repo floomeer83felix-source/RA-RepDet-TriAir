@@ -1,0 +1,8 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m py_compile rarepdet/coco_metrics.py rarepdet/train_early_fusion.py rarepdet/eval_map.py rarepdet/models/early_fusion_fcos.py rarepdet/models/repvit_fpn_backbone.py rarepdet/models/ablation_fusion_fcos.py rarepdet/tools/eval_coco_map.py rarepdet/tools/create_v48_source_lock.py rarepdet/tools/profile_v48_models.py rarepdet/tools/run_v48_training.py rarepdet/tools/build_v48_summary.py rarepdet/tools/scan_v48_claims.py rarepdet/tools/run_v48_preflight.py rarepdet/tools/run_v48_queue.py rarepdet/tools/finalize_v48_task.py rarepdet/tools/v48_handoff.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py tests/test_v48_ablation_fusion.py datasets/triair_dataset.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe tests/test_v48_ablation_fusion.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/smoke_test_coco_metrics.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/build_v48_summary.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/scan_v48_claims.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/profile_v48_models.py --models ra_static_equal --img-size 64 --batch-size 1 --device cpu --warmup 0 --iterations 1 --out-dir runs/v48_complete_ablation/preflight_profile_smoke
+C:\Users\xinnan\.conda\envs\pytorch\python.exe scripts/preflight_submission.py --allow-placeholders
+git diff --check

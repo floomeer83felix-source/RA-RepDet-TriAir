@@ -218,8 +218,12 @@ def write_config(path, args, model, train_len, val_len, reproducibility_settings
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Train RarePDet Early/Reliability FCOS baseline.")
-    parser.add_argument("--model", default="early", choices=("early", "reliability"))
+    parser = argparse.ArgumentParser(description="Train RarePDet fusion FCOS variants.")
+    parser.add_argument(
+        "--model",
+        default="early",
+        choices=("early", "reliability", "ra_static_equal", "ra_stems_project"),
+    )
     parser.add_argument("--data", default=r"D:\download\triair")
     parser.add_argument("--train-split", default=r"D:\download\triair\splits\train.txt")
     parser.add_argument("--val-split", default=r"D:\download\triair\splits\val.txt")

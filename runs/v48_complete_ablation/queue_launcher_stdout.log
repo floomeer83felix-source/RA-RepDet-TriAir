@@ -1,0 +1,71 @@
+{
+  "status": "V48_CAUSAL_ABLATION_PARTIAL_GPU_RUNNING",
+  "completed_fresh_runs": 2
+}
+files_scanned=29 matches=1 unresolved=0
+FINAL_STATUS: PASS
+{
+  "status": "V48_CAUSAL_ABLATION_PARTIAL_GPU_RUNNING",
+  "completed_fresh_runs": 4
+}
+files_scanned=41 matches=1 unresolved=0
+FINAL_STATUS: PASS
+{
+  "status": "V48_CAUSAL_ABLATION_PARTIAL_GPU_RUNNING",
+  "completed_fresh_runs": 6
+}
+files_scanned=53 matches=1 unresolved=0
+FINAL_STATUS: PASS
+{
+  "status": "V48_CAUSAL_ABLATION_PARTIAL_GPU_RUNNING",
+  "completed_fresh_runs": 8
+}
+files_scanned=65 matches=1 unresolved=0
+FINAL_STATUS: PASS
+{
+  "status": "V48_CAUSAL_ABLATION_COMPLETE",
+  "completed_fresh_runs": 10
+}
+files_scanned=77 matches=1 unresolved=0
+FINAL_STATUS: PASS
+{
+  "status": "V48_CAUSAL_ABLATION_COMPLETE",
+  "completed_fresh_runs": 10
+}
+files_scanned=77 matches=1 unresolved=0
+FINAL_STATUS: PASS
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/build_v48_summary.py
+{
+  "status": "V48_CAUSAL_ABLATION_COMPLETE",
+  "completed_fresh_runs": 10
+}
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/profile_v48_models.py --models early,reliability,ra_static_equal,ra_stems_project --device cuda --img-size 640 --batch-size 1 --warmup 10 --iterations 30
+{
+  "model_type": "early",
+  "operator_flops": 104762427192,
+  "mean_latency_ms": 40.40459333333336,
+  "throughput_fps": 24.74966130088508
+}
+{
+  "model_type": "reliability",
+  "operator_flops": 105392393627,
+  "mean_latency_ms": 40.67935333333347,
+  "throughput_fps": 24.582495001968976
+}
+{
+  "model_type": "ra_static_equal",
+  "operator_flops": 105392391992,
+  "mean_latency_ms": 39.684183333333266,
+  "throughput_fps": 25.198956259231785
+}
+{
+  "model_type": "ra_stems_project",
+  "operator_flops": 106008430392,
+  "mean_latency_ms": 38.650530000000316,
+  "throughput_fps": 25.87286642641102
+}
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/scan_v48_claims.py
+files_scanned=77 matches=1 unresolved=0
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v48_preflight.py
+FINAL_STATUS: PASS
+git add -f -- runs/v48_complete_ablation/causal_ablation_summary.json runs/v48_complete_ablation/causal_ablation_summary.md runs/v48_complete_ablation/claim_boundary.md runs/v48_complete_ablation/claim_scan.txt runs/v48_complete_ablation/claim_scan_review.md runs/v48_complete_ablation/devval_paired_deltas.csv runs/v48_complete_ablation/devval_per_run.csv runs/v48_complete_ablation/efficiency_per_model.csv runs/v48_complete_ablation/efficiency_summary.json runs/v48_complete_ablation/efficiency_summary.md runs/v48_complete_ablation/preflight_commands.txt runs/v48_complete_ablation/preflight_outputs.txt runs/v48_complete_ablation/preflight_profile_smoke/efficiency_per_model.csv runs/v48_complete_ablation/preflight_profile_smoke/efficiency_summary.json runs/v48_complete_ablation/preflight_profile_smoke/efficiency_summary.md runs/v48_complete_ablation/profile_smoke/efficiency_per_model.csv runs/v48_complete_ablation/profile_smoke/efficiency_summary.json runs/v48_complete_ablation/profile_smoke/efficiency_summary.md runs/v48_complete_ablation/queue_launcher_stderr.log runs/v48_complete_ablation/queue_launcher_stdout.log runs/v48_complete_ablation/queue_stdout_stderr.log runs/v48_complete_ablation/raw/devval/early_moddrop_seed1.csv runs/v48_complete_ablation/raw/devval/early_moddrop_seed1.json runs/v48_complete_ablation/raw/devval/early_moddrop_seed1.txt runs/v48_complete_ablation/raw/devval/early_moddrop_seed2.csv runs/v48_complete_ablation/raw/devval/early_moddrop_seed2.json runs/v48_complete_ablation/raw/devval/early_moddrop_seed2.txt runs/v48_complete_ablation/raw/devval/ra_no_moddrop_seed1.csv runs/v48_complete_ablation/raw/devval/ra_no_moddrop_seed1.json runs/v48_complete_ablation/raw/devval/ra_no_moddrop_seed1.txt runs/v48_complete_ablation/raw/devval/ra_no_moddrop_seed2.csv runs/v48_complete_ablation/raw/devval/ra_no_moddrop_seed2.json runs/v48_complete_ablation/raw/devval/ra_no_moddrop_seed2.txt runs/v48_complete_ablation/raw/devval/ra_static_equal_seed0.csv runs/v48_complete_ablation/raw/devval/ra_static_equal_seed0.json runs/v48_complete_ablation/raw/devval/ra_static_equal_seed0.txt runs/v48_complete_ablation/raw/devval/ra_static_equal_seed1.csv runs/v48_complete_ablation/raw/devval/ra_static_equal_seed1.json runs/v48_complete_ablation/raw/devval/ra_static_equal_seed1.txt runs/v48_complete_ablation/raw/devval/ra_static_equal_seed2.csv runs/v48_complete_ablation/raw/devval/ra_static_equal_seed2.json runs/v48_complete_ablation/raw/devval/ra_static_equal_seed2.txt runs/v48_complete_ablation/raw/devval/ra_stems_project_seed0.csv runs/v48_complete_ablation/raw/devval/ra_stems_project_seed0.json runs/v48_complete_ablation/raw/devval/ra_stems_project_seed0.txt runs/v48_complete_ablation/raw/devval/ra_stems_project_seed1.csv runs/v48_complete_ablation/raw/devval/ra_stems_project_seed1.json runs/v48_complete_ablation/raw/devval/ra_stems_project_seed1.txt runs/v48_complete_ablation/raw/devval/ra_stems_project_seed2.csv runs/v48_complete_ablation/raw/devval/ra_stems_project_seed2.json runs/v48_complete_ablation/raw/devval/ra_stems_project_seed2.txt runs/v48_complete_ablation/run_status.json runs/v48_complete_ablation/source_lock_v48.json runs/v48_complete_ablation/source_lock_v48.md runs/v48_complete_ablation/training/early_moddrop_seed1/command.txt runs/v48_complete_ablation/training/early_moddrop_seed1/config.txt runs/v48_complete_ablation/training/early_moddrop_seed1/run_status.json runs/v48_complete_ablation/training/early_moddrop_seed1/runner_stdout_stderr.log runs/v48_complete_ablation/training/early_moddrop_seed1/train_log.txt runs/v48_complete_ablation/training/early_moddrop_seed2/command.txt runs/v48_complete_ablation/training/early_moddrop_seed2/config.txt runs/v48_complete_ablation/training/early_moddrop_seed2/run_status.json runs/v48_complete_ablation/training/early_moddrop_seed2/runner_stdout_stderr.log runs/v48_complete_ablation/training/early_moddrop_seed2/train_log.txt runs/v48_complete_ablation/training/ra_no_moddrop_seed1/command.txt runs/v48_complete_ablation/training/ra_no_moddrop_seed1/config.txt runs/v48_complete_ablation/training/ra_no_moddrop_seed1/run_status.json runs/v48_complete_ablation/training/ra_no_moddrop_seed1/runner_stdout_stderr.log runs/v48_complete_ablation/training/ra_no_moddrop_seed1/train_log.txt runs/v48_complete_ablation/training/ra_no_moddrop_seed2/command.txt runs/v48_complete_ablation/training/ra_no_moddrop_seed2/config.txt runs/v48_complete_ablation/training/ra_no_moddrop_seed2/run_status.json runs/v48_complete_ablation/training/ra_no_moddrop_seed2/runner_stdout_stderr.log runs/v48_complete_ablation/training/ra_no_moddrop_seed2/train_log.txt runs/v48_complete_ablation/training/ra_static_equal_seed0/command.txt runs/v48_complete_ablation/training/ra_static_equal_seed0/config.txt runs/v48_complete_ablation/training/ra_static_equal_seed0/run_status.json runs/v48_complete_ablation/training/ra_static_equal_seed0/runner_stdout_stderr.log runs/v48_complete_ablation/training/ra_static_equal_seed0/train_log.txt runs/v48_complete_ablation/training/ra_static_equal_seed1/command.txt runs/v48_complete_ablation/training/ra_static_equal_seed1/config.txt runs/v48_complete_ablation/training/ra_static_equal_seed1/run_status.json runs/v48_complete_ablation/training/ra_static_equal_seed1/runner_stdout_stderr.log runs/v48_complete_ablation/training/ra_static_equal_seed1/train_log.txt runs/v48_complete_ablation/training/ra_static_equal_seed2/command.txt runs/v48_complete_ablation/training/ra_static_equal_seed2/config.txt runs/v48_complete_ablation/training/ra_static_equal_seed2/run_status.json runs/v48_complete_ablation/training/ra_static_equal_seed2/runner_stdout_stderr.log runs/v48_complete_ablation/training/ra_static_equal_seed2/train_log.txt runs/v48_complete_ablation/training/ra_stems_project_seed0/command.txt runs/v48_complete_ablation/training/ra_stems_project_seed0/config.txt runs/v48_complete_ablation/training/ra_stems_project_seed0/run_status.json runs/v48_complete_ablation/training/ra_stems_project_seed0/runner_stdout_stderr.log runs/v48_complete_ablation/training/ra_stems_project_seed0/train_log.txt runs/v48_complete_ablation/training/ra_stems_project_seed1/command.txt runs/v48_complete_ablation/training/ra_stems_project_seed1/config.txt runs/v48_complete_ablation/training/ra_stems_project_seed1/run_status.json runs/v48_complete_ablation/training/ra_stems_project_seed1/runner_stdout_stderr.log runs/v48_complete_ablation/training/ra_stems_project_seed1/train_log.txt runs/v48_complete_ablation/training/ra_stems_project_seed2/command.txt runs/v48_complete_ablation/training/ra_stems_project_seed2/config.txt runs/v48_complete_ablation/training/ra_stems_project_seed2/run_status.json runs/v48_complete_ablation/training/ra_stems_project_seed2/runner_stdout_stderr.log runs/v48_complete_ablation/training/ra_stems_project_seed2/train_log.txt

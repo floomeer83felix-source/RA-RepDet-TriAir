@@ -1,0 +1,2135 @@
+{
+  "status": "V48_CAUSAL_ABLATION_COMPLETE",
+  "generated_at": "2026-07-13T14:43:34+08:00",
+  "protocol": "frozen V40 component-disjoint development-validation",
+  "guard_used_for_training_or_selection": false,
+  "checkpoint_selection_rule": "highest development-validation project-local AP50",
+  "per_run": [
+    {
+      "generated_at": "2026-07-10T22:28:20+08:00",
+      "run_id": "early_moddrop_seed0",
+      "protocol": "ablation_devval",
+      "variant": "early_moddrop",
+      "model": "early",
+      "seed": 0,
+      "modality_dropout": 0.15,
+      "images": 2213,
+      "precision": 0.9215479331574319,
+      "recall": 0.8929606272370888,
+      "f1": 0.9070290858725762,
+      "project_ap50": 0.9512134194374084,
+      "project_ap75": 0.8164476156234741,
+      "ap50_95": 0.6726638054166754,
+      "ap50": 0.9469235629856483,
+      "ap75": 0.8135805598711372,
+      "ap_by_iou": {
+        "0.50": 0.9469235629856483,
+        "0.55": 0.9406414690495469,
+        "0.60": 0.9339226673760868,
+        "0.65": 0.9143146110954384,
+        "0.70": 0.8758057959978534,
+        "0.75": 0.8135805598711372,
+        "0.80": 0.6919901182660313,
+        "0.85": 0.4612718305726687,
+        "0.90": 0.14300516308004235,
+        "0.95": 0.005182275872299777
+      },
+      "ar100": 0.7499403442986193,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 54.717458724975586,
+      "metric_seconds": 158.8282241821289,
+      "fps": 40.44412974519016,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\early_moddrop_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "6f4f756890a518ab750bb2be216c8a825944091e1b8d3143f4696178eb602fbf",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed0 --protocol ablation_devval --variant early_moddrop --model early --seed 0 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\early_moddrop_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\ablation_devval\\early_moddrop_seed0.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "inherited V46 fresh seed0 training",
+      "selected_epoch": 6,
+      "training_runtime_seconds": null,
+      "checkpoint_selection_rule": "development-validation project-local AP50"
+    },
+    {
+      "generated_at": "2026-07-12T00:03:41+08:00",
+      "run_id": "early_moddrop_seed1",
+      "protocol": "ablation_devval",
+      "variant": "early_moddrop",
+      "model": "early",
+      "seed": 1,
+      "modality_dropout": 0.15,
+      "images": 2213,
+      "precision": 0.9354428077832333,
+      "recall": 0.8767683654337822,
+      "f1": 0.9051557276086575,
+      "project_ap50": 0.9471350908279419,
+      "project_ap75": 0.8253954648971558,
+      "ap50_95": 0.6921241408331282,
+      "ap50": 0.9428390679948252,
+      "ap75": 0.8224474282288081,
+      "ap_by_iou": {
+        "0.50": 0.9428390679948252,
+        "0.55": 0.939678825451113,
+        "0.60": 0.9320423215928632,
+        "0.65": 0.9163356168258214,
+        "0.70": 0.8845297904251124,
+        "0.75": 0.8224474282288081,
+        "0.80": 0.7087854919684191,
+        "0.85": 0.5299761527243849,
+        "0.90": 0.2326052878040829,
+        "0.95": 0.012001425315851478
+      },
+      "ar100": 0.7668996079768196,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 101.93434476852417,
+      "metric_seconds": 164.64256048202515,
+      "fps": 21.71005273075873,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt",
+      "checkpoint_sha256": "621d0563439db2554d10625b90afd8cc982cb64ed7294036934e0ccf66bbb83c",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed1 --protocol ablation_devval --variant early_moddrop --model early --seed 1 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed1.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 8,
+      "training_runtime_seconds": 45611.400997400284,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed1 --protocol ablation_devval --variant early_moddrop --model early --seed 1 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed1.json"
+    },
+    {
+      "generated_at": "2026-07-13T01:31:06+08:00",
+      "run_id": "early_moddrop_seed2",
+      "protocol": "ablation_devval",
+      "variant": "early_moddrop",
+      "model": "early",
+      "seed": 2,
+      "modality_dropout": 0.15,
+      "images": 2213,
+      "precision": 0.8819120586275816,
+      "recall": 0.9025055394579854,
+      "f1": 0.8920899671468284,
+      "project_ap50": 0.9453920125961304,
+      "project_ap75": 0.8307416439056396,
+      "ap50_95": 0.6872411731964517,
+      "ap50": 0.9414440274315976,
+      "ap75": 0.8273354112016256,
+      "ap_by_iou": {
+        "0.50": 0.9414440274315976,
+        "0.55": 0.9365326479914377,
+        "0.60": 0.9254095479640131,
+        "0.65": 0.9093314953613801,
+        "0.70": 0.8792798292038546,
+        "0.75": 0.8273354112016256,
+        "0.80": 0.7273163245020403,
+        "0.85": 0.5169798424394645,
+        "0.90": 0.19987498794900083,
+        "0.95": 0.008907617920102428
+      },
+      "ar100": 0.7652803817964888,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 65.90642404556274,
+      "metric_seconds": 151.5266764163971,
+      "fps": 33.57791037896546,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2\\weights\\best.pt",
+      "checkpoint_sha256": "c204220f66851e96433c5bfd2d08a85bb8f7d56ec41cff351e748faca8345a60",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed2 --protocol ablation_devval --variant early_moddrop --model early --seed 2 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed2.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 6,
+      "training_runtime_seconds": 43950.0952501297,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed2 --protocol ablation_devval --variant early_moddrop --model early --seed 2 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed2.json"
+    },
+    {
+      "generated_at": "2026-07-10T09:43:36+08:00",
+      "run_id": "matched_early_seed0",
+      "protocol": "devval",
+      "variant": "matched_early",
+      "model": "early",
+      "seed": 0,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.9091538328430524,
+      "recall": 0.8955173001534004,
+      "f1": 0.902284046024386,
+      "project_ap50": 0.945548951625824,
+      "project_ap75": 0.8410928845405579,
+      "ap50_95": 0.7053066941567628,
+      "ap50": 0.9411463572158906,
+      "ap75": 0.8377867307794643,
+      "ap_by_iou": {
+        "0.50": 0.9411463572158906,
+        "0.55": 0.9379104066004206,
+        "0.60": 0.9306605658520284,
+        "0.65": 0.9160810632837177,
+        "0.70": 0.8925283817712695,
+        "0.75": 0.8377867307794643,
+        "0.80": 0.7419155254817545,
+        "0.85": 0.5626061094121767,
+        "0.90": 0.27249016306287427,
+        "0.95": 0.019941638108031113
+      },
+      "ar100": 0.7788818817112664,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 84.07418203353882,
+      "metric_seconds": 54.957332611083984,
+      "fps": 26.32199263166416,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id matched_early_seed0 --protocol devval --variant matched_early --model early --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\coco\\devval\\matched_early_seed0.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "inherited V46 source-locked checkpoint",
+      "selected_epoch": 9,
+      "training_runtime_seconds": null,
+      "checkpoint_selection_rule": "development-validation project-local AP50"
+    },
+    {
+      "generated_at": "2026-07-10T09:45:13+08:00",
+      "run_id": "matched_early_seed1",
+      "protocol": "devval",
+      "variant": "matched_early",
+      "model": "early",
+      "seed": 1,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.8601094655505473,
+      "recall": 0.9106868927901823,
+      "f1": 0.8846758837652123,
+      "project_ap50": 0.9429527521133423,
+      "project_ap75": 0.79441237449646,
+      "ap50_95": 0.6637925314744781,
+      "ap50": 0.9385048765817465,
+      "ap75": 0.7915774396724455,
+      "ap_by_iou": {
+        "0.50": 0.9385048765817465,
+        "0.55": 0.9297994948074677,
+        "0.60": 0.9180217197350067,
+        "0.65": 0.8960442807893353,
+        "0.70": 0.8561562471603771,
+        "0.75": 0.7915774396724455,
+        "0.80": 0.6825236542177232,
+        "0.85": 0.4652593323090087,
+        "0.90": 0.15604815405078953,
+        "0.95": 0.003990115420881709
+      },
+      "ar100": 0.7453894665075848,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 35.88904047012329,
+      "metric_seconds": 54.39440989494324,
+      "fps": 61.662278261305595,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v41_q1_upgrade\\seed1\\matched_early_seed1\\weights\\best.pt",
+      "checkpoint_sha256": "60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id matched_early_seed1 --protocol devval --variant matched_early --model early --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v41_q1_upgrade\\seed1\\matched_early_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\coco\\devval\\matched_early_seed1.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "inherited V46 source-locked checkpoint",
+      "selected_epoch": 4,
+      "training_runtime_seconds": null,
+      "checkpoint_selection_rule": "development-validation project-local AP50"
+    },
+    {
+      "generated_at": "2026-07-10T09:46:45+08:00",
+      "run_id": "matched_early_seed2",
+      "protocol": "devval",
+      "variant": "matched_early",
+      "model": "early",
+      "seed": 2,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.928384930995897,
+      "recall": 0.8484745184932674,
+      "f1": 0.88663282571912,
+      "project_ap50": 0.9361328482627869,
+      "project_ap75": 0.8004389405250549,
+      "ap50_95": 0.6716662448870279,
+      "ap50": 0.9320843475238,
+      "ap75": 0.797732937729626,
+      "ap_by_iou": {
+        "0.50": 0.9320843475238,
+        "0.55": 0.9258504654083953,
+        "0.60": 0.9166373062704115,
+        "0.65": 0.897520316562063,
+        "0.70": 0.8618866082112473,
+        "0.75": 0.797732937729626,
+        "0.80": 0.678996787807529,
+        "0.85": 0.4834514528254243,
+        "0.90": 0.20813328825276792,
+        "0.95": 0.014368938279014847
+      },
+      "ar100": 0.7490369865348561,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 34.1890127658844,
+      "metric_seconds": 50.08812952041626,
+      "fps": 64.72839725305693,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed2\\weights\\best.pt",
+      "checkpoint_sha256": "b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id matched_early_seed2 --protocol devval --variant matched_early --model early --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\coco\\devval\\matched_early_seed2.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "inherited V46 source-locked checkpoint",
+      "selected_epoch": 5,
+      "training_runtime_seconds": null,
+      "checkpoint_selection_rule": "development-validation project-local AP50"
+    },
+    {
+      "generated_at": "2026-07-10T09:48:25+08:00",
+      "run_id": "reliability_p015_seed0",
+      "protocol": "devval",
+      "variant": "ra_full_p015",
+      "model": "reliability",
+      "seed": 0,
+      "modality_dropout": 0.15,
+      "images": 2213,
+      "precision": 0.9333333333333333,
+      "recall": 0.8972217487642747,
+      "f1": 0.9149213522203875,
+      "project_ap50": 0.9583612680435181,
+      "project_ap75": 0.8952142000198364,
+      "ap50_95": 0.7279727964969943,
+      "ap50": 0.9540030855617299,
+      "ap75": 0.8913258364292899,
+      "ap_by_iou": {
+        "0.50": 0.9540030855617299,
+        "0.55": 0.9525373920326015,
+        "0.60": 0.9472943566040564,
+        "0.65": 0.9386953242844991,
+        "0.70": 0.9243219034060489,
+        "0.75": 0.8913258364292899,
+        "0.80": 0.8119666045974734,
+        "0.85": 0.6244606494441314,
+        "0.90": 0.2277545352723423,
+        "0.95": 0.0073682773377710935
+      },
+      "ar100": 0.7925345150843702,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 38.25863194465637,
+      "metric_seconds": 54.12806844711304,
+      "fps": 57.84315558384968,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\reliability_p015_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id reliability_p015_seed0 --protocol devval --variant ra_full_p015 --model reliability --seed 0 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\reliability_p015_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\coco\\devval\\reliability_p015_seed0.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "inherited V46 source-locked checkpoint",
+      "selected_epoch": 9,
+      "training_runtime_seconds": null,
+      "checkpoint_selection_rule": "development-validation project-local AP50"
+    },
+    {
+      "generated_at": "2026-07-10T09:50:03+08:00",
+      "run_id": "reliability_p015_seed1",
+      "protocol": "devval",
+      "variant": "ra_full_p015",
+      "model": "reliability",
+      "seed": 1,
+      "modality_dropout": 0.15,
+      "images": 2213,
+      "precision": 0.8778798131142259,
+      "recall": 0.9287540480654508,
+      "f1": 0.9026006294517146,
+      "project_ap50": 0.9556866884231567,
+      "project_ap75": 0.877982497215271,
+      "ap50_95": 0.7228954748642633,
+      "ap50": 0.9515378011699295,
+      "ap75": 0.8742753414762607,
+      "ap_by_iou": {
+        "0.50": 0.9515378011699295,
+        "0.55": 0.9490304254920817,
+        "0.60": 0.943465390326976,
+        "0.65": 0.9331588347753668,
+        "0.70": 0.9129042889242952,
+        "0.75": 0.8742753414762607,
+        "0.80": 0.7888634913855995,
+        "0.85": 0.6072079951142204,
+        "0.90": 0.25963238623991497,
+        "0.95": 0.00887879373798927
+      },
+      "ar100": 0.7911539117095618,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 38.13383603096008,
+      "metric_seconds": 53.098262310028076,
+      "fps": 58.032451762873016,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v41_q1_upgrade\\seed1\\reliability_p015_seed1\\weights\\best.pt",
+      "checkpoint_sha256": "a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id reliability_p015_seed1 --protocol devval --variant ra_full_p015 --model reliability --seed 1 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v41_q1_upgrade\\seed1\\reliability_p015_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\coco\\devval\\reliability_p015_seed1.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "inherited V46 source-locked checkpoint",
+      "selected_epoch": 8,
+      "training_runtime_seconds": null,
+      "checkpoint_selection_rule": "development-validation project-local AP50"
+    },
+    {
+      "generated_at": "2026-07-10T09:51:44+08:00",
+      "run_id": "reliability_p015_seed2",
+      "protocol": "devval",
+      "variant": "ra_full_p015",
+      "model": "reliability",
+      "seed": 2,
+      "modality_dropout": 0.15,
+      "images": 2213,
+      "precision": 0.9213228894691036,
+      "recall": 0.9021646497358105,
+      "f1": 0.9116431277988287,
+      "project_ap50": 0.9587774276733398,
+      "project_ap75": 0.8567192554473877,
+      "ap50_95": 0.6959483509283999,
+      "ap50": 0.9546947423185473,
+      "ap75": 0.8530279126018335,
+      "ap_by_iou": {
+        "0.50": 0.9546947423185473,
+        "0.55": 0.9516960953777229,
+        "0.60": 0.947652006727186,
+        "0.65": 0.93575164786693,
+        "0.70": 0.9044822483708632,
+        "0.75": 0.8530279126018335,
+        "0.80": 0.7333947514551515,
+        "0.85": 0.5009080123813804,
+        "0.90": 0.1720138631502823,
+        "0.95": 0.005862229034102487
+      },
+      "ar100": 0.7640190898244418,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 38.64235877990723,
+      "metric_seconds": 53.68498778343201,
+      "fps": 57.26876075563711,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\reliability_p015_seed2\\weights\\best.pt",
+      "checkpoint_sha256": "27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id reliability_p015_seed2 --protocol devval --variant ra_full_p015 --model reliability --seed 2 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\reliability_p015_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\coco\\devval\\reliability_p015_seed2.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "inherited V46 source-locked checkpoint",
+      "selected_epoch": 7,
+      "training_runtime_seconds": null,
+      "checkpoint_selection_rule": "development-validation project-local AP50"
+    },
+    {
+      "generated_at": "2026-07-10T22:24:36+08:00",
+      "run_id": "ra_no_moddrop_seed0",
+      "protocol": "ablation_devval",
+      "variant": "ra_no_moddrop",
+      "model": "reliability",
+      "seed": 0,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.9040231844527787,
+      "recall": 0.9038690983466848,
+      "f1": 0.9039461348333758,
+      "project_ap50": 0.9522213935852051,
+      "project_ap75": 0.8699498176574707,
+      "ap50_95": 0.7112447552783334,
+      "ap50": 0.947746927354984,
+      "ap75": 0.8661636017503372,
+      "ap_by_iou": {
+        "0.50": 0.947746927354984,
+        "0.55": 0.9446789328695261,
+        "0.60": 0.9390124591067658,
+        "0.65": 0.9303221861528072,
+        "0.70": 0.9101295361140077,
+        "0.75": 0.8661636017503372,
+        "0.80": 0.7795532506941117,
+        "0.85": 0.575260056029866,
+        "0.90": 0.2128905165984716,
+        "0.95": 0.006690086112457598
+      },
+      "ar100": 0.7803647520027271,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 54.33709526062012,
+      "metric_seconds": 161.1914827823639,
+      "fps": 40.727241479980876,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "7c2817ff29414fcd91a9330c3f34b60dddfb505100f67810291f2e7ab09a1e5c",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed0 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v46_coco_ablation\\raw\\ablation_devval\\ra_no_moddrop_seed0.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "inherited V46 fresh seed0 training",
+      "selected_epoch": 5,
+      "training_runtime_seconds": null,
+      "checkpoint_selection_rule": "development-validation project-local AP50"
+    },
+    {
+      "generated_at": "2026-07-12T00:08:25+08:00",
+      "run_id": "ra_no_moddrop_seed1",
+      "protocol": "ablation_devval",
+      "variant": "ra_no_moddrop",
+      "model": "reliability",
+      "seed": 1,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.9348666053357866,
+      "recall": 0.8660303391852736,
+      "f1": 0.899132896832419,
+      "project_ap50": 0.9520969986915588,
+      "project_ap75": 0.8860520720481873,
+      "ap50_95": 0.7334131348365756,
+      "ap50": 0.9476703324690302,
+      "ap75": 0.8823994402169391,
+      "ap_by_iou": {
+        "0.50": 0.9476703324690302,
+        "0.55": 0.9465560421546311,
+        "0.60": 0.9420829590509988,
+        "0.65": 0.933157504076573,
+        "0.70": 0.9161136232845197,
+        "0.75": 0.8823994402169391,
+        "0.80": 0.8071076975967232,
+        "0.85": 0.623440097760716,
+        "0.90": 0.3118890384375613,
+        "0.95": 0.023714613318062787
+      },
+      "ar100": 0.7975285495142321,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 53.4723699092865,
+      "metric_seconds": 160.53661823272705,
+      "fps": 41.38585972071663,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1\\weights\\best.pt",
+      "checkpoint_sha256": "0f936e657b9a4cc83da6fc3f543d7f28ba72e8b61fc5a0bd60f9bff1159845ec",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed1 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed1.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 5,
+      "training_runtime_seconds": 45948.71639204025,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model reliability --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed1 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed1.json"
+    },
+    {
+      "generated_at": "2026-07-13T01:30:46+08:00",
+      "run_id": "ra_no_moddrop_seed2",
+      "protocol": "ablation_devval",
+      "variant": "ra_no_moddrop",
+      "model": "reliability",
+      "seed": 2,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.8964130070398927,
+      "recall": 0.9115391170956195,
+      "f1": 0.9039127862756696,
+      "project_ap50": 0.9513895511627197,
+      "project_ap75": 0.8775883913040161,
+      "ap50_95": 0.7307856510139307,
+      "ap50": 0.9472228370043237,
+      "ap75": 0.8739393367507124,
+      "ap_by_iou": {
+        "0.50": 0.9472228370043237,
+        "0.55": 0.9443334067853008,
+        "0.60": 0.9397384299057162,
+        "0.65": 0.9281978823619508,
+        "0.70": 0.9127500641290485,
+        "0.75": 0.8739393367507124,
+        "0.80": 0.8027482518262009,
+        "0.85": 0.6346592159616015,
+        "0.90": 0.3082048011543429,
+        "0.95": 0.016062284260109208
+      },
+      "ar100": 0.7971194818476223,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 66.72856378555298,
+      "metric_seconds": 153.05577683448792,
+      "fps": 33.16420846568743,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2\\weights\\best.pt",
+      "checkpoint_sha256": "5968bd0509826dc04bde8e59e0d227812be3a3f805fbfee4559e119c441a4875",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed2 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed2.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 6,
+      "training_runtime_seconds": 43927.58909869194,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model reliability --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed2 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed2.json"
+    },
+    {
+      "generated_at": "2026-07-11T11:18:20+08:00",
+      "run_id": "ra_static_equal_seed0",
+      "protocol": "ablation_devval",
+      "variant": "ra_static_equal",
+      "model": "ra_static_equal",
+      "seed": 0,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.882495247969587,
+      "recall": 0.870461905573547,
+      "f1": 0.8764372747554487,
+      "project_ap50": 0.9299373626708984,
+      "project_ap75": 0.8147123456001282,
+      "ap50_95": 0.6704922216699691,
+      "ap50": 0.9257471280176998,
+      "ap75": 0.8114438617017127,
+      "ap_by_iou": {
+        "0.50": 0.9257471280176998,
+        "0.55": 0.9199696668336167,
+        "0.60": 0.9108502022864399,
+        "0.65": 0.8945190570234551,
+        "0.70": 0.8654002875040269,
+        "0.75": 0.8114438617017127,
+        "0.80": 0.7025671091932244,
+        "0.85": 0.48564111882528016,
+        "0.90": 0.17961555933929862,
+        "0.95": 0.009168225974936554
+      },
+      "ar100": 0.7575421851031192,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 88.09058284759521,
+      "metric_seconds": 150.10817527770996,
+      "fps": 25.12186806424806,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "c9cfd26caf4b219b030997a93b3c549f9df6447c138df735779cf2dde6f3f2f7",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed0 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed0.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 5,
+      "training_runtime_seconds": 43396.20064878464,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 0 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed0 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed0.json"
+    },
+    {
+      "generated_at": "2026-07-12T13:14:14+08:00",
+      "run_id": "ra_static_equal_seed1",
+      "protocol": "ablation_devval",
+      "variant": "ra_static_equal",
+      "model": "ra_static_equal",
+      "seed": 1,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.8766244448100017,
+      "recall": 0.9083006647349583,
+      "f1": 0.8921814833417042,
+      "project_ap50": 0.9454615116119385,
+      "project_ap75": 0.8132777810096741,
+      "ap50_95": 0.6571848067926827,
+      "ap50": 0.9413063693672752,
+      "ap75": 0.8101075132200058,
+      "ap_by_iou": {
+        "0.50": 0.9413063693672752,
+        "0.55": 0.9327228828853688,
+        "0.60": 0.9237365148039722,
+        "0.65": 0.9041343482323297,
+        "0.70": 0.8741235786937125,
+        "0.75": 0.8101075132200058,
+        "0.80": 0.6757827997991496,
+        "0.85": 0.40285963487365756,
+        "0.90": 0.10313703535239589,
+        "0.95": 0.003937390698959451
+      },
+      "ar100": 0.7436338844383842,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 79.04739928245544,
+      "metric_seconds": 150.7890748977661,
+      "fps": 27.995860965550765,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1\\weights\\best.pt",
+      "checkpoint_sha256": "2819dec6d5faa0cfb46449b8cda9a6a5efe0d92584a58587d516ebf89b31e7c8",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed1 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed1.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 4,
+      "training_runtime_seconds": 46869.97516655922,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed1 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed1.json"
+    },
+    {
+      "generated_at": "2026-07-13T14:41:59+08:00",
+      "run_id": "ra_static_equal_seed2",
+      "protocol": "ablation_devval",
+      "variant": "ra_static_equal",
+      "model": "ra_static_equal",
+      "seed": 2,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.9209665697674418,
+      "recall": 0.8639850008522243,
+      "f1": 0.891566265060241,
+      "project_ap50": 0.9393686652183533,
+      "project_ap75": 0.7972689867019653,
+      "ap50_95": 0.6616024643198337,
+      "ap50": 0.9352656514752101,
+      "ap75": 0.7944144554095712,
+      "ap_by_iou": {
+        "0.50": 0.9352656514752101,
+        "0.55": 0.9291910937257333,
+        "0.60": 0.9193965583980214,
+        "0.65": 0.9013286431646816,
+        "0.70": 0.8630205533234753,
+        "0.75": 0.7944144554095712,
+        "0.80": 0.6697356347965988,
+        "0.85": 0.45209581975632346,
+        "0.90": 0.1473508394903165,
+        "0.95": 0.004225393658406635
+      },
+      "ar100": 0.742116925174706,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 89.50052285194397,
+      "metric_seconds": 150.26728630065918,
+      "fps": 24.72611253524016,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2\\weights\\best.pt",
+      "checkpoint_sha256": "ff529328194fe5defa88017af91b5b05b605c7024acd1e39798f460dbda82247",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed2 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed2.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 4,
+      "training_runtime_seconds": 47170.030148506165,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed2 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed2.json"
+    },
+    {
+      "generated_at": "2026-07-11T11:18:19+08:00",
+      "run_id": "ra_stems_project_seed0",
+      "protocol": "ablation_devval",
+      "variant": "ra_stems_project",
+      "model": "ra_stems_project",
+      "seed": 0,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.9268202080237742,
+      "recall": 0.8505198568263167,
+      "f1": 0.8870322637987735,
+      "project_ap50": 0.9373950362205505,
+      "project_ap75": 0.8300318121910095,
+      "ap50_95": 0.675352733614103,
+      "ap50": 0.9331503320966316,
+      "ap75": 0.8266229688158144,
+      "ap_by_iou": {
+        "0.50": 0.9331503320966316,
+        "0.55": 0.9287627682933494,
+        "0.60": 0.921860857985476,
+        "0.65": 0.906120387679376,
+        "0.70": 0.8809785895994271,
+        "0.75": 0.8266229688158144,
+        "0.80": 0.7082979658106964,
+        "0.85": 0.4871286353222539,
+        "0.90": 0.1537694788898358,
+        "0.95": 0.0068353516481695934
+      },
+      "ar100": 0.7585307652974261,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 88.09361720085144,
+      "metric_seconds": 149.44485878944397,
+      "fps": 25.12100275045365,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "8dc418bff5fd02f0d4ae3fe429ae968fa6becb974ffac49a7b8997267b257295",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed0 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed0.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 5,
+      "training_runtime_seconds": 43396.308157444,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 0 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed0 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed0.json"
+    },
+    {
+      "generated_at": "2026-07-12T13:14:13+08:00",
+      "run_id": "ra_stems_project_seed1",
+      "protocol": "ablation_devval",
+      "variant": "ra_stems_project",
+      "model": "ra_stems_project",
+      "seed": 1,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.925164036176627,
+      "recall": 0.8892108402931651,
+      "f1": 0.9068312184946983,
+      "project_ap50": 0.9474266171455383,
+      "project_ap75": 0.8334004282951355,
+      "ap50_95": 0.6845471233304197,
+      "ap50": 0.9430202329113241,
+      "ap75": 0.8301761028858394,
+      "ap_by_iou": {
+        "0.50": 0.9430202329113241,
+        "0.55": 0.9394769624156157,
+        "0.60": 0.9329026190217516,
+        "0.65": 0.9147820861216884,
+        "0.70": 0.8833989227838256,
+        "0.75": 0.8301761028858394,
+        "0.80": 0.7121139358067854,
+        "0.85": 0.501102600072606,
+        "0.90": 0.18414814127440993,
+        "0.95": 0.004349630010350787
+      },
+      "ar100": 0.7598261462416909,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 79.05380773544312,
+      "metric_seconds": 150.33785152435303,
+      "fps": 27.99359149664109,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt",
+      "checkpoint_sha256": "4a3eec478737261d972ab0fe21d63c6a8f32c0aaa62dc557debd0ff04aca59d4",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed1 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed1.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 5,
+      "training_runtime_seconds": 46868.33664011955,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed1 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed1.json"
+    },
+    {
+      "generated_at": "2026-07-13T14:42:02+08:00",
+      "run_id": "ra_stems_project_seed2",
+      "protocol": "ablation_devval",
+      "variant": "ra_stems_project",
+      "model": "ra_stems_project",
+      "seed": 2,
+      "modality_dropout": 0.0,
+      "images": 2213,
+      "precision": 0.8743523316062176,
+      "recall": 0.9204022498721663,
+      "f1": 0.8967865149879598,
+      "project_ap50": 0.9497057795524597,
+      "project_ap75": 0.8486366868019104,
+      "ap50_95": 0.6944167250667899,
+      "ap50": 0.9454131760432324,
+      "ap75": 0.8454525251600291,
+      "ap_by_iou": {
+        "0.50": 0.9454131760432324,
+        "0.55": 0.9406548268248552,
+        "0.60": 0.9314581339673976,
+        "0.65": 0.9195931819507729,
+        "0.70": 0.8918847850513285,
+        "0.75": 0.8454525251600291,
+        "0.80": 0.7371686089429355,
+        "0.85": 0.5282839432991138,
+        "0.90": 0.19588293673219695,
+        "0.95": 0.008375132696037721
+      },
+      "ar100": 0.7746548491562979,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "inference_seconds": 89.50903224945068,
+      "metric_seconds": 152.74873328208923,
+      "fps": 24.723761886204297,
+      "detector_score_thr": 0.001,
+      "metric_score_thr": 0.5,
+      "nms_thresh": 0.6,
+      "detections_per_img": 100,
+      "coco_recall_samples": 101,
+      "coco_backend": "pycocotools.cocoeval.COCOeval",
+      "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2\\weights\\best.pt",
+      "checkpoint_sha256": "f7c66e6f1415fc55bbab5a5dbd7d51042e84407cb5ef6ad93e071706612c28d2",
+      "split_file": "E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952",
+      "git_branch": "research/ra-repdet-triair",
+      "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed2 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed2.json",
+      "environment": {
+        "python": "3.9.21",
+        "pytorch": "2.5.1",
+        "torchvision": "0.20.1",
+        "timm": "1.0.22",
+        "pycocotools": "2.0.8",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 3090"
+      },
+      "evidence_source": "V48 fresh training",
+      "selected_epoch": 6,
+      "training_runtime_seconds": 47169.02601957321,
+      "checkpoint_selection_rule": "highest development-validation project-local AP50",
+      "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2",
+      "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed2 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed2.json"
+    }
+  ],
+  "group_summaries": {
+    "matched_early": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "precision": {
+          "mean": 0.8992160764631656,
+          "sample_sd": 0.035205880855963115,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.8848929038122834,
+          "sample_sd": 0.03243845290892764,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.8911975851695728,
+          "sample_sd": 0.009650886807269101,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.680255156839423,
+          "sample_sd": 0.022049568753091206,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.9372451937738123,
+          "sample_sd": 0.004660483397389119,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.8090323693938453,
+          "sample_sd": 0.025091482879735755,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.7577694449179024,
+          "sample_sd": 0.018374638529850815,
+          "n": 3
+        }
+      }
+    },
+    "early_moddrop": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "precision": {
+          "mean": 0.9129675998560822,
+          "sample_sd": 0.02777772247616808,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.8907448440429522,
+          "sample_sd": 0.013010872494210119,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.9014249268760207,
+          "sample_sd": 0.00813839496801916,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.6840097064820851,
+          "sample_sd": 0.010124620806467617,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.9437355528040237,
+          "sample_sd": 0.002847646612883893,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.8211211331005236,
+          "sample_sd": 0.006972680822785653,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.7607067780239759,
+          "sample_sd": 0.009359088883413741,
+          "n": 3
+        }
+      }
+    },
+    "ra_static_equal": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "precision": {
+          "mean": 0.8933620875156768,
+          "sample_sd": 0.024085725289591263,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.8809158570535766,
+          "sample_sd": 0.023936026038212207,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.8867283410524647,
+          "sample_sd": 0.008917631834217194,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.6630931642608285,
+          "sample_sd": 0.00677779185388706,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.934106382953395,
+          "sample_sd": 0.00784413318811186,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.8053219434437633,
+          "sample_sd": 0.009469763895059456,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.7477643315720698,
+          "sample_sd": 0.008501770763076752,
+          "n": 3
+        }
+      }
+    },
+    "ra_stems_project": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "precision": {
+          "mean": 0.9087788586022063,
+          "sample_sd": 0.029825744702370344,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.8867109823305493,
+          "sample_sd": 0.03500820163659644,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.8968833324271439,
+          "sample_sd": 0.009899832421572484,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.6847721940037709,
+          "sample_sd": 0.009533988416871073,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.9405279136837293,
+          "sample_sd": 0.00650023666983364,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.834083865620561,
+          "sample_sd": 0.010004549226384352,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.7643372535651383,
+          "sample_sd": 0.00895874360804728,
+          "n": 3
+        }
+      }
+    },
+    "ra_no_moddrop": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "precision": {
+          "mean": 0.9117675989428193,
+          "sample_sd": 0.020363000081536527,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.893812851542526,
+          "sample_sd": 0.024364077892727917,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.9023306059804882,
+          "sample_sd": 0.0027693475546252755,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.7251478470429465,
+          "sample_sd": 0.012111890367362365,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.9475466989427793,
+          "sample_sd": 0.0002830752736000077,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.874167459572663,
+          "sample_sd": 0.008120322819618551,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.7916709277881938,
+          "sample_sd": 0.009793571476120018,
+          "n": 3
+        }
+      }
+    },
+    "ra_full_p015": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "precision": {
+          "mean": 0.9108453453055543,
+          "sample_sd": 0.029173745473406114,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.9093801488551787,
+          "sample_sd": 0.016959335053619875,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.909721703156977,
+          "sample_sd": 0.0063811407190533095,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.7156055407632191,
+          "sample_sd": 0.017211874764015134,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.9534118763500689,
+          "sample_sd": 0.0016594323134505235,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.8728763635024613,
+          "sample_sd": 0.019187250894846655,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.7825691722061247,
+          "sample_sd": 0.016079666778109805,
+          "n": 3
+        }
+      }
+    }
+  },
+  "paired_deltas": {
+    "ra_full_p015_minus_matched_early": {
+      "minuend": "ra_full_p015",
+      "subtrahend": "matched_early",
+      "shared_seeds": [
+        0,
+        1,
+        2
+      ],
+      "interpretation": "Development-validation full reliability-aware fusion minus matched early fusion.",
+      "metrics": {
+        "precision": {
+          "mean": 0.011629268842388685,
+          "sample_sd": 0.016501306699681875,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.024487245042895307,
+          "sample_sd": 0.026580838288858294,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.018524117987404127,
+          "sample_sd": 0.006208235832414489,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.035350383923796226,
+          "sample_sd": 0.020586182936123215,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.01616668257625653,
+          "sample_sd": 0.005581113835517064,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.06384399410861612,
+          "sample_sd": 0.016351548725299467,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.024799727288222218,
+          "sample_sd": 0.018168143010973723,
+          "n": 3
+        }
+      }
+    },
+    "ra_no_moddrop_minus_matched_early": {
+      "minuend": "ra_no_moddrop",
+      "subtrahend": "matched_early",
+      "shared_seeds": [
+        0,
+        1,
+        2
+      ],
+      "interpretation": "Development-validation combination of separate stems and dynamic gate minus matched early fusion.",
+      "metrics": {
+        "precision": {
+          "mean": 0.012551522479653743,
+          "sample_sd": 0.05551817393228627,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.008919947730242628,
+          "sample_sd": 0.05386282348370929,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.011133020810915347,
+          "sample_sd": 0.00832263016544171,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.0448926902035236,
+          "sample_sd": 0.03414185306961998,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.01030150516896696,
+          "sample_sd": 0.0043808643722446335,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.06513509017881765,
+          "sample_sd": 0.03266158234803148,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.033901482870291454,
+          "sample_sd": 0.02814851340802523,
+          "n": 3
+        }
+      }
+    },
+    "ra_full_p015_minus_ra_no_moddrop": {
+      "minuend": "ra_full_p015",
+      "subtrahend": "ra_no_moddrop",
+      "shared_seeds": [
+        0,
+        1,
+        2
+      ],
+      "interpretation": "Development-validation modality-dropout increment within the reliability-aware architecture.",
+      "metrics": {
+        "precision": {
+          "mean": -0.000922253637265058,
+          "sample_sd": 0.04860313725690126,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.01556729731265268,
+          "sample_sd": 0.04086140791489289,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.007391097176488781,
+          "sample_sd": 0.0037652220292345613,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": -0.009542306279727372,
+          "sample_sd": 0.025796503485427492,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.005865177407289572,
+          "sample_sd": 0.0018337503412476403,
+          "n": 3
+        },
+        "ap75": {
+          "mean": -0.00129109607020154,
+          "sample_sd": 0.023784721010911856,
+          "n": 3
+        },
+        "ar100": {
+          "mean": -0.009101755582069234,
+          "sample_sd": 0.022757957165188396,
+          "n": 3
+        }
+      }
+    },
+    "early_moddrop_minus_matched_early": {
+      "minuend": "early_moddrop",
+      "subtrahend": "matched_early",
+      "shared_seeds": [
+        0,
+        1,
+        2
+      ],
+      "interpretation": "Development-validation modality-dropout increment within early fusion.",
+      "metrics": {
+        "precision": {
+          "mean": 0.013751523392916668,
+          "sample_sd": 0.06091445170825155,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.00585194023066878,
+          "sample_sd": 0.04457363956155982,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.010227341706447901,
+          "sample_sd": 0.008886063370060888,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.0037545496426621603,
+          "sample_sd": 0.03215996530575654,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.0064903590302113345,
+          "sample_sd": 0.002587532479469557,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.012088763706678366,
+          "sample_sd": 0.031438723855349376,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.0029373331060735066,
+          "sample_sd": 0.027733219125551135,
+          "n": 3
+        }
+      }
+    },
+    "ra_static_equal_minus_matched_early": {
+      "minuend": "ra_static_equal",
+      "subtrahend": "matched_early",
+      "shared_seeds": [
+        0,
+        1,
+        2
+      ],
+      "interpretation": "Development-validation increment from separate stems with fixed equal feature fusion.",
+      "metrics": {
+        "precision": {
+          "mean": -0.005853988947488749,
+          "sample_sd": 0.02162925346515513,
+          "n": 3
+        },
+        "recall": {
+          "mean": -0.003977046758706841,
+          "sample_sd": 0.020329673412629836,
+          "n": 3
+        },
+        "f1": {
+          "mean": -0.004469244117108177,
+          "sample_sd": 0.018558098027936475,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": -0.017161992578594448,
+          "sample_sd": 0.015384850202481122,
+          "n": 3
+        },
+        "ap50": {
+          "mean": -0.003138810820417337,
+          "sample_sd": 0.010619531921368578,
+          "n": 3
+        },
+        "ap75": {
+          "mean": -0.0037104259500820116,
+          "sample_sd": 0.022439038745464865,
+          "n": 3
+        },
+        "ar100": {
+          "mean": -0.010005113345832614,
+          "sample_sd": 0.010150002211054809,
+          "n": 3
+        }
+      }
+    },
+    "ra_no_moddrop_minus_ra_static_equal": {
+      "minuend": "ra_no_moddrop",
+      "subtrahend": "ra_static_equal",
+      "shared_seeds": [
+        0,
+        1,
+        2
+      ],
+      "interpretation": "Development-validation dynamic-gating increment beyond equal-weight stem fusion.",
+      "metrics": {
+        "precision": {
+          "mean": 0.01840551142714249,
+          "sample_sd": 0.04148608321996249,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.012896994488949468,
+          "sample_sd": 0.048297088536496106,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.015602264928023524,
+          "sample_sd": 0.010658426379541067,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.062054682782118044,
+          "sample_sd": 0.018781498175739198,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.013440315989384296,
+          "sample_sd": 0.007922726845456,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.06884551612889966,
+          "sample_sd": 0.0127566480526392,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.04390659621612406,
+          "sample_sd": 0.018267705797732167,
+          "n": 3
+        }
+      }
+    },
+    "ra_stems_project_minus_matched_early": {
+      "minuend": "ra_stems_project",
+      "subtrahend": "matched_early",
+      "shared_seeds": [
+        0,
+        1,
+        2
+      ],
+      "interpretation": "Development-validation learned deterministic fusion control minus matched early fusion.",
+      "metrics": {
+        "precision": {
+          "mean": 0.009562782139040679,
+          "sample_sd": 0.059955731008215246,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.0018180785182660235,
+          "sample_sd": 0.061845262751677475,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.005685747257571057,
+          "sample_sd": 0.019099606778286,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.004517037164347888,
+          "sample_sd": 0.029869435125855513,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.0032827199099169833,
+          "sample_sd": 0.010715730963644421,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.025051496226715726,
+          "sample_sd": 0.031693161864813024,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.0065678086472359025,
+          "sample_sd": 0.023973445883370362,
+          "n": 3
+        }
+      }
+    },
+    "ra_no_moddrop_minus_ra_stems_project": {
+      "minuend": "ra_no_moddrop",
+      "subtrahend": "ra_stems_project",
+      "shared_seeds": [
+        0,
+        1,
+        2
+      ],
+      "interpretation": "Development-validation dynamic-gating contrast against deterministic learned projection control.",
+      "metrics": {
+        "precision": {
+          "mean": 0.0029887403406130644,
+          "sample_sd": 0.02317023765635484,
+          "n": 3
+        },
+        "recall": {
+          "mean": 0.007101869211976604,
+          "sample_sd": 0.040686132072944484,
+          "n": 3
+        },
+        "f1": {
+          "mean": 0.0054472735533442895,
+          "sample_sd": 0.012391702158344129,
+          "n": 3
+        },
+        "ap50_95": {
+          "mean": 0.04037565303917571,
+          "sample_sd": 0.0073567315838713974,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.0070187852590499755,
+          "sample_sd": 0.006714493737016293,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.040083593952101926,
+          "sample_sd": 0.011877574186521389,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.02733367422305555,
+          "sample_sd": 0.008985117426397862,
+          "n": 3
+        }
+      }
+    }
+  },
+  "fresh_execution": {
+    "status": "V48_CAUSAL_ABLATION_COMPLETE",
+    "generated_at": "2026-07-13T14:43:34+08:00",
+    "selection_rule": "highest development-validation project-local AP50",
+    "guard_used": false,
+    "completed_fresh_runs": 10,
+    "required_fresh_runs": 10,
+    "runs": [
+      {
+        "run_id": "ra_no_moddrop_seed1",
+        "variant": "ra_no_moddrop",
+        "model": "reliability",
+        "modality_dropout": 0.0,
+        "seed": 1,
+        "state": "COMPLETE",
+        "started_at": "2026-07-11T11:18:52+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model reliability --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed1 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed1.json",
+        "completed_at": "2026-07-12T00:08:27+08:00",
+        "training_runtime_seconds": 45948.71639204025,
+        "evaluation_runtime_seconds": 226.0205533504486,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1\\weights\\best.pt",
+        "checkpoint_sha256": "0f936e657b9a4cc83da6fc3f543d7f28ba72e8b61fc5a0bd60f9bff1159845ec",
+        "selected_epoch": 5,
+        "selected_metrics": {
+          "precision": 0.3349845562095693,
+          "recall": 0.9797170615305949,
+          "ap50": 0.9493768215179443,
+          "ap75": 0.8837875723838806,
+          "gt_boxes": 5867,
+          "predictions": 17159,
+          "mean_confidence": 0.42037739126344226,
+          "eval_fps": 13.470436240396856
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed1.json"
+      },
+      {
+        "run_id": "ra_no_moddrop_seed2",
+        "variant": "ra_no_moddrop",
+        "model": "reliability",
+        "modality_dropout": 0.0,
+        "seed": 2,
+        "state": "COMPLETE",
+        "started_at": "2026-07-12T13:14:46+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model reliability --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed2 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed2.json",
+        "completed_at": "2026-07-13T01:30:47+08:00",
+        "training_runtime_seconds": 43927.58909869194,
+        "evaluation_runtime_seconds": 232.97550702095032,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2\\weights\\best.pt",
+        "checkpoint_sha256": "5968bd0509826dc04bde8e59e0d227812be3a3f805fbfee4559e119c441a4875",
+        "selected_epoch": 6,
+        "selected_metrics": {
+          "precision": 0.26259729619008604,
+          "recall": 0.9832964036134311,
+          "ap50": 0.9502640962600708,
+          "ap75": 0.8758522272109985,
+          "gt_boxes": 5867,
+          "predictions": 21969,
+          "mean_confidence": 0.40407943940397617,
+          "eval_fps": 19.09603168107922
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed2.json"
+      },
+      {
+        "run_id": "early_moddrop_seed1",
+        "variant": "early_moddrop",
+        "model": "early",
+        "modality_dropout": 0.15,
+        "seed": 1,
+        "state": "COMPLETE",
+        "started_at": "2026-07-11T11:18:52+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed1 --protocol ablation_devval --variant early_moddrop --model early --seed 1 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed1.json",
+        "completed_at": "2026-07-12T00:03:43+08:00",
+        "training_runtime_seconds": 45611.400997400284,
+        "evaluation_runtime_seconds": 279.275021314621,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt",
+        "checkpoint_sha256": "621d0563439db2554d10625b90afd8cc982cb64ed7294036934e0ccf66bbb83c",
+        "selected_epoch": 8,
+        "selected_metrics": {
+          "precision": 0.297337968968917,
+          "recall": 0.976649054031021,
+          "ap50": 0.9445458650588989,
+          "ap75": 0.8230487108230591,
+          "gt_boxes": 5867,
+          "predictions": 19271,
+          "mean_confidence": 0.40147676702760265,
+          "eval_fps": 24.552210365700432
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed1.json"
+      },
+      {
+        "run_id": "early_moddrop_seed2",
+        "variant": "early_moddrop",
+        "model": "early",
+        "modality_dropout": 0.15,
+        "seed": 2,
+        "state": "COMPLETE",
+        "started_at": "2026-07-12T13:14:47+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed2 --protocol ablation_devval --variant early_moddrop --model early --seed 2 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed2.json",
+        "completed_at": "2026-07-13T01:31:07+08:00",
+        "training_runtime_seconds": 43950.0952501297,
+        "evaluation_runtime_seconds": 230.02752709388733,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2\\weights\\best.pt",
+        "checkpoint_sha256": "c204220f66851e96433c5bfd2d08a85bb8f7d56ec41cff351e748faca8345a60",
+        "selected_epoch": 6,
+        "selected_metrics": {
+          "precision": 0.20874823478292356,
+          "recall": 0.9826146241690813,
+          "ap50": 0.9442002177238464,
+          "ap75": 0.828921914100647,
+          "gt_boxes": 5867,
+          "predictions": 27617,
+          "mean_confidence": 0.37050495591939575,
+          "eval_fps": 18.214334962876862
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed2.json"
+      },
+      {
+        "run_id": "ra_static_equal_seed0",
+        "variant": "ra_static_equal",
+        "model": "ra_static_equal",
+        "modality_dropout": 0.0,
+        "seed": 0,
+        "state": "COMPLETE",
+        "started_at": "2026-07-10T23:10:49+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 0 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed0 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed0.json",
+        "completed_at": "2026-07-11T11:18:21+08:00",
+        "training_runtime_seconds": 43396.20064878464,
+        "evaluation_runtime_seconds": 255.3200080394745,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt",
+        "checkpoint_sha256": "c9cfd26caf4b219b030997a93b3c549f9df6447c138df735779cf2dde6f3f2f7",
+        "selected_epoch": 5,
+        "selected_metrics": {
+          "precision": 0.1981549305507567,
+          "recall": 0.9775012783364582,
+          "ap50": 0.9283370971679688,
+          "ap75": 0.8132537603378296,
+          "gt_boxes": 5867,
+          "predictions": 28942,
+          "mean_confidence": 0.3570184466763008,
+          "eval_fps": 26.98926705561919
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed0.json"
+      },
+      {
+        "run_id": "ra_static_equal_seed1",
+        "variant": "ra_static_equal",
+        "model": "ra_static_equal",
+        "modality_dropout": 0.0,
+        "seed": 1,
+        "state": "COMPLETE",
+        "started_at": "2026-07-12T00:09:00+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed1 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed1.json",
+        "completed_at": "2026-07-12T13:14:15+08:00",
+        "training_runtime_seconds": 46869.97516655922,
+        "evaluation_runtime_seconds": 244.13995337486267,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1\\weights\\best.pt",
+        "checkpoint_sha256": "2819dec6d5faa0cfb46449b8cda9a6a5efe0d92584a58587d516ebf89b31e7c8",
+        "selected_epoch": 4,
+        "selected_metrics": {
+          "precision": 0.158304545703789,
+          "recall": 0.9841486279188683,
+          "ap50": 0.9445663094520569,
+          "ap75": 0.8121101260185242,
+          "gt_boxes": 5867,
+          "predictions": 36474,
+          "mean_confidence": 0.3424678384422661,
+          "eval_fps": 17.51609976557097
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed1.json"
+      },
+      {
+        "run_id": "ra_static_equal_seed2",
+        "variant": "ra_static_equal",
+        "model": "ra_static_equal",
+        "modality_dropout": 0.0,
+        "seed": 2,
+        "state": "COMPLETE",
+        "started_at": "2026-07-13T01:31:37+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed2 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed2.json",
+        "completed_at": "2026-07-13T14:42:00+08:00",
+        "training_runtime_seconds": 47170.030148506165,
+        "evaluation_runtime_seconds": 252.49195218086243,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2\\weights\\best.pt",
+        "checkpoint_sha256": "ff529328194fe5defa88017af91b5b05b605c7024acd1e39798f460dbda82247",
+        "selected_epoch": 4,
+        "selected_metrics": {
+          "precision": 0.28313193343898574,
+          "recall": 0.9744332708368842,
+          "ap50": 0.9367132782936096,
+          "ap75": 0.7942011952400208,
+          "gt_boxes": 5867,
+          "predictions": 20192,
+          "mean_confidence": 0.3971715710035831,
+          "eval_fps": 14.858593679095927
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed2.json"
+      },
+      {
+        "run_id": "ra_stems_project_seed0",
+        "variant": "ra_stems_project",
+        "model": "ra_stems_project",
+        "modality_dropout": 0.0,
+        "seed": 0,
+        "state": "COMPLETE",
+        "started_at": "2026-07-10T23:10:49+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 0 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed0 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed0.json",
+        "completed_at": "2026-07-11T11:18:21+08:00",
+        "training_runtime_seconds": 43396.308157444,
+        "evaluation_runtime_seconds": 254.89458107948303,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0\\weights\\best.pt",
+        "checkpoint_sha256": "8dc418bff5fd02f0d4ae3fe429ae968fa6becb974ffac49a7b8997267b257295",
+        "selected_epoch": 5,
+        "selected_metrics": {
+          "precision": 0.27823503628305657,
+          "recall": 0.9737514913925345,
+          "ap50": 0.9342411160469055,
+          "ap75": 0.8270431756973267,
+          "gt_boxes": 5867,
+          "predictions": 20533,
+          "mean_confidence": 0.3872191656212344,
+          "eval_fps": 22.886926744081645
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed0.json"
+      },
+      {
+        "run_id": "ra_stems_project_seed1",
+        "variant": "ra_stems_project",
+        "model": "ra_stems_project",
+        "modality_dropout": 0.0,
+        "seed": 1,
+        "state": "COMPLETE",
+        "started_at": "2026-07-12T00:09:00+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed1 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed1.json",
+        "completed_at": "2026-07-12T13:14:14+08:00",
+        "training_runtime_seconds": 46868.33664011955,
+        "evaluation_runtime_seconds": 245.47147727012634,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt",
+        "checkpoint_sha256": "4a3eec478737261d972ab0fe21d63c6a8f32c0aaa62dc557debd0ff04aca59d4",
+        "selected_epoch": 5,
+        "selected_metrics": {
+          "precision": 0.26351041379943113,
+          "recall": 0.9790352820862451,
+          "ap50": 0.9455833435058594,
+          "ap75": 0.8311956524848938,
+          "gt_boxes": 5867,
+          "predictions": 21798,
+          "mean_confidence": 0.39488650693107236,
+          "eval_fps": 18.419350266676403
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed1.json"
+      },
+      {
+        "run_id": "ra_stems_project_seed2",
+        "variant": "ra_stems_project",
+        "model": "ra_stems_project",
+        "modality_dropout": 0.0,
+        "seed": 2,
+        "state": "COMPLETE",
+        "started_at": "2026-07-13T01:31:37+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed2 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed2.json",
+        "completed_at": "2026-07-13T14:42:03+08:00",
+        "training_runtime_seconds": 47169.02601957321,
+        "evaluation_runtime_seconds": 256.03067445755005,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2\\weights\\best.pt",
+        "checkpoint_sha256": "f7c66e6f1415fc55bbab5a5dbd7d51042e84407cb5ef6ad93e071706612c28d2",
+        "selected_epoch": 6,
+        "selected_metrics": {
+          "precision": 0.24887795615397895,
+          "recall": 0.9829555138912561,
+          "ap50": 0.9482478499412537,
+          "ap75": 0.8465031385421753,
+          "gt_boxes": 5867,
+          "predictions": 23172,
+          "mean_confidence": 0.40521009647651246,
+          "eval_fps": 18.51782671007967
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed2.json"
+      }
+    ]
+  }
+}

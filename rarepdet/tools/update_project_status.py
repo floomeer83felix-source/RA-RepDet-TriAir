@@ -1259,7 +1259,13 @@ def build_status():
 
 
 def main():
+    from v48_handoff import is_v48_ready, write_v48_status
     from v46_handoff import is_v46_ready, write_v46_status
+
+    if is_v48_ready(PROJECT_ROOT):
+        write_v48_status(PROJECT_ROOT)
+        print(f"Saved: {STATUS_PATH}")
+        return
 
     if is_v46_ready(PROJECT_ROOT):
         write_v46_status(PROJECT_ROOT)

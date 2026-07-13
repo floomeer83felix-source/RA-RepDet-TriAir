@@ -250,7 +250,11 @@ def main():
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--protocol", required=True, choices=("devval", "guard", "ablation_devval"))
     parser.add_argument("--variant", required=True)
-    parser.add_argument("--model", choices=("early", "reliability"), default=None)
+    parser.add_argument(
+        "--model",
+        choices=("early", "reliability", "ra_static_equal", "ra_stems_project"),
+        default=None,
+    )
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--modality-dropout", type=float, default=0.0)
     parser.add_argument("--data", default=r"D:\download\triair")

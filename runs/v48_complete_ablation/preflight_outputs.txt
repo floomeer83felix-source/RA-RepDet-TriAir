@@ -1,0 +1,95 @@
+generated_at: 2026-07-13T14:43:20+08:00
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe -m py_compile rarepdet/coco_metrics.py rarepdet/train_early_fusion.py rarepdet/eval_map.py rarepdet/models/early_fusion_fcos.py rarepdet/models/repvit_fpn_backbone.py rarepdet/models/ablation_fusion_fcos.py rarepdet/tools/eval_coco_map.py rarepdet/tools/create_v48_source_lock.py rarepdet/tools/profile_v48_models.py rarepdet/tools/run_v48_training.py rarepdet/tools/build_v48_summary.py rarepdet/tools/scan_v48_claims.py rarepdet/tools/run_v48_preflight.py rarepdet/tools/run_v48_queue.py rarepdet/tools/finalize_v48_task.py rarepdet/tools/v48_handoff.py rarepdet/tools/generate_handoff.py rarepdet/tools/update_project_status.py tests/test_v48_ablation_fusion.py datasets/triair_dataset.py =====
+return_code: 0
+
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe tests/test_v48_ablation_fusion.py =====
+return_code: 0
+test_all_factories_construct (__main__.V48AblationFusionTest) ... ok
+test_static_controls_checkpoint_round_trip_and_determinism (__main__.V48AblationFusionTest) ... ok
+test_static_controls_forward_and_gradients (__main__.V48AblationFusionTest) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.799s
+
+OK
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/smoke_test_coco_metrics.py =====
+return_code: 0
+PASS: COCO metric smoke tests
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/build_v48_summary.py =====
+return_code: 0
+{
+  "status": "V48_CAUSAL_ABLATION_COMPLETE",
+  "completed_fresh_runs": 10
+}
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/scan_v48_claims.py =====
+return_code: 0
+files_scanned=77 matches=1 unresolved=0
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/profile_v48_models.py --models ra_static_equal --img-size 64 --batch-size 1 --device cpu --warmup 0 --iterations 1 --out-dir runs/v48_complete_ablation/preflight_profile_smoke =====
+return_code: 0
+{
+  "model_type": "ra_static_equal",
+  "operator_flops": 1054337588,
+  "mean_latency_ms": 119.45899999999997,
+  "throughput_fps": 8.37107292041621
+}
+
+===== COMMAND: C:\Users\xinnan\.conda\envs\pytorch\python.exe scripts/preflight_submission.py --allow-placeholders =====
+return_code: 1
+RA-RepDet SIVP preflight
+root: E:\RepViT-main
+allow_placeholders: True
+WARN: Placeholder or unverified field remains in archive_manifest.txt: /AUTHOR_(REQUIRED|CONFIRMATION_REQUIRED|CONFIRMATION REQUIRED)/
+WARN: Placeholder or unverified field remains in SUBMISSION_PRECHECK_V18.md: /NOT PROVIDED/
+WARN: Placeholder or unverified field remains in SUBMISSION_PRECHECK_V18.md: /PLACEHOLDER/
+WARN: Missing final figure assets: figures/Fig1_overall_architecture.pdf, figures/Fig2_leakage_aware_protocol.pdf, figures/Fig3_controlled_ablation.pdf, figures/Fig4_missing_modality_robustness.pdf, figures/Fig5_reliability_weight_audit.pdf, figures/Fig6_qualitative_results.pdf
+FAIL: Unresolved citation keys: Ektefaie2023MultimodalGraphs, Gehrig2024LowLatencyEvent, Guo2023MultiSpectrumDepth, Han2023VisionTransformer, Kapoor2023Patterns, Kaufmann2023ChampionDrone, Li2023LRRNet, Liu2023CoCoNet, Liu2023PromptFusion, Liu2024TIMFusion, Luo2023UAVRegistration, Park2024CrossModalTransformers, Rao2023ATGAN, Rao2023TGFuse, Song2023AutonomousRacing, Tang2023DATFuse, Tang2023PSFusion, Tang2023RGBTTracking, Tang2023TCCFusion, Wang2023FusionSOD, Wang2024FreqGAN, Xie2023SemanticsLeadAll, Xu2023MURF, Yang2024CAGNet, Yue2023DifFusion, Zhang2023CMX, Zhang2023ConditionalGANFusion, ZhangDemiris2023DeepFusion, Zhao2023ModalityDiscrepancies, Zhou2023MC3Net, Zou2023OD20Years
+FAIL: submission/sivp/tex/ra_repdet_sivp.tex contains test-set wording; v18 requires validation wording unless independent frozen test results are provided.
+RESULT: FAIL
+classification: NONBLOCKING_EXISTING_SUBMISSION_PREFLIGHT_FAILURE
+reason: V48 is forbidden from changing frozen manuscript, bibliography, or submission files.
+
+===== COMMAND: git diff --check =====
+return_code: 0
+warning: in the working copy of 'rarepdet/eval_map.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rarepdet/models/early_fusion_fcos.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rarepdet/tools/eval_coco_map.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rarepdet/tools/generate_handoff.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rarepdet/tools/update_project_status.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rarepdet/train_early_fusion.py', LF will be replaced by CRLF the next time Git touches it
+
+===== INTERNAL CHECKS =====
+PASS manifest train sha256=f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f
+PASS manifest devval sha256=722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f
+PASS source lock rarepdet/coco_metrics.py
+PASS source lock rarepdet/metrics.py
+PASS source lock rarepdet/data.py
+PASS source lock rarepdet/train_early_fusion.py
+PASS source lock rarepdet/eval_map.py
+PASS source lock rarepdet/models/early_fusion_fcos.py
+PASS source lock rarepdet/models/repvit_fpn_backbone.py
+PASS source lock rarepdet/models/ablation_fusion_fcos.py
+PASS source lock rarepdet/tools/eval_coco_map.py
+PASS source lock rarepdet/tools/create_v48_source_lock.py
+PASS source lock rarepdet/tools/profile_v48_models.py
+PASS source lock rarepdet/tools/run_v48_training.py
+PASS source lock rarepdet/tools/build_v48_summary.py
+PASS source lock rarepdet/tools/scan_v48_claims.py
+PASS source lock rarepdet/tools/run_v48_preflight.py
+PASS source lock rarepdet/tools/run_v48_queue.py
+PASS source lock rarepdet/tools/finalize_v48_task.py
+PASS source lock rarepdet/tools/v48_handoff.py
+PASS source lock rarepdet/tools/generate_handoff.py
+PASS source lock rarepdet/tools/update_project_status.py
+PASS source lock tests/test_v48_ablation_fusion.py
+PASS source lock datasets/triair_dataset.py
+PASS no V48 guard output
+PASS summary reports guard_used=false
+PASS claim scan
+
+FINAL_STATUS: PASS

@@ -1,0 +1,30 @@
+V46 COCO-style checkpoint evaluation
+====================================
+run_id: ra_no_moddrop_seed2
+protocol: ablation_devval
+variant: ra_no_moddrop
+checkpoint_sha256: 5968bd0509826dc04bde8e59e0d227812be3a3f805fbfee4559e119c441a4875
+split_sha256: 722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f
+images: 2213
+gt_boxes: 5867
+detections: 221300
+AP@[0.50:0.95]: 0.730786
+AP50: 0.947223
+AP75: 0.873939
+AR100: 0.797119
+precision@0.50: 0.896413
+recall@0.50: 0.911539
+F1@0.50: 0.903913
+inference_seconds: 66.729
+metric_seconds: 153.056
+command: C:\Users\xinnan\.conda\envs\pytorch\python.exe E:\RepViT-main\rarepdet\tools\eval_coco_map.py --run-id ra_no_moddrop_seed2 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 2 --modality-dropout 0.00 --data D:\download\triair --split-file E:\RepViT-main\reproducibility\v40_expanded_adjacency_component_split_v2\manifests\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\RepViT-main\runs\v48_complete_ablation\training\ra_no_moddrop_seed2\weights\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\RepViT-main\runs\v48_complete_ablation\raw\devval\ra_no_moddrop_seed2.json
+AP@0.50: 0.947223
+AP@0.55: 0.944333
+AP@0.60: 0.939738
+AP@0.65: 0.928198
+AP@0.70: 0.912750
+AP@0.75: 0.873939
+AP@0.80: 0.802748
+AP@0.85: 0.634659
+AP@0.90: 0.308205
+AP@0.95: 0.016062

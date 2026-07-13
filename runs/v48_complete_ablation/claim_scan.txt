@@ -1,0 +1,4 @@
+generated_at: 2026-07-13T14:43:35+08:00
+files_scanned: 77
+matches: 1
+runs/v48_complete_ablation/claim_boundary.md:16 | calibrated reliability | guardrail_or_negation | - Do not infer a universal dropout choice, calibrated reliability, sensor-health probabilities, or real fault behavior.

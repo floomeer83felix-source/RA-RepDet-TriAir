@@ -1,0 +1,30 @@
+{
+  "run_id": "ra_stems_project_seed1",
+  "variant": "ra_stems_project",
+  "model": "ra_stems_project",
+  "modality_dropout": 0.0,
+  "seed": 1,
+  "state": "COMPLETE",
+  "started_at": "2026-07-12T00:09:00+08:00",
+  "guard_used": false,
+  "checkpoint_selection_rule": "highest development-validation project-local AP50",
+  "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1",
+  "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed1 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed1.json",
+  "completed_at": "2026-07-12T13:14:14+08:00",
+  "training_runtime_seconds": 46868.33664011955,
+  "evaluation_runtime_seconds": 245.47147727012634,
+  "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt",
+  "checkpoint_sha256": "4a3eec478737261d972ab0fe21d63c6a8f32c0aaa62dc557debd0ff04aca59d4",
+  "selected_epoch": 5,
+  "selected_metrics": {
+    "precision": 0.26351041379943113,
+    "recall": 0.9790352820862451,
+    "ap50": 0.9455833435058594,
+    "ap75": 0.8311956524848938,
+    "gt_boxes": 5867,
+    "predictions": 21798,
+    "mean_confidence": 0.39488650693107236,
+    "eval_fps": 18.419350266676403
+  },
+  "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed1.json"
+}

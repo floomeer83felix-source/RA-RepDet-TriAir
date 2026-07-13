@@ -1,0 +1,30 @@
+{
+  "run_id": "early_moddrop_seed1",
+  "variant": "early_moddrop",
+  "model": "early",
+  "modality_dropout": 0.15,
+  "seed": 1,
+  "state": "COMPLETE",
+  "started_at": "2026-07-11T11:18:52+08:00",
+  "guard_used": false,
+  "checkpoint_selection_rule": "highest development-validation project-local AP50",
+  "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1",
+  "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed1 --protocol ablation_devval --variant early_moddrop --model early --seed 1 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed1.json",
+  "completed_at": "2026-07-12T00:03:43+08:00",
+  "training_runtime_seconds": 45611.400997400284,
+  "evaluation_runtime_seconds": 279.275021314621,
+  "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt",
+  "checkpoint_sha256": "621d0563439db2554d10625b90afd8cc982cb64ed7294036934e0ccf66bbb83c",
+  "selected_epoch": 8,
+  "selected_metrics": {
+    "precision": 0.297337968968917,
+    "recall": 0.976649054031021,
+    "ap50": 0.9445458650588989,
+    "ap75": 0.8230487108230591,
+    "gt_boxes": 5867,
+    "predictions": 19271,
+    "mean_confidence": 0.40147676702760265,
+    "eval_fps": 24.552210365700432
+  },
+  "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed1.json"
+}

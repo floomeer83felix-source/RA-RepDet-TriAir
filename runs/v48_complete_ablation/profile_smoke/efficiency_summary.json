@@ -1,0 +1,39 @@
+{
+  "status": "V48_EFFICIENCY_PROFILE_COMPLETE",
+  "generated_at": "2026-07-10T23:00:36+08:00",
+  "procedure": {
+    "batch_size": 1,
+    "img_size": 64,
+    "precision_mode": "float32",
+    "warmup_iterations": 0,
+    "measured_iterations": 1,
+    "synchronization": "before and after each measured full-detector inference when CUDA is used",
+    "flop_convention": "sum of torch.profiler full-detector operator FLOPs; derived MACs=FLOPs/2",
+    "dataloader_time_included": false
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "pytorch": "2.5.1",
+    "cuda": "12.4",
+    "device": "cpu",
+    "gpu": "CPU"
+  },
+  "models": [
+    {
+      "model_type": "ra_static_equal",
+      "total_params": 6592458,
+      "trainable_params": 6592458,
+      "operator_flops": 1054337588,
+      "derived_macs": 527168794.0,
+      "mean_latency_ms": 96.56740000000141,
+      "median_latency_ms": 96.56740000000141,
+      "p95_latency_ms": 96.56740000000141,
+      "throughput_fps": 10.355461573988586,
+      "peak_allocated_memory_mib": null,
+      "checkpoint": "",
+      "checkpoint_sha256": "NA",
+      "input_shape": "1x5x64x64",
+      "precision_mode": "float32"
+    }
+  ]
+}

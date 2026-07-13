@@ -1,0 +1,87 @@
+{
+  "status": "V48_EFFICIENCY_PROFILE_COMPLETE",
+  "generated_at": "2026-07-13T14:43:19+08:00",
+  "procedure": {
+    "batch_size": 1,
+    "img_size": 640,
+    "precision_mode": "float32",
+    "warmup_iterations": 10,
+    "measured_iterations": 30,
+    "synchronization": "before and after each measured full-detector inference when CUDA is used",
+    "flop_convention": "sum of torch.profiler full-detector operator FLOPs; derived MACs=FLOPs/2",
+    "dataloader_time_included": false
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "pytorch": "2.5.1",
+    "cuda": "12.4",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3090"
+  },
+  "models": [
+    {
+      "model_type": "early",
+      "total_params": 6591609,
+      "trainable_params": 6591609,
+      "operator_flops": 104762427192,
+      "derived_macs": 52381213596.0,
+      "mean_latency_ms": 40.40459333333336,
+      "median_latency_ms": 39.29975000000052,
+      "p95_latency_ms": 46.00839999999984,
+      "throughput_fps": 24.74966130088508,
+      "peak_allocated_memory_mib": 122.49072265625,
+      "checkpoint": "runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602",
+      "input_shape": "1x5x640x640",
+      "precision_mode": "float32"
+    },
+    {
+      "model_type": "reliability",
+      "total_params": 6593293,
+      "trainable_params": 6593293,
+      "operator_flops": 105392393627,
+      "derived_macs": 52696196813.5,
+      "mean_latency_ms": 40.67935333333347,
+      "median_latency_ms": 39.03005000000004,
+      "p95_latency_ms": 49.97280000000082,
+      "throughput_fps": 24.582495001968976,
+      "peak_allocated_memory_mib": 236.3974609375,
+      "checkpoint": "runs\\v40_expanded_adjacency_v2_compute_minimized\\reliability_p015_seed0\\weights\\best.pt",
+      "checkpoint_sha256": "4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436",
+      "input_shape": "1x5x640x640",
+      "precision_mode": "float32"
+    },
+    {
+      "model_type": "ra_static_equal",
+      "total_params": 6592458,
+      "trainable_params": 6592458,
+      "operator_flops": 105392391992,
+      "derived_macs": 52696195996.0,
+      "mean_latency_ms": 39.684183333333266,
+      "median_latency_ms": 38.74840000000024,
+      "p95_latency_ms": 48.27050000000099,
+      "throughput_fps": 25.198956259231785,
+      "peak_allocated_memory_mib": 229.626953125,
+      "checkpoint": "",
+      "checkpoint_sha256": "NA",
+      "input_shape": "1x5x640x640",
+      "precision_mode": "float32"
+    },
+    {
+      "model_type": "ra_stems_project",
+      "total_params": 6593242,
+      "trainable_params": 6593242,
+      "operator_flops": 106008430392,
+      "derived_macs": 53004215196.0,
+      "mean_latency_ms": 38.650530000000316,
+      "median_latency_ms": 37.787150000001546,
+      "p95_latency_ms": 43.83759999999981,
+      "throughput_fps": 25.87286642641102,
+      "peak_allocated_memory_mib": 229.2392578125,
+      "checkpoint": "",
+      "checkpoint_sha256": "NA",
+      "input_shape": "1x5x640x640",
+      "precision_mode": "float32"
+    }
+  ]
+}

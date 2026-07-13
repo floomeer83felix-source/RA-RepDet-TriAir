@@ -1,242 +1,412 @@
 {
   "project_name": "RA-RepDet-TriAir",
-  "generated_at": "2026-07-10T22:31:56+08:00",
+  "generated_at": "2026-07-13T14:43:49+08:00",
   "current_task": {
-    "task_file": "docs/NEXT_TASK.md",
-    "title": "V46 COCO metrics and causal fusion ablations",
-    "status": "V47_STRUCTURE_LITERATURE_COMPILE_AND_V46_COCO_ABLATION_SEED0_PARTIAL_COMPLETE",
-    "commit_message": "eval: add V46 COCO metrics and causal ablation evidence"
-  },
-  "v47_revision": {
-    "status": "COMPLETE",
-    "report": "runs/v47_structure_literature/STRUCTURE_AND_REFERENCE_REVISION_REPORT.md",
-    "compile_report": "runs/v47_structure_literature/V47_COMPILE_AND_CITATION_CLOSURE.md",
-    "reference_ledger": "submission/sivp/review/V47_RECENT_Q12_REFERENCE_LEDGER.md",
-    "bibliography": "submission/sivp/tex/references_recent_q12_2023_2025.bib",
-    "active_citations": 40,
-    "compile_page_count": 10,
-    "missing_citations": 0,
-    "undefined_cross_references": 0,
-    "v46_evidence_integrated_into_manuscript": false
+    "title": "V48 complete three-seed causal ablations, static fusion controls, and efficiency profiling",
+    "status": "V48_CAUSAL_ABLATION_COMPLETE",
+    "commit_message": "eval: complete V48 causal ablations and efficiency profiling"
   },
   "source_lock": {
-    "path": "runs/v46_coco_ablation/source_lock_v46.json",
-    "status": "V46_SOURCE_LOCKED_BEFORE_EXECUTION",
-    "source_commit": "0985c45a179f469adfc8b0b6326a54737c63789e",
-    "branch": "research/ra-repdet-triair"
+    "path": "runs/v48_complete_ablation/source_lock_v48.json",
+    "git_commit": "3d18bcc1ed402776c43b1a9aaa022ffeb3416952"
   },
-  "blocker": {
-    "status": "PARTIAL_GPU_TIME_AND_ALLOWED_SCOPE_BLOCKER",
-    "path": "docs/TASK_BLOCKER.md",
-    "remaining": [
-      "ra_no_moddrop and early_moddrop seeds 1 and 2 require about 28-34 additional GPU hours",
-      "ra_static_equal and ra_stems_concat_or_project require protected architecture/training plumbing changes outside the V46 allowed-file list"
+  "execution": {
+    "status": "V48_CAUSAL_ABLATION_COMPLETE",
+    "generated_at": "2026-07-13T14:43:34+08:00",
+    "selection_rule": "highest development-validation project-local AP50",
+    "guard_used": false,
+    "completed_fresh_runs": 10,
+    "required_fresh_runs": 10,
+    "runs": [
+      {
+        "run_id": "ra_no_moddrop_seed1",
+        "variant": "ra_no_moddrop",
+        "model": "reliability",
+        "modality_dropout": 0.0,
+        "seed": 1,
+        "state": "COMPLETE",
+        "started_at": "2026-07-11T11:18:52+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model reliability --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed1 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed1.json",
+        "completed_at": "2026-07-12T00:08:27+08:00",
+        "training_runtime_seconds": 45948.71639204025,
+        "evaluation_runtime_seconds": 226.0205533504486,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed1\\weights\\best.pt",
+        "checkpoint_sha256": "0f936e657b9a4cc83da6fc3f543d7f28ba72e8b61fc5a0bd60f9bff1159845ec",
+        "selected_epoch": 5,
+        "selected_metrics": {
+          "precision": 0.3349845562095693,
+          "recall": 0.9797170615305949,
+          "ap50": 0.9493768215179443,
+          "ap75": 0.8837875723838806,
+          "gt_boxes": 5867,
+          "predictions": 17159,
+          "mean_confidence": 0.42037739126344226,
+          "eval_fps": 13.470436240396856
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed1.json"
+      },
+      {
+        "run_id": "ra_no_moddrop_seed2",
+        "variant": "ra_no_moddrop",
+        "model": "reliability",
+        "modality_dropout": 0.0,
+        "seed": 2,
+        "state": "COMPLETE",
+        "started_at": "2026-07-12T13:14:46+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model reliability --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_no_moddrop_seed2 --protocol ablation_devval --variant ra_no_moddrop --model reliability --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed2.json",
+        "completed_at": "2026-07-13T01:30:47+08:00",
+        "training_runtime_seconds": 43927.58909869194,
+        "evaluation_runtime_seconds": 232.97550702095032,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2\\weights\\best.pt",
+        "checkpoint_sha256": "5968bd0509826dc04bde8e59e0d227812be3a3f805fbfee4559e119c441a4875",
+        "selected_epoch": 6,
+        "selected_metrics": {
+          "precision": 0.26259729619008604,
+          "recall": 0.9832964036134311,
+          "ap50": 0.9502640962600708,
+          "ap75": 0.8758522272109985,
+          "gt_boxes": 5867,
+          "predictions": 21969,
+          "mean_confidence": 0.40407943940397617,
+          "eval_fps": 19.09603168107922
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_no_moddrop_seed2.json"
+      },
+      {
+        "run_id": "early_moddrop_seed1",
+        "variant": "early_moddrop",
+        "model": "early",
+        "modality_dropout": 0.15,
+        "seed": 1,
+        "state": "COMPLETE",
+        "started_at": "2026-07-11T11:18:52+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed1 --protocol ablation_devval --variant early_moddrop --model early --seed 1 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed1.json",
+        "completed_at": "2026-07-12T00:03:43+08:00",
+        "training_runtime_seconds": 45611.400997400284,
+        "evaluation_runtime_seconds": 279.275021314621,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed1\\weights\\best.pt",
+        "checkpoint_sha256": "621d0563439db2554d10625b90afd8cc982cb64ed7294036934e0ccf66bbb83c",
+        "selected_epoch": 8,
+        "selected_metrics": {
+          "precision": 0.297337968968917,
+          "recall": 0.976649054031021,
+          "ap50": 0.9445458650588989,
+          "ap75": 0.8230487108230591,
+          "gt_boxes": 5867,
+          "predictions": 19271,
+          "mean_confidence": 0.40147676702760265,
+          "eval_fps": 24.552210365700432
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed1.json"
+      },
+      {
+        "run_id": "early_moddrop_seed2",
+        "variant": "early_moddrop",
+        "model": "early",
+        "modality_dropout": 0.15,
+        "seed": 2,
+        "state": "COMPLETE",
+        "started_at": "2026-07-12T13:14:47+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model early --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.15 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id early_moddrop_seed2 --protocol ablation_devval --variant early_moddrop --model early --seed 2 --modality-dropout 0.15 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed2.json",
+        "completed_at": "2026-07-13T01:31:07+08:00",
+        "training_runtime_seconds": 43950.0952501297,
+        "evaluation_runtime_seconds": 230.02752709388733,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2\\weights\\best.pt",
+        "checkpoint_sha256": "c204220f66851e96433c5bfd2d08a85bb8f7d56ec41cff351e748faca8345a60",
+        "selected_epoch": 6,
+        "selected_metrics": {
+          "precision": 0.20874823478292356,
+          "recall": 0.9826146241690813,
+          "ap50": 0.9442002177238464,
+          "ap75": 0.828921914100647,
+          "gt_boxes": 5867,
+          "predictions": 27617,
+          "mean_confidence": 0.37050495591939575,
+          "eval_fps": 18.214334962876862
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\early_moddrop_seed2.json"
+      },
+      {
+        "run_id": "ra_static_equal_seed0",
+        "variant": "ra_static_equal",
+        "model": "ra_static_equal",
+        "modality_dropout": 0.0,
+        "seed": 0,
+        "state": "COMPLETE",
+        "started_at": "2026-07-10T23:10:49+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 0 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed0 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed0.json",
+        "completed_at": "2026-07-11T11:18:21+08:00",
+        "training_runtime_seconds": 43396.20064878464,
+        "evaluation_runtime_seconds": 255.3200080394745,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed0\\weights\\best.pt",
+        "checkpoint_sha256": "c9cfd26caf4b219b030997a93b3c549f9df6447c138df735779cf2dde6f3f2f7",
+        "selected_epoch": 5,
+        "selected_metrics": {
+          "precision": 0.1981549305507567,
+          "recall": 0.9775012783364582,
+          "ap50": 0.9283370971679688,
+          "ap75": 0.8132537603378296,
+          "gt_boxes": 5867,
+          "predictions": 28942,
+          "mean_confidence": 0.3570184466763008,
+          "eval_fps": 26.98926705561919
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed0.json"
+      },
+      {
+        "run_id": "ra_static_equal_seed1",
+        "variant": "ra_static_equal",
+        "model": "ra_static_equal",
+        "modality_dropout": 0.0,
+        "seed": 1,
+        "state": "COMPLETE",
+        "started_at": "2026-07-12T00:09:00+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed1 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed1.json",
+        "completed_at": "2026-07-12T13:14:15+08:00",
+        "training_runtime_seconds": 46869.97516655922,
+        "evaluation_runtime_seconds": 244.13995337486267,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed1\\weights\\best.pt",
+        "checkpoint_sha256": "2819dec6d5faa0cfb46449b8cda9a6a5efe0d92584a58587d516ebf89b31e7c8",
+        "selected_epoch": 4,
+        "selected_metrics": {
+          "precision": 0.158304545703789,
+          "recall": 0.9841486279188683,
+          "ap50": 0.9445663094520569,
+          "ap75": 0.8121101260185242,
+          "gt_boxes": 5867,
+          "predictions": 36474,
+          "mean_confidence": 0.3424678384422661,
+          "eval_fps": 17.51609976557097
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed1.json"
+      },
+      {
+        "run_id": "ra_static_equal_seed2",
+        "variant": "ra_static_equal",
+        "model": "ra_static_equal",
+        "modality_dropout": 0.0,
+        "seed": 2,
+        "state": "COMPLETE",
+        "started_at": "2026-07-13T01:31:37+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_static_equal --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_static_equal_seed2 --protocol ablation_devval --variant ra_static_equal --model ra_static_equal --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed2.json",
+        "completed_at": "2026-07-13T14:42:00+08:00",
+        "training_runtime_seconds": 47170.030148506165,
+        "evaluation_runtime_seconds": 252.49195218086243,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_static_equal_seed2\\weights\\best.pt",
+        "checkpoint_sha256": "ff529328194fe5defa88017af91b5b05b605c7024acd1e39798f460dbda82247",
+        "selected_epoch": 4,
+        "selected_metrics": {
+          "precision": 0.28313193343898574,
+          "recall": 0.9744332708368842,
+          "ap50": 0.9367132782936096,
+          "ap75": 0.7942011952400208,
+          "gt_boxes": 5867,
+          "predictions": 20192,
+          "mean_confidence": 0.3971715710035831,
+          "eval_fps": 14.858593679095927
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_static_equal_seed2.json"
+      },
+      {
+        "run_id": "ra_stems_project_seed0",
+        "variant": "ra_stems_project",
+        "model": "ra_stems_project",
+        "modality_dropout": 0.0,
+        "seed": 0,
+        "state": "COMPLETE",
+        "started_at": "2026-07-10T23:10:49+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 0 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed0 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 0 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed0.json",
+        "completed_at": "2026-07-11T11:18:21+08:00",
+        "training_runtime_seconds": 43396.308157444,
+        "evaluation_runtime_seconds": 254.89458107948303,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed0\\weights\\best.pt",
+        "checkpoint_sha256": "8dc418bff5fd02f0d4ae3fe429ae968fa6becb974ffac49a7b8997267b257295",
+        "selected_epoch": 5,
+        "selected_metrics": {
+          "precision": 0.27823503628305657,
+          "recall": 0.9737514913925345,
+          "ap50": 0.9342411160469055,
+          "ap75": 0.8270431756973267,
+          "gt_boxes": 5867,
+          "predictions": 20533,
+          "mean_confidence": 0.3872191656212344,
+          "eval_fps": 22.886926744081645
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed0.json"
+      },
+      {
+        "run_id": "ra_stems_project_seed1",
+        "variant": "ra_stems_project",
+        "model": "ra_stems_project",
+        "modality_dropout": 0.0,
+        "seed": 1,
+        "state": "COMPLETE",
+        "started_at": "2026-07-12T00:09:00+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 1 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed1 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 1 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed1.json",
+        "completed_at": "2026-07-12T13:14:14+08:00",
+        "training_runtime_seconds": 46868.33664011955,
+        "evaluation_runtime_seconds": 245.47147727012634,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed1\\weights\\best.pt",
+        "checkpoint_sha256": "4a3eec478737261d972ab0fe21d63c6a8f32c0aaa62dc557debd0ff04aca59d4",
+        "selected_epoch": 5,
+        "selected_metrics": {
+          "precision": 0.26351041379943113,
+          "recall": 0.9790352820862451,
+          "ap50": 0.9455833435058594,
+          "ap75": 0.8311956524848938,
+          "gt_boxes": 5867,
+          "predictions": 21798,
+          "mean_confidence": 0.39488650693107236,
+          "eval_fps": 18.419350266676403
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed1.json"
+      },
+      {
+        "run_id": "ra_stems_project_seed2",
+        "variant": "ra_stems_project",
+        "model": "ra_stems_project",
+        "modality_dropout": 0.0,
+        "seed": 2,
+        "state": "COMPLETE",
+        "started_at": "2026-07-13T01:31:37+08:00",
+        "guard_used": false,
+        "checkpoint_selection_rule": "highest development-validation project-local AP50",
+        "train_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\train_early_fusion.py --model ra_stems_project --data D:\\download\\triair --train-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_train.txt --val-split E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --epochs 50 --batch-size 4 --img-size 640 --device cuda --lr 1e-4 --num-workers 0 --modality-dropout 0.00 --seed 2 --out E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2",
+        "eval_command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe E:\\RepViT-main\\rarepdet\\tools\\eval_coco_map.py --run-id ra_stems_project_seed2 --protocol ablation_devval --variant ra_stems_project --model ra_stems_project --seed 2 --modality-dropout 0.00 --data D:\\download\\triair --split-file E:\\RepViT-main\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt --weights E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2\\weights\\best.pt --img-size 640 --device cuda --batch-size 4 --num-workers 0 --detector-score-thr 0.001 --metric-score-thr 0.50 --nms-thresh 0.6 --detections-per-img 100 --out-json E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed2.json",
+        "completed_at": "2026-07-13T14:42:03+08:00",
+        "training_runtime_seconds": 47169.02601957321,
+        "evaluation_runtime_seconds": 256.03067445755005,
+        "checkpoint": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_stems_project_seed2\\weights\\best.pt",
+        "checkpoint_sha256": "f7c66e6f1415fc55bbab5a5dbd7d51042e84407cb5ef6ad93e071706612c28d2",
+        "selected_epoch": 6,
+        "selected_metrics": {
+          "precision": 0.24887795615397895,
+          "recall": 0.9829555138912561,
+          "ap50": 0.9482478499412537,
+          "ap75": 0.8465031385421753,
+          "gt_boxes": 5867,
+          "predictions": 23172,
+          "mean_confidence": 0.40521009647651246,
+          "eval_fps": 18.51782671007967
+        },
+        "devval_result": "E:\\RepViT-main\\runs\\v48_complete_ablation\\raw\\devval\\ra_stems_project_seed2.json"
+      }
     ]
   },
-  "scope_controls": {
-    "new_training": true,
-    "fresh_training_seeds": [
-      0
-    ],
-    "checkpoint_selection_rule": "best development-validation project-local AP50",
-    "guard_used_for_training_or_selection": false,
-    "split_modified": false,
-    "existing_checkpoint_modified": false,
-    "manuscript_modified_by_v46": false,
-    "manuscript_modified_by_v47": true,
-    "ablation_guard_evaluation_run": false
-  },
-  "fixed_coco_evaluation": {
-    "status": "V46_FIXED_COCO_EVALUATION_COMPLETE",
-    "backend": "pycocotools.cocoeval.COCOeval",
-    "definition": {
-      "metric": "single-class COCO bbox AP",
-      "iou_thresholds": [
-        "0.50",
-        "0.55",
-        "0.60",
-        "0.65",
-        "0.70",
-        "0.75",
-        "0.80",
-        "0.85",
-        "0.90",
-        "0.95"
-      ],
-      "recall_samples": 101,
-      "area": "all",
-      "max_detections": 100,
-      "detector_score_threshold": 0.001
+  "efficiency": {
+    "status": "V48_EFFICIENCY_PROFILE_COMPLETE",
+    "generated_at": "2026-07-13T14:43:19+08:00",
+    "procedure": {
+      "batch_size": 1,
+      "img_size": 640,
+      "precision_mode": "float32",
+      "warmup_iterations": 10,
+      "measured_iterations": 30,
+      "synchronization": "before and after each measured full-detector inference when CUDA is used",
+      "flop_convention": "sum of torch.profiler full-detector operator FLOPs; derived MACs=FLOPs/2",
+      "dataloader_time_included": false
     },
-    "development_validation": {
-      "ap50_95": {
-        "mean_delta": 0.035350383923796226,
-        "sample_sd_delta": 0.020586182936123215,
-        "min_delta": 0.022666102340231475,
-        "max_delta": 0.05910294338978517,
-        "n_seed_pairs": 3
-      },
-      "ap50": {
-        "mean_delta": 0.01616668257625653,
-        "sample_sd_delta": 0.005581113835517064,
-        "min_delta": 0.012856728345839286,
-        "max_delta": 0.022610394794747357,
-        "n_seed_pairs": 3
-      },
-      "ap75": {
-        "mean_delta": 0.06384399410861612,
-        "sample_sd_delta": 0.016351548725299467,
-        "min_delta": 0.05353910564982556,
-        "max_delta": 0.0826979018038152,
-        "n_seed_pairs": 3
-      },
-      "ar100": {
-        "mean_delta": 0.024799727288222218,
-        "sample_sd_delta": 0.018168143010973723,
-        "min_delta": 0.01365263337310385,
-        "max_delta": 0.04576444520197709,
-        "n_seed_pairs": 3
-      },
-      "f1": {
-        "mean_delta": 0.018524117987404127,
-        "sample_sd_delta": 0.006208235832414489,
-        "min_delta": 0.012637306196001452,
-        "max_delta": 0.02501030207970867,
-        "n_seed_pairs": 3
-      }
+    "environment": {
+      "platform": "Windows-10-10.0.26200-SP0",
+      "pytorch": "2.5.1",
+      "cuda": "12.4",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 3090"
     },
-    "same_dataset_guard": {
-      "ap50_95": {
-        "mean_delta": 0.006195385879256683,
-        "sample_sd_delta": 0.018736522584385948,
-        "min_delta": -0.012652653164474392,
-        "max_delta": 0.024818364402536264,
-        "n_seed_pairs": 3
+    "models": [
+      {
+        "model_type": "early",
+        "total_params": 6591609,
+        "trainable_params": 6591609,
+        "operator_flops": 104762427192,
+        "derived_macs": 52381213596.0,
+        "mean_latency_ms": 40.40459333333336,
+        "median_latency_ms": 39.29975000000052,
+        "p95_latency_ms": 46.00839999999984,
+        "throughput_fps": 24.74966130088508,
+        "peak_allocated_memory_mib": 122.49072265625,
+        "checkpoint": "runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed0\\weights\\best.pt",
+        "checkpoint_sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602",
+        "input_shape": "1x5x640x640",
+        "precision_mode": "float32"
       },
-      "ap50": {
-        "mean_delta": 0.008533818377519284,
-        "sample_sd_delta": 0.005456330130120399,
-        "min_delta": 0.0027277620108961953,
-        "max_delta": 0.013555530253493875,
-        "n_seed_pairs": 3
+      {
+        "model_type": "reliability",
+        "total_params": 6593293,
+        "trainable_params": 6593293,
+        "operator_flops": 105392393627,
+        "derived_macs": 52696196813.5,
+        "mean_latency_ms": 40.67935333333347,
+        "median_latency_ms": 39.03005000000004,
+        "p95_latency_ms": 49.97280000000082,
+        "throughput_fps": 24.582495001968976,
+        "peak_allocated_memory_mib": 236.3974609375,
+        "checkpoint": "runs\\v40_expanded_adjacency_v2_compute_minimized\\reliability_p015_seed0\\weights\\best.pt",
+        "checkpoint_sha256": "4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436",
+        "input_shape": "1x5x640x640",
+        "precision_mode": "float32"
       },
-      "ap75": {
-        "mean_delta": 0.003257780049100415,
-        "sample_sd_delta": 0.017719240382303856,
-        "min_delta": -0.016066816826538544,
-        "max_delta": 0.018741714547461763,
-        "n_seed_pairs": 3
+      {
+        "model_type": "ra_static_equal",
+        "total_params": 6592458,
+        "trainable_params": 6592458,
+        "operator_flops": 105392391992,
+        "derived_macs": 52696195996.0,
+        "mean_latency_ms": 39.684183333333266,
+        "median_latency_ms": 38.74840000000024,
+        "p95_latency_ms": 48.27050000000099,
+        "throughput_fps": 25.198956259231785,
+        "peak_allocated_memory_mib": 229.626953125,
+        "checkpoint": "",
+        "checkpoint_sha256": "NA",
+        "input_shape": "1x5x640x640",
+        "precision_mode": "float32"
       },
-      "ar100": {
-        "mean_delta": 0.006170886075949289,
-        "sample_sd_delta": 0.018646566171259756,
-        "min_delta": -0.012025316455696156,
-        "max_delta": 0.025237341772151867,
-        "n_seed_pairs": 3
-      },
-      "f1": {
-        "mean_delta": 0.006946484871191945,
-        "sample_sd_delta": 0.008942637027780097,
-        "min_delta": -0.003307352054581214,
-        "max_delta": 0.013129281279374183,
-        "n_seed_pairs": 3
+      {
+        "model_type": "ra_stems_project",
+        "total_params": 6593242,
+        "trainable_params": 6593242,
+        "operator_flops": 106008430392,
+        "derived_macs": 53004215196.0,
+        "mean_latency_ms": 38.650530000000316,
+        "median_latency_ms": 37.787150000001546,
+        "p95_latency_ms": 43.83759999999981,
+        "throughput_fps": 25.87286642641102,
+        "peak_allocated_memory_mib": 229.2392578125,
+        "checkpoint": "",
+        "checkpoint_sha256": "NA",
+        "input_shape": "1x5x640x640",
+        "precision_mode": "float32"
       }
-    },
-    "summary_md": "runs/v46_coco_ablation/coco_metric_summary.md",
-    "summary_json": "runs/v46_coco_ablation/coco_metric_summary.json"
+    ]
   },
-  "causal_ablation": {
-    "status": "V46_CAUSAL_ABLATION_SEED0_PARTIAL_COMPLETE",
-    "fresh_runs": [
-      {
-        "run_id": "ra_no_moddrop_seed0",
-        "variant": "ra_no_moddrop",
-        "seed": 0,
-        "checkpoint_sha256": "7c2817ff29414fcd91a9330c3f34b60dddfb505100f67810291f2e7ab09a1e5c",
-        "training_elapsed_seconds": 44398.38507294655,
-        "ap50_95": 0.7112447552783334,
-        "ap50": 0.947746927354984,
-        "ap75": 0.8661636017503372,
-        "f1": 0.9039461348333758
-      },
-      {
-        "run_id": "early_moddrop_seed0",
-        "variant": "early_moddrop",
-        "seed": 0,
-        "checkpoint_sha256": "6f4f756890a518ab750bb2be216c8a825944091e1b8d3143f4696178eb602fbf",
-        "training_elapsed_seconds": 44074.80000000002,
-        "ap50_95": 0.6726638054166754,
-        "ap50": 0.9469235629856483,
-        "ap75": 0.8135805598711372,
-        "f1": 0.9070290858725762
-      }
-    ],
-    "seed0_contrasts": [
-      {
-        "contrast": "ra_full_p015_minus_ra_no_moddrop",
-        "seed": 0,
-        "delta_ap50_95": 0.016728041218660894,
-        "delta_ap50": 0.006256158206745854,
-        "delta_ap75": 0.025162234678952622,
-        "delta_f1": 0.010975217387011682,
-        "interpretation": "Seed0 modality-dropout increment within the same reliability-stem and dynamic-gate architecture."
-      },
-      {
-        "contrast": "ra_no_moddrop_minus_matched_early",
-        "seed": 0,
-        "delta_ap50_95": 0.005938061121570581,
-        "delta_ap50": 0.006600570139093431,
-        "delta_ap75": 0.028376870970872936,
-        "delta_f1": 0.00166208880898977,
-        "interpretation": "Seed0 combined increment of modality-specific stems plus dynamic softmax gating; it does not isolate the gate alone."
-      },
-      {
-        "contrast": "early_moddrop_minus_matched_early",
-        "seed": 0,
-        "delta_ap50_95": -0.03264288874008747,
-        "delta_ap50": 0.0057772057697577095,
-        "delta_ap75": -0.024206170908327107,
-        "delta_f1": 0.004745039848190191,
-        "interpretation": "Seed0 modality-dropout increment within the matched early-fusion architecture."
-      },
-      {
-        "contrast": "ra_full_p015_minus_early_moddrop",
-        "seed": 0,
-        "delta_ap50_95": 0.05530899108031895,
-        "delta_ap50": 0.007079522576081576,
-        "delta_ap75": 0.07774527655815267,
-        "delta_f1": 0.007892266347811261,
-        "interpretation": "Seed0 architecture increment at matched modality-dropout probability; stems and dynamic gating remain bundled."
-      }
-    ],
-    "variant_status": {
-      "matched_early": "complete for existing fixed seeds 0,1,2",
-      "ra_full_p015": "complete for existing fixed seeds 0,1,2",
-      "ra_no_moddrop": "fresh V46 seed0 complete; seeds 1,2 deferred for GPU time",
-      "early_moddrop": "fresh V46 seed0 complete; seeds 1,2 deferred for GPU time",
-      "ra_static_equal": "skipped because it requires architecture/model-loading changes outside the allowed V46 file scope and protected training-core plumbing",
-      "ra_stems_concat_or_project": "skipped because it requires architecture/model-loading changes outside the allowed V46 file scope and protected training-core plumbing"
-    },
-    "summary_md": "runs/v46_coco_ablation/ablation_devval_summary.md",
-    "summary_json": "runs/v46_coco_ablation/ablation_devval_summary.json",
-    "claim_boundary": "runs/v46_coco_ablation/ablation_claim_boundary.md"
-  },
-  "verification": {
-    "project_local_ap_reproduced": true,
-    "coco_metric_smoke_test": true,
-    "claim_scan_passed": true,
-    "preflight_passed": true,
-    "preflight_output": "runs/v46_coco_ablation/preflight_outputs.txt"
-  },
-  "claim_boundary": {
-    "allowed": "descriptive three-seed COCO-style within-TriAir fixed-checkpoint comparisons plus seed0-only development-validation causal contrasts",
-    "guard": "locked same-dataset held-out evidence only; never used for tuning, selection, or ablation continuation",
-    "fresh_ablation": "seed0-only; stems and dynamic gate remain bundled without static controls"
-  },
-  "next_actions": [
-    "Integrate V46 evidence into the V47 manuscript only in a separately authorized manuscript-update task",
-    "Run seeds 1 and 2 for ra_no_moddrop and early_moddrop only if additional GPU time is authorized",
-    "Authorize protected architecture/training changes before implementing static-equal or deterministic-projection controls",
-    "Do not use guard results for any future model or run selection"
-  ]
+  "v46_preserved": true,
+  "v47_preserved": true
 }

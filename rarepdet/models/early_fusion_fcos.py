@@ -122,4 +122,20 @@ def build_detector(
             nms_thresh=nms_thresh,
             detections_per_img=detections_per_img,
         )
-    raise ValueError(f"Unknown model type '{model_type}'. Use 'early' or 'reliability'.")
+    if model_type in {"ra_static_equal", "ra_stems_project"}:
+        from rarepdet.models.ablation_fusion_fcos import build_static_fusion_fcos
+
+        return build_static_fusion_fcos(
+            model_type,
+            model_name=model_name,
+            img_size=img_size,
+            num_classes=num_classes,
+            fpn_out_channels=fpn_out_channels,
+            score_thresh=score_thresh,
+            nms_thresh=nms_thresh,
+            detections_per_img=detections_per_img,
+        )
+    raise ValueError(
+        f"Unknown model type '{model_type}'. Use 'early', 'reliability', "
+        "'ra_static_equal', or 'ra_stems_project'."
+    )
