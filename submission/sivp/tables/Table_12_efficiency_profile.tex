@@ -1,0 +1,16 @@
+% Evidence source: runs/v48_complete_ablation/efficiency_summary.md/json
+% Hardware-specific full-detector inference at batch one, float32, 1x5x640x640.
+\begin{table*}[t]
+\caption{Full-detector efficiency on an NVIDIA RTX 3090 using batch-one float32 input of size $1\times5\times640\times640$. Latency excludes data loading and uses 10 warm-up and 30 synchronized measured iterations. FLOPs are summed from profiler events and may omit operators without a FLOP estimate.}
+\label{tab:v49-efficiency-profile}
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Parameters & Operator GFLOPs & Mean latency (ms) & FPS & Peak allocated memory (MiB) \\
+\midrule
+Matched early & 6,591,609 & 104.762 & 40.4046 & 24.7497 & 122.49 \\
+Full RA, $p=0.15$ & 6,593,293 & 105.392 & 40.6794 & 24.5825 & 236.40 \\
+\bottomrule
+\end{tabular}
+\end{table*}
