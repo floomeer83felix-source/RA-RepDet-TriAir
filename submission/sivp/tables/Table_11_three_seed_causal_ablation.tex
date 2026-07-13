@@ -1,0 +1,20 @@
+% Evidence source: runs/v48_complete_ablation/causal_ablation_summary.md/json
+% Values are mean +/- sample SD over seeds 0,1,2 on frozen development-validation.
+\begin{table*}[t]
+\caption{Three-seed development-validation ablation summary. Static equal uses modality-specific stems with fixed one-third weights; stems project concatenates the stem features and applies a learned deterministic projection. No V48 ablation was evaluated on the locked holdout.}
+\label{tab:v49-three-seed-causal-ablation}
+\centering
+\scriptsize
+\begin{tabular}{lccccl}
+\toprule
+Variant & AP50:95 & AP50 & AP75 & F1 & Fusion/training change \\
+\midrule
+Matched early & $0.680255 \pm 0.022050$ & $0.937245 \pm 0.004661$ & $0.809032 \pm 0.025092$ & $0.891198 \pm 0.009651$ & five-channel learned projection \\
+Early + modality dropout & $0.684010 \pm 0.010124$ & $0.943736 \pm 0.002848$ & $0.821121 \pm 0.006972$ & $0.901425 \pm 0.008138$ & early fusion, $p=0.15$ dropout \\
+Static equal stems & $0.663093 \pm 0.006778$ & $0.934106 \pm 0.007844$ & $0.805322 \pm 0.009470$ & $0.886728 \pm 0.008918$ & separate stems, fixed equal weights \\
+Stems + learned projection & $0.684772 \pm 0.009534$ & $0.940528 \pm 0.006500$ & $0.834084 \pm 0.010005$ & $0.896883 \pm 0.009900$ & separate stems, no dynamic gate \\
+Dynamic gate, no dropout & $0.725148 \pm 0.012112$ & $0.947547 \pm 0.000283$ & $0.874167 \pm 0.008120$ & $0.902331 \pm 0.002769$ & separate stems + softmax gate \\
+Full RA, $p=0.15$ & $0.715605 \pm 0.017212$ & $0.953412 \pm 0.001659$ & $0.872876 \pm 0.019187$ & $0.909722 \pm 0.006381$ & dynamic gate + modality dropout \\
+\bottomrule
+\end{tabular}
+\end{table*}
