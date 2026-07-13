@@ -1,12 +1,12 @@
 # Task Blocker
 
-Status: `V51_AWAITING_GPU_AUTHORIZATION`
+Status: `V51_FULL_ROUTE_B_RUNNING`
 
 Generated: 2026-07-13T21:13:45+08:00
 
-## Exact blocker
+## Current execution
 
-The non-GPU V51 recovery audit, Route-B decision, three immutable group-disjoint folds, evaluator, queue, reports, and source lock are complete. The next command starts a large GPU experiment, and the user requested an explicit decision before GPU work.
+The user authorized the complete source-locked design. The V51 queue started at `2026-07-13T21:17:16+08:00`; fold 0 seed 0 is training from scratch. There is no current technical blocker, but this file remains until V51 completes because the V50 protocol violation is still quarantined.
 
 The source-locked full design requires:
 
@@ -30,12 +30,12 @@ The source-locked full design requires:
 - Fold validation sizes: 2,868 / 2,952 / 2,809 images.
 - No group leakage and no GPU process started.
 
-## Decision options
+## Authorized design
 
-1. Authorize the full frozen design: 9 training runs, estimated 65-75 hours. This preserves the current source lock and strongest Route-B evidence.
-2. Authorize a reduced design: one seed per fold (seeds 0/1/2 assigned across the three folds), estimated 22-26 hours. This requires a pre-training source-lock amendment and yields weaker evidence without within-fold seed replication.
-
-No training will start until one option is explicitly authorized.
+- Full design authorized: 9 training runs, estimated 65-75 hours.
+- Queue PID at launch: `45124`.
+- Training PID at launch: `19816`.
+- No reduced-design amendment was made.
 
 ## Related files
 

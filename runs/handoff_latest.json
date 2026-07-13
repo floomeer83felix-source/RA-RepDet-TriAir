@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-13T21:13:45+08:00",
+  "generated_at": "2026-07-13T21:17:16+08:00",
   "task": "V51 clean VisDrone evidence recovery",
-  "status": "V51_AWAITING_GPU_AUTHORIZATION",
+  "status": "V51_RUNNING_FULL_ROUTE_B",
   "starting_commit": "520443266fb1a917e50acfbd09772b4d74f6bb00",
   "route": "B_GROUP_DISJOINT_CROSS_VALIDATION",
   "folds": [
@@ -33,14 +33,20 @@
     "failed": 0
   },
   "gpu": {
-    "started": false,
+    "started": true,
+    "authorized": true,
+    "started_at": "2026-07-13T21:17:16+08:00",
+    "queue_pid": 45124,
+    "launch_training_pid": 19816,
+    "current_fold": 0,
+    "current_seed": 0,
     "full_training_runs": 9,
     "zero_shot_evaluations": 18,
     "estimated_hours": [
       65,
       75
     ],
-    "authorization_required": true
+    "authorization_required": false
   },
   "claim_boundary": {
     "blind_or_independent_test": false,

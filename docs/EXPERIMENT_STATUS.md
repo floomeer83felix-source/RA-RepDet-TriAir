@@ -1,10 +1,10 @@
 # Experiment Status
 
-Updated: 2026-07-13T21:13:45+08:00
+Updated: 2026-07-13T21:17:16+08:00
 
 ## Active task
 
-`V51_AWAITING_GPU_AUTHORIZATION`
+`V51_RUNNING_FULL_ROUTE_B`
 
 V51 preserves the quarantined V50 evidence and uses a pre-registered Route-B group-disjoint cross-validation recovery protocol.
 
@@ -23,12 +23,14 @@ V51 preserves the quarantined V50 evidence and uses a pre-registered Route-B gro
 - Fold 2: 5,820 train / 2,809 validation images; 215 / 106 groups.
 - The 321 filename-sequence groups are disjoint within every fold and each image appears in validation exactly once.
 
-## GPU gate
+## GPU execution
 
-- Queue state: `AWAITING_GPU_AUTHORIZATION`.
+- Queue state: `RUNNING`; full design explicitly authorized by the user.
 - Full frozen design: 3 folds x seeds 0/1/2 = 9 from-scratch 50-epoch runs, followed by 18 frozen-checkpoint fold evaluations.
 - Estimated wall time on the local RTX 3090: 65-75 hours.
-- No V51 training or result-producing inference has started.
+- Current run: fold 0, seed 0, from scratch.
+- Queue PID: `45124`; active training PID at launch: `19816`.
+- Started: `2026-07-13T21:17:16+08:00`.
 
 ## Claim boundary
 
