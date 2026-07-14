@@ -2,329 +2,314 @@
 
 ## Title
 
-V51 recover VisDrone-SEEN external evidence with a pre-registered clean evaluation protocol.
+V52 audit MM-UAV tri-modal data and pre-register a compute-bounded sampling pilot.
 
 ## Goal
 
-Continue using the audited local dataset at:
+Audit the locally downloaded MM-UAV dataset at:
 
 ```text
-D:\datasets\visdrone_seen
+D:\BaiduNetdiskDownload\MM-UAV
 ```
 
-while repairing the V50 test-access-order violation without deleting, rewriting, or reinterpreting the quarantined V50 artifacts.
+and determine whether it can support a scientifically valid second RGB--infrared--event detection experiment for RA-RepDet.
 
-V51 must establish one of two scientifically valid routes:
+V52 has two phases:
 
-1. **Preferred route — untouched external partition:** locate and source-lock a genuinely untouched VisDrone-family evaluation partition that was not used by V50 for training, development, zero-shot evaluation, threshold selection, or result inspection.
-2. **Fallback route — pre-registered group-disjoint cross-validation:** if no untouched partition exists, explicitly abandon the blind-test claim and run a frozen group/sequence-disjoint cross-validation protocol on the audited RGB-only dataset.
+1. a CPU-only dataset, annotation, synchronization, geometry, provenance, and sampling audit that may run while the V51 VisDrone GPU queue remains active;
+2. a strictly bounded 200-iteration GPU pilot that may start only after the V51 queue has completed or the user has explicitly authorized stopping it.
 
-V51 must not describe the existing V50 test results as independent, blind, official, or final evidence.
+Do not start full MM-UAV training in V52.
 
-## Starting State
+## Concurrent V51 Boundary
 
-The following V50 facts are frozen:
+- Preserve the running V51 Route-B queue, its process state, manifests, checkpoints, logs, and all V50/V51 evidence.
+- Do not stop, pause, resume, alter, or compete for GPU memory with V51 unless the user gives a separate explicit instruction.
+- The V52 audit must remain CPU and storage-I/O only while V51 is running.
+- The V52 pilot must refuse to start if a V51 training/evaluation process or another material CUDA workload is active.
+- V51 remains RGB-only cross-validation evidence; V52 is a separate tri-modal dataset-feasibility task.
 
-- the local dataset is RGB-only;
-- 8,629 JPEG images and paired labels were audited;
-- the V50 split contained 6,471 train, 548 development-validation, and 1,610 test images;
-- V50 zero-shot test outputs were generated before the three dataset-specific RGB checkpoints were frozen;
-- those test outputs are quarantined as protocol-violation evidence;
-- RGB seed0 was stopped during epoch 1 and seeds1/2 were not started;
-- no V50 final performance claim is accepted.
+## Read First
 
-Read and preserve:
+1. `AGENTS.md`
+2. `docs/PROJECT_CONTEXT.md`
+3. `docs/EXPERIMENT_STATUS.md`
+4. `docs/TASK_BLOCKER.md`
+5. `docs/NEXT_TASK.md`
+6. `runs/handoff_latest.md`
+7. `runs/handoff_latest.json`
+8. `runs/v48_complete_ablation/causal_ablation_summary.md`
+9. `runs/v48_complete_ablation/claim_boundary.md`
+10. `runs/v49_manuscript_integration/V49_MANUSCRIPT_INTEGRATION_REPORT.md`
+11. `runs/v51_visdrone_recovery/source_lock_v51.md`
+12. `runs/v51_visdrone_recovery/cv_run_status.json`
+13. the existing TriAir loaders, model builders, detector preprocessing, evaluator, and COCO metric code needed only for compatibility review and the bounded pilot.
 
-```text
-docs/TASK_BLOCKER.md
-runs/v50_visdrone_seen/protocol_violation_evidence.md
-runs/v50_visdrone_seen/protocol_violation_evidence.json
-runs/v50_visdrone_seen/source_lock_v50.md
-runs/v50_visdrone_seen/source_lock_v50.json
-runs/v50_visdrone_seen/dataset_audit.md
-runs/v50_visdrone_seen/dataset_audit.json
-runs/v50_visdrone_seen/split_manifest.json
-runs/v50_visdrone_seen/claim_boundary.md
-```
+## Scientific Boundary
 
-All V50 files are immutable inputs. Do not delete or overwrite the prematurely generated test metrics.
+MM-UAV must not be treated as a second UAV-ground-vehicle dataset unless the local annotations establish that task. The expected target is airborne drone detection/tracking from another viewpoint, so V52 may support cross-dataset tri-modal fusion-mechanism evidence rather than same-task vehicle-generalization evidence.
 
-## Required Start
+Do not claim:
 
-Before V51 work:
+- two-dataset UAV ground-vehicle validation;
+- pixel-perfect RGB/IR/event alignment before it is measured;
+- official sequence counts or train/test counts based only on web descriptions;
+- event-channel detection labels if only RGB/IR annotations exist;
+- calibrated sensor reliability;
+- real sensor-fault robustness;
+- statistical significance;
+- universal causality or optimal modality dropout.
 
-1. switch to and fast-forward the active branch;
-2. record the starting commit SHA;
-3. verify all V50 source-lock hashes and protocol-violation evidence;
-4. confirm no V50 training process remains alive;
-5. create a new output directory:
-
-```text
-runs/v51_visdrone_recovery/
-```
-
-V51 is an evidence-generation task. Do not edit the SIVP manuscript until V51 is complete and separately reviewed.
-
-## Stage 1: Recovery Audit
+## Required Output Directory
 
 Create:
 
 ```text
-runs/v51_visdrone_recovery/recovery_audit.md
-runs/v51_visdrone_recovery/recovery_audit.json
+runs/v52_mmuav_audit/
 ```
 
-The audit must determine:
+Do not copy raw images, event frames, archives, or the full dataset into the repository.
 
-- every locally available VisDrone/VisDrone-SEEN/seen/unseen/test-dev companion directory under `D:\datasets` that may contain images or annotations not present in the 8,629-image V50 inventory;
-- exact image-content hashes for every candidate partition;
-- annotation and split-file hashes;
-- whether candidate images overlap any V50 train/devval/test image by exact content;
-- whether candidate IDs, sequence prefixes, videos, scenes, or source folders overlap V50 development data;
-- whether any prior V50 command, log, result file, or cache references the candidate partition;
-- whether labels are locally available and compatible with the frozen vehicle mapping;
-- whether the partition has defensible source/provider provenance;
-- whether `seen`/`unseen` terminology can be established from local evidence rather than guessed.
+## Stage 1: Local Dataset and Provenance Audit
 
-The audit may inspect file names, metadata, hashes, annotations, dimensions, category definitions, and local README/license text. It must not run model inference on a candidate final partition.
-
-## Stage 2: Route Decision Gate
-
-Write:
+Create:
 
 ```text
-runs/v51_visdrone_recovery/route_decision.md
-runs/v51_visdrone_recovery/route_decision.json
+runs/v52_mmuav_audit/dataset_audit.md
+runs/v52_mmuav_audit/dataset_audit.json
+runs/v52_mmuav_audit/directory_inventory.csv
+runs/v52_mmuav_audit/provenance_and_license.md
 ```
 
-### Route A — Untouched external partition
+Record from local evidence:
 
-Route A is allowed only if all of the following are true:
+- exact dataset root and audit timestamp;
+- total on-disk size and available free space;
+- all top-level and relevant nested directories;
+- actual sequence counts by split and modality;
+- RGB, IR, and event file formats;
+- image dimensions, channel counts, bit depths, and numeric ranges from representative files;
+- annotation directories and formats, including whether RGB and IR use separate boxes;
+- whether test annotations are locally available;
+- local README, license, split lists, metadata, conversion scripts, and provider information;
+- SHA256 hashes for split files, annotation index files, metadata, README/license files, and conversion scripts;
+- incomplete archives, corrupted files, missing sequence directories, zero-byte files, or extraction errors;
+- the exact local evidence supporting the dataset name and version.
 
-- the candidate partition contains no exact image overlap with any V50 partition;
-- it was not used in any V50 model command, result artifact, threshold choice, or checkpoint decision;
-- its sequence/scene relationship to V51 training and development data is documented and acceptably separated;
-- labels and category semantics are established;
-- the partition can be frozen before any model inference;
-- provenance supports the exact wording used in reports.
+Do not hash every 400 GB frame file unless required for a targeted integrity check. Use deterministic inventory hashes over sorted relative paths, sizes, and modification metadata, plus exact hashes for all manifests and a reproducible sample of media files.
 
-If these conditions hold, create immutable manifests:
+## Stage 2: Tri-Modal Synchronization Audit
+
+Create:
 
 ```text
-runs/v51_visdrone_recovery/manifests/train.txt
-runs/v51_visdrone_recovery/manifests/devval.txt
-runs/v51_visdrone_recovery/manifests/final_test.txt
-runs/v51_visdrone_recovery/split_manifest.json
+runs/v52_mmuav_audit/synchronization_audit.md
+runs/v52_mmuav_audit/synchronization_audit.json
+runs/v52_mmuav_audit/sequence_alignment.csv
+runs/v52_mmuav_audit/missing_frame_report.csv
 ```
 
-The existing quarantined V50 test partition must not be relabelled as the V51 final test.
+For every sequence, determine:
 
-### Route B — Group-disjoint cross-validation
+- RGB frame count and frame-index range;
+- IR frame count and frame-index range;
+- event-frame count and frame-index range;
+- whether filenames permit an exact one-to-one synchronized triplet mapping;
+- missing, duplicated, non-monotonic, or unmatched frame indices;
+- frame-rate or timestamp metadata when locally available;
+- whether event data are rendered event frames, voxel grids, accumulations, or raw event streams;
+- whether the three modalities share resolution and coordinate origin;
+- whether sequence names and split membership match across modalities.
 
-Use Route B when no genuinely untouched external partition is available.
+The audit must not silently align by list position when frame IDs or timestamps disagree.
 
-Route B must:
+## Stage 3: Annotation and Geometry Audit
 
-- explicitly abandon any blind-test or independent-test claim;
-- create deterministic sequence/group-disjoint folds using the strongest available sequence, video, scene, or filename-prefix grouping;
-- prevent neighboring or related frames from crossing train and validation folds;
-- freeze all folds before any V51 training result is inspected;
-- report cross-validation results only, not a held-out test result.
-
-Preferred design:
+Create:
 
 ```text
-3 group-disjoint folds x seeds 0,1,2
+runs/v52_mmuav_audit/annotation_audit.md
+runs/v52_mmuav_audit/annotation_audit.json
+runs/v52_mmuav_audit/geometry_audit.csv
+runs/v52_mmuav_audit/category_mapping.md
+runs/v52_mmuav_audit/category_mapping.json
 ```
 
-If computation permits, use five group-disjoint folds. Any reduced design must be justified before training in the source lock.
+Determine:
 
-Required fold files:
+- source category IDs and names;
+- bounding-box format and coordinate convention;
+- track-ID, visibility, occlusion, truncation, ignore, difficult, and confidence fields;
+- whether RGB and IR boxes describe the same physical targets but differ geometrically;
+- whether event frames have their own annotation coordinate system;
+- the number of empty-target frames;
+- invalid, out-of-bounds, zero-area, duplicate, or malformed boxes;
+- target-size distributions and object counts after the proposed sampling rule;
+- whether RGB annotations, IR annotations, or a justified transformed annotation set should define the detection coordinate system.
+
+Measure RGB-to-IR geometric disagreement on a deterministic, source-locked sample of at least 100 annotated synchronized frames spanning at least 20 sequences, where available. Report box-center displacement, size-ratio differences, matched-target IoU, and the matching rule. Do not infer pixel alignment from matching frame numbers alone.
+
+If no scientifically defensible common detection coordinate system can be established, stop with a blocker before pilot training.
+
+## Stage 4: Pre-Registered 1-in-30 Sampling Protocol
+
+Before inspecting any model metric, create and freeze:
 
 ```text
-runs/v51_visdrone_recovery/folds/fold_0_train.txt
-runs/v51_visdrone_recovery/folds/fold_0_val.txt
-runs/v51_visdrone_recovery/folds/fold_1_train.txt
-runs/v51_visdrone_recovery/folds/fold_1_val.txt
-runs/v51_visdrone_recovery/folds/fold_2_train.txt
-runs/v51_visdrone_recovery/folds/fold_2_val.txt
-runs/v51_visdrone_recovery/fold_manifest.json
-runs/v51_visdrone_recovery/fold_integrity.md
+runs/v52_mmuav_audit/sampling_protocol.md
+runs/v52_mmuav_audit/sampling_protocol.json
+runs/v52_mmuav_audit/manifests/train_sampled.txt
+runs/v52_mmuav_audit/manifests/devval_sampled.txt
+runs/v52_mmuav_audit/sampled_manifest.json
+runs/v52_mmuav_audit/split_integrity.md
 ```
 
-No fold may be changed after a metric is observed.
-
-## Stage 3: V51 Source Lock
-
-Before any V51 result-producing command, create:
+Default sampling rule:
 
 ```text
-runs/v51_visdrone_recovery/source_lock_v51.md
-runs/v51_visdrone_recovery/source_lock_v51.json
+for each sequence, keep synchronized frame indices 0, 30, 60, 90, ...
 ```
+
+If the local indexing starts at 1, use `1, 31, 61, 91, ...` and record that fact. Do not renumber frames to make the rule appear zero-based.
+
+Rules:
+
+- RGB, IR, and event must use the same source frame index or verified timestamp match;
+- preserve complete sequences as the split unit;
+- never randomly divide neighboring frames from the same sequence between train and development-validation;
+- preserve the source-provided train/test split only when its provenance and labels are established;
+- when a development-validation split is needed, derive it deterministically from training sequences before any model metric is observed;
+- each sequence must contribute at least one valid synchronized annotated sample;
+- include the last valid synchronized frame only when this exception is pre-registered and applied identically to every sequence;
+- record rejected triplets and the exact rejection reason;
+- hash all frozen manifests and the sampling script;
+- do not change the interval after seeing pilot losses or metrics.
+
+Report expected sample counts, object counts, sequence counts, and estimated epochs/iterations for intervals 10, 20, and 30 for planning, but freeze interval 30 as the V52 pilot protocol unless the audit proves it invalid before any pilot run.
+
+## Stage 5: Dataset Adapter and Preflight
+
+Implement only the minimum new MM-UAV-specific code required for audit and pilot readiness, preferably under:
+
+```text
+datasets/mmuav_dataset.py
+rarepdet/tools/audit_v52_mmuav.py
+rarepdet/tools/prepare_v52_mmuav.py
+rarepdet/tools/preflight_v52_mmuav.py
+tests/test_v52_mmuav.py
+```
+
+The adapter must:
+
+- load one synchronized RGB/IR/event triplet from the frozen manifest;
+- expose the exact annotation coordinate system selected by the audit;
+- preserve original annotations unchanged;
+- resize all inputs and boxes with an explicitly tested transform;
+- document normalization and channel order;
+- return deterministic results for evaluation mode;
+- reject mismatched frame IDs rather than substituting the nearest file silently;
+- handle empty-target frames correctly;
+- avoid loading whole sequences into memory.
+
+Required preflight checks:
+
+- parse representative files from every modality;
+- validate at least 100 synchronized triplets across at least 20 sequences;
+- verify sampled manifests are sequence-disjoint;
+- verify every manifest row references existing files and valid annotations;
+- verify input tensor shapes, dtypes, finite values, and ranges;
+- verify box geometry after resize;
+- visualize a small local-only set of overlaid RGB and IR boxes for human review without committing large images;
+- run a dataset-loader throughput test with no GPU;
+- run one forward/backward batch only when the GPU gate permits;
+- run unit tests and save exact commands and outputs.
+
+Save:
+
+```text
+runs/v52_mmuav_audit/preflight_commands.txt
+runs/v52_mmuav_audit/preflight_outputs.txt
+runs/v52_mmuav_audit/loader_benchmark.json
+```
+
+## Stage 6: Bounded GPU Pilot Gate
+
+The pilot is not authorized while V51 or another material CUDA workload is active.
+
+Before starting the pilot, create:
+
+```text
+runs/v52_mmuav_audit/pilot_gate.json
+runs/v52_mmuav_audit/source_lock_v52.md
+runs/v52_mmuav_audit/source_lock_v52.json
+```
+
+The gate must verify:
+
+- V51 queue and training/evaluation processes are complete or explicitly stopped by user authorization;
+- the NVIDIA device has no conflicting project process;
+- all audit, mapping, synchronization, sampling, split, adapter, and evaluator hashes are frozen;
+- the exact 5--10 pilot sequences are selected without reference to model results;
+- pilot configuration is frozen before the first optimization step.
+
+Default pilot:
+
+```text
+sequences: 8 total, selected deterministically across available source conditions
+sampling: every 30th synchronized frame
+model: matched early fusion only
+initialization: same policy as the main project, recorded exactly
+input: 640 x 640
+precision: AMP
+batch size: 2 initially; increase to 4 only if a pre-run memory probe passes
+optimizer: project default unless a pre-result source-lock note identifies incompatibility
+iterations: exactly 200 optimizer steps
+validation: no performance claim; data/geometry smoke evaluation only
+```
+
+The pilot must stop after 200 optimizer steps. Do not convert it into an epoch-based training run.
 
 Record:
 
-- starting commit SHA and branch;
-- selected route and justification;
-- all dataset roots used;
-- image, annotation, mapping, manifest, and fold hashes;
-- exact vehicle class mapping and ignored-region handling;
-- Python, PyTorch, torchvision, CUDA, driver, GPU, and OS versions;
-- all relevant loader, model, training, evaluator, COCO metric, and gate-script hashes;
-- exact training length, image size, optimizer, learning rate, batch size, seeds, checkpoint-selection rule, thresholds, NMS, and max detections;
-- all six frozen TriAir checkpoint paths and hashes if zero-shot stress evaluation is retained;
-- explicit statement that V50 quarantined test metrics are not inputs to V51 selection or reporting;
-- exact final-test or fold-access rules.
+- peak allocated and reserved GPU memory;
+- mean and percentile iteration time after warm-up;
+- data-loading wait time;
+- AMP scaler behavior;
+- loss components and non-finite checks;
+- CPU RAM use where practical;
+- read throughput;
+- estimated wall time for 20 and 30 epochs at the frozen interval-30 sample count;
+- OOM or I/O errors and exact recovery actions.
 
-## Stage 4: Hard Test-Access Gate
-
-Route A must implement a technical gate, not only a written promise.
-
-Create a wrapper that refuses to open `final_test.txt`, final-test annotations, or final-test image paths unless all required release conditions are satisfied.
-
-Required files:
+Save:
 
 ```text
-runs/v51_visdrone_recovery/test_access_lock.json
-runs/v51_visdrone_recovery/test_access_release.json        # created only at final release
-runs/v51_visdrone_recovery/test_access_log.jsonl
+runs/v52_mmuav_audit/pilot_config.json
+runs/v52_mmuav_audit/pilot_log.txt
+runs/v52_mmuav_audit/pilot_profile.json
+runs/v52_mmuav_audit/pilot_report.md
 ```
 
-Initial state:
+No AP, mechanism, robustness, or generalization claim may be made from this pilot.
 
-```json
-{"locked": true}
-```
+## Route Decision After Audit and Pilot
 
-The release file may be created only after automated verification that:
-
-- RGB seeds 0, 1, and 2 completed from scratch;
-- all three selected checkpoint hashes are frozen;
-- evaluator, preprocessing, class mapping, thresholds, and COCO metric hashes are frozen;
-- no pending training or tuning process remains;
-- development-validation reports and claim boundary are complete;
-- the release command and timestamp are recorded.
-
-After release, run all final-test evaluations in one controlled final stage. No result-dependent rerun, threshold adjustment, architecture change, or checkpoint replacement is allowed.
-
-Route B does not use a test unlock. It must instead enforce immutable fold manifests and log every fold evaluation.
-
-## Stage 5: Fresh Dataset-Specific RGB Baseline
-
-Discard the interrupted V50 seed0 training as non-evidence. Do not resume its checkpoint.
-
-Train a fresh pure-RGB RepViT-M0.9--FPN--FCOS baseline from scratch with seeds:
+Create:
 
 ```text
-0, 1, 2
+runs/v52_mmuav_audit/feasibility_decision.md
+runs/v52_mmuav_audit/feasibility_decision.json
+runs/v52_mmuav_audit/claim_boundary.md
 ```
 
-Requirements:
+Choose exactly one outcome:
 
-- true three-channel RGB input;
-- no pseudo thermal or event channels;
-- input size 640;
-- 50 epochs unless a pre-training source-lock amendment documents a resource constraint;
-- checkpoint selection only by the frozen development-validation rule or the training fold's frozen validation partition;
-- identical evaluator and canonical COCO convention across seeds/folds;
-- exact commands, logs, runtimes, selected epochs, checkpoint hashes, and metrics.
+1. `GO_TRI_MODAL_CONTROLLED_EXPERIMENT` — synchronization, geometry, annotations, compute, and licensing are adequate;
+2. `GO_WITH_ALIGNMENT_MODULE_REQUIRED` — data are usable, but direct channel-aligned fusion is invalid and a pre-registered alignment method is required;
+3. `GO_RGB_IR_ONLY_EVENT_EXCLUDED` — event representation or synchronization is unusable, so this dataset cannot support the intended tri-modal claim;
+4. `NO_GO_DATA_OR_LICENSE_BLOCKER` — provenance, labels, corruption, geometry, storage, or license prevents a defensible experiment.
 
-Route A outputs:
-
-```text
-runs/v51_visdrone_recovery/rgb_train_commands.txt
-runs/v51_visdrone_recovery/rgb_run_status.json
-runs/v51_visdrone_recovery/rgb_devval_per_run.csv
-runs/v51_visdrone_recovery/rgb_final_test_per_run.csv
-runs/v51_visdrone_recovery/rgb_summary.md
-runs/v51_visdrone_recovery/rgb_summary.json
-```
-
-Route B outputs:
-
-```text
-runs/v51_visdrone_recovery/cv_train_commands.txt
-runs/v51_visdrone_recovery/cv_run_status.json
-runs/v51_visdrone_recovery/cv_per_run.csv
-runs/v51_visdrone_recovery/cv_fold_summary.csv
-runs/v51_visdrone_recovery/cv_summary.md
-runs/v51_visdrone_recovery/cv_summary.json
-```
-
-## Stage 6: Frozen TriAir-Checkpoint RGB-Only Stress Evaluation
-
-The six frozen TriAir checkpoints may be retained as a separate zero-shot stress experiment:
-
-- matched early fusion seeds 0/1/2;
-- full reliability-aware `p=0.15` seeds 0/1/2.
-
-Use the frozen adapter:
-
-```text
-input = [RGB, zero thermal channel, zero event channel]
-```
-
-This evaluates RGB-only domain shift and controlled missing modalities. It does not validate external RGB--thermal--event fusion, real sensor failure, calibrated reliability, or thermal/event transfer.
-
-Route A ordering:
-
-- verify adapter and annotation conversion on development-validation only;
-- freeze all preprocessing and evaluator settings;
-- do not evaluate the final test until the hard gate is released;
-- evaluate all six checkpoints in the same final stage as the three RGB baselines.
-
-Route B ordering:
-
-- evaluate all six frozen checkpoints on every frozen validation fold;
-- use identical fold membership and preprocessing for all checkpoints;
-- report paired seed differences and fold-level heterogeneity.
-
-Required outputs:
-
-```text
-runs/v51_visdrone_recovery/zero_shot_per_run.csv
-runs/v51_visdrone_recovery/zero_shot_paired_deltas.csv
-runs/v51_visdrone_recovery/zero_shot_summary.md
-runs/v51_visdrone_recovery/zero_shot_summary.json
-```
-
-Negative, mixed, or near-zero results must be retained.
-
-## Metrics
-
-Report canonical `pycocotools` bbox metrics using the frozen convention:
-
-- AP@[0.50:0.95];
-- AP50;
-- AP75;
-- AR100;
-- AP small/medium/large when area fields are valid;
-- per-seed or per-fold values;
-- descriptive mean and sample SD;
-- paired matched-early versus full-RA deltas for the six frozen TriAir checkpoints.
-
-Do not introduce significance claims unless separately authorized and statistically justified.
-
-## Required Integrity Checks
-
-Before training:
-
-- verify zero exact image overlap across Route A train/devval/final-test partitions, or across Route B validation folds;
-- verify group/sequence disjointness using available identifiers;
-- verify class and ignored-region mapping;
-- verify converted annotation geometry and image IDs;
-- verify no final-test path can be opened while the gate is locked;
-- verify V50 quarantined test outputs are excluded from all V51 summary builders.
-
-Before final reporting:
-
-- rerun all source-lock hashes;
-- verify checkpoint hashes;
-- verify every result row maps to a frozen manifest/fold and command;
-- scan reports for prohibited claims;
-- ensure no manuscript file changed;
-- run repository preflight and `finish_task.ps1`.
+A future full experiment is outside V52. Do not start matched-early, static-equal, dynamic-gate, or multi-seed full training until a new task is approved.
 
 ## Allowed Files To Modify
 
@@ -333,82 +318,53 @@ Before final reporting:
 - `docs/TASK_BLOCKER.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- new directory `runs/v51_visdrone_recovery/**`
-- V51-specific dataset, split/fold, gate, training, evaluation, and reporting tools under `datasets/**` and `rarepdet/tools/**`
-- pure-RGB model/training plumbing only where necessary
+- new directory `runs/v52_mmuav_audit/**`
+- new MM-UAV-specific adapters and audit/pilot tools under `datasets/**` and `rarepdet/tools/**`
 - tests under `tests/**`
+- minimal model-construction plumbing required only for the bounded pilot.
 
 ## Forbidden Changes
 
-- any raw file under `D:\datasets\visdrone_seen` or a candidate untouched partition;
-- deletion, rewriting, or relabelling of V50 protocol-violation evidence;
-- use of V50 quarantined test metrics for checkpoint, threshold, route, split, or narrative decisions;
-- resuming the interrupted V50 RGB seed0 checkpoint;
-- accessing a Route A final test before the hard gate release;
-- random frame-level splitting when sequence/group information exists;
-- pseudo thermal/event generation;
-- TriAir holdout access;
-- modification of V40--V50 frozen evidence packages;
-- manuscript edits during V51;
-- claims of official VisDrone benchmark status without provenance;
-- claims of external tri-modal generalization, physical sensor-fault robustness, calibrated reliability, statistical significance, universal causality, or optimal dropout.
-
-## Claim Boundary
-
-Potentially allowed under Route A:
-
-- external RGB-only aerial vehicle-detection evidence on a source-locked untouched partition;
-- frozen-checkpoint RGB-only domain-shift and missing-modality stress results;
-- three-seed dataset-specific RGB baseline results;
-- exact statement of whether the partition is official, derived, seen, unseen, or locally constructed, based only on documented provenance.
-
-Potentially allowed under Route B:
-
-- pre-registered group-disjoint cross-validation evidence on the audited RGB-only dataset;
-- fold- and seed-level descriptive results;
-- frozen-checkpoint RGB-only stress comparisons across the same folds.
-
-Always required:
-
-- Route B is not an independent or blind test;
-- RGB-only evidence does not validate thermal or event generalization;
-- zero-filled channels are a controlled intervention, not a real sensor-failure simulation;
-- V50 test metrics remain quarantined and are not final evidence;
-- mixed and negative results are reported.
+- raw files under `D:\BaiduNetdiskDownload\MM-UAV`;
+- stopping or modifying V51 without separate explicit user authorization;
+- deletion or rewriting of V40--V51 evidence;
+- TriAir locked-holdout access;
+- manuscript title, abstract, body, tables, bibliography, or conclusions;
+- full MM-UAV training;
+- more than 200 pilot optimizer steps;
+- result-driven changes to interval, split, coordinate system, categories, or pilot sequences;
+- fabrication of missing modalities, labels, timestamps, or geometric calibration;
+- copying large raw media or checkpoints into GitHub.
 
 ## Required Completion Outputs
 
-- recovery audit and route decision;
-- V51 source lock;
-- immutable manifests or fold definitions;
-- hard test-access gate and access log for Route A;
-- fresh three-seed RGB baseline or precise resource blocker;
-- six-checkpoint zero-shot stress evaluation under the selected route;
-- canonical metric summaries;
-- claim boundary and claim scan;
-- preflight records;
-- updated experiment status, blocker state, and handoff.
+- complete local provenance and dataset audit;
+- synchronization and missing-frame audit;
+- annotation and geometry audit;
+- frozen sequence-disjoint interval-30 manifests;
+- MM-UAV loader and preflight evidence;
+- CPU loader benchmark;
+- bounded 200-step GPU pilot when the GPU gate permits, or an exact blocker if V51 is still running;
+- feasibility decision and claim boundary;
+- updated experiment status and handoff;
+- `docs/TASK_BLOCKER.md` only when a real blocker remains.
 
 ## Acceptance Criteria
 
-- V50 protocol-violation evidence remains intact and quarantined;
-- a route is selected before result-producing commands;
-- Route A uses a genuinely untouched, non-overlapping final partition and enforces a technical access gate;
-- Route B uses frozen group/sequence-disjoint folds and makes no blind-test claim;
-- all RGB baselines start from scratch with seeds 0/1/2;
-- no checkpoint, threshold, mapping, or split changes occur after protected evaluation begins;
-- all numerical outputs are traceable to frozen commands, hashes, and manifests/folds;
-- no TriAir holdout or manuscript file is accessed or modified;
-- reports preserve the RGB-only and controlled-missing-modality interpretation boundary.
+- the local data are described from actual files, not web-only assumptions;
+- actual sequence/split/frame counts and formats are recorded;
+- RGB, IR, and event synchronization is tested rather than assumed;
+- annotation coordinate systems and cross-modal geometric disagreement are quantified;
+- interval-30 sampling and sequence-disjoint splitting are frozen before any model result;
+- no V51 process is disrupted or contended with;
+- no full MM-UAV training starts;
+- the pilot performs exactly 200 optimizer steps and records memory/time/I/O evidence, or records a precise GPU-availability blocker;
+- the final decision states whether direct tri-modal fusion is scientifically defensible;
+- no external vehicle-detection, blind-test, calibrated-reliability, real-fault, significance, or universal-causality claim is introduced;
+- repository tests, source-lock checks, claim scan, handoff update, and `finish_task.ps1` complete successfully, or an exact blocker is committed.
 
 ## Commit Message
 
 ```text
-eval: recover V51 VisDrone evidence with a clean preregistered protocol
+data: audit MM-UAV and prepare bounded tri-modal pilot
 ```
-
-## Completion / Blocker Rule
-
-On success, update `docs/EXPERIMENT_STATUS.md`, `runs/handoff_latest.md`, and `runs/handoff_latest.json`; clear `docs/TASK_BLOCKER.md` only if the selected V51 route is complete; run `rarepdet/tools/finish_task.ps1`; commit and push.
-
-If no untouched partition and no defensible group/sequence split can be constructed, stop and write a blocker. Do not manufacture a blind test, do not reuse the quarantined V50 test as final evidence, and do not weaken the claim boundary.
