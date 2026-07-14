@@ -1,56 +1,15 @@
 {
-  "generated_at": "2026-07-13T21:17:16+08:00",
-  "task": "V51 clean VisDrone evidence recovery",
-  "status": "V51_RUNNING_FULL_ROUTE_B",
-  "starting_commit": "520443266fb1a917e50acfbd09772b4d74f6bb00",
-  "route": "B_GROUP_DISJOINT_CROSS_VALIDATION",
-  "folds": [
-    {
-      "fold": 0,
-      "train_images": 5761,
-      "val_images": 2868,
-      "train_groups": 212,
-      "val_groups": 109
-    },
-    {
-      "fold": 1,
-      "train_images": 5677,
-      "val_images": 2952,
-      "train_groups": 215,
-      "val_groups": 106
-    },
-    {
-      "fold": 2,
-      "train_images": 5820,
-      "val_images": 2809,
-      "train_groups": 215,
-      "val_groups": 106
-    }
-  ],
-  "source_lock_hash_count": 29,
-  "tests": {
-    "passed": 4,
-    "failed": 0
-  },
-  "gpu": {
-    "started": true,
-    "authorized": true,
-    "started_at": "2026-07-13T21:17:16+08:00",
-    "queue_pid": 45124,
-    "launch_training_pid": 19816,
-    "current_fold": 0,
-    "current_seed": 0,
-    "full_training_runs": 9,
-    "zero_shot_evaluations": 18,
-    "estimated_hours": [
-      65,
-      75
-    ],
-    "authorization_required": false
-  },
-  "claim_boundary": {
-    "blind_or_independent_test": false,
-    "tri_modal_external_validation": false,
-    "v50_test_metrics_quarantined": true
-  }
+  "dataset_root": "D:\\BaiduNetdiskDownload\\MM-UAV",
+  "decision": "NO_GO_DATA_OR_LICENSE_BLOCKER",
+  "generated_at": "2026-07-14T11:40:41+08:00",
+  "gpu_steps": 0,
+  "next_action": "extract the complete archive to a filesystem with sufficient capacity, then rerun V52",
+  "pilot_locked": true,
+  "repository_tests": "13/14 pass in PyTorch environment; stale V51 state assertion fails",
+  "status": "V52_BLOCKED_ARCHIVE_ONLY_AND_V51_INCOMPLETE",
+  "task": "V52 MM-UAV audit and bounded pilot preparation",
+  "uncompressed_bytes": 388670441933,
+  "v51_modified": false,
+  "v52_tests": "4/4 pass",
+  "zip64_entries": 8460602
 }

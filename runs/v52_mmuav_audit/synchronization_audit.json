@@ -1,0 +1,11 @@
+{
+  "exact_index_match_sequences": 1321,
+  "limitations": "No file was decoded; timestamp, frame-rate, coordinate-origin, and pixel alignment remain unverified.",
+  "media_counts": {
+    "event": 2812333,
+    "ir": 2812333,
+    "rgb": 2813654
+  },
+  "sequence_records": 1321,
+  "status": "FILENAME_INDEX_AUDIT_ONLY"
+}

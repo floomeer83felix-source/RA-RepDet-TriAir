@@ -1,0 +1,11 @@
+{
+  "outcome": "NO_GO_DATA_OR_LICENSE_BLOCKER",
+  "permanent_dataset_judgment": false,
+  "reasons": [
+    "V51 is incomplete even though no matching process is currently alive.",
+    "MM-UAV media and annotations are not extracted.",
+    "No common detection coordinate system or frozen sampling manifest exists.",
+    "Local provider/license text has not been extracted and verified."
+  ],
+  "scope": "current local archive-only state"
+}

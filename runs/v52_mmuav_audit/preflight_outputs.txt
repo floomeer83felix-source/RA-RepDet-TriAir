@@ -1,0 +1,9 @@
+ZIP64 central records parsed: 8460602
+Malformed central records: 0
+GPU operations: 0
+Media files decoded: 0
+Result: BLOCKED_ARCHIVE_ONLY_INSUFFICIENT_EXTRACTION_SPACE
+V52 unit tests: 4/4 PASS
+Repository tests with project PyTorch Python: 13/14 PASS
+Only repository failure: V51 state is RUNNING, while its legacy test expects AWAITING_GPU_AUTHORIZATION
+Claim scan: PASS after review; matches are prohibitions, negations, storage text, or the word mapping

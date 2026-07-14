@@ -1,0 +1,6 @@
+{
+  "manifests_created": false,
+  "reason": "no extracted synchronized annotated triplet paths and no established coordinate system",
+  "requested_interval": 30,
+  "status": "BLOCKED_NOT_FROZEN"
+}

@@ -1,0 +1,10 @@
+# V52 claim scan
+
+Command recorded in `preflight_commands.txt`.
+
+Matches reviewed:
+- `claim_boundary.md`: ground-vehicle and AP-related terms occur only in explicit unsupported-claim statements.
+- `category_mapping.md` and `annotation_audit.json`: `mapping` is metadata vocabulary, not an empirical claim.
+- blocker and handoff matches concern filesystem capacity and rerun instructions.
+
+Unresolved affirmative prohibited claims: 0

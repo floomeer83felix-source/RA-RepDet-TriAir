@@ -1,31 +1,16 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-13T21:17:16+08:00
+Generated: 2026-07-14T11:40:41+08:00
 
 ## Current task
 
-- Task: V51 clean VisDrone evidence recovery.
-- Status: `V51_RUNNING_FULL_ROUTE_B`.
-- Starting commit: `520443266fb1a917e50acfbd09772b4d74f6bb00`.
-- Selected route: Route B, pre-registered group-disjoint cross-validation.
-- Route A rejected because all local source DET partitions overlap V50; remaining VisDrone-named data are derivatives/reference data.
+- V52 status: `BLOCKED_ARCHIVE_ONLY_AND_V51_INCOMPLETE`.
+- MM-UAV is present only as a 36-part ZIP64 archive; no sequence is extracted.
+- Central-directory entries: 8,460,602.
+- CPU archive/path audit completed; GPU pilot steps: 0.
+- Current decision: `NO_GO_DATA_OR_LICENSE_BLOCKER` for this local state.
+- Verification: V52 tests 4/4 pass; full PyTorch-environment suite 13/14 pass, with one stale V51 state assertion.
 
-## Frozen protocol
+## Required action
 
-- Three folds over 8,629 images and 321 filename-sequence groups.
-- Validation fold sizes: 2,868 / 2,952 / 2,809.
-- Full design: 9 fresh RGB 50-epoch runs plus 18 frozen-checkpoint evaluations.
-- The user authorized the full design and the queue started at `2026-07-13T21:17:16+08:00`.
-- Current run: fold 0, seed 0; queue PID `45124`, launch training PID `19816`.
-- Estimated full-design wall time: 65-75 hours on the local RTX 3090.
-
-## Integrity
-
-- V51 tests: 4/4 pass.
-- Frozen hashes: 29/29 match.
-- V50 protocol-violation evidence remains immutable and quarantined.
-- No V50 process is alive; the source-locked V51 queue is active.
-
-## Claim boundary
-
-Route B is cross-validation only, not an independent/blind test. RGB-only and zero-channel evidence cannot validate external thermal/event fusion or physical sensor failure.
+Extract the complete archive to storage with at least 388,670,441,933 bytes plus working-space margin, then rerun V52 Stage 1. E: had 655,513,616,384 bytes free during the audit and is a candidate destination. Separately decide how to handle the incomplete V51 queue; V52 did not alter it.

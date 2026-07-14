@@ -1,47 +1,42 @@
 # Task Blocker
 
-Status: `V51_FULL_ROUTE_B_RUNNING`
+Status: `V52_BLOCKED_ARCHIVE_ONLY_AND_V51_INCOMPLETE`
 
-Generated: 2026-07-13T21:13:45+08:00
+Generated: 2026-07-14T11:40:41+08:00
 
-## Current execution
+## Exact blocker
 
-The user authorized the complete source-locked design. The V51 queue started at `2026-07-13T21:17:16+08:00`; fold 0 seed 0 is training from scratch. There is no current technical blocker, but this file remains until V51 completes because the V50 protocol violation is still quarantined.
+`D:\BaiduNetdiskDownload\MM-UAV` contains only 35 10-GiB ZIP split parts and a 7.2-GB final ZIP. There are no extracted sequence directories. The archive occupies 383,014,670,799 bytes and its ZIP64 entries declare 388,670,441,933 uncompressed bytes, while D: has 360,268,697,600 bytes free. Complete extraction beside the archive is impossible. E: had 655,513,616,384 bytes free at audit time and is a candidate destination only after allowing a working-space safety margin.
 
-The source-locked full design requires:
+The ZIP64 central directory is readable and contains 8,460,602 entries, but central-directory metadata cannot establish decoded media ranges, annotation semantics, RGB/IR geometry, event representation, licensing text, or usable filesystem manifests.
 
-- 9 fresh RGB trainings: 3 folds x seeds 0, 1, and 2;
-- 50 epochs per run at RGB 640, batch 4;
-- 18 frozen TriAir-checkpoint fold evaluations after baseline training;
-- no resume from the interrupted V50 run.
+V51 is also incomplete: its stale status says `RUNNING`, no V51 process is alive, and the last log ended at fold 0 seed 0 epoch 6 iteration 300/1441. V52 did not restart, stop, or modify V51.
 
-## Time estimate
+## Last execution lines
 
-- V50 observed training throughput: 1,618 iterations in approximately 409 seconds (`0.253 s/iteration`).
-- V51 fold training size: approximately 1,420-1,455 iterations per epoch.
-- V50 frozen-checkpoint inference throughput: approximately 22 images/second.
-- Expected full-design wall time on the RTX 3090: 65-75 hours, including per-epoch fold validation and final evaluations.
+```text
+V52 central-directory audit completed without a Python exception.
+MM-UAV extracted directories: 0
+ZIP64 parts: 36
+ZIP64 entries: 8460602
+GPU operations: 0
+Pilot gate: LOCKED
+```
 
-## Validation completed
+## Attempted checks
 
-- V50 immutable/source-lock checks: all match.
-- V51 source-lock hashes: 29/29 match.
-- V51 tests: 4/4 pass.
-- Fold validation sizes: 2,868 / 2,952 / 2,809 images.
-- No group leakage and no GPU process started.
+1. Verified all split parts `z01` through `z35` and the final ZIP exist and are non-zero.
+2. Recorded size, modification time, and first/last 1-MiB SHA256 fingerprints for every part.
+3. Parsed the ZIP64 central directory without extraction and audited filename-level split, sequence, modality, and frame-index structure.
+4. Checked D-drive free space and confirmed it is smaller than the archive itself.
+5. Checked V51 process state and preserved its incomplete files unchanged.
+6. Ran all repository tests in the project PyTorch environment: 13 of 14 passed. The only failure is the pre-existing V51 assertion that requires `AWAITING_GPU_AUTHORIZATION`; the recorded state is now `RUNNING` because V51 was previously authorized and partially executed.
 
-## Authorized design
+The default Anaconda Python lacks `torch`, so V48/V50 imports fail there. Re-running with `C:\Users\xinnan\.conda\envs\pytorch\python.exe` resolves both import errors. V52-specific tests pass in both environments.
 
-- Full design authorized: 9 training runs, estimated 65-75 hours.
-- Queue PID at launch: `45124`.
-- Training PID at launch: `19816`.
-- No reduced-design amendment was made.
+## Repair options
 
-## Related files
+1. Extract MM-UAV to E: or another filesystem with sufficient capacity, retaining the archives unchanged; provide at least 388,670,441,933 bytes plus working-space margin, then rerun V52.
+2. Free sufficient D-drive capacity and extract the complete multipart archive in place, then rerun V52 from Stage 1.
 
-- `runs/v51_visdrone_recovery/recovery_audit.md`
-- `runs/v51_visdrone_recovery/route_decision.md`
-- `runs/v51_visdrone_recovery/fold_integrity.md`
-- `runs/v51_visdrone_recovery/source_lock_v51.md`
-- `runs/v51_visdrone_recovery/cv_run_status.json`
-- `runs/v50_visdrone_seen/protocol_violation_evidence.json`
+Do not authorize the 200-step pilot until extraction, annotation/geometry audit, sampling freeze, and the V51 gate all pass.
