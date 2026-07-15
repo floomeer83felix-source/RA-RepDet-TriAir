@@ -1,36 +1,56 @@
 # Experiment Status
 
-Updated: 2026-07-15T08:41:00+08:00
+Updated: 2026-07-15
 
 ## Active task
 
-`V52_INTERVAL20_FROZEN_PILOT_BLOCKED`
+`V52_OFFICIAL_ALIGNMENT_PROVIDER_AUDIT_AUTHORIZED`
 
-## MM-UAV extracted subset
+## User decision
 
-- Disk-full extraction produced 424 strictly complete source-train sequences and one incomplete sequence (`0512`).
-- Sequence `0512` was moved without data loss to `D:\MM-UAV_incomplete_quarantine\train\0512` and excluded.
+The user authorized one final CPU-only audit of MM-UAV provider contracts and official cross-modal alignment evidence. No GPU work, training, inference, learned alignment design, or manuscript changes are authorized.
+
+## Frozen MM-UAV subset
+
+- 424 complete source-train sequences are accepted; incomplete sequence `0512` remains quarantined.
 - Complete synchronized RGB/IR/event triplets: 897,578.
-- User-authorized 1-based interval-20 rule: `1, 21, 41, ...`.
+- Frozen interval-20 rule: source indices `1, 21, 41, ...`.
 - Sequence-disjoint split: 339 train / 85 development-validation sequences.
 - Frozen samples: 35,894 train + 9,142 development-validation = 45,036.
+- 9,138 sampled triplets contain at least one source GT row.
+- 35,898 sampled triplets remain `UNLABELED` and may not be treated as empty-target negatives.
 
-## Scientific blockers
+## Alignment evidence already established
 
-- Only 9,138 sampled frames contain at least one source GT row; 35,898 have unresolved `UNLABELED_OR_EMPTY` status.
-- GT cadence is predominantly `1, 101, 201, ...`; missing rows are not authorized as empty-target negatives.
 - Native grids differ: RGB 640x360, IR 640x512, event 346x260.
-- On 100 frames from 20 sequences, 215 same-track matches have mean IoU 0.00867 after dimension scaling; direct channel-aligned fusion is invalid.
-- Provider/license, category semantics, and the final three GT fields remain unresolved.
-- V51 remains incomplete with a stale `RUNNING` status and no active process.
+- Event frames have no separate source detection boxes in the locally audited subset.
+- On the frozen geometry sample, dimension-only scaling produced mean matched RGB/IR IoU about 0.00867.
+- Direct channel-aligned RGB/IR/event concatenation is scientifically invalid under the currently established evidence.
 
-## Verification
+## Audit questions now authorized
 
-- V52 tests: 5/5 pass.
-- Repository tests: 14/15 pass; the only failure is the pre-existing V51 assertion expecting `AWAITING_GPU_AUTHORIZATION` while its status records `RUNNING`.
-- CPU loader benchmark: pass; GPU operations: 0.
-- Pilot gate: locked.
+The CPU-only audit must determine whether provider-controlled sources establish:
 
-## Decision
+- the meaning of frames without GT rows;
+- target category and final GT-column semantics;
+- license or research-use terms;
+- deterministic calibration, registration, warp, crop, coordinate transform, or official alignment implementation;
+- whether the official method instead relies only on learned feature alignment.
 
-`NO_GO_DATA_OR_LICENSE_BLOCKER` for supervised interval-20 training. The file manifest is frozen and usable for CPU-side inspection, but not every row has a defensible target contract.
+## Gates
+
+- V51 remains incomplete and must not be modified.
+- Pilot gate remains locked.
+- GPU optimizer steps remain 0.
+- No 200-step pilot or full MM-UAV training is authorized.
+
+## Current decision boundary
+
+The task may end only as one of:
+
+- `OFFICIAL_REPRODUCIBLE_ALIGNMENT_FOUND_PILOT_STILL_LOCKED`;
+- `OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO`;
+- `NO_OFFICIAL_ALIGNMENT_DIRECT_FUSION_NO_GO`;
+- `BLOCKED_PROVIDER_EVIDENCE_INCOMPLETE`.
+
+A future GPU task requires separate user authorization even if a reproducible official alignment method is found.
