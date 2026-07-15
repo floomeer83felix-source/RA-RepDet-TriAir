@@ -1,4 +1,2 @@
-C:\ProgramData\anaconda3\python.exe rarepdet/tools/audit_v52_mmuav.py
-C:\ProgramData\anaconda3\python.exe -m unittest discover -s tests -p test_v52_mmuav.py -v
-C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -v
-rg -n -i "two-dataset|pixel-perfect|calibrated sensor reliability|real sensor-fault|statistical significance|universal causality|optimal modality dropout|ground-vehicle|AP|generalization" runs/v52_mmuav_audit docs/EXPERIMENT_STATUS.md docs/TASK_BLOCKER.md runs/handoff_latest.md
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/prepare_v52_mmuav_extracted.py
+python -m unittest discover -s tests -p test_v52_mmuav.py -v

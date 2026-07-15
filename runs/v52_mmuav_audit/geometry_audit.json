@@ -1,0 +1,20 @@
+{
+  "status": "ALIGNMENT_MODULE_REQUIRED",
+  "sample_frames": 100,
+  "sample_sequences": 20,
+  "matched_targets": 215,
+  "matching_rule": "same source frame index and same track ID; IR y/h scaled 360/512 into RGB dimensions",
+  "normalized_center_displacement": {
+    "mean": 0.07077709402171804,
+    "p50": 0.06197415523648154,
+    "p95": 0.11724025009037675
+  },
+  "matched_iou": {
+    "mean": 0.008668475511830852,
+    "p50": 0.0,
+    "p95": 0.02101451395250876
+  },
+  "rgb_to_scaled_ir_width_ratio_mean": 0.8113739544038436,
+  "rgb_to_scaled_ir_height_ratio_mean": 1.1210723471188588,
+  "conclusion": "Independent resizing is not a geometric calibration; direct channel-aligned fusion is not authorized."
+}

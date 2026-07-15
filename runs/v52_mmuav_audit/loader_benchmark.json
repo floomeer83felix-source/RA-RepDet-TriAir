@@ -1,5 +1,9 @@
 {
-  "gpu_used": false,
-  "reason": "no extracted media paths",
-  "status": "NOT_RUN"
+  "status": "PASS_CPU_ONLY",
+  "samples": 200,
+  "modal_files_decoded": 600,
+  "elapsed_seconds": 1.0511774000000003,
+  "triplets_per_second": 190.26284240890257,
+  "compressed_megabytes_per_second": 9.976784127969264,
+  "gpu_used": false
 }

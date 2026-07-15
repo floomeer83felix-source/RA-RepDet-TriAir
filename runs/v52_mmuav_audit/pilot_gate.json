@@ -1,66 +1,16 @@
 {
-  "generated_at": "2026-07-14T11:40:39+08:00",
+  "generated_at": "2026-07-15T08:42:29+08:00",
   "locked": true,
+  "gpu_steps": 0,
   "reasons": [
-    "V51 is incomplete even though no matching process is currently alive.",
-    "MM-UAV media and annotations are not extracted.",
-    "No common detection coordinate system or frozen sampling manifest exists."
+    "Direct channel-aligned fusion is invalid across 640x360, 640x512, and 346x260 native grids.",
+    "No source/provider license text is locally available.",
+    "Most interval-20 frames lack source GT rows, and missing rows are not verified empty targets.",
+    "V51 remains incomplete and its status is stale RUNNING with no active process."
   ],
-  "v51_processes": [],
-  "v51_status": {
-    "gpu_authorized_at": "2026-07-13T21:17:16+08:00",
-    "route": "B_GROUP_DISJOINT_CROSS_VALIDATION",
-    "runs": [
-      {
-        "fold": 0,
-        "seed": 0,
-        "started_at": "2026-07-13T21:17:16+08:00",
-        "state": "TRAINING"
-      },
-      {
-        "fold": 0,
-        "seed": 1,
-        "state": "PENDING_FROM_SCRATCH"
-      },
-      {
-        "fold": 0,
-        "seed": 2,
-        "state": "PENDING_FROM_SCRATCH"
-      },
-      {
-        "fold": 1,
-        "seed": 0,
-        "state": "PENDING_FROM_SCRATCH"
-      },
-      {
-        "fold": 1,
-        "seed": 1,
-        "state": "PENDING_FROM_SCRATCH"
-      },
-      {
-        "fold": 1,
-        "seed": 2,
-        "state": "PENDING_FROM_SCRATCH"
-      },
-      {
-        "fold": 2,
-        "seed": 0,
-        "state": "PENDING_FROM_SCRATCH"
-      },
-      {
-        "fold": 2,
-        "seed": 1,
-        "state": "PENDING_FROM_SCRATCH"
-      },
-      {
-        "fold": 2,
-        "seed": 2,
-        "state": "PENDING_FROM_SCRATCH"
-      }
-    ],
-    "state": "RUNNING",
-    "total_training_runs": 9,
-    "updated_at": "2026-07-13T21:17:16+08:00",
-    "zero_shot_fold_evaluations_pending": 18
-  }
+  "unlock_requirements": [
+    "Pre-register and source-lock an explicit alignment module or coordinate transformation.",
+    "Establish provider/version/license and target-category semantics.",
+    "Resolve the V51 concurrency gate or obtain explicit authorization."
+  ]
 }

@@ -1,7 +1,32 @@
 {
-  "category_mapping_established": false,
-  "geometry_sample_frames": 0,
-  "reason": "Annotation and media contents are unavailable inside the unextracted split archive.",
-  "status": "BLOCKED_CONTENT_NOT_EXTRACTED",
-  "test_annotation_candidate_entries": 484
+  "status": "BLOCKED_SPARSE_GT_EMPTY_FRAME_CONTRACT_UNVERIFIED",
+  "format": "MOT-like CSV: frame, track_id, x, y, width, height, three source fields of unverified semantics",
+  "coordinate_convention": "top-left xywh in modality-native pixels",
+  "rgb_size": [
+    640,
+    360
+  ],
+  "ir_size": [
+    640,
+    512
+  ],
+  "event_size": [
+    346,
+    260
+  ],
+  "separate_rgb_ir_boxes": true,
+  "event_specific_boxes": false,
+  "annotation_cadence": "predominantly frames 1, 101, 201, ... plus sequence end",
+  "summary": {
+    "rgb": {
+      "rows": 21149
+    },
+    "ir": {
+      "rows": 20828
+    },
+    "sampled_rgb_objects": 20250,
+    "sampled_ir_objects": 19940,
+    "sampled_without_rgb_gt_rows": 36004,
+    "sampled_without_ir_gt_rows": 36029
+  }
 }

@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-07-15T08:42:29+08:00",
+  "status": "LOCKED_CPU_ARTIFACTS_GPU_NOT_AUTHORIZED",
+  "dataset_root": "E:\\MM-UAV_extracted\\MMMUAV\\train",
+  "complete_sequences": 424,
+  "interval": 20,
+  "hashes": {
+    "prepare_script": "ec827c03fde8cf4c0263720fc544a85ef90cf5a332a97523012553708815bea5",
+    "train_manifest": "9feee0e362a6885dd9ba68a4dd9a903c6ee3dc459be04a9699d725a9184582d1",
+    "devval_manifest": "88a2f32000b2c3b1b9cb5021916a29e55df73e46daeaf22f537c854488aa8800",
+    "sampling_protocol": "3d410e812874b29f0688b2d24bcac781192c883264daba598be596b649c89e65",
+    "geometry_audit": "9f29e511022b98a7476fbecf76c69df6de12667e51147c167a9711e7727b001c",
+    "annotation_audit": "58703ab8b458771c570e49b6ecb9297aee7c9e9de0e7784faf4ae6b29c26f3b6"
+  },
+  "gpu_pilot_authorized": false
+}

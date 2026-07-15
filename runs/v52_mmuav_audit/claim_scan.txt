@@ -1,10 +1,10 @@
-# V52 claim scan
+# V52 Interval-20 Claim Scan
 
-Command recorded in `preflight_commands.txt`.
+Reviewed terms: AP, pixel alignment, calibrated reliability, real-fault robustness, significance, generalization, causality, optimal dropout, second ground-vehicle dataset, and direct channel-aligned fusion.
 
 Matches reviewed:
-- `claim_boundary.md`: ground-vehicle and AP-related terms occur only in explicit unsupported-claim statements.
-- `category_mapping.md` and `annotation_audit.json`: `mapping` is metadata vocabulary, not an empirical claim.
-- blocker and handoff matches concern filesystem capacity and rerun instructions.
+- `claim_boundary.md` contains only explicit unsupported-claim statements.
+- geometry, status, blocker, and gate files state that direct channel-aligned fusion is invalid or unauthorized.
+- category `mapping` and filename `mapping` are metadata vocabulary, not empirical claims.
 
 Unresolved affirmative prohibited claims: 0

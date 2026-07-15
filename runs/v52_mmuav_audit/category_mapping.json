@@ -1,6 +1,7 @@
 {
-  "detection_coordinate_system": null,
-  "reason": "annotation contents unavailable",
-  "source_categories": [],
-  "status": "NOT_ESTABLISHED"
+  "status": "PROVISIONAL_NOT_AUTHORIZED_FOR_TRAINING",
+  "source_category_field": null,
+  "provisional_detector_label": 1,
+  "provisional_name": "UNVERIFIED_TRACKED_TARGET",
+  "reason": "MOT-like rows contain track IDs but no locally documented category semantics."
 }

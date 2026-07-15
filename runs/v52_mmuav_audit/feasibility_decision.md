@@ -1,5 +1,5 @@
 # V52 Feasibility Decision
 
-Outcome: `NO_GO_DATA_OR_LICENSE_BLOCKER` for the current local archive-only state.
+Outcome: `NO_GO_DATA_OR_LICENSE_BLOCKER` for supervised training on the interval-20 sample.
 
-This is not a permanent judgment about MM-UAV. A new audit can reconsider the dataset after complete extraction to adequate storage, local license/provenance verification, annotation parsing, and geometry measurement. No GPU pilot is permitted now.
+Interval-20 paths are frozen for 424 complete sequences, but most sampled frames lack source GT rows and cannot be interpreted as empty targets. A GPU pilot remains locked until the sparse-label contract is established, an explicit alignment method is pre-registered and source-locked, provider/license/category semantics are established, and the V51 gate is resolved.

@@ -1,42 +1,53 @@
 # Task Blocker
 
-Status: `V52_BLOCKED_ARCHIVE_ONLY_AND_V51_INCOMPLETE`
+Status: `V52_INTERVAL20_SUPERVISED_LABEL_ALIGNMENT_LICENSE_BLOCKER`
 
-Generated: 2026-07-14T11:40:41+08:00
+Generated: 2026-07-15T08:41:00+08:00
 
 ## Exact blocker
 
-`D:\BaiduNetdiskDownload\MM-UAV` contains only 35 10-GiB ZIP split parts and a 7.2-GB final ZIP. There are no extracted sequence directories. The archive occupies 383,014,670,799 bytes and its ZIP64 entries declare 388,670,441,933 uncompressed bytes, while D: has 360,268,697,600 bytes free. Complete extraction beside the archive is impossible. E: had 655,513,616,384 bytes free at audit time and is a candidate destination only after allowing a working-space safety margin.
+The user-authorized interval-20 manifest is frozen over 424 complete extracted train sequences: 45,036 synchronized triplets split across 339 train and 85 development-validation sequences. Only 9,138 sampled frames contain any source RGB or IR GT row; 35,898 contain no source GT row. Source annotations occur predominantly at frames `1, 101, 201, ...` plus sequence ends. No local provider contract establishes that absent rows are true empty-target frames, so they cannot be silently converted into negative detection samples.
 
-The ZIP64 central directory is readable and contains 8,460,602 entries, but central-directory metadata cannot establish decoded media ranges, annotation semantics, RGB/IR geometry, event representation, licensing text, or usable filesystem manifests.
+RGB, IR, and event native grids are 640x360, 640x512, and 346x260. On a deterministic 100-frame/20-sequence sample, 215 same-track RGB/IR matches have mean dimension-scaled IoU 0.00867 (median 0), so direct channel-aligned early fusion is not defensible. Provider/license, category semantics, and the final three MOT-like fields also remain unresolved.
 
-V51 is also incomplete: its stale status says `RUNNING`, no V51 process is alive, and the last log ended at fold 0 seed 0 epoch 6 iteration 300/1441. V52 did not restart, stop, or modify V51.
+V51 remains incomplete with stale state `RUNNING` and no active process. No V52 GPU operation was executed.
 
 ## Last execution lines
 
 ```text
-V52 central-directory audit completed without a Python exception.
-MM-UAV extracted directories: 0
-ZIP64 parts: 36
-ZIP64 entries: 8460602
+Complete sequences: 424
+Interval-20 samples: 45036
+Samples with source GT / unresolved no-row state: 9138/35898
+Geometry frames/sequences: 100/20
+V52 tests: 5/5 PASS
+Repository tests: 14/15 PASS; stale V51 pre-authorization assertion fails
 GPU operations: 0
 Pilot gate: LOCKED
 ```
 
 ## Attempted checks
 
-1. Verified all split parts `z01` through `z35` and the final ZIP exist and are non-zero.
-2. Recorded size, modification time, and first/last 1-MiB SHA256 fingerprints for every part.
-3. Parsed the ZIP64 central directory without extraction and audited filename-level split, sequence, modality, and frame-index structure.
-4. Checked D-drive free space and confirmed it is smaller than the archive itself.
-5. Checked V51 process state and preserved its incomplete files unchanged.
-6. Ran all repository tests in the project PyTorch environment: 13 of 14 passed. The only failure is the pre-existing V51 assertion that requires `AWAITING_GPU_AUTHORIZATION`; the recorded state is now `RUNNING` because V51 was previously authorized and partially executed.
+1. Stopped WinRAR after E: reached zero free bytes; no source archive was deleted.
+2. Verified E: is exFAT with a 262,144-byte allocation unit, explaining the small-file space exhaustion.
+3. Moved incomplete sequence `0512` to D: quarantine and verified identical file count and logical bytes before excluding it.
+4. Verified exact `1..seqLength` RGB/IR/event filename sets for all 424 retained sequences.
+5. Froze deterministic, sequence-disjoint interval-20 train/devval manifests before any model metric.
+6. Parsed all available RGB/IR GT files, measured annotation cadence, and marked missing-row samples unresolved rather than empty.
+7. Measured RGB-to-IR same-track geometry on 100 frames spanning 20 sequences.
+8. Ran a 200-triplet CPU decode benchmark and 5 V52 unit tests.
+9. Ran the full PyTorch-environment suite: 14/15 passed; only the out-of-scope stale V51 state assertion failed.
 
-The default Anaconda Python lacks `torch`, so V48/V50 imports fail there. Re-running with `C:\Users\xinnan\.conda\envs\pytorch\python.exe` resolves both import errors. V52-specific tests pass in both environments.
+## Related files
+
+- `runs/v52_mmuav_audit/manifests/train_sampled.txt`
+- `runs/v52_mmuav_audit/manifests/devval_sampled.txt`
+- `runs/v52_mmuav_audit/sampled_manifest.json`
+- `runs/v52_mmuav_audit/annotation_audit.json`
+- `runs/v52_mmuav_audit/geometry_audit.json`
+- `runs/v52_mmuav_audit/pilot_gate.json`
+- `runs/v52_mmuav_audit/source_lock_v52.json`
 
 ## Repair options
 
-1. Extract MM-UAV to E: or another filesystem with sufficient capacity, retaining the archives unchanged; provide at least 388,670,441,933 bytes plus working-space margin, then rerun V52.
-2. Free sufficient D-drive capacity and extract the complete multipart archive in place, then rerun V52 from Stage 1.
-
-Do not authorize the 200-step pilot until extraction, annotation/geometry audit, sampling freeze, and the V51 gate all pass.
+1. Obtain provider documentation confirming category/field semantics, whether absent GT rows mean true empty targets, dataset version/license, and calibration; then pre-register an explicit RGB/IR/event alignment method before any GPU pilot.
+2. Approve a revised supervised protocol that keeps interval-20 file sampling for audit but trains/evaluates only the 9,138 rows with explicit source GT, with an amended source lock and no claim about unlabeled frames. This is a different evidence contract and must be authorized before implementation.

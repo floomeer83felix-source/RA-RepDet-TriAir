@@ -1,6 +1,6 @@
 # V52 Provenance And License
 
-- The local name `MM-UAV` and archive root `MMMUAV/` are established from local paths and the ZIP64 central directory.
-- No extracted README or license file is locally readable in the dataset root.
-- Provider, version, redistribution terms, and research-use license are therefore not established.
-- Central-directory filenames and CRC32 values are inventory evidence, not verified license content.
+- Local archive name: `MM-UAV`; internal root: `MMMUAV`.
+- The interrupted extraction contains 424 complete source-train sequences and no source test split.
+- No README, provider metadata, version identifier, or license text is present in the extracted subset or archive metadata inventory.
+- Provider, version, category semantics, and redistribution/research-use terms remain unresolved.

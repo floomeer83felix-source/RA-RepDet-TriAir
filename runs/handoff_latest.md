@@ -1,16 +1,17 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-14T11:40:41+08:00
+Generated: 2026-07-15T08:41:00+08:00
 
 ## Current task
 
-- V52 status: `BLOCKED_ARCHIVE_ONLY_AND_V51_INCOMPLETE`.
-- MM-UAV is present only as a 36-part ZIP64 archive; no sequence is extracted.
-- Central-directory entries: 8,460,602.
-- CPU archive/path audit completed; GPU pilot steps: 0.
-- Current decision: `NO_GO_DATA_OR_LICENSE_BLOCKER` for this local state.
-- Verification: V52 tests 4/4 pass; full PyTorch-environment suite 13/14 pass, with one stale V51 state assertion.
+- V52 status: `INTERVAL20_FROZEN_PILOT_BLOCKED`.
+- Complete local MM-UAV train sequences: 424; synchronized triplets: 897,578.
+- Frozen sequence-disjoint interval-20 samples: 45,036 (35,894 train / 9,142 devval).
+- Samples with source GT / unresolved no-row state: 9,138 / 35,898.
+- CPU tests: 5/5 pass; GPU steps: 0.
+- Repository tests: 14/15 pass; only the stale V51 state assertion fails.
+- Decision: `NO_GO_DATA_OR_LICENSE_BLOCKER` for supervised interval-20 training.
 
 ## Required action
 
-Extract the complete archive to storage with at least 388,670,441,933 bytes plus working-space margin, then rerun V52 Stage 1. E: had 655,513,616,384 bytes free during the audit and is a candidate destination. Separately decide how to handle the incomplete V51 queue; V52 did not alter it.
+Choose one repair route documented in `docs/TASK_BLOCKER.md`: establish the provider sparse-label/alignment/license contract, or explicitly authorize a source-GT-only supervised protocol. Do not start the GPU pilot under the current source lock.

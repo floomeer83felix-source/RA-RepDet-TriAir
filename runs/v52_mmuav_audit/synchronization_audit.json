@@ -1,11 +1,9 @@
 {
-  "exact_index_match_sequences": 1321,
-  "limitations": "No file was decoded; timestamp, frame-rate, coordinate-origin, and pixel alignment remain unverified.",
-  "media_counts": {
-    "event": 2812333,
-    "ir": 2812333,
-    "rgb": 2813654
-  },
-  "sequence_records": 1321,
-  "status": "FILENAME_INDEX_AUDIT_ONLY"
+  "status": "PASS_FILENAME_INDEX_SYNC_FOR_424_COMPLETE_SEQUENCES",
+  "complete_sequences": 424,
+  "synchronized_triplets": 897578,
+  "index_origin": 1,
+  "filename_mapping": "exact same zero-padded numeric JPEG name",
+  "native_dimensions_differ": true,
+  "pixel_alignment_established": false
 }

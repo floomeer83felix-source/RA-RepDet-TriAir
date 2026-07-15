@@ -1,11 +1,9 @@
 {
   "outcome": "NO_GO_DATA_OR_LICENSE_BLOCKER",
-  "permanent_dataset_judgment": false,
-  "reasons": [
-    "V51 is incomplete even though no matching process is currently alive.",
-    "MM-UAV media and annotations are not extracted.",
-    "No common detection coordinate system or frozen sampling manifest exists.",
-    "Local provider/license text has not been extracted and verified."
-  ],
-  "scope": "current local archive-only state"
+  "data_sampling_ready": true,
+  "supervised_detection_ready": false,
+  "gpu_pilot_authorized": false,
+  "license_verified": false,
+  "scope": "424 complete source-train sequences in the interrupted local extraction",
+  "reason": "Interval-20 paths are frozen, but the sparse-GT empty-frame contract, direct alignment, category semantics, and license are unresolved."
 }

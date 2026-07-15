@@ -1,9 +1,12 @@
-ZIP64 central records parsed: 8460602
-Malformed central records: 0
+Complete sequences: 424
+Rejected sequences: 0
+Interval-20 samples: 45036
+Samples with source GT / unresolved no-row state: 9138/35898
+Geometry frames/sequences: 100/20
+CPU loader: 190.2628 triplets/s
 GPU operations: 0
-Media files decoded: 0
-Result: BLOCKED_ARCHIVE_ONLY_INSUFFICIENT_EXTRACTION_SPACE
-V52 unit tests: 4/4 PASS
-Repository tests with project PyTorch Python: 13/14 PASS
-Only repository failure: V51 state is RUNNING, while its legacy test expects AWAITING_GPU_AUTHORIZATION
-Claim scan: PASS after review; matches are prohibitions, negations, storage text, or the word mapping
+Pilot gate: LOCKED
+V52 tests: 5/5 PASS
+Repository tests: 14/15 PASS
+Only repository failure: V51 state is RUNNING while its legacy test expects AWAITING_GPU_AUTHORIZATION
+Claim scan: PASS; all matches are prohibitions, negations, or metadata vocabulary

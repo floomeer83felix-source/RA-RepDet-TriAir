@@ -1,5 +1,9 @@
 # Current Task
 
+## User Override (2026-07-15)
+
+The user explicitly accepted the 424 completely extracted train sequences as the V52 local subset and changed the sampling interval from 30 to 20. Freeze source indices `1, 21, 41, ...` without renumbering. This override does not authorize treating frames without source GT rows as empty targets, bypassing geometry/license checks, or starting GPU work.
+
 ## Title
 
 V52 audit MM-UAV tri-modal data and pre-register a compute-bounded sampling pilot.
@@ -365,6 +369,4 @@ A future full experiment is outside V52. Do not start matched-early, static-equa
 
 ## Commit Message
 
-```text
 data: audit MM-UAV and prepare bounded tri-modal pilot
-```
