@@ -1,0 +1,9 @@
+{
+  "status": "PARTIALLY_CONFIRMED",
+  "missing_row_meaning": "UNANNOTATED_OR_EMPTY_UNRESOLVED",
+  "verified_empty_target": false,
+  "interpolation_expected": "not stated",
+  "fixed_cadence": "training sequences every 100 frames; test sequences every 20 frames",
+  "operational_converter_behavior": "intersection of RGB and IR annotated frame IDs only",
+  "unlabeled_rows_preserved": 35898
+}

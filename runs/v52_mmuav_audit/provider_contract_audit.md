@@ -1,0 +1,5 @@
+# V52 Provider Contract Audit
+
+Official baseline `5051e4451a2b66dba9128fb0f766832152e7d120` and evaluation `a468fb66db9e67c00357e1bd3f169745c389bab7` were pinned. The official arXiv v3 HTML hash is `89e69fb5865b530a2e04bd14cf0b20833e4bf8956b1f9b666db3bd2920fb0822`.
+
+Every tracked file in both pinned official clones and the paper HTML is hashed in `provider_download_inventory.csv`; total material remains below 1 GB. All provider non-media files in 424 extracted sequences were searched by filename and text, with matches recorded in `local_provider_search_matches.csv`. The paper explicitly states independent RGB/IR annotation, no event boxes, and sparse training annotation every 100 frames. The official converter intersects RGB/IR annotated frame IDs and therefore excludes unannotated frames. No searched provider artifact defines missing rows as verified empty scenes, supplies a complete raw-grid calibration recipe, fully defines all final MOT-like fields, or grants a dataset license. See `provider_evidence_inventory.csv`.

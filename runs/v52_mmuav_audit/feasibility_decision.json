@@ -1,9 +1,14 @@
 {
-  "outcome": "NO_GO_DATA_OR_LICENSE_BLOCKER",
-  "data_sampling_ready": true,
-  "supervised_detection_ready": false,
-  "gpu_pilot_authorized": false,
-  "license_verified": false,
-  "scope": "424 complete source-train sequences in the interrupted local extraction",
-  "reason": "Interval-20 paths are frozen, but the sparse-GT empty-frame contract, direct alignment, category semantics, and license are unresolved."
+  "generated_at": "2026-07-15T11:19:16+08:00",
+  "outcome": "OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO",
+  "direct_channel_fusion": "NO_GO",
+  "deterministic_spatial_transform": false,
+  "official_learned_feature_alignment": true,
+  "annotated_only_included": 9138,
+  "unlabeled_excluded": 35898,
+  "sparse_gt_status": "PARTIALLY_CONFIRMED",
+  "category_fields_status": "PARTIALLY_CONFIRMED",
+  "dataset_license_status": "UNRESOLVED",
+  "pilot_locked": true,
+  "gpu_optimizer_steps": 0
 }

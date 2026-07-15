@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-07-15T11:19:16+08:00",
+  "official_sources_accessible": true,
+  "official_commits": {
+    "benchmark": "5051e4451a2b66dba9128fb0f766832152e7d120",
+    "evaluation": "a468fb66db9e67c00357e1bd3f169745c389bab7"
+  },
+  "paper": {
+    "url": "https://arxiv.org/html/2511.18344v3",
+    "sha256": "89e69fb5865b530a2e04bd14cf0b20833e4bf8956b1f9b666db3bd2920fb0822"
+  },
+  "local_search": {
+    "root": "E:\\MM-UAV_extracted\\MMMUAV\\train",
+    "provider_nonmedia_files_searched": 1696,
+    "matching_files": 0,
+    "terms": [
+      "align",
+      "alignment",
+      "registration",
+      "calibration",
+      "calibrate",
+      "homography",
+      "affine",
+      "warp",
+      "rectify",
+      "rectification",
+      "intrinsic",
+      "extrinsic",
+      "distortion",
+      "transform",
+      "coordinate",
+      "crop",
+      "resize",
+      "pad",
+      "roi",
+      "timestamp",
+      "sync",
+      "annotation",
+      "visibility",
+      "occlusion",
+      "truncation",
+      "confidence",
+      "class",
+      "category",
+      "license"
+    ],
+    "media_filename_coverage": "frozen directory inventory and 45,036-row interval-20 manifests",
+    "complete_sequences": 424
+  },
+  "download_inventory": {
+    "inventoried_files": 9569,
+    "tracked_worktree_bytes": 324545797,
+    "total_downloaded_material_bytes_including_git": 560363481,
+    "limit_bytes": 1000000000,
+    "below_limit": true
+  },
+  "findings": [
+    "Provider paper defines sparse train cadence as every 100 frames.",
+    "Official converter trains only on the intersection of RGB/IR annotated frame IDs.",
+    "No provider dataset file supplies raw-grid calibration or explicit dataset-use license."
+  ],
+  "evidence_count": 14
+}

@@ -1,5 +1,5 @@
-# V52 Feasibility Decision
+# V52 Final Feasibility Decision
 
-Outcome: `NO_GO_DATA_OR_LICENSE_BLOCKER` for supervised training on the interval-20 sample.
+Outcome: `OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO`.
 
-Interval-20 paths are frozen for 424 complete sequences, but most sampled frames lack source GT rows and cannot be interpreted as empty targets. A GPU pilot remains locked until the sparse-label contract is established, an explicit alignment method is pre-registered and source-locked, provider/license/category semantics are established, and the V51 gate is resolved.
+Official code addresses RGB/IR mismatch through learned feature alignment, not a reproducible raw-grid registration. Direct RGB/thermal/event channel concatenation remains invalid. A learned alignment module would be a separate, explicitly authorized method expansion. The 200-step pilot remains locked.

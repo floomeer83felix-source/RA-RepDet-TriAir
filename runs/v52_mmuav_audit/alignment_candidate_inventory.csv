@@ -1,0 +1,8 @@
+candidate,classification,mapping,parameter_scope,executable_complete,changes_annotations,purpose,reproducible_without_devval_gt_fit
+OGAA deformable convolution,LEARNED_FEATURE_ALIGNMENT,RGB<->IR feature maps,per sample learned offsets,True,False,detection feature fusion,True
+OGAA spatial transformer,LEARNED_FEATURE_ALIGNMENT,RGB<->IR feature maps,global fixed initialization plus per-sample learned delta,True,False,detection feature fusion,True
+STN fixed theta constants alone,CALIBRATION_PARAMETERS_ONLY,RGB<->IR feature grids,global,False,False,initialization for learned feature STN,False
+VideoCameraCorrection GMC,FIXED_PREPROCESSING_WITHOUT_CALIBRATION,previous->current frame within one video,per frame estimated from video,True,False,tracking camera-motion compensation,True
+synchronized frame indices,TEMPORAL_SYNCHRONIZATION_ONLY,RGB/IR/event frame index,per frame,True,False,temporal pairing,True
+independent input resize/letterbox,FIXED_PREPROCESSING_WITHOUT_CALIBRATION,each native grid->network feature grid,per modality,True,False,network preprocessing,True
+expanded event crop for motion embedding,FIXED_PREPROCESSING_WITHOUT_CALIBRATION,RGB/IR track box vicinity->event crop,per track/frame,True,False,tracking association feature,True

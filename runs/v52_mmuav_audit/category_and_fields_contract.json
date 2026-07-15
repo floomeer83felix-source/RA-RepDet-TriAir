@@ -1,0 +1,13 @@
+{
+  "status": "PARTIALLY_CONFIRMED",
+  "category": "drone",
+  "columns_confirmed": [
+    "frame",
+    "track_id",
+    "x",
+    "y",
+    "width",
+    "height"
+  ],
+  "remaining_fields": "converter uses column 7 as conf/filter and ignores column 9; provider prose does not completely define final three fields"
+}

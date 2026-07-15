@@ -352,11 +352,11 @@ Run:
 powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 ```
 
-Commit and push with:
+## Commit Message
 
-```text
 data: audit official MM-UAV alignment and provider contracts
-```
+
+## Final Report Requirements
 
 The final report must state:
 

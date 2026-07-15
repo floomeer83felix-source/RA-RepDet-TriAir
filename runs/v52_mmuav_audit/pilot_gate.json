@@ -12,5 +12,8 @@
     "Pre-register and source-lock an explicit alignment module or coordinate transformation.",
     "Establish provider/version/license and target-category semantics.",
     "Resolve the V51 concurrency gate or obtain explicit authorization."
-  ]
+  ],
+  "gpu_optimizer_steps": 0,
+  "audit_outcome": "OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO",
+  "updated_at": "2026-07-15T11:19:16+08:00"
 }

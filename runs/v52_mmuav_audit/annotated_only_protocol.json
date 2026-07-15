@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-07-15T11:19:16+08:00",
+  "starting_commit": "895a09753f84a3883a709d587c3a852ace8af0c4",
+  "predicate": "rgb_annotation_rows > 0 OR ir_annotation_rows > 0",
+  "included": 9138,
+  "excluded_unlabeled": 35898,
+  "total": 45036,
+  "excluded_state": "UNLABELED",
+  "empty_target_assignments": 0,
+  "source_manifests": [
+    "manifests/train_sampled.txt",
+    "manifests/devval_sampled.txt"
+  ],
+  "derivative_manifest": "manifests/annotated_only_sampled.txt",
+  "derivative_sha256": "13f1d7b5496fc2735787965d0442c498f9452dcbd49f41e2deebcbb043857dfb"
+}

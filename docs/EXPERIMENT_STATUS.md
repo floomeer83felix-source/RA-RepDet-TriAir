@@ -4,11 +4,13 @@ Updated: 2026-07-15
 
 ## Active task
 
-`V52_OFFICIAL_ALIGNMENT_PROVIDER_AUDIT_AUTHORIZED`
+`V52_OFFICIAL_ALIGNMENT_PROVIDER_AUDIT_COMPLETE`
 
-## User decision
+## Final outcome
 
-The user authorized one final CPU-only audit of MM-UAV provider contracts and official cross-modal alignment evidence. No GPU work, training, inference, learned alignment design, or manuscript changes are authorized.
+`OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO`
+
+The final CPU-only audit found official learned RGB/IR feature alignment but no complete provider-supplied RGB/IR/event raw-grid registration. Direct channel-aligned fusion remains invalid. No GPU work, training, inference, learned alignment design, or manuscript change occurred.
 
 ## Frozen MM-UAV subset
 
@@ -27,15 +29,14 @@ The user authorized one final CPU-only audit of MM-UAV provider contracts and of
 - On the frozen geometry sample, dimension-only scaling produced mean matched RGB/IR IoU about 0.00867.
 - Direct channel-aligned RGB/IR/event concatenation is scientifically invalid under the currently established evidence.
 
-## Audit questions now authorized
+## Provider-contract verdicts
 
-The CPU-only audit must determine whether provider-controlled sources establish:
-
-- the meaning of frames without GT rows;
-- target category and final GT-column semantics;
-- license or research-use terms;
-- deterministic calibration, registration, warp, crop, coordinate transform, or official alignment implementation;
-- whether the official method instead relies only on learned feature alignment.
+- Annotated-only predicate reproduced exactly: 9,138 included / 35,898 `UNLABELED`.
+- Sparse GT: `PARTIALLY_CONFIRMED`; the paper states train annotations every 100 frames and the official converter excludes unannotated frames, but absent rows are not defined as verified empty targets.
+- Category and GT fields: `PARTIALLY_CONFIRMED`; official code confirms `drone` and operational use of the first six fields, but the final three fields are not completely defined.
+- Dataset license: `UNRESOLVED`; Apache-2.0 applies to official code and the paper has a separate arXiv license, neither is an explicit dataset grant.
+- Alignment: OGAA deformable convolution and STN are learned feature alignment. STN constants are incomplete calibration parameters/initialization, while temporal GMC, synchronization, resizing, and event crop expansion are not raw-grid registration.
+- Official deterministic spatial transform: not found; verification status is `NOT_RUN_NO_OFFICIAL_DETERMINISTIC_TRANSFORM`.
 
 ## Gates
 
@@ -46,11 +47,4 @@ The CPU-only audit must determine whether provider-controlled sources establish:
 
 ## Current decision boundary
 
-The task may end only as one of:
-
-- `OFFICIAL_REPRODUCIBLE_ALIGNMENT_FOUND_PILOT_STILL_LOCKED`;
-- `OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO`;
-- `NO_OFFICIAL_ALIGNMENT_DIRECT_FUSION_NO_GO`;
-- `BLOCKED_PROVIDER_EVIDENCE_INCOMPLETE`.
-
-A future GPU task requires separate user authorization even if a reproducible official alignment method is found.
+The MM-UAV route cannot use direct RGB/IR/event channel concatenation. Adding learned alignment would be a separately authorized method-expansion task. The pilot gate remains locked and GPU optimizer steps remain 0.

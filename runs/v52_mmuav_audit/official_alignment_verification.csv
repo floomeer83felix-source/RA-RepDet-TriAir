@@ -1,0 +1,2 @@
+generated_at,status,devval_gt_fitting,reason
+2026-07-15T11:19:16+08:00,NOT_RUN_NO_OFFICIAL_DETERMINISTIC_TRANSFORM,False,No complete provider-supplied raw-grid transform or calibration recipe.

@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-07-15T11:19:16+08:00",
+  "deterministic_raw_grid_transform_found": false,
+  "official_learned_feature_alignment_found": true,
+  "classification_guard": "Only PIXEL_SPACE_DETERMINISTIC_TRANSFORM with complete executable inputs may unlock verification.",
+  "candidates": [
+    {
+      "candidate": "OGAA deformable convolution",
+      "classification": "LEARNED_FEATURE_ALIGNMENT",
+      "mapping": "RGB<->IR feature maps",
+      "parameter_scope": "per sample learned offsets",
+      "executable_complete": true,
+      "changes_annotations": false,
+      "purpose": "detection feature fusion",
+      "reproducible_without_devval_gt_fit": true
+    },
+    {
+      "candidate": "OGAA spatial transformer",
+      "classification": "LEARNED_FEATURE_ALIGNMENT",
+      "mapping": "RGB<->IR feature maps",
+      "parameter_scope": "global fixed initialization plus per-sample learned delta",
+      "executable_complete": true,
+      "changes_annotations": false,
+      "purpose": "detection feature fusion",
+      "reproducible_without_devval_gt_fit": true
+    },
+    {
+      "candidate": "STN fixed theta constants alone",
+      "classification": "CALIBRATION_PARAMETERS_ONLY",
+      "mapping": "RGB<->IR feature grids",
+      "parameter_scope": "global",
+      "executable_complete": false,
+      "changes_annotations": false,
+      "purpose": "initialization for learned feature STN",
+      "reproducible_without_devval_gt_fit": false
+    },
+    {
+      "candidate": "VideoCameraCorrection GMC",
+      "classification": "FIXED_PREPROCESSING_WITHOUT_CALIBRATION",
+      "mapping": "previous->current frame within one video",
+      "parameter_scope": "per frame estimated from video",
+      "executable_complete": true,
+      "changes_annotations": false,
+      "purpose": "tracking camera-motion compensation",
+      "reproducible_without_devval_gt_fit": true
+    },
+    {
+      "candidate": "synchronized frame indices",
+      "classification": "TEMPORAL_SYNCHRONIZATION_ONLY",
+      "mapping": "RGB/IR/event frame index",
+      "parameter_scope": "per frame",
+      "executable_complete": true,
+      "changes_annotations": false,
+      "purpose": "temporal pairing",
+      "reproducible_without_devval_gt_fit": true
+    },
+    {
+      "candidate": "independent input resize/letterbox",
+      "classification": "FIXED_PREPROCESSING_WITHOUT_CALIBRATION",
+      "mapping": "each native grid->network feature grid",
+      "parameter_scope": "per modality",
+      "executable_complete": true,
+      "changes_annotations": false,
+      "purpose": "network preprocessing",
+      "reproducible_without_devval_gt_fit": true
+    },
+    {
+      "candidate": "expanded event crop for motion embedding",
+      "classification": "FIXED_PREPROCESSING_WITHOUT_CALIBRATION",
+      "mapping": "RGB/IR track box vicinity->event crop",
+      "parameter_scope": "per track/frame",
+      "executable_complete": true,
+      "changes_annotations": false,
+      "purpose": "tracking association feature",
+      "reproducible_without_devval_gt_fit": true
+    }
+  ]
+}

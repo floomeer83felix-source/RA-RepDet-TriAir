@@ -1,53 +1,49 @@
 # Task Blocker
 
-Status: `V52_INTERVAL20_SUPERVISED_LABEL_ALIGNMENT_LICENSE_BLOCKER`
+Status: `V52_OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO`
 
-Generated: 2026-07-15T08:41:00+08:00
+Generated: 2026-07-15
 
 ## Exact blocker
 
-The user-authorized interval-20 manifest is frozen over 424 complete extracted train sequences: 45,036 synchronized triplets split across 339 train and 85 development-validation sequences. Only 9,138 sampled frames contain any source RGB or IR GT row; 35,898 contain no source GT row. Source annotations occur predominantly at frames `1, 101, 201, ...` plus sequence ends. No local provider contract establishes that absent rows are true empty-target frames, so they cannot be silently converted into negative detection samples.
+The official MM-UAV paper and pinned baseline commit use learned RGB/IR feature alignment: deformable-convolution offsets or an STN with fixed affine initialization plus a learned delta. They do not provide a complete deterministic RGB/IR/event raw-grid calibration recipe, source pair/keypoints, coordinate conventions, annotation transform, or event calibration. Therefore direct channel-aligned RA-RepDet fusion remains scientifically invalid and the CPU transform verification was not run.
 
-RGB, IR, and event native grids are 640x360, 640x512, and 346x260. On a deterministic 100-frame/20-sequence sample, 215 same-track RGB/IR matches have mean dimension-scaled IoU 0.00867 (median 0), so direct channel-aligned early fusion is not defensible. Provider/license, category semantics, and the final three MOT-like fields also remain unresolved.
-
-V51 remains incomplete with stale state `RUNNING` and no active process. No V52 GPU operation was executed.
+The paper confirms sparse training annotation every 100 frames, independent RGB/IR boxes, and no event boxes. The official converter intersects RGB/IR annotated frame IDs. Neither source defines every absent row as a true empty target, so 35,898 rows remain `UNLABELED`. The official code confirms category `drone`, but the final three MOT-like fields remain incompletely defined. No explicit dataset-file license or research-use grant was found.
 
 ## Last execution lines
 
 ```text
-Complete sequences: 424
-Interval-20 samples: 45036
-Samples with source GT / unresolved no-row state: 9138/35898
-Geometry frames/sequences: 100/20
-V52 tests: 5/5 PASS
-Repository tests: 14/15 PASS; stale V51 pre-authorization assertion fails
-GPU operations: 0
+Annotated-only included / UNLABELED: 9138 / 35898
+Common-track RGB/IR frames: 8883
+Official deterministic transform: NOT FOUND
+Official learned feature alignment: FOUND
+V52 tests: 9/9 PASS
+GPU optimizer steps: 0
 Pilot gate: LOCKED
+Outcome: OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO
 ```
 
 ## Attempted checks
 
-1. Stopped WinRAR after E: reached zero free bytes; no source archive was deleted.
-2. Verified E: is exFAT with a 262,144-byte allocation unit, explaining the small-file space exhaustion.
-3. Moved incomplete sequence `0512` to D: quarantine and verified identical file count and logical bytes before excluding it.
-4. Verified exact `1..seqLength` RGB/IR/event filename sets for all 424 retained sequences.
-5. Froze deterministic, sequence-disjoint interval-20 train/devval manifests before any model metric.
-6. Parsed all available RGB/IR GT files, measured annotation cadence, and marked missing-row samples unresolved rather than empty.
-7. Measured RGB-to-IR same-track geometry on 100 frames spanning 20 sequences.
-8. Ran a 200-triplet CPU decode benchmark and 5 V52 unit tests.
-9. Ran the full PyTorch-environment suite: 14/15 passed; only the out-of-scope stale V51 state assertion failed.
+1. Reparsed all 45,036 frozen interval-20 manifest rows and source RGB/IR GT files.
+2. Preserved original row IDs, indices, paths, split, and sequence membership in a 9,138-row derivative manifest.
+3. Audited the official project, arXiv v3 paper, baseline commit `5051e4451a2b66dba9128fb0f766832152e7d120`, and evaluation commit `a468fb66db9e67c00357e1bd3f169745c389bab7`.
+4. Classified learned feature alignment, incomplete calibration parameters, temporal GMC, synchronization, resizing, and event crop expansion separately.
+5. Kept official alignment verification at `NOT_RUN_NO_OFFICIAL_DETERMINISTIC_TRANSFORM`; no development-validation GT fitting occurred.
+6. Ran 9 V52 CPU tests; protected core and manuscript paths were unchanged.
 
 ## Related files
 
-- `runs/v52_mmuav_audit/manifests/train_sampled.txt`
-- `runs/v52_mmuav_audit/manifests/devval_sampled.txt`
-- `runs/v52_mmuav_audit/sampled_manifest.json`
-- `runs/v52_mmuav_audit/annotation_audit.json`
-- `runs/v52_mmuav_audit/geometry_audit.json`
+- `runs/v52_mmuav_audit/annotated_only_status_counts.csv`
+- `runs/v52_mmuav_audit/provider_evidence_inventory.csv`
+- `runs/v52_mmuav_audit/alignment_candidate_inventory.csv`
+- `runs/v52_mmuav_audit/sparse_gt_contract.json`
+- `runs/v52_mmuav_audit/category_and_fields_contract.json`
+- `runs/v52_mmuav_audit/license_contract.json`
+- `runs/v52_mmuav_audit/official_alignment_verification.json`
 - `runs/v52_mmuav_audit/pilot_gate.json`
-- `runs/v52_mmuav_audit/source_lock_v52.json`
 
 ## Repair options
 
-1. Obtain provider documentation confirming category/field semantics, whether absent GT rows mean true empty targets, dataset version/license, and calibration; then pre-register an explicit RGB/IR/event alignment method before any GPU pilot.
-2. Approve a revised supervised protocol that keeps interval-20 file sampling for audit but trains/evaluates only the 9,138 rows with explicit source GT, with an amended source lock and no claim about unlabeled frames. This is a different evidence contract and must be authorized before implementation.
+1. Obtain an explicit provider dataset license plus a complete raw-grid RGB/IR/event calibration package and coordinate-transform specification; then schedule a new CPU verification task before any pilot.
+2. Explicitly authorize a method expansion using learned cross-modal feature alignment and an annotated-only supervised protocol. This would be a new experimental design and still requires a separate GPU decision.

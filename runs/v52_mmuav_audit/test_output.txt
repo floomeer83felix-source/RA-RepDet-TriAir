@@ -1,0 +1,14 @@
+test_annotated_only_contract_reproduces_exactly (test_v52_mmuav.V52ArchiveAuditTests.test_annotated_only_contract_reproduces_exactly) ... ok
+test_evidence_inventory_is_traceable (test_v52_mmuav.V52ArchiveAuditTests.test_evidence_inventory_is_traceable) ... ok
+test_extracted_audit_freezes_interval20 (test_v52_mmuav.V52ArchiveAuditTests.test_extracted_audit_freezes_interval20) ... ok
+test_final_gate_and_source_lock (test_v52_mmuav.V52ArchiveAuditTests.test_final_gate_and_source_lock) ... ok
+test_geometry_requires_alignment (test_v52_mmuav.V52ArchiveAuditTests.test_geometry_requires_alignment) ... ok
+test_non_pixel_alignment_cannot_unlock_verification (test_v52_mmuav.V52ArchiveAuditTests.test_non_pixel_alignment_cannot_unlock_verification) ... ok
+test_pilot_gate_is_locked_without_gpu_steps (test_v52_mmuav.V52ArchiveAuditTests.test_pilot_gate_is_locked_without_gpu_steps) ... ok
+test_sequence_disjoint_manifests_exist (test_v52_mmuav.V52ArchiveAuditTests.test_sequence_disjoint_manifests_exist) ... ok
+test_unlabeled_rows_are_not_silently_empty (test_v52_mmuav.V52ArchiveAuditTests.test_unlabeled_rows_are_not_silently_empty) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.363s
+
+OK

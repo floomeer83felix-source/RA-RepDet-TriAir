@@ -1,0 +1,2 @@
+﻿python rarepdet/tools/audit_v52_provider_contracts.py
+python -m unittest discover -s tests -p test_v52_mmuav.py -v
