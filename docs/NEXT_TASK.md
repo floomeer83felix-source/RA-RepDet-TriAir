@@ -2,26 +2,23 @@
 
 ## User Authorization (2026-07-15)
 
-The user authorized one final **CPU-only MM-UAV provider/alignment audit**.
+The user selected **Plan A** for continued MM-UAV research:
 
-The purpose is to determine whether the dataset provider supplies a scientifically defensible, reproducible cross-modal alignment/calibration method and an explicit sparse-GT contract. This authorization does **not** permit GPU work, model training, metric generation, learned alignment design, validation-GT fitting, or manuscript edits.
+> native RGB/IR/event inputs, independent modality branches, learned feature-level alignment, and RGB-coordinate detection supervision.
+
+All MM-UAV work is local, private research only. Do not ask the user to reconfirm this scope unless a later task proposes public redistribution, external sharing, commercial use, or a new manuscript/public benchmark claim.
+
+This task authorizes CPU-only dataset preparation, architecture pre-registration, experimental module implementation, and tests. It does **not** authorize CUDA work, the 200-step pilot, epoch training, checkpoint production, AP evaluation, manuscript edits, or public release of data or derivatives.
 
 ## Title
 
-V52 final provider, sparse-GT, and cross-modal alignment audit.
+V53 MM-UAV annotated-only feature-alignment preflight.
 
 ## Goal
 
-Resolve whether MM-UAV can be used in a future RA-RepDet tri-modal experiment without treating spatially misaligned RGB, IR, and event frames as channel-aligned inputs.
+Prepare a scientifically defensible, reproducible private MM-UAV research path that does not assume raw-grid alignment.
 
-The task must answer four questions from provider-controlled evidence:
-
-1. Does the provider define the meaning of frames with no GT row?
-2. Does the provider define the target category and the final three MOT-like GT fields?
-3. Does the provider provide a license or explicit research-use terms?
-4. Does the provider provide a deterministic calibration, registration, warp, crop, coordinate transform, or official alignment implementation that can place RGB, IR, and event information in a defensible common detection coordinate system?
-
-Stop after the audit and decision. Do not run the 200-step pilot.
+The V53 deliverable is a source-locked RGB-supervised dataset contract plus a minimal experimental learned feature-alignment scaffold that is ready for a separately authorized 200-step GPU pilot.
 
 ## Required Start
 
@@ -33,7 +30,9 @@ git pull --ff-only research research/ra-repdet-triair
 git rev-parse HEAD
 ```
 
-Read:
+Record the starting commit SHA.
+
+Read first:
 
 - `AGENTS.md`
 - `docs/PROJECT_CONTEXT.md`
@@ -42,309 +41,294 @@ Read:
 - `docs/NEXT_TASK.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/v52_mmuav_audit/dataset_audit.md`
-- `runs/v52_mmuav_audit/annotation_audit.md`
-- `runs/v52_mmuav_audit/synchronization_audit.md`
-- `runs/v52_mmuav_audit/sampling_protocol.md`
-- `runs/v52_mmuav_audit/sampled_manifest.json`
-- `runs/v52_mmuav_audit/geometry_audit.csv`
-- `runs/v52_mmuav_audit/feasibility_decision.md`
-- `runs/v52_mmuav_audit/pilot_gate.json`
-- `runs/v51_visdrone_recovery/cv_run_status.json`
+- all contract and alignment evidence under `runs/v52_mmuav_audit/`
+- the existing TriAir model builders, stems, fusion code, dataset adapters, trainer interfaces, and tests needed for compatibility review
+- pinned official MM-UAV alignment evidence recorded by V52
 
-Record the starting commit SHA.
+Do not modify V40--V52 historical evidence except the current status, blocker, and handoff files explicitly listed below.
 
-## Frozen Facts
+## Standing Private-Research Boundary
 
-Preserve these facts unless a reproducible audit finds an arithmetic or parsing error:
+- Work only with locally available MM-UAV files.
+- Do not copy raw images, event frames, annotations, or transformed media into Git.
+- Do not publish or redistribute MM-UAV media, annotations, derivative labels, or converted datasets.
+- Keep the unresolved dataset license visible in status and handoff records.
+- The unresolved redistribution license is not a reason to repeatedly ask whether this local-only task is private; that scope is already frozen.
+- Stop and request a new authorization only before public release, external sharing, commercial use, or manuscript/public benchmark claims.
 
-- 424 complete source-train sequences are accepted as the local V52 subset; incomplete sequence `0512` remains quarantined.
-- The frozen sequence split is 339 train and 85 development-validation sequences.
-- The user-authorized sampling rule remains source indices `1, 21, 41, ...`.
-- The interval-20 manifest contains 45,036 synchronized triplets.
-- 9,138 sampled triplets contain at least one source GT row.
-- 35,898 sampled triplets lack a verified supervised target contract and must not be treated as empty-target negatives.
-- RGB, IR, and event native grids are 640x360, 640x512, and 346x260.
-- Dimension-only scaling produced mean matched RGB/IR IoU about 0.00867 on the frozen geometry sample; direct channel-aligned fusion is invalid.
-- Event frames have no separate detection boxes in the locally audited data.
-- V51 is incomplete and must not be changed by this task.
+## Frozen V52 Facts
 
-## Scientific Boundary
+Preserve the following unless a reproducible parser bug is found:
 
-Do not:
+- local root: `E:\MM-UAV_extracted\MMMUAV\train`;
+- 424 complete source-train sequences; incomplete sequence `0512` remains quarantined;
+- sequence-disjoint split: 339 train / 85 development-validation sequences;
+- frozen interval-20 source indices: `1, 21, 41, ...`;
+- frozen interval-20 rows: 45,036;
+- rows with any RGB or IR source GT: 9,138;
+- rows with RGB GT: 9,032 total = 7,187 train + 1,845 development-validation;
+- rows with IR GT: 9,007;
+- rows with both RGB and IR GT: 8,901;
+- RGB-only rows: 131;
+- IR-only rows: 106;
+- rows with no source GT: 35,898 and status `UNLABELED`;
+- common-track RGB/IR rows: 8,883;
+- native grids: RGB 640x360, IR 640x512, event 346x260;
+- event frames have no independent detection boxes;
+- direct raw RGB/IR/event channel concatenation is invalid;
+- no official deterministic raw-grid RGB/IR/event transform was found;
+- official evidence supports learned feature alignment rather than raw-grid registration;
+- V51 remains separate and must not be changed by this task.
 
-- interpret missing GT rows as empty scenes without an explicit provider statement;
-- create interpolated, propagated, or pseudo labels;
-- fit affine, homography, thin-plate-spline, optical-flow, or learned transforms using development-validation GT;
-- claim synchronized filenames imply pixel alignment;
-- copy RGB boxes into IR or event coordinates;
-- call simple independent width/height scaling a valid registration;
-- design or train a new alignment module;
-- run CUDA forward/backward, the 200-step pilot, full training, inference, AP evaluation, or checkpoint comparison;
-- modify V40--V51 evidence, protected training-core files, or manuscript files.
+## Supervised Target Contract
 
-GPU optimizer steps must remain `0` and `pilot_gate.json` must remain locked.
+Freeze RGB as the sole detection-output coordinate system for V53.
 
-## Stage 1 — Reproduce the Annotated-Only Contract
+The formal supervised set contains exactly the 9,032 frozen interval-20 rows with at least one valid RGB source GT row:
 
-Audit the exact predicate that produced 9,138 included samples.
+- train: 7,187;
+- development-validation: 1,845.
 
-Create or update:
+Rules:
+
+- RGB boxes are the only detector targets.
+- IR boxes are metadata for correspondence and alignment diagnostics only.
+- Event has no detector target.
+- The 106 IR-only rows must not enter RGB detection training or evaluation.
+- The 35,898 no-GT rows must remain `UNLABELED`; never create empty targets from them.
+- Do not interpolate, propagate, pseudo-label, nearest-frame transfer, or copy boxes across modalities.
+- Preserve source sequence, split, frame index, paths, original interval-20 row ID, and source GT paths.
+- Do not move sequences between train and development-validation.
+
+Create:
 
 ```text
-runs/v52_mmuav_audit/annotated_only_protocol.md
-runs/v52_mmuav_audit/annotated_only_protocol.json
-runs/v52_mmuav_audit/annotated_only_status_counts.csv
-runs/v52_mmuav_audit/annotated_only_integrity.md
+runs/v53_mmuav_feature_alignment_preflight/
+runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt
+runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt
+runs/v53_mmuav_feature_alignment_preflight/rgb_target_contract.md
+runs/v53_mmuav_feature_alignment_preflight/rgb_target_contract.json
+runs/v53_mmuav_feature_alignment_preflight/manifest_integrity.md
+runs/v53_mmuav_feature_alignment_preflight/manifest_hashes.json
 ```
 
-Report exact counts for:
+Fail closed if the exact 7,187 / 1,845 / 9,032 counts cannot be reproduced.
 
-- RGB GT present;
-- IR GT present;
-- both RGB and IR GT present;
-- RGB-only GT present;
-- IR-only GT present;
-- neither GT present;
-- at least one valid source GT row;
-- same-frame RGB/IR rows with at least one common track ID.
+## Dataset Adapter
 
-Also report train/devval sample counts and sequence counts for every status.
+Implement a V53-specific adapter without changing the established TriAir dataset behavior.
+
+Preferred location:
+
+```text
+datasets/mmuav_feature_alignment_dataset.py
+```
+
+Each sample must expose:
+
+```text
+rgb
+ir
+event
+target_rgb
+sequence_id
+frame_index
+split
+original_row_id
+rgb_gt_present
+ir_gt_present
+common_track_ids
+modality_native_shapes
+modality_transforms
+```
 
 Requirements:
 
-- reproduce exactly 9,138 included and 35,898 excluded rows;
-- retain original interval-20 row IDs, source indices, sequence IDs, split membership, and paths;
-- keep all no-GT rows as `UNLABELED`, never `EMPTY_TARGET`;
-- fail closed and write `docs/TASK_BLOCKER.md` if the counts cannot be reproduced exactly.
+- load RGB, IR, and event independently from their native files;
+- validate exact synchronized source frame IDs;
+- reject missing or mismatched media rather than substituting nearby frames;
+- preserve independent modality geometry metadata;
+- apply deterministic, explicitly recorded branch-specific preprocessing;
+- transform detection boxes only through the RGB preprocessing path;
+- never transform RGB boxes with the IR or event preprocessing transform;
+- avoid loading complete sequences into memory;
+- deterministic evaluation behavior;
+- no raw-channel concatenation in the adapter;
+- no CUDA operations.
 
-Do not replace the frozen interval-20 manifest. Any annotated-only manifest is a filtered derivative with full traceability to the original row ID.
+A valid implementation may resize or letterbox modalities independently for their own stems, but must not describe that preprocessing as spatial registration.
 
-## Stage 2 — Exhaustive Local Provider-Evidence Search
+## Experimental Feature-Alignment Scaffold
 
-Search all extracted MM-UAV files and locally available provider code/documentation for:
+Implement a minimal experimental scaffold isolated from the production TriAir training path.
 
-- `README`, license, citation, terms of use, dataset card, release notes, supplementary documentation;
-- calibration matrices, intrinsic/extrinsic parameters, camera models, distortion coefficients;
-- homography, affine, registration, rectification, warp, crop, resize, padding, ROI, coordinate-map, lookup-table, or correspondence files;
-- timestamps, frame-rate files, synchronization tables, sensor offsets;
-- official data loaders, conversion scripts, annotation parsers, visualizers, training/evaluation configs;
-- GT cadence documentation and the meaning of absent frame rows;
-- category names and all GT-column definitions;
-- the official method's actual RGB/IR/event fusion path.
-
-Search source file contents as well as filenames. Include common terms such as:
+Preferred locations after repository inspection:
 
 ```text
-align alignment registration calibration calibrate homography affine warp rectify rectification intrinsic extrinsic distortion transform coordinate crop resize pad roi timestamp sync gt annotation visibility occlusion truncation confidence class category license
+rarepdet/experimental/mmuav_feature_alignment.py
+rarepdet/experimental/mmuav_feature_alignment_model.py
 ```
+
+Do not silently modify the default detector builder or current TriAir experiment configurations.
+
+Required architecture contract:
+
+```text
+RGB native input   -> RGB stem -------------------------------> RGB reference features
+IR native input    -> IR stem -> learned feature align to RGB -> aligned IR features
+Event native input -> Event stem -> learned feature align ----> aligned event features
+RGB reference + aligned IR + aligned event -> fusion interface -> detector interface
+```
+
+Requirements:
+
+- three independent input branches;
+- RGB features define the reference feature grid;
+- IR and event are aligned only in feature space;
+- no raw image/channel concatenation path;
+- no claim of pixel-level calibration;
+- expose an `alignment_enabled` switch;
+- expose an identity/no-alignment control path for future ablation;
+- initialize the learned alignment conservatively near identity where technically valid;
+- document whether the implementation is STN-inspired, deformable-alignment-inspired, or another explicitly named mechanism;
+- do not copy unexplained constants from provider code;
+- do not fit alignment using development-validation GT;
+- do not use detection metrics to choose alignment hyperparameters in V53;
+- maintain a clean interface so a later task can compare alignment-off versus alignment-on under the same detector and data contract.
+
+V53 may use synthetic tensors and CPU-loaded real samples for forward, shape, and gradient tests. It must not run CUDA or optimize on the dataset.
+
+## Pre-Registration Outputs
 
 Create:
 
 ```text
-runs/v52_mmuav_audit/provider_contract_audit.md
-runs/v52_mmuav_audit/provider_contract_audit.json
-runs/v52_mmuav_audit/provider_evidence_inventory.csv
+runs/v53_mmuav_feature_alignment_preflight/method_contract.md
+runs/v53_mmuav_feature_alignment_preflight/method_contract.json
+runs/v53_mmuav_feature_alignment_preflight/alignment_design.md
+runs/v53_mmuav_feature_alignment_preflight/alignment_design.json
+runs/v53_mmuav_feature_alignment_preflight/ablation_contract.md
+runs/v53_mmuav_feature_alignment_preflight/compute_estimate.json
+runs/v53_mmuav_feature_alignment_preflight/source_lock_v53.md
+runs/v53_mmuav_feature_alignment_preflight/source_lock_v53.json
+runs/v53_mmuav_feature_alignment_preflight/preflight_commands.txt
+runs/v53_mmuav_feature_alignment_preflight/preflight_output.txt
+runs/v53_mmuav_feature_alignment_preflight/pilot_gate.json
 ```
 
-For every relevant artifact record:
+The future minimum ablation contract must be frozen as:
 
-- absolute or repository-relative path;
-- SHA256;
-- provider-controlled versus project-generated status;
-- exact relevant line numbers, keys, or fields;
-- the claim it supports;
-- whether it is explicit evidence or only an inference.
+1. RGB-only detector;
+2. three independent stems with alignment disabled;
+3. learned feature alignment enabled with fixed/equal fusion;
+4. learned feature alignment enabled with RA dynamic fusion.
 
-Do not treat filenames, folder names, or comments from this project as provider contracts.
+Do not run these experiments in V53.
 
-## Stage 3 — Official Repository and Publication Audit
+Record parameter counts and CPU-side shape-based compute estimates for the experimental alignment scaffold where practical. Clearly label estimates versus measured values.
 
-When internet access is available, use only official or primary sources:
+## Pilot Gate
 
-- the official MM-UAV repository;
-- the official project page;
-- the dataset paper and official supplementary material;
-- files linked directly by those sources.
-
-Do not rely on blogs, mirrors, reposted dataset descriptions, generated summaries, or third-party code as authoritative contracts.
-
-Record stable source identifiers, retrieval timestamps, file hashes for downloaded text/code where practical, and precise sections or line ranges. Do not copy large media or archives into the repository.
-
-If internet access is unavailable, state that clearly and complete the local audit without inventing results.
-
-## Stage 4 — Distinguish Alignment Types
-
-Create:
-
-```text
-runs/v52_mmuav_audit/alignment_source_audit.md
-runs/v52_mmuav_audit/alignment_source_audit.json
-runs/v52_mmuav_audit/alignment_candidate_inventory.csv
-```
-
-Classify every alignment-related finding as one of:
-
-1. `PIXEL_SPACE_DETERMINISTIC_TRANSFORM`
-2. `CALIBRATION_PARAMETERS_ONLY`
-3. `FIXED_PREPROCESSING_WITHOUT_CALIBRATION`
-4. `LEARNED_FEATURE_ALIGNMENT`
-5. `TEMPORAL_SYNCHRONIZATION_ONLY`
-6. `VISUALIZATION_ONLY`
-7. `NO_ALIGNMENT_EVIDENCE`
-
-For each candidate answer:
-
-- which source and destination grids it maps;
-- whether it applies to RGB-to-IR, RGB-to-event, IR-to-event, or all modalities;
-- whether parameters are global, per sequence, or per frame;
-- whether the provider supplies executable code and required inputs;
-- whether it changes annotation coordinates;
-- whether it was designed for detection or only tracking/feature fusion;
-- whether it can be reproduced without fitting on V52 development-validation GT.
-
-A learned feature-alignment block is not evidence that raw modalities can be directly channel-concatenated. A visualization resize is not calibration. Temporal synchronization is not spatial registration.
-
-## Stage 5 — Optional CPU-Only Verification of an Official Deterministic Transform
-
-Run this stage only when the provider supplies a deterministic transform or complete calibration recipe with all required parameters.
-
-Implement a V52-only CPU verifier under `rarepdet/tools/` or `datasets/`. Do not modify the core model or trainer.
-
-Verify on the already frozen geometry sample and report separately for train and development-validation:
-
-- matched-track count;
-- center displacement before and after transform;
-- width/height ratio disagreement;
-- IoU distribution before and after transform;
-- invalid or out-of-bounds transformed boxes;
-- sequence-level heterogeneity.
-
-Do not fit or tune the transform on development-validation data. Do not select parameters based on the reported IoU.
-
-Save:
-
-```text
-runs/v52_mmuav_audit/official_alignment_verification.md
-runs/v52_mmuav_audit/official_alignment_verification.json
-runs/v52_mmuav_audit/official_alignment_verification.csv
-```
-
-If no complete official deterministic transform exists, do not create a substitute. Record `NOT_RUN_NO_OFFICIAL_DETERMINISTIC_TRANSFORM`.
-
-## Stage 6 — Sparse-GT, Category, and License Verdicts
-
-Create:
-
-```text
-runs/v52_mmuav_audit/sparse_gt_contract.md
-runs/v52_mmuav_audit/sparse_gt_contract.json
-runs/v52_mmuav_audit/category_and_fields_contract.md
-runs/v52_mmuav_audit/category_and_fields_contract.json
-runs/v52_mmuav_audit/license_contract.md
-runs/v52_mmuav_audit/license_contract.json
-```
-
-For each topic choose one status:
-
-- `CONFIRMED_BY_PROVIDER`
-- `PARTIALLY_CONFIRMED`
-- `UNRESOLVED`
-- `CONTRADICTORY_PROVIDER_EVIDENCE`
-
-Sparse-GT evidence must explicitly answer whether a missing GT row means:
-
-- unannotated frame;
-- verified empty-target frame;
-- interpolation expected;
-- annotation only at a fixed cadence;
-- another provider-defined rule.
-
-Without explicit provider evidence, preserve the 35,898 rows as `UNLABELED`.
-
-## Stage 7 — Final Decision
-
-Update:
-
-```text
-runs/v52_mmuav_audit/feasibility_decision.md
-runs/v52_mmuav_audit/feasibility_decision.json
-runs/v52_mmuav_audit/claim_boundary.md
-docs/EXPERIMENT_STATUS.md
-docs/TASK_BLOCKER.md
-runs/handoff_latest.md
-runs/handoff_latest.json
-runs/v52_mmuav_audit/pilot_gate.json
-```
-
-Choose exactly one audit outcome:
-
-1. `OFFICIAL_REPRODUCIBLE_ALIGNMENT_FOUND_PILOT_STILL_LOCKED`
-   - a complete provider-supplied transform/calibration is reproducible;
-   - sparse-GT, category/field, and license contracts are reported separately;
-   - a future task is still required before any GPU pilot.
-
-2. `OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO`
-   - the provider relies on learned feature alignment but supplies no defensible raw-grid registration;
-   - direct RA-RepDet channel concatenation remains invalid;
-   - adding a learned alignment module would be a separate method-expansion task.
-
-3. `NO_OFFICIAL_ALIGNMENT_DIRECT_FUSION_NO_GO`
-   - no provider-supplied spatial alignment/calibration is found;
-   - stop the MM-UAV training route for the current paper.
-
-4. `BLOCKED_PROVIDER_EVIDENCE_INCOMPLETE`
-   - the audit cannot access or interpret the required official evidence.
-
-The pilot gate must remain:
+The V53 pilot gate must remain locked:
 
 ```json
 {
   "locked": true,
-  "gpu_optimizer_steps": 0
+  "gpu_optimizer_steps": 0,
+  "reason": "V53_CPU_ONLY_PRE-REGISTRATION_AND_PREFLIGHT"
 }
 ```
 
-Do not select `GO_TRI_MODAL_CONTROLLED_EXPERIMENT` in this task.
+No CUDA availability probe, GPU forward/backward, 200-step pilot, checkpoint creation, epoch training, inference benchmark, AP evaluation, or multi-seed experiment is authorized.
+
+A future task may unlock a 200-step pilot only after:
+
+- manifests reproduce exact counts and hashes;
+- adapter tests pass;
+- no raw-concatenation path exists;
+- feature-alignment interface and alignment-off control are frozen;
+- source-lock files are complete;
+- estimated RTX 3090 memory risk is documented;
+- the user separately authorizes GPU work.
 
 ## Required Tests
 
-Add or update V52-specific tests to verify:
+Add V53-specific tests, preferably under:
 
-- annotated-only counts reproduce 9,138 and 35,898 exactly;
-- no unlabeled sample becomes an empty target;
-- provider evidence records include path/source, hash, and evidence classification;
-- alignment candidates cannot be promoted from visualization resize, temporal sync, or learned feature alignment to deterministic pixel registration;
-- no development-validation GT fitting path exists;
+```text
+tests/test_v53_mmuav_feature_alignment.py
+```
+
+At minimum verify:
+
+- exact train/devval/total RGB-supervised counts: 7,187 / 1,845 / 9,032;
+- all 106 IR-only rows are excluded from RGB supervision;
+- all 35,898 no-GT rows remain `UNLABELED` and excluded;
+- train and development-validation sequences are disjoint;
+- original interval-20 row IDs remain traceable;
+- every manifest media path and RGB GT path exists;
+- synchronized frame IDs match exactly across RGB/IR/event;
+- RGB boxes are transformed only by the RGB transform;
+- adapter returns native-shape and transform metadata;
+- model has three independent branches;
+- no raw-channel concatenation route is present;
+- alignment-off and alignment-on CPU forward paths produce valid finite feature shapes;
+- identity/near-identity initialization behaves as documented;
+- a CPU synthetic backward test yields finite gradients in enabled alignment parameters;
+- no development-validation GT fitting code path exists;
+- no CUDA call or GPU optimizer step occurs;
 - pilot gate remains locked;
-- GPU optimizer steps remain zero;
-- protected core and manuscript files are unchanged.
+- protected V40--V52 evidence and manuscript files are unchanged.
 
-Save exact test commands and complete outputs. Do not change historical V51 evidence to satisfy a stale test assertion.
+Save exact commands and full outputs.
 
 ## Allowed Changes
 
 - `docs/NEXT_TASK.md`
 - `docs/EXPERIMENT_STATUS.md`
 - `docs/TASK_BLOCKER.md`
+- `docs/PROJECT_CONTEXT.md`
 - `runs/handoff_latest.md`
 - `runs/handoff_latest.json`
-- `runs/v52_mmuav_audit/**`
-- V52-only CPU audit/verifier tools under `rarepdet/tools/**`
-- V52-only dataset audit helpers under `datasets/**`
-- V52 tests under `tests/**`
+- `runs/v53_mmuav_feature_alignment_preflight/**`
+- V53-specific dataset adapter files under `datasets/**`
+- isolated experimental alignment/model files under `rarepdet/experimental/**`
+- V53-specific CPU tools under `rarepdet/tools/**`
+- V53 tests under `tests/**`
 
 ## Forbidden Changes
 
-- raw MM-UAV files and annotations;
-- V40--V51 evidence;
-- protected training-core files listed in `AGENTS.md`;
-- model architecture, training runner, evaluator, thresholds, or checkpoints;
+- raw MM-UAV files or source annotations;
+- public or redistributable MM-UAV derivative datasets;
+- V40--V52 historical evidence other than current handoff/status pointers;
+- V51 process evidence or status history;
+- default TriAir dataset semantics;
+- production detector/trainer defaults unless a later task explicitly approves integration;
 - manuscript files;
-- any GPU operation or performance experiment;
-- any transform learned or fitted from development-validation GT.
+- GPU run outputs, checkpoints, or metrics.
 
-## Completion
+## Decision Output
+
+At completion choose exactly one:
+
+- `V53_CPU_PREFLIGHT_READY_FOR_SEPARATE_GPU_AUTHORIZATION`
+- `V53_BLOCKED_RGB_SUPERVISED_MANIFEST_CONTRACT`
+- `V53_BLOCKED_DATA_ADAPTER_OR_SYNCHRONIZATION`
+- `V53_BLOCKED_FEATURE_ALIGNMENT_IMPLEMENTATION`
+- `V53_BLOCKED_COMPUTE_OR_TEST_PREFLIGHT`
+
+Update:
+
+```text
+docs/EXPERIMENT_STATUS.md
+docs/TASK_BLOCKER.md
+runs/handoff_latest.md
+runs/handoff_latest.json
+```
+
+Do not mark the GPU pilot as authorized.
+
+## Finish
 
 Run:
 
@@ -352,23 +336,24 @@ Run:
 powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 ```
 
-## Commit Message
+Commit and push with a concise message such as:
 
-data: audit official MM-UAV alignment and provider contracts
-
-## Final Report Requirements
+```text
+exp: prepare V53 MM-UAV feature-alignment preflight
+```
 
 The final report must state:
 
 - starting and final commit SHA;
-- exact annotated-only status counts;
-- whether the 9,138/35,898 contract reproduced;
-- official sparse-GT verdict;
-- official category and GT-field verdict;
-- official license verdict;
-- every alignment candidate and its classification;
-- whether a reproducible deterministic spatial transform exists;
-- whether official code instead uses learned feature alignment;
-- final audit outcome;
-- pilot-gate state and GPU optimizer steps;
-- tests and remaining blockers.
+- exact RGB-supervised train/devval/total counts;
+- excluded IR-only and `UNLABELED` counts;
+- created manifest hashes;
+- adapter and experimental module paths;
+- selected alignment mechanism and initialization;
+- alignment-off control availability;
+- parameter/compute estimates;
+- test results;
+- protected-file verification;
+- pilot-gate status;
+- GPU optimizer steps;
+- remaining blockers before a 200-step pilot.
