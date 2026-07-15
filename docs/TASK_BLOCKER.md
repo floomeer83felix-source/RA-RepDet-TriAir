@@ -1,40 +1,59 @@
 # Task Blocker
 
-Status: `V53_CPU_PREFLIGHT_READY_GPU_PILOT_NOT_AUTHORIZED`
+Status: `V54_GPU_PILOT_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
 
 Generated: 2026-07-15
 
-## Exact blocker
+## Current state
 
-No CPU preflight blocker remains. The V53 RGB-supervised manifests, native-modality adapter, isolated learned feature-alignment scaffold, alignment-off control, source lock, and tests are complete.
+No CPU preflight blocker remains. V53 completed the RGB-supervised manifests, native-modality adapter, isolated feature-alignment scaffold, alignment-off control, source lock, compute estimate, and 9/9 tests.
 
-The next 200-step GPU pilot is not authorized by V53. The scaffold-only CPU estimate does not measure full detector/backbone activation memory, so RTX 3090 memory must be monitored during a separately authorized pilot. The unresolved MM-UAV dataset license continues to prohibit redistribution or public derivative release.
+The user has now authorized the exact bounded V54 GPU verification protocol in `docs/NEXT_TASK.md`.
 
-## Last execution lines
+## Authorization boundary
+
+V54 may perform:
+
+- CPU tests and source-lock reproduction;
+- CUDA forward/backward smoke checks without optimizer steps for four frozen interfaces;
+- one primary learned-alignment + fixed/equal-fusion pilot;
+- at most 200 completed optimizer steps;
+- memory, timing, loss, gradient, affine-theta, and grid-validity logging;
+- an optional no-grad inference-path smoke on at most 16 frozen devval samples without AP/AR.
+
+V54 may not perform epoch training, AP/AR evaluation, multi-seed runs, hyperparameter search, automatic OOM fallback, manuscript edits, public release, redistribution, or external sharing.
+
+## Frozen inputs
 
 ```text
-RGB-supervised train/devval/total: 7187 / 1845 / 9032
+Starting authorization commit: b2f6e3e15c10589810d8e8c5b0f64263d9f9a14e
+Train RGB-supervised rows: 7187
+Devval RGB-supervised rows: 1845
+Total RGB-supervised rows: 9032
 IR-only excluded: 106
 UNLABELED excluded: 35898
-V53 tests: 9/9 PASS
-Alignment initialization: exact identity
-CUDA probe: NOT PERFORMED
-GPU optimizer steps: 0
-Pilot gate: LOCKED
-Outcome: V53_CPU_PREFLIGHT_READY_FOR_SEPARATE_GPU_AUTHORIZATION
+Primary variant: alignment enabled + fixed/equal fusion
+Seed: 0
+Branch input: 320x320
+Batch size: 1
+Maximum optimizer steps: 200
 ```
 
-## Attempted checks
+## Fail-closed blockers
 
-1. Filtered the frozen V52 interval-20 rows solely by `rgb_annotation_rows > 0` and preserved original row IDs and paths.
-2. Validated every RGB/IR/event media path, RGB GT path, and synchronized numeric frame ID for all 9,032 rows.
-3. Loaded native RGB 640x360, IR 640x512, and event 346x260 samples independently and applied branch-specific deterministic letterbox transforms.
-4. Verified RGB boxes use only the RGB transform.
-5. Exercised alignment-off and alignment-on CPU forwards with exact-identity initialization.
-6. Ran a synthetic CPU backward pass and verified finite gradients in alignment parameters.
-7. Verified no CUDA call, development-validation GT fitting, production builder integration, protected-core change, V52 evidence change, or manuscript change.
+Stop and report the matching V54 blocked state if any of the following occurs:
 
-## Remaining options
+1. detector integration cannot preserve independent modality branches and RGB-coordinate supervision;
+2. V53 manifest hashes/counts or source paths do not reproduce;
+3. CUDA OOM occurs;
+4. any loss, gradient, parameter, affine theta, or sampling grid becomes non-finite;
+5. development-validation samples enter optimization;
+6. the optimizer-step counter would exceed 200;
+7. protected production, V40--V53 evidence, V51 evidence, or manuscript files are modified;
+8. the frozen configuration is changed after observing GPU behavior.
 
-1. Authorize a bounded 200-step GPU pilot using the frozen manifests and ablation interface, with memory monitoring and immediate stop-on-OOM behavior.
-2. Keep the pilot locked and perform additional CPU-only detector-interface design before GPU authorization.
+Do not automatically reduce resolution, batch size, model width, enabled modalities, or precision after failure. A changed configuration requires a new task authorization.
+
+## Remaining action
+
+Execute V54 exactly as specified in `docs/NEXT_TASK.md`, update status/blocker/handoff with compact evidence, commit metadata and logs only, and keep heavy checkpoints local.
