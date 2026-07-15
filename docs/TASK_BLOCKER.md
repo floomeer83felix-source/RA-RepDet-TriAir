@@ -1,37 +1,51 @@
 # Task Blocker
 
-Status: `V54_GPU_PILOT_PASS_NO_ACTIVE_ENGINEERING_BLOCKER`
+Status: `V55_PAIRED_ALIGNMENT_ABLATION_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
 
 Generated: 2026-07-15
 
 ## Current state
 
-V54 completed the exact bounded protocol with 200/200 optimizer steps, finite smoke and primary-run numerics, stable affine diagnostics, no OOM, no data leakage, and no protected-file violation.
+V54 passed the exact bounded engineering pilot. The user has now authorized V55 to run one controlled single-seed pair: `alignment_off_equal` versus `alignment_on_equal`.
 
-The pass authorizes no additional GPU work by itself. A paired alignment ablation, longer training, AP/AR evaluation, checkpoint comparison, or manuscript claim requires a new task and explicit authorization.
+No active CPU or engineering blocker remains before the frozen V55 source-lock and initialization checks.
 
-## Last execution lines
+## Authorized boundary
 
-```text
-Smoke variants: 4/4 PASS, optimizer steps 0
-Primary variant: alignment_on_equal
-Completed optimizer steps: 200/200
-All losses/gradients/theta/grids finite: yes
-Peak allocated/reserved bytes: 354884608 / 394264576
-Mean step time: 0.7190 sec
-Postrun inference smoke: PASS_EXECUTION_ONLY_NO_AP_AR
-V54 CPU tests: 8/8 PASS
-AP/AR computed: no
-Decision: V54_GPU_PILOT_PASS_READY_FOR_PAIRED_ALIGNMENT_ABLATION
-```
+V55 may:
 
-## Remaining limitations
+- reproduce the frozen V53/V54 manifests and hashes;
+- generate one common seed-0 initialization and verify bit-identical shared tensors;
+- train each paired variant for exactly one 7,187-row manifest pass;
+- use the same deterministic row order for both variants;
+- complete at most 14,374 optimizer steps total;
+- evaluate each final checkpoint exactly once on all 1,845 frozen devval rows;
+- compute AP50:95, AP50, AP75, AR100, and signed paired deltas;
+- commit only compact logs, metadata, hashes, metrics, tests, and summaries.
 
-1. CUDA `grid_sample` backward and some CuBLAS operations emitted non-determinism warnings despite fixed seed/sample order.
-2. The 200-step run establishes integration and numerical stability only, not detector accuracy.
-3. The dataset redistribution license remains unresolved; checkpoint and data remain private/local.
+V55 may not:
 
-## Next options
+- alter any paired setting except `alignment_enabled`;
+- use the V54 step-200 checkpoint as paired initialization;
+- optimize on devval;
+- run extra seeds, extra primary runs, sweeps, early stopping, checkpoint selection, RA/reliability fusion training, or more than 14,374 total steps;
+- modify production TriAir defaults, historical evidence, V51 history, manuscript files, raw data, or annotations;
+- publish or redistribute MM-UAV data, derivatives, predictions, or checkpoints.
 
-1. Authorize a paired alignment-off versus alignment-on controlled experiment under a new frozen protocol.
-2. Stop the MM-UAV route here and retain V54 solely as engineering feasibility evidence.
+## Fail-closed blockers
+
+Stop with the matching V55 blocked state on:
+
+1. manifest count/hash or sequence-split mismatch;
+2. common-initialization or sample-order mismatch;
+3. OOM or non-finite training/alignment/evaluation values;
+4. incomplete paired training;
+5. devval optimization leakage or evaluator mismatch;
+6. optimizer-step limit violation;
+7. protected-file or heavy-artifact Git violation.
+
+Do not automatically change the frozen configuration after observing behavior.
+
+## Next action
+
+Execute V55 exactly as written in `docs/NEXT_TASK.md`. A completed pair must report signed metric deltas as single-seed preliminary evidence only. Multi-seed confirmation is a separate future authorization.
