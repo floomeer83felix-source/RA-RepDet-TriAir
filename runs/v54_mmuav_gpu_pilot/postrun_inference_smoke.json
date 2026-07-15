@@ -1,0 +1,56 @@
+{
+  "status": "PASS_EXECUTION_ONLY_NO_AP_AR",
+  "sample_count": 4,
+  "records": [
+    {
+      "original_row_id": "devval:00000001",
+      "finite": true,
+      "boxes_shape": [
+        0,
+        4
+      ],
+      "scores_shape": [
+        0
+      ],
+      "latency_sec": 0.07651140000001533
+    },
+    {
+      "original_row_id": "devval:00000006",
+      "finite": true,
+      "boxes_shape": [
+        0,
+        4
+      ],
+      "scores_shape": [
+        0
+      ],
+      "latency_sec": 0.09032510000000116
+    },
+    {
+      "original_row_id": "devval:00000011",
+      "finite": true,
+      "boxes_shape": [
+        0,
+        4
+      ],
+      "scores_shape": [
+        0
+      ],
+      "latency_sec": 0.0609574000000066
+    },
+    {
+      "original_row_id": "devval:00000016",
+      "finite": true,
+      "boxes_shape": [
+        0,
+        4
+      ],
+      "scores_shape": [
+        0
+      ],
+      "latency_sec": 0.09111680000000888
+    }
+  ],
+  "peak_allocated_bytes": 100854784,
+  "peak_reserved_bytes": 394264576
+}

@@ -1,0 +1,8 @@
+{
+  "decision": "V54_GPU_PILOT_PASS_READY_FOR_PAIRED_ALIGNMENT_ABLATION",
+  "completed_optimizer_steps": 200,
+  "pilot_only_not_accuracy_evidence": true,
+  "ap_ar_computed": false,
+  "protected_file_check_before_cuda": "PASS",
+  "checkpoint_committed": false
+}

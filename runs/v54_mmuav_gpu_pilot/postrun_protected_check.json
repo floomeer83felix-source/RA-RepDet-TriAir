@@ -1,0 +1,15 @@
+{
+  "starting_commit": "e00f4f829445216fd778f0dc842623793a93b93f",
+  "checked_after_gpu_run": true,
+  "protected_production_changes": [],
+  "v52_evidence_changes": [],
+  "v53_evidence_changes": [],
+  "v51_evidence_changes": [],
+  "manuscript_or_submission_changes": [],
+  "v54_cpu_tests": "8/8 pass",
+  "completed_gpu_optimizer_steps": 200,
+  "step_limit_respected": true,
+  "checkpoint_committed": false,
+  "sample_order_file_sha256": "8e47756738231f613e69f280830ce688bd3a73ec4481701ba21fd53211b0aafe",
+  "sample_order_hash_normalization": "Stored hash corrected after run to hash actual CRLF file bytes; original runner hashed the in-memory LF representation. Sample order and optimization were unchanged."
+}

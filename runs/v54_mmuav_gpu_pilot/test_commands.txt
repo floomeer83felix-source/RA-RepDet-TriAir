@@ -1,0 +1,2 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v54_mmuav_gpu_pilot.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v54_mmuav_gpu_pilot.py

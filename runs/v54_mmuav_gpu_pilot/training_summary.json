@@ -1,0 +1,57 @@
+{
+  "completed_optimizer_steps": 200,
+  "step_limit": 200,
+  "all_finite": true,
+  "loss_first": 2.7680788040161133,
+  "loss_last": 2.447254180908203,
+  "loss_min": 0.03139461576938629,
+  "loss_max": 2.9520363807678223,
+  "step_time_mean_sec": 0.7190206504999997,
+  "step_time_min_sec": 0.5776204000000007,
+  "step_time_max_sec": 0.9808276000000014,
+  "peak_allocated_bytes": 354884608,
+  "peak_reserved_bytes": 394264576,
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "total_memory_bytes": 25769279488,
+    "torch_version": "2.5.1",
+    "torch_cuda_runtime": "12.4",
+    "cudnn_version": 90100,
+    "driver_nvidia_smi": "591.86"
+  },
+  "manifest_contract": {
+    "counts": {
+      "train": 7187,
+      "devval": 1845,
+      "total": 9032
+    },
+    "hashes": {
+      "train_sha256": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+      "devval_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+    },
+    "sequence_overlap": 0
+  },
+  "checkpoint": {
+    "produced": true,
+    "local_path_not_committed": "D:\\MM-UAV_v54_local\\alignment_on_equal_step200.pt",
+    "bytes": 27104577,
+    "sha256": "9853c9ffd66e83e7e0c46a953c9cb4cb67681ee6126706f4031b9a9b0854fcce",
+    "completed_optimizer_steps": 200,
+    "accuracy_metrics": null,
+    "git_excluded": true
+  },
+  "postrun_inference_smoke": "PASS_EXECUTION_ONLY_NO_AP_AR",
+  "ap_ar_computed": false,
+  "accuracy_claim": false,
+  "gpu_optimizer_steps": 200,
+  "gradient_norm_summary": {
+    "global": {"min": 1.58769503231184, "max": 121.838747446772, "mean": 20.4398517544716},
+    "ir_alignment": {"min": 0.0364236531585542, "max": 95.598869304667, "mean": 8.36303152064772},
+    "event_alignment": {"min": 0.0105375010348503, "max": 37.9221873970826, "mean": 2.58210373368111}
+  },
+  "step_200_alignment": {
+    "ir": {"theta_max_abs_deviation": 0.016094207763671875, "determinant": 1.006136178970337, "grid_oob_fraction": 0.016874998807907104},
+    "event": {"theta_max_abs_deviation": 0.040188610553741455, "determinant": 0.982297420501709, "grid_oob_fraction": 0.015468749217689037}
+  },
+  "reproducibility_limitation": "Seed and sample order are fixed, but PyTorch emitted warn-only notices that CUDA grid_sample backward and some CuBLAS operations are not fully deterministic."
+}

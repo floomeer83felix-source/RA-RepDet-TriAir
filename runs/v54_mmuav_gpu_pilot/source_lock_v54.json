@@ -1,0 +1,26 @@
+{
+  "starting_commit": "e00f4f829445216fd778f0dc842623793a93b93f",
+  "protected_changes": [],
+  "source_hashes": {
+    "datasets/mmuav_feature_alignment_dataset.py": "ae10aec2fe60e6e744949f87dc0599332edd87c95dd77dee182ff1be687e539e",
+    "rarepdet/experimental/mmuav_feature_alignment.py": "bf380a89c5348de224a95b8435320cdc2a1257ec7d3c84b3ca99cc1ae3417840",
+    "rarepdet/experimental/mmuav_feature_alignment_model.py": "02592079012e78fc005441e50f4c56508304dd02ce29f71909b5b7513714e873",
+    "rarepdet/experimental/mmuav_feature_alignment_detector.py": "48693b29a2a60e832e07b52d643f1554de37d4a2dc69f2ff40ff77e7da8800c5",
+    "rarepdet/tools/run_v54_mmuav_gpu_pilot.py": "7b06d705c30e51468aff7ebe974d1e92ad17a0b013bc4408211a8cdcaad66fca",
+    "tests/test_v54_mmuav_gpu_pilot.py": "95590e4022acb89f0e8b921b68224eeba96b6a876e3a319c8e72ff543c4be8f9"
+  },
+  "gpu_step_limit": 200,
+  "manifest_contract": {
+    "counts": {
+      "train": 7187,
+      "devval": 1845,
+      "total": 9032
+    },
+    "hashes": {
+      "train_sha256": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+      "devval_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+    },
+    "sequence_overlap": 0
+  },
+  "config_sha256": "be6c06c886db9d40adf8a025fc2e1497fbd8d5c7c96b529366e6a101b4c89ff5"
+}

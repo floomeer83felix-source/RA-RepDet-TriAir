@@ -1,29 +1,35 @@
 {
   "generated_at": "2026-07-15",
-  "task": "V53 MM-UAV annotated-only feature-alignment preflight",
-  "status": "V53_CPU_PREFLIGHT_READY_FOR_SEPARATE_GPU_AUTHORIZATION",
-  "starting_commit": "6cb8ba426432f0c590c937ac05dc017eb859582b",
-  "rgb_supervised": {"train": 7187, "devval": 1845, "total": 9032},
-  "ir_only_excluded": 106,
-  "unlabeled_excluded": 35898,
-  "adapter": "datasets/mmuav_feature_alignment_dataset.py",
-  "alignment_module": "rarepdet/experimental/mmuav_feature_alignment.py",
-  "model_scaffold": "rarepdet/experimental/mmuav_feature_alignment_model.py",
-  "mechanism": "STN_INSPIRED_RESIDUAL_AFFINE_FEATURE_ALIGNMENT",
-  "initialization": "EXACT_IDENTITY_ZERO_RESIDUAL",
-  "alignment_off_control": true,
-  "raw_channel_concatenation": false,
-  "compute_estimate": {
-    "equal_parameters": 52220,
-    "reliability_parameters": 53309,
-    "equal_macs_320": 342835584,
-    "reliability_macs_320": 342838752,
-    "classification": "CPU_SHAPE_BASED_ESTIMATE_NOT_MEASURED_GPU_USAGE"
+  "task": "V54 MM-UAV learned feature-alignment 200-step GPU verification pilot",
+  "status": "V54_GPU_PILOT_PASS_READY_FOR_PAIRED_ALIGNMENT_ABLATION",
+  "starting_commit": "e00f4f829445216fd778f0dc842623793a93b93f",
+  "manifest_counts": {"train": 7187, "devval": 1845, "total": 9032},
+  "manifest_hashes": {
+    "train": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+    "devval": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
   },
-  "v53_tests": "9/9 pass",
-  "protected_core_v52_or_manuscript_changes": false,
-  "cuda_probe_performed": false,
-  "pilot_locked": true,
-  "gpu_optimizer_steps": 0,
-  "remaining_blocker": "separate user authorization and full detector/backbone RTX 3090 memory monitoring required before 200-step pilot"
+  "primary_variant": "alignment_on_equal",
+  "completed_optimizer_steps": 200,
+  "step_limit": 200,
+  "all_finite": true,
+  "peak_allocated_bytes": 354884608,
+  "peak_reserved_bytes": 394264576,
+  "mean_step_time_sec": 0.7190206505,
+  "step_200_alignment": {
+    "ir": {"theta_max_abs_deviation": 0.016094207763671875, "determinant": 1.006136178970337, "grid_oob_fraction": 0.016874998807907104},
+    "event": {"theta_max_abs_deviation": 0.040188610553741455, "determinant": 0.982297420501709, "grid_oob_fraction": 0.015468749217689037}
+  },
+  "checkpoint": {
+    "local_path": "D:\\MM-UAV_v54_local\\alignment_on_equal_step200.pt",
+    "bytes": 27104577,
+    "sha256": "9853c9ffd66e83e7e0c46a953c9cb4cb67681ee6126706f4031b9a9b0854fcce",
+    "committed": false
+  },
+  "postrun_inference_smoke": "PASS_EXECUTION_ONLY_NO_AP_AR",
+  "ap_ar_computed": false,
+  "accuracy_or_manuscript_claim": false,
+  "v54_cpu_tests": "8/8 pass before and after GPU",
+  "protected_file_changes": false,
+  "reproducibility_limitation": "CUDA grid_sample backward and some CuBLAS operations emitted warn-only non-determinism notices",
+  "additional_gpu_work_authorized": false
 }

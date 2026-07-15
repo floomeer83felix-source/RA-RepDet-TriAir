@@ -1,0 +1,408 @@
+{
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "total_memory_bytes": 25769279488,
+    "torch_version": "2.5.1",
+    "torch_cuda_runtime": "12.4",
+    "cudnn_version": 90100,
+    "driver_nvidia_smi": "591.86"
+  },
+  "variants": [
+    {
+      "variant": "rgb_only",
+      "optimizer_steps": 0,
+      "losses": {
+        "classification": 1.0845825672149658,
+        "bbox_regression": 1.0,
+        "bbox_ctrness": 0.6850959658622742
+      },
+      "loss_total": 2.7696785926818848,
+      "global_gradient_norm": 26.760464023226774,
+      "gradient_tensors": 445,
+      "diagnostics": {
+        "feature_shapes": {
+          "rgb_reference": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "aligned_ir": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "aligned_event": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "fused": [
+            1,
+            32,
+            80,
+            80
+          ]
+        },
+        "feature_stats": {
+          "rgb_reference": {
+            "mean": 0.3930179476737976,
+            "std": 0.5560327172279358
+          },
+          "aligned_ir": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "aligned_event": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "fused": {
+            "mean": 0.3930179476737976,
+            "std": 0.5560327172279358
+          }
+        },
+        "fusion_weights": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "ir": {
+          "theta_mean": 0.3333333432674408,
+          "theta_std": 0.4714045226573944,
+          "theta_min": 0.0,
+          "theta_max": 1.0,
+          "theta_max_abs_deviation": 0.0,
+          "determinant_mean": 1.0,
+          "determinant_min": 1.0,
+          "determinant_max": 1.0,
+          "grid_oob_fraction": 0.0,
+          "finite": true
+        },
+        "event": {
+          "theta_mean": 0.3333333432674408,
+          "theta_std": 0.4714045226573944,
+          "theta_min": 0.0,
+          "theta_max": 1.0,
+          "theta_max_abs_deviation": 0.0,
+          "determinant_mean": 1.0,
+          "determinant_min": 1.0,
+          "determinant_max": 1.0,
+          "grid_oob_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "elapsed_sec": 3.0445028999999977,
+      "memory": {
+        "label": "rgb_only",
+        "timestamp": "2026-07-15T15:33:40",
+        "allocated_bytes": 66430464,
+        "reserved_bytes": 297795584,
+        "max_allocated_bytes": 261751808,
+        "max_reserved_bytes": 297795584
+      },
+      "status": "PASS"
+    },
+    {
+      "variant": "alignment_off_equal",
+      "optimizer_steps": 0,
+      "losses": {
+        "classification": 1.0614866018295288,
+        "bbox_regression": 1.035142421722412,
+        "bbox_ctrness": 0.6709892153739929
+      },
+      "loss_total": 2.767618417739868,
+      "global_gradient_norm": 103.57120092875988,
+      "gradient_tensors": 457,
+      "diagnostics": {
+        "feature_shapes": {
+          "rgb_reference": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "aligned_ir": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "aligned_event": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "fused": [
+            1,
+            32,
+            80,
+            80
+          ]
+        },
+        "feature_stats": {
+          "rgb_reference": {
+            "mean": 0.3930179476737976,
+            "std": 0.5560327172279358
+          },
+          "aligned_ir": {
+            "mean": 0.28792843222618103,
+            "std": 0.7586771845817566
+          },
+          "aligned_event": {
+            "mean": 0.41138964891433716,
+            "std": 0.6023283004760742
+          },
+          "fused": {
+            "mean": 0.3641120493412018,
+            "std": 0.37443777918815613
+          }
+        },
+        "fusion_weights": [
+          [
+            0.3333333432674408,
+            0.3333333432674408,
+            0.3333333432674408
+          ]
+        ],
+        "ir": {
+          "theta_mean": 0.3333333432674408,
+          "theta_std": 0.4714045226573944,
+          "theta_min": 0.0,
+          "theta_max": 1.0,
+          "theta_max_abs_deviation": 0.0,
+          "determinant_mean": 1.0,
+          "determinant_min": 1.0,
+          "determinant_max": 1.0,
+          "grid_oob_fraction": 0.0,
+          "finite": true
+        },
+        "event": {
+          "theta_mean": 0.3333333432674408,
+          "theta_std": 0.4714045226573944,
+          "theta_min": 0.0,
+          "theta_max": 1.0,
+          "theta_max_abs_deviation": 0.0,
+          "determinant_mean": 1.0,
+          "determinant_min": 1.0,
+          "determinant_max": 1.0,
+          "grid_oob_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "elapsed_sec": 0.3593985999999987,
+      "memory": {
+        "label": "alignment_off_equal",
+        "timestamp": "2026-07-15T15:33:41",
+        "allocated_bytes": 68210176,
+        "reserved_bytes": 325058560,
+        "max_allocated_bytes": 283524096,
+        "max_reserved_bytes": 325058560
+      },
+      "status": "PASS"
+    },
+    {
+      "variant": "alignment_on_equal",
+      "optimizer_steps": 0,
+      "losses": {
+        "classification": 1.061448097229004,
+        "bbox_regression": 1.0354981422424316,
+        "bbox_ctrness": 0.6710058450698853
+      },
+      "loss_total": 2.7679519653320312,
+      "global_gradient_norm": 187.24258564039005,
+      "gradient_tensors": 467,
+      "diagnostics": {
+        "feature_shapes": {
+          "rgb_reference": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "aligned_ir": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "aligned_event": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "fused": [
+            1,
+            32,
+            80,
+            80
+          ]
+        },
+        "feature_stats": {
+          "rgb_reference": {
+            "mean": 0.3930179476737976,
+            "std": 0.5560327172279358
+          },
+          "aligned_ir": {
+            "mean": 0.28792843222618103,
+            "std": 0.7586771845817566
+          },
+          "aligned_event": {
+            "mean": 0.41138964891433716,
+            "std": 0.6023283004760742
+          },
+          "fused": {
+            "mean": 0.3641120195388794,
+            "std": 0.37443777918815613
+          }
+        },
+        "fusion_weights": [
+          [
+            0.3333333432674408,
+            0.3333333432674408,
+            0.3333333432674408
+          ]
+        ],
+        "ir": {
+          "theta_mean": 0.3333333432674408,
+          "theta_std": 0.4714045226573944,
+          "theta_min": 0.0,
+          "theta_max": 1.0,
+          "theta_max_abs_deviation": 0.0,
+          "determinant_mean": 1.0,
+          "determinant_min": 1.0,
+          "determinant_max": 1.0,
+          "grid_oob_fraction": 0.0,
+          "finite": true
+        },
+        "event": {
+          "theta_mean": 0.3333333432674408,
+          "theta_std": 0.4714045226573944,
+          "theta_min": 0.0,
+          "theta_max": 1.0,
+          "theta_max_abs_deviation": 0.0,
+          "determinant_mean": 1.0,
+          "determinant_min": 1.0,
+          "determinant_max": 1.0,
+          "grid_oob_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "elapsed_sec": 0.4249040000000015,
+      "memory": {
+        "label": "alignment_on_equal",
+        "timestamp": "2026-07-15T15:33:41",
+        "allocated_bytes": 76785152,
+        "reserved_bytes": 329252864,
+        "max_allocated_bytes": 291494912,
+        "max_reserved_bytes": 329252864
+      },
+      "status": "PASS"
+    },
+    {
+      "variant": "alignment_on_reliability",
+      "optimizer_steps": 0,
+      "losses": {
+        "classification": 1.0834225416183472,
+        "bbox_regression": 1.0112347602844238,
+        "bbox_ctrness": 0.7090386748313904
+      },
+      "loss_total": 2.8036961555480957,
+      "global_gradient_norm": 93.51832388715262,
+      "gradient_tensors": 471,
+      "diagnostics": {
+        "feature_shapes": {
+          "rgb_reference": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "aligned_ir": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "aligned_event": [
+            1,
+            32,
+            80,
+            80
+          ],
+          "fused": [
+            1,
+            32,
+            80,
+            80
+          ]
+        },
+        "feature_stats": {
+          "rgb_reference": {
+            "mean": 0.3930179476737976,
+            "std": 0.5560327172279358
+          },
+          "aligned_ir": {
+            "mean": 0.28792843222618103,
+            "std": 0.7586771845817566
+          },
+          "aligned_event": {
+            "mean": 0.41138964891433716,
+            "std": 0.6023283004760742
+          },
+          "fused": {
+            "mean": 0.3657844364643097,
+            "std": 0.37351110577583313
+          }
+        },
+        "fusion_weights": [
+          [
+            0.32923465967178345,
+            0.3203968107700348,
+            0.35036852955818176
+          ]
+        ],
+        "ir": {
+          "theta_mean": 0.3333333432674408,
+          "theta_std": 0.4714045226573944,
+          "theta_min": 0.0,
+          "theta_max": 1.0,
+          "theta_max_abs_deviation": 0.0,
+          "determinant_mean": 1.0,
+          "determinant_min": 1.0,
+          "determinant_max": 1.0,
+          "grid_oob_fraction": 0.0,
+          "finite": true
+        },
+        "event": {
+          "theta_mean": 0.3333333432674408,
+          "theta_std": 0.4714045226573944,
+          "theta_min": 0.0,
+          "theta_max": 1.0,
+          "theta_max_abs_deviation": 0.0,
+          "determinant_mean": 1.0,
+          "determinant_min": 1.0,
+          "determinant_max": 1.0,
+          "grid_oob_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "elapsed_sec": 0.4114672999999982,
+      "memory": {
+        "label": "alignment_on_reliability",
+        "timestamp": "2026-07-15T15:33:42",
+        "allocated_bytes": 76829184,
+        "reserved_bytes": 329252864,
+        "max_allocated_bytes": 300924416,
+        "max_reserved_bytes": 329252864
+      },
+      "status": "PASS"
+    }
+  ]
+}

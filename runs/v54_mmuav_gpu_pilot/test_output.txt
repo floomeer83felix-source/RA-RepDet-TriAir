@@ -1,0 +1,15 @@
+test_alignment_off_and_on_detector_cpu_outputs_are_finite (test_v54_mmuav_gpu_pilot.V54MMUAVGpuPilotTests) ... ok
+test_batch_contract_uses_rgb_transform_and_train_only (test_v54_mmuav_gpu_pilot.V54MMUAVGpuPilotTests) ... ok
+test_config_and_required_log_fields_are_frozen (test_v54_mmuav_gpu_pilot.V54MMUAVGpuPilotTests) ... ok
+test_identity_initialization_and_smoke_variants (test_v54_mmuav_gpu_pilot.V54MMUAVGpuPilotTests) ... ok
+test_independent_branches_and_no_raw_concat_detector_path (test_v54_mmuav_gpu_pilot.V54MMUAVGpuPilotTests) ... ok
+test_protected_paths_unchanged_before_cuda (test_v54_mmuav_gpu_pilot.V54MMUAVGpuPilotTests) ... warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stderr.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stdout.log', LF will be replaced by CRLF the next time Git touches it
+ok
+test_step_limit_and_nonfinite_fail_closed (test_v54_mmuav_gpu_pilot.V54MMUAVGpuPilotTests) ... ok
+test_v53_manifest_hashes_and_counts_are_exact (test_v54_mmuav_gpu_pilot.V54MMUAVGpuPilotTests) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.014s
+
+OK

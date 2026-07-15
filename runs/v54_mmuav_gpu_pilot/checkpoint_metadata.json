@@ -1,0 +1,9 @@
+{
+  "produced": true,
+  "local_path_not_committed": "D:\\MM-UAV_v54_local\\alignment_on_equal_step200.pt",
+  "bytes": 27104577,
+  "sha256": "9853c9ffd66e83e7e0c46a953c9cb4cb67681ee6126706f4031b9a9b0854fcce",
+  "completed_optimizer_steps": 200,
+  "accuracy_metrics": null,
+  "git_excluded": true
+}

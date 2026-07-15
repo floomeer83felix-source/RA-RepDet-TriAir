@@ -1,0 +1,58 @@
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stderr.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stdout.log', LF will be replaced by CRLF the next time Git touches it
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\nn\functional.py:5012: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:208.)
+  return torch.affine_grid_generator(theta, size, align_corners)
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\autograd\graph.py:825: UserWarning: grid_sampler_2d_backward_cuda does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=True)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation. (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:95.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\autograd\graph.py:825: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:208.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\nn\modules\linear.py:125: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:208.)
+  return F.linear(input, self.weight, self.bias)
+{
+  "decision": "V54_GPU_PILOT_PASS_READY_FOR_PAIRED_ALIGNMENT_ABLATION",
+  "completed_optimizer_steps": 200,
+  "step_limit": 200,
+  "all_finite": true,
+  "loss_first": 2.7680788040161133,
+  "loss_last": 2.447254180908203,
+  "loss_min": 0.03139461576938629,
+  "loss_max": 2.9520363807678223,
+  "step_time_mean_sec": 0.7190206504999997,
+  "step_time_min_sec": 0.5776204000000007,
+  "step_time_max_sec": 0.9808276000000014,
+  "peak_allocated_bytes": 354884608,
+  "peak_reserved_bytes": 394264576,
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "total_memory_bytes": 25769279488,
+    "torch_version": "2.5.1",
+    "torch_cuda_runtime": "12.4",
+    "cudnn_version": 90100,
+    "driver_nvidia_smi": "591.86"
+  },
+  "manifest_contract": {
+    "counts": {
+      "train": 7187,
+      "devval": 1845,
+      "total": 9032
+    },
+    "hashes": {
+      "train_sha256": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+      "devval_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+    },
+    "sequence_overlap": 0
+  },
+  "checkpoint": {
+    "produced": true,
+    "local_path_not_committed": "D:\\MM-UAV_v54_local\\alignment_on_equal_step200.pt",
+    "bytes": 27104577,
+    "sha256": "9853c9ffd66e83e7e0c46a953c9cb4cb67681ee6126706f4031b9a9b0854fcce",
+    "completed_optimizer_steps": 200,
+    "accuracy_metrics": null,
+    "git_excluded": true
+  },
+  "postrun_inference_smoke": "PASS_EXECUTION_ONLY_NO_AP_AR",
+  "ap_ar_computed": false,
+  "accuracy_claim": false,
+  "gpu_optimizer_steps": 200
+}

@@ -1,0 +1,36 @@
+{
+  "frozen_at": "2026-07-15T15:33:24+08:00",
+  "starting_commit": "e00f4f829445216fd778f0dc842623793a93b93f",
+  "primary_variant": "alignment_on_equal",
+  "maximum_completed_optimizer_steps": 200,
+  "seed": 0,
+  "branch_input_size": [
+    320,
+    320
+  ],
+  "batch_size": 1,
+  "train_manifest": "E:\\RepViT-main\\runs\\v53_mmuav_feature_alignment_preflight\\manifests\\train_rgb_supervised.txt",
+  "devval_optimization": false,
+  "feature_channels": 32,
+  "fpn_out_channels": 128,
+  "detector": "RepViT-M0.9-FPN-FCOS",
+  "integration_stage": "aligned/equal-fused features -> 1x1 to 3 channels -> bilinear 320 -> existing RepViT-FPN-FCOS",
+  "optimizer": "AdamW",
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "scheduler": "none",
+  "precision": "float32",
+  "amp_enabled": false,
+  "gradient_clipping": "none",
+  "augmentation": "none",
+  "backbone_pretrained": false,
+  "num_workers": 0,
+  "checkpoint_local_only": "D:\\MM-UAV_v54_local\\alignment_on_equal_step200.pt",
+  "smoke_variants": [
+    "rgb_only",
+    "alignment_off_equal",
+    "alignment_on_equal",
+    "alignment_on_reliability"
+  ],
+  "automatic_oom_fallback": false
+}
