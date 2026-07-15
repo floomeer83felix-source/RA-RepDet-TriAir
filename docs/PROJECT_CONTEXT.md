@@ -6,9 +6,19 @@ Local workspace: `E:\RepViT-main`
 
 Remote branch: `research/ra-repdet-triair`
 
-Dataset root: `D:\download\triair`
+Primary TriAir dataset root: `D:\download\triair`
 
-This project studies RepViT-based multimodal UAV vehicle detection on TriAir. The current experimental line compares:
+MM-UAV private research subset root: `E:\MM-UAV_extracted\MMMUAV\train`
+
+## Standing User Instruction
+
+All MM-UAV work in this repository is local, private research only. Do not repeatedly ask the user to reconfirm this scope. Reconfirmation is required only if a task proposes public dataset or derivative-data redistribution, external sharing, commercial use, or a new manuscript/public benchmark claim.
+
+The unresolved MM-UAV dataset license must remain documented as a dissemination restriction. Do not publish or redistribute MM-UAV media, annotations, transformed copies, or derivative labels from this repository.
+
+## Core Project
+
+This project studies RepViT-based multimodal UAV vehicle detection on TriAir. The main experimental line compares:
 
 - E0: Early Fusion RepViT-FCOS.
 - E1: Reliability Fusion RepViT-FCOS.
@@ -16,4 +26,6 @@ This project studies RepViT-based multimodal UAV vehicle detection on TriAir. Th
 
 TriAir uses 5-channel `.npy` samples in RGB, thermal, and event order. Missing label txt files are treated as empty-target images. The detection label class `0` is shifted to torchvision label `1`, with background remaining `0`.
 
-Heavy artifacts must stay local: datasets, `.npy`, weights, checkpoints, prediction images, and large visualizations are not part of the GitHub handoff.
+MM-UAV is a separate, method-expansion research line. Direct raw RGB/IR/event channel concatenation is invalid under the V52 audit. Any continued MM-UAV work must use independent modality branches and learned feature-level alignment, with RGB as the detection output coordinate system unless a later task explicitly changes the target contract.
+
+Heavy artifacts must stay local: datasets, `.npy`, weights, checkpoints, prediction images, transformed MM-UAV media, and large visualizations are not part of the GitHub handoff.
