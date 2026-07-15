@@ -1,0 +1,15 @@
+test_common_init_is_bit_identical_and_identity_aligned (test_v55_mmuav_paired_alignment.V55MMUAVPairedAlignmentTests) ... ok
+test_exact_manifest_contract (test_v55_mmuav_paired_alignment.V55MMUAVPairedAlignmentTests) ... ok
+test_frozen_final_checkpoint_evaluation_contract (test_v55_mmuav_paired_alignment.V55MMUAVPairedAlignmentTests) ... ok
+test_heavy_outputs_are_local_and_protected_paths_unchanged (test_v55_mmuav_paired_alignment.V55MMUAVPairedAlignmentTests) ... warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stderr.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stdout.log', LF will be replaced by CRLF the next time Git touches it
+ok
+test_no_raw_concat_reliability_training_or_v54_initialization (test_v55_mmuav_paired_alignment.V55MMUAVPairedAlignmentTests) ... ok
+test_only_alignment_enabled_is_scientific_difference (test_v55_mmuav_paired_alignment.V55MMUAVPairedAlignmentTests) ... ok
+test_shared_order_is_full_unique_permutation (test_v55_mmuav_paired_alignment.V55MMUAVPairedAlignmentTests) ... ok
+test_step_caps_and_no_devval_optimization (test_v55_mmuav_paired_alignment.V55MMUAVPairedAlignmentTests) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 6.696s
+
+OK

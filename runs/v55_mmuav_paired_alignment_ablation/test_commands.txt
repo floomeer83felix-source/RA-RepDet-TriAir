@@ -1,0 +1,3 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v55_mmuav_paired_alignment.py --prepare-only
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v55_mmuav_paired_alignment.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v55_mmuav_paired_alignment.py --run

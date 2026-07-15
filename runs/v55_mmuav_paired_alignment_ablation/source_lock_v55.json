@@ -1,0 +1,38 @@
+{
+  "starting_commit": "1dc5b48a4504e789bbe47e69153a71ac3b179532",
+  "protected_changes": [],
+  "source_hashes": {
+    "rarepdet/tools/run_v55_mmuav_paired_alignment.py": "def1fb8e4a275afd89e63909309ddacec7f4a61c25d203c86d4abb4832c69de6",
+    "tests/test_v55_mmuav_paired_alignment.py": "9af9eb37b6b560584d73a36e6034c8e53b81a63b10d6dfb09591f760cff0fccd",
+    "rarepdet/experimental/mmuav_feature_alignment_detector.py": "48693b29a2a60e832e07b52d643f1554de37d4a2dc69f2ff40ff77e7da8800c5",
+    "datasets/mmuav_feature_alignment_dataset.py": "ae10aec2fe60e6e744949f87dc0599332edd87c95dd77dee182ff1be687e539e"
+  },
+  "contract": {
+    "counts": {
+      "train": 7187,
+      "devval": 1845,
+      "total": 9032
+    },
+    "hashes": {
+      "train": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+      "devval": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+    },
+    "sequence_overlap": 0,
+    "ir_only_excluded": 106,
+    "unlabeled_excluded": 35898
+  },
+  "common_init": {
+    "path_local_not_committed": "D:\\MM-UAV_v55_local\\common_seed0_init.pt",
+    "sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+    "bytes": 27041394,
+    "tensor_count": 787,
+    "seed": 0,
+    "alignment_identity_exact": true
+  },
+  "sample_order": {
+    "rows": 7187,
+    "unique_rows": 7187,
+    "sha256": "27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b"
+  },
+  "gpu_step_limit": 14374
+}

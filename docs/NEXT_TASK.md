@@ -171,10 +171,12 @@ Choose exactly one:
 
 A successful result reports signed metric deltas but does not authorize multi-seed work or manuscript claims.
 
-Update status, blocker, and handoff files, run `rarepdet/tools/finish_task.ps1`, then commit and push with:
+Update status, blocker, and handoff files, then run `rarepdet/tools/finish_task.ps1`.
 
-```text
+## Commit Message
+
 exp: run V55 MM-UAV paired alignment ablation
-```
+
+## Final Report Requirements
 
 The final report must include commit SHAs, source hashes/counts, common-init and sample-order hashes, exact configs and step counts, checkpoint metadata, timing/memory/finite summaries, alignment diagnostics, both devval metric sets, signed deltas, test/protected-file results, the single-seed limitation, and the next authorization boundary.

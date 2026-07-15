@@ -1,35 +1,31 @@
 {
   "generated_at": "2026-07-15",
-  "task": "V54 MM-UAV learned feature-alignment 200-step GPU verification pilot",
-  "status": "V54_GPU_PILOT_PASS_READY_FOR_PAIRED_ALIGNMENT_ABLATION",
-  "starting_commit": "e00f4f829445216fd778f0dc842623793a93b93f",
+  "task": "V55 MM-UAV paired alignment ablation",
+  "status": "V55_PAIRED_SINGLE_SEED_COMPLETE_METRICS_RECORDED",
+  "starting_commit": "1dc5b48a4504e789bbe47e69153a71ac3b179532",
   "manifest_counts": {"train": 7187, "devval": 1845, "total": 9032},
   "manifest_hashes": {
     "train": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
     "devval": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
   },
-  "primary_variant": "alignment_on_equal",
-  "completed_optimizer_steps": 200,
-  "step_limit": 200,
+  "common_init_sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+  "sample_order_sha256": "27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b",
+  "completed_optimizer_steps": {"alignment_off_equal": 7187, "alignment_on_equal": 7187, "total": 14374},
+  "metrics": {
+    "alignment_off_equal": {"ap50_95": 0.013269265954709897, "ap50": 0.06442060913543426, "ap75": 0.0015648886842774918, "ar100": 0.05011910433539781},
+    "alignment_on_equal": {"ap50_95": 0.04826946094263493, "ap50": 0.19278295159638525, "ap75": 0.007177918411246644, "ar100": 0.09890424011434017},
+    "signed_delta_on_minus_off": {"ap50_95": 0.03500019498792503, "ap50": 0.128362342460951, "ap75": 0.005613029726969152, "ar100": 0.048785135778942355}
+  },
+  "checkpoints": {
+    "alignment_off_equal": {"local_path": "D:\\MM-UAV_v55_local\\alignment_off_equal_final_step7187.pt", "bytes": 27111161, "sha256": "b18b8134a2afed117f00fc097e181fa8f4155f3bc7597739b04598c70ed6a026", "committed": false},
+    "alignment_on_equal": {"local_path": "D:\\MM-UAV_v55_local\\alignment_on_equal_final_step7187.pt", "bytes": 27110306, "sha256": "2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258", "committed": false}
+  },
   "all_finite": true,
-  "peak_allocated_bytes": 354884608,
-  "peak_reserved_bytes": 394264576,
-  "mean_step_time_sec": 0.7190206505,
-  "step_200_alignment": {
-    "ir": {"theta_max_abs_deviation": 0.016094207763671875, "determinant": 1.006136178970337, "grid_oob_fraction": 0.016874998807907104},
-    "event": {"theta_max_abs_deviation": 0.040188610553741455, "determinant": 0.982297420501709, "grid_oob_fraction": 0.015468749217689037}
-  },
-  "checkpoint": {
-    "local_path": "D:\\MM-UAV_v54_local\\alignment_on_equal_step200.pt",
-    "bytes": 27104577,
-    "sha256": "9853c9ffd66e83e7e0c46a953c9cb4cb67681ee6126706f4031b9a9b0854fcce",
-    "committed": false
-  },
-  "postrun_inference_smoke": "PASS_EXECUTION_ONLY_NO_AP_AR",
-  "ap_ar_computed": false,
-  "accuracy_or_manuscript_claim": false,
-  "v54_cpu_tests": "8/8 pass before and after GPU",
+  "evaluation_attempts_per_variant": 1,
+  "evaluation_rows_per_variant": 1845,
+  "cpu_source_lock_tests": "8/8 pass",
   "protected_file_changes": false,
+  "single_seed_preliminary_only": true,
   "reproducibility_limitation": "CUDA grid_sample backward and some CuBLAS operations emitted warn-only non-determinism notices",
   "additional_gpu_work_authorized": false
 }

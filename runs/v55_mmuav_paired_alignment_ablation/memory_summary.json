@@ -1,0 +1,12 @@
+{
+  "alignment_off_equal": {
+    "peak_allocated_bytes": 337644544,
+    "peak_reserved_bytes": 367001600,
+    "mean_step_time_sec": 0.5598704511061645
+  },
+  "alignment_on_equal": {
+    "peak_allocated_bytes": 354884608,
+    "peak_reserved_bytes": 394264576,
+    "mean_step_time_sec": 0.4702854201474897
+  }
+}

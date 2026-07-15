@@ -1,0 +1,29 @@
+{
+  "decision": {
+    "decision": "V55_PAIRED_SINGLE_SEED_COMPLETE_METRICS_RECORDED",
+    "total_optimizer_steps": 14374,
+    "per_variant_steps": 7187,
+    "evaluation_rows_per_variant": 1845,
+    "evaluation_attempts_per_variant": 1,
+    "single_seed_preliminary_only": true,
+    "additional_experiments_authorized": false
+  },
+  "signed_deltas": {
+    "ap50_95": 0.03500019498792503,
+    "ap50": 0.128362342460951,
+    "ap75": 0.005613029726969152,
+    "ar100": 0.048785135778942355
+  },
+  "off": {
+    "ap50_95": 0.013269265954709897,
+    "ap50": 0.06442060913543426,
+    "ap75": 0.0015648886842774918,
+    "ar100": 0.05011910433539781
+  },
+  "on": {
+    "ap50_95": 0.04826946094263493,
+    "ap50": 0.19278295159638525,
+    "ap75": 0.007177918411246644,
+    "ar100": 0.09890424011434017
+  }
+}

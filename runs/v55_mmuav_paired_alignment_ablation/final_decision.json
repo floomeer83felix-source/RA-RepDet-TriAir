@@ -1,0 +1,9 @@
+{
+  "decision": "V55_PAIRED_SINGLE_SEED_COMPLETE_METRICS_RECORDED",
+  "total_optimizer_steps": 14374,
+  "per_variant_steps": 7187,
+  "evaluation_rows_per_variant": 1845,
+  "evaluation_attempts_per_variant": 1,
+  "single_seed_preliminary_only": true,
+  "additional_experiments_authorized": false
+}

@@ -1,0 +1,33 @@
+{
+  "seed": 0,
+  "image_size": 320,
+  "batch_size": 1,
+  "precision": "float32",
+  "amp_enabled": false,
+  "feature_channels": 32,
+  "fpn_out_channels": 128,
+  "backbone": "RepViT-M0.9",
+  "backbone_pretrained": false,
+  "detector": "FCOS",
+  "fusion": "equal",
+  "optimizer": "AdamW",
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "scheduler": "none",
+  "gradient_clipping": "none",
+  "augmentation": "none",
+  "steps_per_variant": 7187,
+  "total_step_limit": 14374,
+  "num_workers": 0,
+  "train_manifest": "E:\\RepViT-main\\runs\\v53_mmuav_feature_alignment_preflight\\manifests\\train_rgb_supervised.txt",
+  "devval_optimization": false,
+  "early_stopping": false,
+  "checkpoint_selection": false,
+  "run_order": [
+    "alignment_off_equal",
+    "alignment_on_equal"
+  ],
+  "variant": "alignment_off_equal",
+  "alignment_enabled": false,
+  "final_checkpoint": "D:\\MM-UAV_v55_local\\alignment_off_equal_final_step7187.pt"
+}

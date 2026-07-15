@@ -1,0 +1,14 @@
+{
+  "rows": 1845,
+  "checkpoint": "final_step7187_only",
+  "score_threshold": 0.001,
+  "nms_threshold": 0.6,
+  "max_detections": 100,
+  "metrics": [
+    "ap50_95",
+    "ap50",
+    "ap75",
+    "ar100"
+  ],
+  "evaluation_count_per_variant": 1
+}
