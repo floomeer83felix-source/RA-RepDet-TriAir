@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-07-15T14:42:35+08:00",
+  "counts": {
+    "train": 7187,
+    "devval": 1845,
+    "total": 9032
+  },
+  "sequence_counts": {
+    "train": 339,
+    "devval": 85
+  },
+  "hashes": {
+    "train": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+    "devval": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+  },
+  "predicate": "rgb_annotation_rows > 0",
+  "ir_only_excluded": 106,
+  "unlabeled_excluded": 35898,
+  "target_coordinate_system": "RGB",
+  "ir_role": "metadata_only",
+  "event_target": null
+}

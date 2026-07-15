@@ -1,0 +1,5 @@
+{
+  "locked": true,
+  "gpu_optimizer_steps": 0,
+  "reason": "V53_CPU_ONLY_PRE-REGISTRATION_AND_PREFLIGHT"
+}

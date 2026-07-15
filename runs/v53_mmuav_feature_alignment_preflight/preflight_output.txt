@@ -1,0 +1,160 @@
+warning: in the working copy of 'docs/EXPERIMENT_STATUS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/NEXT_TASK.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/TASK_BLOCKER.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'runs/handoff_latest.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'runs/handoff_latest.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stderr.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stdout.log', LF will be replaced by CRLF the next time Git touches it
+{
+  "status": "V53_CPU_PREFLIGHT_READY_FOR_SEPARATE_GPU_AUTHORIZATION",
+  "counts": {
+    "train": 7187,
+    "devval": 1845,
+    "total": 9032
+  },
+  "sequence_counts": {
+    "train": 339,
+    "devval": 85
+  },
+  "hashes": {
+    "train": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+    "devval": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+  },
+  "predicate": "rgb_annotation_rows > 0",
+  "ir_only_excluded": 106,
+  "unlabeled_excluded": 35898,
+  "compute": {
+    "classification": "CPU_SHAPE_BASED_ESTIMATE_NOT_MEASURED_GPU_USAGE",
+    "input_branch_size": [
+      320,
+      320
+    ],
+    "equal_fusion_parameters": 52220,
+    "reliability_fusion_parameters": 53309,
+    "equal_fusion_estimated_macs": 342835584,
+    "reliability_fusion_estimated_macs": 342838752,
+    "estimated_rtx3090_risk": "LOW_FOR_SCAFFOLD_ONLY; detector/backbone integration is not measured and requires pilot monitoring"
+  },
+  "preflight": {
+    "device": "cpu",
+    "cuda_probe_performed": false,
+    "gpu_optimizer_steps": 0,
+    "real_sample": {
+      "original_row_id": "train:00000001",
+      "native_shapes": {
+        "rgb": [
+          360,
+          640
+        ],
+        "ir": [
+          512,
+          640
+        ],
+        "event": [
+          260,
+          346
+        ]
+      },
+      "branch_shapes": {
+        "rgb": [
+          3,
+          128,
+          128
+        ],
+        "ir": [
+          1,
+          128,
+          128
+        ],
+        "event": [
+          1,
+          128,
+          128
+        ]
+      },
+      "rgb_target_count": 3
+    },
+    "forward": {
+      "alignment_off": {
+        "fused_shape": [
+          1,
+          32,
+          32,
+          32
+        ],
+        "finite": true,
+        "deterministic": true,
+        "ir_theta": [
+          [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "event_theta": [
+          [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "alignment_on": {
+        "fused_shape": [
+          1,
+          32,
+          32,
+          32
+        ],
+        "finite": true,
+        "deterministic": true,
+        "ir_theta": [
+          [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "event_theta": [
+          [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      }
+    },
+    "synthetic_backward": {
+      "finite_alignment_gradients": true,
+      "alignment_parameter_tensors": 10
+    }
+  }
+}

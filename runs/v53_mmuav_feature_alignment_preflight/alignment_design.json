@@ -1,0 +1,10 @@
+{
+  "initialization": "exact identity via zero affine-residual head",
+  "alignment_off": "deterministic bilinear feature-grid size matching only",
+  "alignment_on": "learned residual affine_grid/grid_sample in feature space",
+  "fusion_modes": [
+    "equal",
+    "reliability"
+  ],
+  "pixel_calibration_claim": false
+}

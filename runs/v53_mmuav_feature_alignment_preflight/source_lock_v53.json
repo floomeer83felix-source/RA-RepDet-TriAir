@@ -1,0 +1,16 @@
+{
+  "starting_commit": "6cb8ba426432f0c590c937ac05dc017eb859582b",
+  "protected_core_changed": [],
+  "v52_evidence_changed": [],
+  "manuscript_changed": [],
+  "gpu_optimizer_steps": 0,
+  "source_hashes": {
+    "datasets/mmuav_feature_alignment_dataset.py": "ae10aec2fe60e6e744949f87dc0599332edd87c95dd77dee182ff1be687e539e",
+    "rarepdet/experimental/mmuav_feature_alignment.py": "bf380a89c5348de224a95b8435320cdc2a1257ec7d3c84b3ca99cc1ae3417840",
+    "rarepdet/experimental/mmuav_feature_alignment_model.py": "02592079012e78fc005441e50f4c56508304dd02ce29f71909b5b7513714e873",
+    "rarepdet/tools/prepare_v53_mmuav_feature_alignment.py": "e8f9b3edd684a1db598af041e61c249f22c3cbcee244a83a7e1064c3cd3f5c22",
+    "tests/test_v53_mmuav_feature_alignment.py": "792bfc342b4729f65a1280e49181dd4577f7fe6f0738059a32877efe16bfa22b",
+    "runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+    "runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+  }
+}

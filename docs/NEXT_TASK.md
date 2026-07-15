@@ -336,11 +336,11 @@ Run:
 powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 ```
 
-Commit and push with a concise message such as:
+## Commit Message
 
-```text
 exp: prepare V53 MM-UAV feature-alignment preflight
-```
+
+## Final Report Requirements
 
 The final report must state:
 

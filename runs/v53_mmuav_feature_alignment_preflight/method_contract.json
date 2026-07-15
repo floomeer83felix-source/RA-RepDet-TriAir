@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-07-15T14:42:35+08:00",
+  "mechanism": "STN_INSPIRED_RESIDUAL_AFFINE_FEATURE_ALIGNMENT",
+  "reference": "RGB feature grid",
+  "branches": [
+    "rgb",
+    "ir",
+    "event"
+  ],
+  "raw_channel_concatenation": false,
+  "devval_gt_fitting": false,
+  "alignment_enabled_switch": true,
+  "production_builder_integration": false
+}

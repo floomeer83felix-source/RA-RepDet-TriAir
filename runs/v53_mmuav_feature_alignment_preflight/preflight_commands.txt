@@ -1,0 +1,2 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/prepare_v53_mmuav_feature_alignment.py
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v53_mmuav_feature_alignment.py -v

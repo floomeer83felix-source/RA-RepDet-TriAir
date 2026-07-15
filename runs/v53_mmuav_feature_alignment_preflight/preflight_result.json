@@ -1,0 +1,122 @@
+{
+  "device": "cpu",
+  "cuda_probe_performed": false,
+  "gpu_optimizer_steps": 0,
+  "real_sample": {
+    "original_row_id": "train:00000001",
+    "native_shapes": {
+      "rgb": [
+        360,
+        640
+      ],
+      "ir": [
+        512,
+        640
+      ],
+      "event": [
+        260,
+        346
+      ]
+    },
+    "branch_shapes": {
+      "rgb": [
+        3,
+        128,
+        128
+      ],
+      "ir": [
+        1,
+        128,
+        128
+      ],
+      "event": [
+        1,
+        128,
+        128
+      ]
+    },
+    "rgb_target_count": 3
+  },
+  "forward": {
+    "alignment_off": {
+      "fused_shape": [
+        1,
+        32,
+        32,
+        32
+      ],
+      "finite": true,
+      "deterministic": true,
+      "ir_theta": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ]
+        ]
+      ],
+      "event_theta": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    "alignment_on": {
+      "fused_shape": [
+        1,
+        32,
+        32,
+        32
+      ],
+      "finite": true,
+      "deterministic": true,
+      "ir_theta": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ]
+        ]
+      ],
+      "event_theta": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ]
+        ]
+      ]
+    }
+  },
+  "synthetic_backward": {
+    "finite_alignment_gradients": true,
+    "alignment_parameter_tensors": 10
+  }
+}

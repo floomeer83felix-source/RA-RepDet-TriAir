@@ -1,0 +1,14 @@
+test_adapter_metadata_and_rgb_only_box_transform (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+test_alignment_switch_identity_and_finite_cpu_forward (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+test_all_paths_and_synchronized_frame_ids (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+test_enabled_alignment_has_finite_gradients (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+test_exact_rgb_supervised_contract_and_exclusions (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+test_no_devval_fitting_cuda_or_gpu_steps (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+test_sequence_split_and_original_row_traceability (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+test_source_lock_protects_history_and_manuscript (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+test_three_independent_branches_and_no_raw_concat_interface (test_v53_mmuav_feature_alignment.V53MMUAVFeatureAlignmentTests) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 15.867s
+
+OK

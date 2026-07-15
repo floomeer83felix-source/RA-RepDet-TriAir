@@ -1,0 +1,12 @@
+{
+  "classification": "CPU_SHAPE_BASED_ESTIMATE_NOT_MEASURED_GPU_USAGE",
+  "input_branch_size": [
+    320,
+    320
+  ],
+  "equal_fusion_parameters": 52220,
+  "reliability_fusion_parameters": 53309,
+  "equal_fusion_estimated_macs": 342835584,
+  "reliability_fusion_estimated_macs": 342838752,
+  "estimated_rtx3090_risk": "LOW_FOR_SCAFFOLD_ONLY; detector/backbone integration is not measured and requires pilot monitoring"
+}

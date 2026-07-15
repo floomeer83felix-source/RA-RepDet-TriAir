@@ -1,0 +1,7 @@
+{
+  "generated_at": "2026-07-15T14:42:35+08:00",
+  "source_v52_train_sha256": "9feee0e362a6885dd9ba68a4dd9a903c6ee3dc459be04a9699d725a9184582d1",
+  "source_v52_devval_sha256": "88a2f32000b2c3b1b9cb5021916a29e55df73e46daeaf22f537c854488aa8800",
+  "train_rgb_supervised_sha256": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+  "devval_rgb_supervised_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+}
