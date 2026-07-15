@@ -1,34 +1,17 @@
 # Current Task
 
-## User Authorization (2026-07-15)
+## Authorization
 
-The user authorizes one bounded **V54 MM-UAV GPU verification pilot** under the standing local, private-research-only instruction.
+The user authorizes **V55 MM-UAV paired alignment ablation** under the standing local/private-research-only rule.
 
-This authorization permits CUDA integration checks and at most **200 completed optimizer steps** for one pre-registered primary pilot. It does not authorize epoch training, AP evaluation, multi-seed experiments, hyperparameter search, manuscript edits, public release, redistribution, or external sharing.
+Run exactly two single-seed variants:
 
-Do not ask the user to reconfirm the private-research scope. Reconfirmation is required only before public redistribution, external sharing, commercial use, or a new manuscript/public benchmark claim.
+1. `alignment_off_equal`
+2. `alignment_on_equal`
 
-## Title
-
-V54 MM-UAV learned feature-alignment 200-step GPU verification pilot.
-
-## Goal
-
-Verify that the V53 RGB-supervised, three-branch learned feature-alignment design can be integrated with the existing RepViT-FCOS detector interface and can complete a tightly bounded GPU optimization pilot on the RTX 3090 without:
-
-- raw RGB/IR/event channel concatenation;
-- target-coordinate leakage;
-- development-validation fitting;
-- out-of-memory failure;
-- non-finite losses or gradients;
-- uncontrolled affine-grid collapse;
-- accidental changes to the production TriAir path.
-
-The V54 result is an engineering and numerical-stability verdict only. A 200-step pilot must not be reported as detector accuracy evidence.
+This task measures the preliminary contribution of learned feature alignment while holding all other factors fixed. Do not ask again whether the work is private. Do not treat one-seed results as statistically reliable or manuscript-ready.
 
 ## Required Start
-
-Run:
 
 ```powershell
 git switch research/ra-repdet-triair
@@ -36,309 +19,162 @@ git pull --ff-only research research/ra-repdet-triair
 git rev-parse HEAD
 ```
 
-Expected starting branch tip at authorization:
+Authorization-base evidence commit: `0e1829094c683218b00e3350b08c51e79441dbfc`.
 
-```text
-b2f6e3e15c10589810d8e8c5b0f64263d9f9a14e
-```
+Read `AGENTS.md`, project/status/blocker/task/handoff files, all V52-V54 evidence, the MM-UAV dataset adapter, V53 alignment scaffold, V54 detector integration, and existing evaluator utilities. Record the actual starting commit. Stop before GPU work on unexpected changes or source-lock mismatch. V51 remains untouched.
 
-Record the actual starting commit SHA. Stop and reconcile before GPU work if the branch has unexpected uncommitted changes or the V53 source lock cannot be reproduced.
+## Frozen Data Contract
 
-Read first:
+Use exactly:
 
-- `AGENTS.md`
-- `docs/PROJECT_CONTEXT.md`
-- `docs/EXPERIMENT_STATUS.md`
-- `docs/TASK_BLOCKER.md`
-- `docs/NEXT_TASK.md`
-- `runs/handoff_latest.md`
-- `runs/handoff_latest.json`
-- all files under `runs/v52_mmuav_audit/`
-- all files under `runs/v53_mmuav_feature_alignment_preflight/`
-- `datasets/mmuav_feature_alignment_dataset.py`
-- `rarepdet/experimental/mmuav_feature_alignment.py`
-- `rarepdet/experimental/mmuav_feature_alignment_model.py`
-- current RepViT-FCOS builders, detector interfaces, optimizer setup, and training utilities needed for isolated integration
-
-V51 remains separate and must not be modified.
-
-## Standing Private-Research Boundary
-
-- Work only with locally available MM-UAV files.
-- Do not add raw images, event frames, annotations, transformed media, weights, or checkpoints to Git.
-- Do not publish or redistribute MM-UAV media, annotations, derivative labels, converted datasets, or trained checkpoints.
-- Keep the unresolved MM-UAV redistribution license visible in status and handoff records.
-- The local-only scope is already frozen and must not be repeatedly reconfirmed.
-
-## Frozen Data and Target Contract
-
-Preserve the V53 source lock exactly unless a reproducible parser error is found:
-
-- source root: `E:\MM-UAV_extracted\MMMUAV\train`;
 - train manifest: `runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt`;
-- development-validation manifest: `runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt`;
-- RGB-supervised rows: 7,187 train + 1,845 development-validation = 9,032;
-- 106 IR-only rows remain excluded;
-- 35,898 rows remain `UNLABELED` and excluded;
-- train/devval sequences remain disjoint: 339 / 85;
-- RGB boxes are the sole detector targets;
-- IR boxes remain metadata only;
-- event has no detector target;
-- native modalities remain independently loaded and independently preprocessed;
-- no box transfer, interpolation, pseudo-labeling, or empty-target conversion is permitted.
+- devval manifest: `runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt`;
+- train/devval/total: 7,187 / 1,845 / 9,032;
+- train SHA256: `e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a`;
+- devval SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
+- sequence overlap: 0;
+- 106 IR-only rows excluded;
+- 35,898 no-GT rows remain `UNLABELED` and excluded;
+- RGB boxes are the only detector targets;
+- IR boxes are metadata only; event has no detector target.
 
-Before CUDA work, reproduce the V53 manifest hashes and exact counts. Fail closed if they differ.
+No pseudo labels, interpolation, box transfer, nearest-frame substitution, empty-target conversion, or devval optimization is allowed. Reproduce all counts and hashes before CUDA work.
 
-## Frozen Architecture Contract
+## Frozen Architecture
 
-Use a V54-only experimental integration path. Do not change the default TriAir builder or dataset behavior.
-
-Required dataflow:
+Reuse the isolated V54 integration:
 
 ```text
-RGB input   -> RGB experimental stem ---------------------------> RGB reference features
-IR input    -> IR experimental stem -> learned feature alignment -> aligned IR features
-Event input -> Event experimental stem -> learned alignment ----> aligned event features
-RGB reference + aligned IR + aligned event -> fixed equal fusion -> existing RepViT-FCOS detector path
+independent RGB/IR/event stems
+-> optional IR/event feature alignment to RGB reference grid
+-> fixed equal fusion
+-> 1x1 projection to 3 channels
+-> existing RepViT-M0.9-FPN-FCOS
 ```
 
-Rules:
+The only paired difference is `alignment_enabled`:
 
-- RGB defines the reference feature grid and detection coordinate system.
-- IR and event may be aligned only in feature space.
-- The V53 STN-inspired residual affine aligners must start from exact identity initialization.
-- The primary 200-step pilot must use **alignment enabled with fixed/equal fusion** to isolate alignment stability from RA dynamic gating.
-- `alignment_enabled=False` must remain available as the no-alignment control.
-- The reliability-aware fusion path must remain available for a smoke check but is not the primary 200-step pilot.
-- Do not fit alignment from RGB/IR boxes, track IDs, development-validation GT, or detection metrics.
-- Do not introduce provider constants that were not source-locked and explained by V52/V53.
-- Freeze and record the exact integration stage before observing GPU losses.
+- off: `False`;
+- on: `True`.
 
-Preferred implementation locations:
+Both runs must have identical parameter shapes, detector, equal fusion, preprocessing, optimizer, training budget, evaluator, and sample order. No raw-channel concatenation and no RA/reliability fusion training.
 
-```text
-rarepdet/experimental/mmuav_feature_alignment_detector.py
-rarepdet/tools/run_v54_mmuav_gpu_pilot.py
-configs/ or runs/v54_mmuav_gpu_pilot/ for the frozen pilot config
-```
+Generate one common seed-0 initial state before either run. Load it into both variants. Record its SHA256 and verify all shared tensors are bit-identical at step 0. Do not use the V54 step-200 checkpoint as initialization. The alignment-on residual heads must start at exact identity.
 
-A different isolated path is acceptable after repository inspection, but production defaults must remain unchanged.
+## Frozen Training Protocol
 
-## Pilot Protocol
+Run order is fixed:
 
-### Fixed primary run
+1. `alignment_off_equal`
+2. `alignment_on_equal`
 
-Run exactly one primary pilot with:
+Common configuration:
 
-- variant: learned feature alignment enabled + fixed/equal fusion;
-- optimizer steps: maximum 200 completed steps;
-- random seed: 0;
-- branch input size: 320x320;
-- batch size: 1;
-- train manifest only for optimization;
-- deterministic sample-order generator with the order/hash recorded;
-- no hyperparameter search;
-- no learning-rate selection from development-validation behavior;
-- no AP, AR, checkpoint comparison, or model-selection metric.
+- seed 0;
+- input 320x320;
+- batch size 1;
+- FP32, AMP off;
+- feature channels 32;
+- FPN channels 128;
+- no pretrained backbone;
+- AdamW, LR `1e-4`, weight decay `1e-4`;
+- no scheduler, clipping, augmentation, or hyperparameter search;
+- train manifest only;
+- one exact manifest pass per variant: 7,187 optimizer steps;
+- total V55 ceiling: 14,374 optimizer steps.
 
-Use the nearest existing detector optimizer and scheduler defaults after repository inspection. Freeze all selected optimizer, learning-rate, scheduler, precision, gradient-clipping, augmentation, and backbone-initialization values in `pilot_config.json` **before** the first optimizer step. Do not change them after observing pilot losses.
+Create one deterministic row order and reuse the identical order for both runs. Record the row list and SHA256 before training. Every train row must appear exactly once per variant. Do not change configuration or run order after observing results.
 
-Use the project's existing precision policy where possible. Record whether AMP is enabled. Do not silently switch precision after optimizer steps begin.
+Save only final step-7,187 checkpoints unless crash recovery technically requires otherwise. Checkpoints remain local; commit metadata and hashes only. No intermediate checkpoint selection or early stopping.
 
-### Pre-run CUDA smoke matrix
+## Frozen Evaluation
 
-Before the primary pilot, run forward and backward without `optimizer.step()` for these four interfaces on a fixed train batch:
-
-1. RGB-only detector interface;
-2. three stems, alignment disabled, fixed/equal fusion;
-3. learned alignment enabled, fixed/equal fusion;
-4. learned alignment enabled, reliability-aware fusion.
-
-These smoke checks must not increment the completed optimizer-step counter. Record finite losses, tensor shapes, gradient availability, and peak memory for each interface.
-
-### Optional post-run inference smoke
-
-After step 200, a fixed, source-locked development-validation subset of at most 16 samples may be used for no-grad inference-path validation only. Record only execution success, finite outputs, shapes, latency, and memory. Do not compute AP/AR or use the results to tune the model.
-
-## Memory and Stop Rules
-
-Reset and record CUDA peak-memory statistics separately for every smoke variant and the primary pilot.
+Evaluate each final checkpoint exactly once on all 1,845 frozen devval rows using identical settings and RGB-coordinate targets.
 
 Record:
 
-- GPU model and driver/runtime versions;
-- total, allocated, reserved, and peak CUDA memory;
-- `nvidia-smi` snapshots before launch, after warmup, near peak, and after completion;
-- data time, forward time, backward time, optimizer time, and total step time;
-- checkpoint size and SHA256 if a local step-200 checkpoint is produced.
+- AP50:95;
+- AP50;
+- AP75;
+- AR100;
+- image and target counts;
+- inference timing;
+- peak allocated/reserved memory;
+- finite-output status.
 
-Immediate hard stop conditions:
+Compute signed deltas as `alignment_on_equal - alignment_off_equal`. Devval results must not trigger reruns, tuning, extension, or checkpoint selection. The AP50:95 direction may be recorded as positive/zero/negative, always labeled single-seed preliminary evidence.
 
-- CUDA OOM during the primary run;
-- any non-finite total or component loss;
-- any non-finite gradient or parameter;
-- non-finite affine theta/grid values;
-- missing RGB targets or target-coordinate mismatch;
-- sample-order or manifest-hash mismatch;
-- accidental use of development-validation samples for optimization;
-- accidental modification of protected production, V40--V53 evidence, or manuscript files.
+## Diagnostics and Stop Rules
 
-OOM handling:
+For both runs log step, row ID, loss components, LR, global gradient norm, timings, memory, and finite flags. For alignment-on also log IR/event alignment gradient norms, theta deviation, determinants, and grid out-of-bounds fraction. Save summaries at steps 0, 1, 10, 50, 100, 200, 500, 1000, 2000, 4000, 6000, and 7187.
 
-- A dry-run OOM before any optimizer step may be reported and the task must stop as `V54_BLOCKED_OOM_OR_MEMORY`.
-- Do not automatically reduce resolution, batch size, model width, precision, or enabled modalities after observing an OOM.
-- Do not continue with a different configuration without a new task authorization.
+Fail closed on:
 
-## Required Training Diagnostics
+- source, initialization, or sample-order mismatch;
+- OOM or non-finite loss/gradient/parameter/theta/grid/prediction/metric;
+- target mismatch or devval optimization leakage;
+- more than 7,187 steps in either run or 14,374 total;
+- any paired configuration difference beyond alignment enabled;
+- protected-file changes.
 
-For every completed optimizer step, log at least:
-
-- sample/original row ID;
-- total loss and each detector loss component;
-- learning rate;
-- global gradient norm;
-- alignment-parameter gradient norms for IR and event;
-- affine theta mean, standard deviation, minimum, maximum, and maximum absolute deviation from identity for IR and event;
-- affine determinant statistics where applicable;
-- finite/non-finite flags;
-- CUDA allocated/reserved memory;
-- step and data-loading time.
-
-At steps 0, 1, 10, 50, 100, 150, and 200, additionally record:
-
-- representative feature shapes;
-- RGB/IR/event feature mean and standard deviation before and after alignment;
-- aligned-grid out-of-bounds sampling fraction or an equivalent grid-validity diagnostic;
-- whether alignment parameters changed from initialization;
-- fusion-interface outputs and weights when applicable.
-
-Do not interpret lower training loss as accuracy improvement.
+Do not automatically alter batch size, resolution, precision, LR, optimizer, width, modalities, augmentation, budget, or order. An incomplete pair is not an alignment comparison.
 
 ## Required Outputs
 
-Create:
-
-```text
-runs/v54_mmuav_gpu_pilot/
-  pilot_config.json
-  source_lock_v54.json
-  source_lock_v54.md
-  smoke_matrix.json
-  smoke_matrix.md
-  training_log.csv
-  training_summary.json
-  training_summary.md
-  memory_trace.csv
-  alignment_trace.csv
-  sample_order.txt
-  sample_order_sha256.txt
-  checkpoint_metadata.json
-  postrun_inference_smoke.json
-  test_commands.txt
-  test_output.txt
-  pilot_decision.json
-  pilot_decision.md
-```
-
-Heavy local artifacts such as checkpoints and tensor dumps must remain outside Git. Commit only metadata, hashes, compact logs, and summaries.
+Create `runs/v55_mmuav_paired_alignment_ablation/` containing compact protocol/source-lock files, common-init metadata, shared sample order/hash, per-variant configs and training logs/summaries, alignment trace, frozen evaluation protocol, both metric files, paired comparison, checkpoint metadata, memory summary, tests, and final decision. Keep checkpoints, predictions, tensors, and media outside Git.
 
 ## Required Tests
 
-Add or update V54-specific tests to verify:
+Verify:
 
-- V53 manifest hashes and counts remain exact;
-- batch construction uses train RGB-supervised rows only;
-- development-validation rows cannot enter the optimizer data loader;
-- RGB boxes pass only through the RGB preprocessing transform;
-- all three modalities use independent input branches;
-- no raw-channel concatenation path exists;
-- alignment-off and alignment-on detector integrations both produce finite CPU outputs;
-- identity initialization remains exact before training;
-- the four CUDA smoke interfaces are configured distinctly;
-- the primary pilot variant is alignment-on + fixed/equal fusion;
-- optimizer-step counter cannot exceed 200;
-- non-finite and OOM conditions fail closed;
-- pilot logs include memory, loss, gradient, theta, and sample-order fields;
-- checkpoints are excluded from Git and only metadata/hashes are committed;
-- production TriAir defaults, V40--V53 historical evidence, V51 evidence, and manuscript files are unchanged.
+- exact counts/hashes and zero sequence overlap;
+- same common initialization and bit-identical shared tensors;
+- exact identity alignment initialization;
+- identical sample order and one appearance per train row per variant;
+- only `alignment_enabled` differs;
+- 7,187-step per-run and 14,374-step total caps;
+- no devval optimization;
+- evaluation uses exactly 1,845 final-checkpoint-only rows;
+- no raw concatenation or checkpoint selection path;
+- heavy artifacts stay outside Git;
+- production TriAir, V40-V54 evidence, V51 evidence, and manuscript files remain unchanged.
 
-Run CPU tests before CUDA. Save exact commands and complete outputs.
+Run CPU/source-lock tests before CUDA and save full commands/output.
 
 ## Allowed Changes
 
-- `docs/NEXT_TASK.md`
-- `docs/EXPERIMENT_STATUS.md`
-- `docs/TASK_BLOCKER.md`
-- `runs/handoff_latest.md`
-- `runs/handoff_latest.json`
-- `runs/v54_mmuav_gpu_pilot/**`
-- V54-only experimental integration files under `rarepdet/experimental/**`
-- V54-only pilot tools under `rarepdet/tools/**`
-- V54-only configuration files
-- V54-specific tests under `tests/**`
-- minimal import/export changes needed to expose V54 experimental modules without changing defaults
+- current task/status/blocker/handoff files;
+- `runs/v55_mmuav_paired_alignment_ablation/**`;
+- V55-only tools, wrappers, evaluator adapters, configs, and tests;
+- minimal imports needed for isolated V55 code without changing defaults.
 
 ## Forbidden Changes
 
-- raw MM-UAV files or source annotations;
-- V40--V53 historical evidence other than current status/handoff pointers;
-- V51 process evidence or status history;
-- default TriAir dataset semantics;
-- production experiment defaults;
-- public or redistributable MM-UAV derivatives;
-- manuscript files;
-- epoch training, AP/AR evaluation, multi-seed runs, hyperparameter sweeps, or more than 200 optimizer steps;
-- automatic configuration fallback after OOM or instability.
+- raw data or annotations;
+- historical V40-V54 evidence except current pointers;
+- V51 history;
+- production defaults or TriAir semantics;
+- RA/reliability fusion training;
+- extra seeds, extra primary runs, sweeps, early stopping, budget extension, or more than 14,374 optimizer steps;
+- public derivatives, manuscript, or submission files.
 
-## Decision Output
+## Completion State
 
-At completion choose exactly one:
+Choose exactly one:
 
-- `V54_GPU_PILOT_PASS_READY_FOR_PAIRED_ALIGNMENT_ABLATION`
-- `V54_BLOCKED_DETECTOR_INTEGRATION`
-- `V54_BLOCKED_DATA_OR_TARGET_CONTRACT`
-- `V54_BLOCKED_OOM_OR_MEMORY`
-- `V54_BLOCKED_NUMERICAL_INSTABILITY`
-- `V54_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`
+- `V55_PAIRED_SINGLE_SEED_COMPLETE_METRICS_RECORDED`
+- `V55_BLOCKED_SOURCE_OR_INITIALIZATION_CONTRACT`
+- `V55_BLOCKED_TRAINING_PAIR_INCOMPLETE`
+- `V55_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`
+- `V55_BLOCKED_EVALUATION_CONTRACT`
+- `V55_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`
 
-A pass requires all 200 optimizer steps to complete with finite losses and gradients, stable logging, no contract violation, no OOM, and a locked source/config record. It does not establish accuracy or justify manuscript claims.
+A successful result reports signed metric deltas but does not authorize multi-seed work or manuscript claims.
 
-Update:
+Update status, blocker, and handoff files, run `rarepdet/tools/finish_task.ps1`, then commit and push with:
 
 ```text
-docs/EXPERIMENT_STATUS.md
-docs/TASK_BLOCKER.md
-runs/handoff_latest.md
-runs/handoff_latest.json
+exp: run V55 MM-UAV paired alignment ablation
 ```
 
-## Finish
-
-Run:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
-```
-
-## Commit Message
-
-exp: run V54 MM-UAV alignment GPU pilot
-
-## Final Report Requirements
-
-The final report must state:
-
-- starting and final commit SHA;
-- exact frozen manifest counts and hashes;
-- full frozen pilot configuration;
-- selected detector integration point;
-- smoke-matrix results;
-- completed optimizer-step count;
-- peak allocated/reserved GPU memory;
-- step-time summary;
-- loss and gradient finite-status summary;
-- IR/event affine-theta and grid-validity summary;
-- checkpoint metadata/hash, if produced;
-- tests and protected-file verification;
-- confirmation that no AP/AR or manuscript claim was produced;
-- final V54 decision state.
+The final report must include commit SHAs, source hashes/counts, common-init and sample-order hashes, exact configs and step counts, checkpoint metadata, timing/memory/finite summaries, alignment diagnostics, both devval metric sets, signed deltas, test/protected-file results, the single-seed limitation, and the next authorization boundary.
