@@ -16,6 +16,8 @@ All MM-UAV work in this repository is local, private research only. Do not repea
 
 The unresolved MM-UAV dataset license must remain documented as a dissemination restriction. Do not publish or redistribute MM-UAV media, annotations, transformed copies, or derivative labels from this repository.
 
+When the user accepts an explicitly proposed next experimental stage, says to proceed, or asks to write the task, immediately write the complete authorization into Git in the same turn. At minimum update `docs/NEXT_TASK.md`, `docs/EXPERIMENT_STATUS.md`, and `docs/TASK_BLOCKER.md`, then push to `research/ra-repdet-triair`. Do not wait for a separate reminder. This standing workflow rule authorizes task documentation only; experiment execution must remain within the newly written task boundary.
+
 ## Core Project
 
 This project studies RepViT-based multimodal UAV vehicle detection on TriAir. The main experimental line compares:
