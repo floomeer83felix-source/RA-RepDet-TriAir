@@ -4,47 +4,62 @@ Updated: 2026-07-15
 
 ## Active task
 
-`V52_OFFICIAL_ALIGNMENT_PROVIDER_AUDIT_COMPLETE`
+`V53_MMUAV_PRIVATE_FEATURE_ALIGNMENT_PREFLIGHT_AUTHORIZED`
 
-## Final outcome
+## User decision
+
+The user selected Plan A for MM-UAV: native RGB/IR/event inputs, independent modality branches, learned feature-level alignment, and RGB-coordinate detection supervision.
+
+All MM-UAV work is local, private research only. Do not repeatedly ask the user to reconfirm this scope. Reconfirmation is required only before public redistribution, external sharing, commercial use, or a new manuscript/public benchmark claim.
+
+## V52 final outcome retained
 
 `OFFICIAL_LEARNED_ALIGNMENT_ONLY_DIRECT_FUSION_NO_GO`
 
-The final CPU-only audit found official learned RGB/IR feature alignment but no complete provider-supplied RGB/IR/event raw-grid registration. Direct channel-aligned fusion remains invalid. No GPU work, training, inference, learned alignment design, or manuscript change occurred.
+Direct raw RGB/IR/event channel concatenation remains invalid. No complete provider-supplied deterministic raw-grid transform was found; official evidence supports learned RGB/IR feature alignment.
 
 ## Frozen MM-UAV subset
 
-- 424 complete source-train sequences are accepted; incomplete sequence `0512` remains quarantined.
-- Complete synchronized RGB/IR/event triplets: 897,578.
-- Frozen interval-20 rule: source indices `1, 21, 41, ...`.
+- Local root: `E:\MM-UAV_extracted\MMMUAV\train`.
+- 424 complete source-train sequences; incomplete sequence `0512` remains quarantined.
 - Sequence-disjoint split: 339 train / 85 development-validation sequences.
-- Frozen samples: 35,894 train + 9,142 development-validation = 45,036.
-- 9,138 sampled triplets contain at least one source GT row.
-- 35,898 sampled triplets remain `UNLABELED` and may not be treated as empty-target negatives.
+- Frozen interval-20 rule: source indices `1, 21, 41, ...`.
+- Frozen rows: 45,036.
+- RGB-supervised rows: 9,032 = 7,187 train + 1,845 development-validation.
+- Both RGB and IR GT: 8,901.
+- RGB-only: 131.
+- IR-only: 106 and excluded from RGB supervision.
+- No source GT: 35,898 and retained as `UNLABELED`.
+- Event frames have no independent detection boxes.
 
-## Alignment evidence already established
+## V53 scope
 
-- Native grids differ: RGB 640x360, IR 640x512, event 346x260.
-- Event frames have no separate source detection boxes in the locally audited subset.
-- On the frozen geometry sample, dimension-only scaling produced mean matched RGB/IR IoU about 0.00867.
-- Direct channel-aligned RGB/IR/event concatenation is scientifically invalid under the currently established evidence.
+V53 is CPU-only pre-registration and preflight. It may:
 
-## Provider-contract verdicts
+- freeze RGB-supervised manifests;
+- implement a V53-specific native-modality adapter;
+- implement isolated experimental learned feature alignment;
+- provide alignment-on and alignment-off interfaces;
+- run CPU forward, shape, determinism, gradient, manifest, and protected-file tests;
+- record source locks and compute estimates.
 
-- Annotated-only predicate reproduced exactly: 9,138 included / 35,898 `UNLABELED`.
-- Sparse GT: `PARTIALLY_CONFIRMED`; the paper states train annotations every 100 frames and the official converter excludes unannotated frames, but absent rows are not defined as verified empty targets.
-- Category and GT fields: `PARTIALLY_CONFIRMED`; official code confirms `drone` and operational use of the first six fields, but the final three fields are not completely defined.
-- Dataset license: `UNRESOLVED`; Apache-2.0 applies to official code and the paper has a separate arXiv license, neither is an explicit dataset grant.
-- Alignment: OGAA deformable convolution and STN are learned feature alignment. STN constants are incomplete calibration parameters/initialization, while temporal GMC, synchronization, resizing, and event crop expansion are not raw-grid registration.
-- Official deterministic spatial transform: not found; verification status is `NOT_RUN_NO_OFFICIAL_DETERMINISTIC_TRANSFORM`.
+V53 may not run CUDA, the 200-step pilot, epoch training, checkpoint production, AP evaluation, manuscript edits, or public data/derivative release.
+
+## License boundary
+
+The MM-UAV dataset license remains unresolved for redistribution. This remains a dissemination restriction. The active task is local-only and must not publish or redistribute media, annotations, transformed copies, or derivative labels.
 
 ## Gates
 
 - V51 remains incomplete and must not be modified.
 - Pilot gate remains locked.
 - GPU optimizer steps remain 0.
-- No 200-step pilot or full MM-UAV training is authorized.
+- A future GPU pilot requires a separate explicit authorization after V53 preflight passes.
 
-## Current decision boundary
+## Target completion states
 
-The MM-UAV route cannot use direct RGB/IR/event channel concatenation. Adding learned alignment would be a separately authorized method-expansion task. The pilot gate remains locked and GPU optimizer steps remain 0.
+- `V53_CPU_PREFLIGHT_READY_FOR_SEPARATE_GPU_AUTHORIZATION`
+- `V53_BLOCKED_RGB_SUPERVISED_MANIFEST_CONTRACT`
+- `V53_BLOCKED_DATA_ADAPTER_OR_SYNCHRONIZATION`
+- `V53_BLOCKED_FEATURE_ALIGNMENT_IMPLEMENTATION`
+- `V53_BLOCKED_COMPUTE_OR_TEST_PREFLIGHT`
