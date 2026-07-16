@@ -1,0 +1,9 @@
+{
+  "path_local_not_committed": "D:\\MM-UAV_v56_local\\seed2_alignment_on_equal_final_step7187.pt",
+  "sha256": "6733e5c18d469c31dd9ffaddf46ee4934ea19d7954b203e76dbbfdbe834e3dc9",
+  "bytes": 27115500,
+  "seed": 2,
+  "variant": "alignment_on_equal",
+  "completed_optimizer_steps": 7187,
+  "selection_metric": null
+}

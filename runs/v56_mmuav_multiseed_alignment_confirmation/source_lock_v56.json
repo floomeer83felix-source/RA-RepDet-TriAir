@@ -1,0 +1,84 @@
+{
+  "starting_commit": "05a72b0df1377bb6dce2134da1d73297b29fefe9",
+  "protected_changes": [],
+  "source_hashes": {
+    "rarepdet/tools/run_v56_mmuav_multiseed_alignment.py": "e7bca31f17239210f4c73cc473c3144f4085f5049f8b519d269078dd9764fa45",
+    "tests/test_v56_mmuav_multiseed_alignment.py": "c401853b47294797a47d742163d70a822a3544c7d7bf293bb73241bc9c45a837",
+    "rarepdet/tools/run_v55_mmuav_paired_alignment.py": "def1fb8e4a275afd89e63909309ddacec7f4a61c25d203c86d4abb4832c69de6",
+    "rarepdet/experimental/mmuav_feature_alignment_detector.py": "48693b29a2a60e832e07b52d643f1554de37d4a2dc69f2ff40ff77e7da8800c5",
+    "datasets/mmuav_feature_alignment_dataset.py": "ae10aec2fe60e6e744949f87dc0599332edd87c95dd77dee182ff1be687e539e"
+  },
+  "contract": {
+    "counts": {
+      "train": 7187,
+      "devval": 1845,
+      "total": 9032
+    },
+    "hashes": {
+      "train": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+      "devval": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+    },
+    "sequence_overlap": 0,
+    "ir_only_excluded": 106,
+    "unlabeled_excluded": 35898
+  },
+  "v55_seed0_evidence": {
+    "executed_seed0": false,
+    "common_init_sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+    "sample_order_sha256": "27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b",
+    "metrics": {
+      "alignment_off_equal": {
+        "ap50_95": 0.013269265954709897,
+        "ap50": 0.06442060913543426,
+        "ap75": 0.0015648886842774918,
+        "ar100": 0.05011910433539781
+      },
+      "alignment_on_equal": {
+        "ap50_95": 0.04826946094263493,
+        "ap50": 0.19278295159638525,
+        "ap75": 0.007177918411246644,
+        "ar100": 0.09890424011434017
+      }
+    },
+    "source_file_sha256": {
+      "protocol.json": "255551141cdd7a3fe7e964b650b3621482d4ba6735353dd5796bdb04547824d8",
+      "paired_comparison.json": "abb5e4093e258a10a28f09f989967d2f23cc5bed450faa53b90f724349994b0d",
+      "final_decision.json": "b023f5c8886aef34f8293f298d3631aef01c3bc75a35d61520c2d31de59a853d"
+    }
+  },
+  "seed_material": {
+    "1": {
+      "common_init": {
+        "path_local_not_committed": "D:\\MM-UAV_v56_local\\seed1_common_init.pt",
+        "sha256": "03261341d1b3ceea8bf70b8727e40235017ea8a4810172fd7e1efa40ab4cab83",
+        "bytes": 27041394,
+        "tensor_count": 787,
+        "seed": 1,
+        "alignment_identity_exact": true
+      },
+      "sample_order": {
+        "seed": 1,
+        "rows": 7187,
+        "unique_rows": 7187,
+        "sha256": "0c0dcf739cddae4f023f18aa29c88d392fd03b22b847af248108dd862c7a1f61"
+      }
+    },
+    "2": {
+      "common_init": {
+        "path_local_not_committed": "D:\\MM-UAV_v56_local\\seed2_common_init.pt",
+        "sha256": "48da2ab1d8b88339137855f672ab0c0230414b3504fc04329aaf8badb9b28fb8",
+        "bytes": 27041394,
+        "tensor_count": 787,
+        "seed": 2,
+        "alignment_identity_exact": true
+      },
+      "sample_order": {
+        "seed": 2,
+        "rows": 7187,
+        "unique_rows": 7187,
+        "sha256": "0174175d811a59f677039d205e9cb70a108764f8c35c27e21f4750ef3448abb8"
+      }
+    }
+  },
+  "gpu_step_limit": 28748
+}

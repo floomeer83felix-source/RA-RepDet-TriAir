@@ -1,0 +1,6 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v56_mmuav_multiseed_alignment.py --prepare-only
+# Pre-CUDA source-lock and contract test
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v56_mmuav_multiseed_alignment.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v56_mmuav_multiseed_alignment.py --run
+# Post-CUDA source-lock and contract test
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v56_mmuav_multiseed_alignment.py -v

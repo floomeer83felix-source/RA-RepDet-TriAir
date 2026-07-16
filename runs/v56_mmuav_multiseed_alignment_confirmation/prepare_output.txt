@@ -1,0 +1,280 @@
+python.exe : warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stderr.log', LF will be replace
+d by CRLF the next time Git touches it
+At line:2 char:90
++ ... ython.exe'; & $py rarepdet/tools/run_v56_mmuav_multiseed_alignment.py ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: in the... Git touches it:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stdout.log', LF will be replaced by CRLF the
+ next time Git touches it
+{
+  "status": "V56_PREPARED_CPU_ONLY",
+  "prepared_at": "2026-07-16T08:14:13+08:00",
+  "starting_commit": "05a72b0df1377bb6dce2134da1d73297b29fefe9",
+  "contract": {
+    "counts": {
+      "train": 7187,
+      "devval": 1845,
+      "total": 9032
+    },
+    "hashes": {
+      "train": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+      "devval": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+    },
+    "sequence_overlap": 0,
+    "ir_only_excluded": 106,
+    "unlabeled_excluded": 35898
+  },
+  "v55_seed0_evidence": {
+    "executed_seed0": false,
+    "common_init_sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+    "sample_order_sha256": "27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b",
+    "metrics": {
+      "alignment_off_equal": {
+        "ap50_95": 0.013269265954709897,
+        "ap50": 0.06442060913543426,
+        "ap75": 0.0015648886842774918,
+        "ar100": 0.05011910433539781
+      },
+      "alignment_on_equal": {
+        "ap50_95": 0.04826946094263493,
+        "ap50": 0.19278295159638525,
+        "ap75": 0.007177918411246644,
+        "ar100": 0.09890424011434017
+      }
+    },
+    "source_file_sha256": {
+      "protocol.json": "255551141cdd7a3fe7e964b650b3621482d4ba6735353dd5796bdb04547824d8",
+      "paired_comparison.json": "abb5e4093e258a10a28f09f989967d2f23cc5bed450faa53b90f724349994b0d",
+      "final_decision.json": "b023f5c8886aef34f8293f298d3631aef01c3bc75a35d61520c2d31de59a853d"
+    }
+  },
+  "seeds": [
+    1,
+    2
+  ],
+  "variants": [
+    "alignment_off_equal",
+    "alignment_on_equal"
+  ],
+  "run_order": [
+    "seed1_alignment_off_equal",
+    "seed1_alignment_on_equal",
+    "seed2_alignment_off_equal",
+    "seed2_alignment_on_equal"
+  ],
+  "steps_per_run": 7187,
+  "v56_total_step_limit": 28748,
+  "seed_material": {
+    "1": {
+      "common_init": {
+        "path_local_not_committed": "D:\\MM-UAV_v56_local\\seed1_common_init.pt",
+        "sha256": "03261341d1b3ceea8bf70b8727e40235017ea8a4810172fd7e1efa40ab4cab83",
+        "bytes": 27041394,
+        "tensor_count": 787,
+        "seed": 1,
+        "alignment_identity_exact": true
+      },
+      "sample_order": {
+        "seed": 1,
+        "rows": 7187,
+        "unique_rows": 7187,
+        "sha256": "0c0dcf739cddae4f023f18aa29c88d392fd03b22b847af248108dd862c7a1f61"
+      }
+    },
+    "2": {
+      "common_init": {
+        "path_local_not_committed": "D:\\MM-UAV_v56_local\\seed2_common_init.pt",
+        "sha256": "48da2ab1d8b88339137855f672ab0c0230414b3504fc04329aaf8badb9b28fb8",
+        "bytes": 27041394,
+        "tensor_count": 787,
+        "seed": 2,
+        "alignment_identity_exact": true
+      },
+      "sample_order": {
+        "seed": 2,
+        "rows": 7187,
+        "unique_rows": 7187,
+        "sha256": "0174175d811a59f677039d205e9cb70a108764f8c35c27e21f4750ef3448abb8"
+      }
+    }
+  },
+  "variant_configs": {
+    "1": {
+      "alignment_off_equal": {
+        "seed": 1,
+        "image_size": 320,
+        "batch_size": 1,
+        "precision": "float32",
+        "amp_enabled": false,
+        "feature_channels": 32,
+        "fpn_out_channels": 128,
+        "backbone": "RepViT-M0.9",
+        "backbone_pretrained": false,
+        "detector": "FCOS",
+        "fusion": "equal",
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "scheduler": "none",
+        "gradient_clipping": "none",
+        "augmentation": "none",
+        "steps_per_run": 7187,
+        "v56_total_step_limit": 28748,
+        "num_workers": 0,
+        "train_manifest": "E:\\RepViT-main\\runs\\v53_mmuav_feature_alignment_preflight\\manifests\\train_rgb_supervised.txt",
+        "devval_optimization": false,
+        "early_stopping": false,
+        "checkpoint_selection": false,
+        "pair_run_order": [
+          "alignment_off_equal",
+          "alignment_on_equal"
+        ],
+        "global_run_order": [
+          "seed1_alignment_off_equal",
+          "seed1_alignment_on_equal",
+          "seed2_alignment_off_equal",
+          "seed2_alignment_on_equal"
+        ],
+        "variant": "alignment_off_equal",
+        "alignment_enabled": false,
+        "final_checkpoint": "D:\\MM-UAV_v56_local\\seed1_alignment_off_equal_final_step7187.pt"
+      },
+      "alignment_on_equal": {
+        "seed": 1,
+        "image_size": 320,
+        "batch_size": 1,
+        "precision": "float32",
+        "amp_enabled": false,
+        "feature_channels": 32,
+        "fpn_out_channels": 128,
+        "backbone": "RepViT-M0.9",
+        "backbone_pretrained": false,
+        "detector": "FCOS",
+        "fusion": "equal",
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "scheduler": "none",
+        "gradient_clipping": "none",
+        "augmentation": "none",
+        "steps_per_run": 7187,
+        "v56_total_step_limit": 28748,
+        "num_workers": 0,
+        "train_manifest": "E:\\RepViT-main\\runs\\v53_mmuav_feature_alignment_preflight\\manifests\\train_rgb_supervised.txt",
+        "devval_optimization": false,
+        "early_stopping": false,
+        "checkpoint_selection": false,
+        "pair_run_order": [
+          "alignment_off_equal",
+          "alignment_on_equal"
+        ],
+        "global_run_order": [
+          "seed1_alignment_off_equal",
+          "seed1_alignment_on_equal",
+          "seed2_alignment_off_equal",
+          "seed2_alignment_on_equal"
+        ],
+        "variant": "alignment_on_equal",
+        "alignment_enabled": true,
+        "final_checkpoint": "D:\\MM-UAV_v56_local\\seed1_alignment_on_equal_final_step7187.pt"
+      }
+    },
+    "2": {
+      "alignment_off_equal": {
+        "seed": 2,
+        "image_size": 320,
+        "batch_size": 1,
+        "precision": "float32",
+        "amp_enabled": false,
+        "feature_channels": 32,
+        "fpn_out_channels": 128,
+        "backbone": "RepViT-M0.9",
+        "backbone_pretrained": false,
+        "detector": "FCOS",
+        "fusion": "equal",
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "scheduler": "none",
+        "gradient_clipping": "none",
+        "augmentation": "none",
+        "steps_per_run": 7187,
+        "v56_total_step_limit": 28748,
+        "num_workers": 0,
+        "train_manifest": "E:\\RepViT-main\\runs\\v53_mmuav_feature_alignment_preflight\\manifests\\train_rgb_supervised.txt",
+        "devval_optimization": false,
+        "early_stopping": false,
+        "checkpoint_selection": false,
+        "pair_run_order": [
+          "alignment_off_equal",
+          "alignment_on_equal"
+        ],
+        "global_run_order": [
+          "seed1_alignment_off_equal",
+          "seed1_alignment_on_equal",
+          "seed2_alignment_off_equal",
+          "seed2_alignment_on_equal"
+        ],
+        "variant": "alignment_off_equal",
+        "alignment_enabled": false,
+        "final_checkpoint": "D:\\MM-UAV_v56_local\\seed2_alignment_off_equal_final_step7187.pt"
+      },
+      "alignment_on_equal": {
+        "seed": 2,
+        "image_size": 320,
+        "batch_size": 1,
+        "precision": "float32",
+        "amp_enabled": false,
+        "feature_channels": 32,
+        "fpn_out_channels": 128,
+        "backbone": "RepViT-M0.9",
+        "backbone_pretrained": false,
+        "detector": "FCOS",
+        "fusion": "equal",
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "scheduler": "none",
+        "gradient_clipping": "none",
+        "augmentation": "none",
+        "steps_per_run": 7187,
+        "v56_total_step_limit": 28748,
+        "num_workers": 0,
+        "train_manifest": "E:\\RepViT-main\\runs\\v53_mmuav_feature_alignment_preflight\\manifests\\train_rgb_supervised.txt",
+        "devval_optimization": false,
+        "early_stopping": false,
+        "checkpoint_selection": false,
+        "pair_run_order": [
+          "alignment_off_equal",
+          "alignment_on_equal"
+        ],
+        "global_run_order": [
+          "seed1_alignment_off_equal",
+          "seed1_alignment_on_equal",
+          "seed2_alignment_off_equal",
+          "seed2_alignment_on_equal"
+        ],
+        "variant": "alignment_on_equal",
+        "alignment_enabled": true,
+        "final_checkpoint": "D:\\MM-UAV_v56_local\\seed2_alignment_on_equal_final_step7187.pt"
+      }
+    }
+  },
+  "only_scientific_difference_within_pair": "alignment_enabled",
+  "evaluation": {
+    "rows": 1845,
+    "checkpoint": "final_step7187_only",
+    "score_threshold": 0.001,
+    "nms_threshold": 0.6,
+    "max_detections": 100,
+    "metrics": [
+      "ap50_95",
+      "ap50",
+      "ap75",
+      "ar100"
+    ],
+    "evaluation_count_per_run": 1
+  }
+}

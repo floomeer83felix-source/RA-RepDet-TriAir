@@ -1,0 +1,6 @@
+{
+  "seed": 2,
+  "shared_tensors_bit_identical_at_step0": true,
+  "alignment_residual_heads_exact_zero": true,
+  "identity_theta_exact": true
+}

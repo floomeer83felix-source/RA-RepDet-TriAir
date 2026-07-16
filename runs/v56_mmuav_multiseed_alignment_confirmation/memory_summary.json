@@ -1,0 +1,22 @@
+{
+  "seed1_alignment_off_equal": {
+    "peak_allocated_bytes": 337644544,
+    "peak_reserved_bytes": 367001600,
+    "mean_step_time_sec": 0.25674858839571496
+  },
+  "seed1_alignment_on_equal": {
+    "peak_allocated_bytes": 354884608,
+    "peak_reserved_bytes": 396361728,
+    "mean_step_time_sec": 0.2515569909837215
+  },
+  "seed2_alignment_off_equal": {
+    "peak_allocated_bytes": 345166848,
+    "peak_reserved_bytes": 390070272,
+    "mean_step_time_sec": 0.47808281942396275
+  },
+  "seed2_alignment_on_equal": {
+    "peak_allocated_bytes": 354884608,
+    "peak_reserved_bytes": 394264576,
+    "mean_step_time_sec": 0.4637867447613742
+  }
+}

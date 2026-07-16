@@ -1,0 +1,51 @@
+{
+  "seed": 2,
+  "variant": "alignment_on_equal",
+  "evaluation_attempt": 1,
+  "final_checkpoint_only": true,
+  "checkpoint_sha256": "6733e5c18d469c31dd9ffaddf46ee4934ea19d7954b203e76dbbfdbe834e3dc9",
+  "ap50_95": 0.03662453471287404,
+  "ap50": 0.16121943395784447,
+  "ap75": 0.00268500034805789,
+  "ap_by_iou": {
+    "0.50": 0.16121943395784447,
+    "0.55": 0.10401657768470804,
+    "0.60": 0.058097198283278445,
+    "0.65": 0.028530396782531747,
+    "0.70": 0.009483161560003504,
+    "0.75": 0.00268500034805789,
+    "0.80": 0.0012671420373216538,
+    "0.85": 0.0004714757190004715,
+    "0.90": 0.0004714757190004715,
+    "0.95": 3.4850369936676876e-06
+  },
+  "ar100": 0.0986898523106241,
+  "images": 1845,
+  "gt_boxes": 4198,
+  "detections": 184500,
+  "iou_thresholds": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+  ],
+  "recall_thresholds": 101,
+  "max_detections": 100,
+  "backend": "pycocotools.cocoeval.COCOeval",
+  "inference_seconds": 155.52883890000157,
+  "fps": 11.862751712473443,
+  "finite_outputs": true,
+  "peak_allocated_bytes": 73865728,
+  "peak_reserved_bytes": 100663296,
+  "settings": {
+    "score_threshold": 0.001,
+    "nms_threshold": 0.6,
+    "max_detections": 100
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "per_seed": {
+    "0": {
+      "alignment_off_equal": {
+        "ap50_95": 0.013269265954709897,
+        "ap50": 0.06442060913543426,
+        "ap75": 0.0015648886842774918,
+        "ar100": 0.05011910433539781
+      },
+      "alignment_on_equal": {
+        "ap50_95": 0.04826946094263493,
+        "ap50": 0.19278295159638525,
+        "ap75": 0.007177918411246644,
+        "ar100": 0.09890424011434017
+      }
+    },
+    "1": {
+      "alignment_off_equal": {
+        "seed": 1,
+        "variant": "alignment_off_equal",
+        "evaluation_attempt": 1,
+        "final_checkpoint_only": true,
+        "checkpoint_sha256": "161390717c83d74c43abe74230b355f9e63c513f8007a8b2eed66a2c8322e2e3",
+        "ap50_95": 0.029785499780001685,
+        "ap50": 0.13959564696312282,
+        "ap75": 0.004252428663647611,
+        "ap_by_iou": {
+          "0.50": 0.13959564696312282,
+          "0.55": 0.08308216327772412,
+          "0.60": 0.0417008475222155,
+          "0.65": 0.019672476720200525,
+          "0.70": 0.009180368679635491,
+          "0.75": 0.004252428663647611,
+          "0.80": 0.00023351391742947882,
+          "0.85": 0.00012376237623762376,
+          "0.90": 1.378967980363496e-05,
+          "0.95": 0.0
+        },
+        "ar100": 0.0816579323487375,
+        "images": 1845,
+        "gt_boxes": 4198,
+        "detections": 184500,
+        "iou_thresholds": [
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95
+        ],
+        "recall_thresholds": 101,
+        "max_detections": 100,
+        "backend": "pycocotools.cocoeval.COCOeval",
+        "inference_seconds": 119.97020829999997,
+        "fps": 15.378818009437435,
+        "finite_outputs": true,
+        "peak_allocated_bytes": 65082880,
+        "peak_reserved_bytes": 79691776,
+        "settings": {
+          "score_threshold": 0.001,
+          "nms_threshold": 0.6,
+          "max_detections": 100
+        }
+      },
+      "alignment_on_equal": {
+        "seed": 1,
+        "variant": "alignment_on_equal",
+        "evaluation_attempt": 1,
+        "final_checkpoint_only": true,
+        "checkpoint_sha256": "5acf026436f4a73d1f5065d2ddd02da7d68b66a91a70d77e44ecb28df3e58785",
+        "ap50_95": 0.04062072561414112,
+        "ap50": 0.17550668827777882,
+        "ap75": 0.003976330748529569,
+        "ap_by_iou": {
+          "0.50": 0.17550668827777882,
+          "0.55": 0.11604608869187012,
+          "0.60": 0.06516586102809341,
+          "0.65": 0.033304213891983014,
+          "0.70": 0.011107698297655193,
+          "0.75": 0.003976330748529569,
+          "0.80": 0.0009079752336836666,
+          "0.85": 0.00018531264891195,
+          "0.90": 7.087322905518898e-06,
+          "0.95": 0.0
+        },
+        "ar100": 0.09780848022868031,
+        "images": 1845,
+        "gt_boxes": 4198,
+        "detections": 184500,
+        "iou_thresholds": [
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95
+        ],
+        "recall_thresholds": 101,
+        "max_detections": 100,
+        "backend": "pycocotools.cocoeval.COCOeval",
+        "inference_seconds": 155.3126969,
+        "fps": 11.879260593793733,
+        "finite_outputs": true,
+        "peak_allocated_bytes": 73865728,
+        "peak_reserved_bytes": 100663296,
+        "settings": {
+          "score_threshold": 0.001,
+          "nms_threshold": 0.6,
+          "max_detections": 100
+        }
+      }
+    },
+    "2": {
+      "alignment_off_equal": {
+        "seed": 2,
+        "variant": "alignment_off_equal",
+        "evaluation_attempt": 1,
+        "final_checkpoint_only": true,
+        "checkpoint_sha256": "3da4be90bce6603f2f9f8c7227c73fc959e69327278cb5b7d0e2f5e41e829f97",
+        "ap50_95": 0.03150126191337648,
+        "ap50": 0.13464799015302958,
+        "ap75": 0.0028816135347922585,
+        "ap_by_iou": {
+          "0.50": 0.13464799015302958,
+          "0.55": 0.09121626526117983,
+          "0.60": 0.051025857965834774,
+          "0.65": 0.023570093389947727,
+          "0.70": 0.009745606309728759,
+          "0.75": 0.0028816135347922585,
+          "0.80": 0.000825082508250825,
+          "0.85": 0.00055005500550055,
+          "0.90": 0.00055005500550055,
+          "0.95": 0.0
+        },
+        "ar100": 0.0819676036207718,
+        "images": 1845,
+        "gt_boxes": 4198,
+        "detections": 184500,
+        "iou_thresholds": [
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95
+        ],
+        "recall_thresholds": 101,
+        "max_detections": 100,
+        "backend": "pycocotools.cocoeval.COCOeval",
+        "inference_seconds": 151.59450770000058,
+        "fps": 12.170625624849025,
+        "finite_outputs": true,
+        "peak_allocated_bytes": 73864704,
+        "peak_reserved_bytes": 100663296,
+        "settings": {
+          "score_threshold": 0.001,
+          "nms_threshold": 0.6,
+          "max_detections": 100
+        }
+      },
+      "alignment_on_equal": {
+        "seed": 2,
+        "variant": "alignment_on_equal",
+        "evaluation_attempt": 1,
+        "final_checkpoint_only": true,
+        "checkpoint_sha256": "6733e5c18d469c31dd9ffaddf46ee4934ea19d7954b203e76dbbfdbe834e3dc9",
+        "ap50_95": 0.03662453471287404,
+        "ap50": 0.16121943395784447,
+        "ap75": 0.00268500034805789,
+        "ap_by_iou": {
+          "0.50": 0.16121943395784447,
+          "0.55": 0.10401657768470804,
+          "0.60": 0.058097198283278445,
+          "0.65": 0.028530396782531747,
+          "0.70": 0.009483161560003504,
+          "0.75": 0.00268500034805789,
+          "0.80": 0.0012671420373216538,
+          "0.85": 0.0004714757190004715,
+          "0.90": 0.0004714757190004715,
+          "0.95": 3.4850369936676876e-06
+        },
+        "ar100": 0.0986898523106241,
+        "images": 1845,
+        "gt_boxes": 4198,
+        "detections": 184500,
+        "iou_thresholds": [
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95
+        ],
+        "recall_thresholds": 101,
+        "max_detections": 100,
+        "backend": "pycocotools.cocoeval.COCOeval",
+        "inference_seconds": 155.52883890000157,
+        "fps": 11.862751712473443,
+        "finite_outputs": true,
+        "peak_allocated_bytes": 73865728,
+        "peak_reserved_bytes": 100663296,
+        "settings": {
+          "score_threshold": 0.001,
+          "nms_threshold": 0.6,
+          "max_detections": 100
+        }
+      }
+    }
+  },
+  "summaries": {
+    "ap50_95": {
+      "off_mean": 0.024852009216029355,
+      "off_sample_std": 0.010067567532319398,
+      "on_mean": 0.0418382404232167,
+      "on_sample_std": 0.005917164308761592,
+      "paired_delta_mean": 0.01698623120718734,
+      "paired_delta_median": 0.010835225834139438,
+      "paired_delta_min": 0.005123272799497557,
+      "paired_delta_max": 0.03500019498792503,
+      "positive_seed_count": 3
+    },
+    "ap50": {
+      "off_mean": 0.11288808208386222,
+      "off_sample_std": 0.04204689973687195,
+      "on_mean": 0.17650302461066952,
+      "on_sample_std": 0.015805329037884577,
+      "paired_delta_mean": 0.06361494252680729,
+      "paired_delta_median": 0.035911041314656,
+      "paired_delta_min": 0.02657144380481488,
+      "paired_delta_max": 0.128362342460951,
+      "positive_seed_count": 3
+    },
+    "ap75": {
+      "off_mean": 0.0028996436275724536,
+      "off_sample_std": 0.0013438607064582369,
+      "on_mean": 0.004613083169278035,
+      "on_sample_std": 0.002313151187153299,
+      "paired_delta_mean": 0.0017134395417055805,
+      "paired_delta_median": -0.00019661318673436842,
+      "paired_delta_min": -0.00027609791511804156,
+      "paired_delta_max": 0.005613029726969152,
+      "positive_seed_count": 1
+    },
+    "ar100": {
+      "off_mean": 0.07124821343496904,
+      "off_sample_std": 0.0182990003164208,
+      "on_mean": 0.09846752421788153,
+      "on_sample_std": 0.0005807277911140787,
+      "paired_delta_mean": 0.027219310782912492,
+      "paired_delta_median": 0.01672224868985231,
+      "paired_delta_min": 0.016150547879942814,
+      "paired_delta_max": 0.048785135778942355,
+      "positive_seed_count": 3
+    }
+  },
+  "ap50_95_direction_consistency": {
+    "directions": [
+      "positive",
+      "positive",
+      "positive"
+    ],
+    "all_positive": true,
+    "positive_seed_count": 3
+  },
+  "descriptive_only_no_significance_claim": true
+}

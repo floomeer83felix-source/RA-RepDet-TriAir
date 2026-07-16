@@ -1,0 +1,24 @@
+{
+  "executed_seed0": false,
+  "common_init_sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+  "sample_order_sha256": "27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b",
+  "metrics": {
+    "alignment_off_equal": {
+      "ap50_95": 0.013269265954709897,
+      "ap50": 0.06442060913543426,
+      "ap75": 0.0015648886842774918,
+      "ar100": 0.05011910433539781
+    },
+    "alignment_on_equal": {
+      "ap50_95": 0.04826946094263493,
+      "ap50": 0.19278295159638525,
+      "ap75": 0.007177918411246644,
+      "ar100": 0.09890424011434017
+    }
+  },
+  "source_file_sha256": {
+    "protocol.json": "255551141cdd7a3fe7e964b650b3621482d4ba6735353dd5796bdb04547824d8",
+    "paired_comparison.json": "abb5e4093e258a10a28f09f989967d2f23cc5bed450faa53b90f724349994b0d",
+    "final_decision.json": "b023f5c8886aef34f8293f298d3631aef01c3bc75a35d61520c2d31de59a853d"
+  }
+}

@@ -195,9 +195,7 @@ Update status, blocker, and handoff files, then run `rarepdet/tools/finish_task.
 
 ## Commit Message
 
-```text
 exp: run V56 MM-UAV three-seed alignment confirmation
-```
 
 ## Final Report Requirements
 

@@ -1,0 +1,16 @@
+test_exact_manifest_contract (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... ok
+test_exact_order_caps_and_no_devval_optimization (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... ok
+test_frozen_evaluation_and_aggregation_contract (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... ok
+test_heavy_outputs_local_and_protected_paths_unchanged (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stderr.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stdout.log', LF will be replaced by CRLF the next time Git touches it
+ok
+test_no_raw_concat_reliability_or_trained_initialization (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... ok
+test_only_alignment_enabled_differs_within_pair (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... ok
+test_seed_orders_are_full_and_pair_shared (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... ok
+test_seed_specific_common_init_and_identity (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... ok
+test_v55_seed0_evidence_is_exact_and_not_executed (test_v56_mmuav_multiseed_alignment.V56MMUAVMultiseedAlignmentTests) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.196s
+
+OK

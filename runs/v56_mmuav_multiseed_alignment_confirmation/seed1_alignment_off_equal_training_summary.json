@@ -1,0 +1,26 @@
+{
+  "seed": 1,
+  "variant": "alignment_off_equal",
+  "completed_optimizer_steps": 7187,
+  "all_finite": true,
+  "loss_first": 0.0338251031935215,
+  "loss_last": 1.2876489162445068,
+  "loss_min": 0.0036839228123426437,
+  "loss_max": 3.851196765899658,
+  "step_time_mean_sec": 0.25674858839571496,
+  "step_time_min_sec": 0.22064290000002984,
+  "step_time_max_sec": 0.8419540999999997,
+  "peak_allocated_bytes": 337644544,
+  "peak_reserved_bytes": 367001600,
+  "checkpoint": {
+    "path_local_not_committed": "D:\\MM-UAV_v56_local\\seed1_alignment_off_equal_final_step7187.pt",
+    "sha256": "161390717c83d74c43abe74230b355f9e63c513f8007a8b2eed66a2c8322e2e3",
+    "bytes": 27116291,
+    "seed": 1,
+    "variant": "alignment_off_equal",
+    "completed_optimizer_steps": 7187,
+    "selection_metric": null
+  },
+  "common_init_sha256": "03261341d1b3ceea8bf70b8727e40235017ea8a4810172fd7e1efa40ab4cab83",
+  "sample_order_sha256": "0c0dcf739cddae4f023f18aa29c88d392fd03b22b847af248108dd862c7a1f61"
+}

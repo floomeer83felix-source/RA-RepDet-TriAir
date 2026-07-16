@@ -1,0 +1,15 @@
+{
+  "decision": "V56_THREE_SEED_PAIRED_ALIGNMENT_CONFIRMATION_COMPLETE",
+  "v56_total_optimizer_steps": 28748,
+  "per_run_steps": 7187,
+  "new_seeds": [
+    1,
+    2
+  ],
+  "seed0_executed": false,
+  "new_run_count": 4,
+  "evaluation_rows_per_run": 1845,
+  "evaluation_attempts_per_run": 1,
+  "descriptive_three_seed_evidence_only": true,
+  "additional_experiments_authorized": false
+}
