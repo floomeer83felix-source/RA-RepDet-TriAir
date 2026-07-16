@@ -1,0 +1,10 @@
+{
+  "decision": "V57_PAIRED_SINGLE_SEED_FUSION_ABLATION_COMPLETE",
+  "total_optimizer_steps": 14374,
+  "per_variant_steps": 7187,
+  "evaluation_rows_per_variant": 1845,
+  "evaluation_attempts_per_variant": 1,
+  "alignment_enabled_both": true,
+  "single_seed_preliminary_only": true,
+  "additional_experiments_authorized": false
+}

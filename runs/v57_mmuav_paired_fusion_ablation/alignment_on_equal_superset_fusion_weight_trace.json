@@ -1,0 +1,494 @@
+[
+  {
+    "step": 0,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 1,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 10,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 50,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 100,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 200,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 500,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 1000,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 2000,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 4000,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 6000,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  },
+  {
+    "step": 7187,
+    "reliability_scorer_gradient_norm": 0.0,
+    "weights_per_sample": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "per_modality": {
+      "rgb": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "ir": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "event": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    },
+    "weight_sum_max_abs_error": 0.0,
+    "entropy_mean": 1.0986123085021973,
+    "entropy_min": 1.0986123085021973,
+    "entropy_max": 1.0986123085021973,
+    "maximum_weight_modality": [
+      "rgb"
+    ],
+    "dominance_fraction_mean": 0.3333333432674408,
+    "departed_from_exact_uniform": false,
+    "finite": true
+  }
+]

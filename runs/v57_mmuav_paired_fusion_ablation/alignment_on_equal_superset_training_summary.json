@@ -1,0 +1,29 @@
+{
+  "variant": "alignment_on_equal_superset",
+  "completed_optimizer_steps": 7187,
+  "all_finite": true,
+  "loss_first": 2.820970296859741,
+  "loss_last": 2.0410869121551514,
+  "loss_min": 0.0037745735608041286,
+  "loss_max": 3.1537795066833496,
+  "step_time_mean_sec": 0.5007658993877875,
+  "step_time_min_sec": 0.2592466000000968,
+  "step_time_max_sec": 1.7254743000000001,
+  "peak_allocated_bytes": 353891328,
+  "peak_reserved_bytes": 396361728,
+  "checkpoint": {
+    "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_equal_superset_final_step7187.pt",
+    "sha256": "d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142",
+    "bytes": 27124021,
+    "variant": "alignment_on_equal_superset",
+    "completed_optimizer_steps": 7187,
+    "selection_metric": null
+  },
+  "common_init_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+  "sample_order_sha256": "27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b",
+  "total_parameter_count": 6645011,
+  "active_gradient_parameter_count_step1": 6643922,
+  "dormant_scorer_unchanged": true,
+  "scorer_ever_had_gradient": false,
+  "reliability_weights_departed_from_uniform": false
+}

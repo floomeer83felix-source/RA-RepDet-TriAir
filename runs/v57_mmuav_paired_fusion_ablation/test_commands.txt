@@ -1,0 +1,6 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v57_mmuav_paired_fusion.py --prepare-only
+# Pre-CUDA source-lock and contract test
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v57_mmuav_paired_fusion.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v57_mmuav_paired_fusion.py --run
+# Post-CUDA source-lock and contract test
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v57_mmuav_paired_fusion.py -v

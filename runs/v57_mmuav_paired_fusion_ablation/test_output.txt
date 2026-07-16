@@ -1,0 +1,26 @@
+python.exe : test_alignment_and_uniform_initialization (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+At line:2 char:36
++ ... 'Continue'; & 'C:\Users\xinnan\.conda\envs\pytorch\python.exe' -m uni ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_alignment_...onTests) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_caps_and_no_devval_optimization (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+test_exact_manifest_contract (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+test_frozen_evaluation_contract (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+test_heavy_outputs_local_and_protected_unchanged (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... warning: 
+in the working copy of 'runs/v48_complete_ablation/queue_launcher_stderr.log', LF will be replaced by CRLF the next tim
+e Git touches it
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stdout.log', LF will be replaced by CRLF the
+ next time Git touches it
+ok
+test_no_raw_concat_or_trained_initialization (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+test_only_fusion_behavior_differs (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+test_shared_order_full_unique (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+test_superset_signatures_and_common_init_identical (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+test_v56_evidence_exact_without_execution (test_v57_mmuav_paired_fusion.V57MMUAVPairedFusionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.990s
+
+OK

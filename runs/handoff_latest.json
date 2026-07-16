@@ -1,36 +1,29 @@
 {
   "generated_at": "2026-07-16",
-  "task": "V56 MM-UAV three-seed paired alignment confirmation",
-  "status": "V56_THREE_SEED_PAIRED_ALIGNMENT_CONFIRMATION_COMPLETE",
-  "starting_commit": "05a72b0df1377bb6dce2134da1d73297b29fefe9",
+  "task": "V57 MM-UAV alignment-on equal-versus-reliability fusion paired ablation",
+  "status": "V57_PAIRED_SINGLE_SEED_FUSION_ABLATION_COMPLETE",
+  "starting_commit": "6b767d0c23ca9b918edaed601ae999c9d9b0d6ee",
   "manifest_counts": {"train": 7187, "devval": 1845, "total": 9032},
-  "manifest_hashes": {
-    "train": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
-    "devval": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+  "common_init_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+  "sample_order_sha256": "27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b",
+  "total_parameter_count": 6645011,
+  "reliability_scorer_parameter_count": 1089,
+  "completed_optimizer_steps": {"alignment_on_equal_superset": 7187, "alignment_on_reliability_superset": 7187, "total": 14374},
+  "metrics": {
+    "alignment_on_equal_superset": {"ap50_95": 0.0, "ap50": 0.0, "ap75": 0.0, "ar100": 0.0, "detections": 0},
+    "alignment_on_reliability_superset": {"ap50_95": 0.0, "ap50": 0.0, "ap75": 0.0, "ar100": 0.0, "detections": 0},
+    "signed_delta_reliability_minus_equal": {"ap50_95": 0.0, "ap50": 0.0, "ap75": 0.0, "ar100": 0.0}
   },
-  "seed0_executed": false,
-  "v56_completed_optimizer_steps": 28748,
-  "per_run_steps": 7187,
-  "evaluation_attempts_per_new_run": 1,
-  "evaluation_rows_per_new_run": 1845,
-  "seed_material": {
-    "1": {"common_init_sha256": "03261341d1b3ceea8bf70b8727e40235017ea8a4810172fd7e1efa40ab4cab83", "sample_order_sha256": "0c0dcf739cddae4f023f18aa29c88d392fd03b22b847af248108dd862c7a1f61"},
-    "2": {"common_init_sha256": "48da2ab1d8b88339137855f672ab0c0230414b3504fc04329aaf8badb9b28fb8", "sample_order_sha256": "0174175d811a59f677039d205e9cb70a108764f8c35c27e21f4750ef3448abb8"}
-  },
-  "ap50_95": {
-    "seed0": {"off": 0.013269265954709897, "on": 0.04826946094263493, "delta": 0.03500019498792503},
-    "seed1": {"off": 0.029785499780001685, "on": 0.04062072561414112, "delta": 0.010835225834139438},
-    "seed2": {"off": 0.03150126191337648, "on": 0.03662453471287404, "delta": 0.005123272799497557},
-    "off_mean": 0.024852009216029355,
-    "on_mean": 0.0418382404232167,
-    "paired_delta_mean": 0.01698623120718734,
-    "positive_seed_count": 3
-  },
-  "direction_counts": {"ap50_95": 3, "ap50": 3, "ap75": 1, "ar100": 3},
+  "reliability_devval_mean_weights": {"rgb": 0.4711994230747223, "ir": 0.2606298327445984, "event": 0.2681707441806793},
+  "reliability_devval_entropy_mean": 1.057640790939331,
+  "reliability_devval_dominance_mean": 0.4711994230747223,
+  "accuracy_comparison_inconclusive_zero_detections": true,
   "all_finite": true,
-  "cpu_source_lock_tests": "9/9 pass",
+  "evaluation_attempts_per_variant": 1,
+  "evaluation_rows_per_variant": 1845,
+  "cpu_source_lock_tests": "10/10 pass before and after CUDA",
   "protected_file_changes": false,
-  "descriptive_three_seed_evidence_only": true,
-  "reproducibility_limitation": "CUDA grid_sample backward and some CuBLAS operations emitted warn-only non-determinism notices",
+  "single_seed_preliminary_only": true,
+  "reproducibility_limitation": "CUDA grid_sample backward and CuBLAS/linear operations emitted warn-only non-determinism notices",
   "additional_gpu_work_authorized": false
 }

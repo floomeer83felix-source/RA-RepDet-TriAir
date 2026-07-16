@@ -1,0 +1,8 @@
+{
+  "phase": "post_cuda",
+  "command": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\python.exe -m unittest discover -s tests -p test_v57_mmuav_paired_fusion.py -v",
+  "tests_run": 10,
+  "result": "PASS",
+  "duration_seconds": 0.990,
+  "optimizer_steps_completed_at_test": 14374
+}

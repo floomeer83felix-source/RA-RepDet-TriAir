@@ -1,0 +1,12 @@
+{
+  "alignment_on_equal_superset": {
+    "peak_allocated_bytes": 353891328,
+    "peak_reserved_bytes": 396361728,
+    "mean_step_time_sec": 0.5007658993877875
+  },
+  "alignment_on_reliability_superset": {
+    "peak_allocated_bytes": 353954816,
+    "peak_reserved_bytes": 396361728,
+    "mean_step_time_sec": 0.48879958637818743
+  }
+}

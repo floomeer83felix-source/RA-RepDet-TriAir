@@ -1,0 +1,95 @@
+python.exe : C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\nn\functional.py:5012: UserWarning: Determinis
+tic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgori
+thms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable determ
+inistic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WOR
+KSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas
+/index.html#results-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp
+:208.)
+At line:2 char:36
++ ... 'Continue'; & 'C:\Users\xinnan\.conda\envs\pytorch\python.exe' rarepd ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\xinnan...ntext.cpp:208.):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  return torch.affine_grid_generator(theta, size, align_corners)
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\autograd\graph.py:825: UserWarning: grid_sampler_2d_backwar
+d_cuda does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=Tr
+ue)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic sup
+port for this operation. (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:95.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\autograd\graph.py:825: UserWarning: Deterministic behavior 
+was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, 
+but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behav
+ior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG
+=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#r
+esults-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:208.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\nn\modules\linear.py:125: UserWarning: Deterministic behavi
+or was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)
+`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic be
+havior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CON
+FIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.htm
+l#results-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:208.)
+  return F.linear(input, self.weight, self.bias)
+{
+  "decision": {
+    "decision": "V57_PAIRED_SINGLE_SEED_FUSION_ABLATION_COMPLETE",
+    "total_optimizer_steps": 14374,
+    "per_variant_steps": 7187,
+    "evaluation_rows_per_variant": 1845,
+    "evaluation_attempts_per_variant": 1,
+    "alignment_enabled_both": true,
+    "single_seed_preliminary_only": true,
+    "additional_experiments_authorized": false
+  },
+  "signed_deltas": {
+    "ap50_95": 0.0,
+    "ap50": 0.0,
+    "ap75": 0.0,
+    "ar100": 0.0
+  },
+  "equal": {
+    "ap50_95": 0.0,
+    "ap50": 0.0,
+    "ap75": 0.0,
+    "ar100": 0.0
+  },
+  "reliability": {
+    "ap50_95": 0.0,
+    "ap50": 0.0,
+    "ap75": 0.0,
+    "ar100": 0.0
+  },
+  "reliability_fusion": {
+    "per_modality": {
+      "rgb": {
+        "mean": 0.4711994230747223,
+        "std": 0.012236462906002998,
+        "min": 0.4185906946659088,
+        "max": 0.49658501148223877
+      },
+      "ir": {
+        "mean": 0.2606298327445984,
+        "std": 0.006030155345797539,
+        "min": 0.24267679452896118,
+        "max": 0.2859998345375061
+      },
+      "event": {
+        "mean": 0.2681707441806793,
+        "std": 0.0073273140005767345,
+        "min": 0.2582390010356903,
+        "max": 0.2954094707965851
+      }
+    },
+    "weight_sum_max_abs_error": 1.1920928955078125e-07,
+    "entropy_mean": 1.057640790939331,
+    "entropy_min": 1.0417404174804688,
+    "entropy_max": 1.082759141921997,
+    "dominance_fraction_mean": 0.4711994230747223,
+    "dominant_modality_counts": {
+      "rgb": 1845,
+      "ir": 0,
+      "event": 0
+    }
+  }
+}

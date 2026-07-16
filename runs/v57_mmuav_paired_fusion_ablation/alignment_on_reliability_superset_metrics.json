@@ -1,0 +1,82 @@
+{
+  "variant": "alignment_on_reliability_superset",
+  "evaluation_attempt": 1,
+  "final_checkpoint_only": true,
+  "checkpoint_sha256": "b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df",
+  "ap50_95": 0.0,
+  "ap50": 0.0,
+  "ap75": 0.0,
+  "ap_by_iou": {
+    "0.50": 0.0,
+    "0.55": 0.0,
+    "0.60": 0.0,
+    "0.65": 0.0,
+    "0.70": 0.0,
+    "0.75": 0.0,
+    "0.80": 0.0,
+    "0.85": 0.0,
+    "0.90": 0.0,
+    "0.95": 0.0
+  },
+  "ar100": 0.0,
+  "images": 1845,
+  "gt_boxes": 4198,
+  "detections": 0,
+  "iou_thresholds": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+  ],
+  "recall_thresholds": 101,
+  "max_detections": 100,
+  "backend": "pycocotools.cocoeval.COCOeval",
+  "inference_seconds": 160.60515740000028,
+  "fps": 11.48780045341182,
+  "finite_outputs": true,
+  "peak_allocated_bytes": 74084352,
+  "peak_reserved_bytes": 100663296,
+  "fusion_diagnostics": {
+    "per_modality": {
+      "rgb": {
+        "mean": 0.4711994230747223,
+        "std": 0.012236462906002998,
+        "min": 0.4185906946659088,
+        "max": 0.49658501148223877
+      },
+      "ir": {
+        "mean": 0.2606298327445984,
+        "std": 0.006030155345797539,
+        "min": 0.24267679452896118,
+        "max": 0.2859998345375061
+      },
+      "event": {
+        "mean": 0.2681707441806793,
+        "std": 0.0073273140005767345,
+        "min": 0.2582390010356903,
+        "max": 0.2954094707965851
+      }
+    },
+    "weight_sum_max_abs_error": 1.1920928955078125e-07,
+    "entropy_mean": 1.057640790939331,
+    "entropy_min": 1.0417404174804688,
+    "entropy_max": 1.082759141921997,
+    "dominance_fraction_mean": 0.4711994230747223,
+    "dominant_modality_counts": {
+      "rgb": 1845,
+      "ir": 0,
+      "event": 0
+    }
+  },
+  "settings": {
+    "score_threshold": 0.001,
+    "nms_threshold": 0.6,
+    "max_detections": 100
+  }
+}

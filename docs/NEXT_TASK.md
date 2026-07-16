@@ -210,7 +210,7 @@ Update status, blocker, and handoff files, then run `rarepdet/tools/finish_task.
 
 ## Commit Message
 
-`exp: run V57 MM-UAV paired fusion ablation`
+exp: run V57 MM-UAV paired fusion ablation
 
 ## Final Report Requirements
 

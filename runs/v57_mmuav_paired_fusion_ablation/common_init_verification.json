@@ -1,0 +1,13 @@
+{
+  "variants": [
+    "alignment_on_equal_superset",
+    "alignment_on_reliability_superset"
+  ],
+  "parameter_names_shapes_identical": true,
+  "shared_tensors_bit_identical_at_step0": true,
+  "alignment_enabled_both": true,
+  "alignment_residual_heads_exact_zero": true,
+  "identity_theta_exact": true,
+  "reliability_final_layer_exact_zero": true,
+  "initial_weights_exact_uniform": true
+}

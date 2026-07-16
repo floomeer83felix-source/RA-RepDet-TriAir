@@ -1,0 +1,17 @@
+{
+  "executed_v55_or_v56": false,
+  "ap50_95_off_mean": 0.024852009216029355,
+  "ap50_95_on_mean": 0.0418382404232167,
+  "ap50_95_paired_delta_mean": 0.01698623120718734,
+  "direction_counts": {
+    "ap50_95": 3,
+    "ap50": 3,
+    "ap75": 1,
+    "ar100": 3
+  },
+  "source_file_sha256": {
+    "three_seed_aggregation.json": "fd0cad5f8c87e26fa82ad0cf13bd71bec9cb4b198a4b94e30bfc33f790dfd9cc",
+    "final_decision.json": "6514674b73c3694459e3abcdc4d32d2295536892737f9a1de2864b0d3851cf3b",
+    "protocol.json": "4e5ec36ae220d62a282d515d67412ef42fb220d98b277221da8b980aa4104331"
+  }
+}

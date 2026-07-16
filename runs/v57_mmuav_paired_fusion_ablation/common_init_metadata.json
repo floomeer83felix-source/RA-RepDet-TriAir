@@ -1,0 +1,13 @@
+{
+  "path_local_not_committed": "D:\\MM-UAV_v57_local\\common_seed0_superset_init.pt",
+  "sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+  "bytes": 27054277,
+  "tensor_count": 791,
+  "seed": 0,
+  "alignment_identity_exact": true,
+  "reliability_final_layer_exact_zero": true,
+  "initial_weights_exact_uniform": true,
+  "total_parameter_count": 6645011,
+  "reliability_scorer_parameter_count": 1089,
+  "parameter_signature_sha256": "5a0cc8c89d500a484a13ec03db2e3e609be03f9801103e8ff5acdd09ffafd862"
+}
