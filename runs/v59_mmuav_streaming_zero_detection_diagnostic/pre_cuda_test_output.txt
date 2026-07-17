@@ -1,0 +1,29 @@
+python.exe : test_actual_fcos_score_path (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ...
+ ok
+At line:2 char:36
++ ... 'Continue'; & 'C:\Users\xinnan\.conda\envs\pytorch\python.exe' -m uni ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_actual_fco...icTests) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_frozen_devval_order_and_subset (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... ok
+test_histogram_specification_is_frozen (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... o
+k
+test_histogram_storage_is_bounded (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... ok
+test_no_heavy_artifacts (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... ok
+test_no_training_or_unbounded_retention_path (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests)
+ ... ok
+test_pass_order_and_zero_training_contract (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) .
+.. ok
+test_protected_baseline_matches (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... ok
+test_required_checkpoint_contracts (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... ok
+test_source_lock_matches (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... ok
+test_synthetic_histogram_validation (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... ok
+test_v58_blocker_is_exact (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... ok
+test_v58_evidence_has_no_worktree_diff (test_v59_streaming_zero_detection_diagnostic.V59StreamingDiagnosticTests) ... o
+k
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.478s
+
+OK

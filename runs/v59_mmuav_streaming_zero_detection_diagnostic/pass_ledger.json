@@ -1,0 +1,30 @@
+{
+  "order": [
+    "v57_equal",
+    "v57_reliability",
+    "v55_reference"
+  ],
+  "passes": {
+    "v57_equal": {
+      "state": "complete",
+      "attempts_started": 1,
+      "completed_rows": 1845,
+      "started_at": "2026-07-17T14:18:24+08:00",
+      "complete_at": "2026-07-17T14:22:50+08:00"
+    },
+    "v57_reliability": {
+      "state": "complete",
+      "attempts_started": 1,
+      "completed_rows": 1845,
+      "started_at": "2026-07-17T14:22:50+08:00",
+      "complete_at": "2026-07-17T14:26:44+08:00"
+    },
+    "v55_reference": {
+      "state": "complete",
+      "attempts_started": 1,
+      "completed_rows": 1845,
+      "started_at": "2026-07-17T14:26:44+08:00",
+      "complete_at": "2026-07-17T14:30:34+08:00"
+    }
+  }
+}

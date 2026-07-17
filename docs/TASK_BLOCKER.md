@@ -1,53 +1,34 @@
 # Task Blocker
 
-Status: `V59_STREAMING_DIAGNOSTIC_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
+Status: `V59_COMPLETE_NO_ACTIVE_BLOCKER_REPAIR_NOT_AUTHORIZED`
 
 Generated: 2026-07-17
 
-## Current state
+## Completed state
 
-V58 stopped correctly after exact `torch.quantile` failed on an oversized concatenated FPN tensor. The failure was in compact reduction, not checkpoint loading, inference numerics, CUDA execution, or protected-file compliance. No root-cause diagnosis was completed.
+V59 completed all three authorized read-only passes in the frozen order, one pass and 1,845 rows per checkpoint. Histogram validation, source/checkpoint contracts, finite-value checks, stage accounting, immutability checks, and protected-file checks passed.
 
-The user has continued the workflow, and V59 now authorizes a full read-only diagnostic reset using bounded deterministic streaming histograms and compact exact per-image summaries.
+## Root cause
 
-## Authorized repair boundary
+Primary task classification: `EVALUATOR_OR_OUTPUT_SCHEMA_MISMATCH`.
 
-V59 may:
+Direct mechanism: `V57_BBOX_REGRESSION_DEGENERATE_GEOMETRY`.
 
-- reproduce and preserve the committed V58 blocker evidence;
-- reuse the exact frozen 1,845-row order and 32-row subset;
-- verify the two V57 checkpoints and the available V55 reference with exact hashes;
-- implement a V59-only streaming histogram reducer with frozen bins and declared quantile intervals;
-- validate the reducer on manageable synthetic tensors before CUDA;
-- rerun exactly one aggregate pass for V57 equal, V57 reliability, and V55 reference in the frozen order;
-- record exact candidate-stage and threshold-ladder counts, compact detailed traces, path differences, timing, memory, and a root-cause decision;
-- commit only compact metadata, histograms, counts, hashes, tests, and summaries.
+V57 equal and reliability produced finite, above-threshold label-1 output tensors, but all 5,534,979 and 5,535,000 decoded candidates respectively were degenerate after clipping. The COCO adapter excludes zero-area boxes, yielding the historical zero detection count. V55 produced 5,535,000 valid boxes through the same public detector/evaluator path.
 
-V59 may not:
+## Excluded causes
 
-- modify V58 historical evidence or treat its failed partial pass as a usable aggregate;
-- concatenate unbounded all-row score tensors or invoke all-value `torch.quantile`;
-- construct or step an optimizer, run backward, enable training mode, or mutate parameters/checkpoints;
-- change score threshold, top-k, NMS, preprocessing, model, scorer, detector, architecture, or evaluator;
-- compute alternate-threshold AP/AR or select a threshold;
-- perform training, fine-tuning, tuning, extra seeds, manuscript changes, public claims, redistribution, or external sharing;
-- modify production TriAir defaults, V40-V58 evidence, V51 history, raw data, or annotations;
-- place checkpoints, raw predictions, images, feature maps, or tensor dumps in Git.
+- Checkpoint load mismatch: excluded by exact hashes, complete state coverage, shapes, and finite tensors.
+- Preprocessing/model-mode mismatch: excluded by common manifest, transforms, normalization, resize, and eval/inference mode.
+- Score threshold collapse: excluded; foreground per-image maximum medians were 0.34743 and 0.33545 for V57, and all foreground candidates exceeded 0.001.
+- Top-k/NMS/final-cap label removal: excluded; both V57 models emitted 184,500 final label-1 tensors.
+- Non-finite output: excluded.
 
-## Fail-closed blockers
+## Remaining authorization blocker
 
-Stop with the matching V59 blocked state on:
+No engineering blocker remains for the completed diagnosis. A separate user authorization is required before any repair. A future task would need to pre-register one of these options:
 
-1. V58 evidence, devval/order/subset, or checkpoint mismatch;
-2. histogram validation failure or histogram specification drift;
-3. unbounded score retention, oversized reduction, or instrumentation failure;
-4. optimizer, backward, gradient, training-mode, parameter, or checkpoint mutation;
-5. more than one V59 aggregate pass per checkpoint or incorrect run order;
-6. non-finite values that prevent interpretation;
-7. alternate-threshold AP/AR, threshold selection, protected-file change, or heavy-artifact Git violation.
+1. Read-only training/checkpoint audit of bbox-regression distance distributions and gradient history, without retraining.
+2. Controlled corrective experiment addressing V57 bbox-regression collapse, with a new checkpoint/pass budget and no reuse as V57 evidence.
 
-Do not automatically switch to memmap, change binning, patch the detector, or retry a consumed pass after observing a failure. A new blocker must preserve the last error lines and two repair options.
-
-## Next action
-
-Execute V59 exactly as written in `docs/NEXT_TASK.md`. The task remains diagnostic only. A completed root-cause classification does not authorize the corrective experiment.
+Do not start either option automatically. Do not modify the detector, evaluator, threshold, NMS, checkpoints, or manuscript within V59.

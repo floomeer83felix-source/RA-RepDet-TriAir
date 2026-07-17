@@ -1,0 +1,50 @@
+{
+  "v57_equal": {
+    "name": "v57_equal",
+    "available": true,
+    "required": true,
+    "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_equal_superset_final_step7187.pt",
+    "bytes": 27124021,
+    "sha256": "d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142",
+    "variant": "alignment_on_equal_superset",
+    "completed_optimizer_steps": 7187,
+    "state_tensor_count": 791,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatch_keys": [],
+    "all_tensors_finite": true,
+    "state_fingerprint": "df78421d95a255772e5ec06b5bfb88d85fd6ff015d895cc1898b1a70171f972f"
+  },
+  "v57_reliability": {
+    "name": "v57_reliability",
+    "available": true,
+    "required": true,
+    "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_reliability_superset_final_step7187.pt",
+    "bytes": 27129047,
+    "sha256": "b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df",
+    "variant": "alignment_on_reliability_superset",
+    "completed_optimizer_steps": 7187,
+    "state_tensor_count": 791,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatch_keys": [],
+    "all_tensors_finite": true,
+    "state_fingerprint": "f992e53aa75ee803a72978ed63d8dd39b7d235a16f962b4b1a35b21462a9c4f0"
+  },
+  "v55_reference": {
+    "name": "v55_reference",
+    "available": true,
+    "required": true,
+    "path_local_not_committed": "D:\\MM-UAV_v55_local\\alignment_on_equal_final_step7187.pt",
+    "bytes": 27110306,
+    "sha256": "2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258",
+    "variant": "alignment_on_equal",
+    "completed_optimizer_steps": 7187,
+    "state_tensor_count": 787,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatch_keys": [],
+    "all_tensors_finite": true,
+    "state_fingerprint": "ec3d56135dd5b9d67ffa0ae626c6a48f044df185b72224da4eaa40fc7d6730ea"
+  }
+}

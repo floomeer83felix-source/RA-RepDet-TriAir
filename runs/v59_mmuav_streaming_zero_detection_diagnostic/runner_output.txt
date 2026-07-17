@@ -1,0 +1,74 @@
+V59_PASS_START model=v57_equal at=2026-07-17T14:18:24+08:00
+V59_PROGRESS model=v57_equal rows=100/1845 elapsed=22.6s
+V59_PROGRESS model=v57_equal rows=200/1845 elapsed=35.9s
+V59_PROGRESS model=v57_equal rows=300/1845 elapsed=49.4s
+V59_PROGRESS model=v57_equal rows=400/1845 elapsed=63.1s
+V59_PROGRESS model=v57_equal rows=500/1845 elapsed=76.5s
+V59_PROGRESS model=v57_equal rows=600/1845 elapsed=90.3s
+V59_PROGRESS model=v57_equal rows=700/1845 elapsed=104.9s
+V59_PROGRESS model=v57_equal rows=800/1845 elapsed=118.7s
+V59_PROGRESS model=v57_equal rows=900/1845 elapsed=132.4s
+V59_PROGRESS model=v57_equal rows=1000/1845 elapsed=146.6s
+V59_PROGRESS model=v57_equal rows=1100/1845 elapsed=160.5s
+V59_PROGRESS model=v57_equal rows=1200/1845 elapsed=174.0s
+V59_PROGRESS model=v57_equal rows=1300/1845 elapsed=188.1s
+V59_PROGRESS model=v57_equal rows=1400/1845 elapsed=201.9s
+V59_PROGRESS model=v57_equal rows=1500/1845 elapsed=215.6s
+V59_PROGRESS model=v57_equal rows=1600/1845 elapsed=229.6s
+V59_PROGRESS model=v57_equal rows=1700/1845 elapsed=243.7s
+V59_PROGRESS model=v57_equal rows=1800/1845 elapsed=257.4s
+V59_PROGRESS model=v57_equal rows=1845/1845 elapsed=263.7s
+V59_PASS_COMPLETE model=v57_equal rows=1845 at=2026-07-17T14:22:50+08:00
+V59_PASS_START model=v57_reliability at=2026-07-17T14:22:50+08:00
+V59_PROGRESS model=v57_reliability rows=100/1845 elapsed=22.6s
+V59_PROGRESS model=v57_reliability rows=200/1845 elapsed=34.9s
+V59_PROGRESS model=v57_reliability rows=300/1845 elapsed=47.1s
+V59_PROGRESS model=v57_reliability rows=400/1845 elapsed=59.8s
+V59_PROGRESS model=v57_reliability rows=500/1845 elapsed=72.0s
+V59_PROGRESS model=v57_reliability rows=600/1845 elapsed=84.0s
+V59_PROGRESS model=v57_reliability rows=700/1845 elapsed=96.0s
+V59_PROGRESS model=v57_reliability rows=800/1845 elapsed=107.8s
+V59_PROGRESS model=v57_reliability rows=900/1845 elapsed=119.7s
+V59_PROGRESS model=v57_reliability rows=1000/1845 elapsed=132.4s
+V59_PROGRESS model=v57_reliability rows=1100/1845 elapsed=144.1s
+V59_PROGRESS model=v57_reliability rows=1200/1845 elapsed=155.9s
+V59_PROGRESS model=v57_reliability rows=1300/1845 elapsed=167.5s
+V59_PROGRESS model=v57_reliability rows=1400/1845 elapsed=179.6s
+V59_PROGRESS model=v57_reliability rows=1500/1845 elapsed=191.3s
+V59_PROGRESS model=v57_reliability rows=1600/1845 elapsed=203.5s
+V59_PROGRESS model=v57_reliability rows=1700/1845 elapsed=216.1s
+V59_PROGRESS model=v57_reliability rows=1800/1845 elapsed=227.7s
+V59_PROGRESS model=v57_reliability rows=1845/1845 elapsed=233.1s
+V59_PASS_COMPLETE model=v57_reliability rows=1845 at=2026-07-17T14:26:44+08:00
+V59_PASS_START model=v55_reference at=2026-07-17T14:26:44+08:00
+V59_PROGRESS model=v55_reference rows=100/1845 elapsed=21.2s
+V59_PROGRESS model=v55_reference rows=200/1845 elapsed=33.7s
+V59_PROGRESS model=v55_reference rows=300/1845 elapsed=45.8s
+V59_PROGRESS model=v55_reference rows=400/1845 elapsed=57.6s
+V59_PROGRESS model=v55_reference rows=500/1845 elapsed=69.4s
+V59_PROGRESS model=v55_reference rows=600/1845 elapsed=82.0s
+V59_PROGRESS model=v55_reference rows=700/1845 elapsed=93.9s
+V59_PROGRESS model=v55_reference rows=800/1845 elapsed=105.7s
+V59_PROGRESS model=v55_reference rows=900/1845 elapsed=117.4s
+V59_PROGRESS model=v55_reference rows=1000/1845 elapsed=129.0s
+V59_PROGRESS model=v55_reference rows=1100/1845 elapsed=140.4s
+V59_PROGRESS model=v55_reference rows=1200/1845 elapsed=152.8s
+V59_PROGRESS model=v55_reference rows=1300/1845 elapsed=164.5s
+V59_PROGRESS model=v55_reference rows=1400/1845 elapsed=176.0s
+V59_PROGRESS model=v55_reference rows=1500/1845 elapsed=187.7s
+V59_PROGRESS model=v55_reference rows=1600/1845 elapsed=199.4s
+V59_PROGRESS model=v55_reference rows=1700/1845 elapsed=211.3s
+V59_PROGRESS model=v55_reference rows=1800/1845 elapsed=223.0s
+V59_PROGRESS model=v55_reference rows=1845/1845 elapsed=228.4s
+V59_PASS_COMPLETE model=v55_reference rows=1845 at=2026-07-17T14:30:34+08:00
+{
+  "completion_state": "V59_STREAMING_ZERO_DETECTION_DIAGNOSIS_COMPLETE_ROOT_CAUSE_IDENTIFIED",
+  "primary_classification": "EVALUATOR_OR_OUTPUT_SCHEMA_MISMATCH",
+  "explanation": "V57 emits valid label-1 outputs despite the historical zero evaluator count.",
+  "v55_final_foreground": 184500,
+  "v57_equal_final_foreground": 184500,
+  "v57_reliability_final_foreground": 184500,
+  "repair_authorized": false,
+  "threshold_selection_performed": false,
+  "alternate_threshold_ap_ar_computed": false
+}

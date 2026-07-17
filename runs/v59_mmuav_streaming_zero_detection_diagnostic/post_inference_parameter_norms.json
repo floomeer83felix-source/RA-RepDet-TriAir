@@ -1,0 +1,284 @@
+{
+  "v57_equal": {
+    "detector.head.classification_head.cls_logits.weight": {
+      "shape": [
+        2,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.7082792520523071,
+      "mean": -0.00478102033957839,
+      "min": -0.09722543507814407,
+      "max": 0.04451579228043556,
+      "finite": true
+    },
+    "detector.head.classification_head.cls_logits.bias": {
+      "shape": [
+        2
+      ],
+      "norm": 6.497250080108643,
+      "mean": -4.594244003295898,
+      "min": -4.6016387939453125,
+      "max": -4.586848735809326,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_reg.weight": {
+      "shape": [
+        4,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.6901867985725403,
+      "mean": -0.00038947624852880836,
+      "min": -0.04164299741387367,
+      "max": 0.03800453990697861,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "shape": [
+        4
+      ],
+      "norm": 0.0007631591870449483,
+      "mean": -0.00026969125610776246,
+      "min": -0.0005558892735280097,
+      "max": 0.0,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_ctrness.weight": {
+      "shape": [
+        1,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.3392144441604614,
+      "mean": -0.0006455068942159414,
+      "min": -0.03473208099603653,
+      "max": 0.030925173312425613,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_ctrness.bias": {
+      "shape": [
+        1
+      ],
+      "norm": 0.010266204364597797,
+      "mean": -0.010266204364597797,
+      "min": -0.010266204364597797,
+      "max": -0.010266204364597797,
+      "finite": true
+    },
+    "to_detector_image.weight": {
+      "shape": [
+        3,
+        32,
+        1,
+        1
+      ],
+      "norm": 0.9553931355476379,
+      "mean": -0.0003656359913293272,
+      "min": -0.18215027451515198,
+      "max": 0.17296619713306427,
+      "finite": true
+    },
+    "to_detector_image.bias": {
+      "shape": [
+        3
+      ],
+      "norm": 0.12390851229429245,
+      "mean": 0.018553882837295532,
+      "min": -0.07840177416801453,
+      "max": 0.07751934975385666,
+      "finite": true
+    }
+  },
+  "v57_reliability": {
+    "detector.head.classification_head.cls_logits.weight": {
+      "shape": [
+        2,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.6773926019668579,
+      "mean": -0.004822330549359322,
+      "min": -0.07964321970939636,
+      "max": 0.04498608782887459,
+      "finite": true
+    },
+    "detector.head.classification_head.cls_logits.bias": {
+      "shape": [
+        2
+      ],
+      "norm": 6.4968695640563965,
+      "mean": -4.593972206115723,
+      "min": -4.602598190307617,
+      "max": -4.585346221923828,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_reg.weight": {
+      "shape": [
+        4,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.6938398480415344,
+      "mean": -0.0007271734066307545,
+      "min": -0.04164299741387367,
+      "max": 0.03800453990697861,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "shape": [
+        4
+      ],
+      "norm": 0.0029961972031742334,
+      "mean": -0.0008682740153744817,
+      "min": -0.002950220135971904,
+      "max": 0.0,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_ctrness.weight": {
+      "shape": [
+        1,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.3429349958896637,
+      "mean": -0.0007782322936691344,
+      "min": -0.03592909872531891,
+      "max": 0.028720224276185036,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_ctrness.bias": {
+      "shape": [
+        1
+      ],
+      "norm": 0.011815953068435192,
+      "mean": -0.011815953068435192,
+      "min": -0.011815953068435192,
+      "max": -0.011815953068435192,
+      "finite": true
+    },
+    "to_detector_image.weight": {
+      "shape": [
+        3,
+        32,
+        1,
+        1
+      ],
+      "norm": 0.9637291431427002,
+      "mean": -0.0013547627022489905,
+      "min": -0.18328186869621277,
+      "max": 0.19673915207386017,
+      "finite": true
+    },
+    "to_detector_image.bias": {
+      "shape": [
+        3
+      ],
+      "norm": 0.12406483292579651,
+      "mean": 0.014643818140029907,
+      "min": -0.08415213227272034,
+      "max": 0.07138348370790482,
+      "finite": true
+    }
+  },
+  "v55_reference": {
+    "detector.head.classification_head.cls_logits.weight": {
+      "shape": [
+        2,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.6528741121292114,
+      "mean": -0.004122234880924225,
+      "min": -0.08774778991937637,
+      "max": 0.04268379881978035,
+      "finite": true
+    },
+    "detector.head.classification_head.cls_logits.bias": {
+      "shape": [
+        2
+      ],
+      "norm": 6.497437000274658,
+      "mean": -4.5943756103515625,
+      "min": -4.601883411407471,
+      "max": -4.586867809295654,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_reg.weight": {
+      "shape": [
+        4,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.7829282283782959,
+      "mean": 0.0020814547315239906,
+      "min": -0.04549931362271309,
+      "max": 0.05589057505130768,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "shape": [
+        4
+      ],
+      "norm": 0.021614262834191322,
+      "mean": 0.010294727981090546,
+      "min": 0.006357715465128422,
+      "max": 0.013841532170772552,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_ctrness.weight": {
+      "shape": [
+        1,
+        128,
+        3,
+        3
+      ],
+      "norm": 0.5193982720375061,
+      "mean": -0.002497907727956772,
+      "min": -0.08070419728755951,
+      "max": 0.05193331465125084,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_ctrness.bias": {
+      "shape": [
+        1
+      ],
+      "norm": 0.007102521602064371,
+      "mean": -0.007102521602064371,
+      "min": -0.007102521602064371,
+      "max": -0.007102521602064371,
+      "finite": true
+    },
+    "to_detector_image.weight": {
+      "shape": [
+        3,
+        32,
+        1,
+        1
+      ],
+      "norm": 0.949555516242981,
+      "mean": -0.001703814254142344,
+      "min": -0.19312378764152527,
+      "max": 0.1682937890291214,
+      "finite": true
+    },
+    "to_detector_image.bias": {
+      "shape": [
+        3
+      ],
+      "norm": 0.12546879053115845,
+      "mean": 0.018565407022833824,
+      "min": -0.07998096942901611,
+      "max": 0.07624436169862747,
+      "finite": true
+    }
+  }
+}

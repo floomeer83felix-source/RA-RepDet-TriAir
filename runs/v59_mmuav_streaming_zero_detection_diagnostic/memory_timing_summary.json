@@ -1,0 +1,32 @@
+{
+  "v57_equal": {
+    "inference_seconds": 263.6716855,
+    "fps": 6.997338362294498,
+    "peak_allocated_bytes": 72588800,
+    "peak_reserved_bytes": 102760448,
+    "retained_histogram_bytes": 3673600,
+    "bounded_max_score_values": 1845,
+    "bounded_stage_values": 18450,
+    "bounded_fusion_values": 5535
+  },
+  "v57_reliability": {
+    "inference_seconds": 233.08919120000002,
+    "fps": 7.915424951716937,
+    "peak_allocated_bytes": 73145856,
+    "peak_reserved_bytes": 102760448,
+    "retained_histogram_bytes": 3673600,
+    "bounded_max_score_values": 1845,
+    "bounded_stage_values": 18450,
+    "bounded_fusion_values": 5535
+  },
+  "v55_reference": {
+    "inference_seconds": 228.36944069999998,
+    "fps": 8.07901440028355,
+    "peak_allocated_bytes": 73140224,
+    "peak_reserved_bytes": 102760448,
+    "retained_histogram_bytes": 3673600,
+    "bounded_max_score_values": 1845,
+    "bounded_stage_values": 18450,
+    "bounded_fusion_values": 5535
+  }
+}

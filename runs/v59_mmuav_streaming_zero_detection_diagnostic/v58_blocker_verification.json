@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "decision": true,
+    "optimizer_steps": true,
+    "backward_passes": true,
+    "equal_consumed": true,
+    "reliability_not_consumed": true,
+    "v55_not_consumed": true,
+    "exact_error": true,
+    "partial_forward_rows": true,
+    "no_root_cause": true
+  },
+  "evidence_fingerprint": {
+    "file_count": 20,
+    "total_bytes": 51251,
+    "aggregate_sha256": "c3ec5da1cda89d9360e2adaed22bd4145194be135363ad34b504f407fdc4cead"
+  }
+}

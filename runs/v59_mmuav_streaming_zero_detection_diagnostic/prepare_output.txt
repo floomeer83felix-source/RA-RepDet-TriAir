@@ -1,0 +1,164 @@
+{
+  "status": "V59_PREPARED_CPU_ONLY",
+  "protocol": {
+    "prepared_at": "2026-07-17T14:16:55+08:00",
+    "starting_commit": "02ccb571dc143afa32057624ec1b65c438546092",
+    "optimizer_steps": 0,
+    "backward_passes": 0,
+    "training_mode_executions": 0,
+    "gradient_executions": 0,
+    "devval_rows": 1845,
+    "devval_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54",
+    "devval_order_sha256": "dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867",
+    "detailed_subset_seed": 58,
+    "detailed_subset_count": 32,
+    "detailed_subset_sha256": "d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee",
+    "run_order": [
+      "v57_equal",
+      "v57_reliability",
+      "v55_reference"
+    ],
+    "passes_per_checkpoint": 1,
+    "threshold_ladder": [
+      0.0,
+      1e-08,
+      1e-07,
+      1e-06,
+      1e-05,
+      0.0001,
+      0.001,
+      0.01
+    ],
+    "alternate_threshold_ap_ar_computed": false,
+    "histogram_spec": {
+      "frozen_before_inference": true,
+      "logit": {
+        "kind": "logit",
+        "bins": 16384,
+        "range": [
+          -64.0,
+          64.0
+        ],
+        "bin_width": 0.0078125,
+        "underflow": "value < -64.0",
+        "overflow": "value > 64.0"
+      },
+      "probability_and_combined": {
+        "kind": "probability",
+        "bins": 16384,
+        "range": [
+          1e-12,
+          1.0
+        ],
+        "spacing": "logarithmic",
+        "exact_zero_bucket": true,
+        "positive_underflow": "0 < value < 1e-12"
+      },
+      "quantiles": [
+        0.0,
+        0.001,
+        0.01,
+        0.05,
+        0.25,
+        0.5,
+        0.75,
+        0.95,
+        0.99,
+        0.999,
+        1.0
+      ],
+      "histograms_per_model": 28,
+      "histogram_count_storage_bytes_per_model": 3670016,
+      "all_row_tensor_concatenation": false,
+      "all_value_exact_quantiles": false
+    },
+    "checkpoint_verification": {
+      "v57_equal": {
+        "name": "v57_equal",
+        "available": true,
+        "required": true,
+        "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_equal_superset_final_step7187.pt",
+        "bytes": 27124021,
+        "sha256": "d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142",
+        "variant": "alignment_on_equal_superset",
+        "completed_optimizer_steps": 7187,
+        "state_tensor_count": 791,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "shape_mismatch_keys": [],
+        "all_tensors_finite": true,
+        "state_fingerprint": "df78421d95a255772e5ec06b5bfb88d85fd6ff015d895cc1898b1a70171f972f"
+      },
+      "v57_reliability": {
+        "name": "v57_reliability",
+        "available": true,
+        "required": true,
+        "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_reliability_superset_final_step7187.pt",
+        "bytes": 27129047,
+        "sha256": "b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df",
+        "variant": "alignment_on_reliability_superset",
+        "completed_optimizer_steps": 7187,
+        "state_tensor_count": 791,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "shape_mismatch_keys": [],
+        "all_tensors_finite": true,
+        "state_fingerprint": "f992e53aa75ee803a72978ed63d8dd39b7d235a16f962b4b1a35b21462a9c4f0"
+      },
+      "v55_reference": {
+        "name": "v55_reference",
+        "available": true,
+        "required": true,
+        "path_local_not_committed": "D:\\MM-UAV_v55_local\\alignment_on_equal_final_step7187.pt",
+        "bytes": 27110306,
+        "sha256": "2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258",
+        "variant": "alignment_on_equal",
+        "completed_optimizer_steps": 7187,
+        "state_tensor_count": 787,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "shape_mismatch_keys": [],
+        "all_tensors_finite": true,
+        "state_fingerprint": "ec3d56135dd5b9d67ffa0ae626c6a48f044df185b72224da4eaa40fc7d6730ea"
+      }
+    },
+    "v58_blocker_verification": {
+      "checks": {
+        "decision": true,
+        "optimizer_steps": true,
+        "backward_passes": true,
+        "equal_consumed": true,
+        "reliability_not_consumed": true,
+        "v55_not_consumed": true,
+        "exact_error": true,
+        "partial_forward_rows": true,
+        "no_root_cause": true
+      },
+      "evidence_fingerprint": {
+        "file_count": 20,
+        "total_bytes": 51251,
+        "aggregate_sha256": "c3ec5da1cda89d9360e2adaed22bd4145194be135363ad34b504f407fdc4cead"
+      }
+    },
+    "protected_baseline": {
+      "file_count": 791,
+      "total_bytes": 281032442,
+      "aggregate_sha256": "8223ac9b7bba0ef2a817a8d9543c17ac8cf264f51ef3151a3d2d0701775e3416"
+    },
+    "preexisting_worktree_entries": [
+      "M runs/v48_complete_ablation/queue_launcher_stderr.log",
+      " M runs/v48_complete_ablation/queue_launcher_stdout.log",
+      "?? rarepdet/tools/eval_dronevehicle_modality_specific.py",
+      "?? rarepdet/tools/prepare_dronevehicle_modality_specific_eval.py",
+      "?? rarepdet/tools/update_v51_waiting_status.py",
+      "?? runs/v41_q1_upgrade/seed1/matched_early_seed1.pid",
+      "?? runs/v41_q1_upgrade/seed1/matched_early_seed1/config.txt",
+      "?? runs/v41_q1_upgrade/seed1/reliability_p015_seed1.pid",
+      "?? runs/v41_q1_upgrade/seed1/reliability_p015_seed1/config.txt",
+      "?? runs/v41_q1_upgrade/seed1/reliability_p015_seed1_incomplete_attempt1_20260708.pid",
+      "?? runs/v41_q1_upgrade/seed1/reliability_p015_seed1_incomplete_attempt1_20260708/",
+      "?? runs/v46_coco_ablation/local_training/",
+      "?? runs/v51_visdrone_recovery/cv_training/"
+    ]
+  }
+}

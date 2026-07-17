@@ -1,27 +1,31 @@
 {
   "generated_at": "2026-07-17",
-  "task": "V58 MM-UAV V57 zero-detection inference diagnostic",
-  "status": "V58_BLOCKED_INSTRUMENTATION_OR_INFERENCE_PATH",
-  "starting_commit": "506bdea52563fdabe732c5044b37136bc9b9d8ea",
+  "task": "V59 MM-UAV streaming zero-detection diagnostic",
+  "status": "V59_STREAMING_ZERO_DETECTION_DIAGNOSIS_COMPLETE_ROOT_CAUSE_IDENTIFIED",
+  "starting_commit": "02ccb571dc143afa32057624ec1b65c438546092",
+  "primary_classification": "EVALUATOR_OR_OUTPUT_SCHEMA_MISMATCH",
+  "direct_mechanism": "V57_BBOX_REGRESSION_DEGENERATE_GEOMETRY",
   "devval_rows": 1845,
   "devval_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54",
   "devval_order_sha256": "dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867",
-  "detailed_subset_seed": 58,
   "detailed_subset_sha256": "d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee",
-  "checkpoint_verification": "PASS_ALL_THREE_AVAILABLE_EXACT_HASH_COMPLETE_FINITE_STATE",
-  "pass_state": {
-    "v57_equal": "FULL_FORWARD_COMPLETED_PASS_CONSUMED_REDUCTION_FAILED",
-    "v57_reliability": "NOT_RUN",
-    "v55_reference": "NOT_RUN"
+  "pass_counts": {"v57_equal": 1, "v57_reliability": 1, "v55_reference": 1},
+  "rows_per_pass": 1845,
+  "geometry": {
+    "v57_equal": {"valid": 0, "degenerate": 5534979, "max_score_median": 0.3474262058734894},
+    "v57_reliability": {"valid": 0, "degenerate": 5535000, "max_score_median": 0.3354482650756836},
+    "v55_reference": {"valid": 5535000, "degenerate": 0, "max_score_median": 0.3558290898799896}
   },
-  "failure": "RuntimeError: quantile() input tensor is too large",
-  "failure_stage": "exact_quantile_reduction_after_full_v57_equal_forward",
-  "root_cause_identified": false,
+  "checkpoint_hashes_unchanged": true,
+  "parameters_unchanged": true,
   "optimizer_steps": 0,
   "backward_passes": 0,
   "training_mode_executions": 0,
+  "gradient_executions": 0,
   "alternate_threshold_ap_ar_computed": false,
-  "checkpoints_unchanged": true,
+  "pre_cuda_tests": "13/13 PASS",
+  "post_cuda_tests": "13/13 PASS",
+  "post_cuda_consistency_audit": "PASS",
   "protected_file_changes": false,
-  "additional_inference_authorized": false
+  "repair_authorized": false
 }

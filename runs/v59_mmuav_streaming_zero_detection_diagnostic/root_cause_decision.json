@@ -1,0 +1,19 @@
+{
+  "completion_state": "V59_STREAMING_ZERO_DETECTION_DIAGNOSIS_COMPLETE_ROOT_CAUSE_IDENTIFIED",
+  "primary_classification": "EVALUATOR_OR_OUTPUT_SCHEMA_MISMATCH",
+  "explanation": "Both V57 checkpoints emit finite label-1 tensors with scores above 0.001, but every decoded box is degenerate after clipping. The frozen COCO adapter excludes zero-width or zero-height boxes, which explains the historical zero detection count. V55 uses the same score, postprocess, and evaluator paths and produces 5,535,000 valid decoded boxes.",
+  "direct_mechanism": "V57_BBOX_REGRESSION_DEGENERATE_GEOMETRY",
+  "secondary_factor": "The torchvision FCOS regression head applies ReLU to bbox distances. Both V57 bbox-regression bias vectors are non-positive, while all four V55 bbox-regression biases are positive; the observed all-row geometry confirms collapse in both V57 checkpoints.",
+  "v55_final_foreground": 184500,
+  "v57_equal_final_foreground": 184500,
+  "v57_reliability_final_foreground": 184500,
+  "v57_equal_valid_after_clip": 0,
+  "v57_reliability_valid_after_clip": 0,
+  "v55_valid_after_clip": 5535000,
+  "v57_equal_degenerate_after_clip": 5534979,
+  "v57_reliability_degenerate_after_clip": 5535000,
+  "v55_degenerate_after_clip": 0,
+  "repair_authorized": false,
+  "threshold_selection_performed": false,
+  "alternate_threshold_ap_ar_computed": false
+}

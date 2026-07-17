@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "cases": {
+    "logit_edges": {
+      "checks": {
+        "count": true,
+        "minimum": true,
+        "maximum": true,
+        "mean": true,
+        "second_moment": true
+      },
+      "quantile_containment": {
+        "0": true,
+        "0.001": true,
+        "0.01": true,
+        "0.05": true,
+        "0.25": true,
+        "0.5": true,
+        "0.75": true,
+        "0.95": true,
+        "0.99": true,
+        "0.999": true,
+        "1": true
+      }
+    },
+    "probability_edges": {
+      "checks": {
+        "count": true,
+        "minimum": true,
+        "maximum": true,
+        "mean": true,
+        "second_moment": true
+      },
+      "quantile_containment": {
+        "0": true,
+        "0.001": true,
+        "0.01": true,
+        "0.05": true,
+        "0.25": true,
+        "0.5": true,
+        "0.75": true,
+        "0.95": true,
+        "0.99": true,
+        "0.999": true,
+        "1": true
+      }
+    },
+    "repeated_logits": {
+      "checks": {
+        "count": true,
+        "minimum": true,
+        "maximum": true,
+        "mean": true,
+        "second_moment": true
+      },
+      "quantile_containment": {
+        "0": true,
+        "0.001": true,
+        "0.01": true,
+        "0.05": true,
+        "0.25": true,
+        "0.5": true,
+        "0.75": true,
+        "0.95": true,
+        "0.99": true,
+        "0.999": true,
+        "1": true
+      }
+    },
+    "empty_probability": {
+      "checks": {
+        "count": true,
+        "minimum": true,
+        "maximum": true,
+        "mean": true,
+        "second_moment": true
+      },
+      "quantile_containment": {}
+    }
+  },
+  "chunk_and_update_order_histogram_counts_identical": true,
+  "storage_bound": {
+    "histogram_bytes": 131200,
+    "histograms_per_model": 28,
+    "compact_float_values_per_model_upper_bound": 53284
+  },
+  "all_value_quantiles_used_for_validation_only": true,
+  "validated_at": "2026-07-17T14:17:24+08:00",
+  "cuda_used": false,
+  "histogram_edges_frozen": true,
+  "direct_quantiles_limited_to_synthetic_manageable_tensors": true
+}

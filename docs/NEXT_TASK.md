@@ -276,7 +276,7 @@ powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 
 ## Commit Message
 
-`diag: rerun V57 zero-detection diagnosis with streaming summaries`
+diag: rerun V57 zero-detection diagnosis with streaming summaries
 
 ## Final Report Requirements
 

@@ -1,0 +1,9 @@
+python.exe : Traceback (most recent call last):
+At line:42 char:5
++ '@; & 'C:\Users\xinnan\.conda\envs\pytorch\python.exe' -c $code 2>&1  ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "<string>", line 31, in <module>
+TypeError: unhashable type: 'dict'
