@@ -1,34 +1,52 @@
 # Task Blocker
 
-Status: `V59_COMPLETE_NO_ACTIVE_BLOCKER_REPAIR_NOT_AUTHORIZED`
+Status: `V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
 
 Generated: 2026-07-17
 
-## Completed state
+## Current state
 
-V59 completed all three authorized read-only passes in the frozen order, one pass and 1,845 rows per checkpoint. Histogram validation, source/checkpoint contracts, finite-value checks, stage accounting, immutability checks, and protected-file checks passed.
+V59 completed the read-only zero-detection diagnosis and directly established that both V57 fusion checkpoints collapse to degenerate bbox geometry. V57 scores, labels, checkpoint loading, preprocessing, thresholding, top-k, NMS, output schema, and evaluator execution were finite and active; the COCO adapter excluded the resulting zero-area boxes. V55 produced positive-area boxes through the same public path.
 
-## Root cause
+No active engineering blocker remains before the V60 source-lock, initialization-reconstruction, historical-log, geometry, and bounded no-step gradient audit.
 
-Primary task classification: `EVALUATOR_OR_OUTPUT_SCHEMA_MISMATCH`.
+## Authorized audit boundary
 
-Direct mechanism: `V57_BBOX_REGRESSION_DEGENERATE_GEOMETRY`.
+V60 may:
 
-V57 equal and reliability produced finite, above-threshold label-1 output tensors, but all 5,534,979 and 5,535,000 decoded candidates respectively were degenerate after clipping. The COCO adapter excludes zero-area boxes, yielding the historical zero detection count. V55 produced 5,535,000 valid boxes through the same public detector/evaluator path.
+- reproduce the committed V59 diagnosis and all frozen data/checkpoint hashes;
+- reconstruct the exact historical V55 and V57 seed-0 initial states;
+- trace RNG-state consumption and construction order without altering it;
+- parse the complete committed V55/V57 logs and report all historically available bbox-loss and gradient evidence;
+- freeze one deterministic 32-row train subset and its four-row gradient subset;
+- run compact no-grad bbox geometry probes on reconstructed initial states and final checkpoints;
+- run at most twenty total backward-only gradient probes on fresh ephemeral instances;
+- record parameter/buffer snapshots, bbox output signs, post-ReLU distances, decoded geometry, loss components, gradient norms, and initialization-to-final deltas;
+- commit compact metadata, hashes, statistics, tests, and conclusions only.
 
-## Excluded causes
+V60 may not:
 
-- Checkpoint load mismatch: excluded by exact hashes, complete state coverage, shapes, and finite tensors.
-- Preprocessing/model-mode mismatch: excluded by common manifest, transforms, normalization, resize, and eval/inference mode.
-- Score threshold collapse: excluded; foreground per-image maximum medians were 0.34743 and 0.33545 for V57, and all foreground candidates exceeded 0.001.
-- Top-k/NMS/final-cap label removal: excluded; both V57 models emitted 184,500 final label-1 tensors.
-- Non-finite output: excluded.
+- construct or step an optimizer;
+- change or save parameters, buffers, checkpoints, repaired states, or probe models;
+- initialize a positive bbox bias, replace ReLU, add losses, resume V57, fine-tune, or retrain;
+- compute AP/AR, select thresholds, or change threshold, top-k, NMS, preprocessing, detector, architecture, scorer, or evaluator;
+- modify historical V40-V59 evidence, V51 history, production TriAir defaults, manuscript/submission files, raw data, or annotations;
+- place checkpoints, serialized states, predictions, tensors, images, or feature maps in Git.
 
-## Remaining authorization blocker
+## Fail-closed blockers
 
-No engineering blocker remains for the completed diagnosis. A separate user authorization is required before any repair. A future task would need to pre-register one of these options:
+Stop with the matching V60 blocked state on:
 
-1. Read-only training/checkpoint audit of bbox-regression distance distributions and gradient history, without retraining.
-2. Controlled corrective experiment addressing V57 bbox-regression collapse, with a new checkpoint/pass budget and no reuse as V57 evidence.
+1. V59 evidence, manifest, initialization, checkpoint, or historical-log mismatch;
+2. inability to reproduce the exact V55 or V57 initialization hash;
+3. instrumentation that changes construction order or historical model behavior;
+4. optimizer construction/step, parameter mutation, checkpoint mutation, or more than twenty backward probes;
+5. use of unregistered samples or non-finite values that prevent interpretation;
+6. AP/AR, threshold selection, model repair, retraining, or architecture/evaluator changes;
+7. protected-file or heavy-artifact Git violation.
 
-Do not start either option automatically. Do not modify the detector, evaluator, threshold, NMS, checkpoints, or manuscript within V59.
+Do not automatically proceed to a corrected training experiment after the audit. A separate future task must pre-register any positive-bias, activation, loss, initialization-order, or retraining intervention.
+
+## Next action
+
+Execute V60 exactly as written in `docs/NEXT_TASK.md`. Refine the provenance of the V57 bbox collapse using direct initialization, historical-log, geometry, and no-step gradient evidence. A successful mechanism classification remains diagnostic and does not authorize repair.
