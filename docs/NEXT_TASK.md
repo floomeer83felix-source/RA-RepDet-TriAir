@@ -2,11 +2,11 @@
 
 ## Authorization
 
-The user authorizes **V59 MM-UAV streaming zero-detection diagnostic rerun** under the standing local/private-research-only rule.
+The user authorizes **V60 MM-UAV V57 bbox-regression collapse provenance audit** under the standing local/private-research-only rule.
 
-V58 was correctly fail-closed after the first V57-equal read-only pass because exact `torch.quantile` could not process the concatenated all-row FPN tensor. V59 adopts repair option 1 from the committed V58 blocker: replace unbounded tensor concatenation with pre-registered deterministic streaming histograms and compact exact per-image summaries, then reset and rerun all three checkpoint paths under one comparable protocol.
+V59 directly established that both V57 fusion checkpoints produce finite, above-threshold foreground tensors but only degenerate decoded boxes, while the V55 alignment-on reference produces positive-area boxes through the same score, post-processing, and evaluator path. V60 must determine whether the V57 bbox collapse was already present at initialization, was induced during training, reflects a dead-ReLU gradient trap, or remains unresolved.
 
-V59 authorizes **zero optimizer steps**. It does not authorize training, fine-tuning, threshold tuning, checkpoint selection, architecture changes, additional seeds, manuscript edits, public claims, redistribution, or external sharing.
+V60 is a diagnostic audit. It authorizes **zero optimizer steps** and no checkpoint repair. It does not authorize retraining, fine-tuning, parameter updates, threshold/NMS/evaluator changes, architecture changes, new seeds, metric replacement, manuscript edits, public claims, redistribution, or external sharing.
 
 ## Required Start
 
@@ -16,257 +16,227 @@ git pull --ff-only research research/ra-repdet-triair
 git rev-parse HEAD
 ```
 
-Authorization-base evidence commit: `3263d3d6ba9e01139047c1ca0b18708c9700f376`.
+Treat the V59 completion commit at the current branch head as the prerequisite evidence base. Read `AGENTS.md`, project/status/blocker/task/handoff files, all V52-V59 evidence, V55/V57 model builders and runners, V55/V57 training logs and configs, torchvision FCOS regression-head/loss code, and protected-file rules. Record the actual starting commit. Stop on unexpected repository changes or source-lock mismatch. V51 remains untouched.
 
-Read `AGENTS.md`, project/status/blocker/task/handoff files, all V52-V58 evidence, the V57 superset wrapper, V55-V58 runners/evaluators, the actual torchvision FCOS post-processing implementation, and protected-file rules. Record the actual starting commit and stop on unexpected repository changes. V51 remains untouched.
+## Frozen V59 Evidence
 
-## Frozen V58 Blocker Evidence
+Reproduce without modifying historical evidence:
 
-Reproduce without modifying V58 evidence:
+- V59 status: `V59_STREAMING_ZERO_DETECTION_DIAGNOSIS_COMPLETE_ROOT_CAUSE_IDENTIFIED`;
+- direct mechanism: `V57_BBOX_REGRESSION_DEGENERATE_GEOMETRY`;
+- V57 equal valid/degenerate decoded candidates: `0 / 5,534,979`;
+- V57 reliability valid/degenerate decoded candidates: `0 / 5,535,000`;
+- V55 reference valid/degenerate decoded candidates: `5,535,000 / 0`;
+- V57 equal/reliability/V55 maximum-score medians: `0.34743 / 0.33545 / 0.35583`;
+- every model retained all foreground candidates above the frozen `0.001` threshold before top-k;
+- V57 bbox-regression biases were non-positive and feed torchvision's ReLU distance head; V55 final bbox-regression biases were positive;
+- V59 optimizer/backward/training/gradient executions were `0 / 0 / 0 / 0`.
 
-- V58 status: `V58_BLOCKED_INSTRUMENTATION_OR_INFERENCE_PATH`;
-- exact error: `RuntimeError: quantile() input tensor is too large`;
-- V58 optimizer steps/backward/training-mode executions: `0 / 0 / 0`;
-- V57-equal V58 pass: full 1,845-row forward completed but compact reduction failed;
-- V57-reliability and V55 reference V58 passes: not run;
-- no V58 root-cause classification was produced.
+V59 evidence is read-only. V60 must not reinterpret zero-area boxes as valid detections or modify V57 metrics.
 
-V59 explicitly resets the aggregate-pass budget. The incomplete V58 pass is historical blocker evidence and must not be mixed with V59 aggregates.
-
-## Frozen Data and Sample Sets
+## Frozen Data, Initializations, and Checkpoints
 
 Use exactly:
 
+- train manifest: `runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt`;
 - devval manifest: `runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt`;
-- devval rows: 1,845;
-- devval manifest SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
-- ordered devval SHA256: `dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867`;
-- detailed subset seed/count/SHA256: `58 / 32 / d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee`;
-- RGB boxes are the sole detector targets;
-- IR boxes remain metadata only and event has no detector target.
+- train/devval rows: `7,187 / 1,845`;
+- train SHA256: `e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a`;
+- devval SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
+- V55 common seed-0 initialization SHA256: `91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983`;
+- V57 common seed-0 superset initialization SHA256: `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`;
+- V55 final alignment-on checkpoint SHA256: `2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258`;
+- V57 equal final checkpoint SHA256: `d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142`;
+- V57 reliability final checkpoint SHA256: `b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df`.
 
-Reuse the exact ordered 1,845 rows and exact 32-row subset frozen by V58. Do not regenerate a different order or subset.
+All three final checkpoints are required locally and must be verified read-only. Reconstruct the V55 and V57 seed-0 initial states using the exact historical builders, construction order, seed handling, and configuration. Their serialized state hashes must reproduce exactly before model probes. If an exact historical initialization cannot be reconstructed, fail closed rather than substituting a new initialization.
 
-## Frozen Checkpoints
+## Frozen Sample Sets
 
-All three checkpoints are required for V59:
+Before reading model outputs, derive and hash:
 
-1. V57 equal superset:
-   - `D:\MM-UAV_v57_local\alignment_on_equal_superset_final_step7187.pt`;
-   - SHA256 `d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142`;
-   - expected tensors: 791.
-2. V57 reliability superset:
-   - `D:\MM-UAV_v57_local\alignment_on_reliability_superset_final_step7187.pt`;
-   - SHA256 `b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df`;
-   - expected tensors: 791.
-3. V55 alignment-on reference:
-   - `D:\MM-UAV_v55_local\alignment_on_equal_final_step7187.pt`;
-   - SHA256 `2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258`;
-   - expected tensors: 787.
+1. a deterministic 32-row train audit subset using seed 60 and the frozen train manifest;
+2. a deterministic 4-row gradient-probe subset equal to the first four ordered rows of that frozen 32-row subset;
+3. reuse the V59 frozen 32-row devval subset, seed/count/SHA256 `58 / 32 / d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee`, for final-checkpoint no-grad geometry comparison.
 
-Verify size, SHA256, completed-step metadata, state-dict coverage, missing/unexpected keys, shapes, and finite values before inference. Checkpoint absence or mismatch fails closed. Do not modify or rewrite checkpoints.
+Do not change any subset after observing outputs. RGB boxes remain the sole detector targets.
 
-## Actual Score Path
+## Audit Questions
 
-Source-lock the implementation actually used. The V58 inspection found:
+V60 must determine, as far as direct evidence permits:
 
-```text
-combined score = sqrt(sigmoid(class_logit) * sigmoid(centerness_logit))
-strict score > 0.001
-per-level top-k = 1000
-box decode and clipping
-class-aware batched NMS IoU = 0.6
-global detections per image = 100
-evaluator retains foreground label 1
-```
+1. whether V55 and V57 detector/bbox-head initial states differ because model-construction order consumes RNG differently;
+2. whether either reconstructed initial state already produces all-zero ReLU bbox distances or degenerate boxes;
+3. whether V57 begins with usable positive bbox distances but collapses during the 7,187-step run;
+4. whether historical V55/V57 logs show different bbox-loss trajectories, zero-loss plateaus, gradient behavior, or first-collapse timing;
+5. whether a no-step loss/gradient probe confirms a dead-ReLU trap in V57 initial or final states;
+6. whether the equal and reliability V57 variants share the same collapse mechanism;
+7. whether another loss, target, parameter-loading, or construction-path difference explains the collapse;
+8. whether provenance remains unresolved because historical evidence is insufficient.
 
-Reverify this path against the installed source before inference. Do not alter it.
+## Historical Source and Log Audit
 
-## Revised Streaming Summary Contract
+Source-lock and compare:
 
-Unbounded concatenation of all FPN values and exact all-value `torch.quantile` are forbidden.
+- V55 and V57 model construction order and RNG seeding;
+- the point at which stems, aligners, fusion scorer, detector projection, backbone/FPN, and FCOS heads are instantiated;
+- parameter names/shapes and initialization routines for FCOS classification, centerness, and bbox-regression heads;
+- the exact bbox distance activation and loss/decode path;
+- optimizer parameter inclusion and weight-decay treatment;
+- V55/V57 training-log schemas and all available per-step loss components, learning rates, finite flags, and gradient fields.
 
-Maintain deterministic CPU `int64` streaming histograms separately for every checkpoint, FPN level, and score type.
+Record RNG-state hashes immediately before and after construction of the multimodal front end, reliability scorer, detector, and bbox-regression head for both reconstructed historical paths. Do not reorder construction to make hashes match.
 
-### Logit histograms
+Parse the complete committed V55 and V57 training logs. When bbox-specific losses or gradients are present, report exact first/last/min/max, selected frozen step summaries, zero/non-finite counts, and the earliest sustained collapse signal. When a requested field was not historically logged, record the absence explicitly and do not fabricate it.
 
-For classification and centerness logits:
+## Initialization and Final-State Geometry Probe
 
-- fixed range: `[-64, 64]`;
-- fixed equal-width bin count: `16,384`;
-- bin width: `0.0078125`;
-- separate underflow and overflow counts;
-- exact streamed count, minimum, maximum, mean, and second moment.
+For these five states:
 
-Reported quantiles must include the containing histogram interval. The interval width is the declared absolute quantile-resolution bound when the quantile is inside the fixed range. Underflow or overflow quantiles must be reported as bounded only by the observed exact minimum/maximum and the range edge.
+1. reconstructed V55 seed-0 initialization;
+2. reconstructed V57 seed-0 superset initialization in equal-bypass mode;
+3. V55 final alignment-on checkpoint;
+4. V57 final equal-superset checkpoint;
+5. V57 final reliability-superset checkpoint;
 
-### Probability and combined-score histograms
+run no-grad forward instrumentation on the frozen 32-row train subset and, for final states, also the frozen 32-row V59 devval subset.
 
-For classification probabilities, centerness probabilities, and combined scores:
+Record by FPN level and aggregate:
 
-- one exact zero count;
-- one underflow count for positive values below `1e-12`;
-- `16,384` fixed logarithmic bins from `1e-12` through `1`;
-- exact streamed count, minimum, maximum, mean, and second moment.
+- bbox-regression pre-ReLU logits: count, min, max, mean, standard deviation, and fixed quantiles on bounded compact summaries;
+- fraction `<0`, `=0`, and `>0` before ReLU;
+- post-ReLU distance positive fraction and all-zero-location fraction;
+- decoded box width/height distributions before clipping and after clipping;
+- valid, degenerate, non-finite, clipped, and out-of-image counts;
+- bbox-head weight/bias norms, signs, extrema, and parameter deltas from exact initialization;
+- classification and centerness score summaries sufficient to confirm the audit remains geometry-focused.
 
-Reported positive quantiles must include the containing `[lower, upper]` log-bin interval. The bin interval is the declared deterministic approximation bound. Do not present histogram midpoints as exact quantiles.
+Do not compute AP/AR or alter score thresholds.
 
-### Exact compact values
+## Bounded No-Step Gradient Probe
 
-It is permitted to retain and compute exact quantiles for compact arrays whose size is bounded before inference, including:
+V60 authorizes diagnostic backward computation but **no optimizer construction or optimizer step**.
 
-- one maximum combined score per image: exactly 1,845 values per checkpoint;
-- stage candidate counts per image;
-- the fixed 32-row detailed summaries;
-- modality fusion weights and compact feature statistics for the fixed subset.
+Use fresh ephemeral model instances for the same five states and the fixed four-row gradient subset. For each state:
 
-No raw FPN tensor, prediction tensor, feature map, or unbounded score list may be retained.
+- load or reconstruct the state, snapshot parameter and buffer hashes, and clear gradients;
+- use the historical training loss path with targets and the historical configuration;
+- perform exactly one backward probe per row, for at most four backward calls per state and at most twenty backward calls total;
+- record total and component losses, bbox-regression output positive fraction, bbox-head weight/bias gradient norms, detector-head gradient norms, and the fraction of bbox parameters receiving nonzero finite gradients;
+- record whether zero ReLU outputs coincide with zero bbox gradients;
+- discard the ephemeral instance after the probe.
 
-## Histogram Validation Before CUDA
+No model state from a probe may be saved or reused. Checkpoint files must remain byte-identical. In-memory BatchNorm or other buffer changes inside an ephemeral probe instance are permitted only when required by the historical loss path; snapshot them, report them, discard the instance, and never persist them. Parameter values must remain unchanged before versus after backward.
 
-Before checkpoint inference, run synthetic CPU tests that:
+## Root-Cause Refinement
 
-1. compare streaming counts, means, minima, maxima, and second moments with direct computation;
-2. verify every exact manageable-tensor quantile lies inside the reported histogram interval;
-3. cover zero, probability underflow, logit underflow/overflow, repeated values, and empty-level handling;
-4. verify chunking and update order do not change histogram results;
-5. prove peak retained score-summary storage is bounded by the declared histogram and compact-array sizes.
+Choose one primary classification:
 
-A failed validation blocks V59 before any checkpoint pass.
+- `V57_COLLAPSE_PRESENT_AT_INITIALIZATION`;
+- `V57_TRAINING_INDUCED_DEAD_RELU_COLLAPSE`;
+- `V57_CONSTRUCTION_ORDER_RNG_SHIFT_CONTRIBUTED`;
+- `V57_LOSS_OR_GRADIENT_PATH_MISMATCH`;
+- `V57_CHECKPOINT_OR_LOG_PROVENANCE_MISMATCH`;
+- `V57_BBOX_COLLAPSE_PROVENANCE_UNRESOLVED`.
 
-## Frozen Run Order and Pass Budget
-
-Run exactly one aggregate read-only pass in this order:
-
-1. V57 equal superset;
-2. V57 reliability superset;
-3. V55 alignment-on reference.
-
-Each pass uses all 1,845 ordered devval rows exactly once. V59 authorizes these three new passes despite V58's consumed V57-equal pass. No checkpoint may receive a second V59 aggregate pass.
-
-Use `model.eval()` and `torch.inference_mode()` or `torch.no_grad()`. Optimizer construction, backward, gradient computation, training mode, parameter mutation, and checkpoint mutation are forbidden.
-
-## Required Aggregate Diagnostics
-
-For each checkpoint, record:
-
-- streaming histogram summaries and bounded quantile intervals by FPN level for classification logits/probabilities, centerness logits/probabilities, and combined scores;
-- exact per-image maximum-score quantiles;
-- exact candidate counts before thresholding, after per-level top-k, after strict `0.001`, after box validity/clipping, after NMS, and in final outputs;
-- images with at least one candidate at each stage and at least one final detection;
-- valid, degenerate, non-finite, clipped, and out-of-image box counts;
-- output schema, tensor shapes, dtypes, devices, labels, and finite status;
-- inference timing and CUDA peak allocated/reserved memory.
-
-Record exact candidate counts at the pre-registered diagnostic ladder:
-
-```text
-0, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2
-```
-
-The ladder remains diagnostic only. Do not compute AP/AR at alternate thresholds, select a threshold, replace V57 metrics, or claim improved accuracy.
-
-## Detailed Trace and Path Comparison
-
-For the exact frozen 32-row subset, save compact summaries of inputs, modality features, aligned features, fused features, fusion weights, detector input, head shapes, top classification/centerness/combined scores, stage counts, and top final boxes/scores when present.
-
-Compare V55 and V57 on the same rows and aggregate stream for:
-
-- wrapper/builder path;
-- checkpoint state coverage and parameter norms;
-- detector-head and `to_detector_image` weight/bias norms;
-- preprocessing, normalization, resize, channel order, and model mode;
-- feature and score distributions;
-- threshold/top-k/NMS application count;
-- output schema and evaluator filtering.
-
-A code-path difference may be classified as causal only when supported by direct trace evidence or a controlled read-only replay within the single authorized pass.
-
-## Root-Cause Classification
-
-Choose one primary result:
-
-- `CHECKPOINT_LOAD_MISMATCH`;
-- `PREPROCESS_OR_MODEL_MODE_MISMATCH`;
-- `FEATURE_OR_HEAD_SCORE_COLLAPSE`;
-- `POSTPROCESS_THRESHOLD_OR_NMS_PATH`;
-- `EVALUATOR_OR_OUTPUT_SCHEMA_MISMATCH`;
-- `V57_SUPERSET_IMPLEMENTATION_REGRESSION`;
-- `ZERO_DETECTIONS_REPRODUCED_CAUSE_UNRESOLVED`.
-
-Supporting secondary factors may be recorded. Diagnosis does not authorize repair.
+Supporting secondary factors may be recorded. A construction-order RNG difference alone is not causal unless the output/gradient probes link it to the bbox geometry. A dead-ReLU mechanism is confirmed only when non-positive pre-ReLU distances, zero post-ReLU distances, and absent bbox gradients are directly observed together.
 
 ## Stop Rules
 
 Fail closed on:
 
-- V58 evidence, devval order, subset, or checkpoint mismatch;
-- histogram specification changed after outputs are observed;
-- any unbounded concatenation or all-value `torch.quantile` path;
-- checkpoint or parameter mutation;
-- optimizer construction/step, backward, gradients, or training-mode execution;
-- non-finite diagnostics that prevent interpretation;
-- more than one V59 aggregate pass per checkpoint;
-- alternate-threshold AP/AR or threshold selection;
-- production, historical evidence, V51, manuscript, or heavy-artifact violation.
+- V59 evidence, data, subset, initialization, checkpoint, or historical-log mismatch;
+- inability to reconstruct exact committed initial states;
+- checkpoint or source mutation;
+- any optimizer construction or optimizer step;
+- more than twenty backward probes or use of rows outside the frozen subsets;
+- parameter changes during a no-step probe;
+- non-finite values that prevent interpretation;
+- AP/AR computation, threshold selection, retraining, repair, or architecture/evaluator modification;
+- production, V40-V59 evidence, V51, manuscript, or heavy-artifact violation.
 
-Do not automatically patch the model, threshold, top-k, NMS, preprocessing, scorer, detector, or evaluator.
+Do not automatically initialize a positive bbox bias, replace ReLU, add loss terms, resume V57, or start a corrected run. V60 diagnoses provenance only.
 
 ## Required Outputs
 
-Create `runs/v59_mmuav_streaming_zero_detection_diagnostic/` containing compact protocol/source-lock files, V58 blocker verification, checkpoint verification, frozen order/subset verification, histogram specification and validation, per-checkpoint streaming summaries, stage counts, ladder counts, detailed traces, V55/V57 path comparison, memory/timing summary, root-cause decision, tests, and final decision.
+Create `runs/v60_mmuav_bbox_collapse_provenance_audit/` containing compact files such as:
 
-Commit only compact text, metadata, hashes, histograms, counts, and summaries. Checkpoints, predictions, images, feature maps, tensor dumps, and other heavy artifacts remain local and outside Git.
+```text
+protocol.json
+protocol.md
+source_lock_v60.json
+v59_evidence_verification.json
+checkpoint_verification.json
+initialization_reconstruction.json
+rng_construction_trace.json
+train_audit_subset.txt
+train_audit_subset_sha256.txt
+gradient_probe_subset.txt
+gradient_probe_subset_sha256.txt
+historical_log_schema.json
+historical_loss_trajectory.json
+parameter_init_final_diff.json
+bbox_geometry_probe.json
+no_step_gradient_probe.json
+root_cause_refinement.json
+root_cause_refinement.md
+safety_audit.json
+test_commands.txt
+test_output.txt
+final_decision.json
+```
+
+Commit only compact metadata, hashes, statistics, and summaries. Checkpoints, raw tensors, predictions, images, feature maps, serialized model states, and other heavy artifacts remain local and outside Git.
 
 ## Required Tests
 
 Verify:
 
-- exact V58 blocker and frozen evidence hashes;
-- exact devval/order/subset and checkpoint contracts;
-- deterministic histogram edges and order-independent updates;
-- exact compact statistics and bounded quantile intervals;
-- no unbounded score retention or all-value quantile path;
-- exact three-pass order and one pass per checkpoint;
-- optimizer/backward/training-mode counts remain zero;
-- fixed ladder and no alternate-threshold AP/AR;
-- internally consistent stage counts and output schemas;
-- checkpoint hashes unchanged before/after inference;
-- production TriAir, V40-V58 evidence, V51, manuscript, and submission files unchanged;
-- heavy artifacts outside Git.
+- exact V59 evidence, data, initialization, checkpoint, and historical-log source locks;
+- deterministic train and gradient subsets;
+- exact historical initialization reconstruction and state hashes;
+- RNG tracing does not alter construction behavior;
+- geometry instrumentation matches torchvision's actual bbox activation/decode path;
+- five state probes use only frozen rows;
+- optimizer construction/steps remain zero;
+- backward calls do not exceed twenty and parameters remain unchanged;
+- checkpoint hashes remain unchanged before/after;
+- no AP/AR, threshold selection, retraining, or repair path exists;
+- production TriAir, V40-V59 evidence, V51, manuscript, and submission files remain unchanged;
+- heavy artifacts remain outside Git.
 
-Run CPU/source-lock and histogram-validation tests before CUDA inference and save exact commands and outputs.
+Run CPU/source-lock tests before any CUDA probe and save exact commands and outputs.
 
 ## Allowed Changes
 
 - current task/status/blocker/handoff files;
-- `runs/v59_mmuav_streaming_zero_detection_diagnostic/**`;
-- V59-only streaming diagnostic tools, instrumentation, and tests;
-- minimal backward-compatible imports needed for read-only instrumentation without changing defaults.
+- `runs/v60_mmuav_bbox_collapse_provenance_audit/**`;
+- V60-only read-only audit, instrumentation, and tests;
+- minimal backward-compatible imports needed for instrumentation without changing defaults.
 
 ## Forbidden Changes
 
-- modification of V58 evidence or its historical runner outputs;
-- training, fine-tuning, backward, optimizer construction/steps, or checkpoint mutation;
+- checkpoint modification or repaired checkpoints;
+- optimizer construction/steps, training, fine-tuning, or resumed V57 runs;
 - raw data or annotations;
-- historical V40-V58 evidence except current pointers;
+- historical V40-V59 evidence except current pointers;
 - V51 history;
 - production defaults or TriAir semantics;
-- threshold, top-k, NMS, preprocessing, scorer, detector, architecture, or evaluator changes;
-- alternate-threshold AP/AR, threshold selection, or metric replacement;
+- bbox-bias initialization changes, ReLU replacement, new losses, threshold/NMS/evaluator changes;
+- AP/AR recomputation or metric replacement;
 - public derivatives, manuscript, submission, or public benchmark files.
 
 ## Completion State
 
 Choose exactly one:
 
-- `V59_STREAMING_ZERO_DETECTION_DIAGNOSIS_COMPLETE_ROOT_CAUSE_IDENTIFIED`;
-- `V59_STREAMING_ZERO_DETECTION_DIAGNOSIS_COMPLETE_CAUSE_UNRESOLVED`;
-- `V59_BLOCKED_SOURCE_OR_CHECKPOINT_CONTRACT`;
-- `V59_BLOCKED_STREAMING_INSTRUMENTATION_OR_INFERENCE_PATH`;
-- `V59_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`.
+- `V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_COMPLETE_MECHANISM_IDENTIFIED`;
+- `V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_COMPLETE_CAUSE_UNRESOLVED`;
+- `V60_BLOCKED_SOURCE_INITIALIZATION_OR_CHECKPOINT_CONTRACT`;
+- `V60_BLOCKED_AUDIT_OR_GRADIENT_INSTRUMENTATION`;
+- `V60_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`.
 
-A successful diagnosis does not authorize repair, threshold changes, retraining, extra evaluation, or manuscript claims. Any corrective action requires a new task.
+A successful audit does not authorize checkpoint repair, retraining, positive-bias initialization, activation changes, extra evaluation, or manuscript claims. Any corrective experiment requires a separate task.
 
 Update status, blocker, and handoff files, then run:
 
@@ -276,8 +246,8 @@ powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 
 ## Commit Message
 
-diag: rerun V57 zero-detection diagnosis with streaming summaries
+`diag: audit V57 bbox-regression collapse provenance`
 
 ## Final Report Requirements
 
-Report starting/final commit SHAs, V58 blocker verification, devval/order/subset and checkpoint hashes, histogram specification and validation results, exact pass counts, zero optimizer/backward/training executions, bounded score quantile intervals, exact per-image maxima, stage and ladder counts, detailed trace evidence, V55/V57 path differences, root-cause classification, timing/memory/finite status, checkpoint immutability, tests, protected-file results, limitations, and the next authorization boundary.
+Report starting/final commit SHAs; all source, data, subset, initialization, checkpoint, and log hashes; exact reconstruction and RNG traces; historical loss-field availability and trajectories; initialization/final bbox parameter differences; all geometry and no-step gradient probes; optimizer/backward counts; checkpoint/parameter immutability; root-cause refinement with direct evidence; tests and protected-file results; unresolved limitations; and the next authorization boundary.
