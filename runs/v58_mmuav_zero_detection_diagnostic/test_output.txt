@@ -1,0 +1,27 @@
+python.exe : test_actual_fcos_score_path (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnosticTests) ... ok
+At line:2 char:36
++ ... 'Continue'; & 'C:\Users\xinnan\.conda\envs\pytorch\python.exe' -m uni ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_actual_fco...icTests) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_devval_contract (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnosticTests) ... ok
+test_fixed_ladder_and_no_alternate_metrics (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnosticTests) ... ok
+test_optional_v55_is_truthfully_recorded (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnosticTests) ... ok
+test_protected_paths_unchanged (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnosticTests) ... warning: in the
+ working copy of 'runs/v48_complete_ablation/queue_launcher_stderr.log', LF will be replaced by CRLF the next time Git 
+touches it
+warning: in the working copy of 'runs/v48_complete_ablation/queue_launcher_stdout.log', LF will be replaced by CRLF the
+ next time Git touches it
+ok
+test_required_checkpoint_hashes_and_state_coverage (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnosticTests)
+ ... ok
+test_required_outputs_are_compact_and_no_heavy_artifacts (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnostic
+Tests) ... ok
+test_subset_is_deterministic_and_frozen (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnosticTests) ... ok
+test_zero_training_boundary_in_source (test_v58_zero_detection_diagnostic.V58ZeroDetectionDiagnosticTests) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.228s
+
+OK

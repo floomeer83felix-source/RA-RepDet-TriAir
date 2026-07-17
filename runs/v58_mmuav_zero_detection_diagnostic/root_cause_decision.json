@@ -1,0 +1,10 @@
+{
+  "completion_state": "V58_BLOCKED_INSTRUMENTATION_OR_INFERENCE_PATH",
+  "primary_classification": null,
+  "root_cause_identified": false,
+  "reason": "The first full inference pass completed, but exact torch.quantile reduction exceeded the supported input tensor size before compact aggregates were written.",
+  "optimizer_steps": 0,
+  "backward_passes": 0,
+  "alternate_threshold_ap_ar_computed": false,
+  "repair_authorized": false
+}

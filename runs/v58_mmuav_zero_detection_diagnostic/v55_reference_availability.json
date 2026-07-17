@@ -1,0 +1,16 @@
+{
+  "name": "v55_reference",
+  "available": true,
+  "required": false,
+  "path_local_not_committed": "D:\\MM-UAV_v55_local\\alignment_on_equal_final_step7187.pt",
+  "bytes": 27110306,
+  "sha256": "2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258",
+  "variant": "alignment_on_equal",
+  "completed_optimizer_steps": 7187,
+  "state_tensor_count": 787,
+  "missing_keys": [],
+  "unexpected_keys": [],
+  "shape_mismatch_keys": [],
+  "all_tensors_finite": true,
+  "state_fingerprint": "ec3d56135dd5b9d67ffa0ae626c6a48f044df185b72224da4eaa40fc7d6730ea"
+}

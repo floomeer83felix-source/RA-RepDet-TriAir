@@ -1,0 +1,23 @@
+{
+  "status": "V58_BLOCKED_INSTRUMENTATION_OR_INFERENCE_PATH",
+  "optimizer_steps": 0,
+  "backward_passes": 0,
+  "training_mode_executions": 0,
+  "v57_equal": {
+    "full_1845_row_forward_completed": true,
+    "aggregate_pass_consumed": true,
+    "aggregate_summary_committed": false,
+    "failure_stage": "exact_quantile_reduction_after_forward"
+  },
+  "v57_reliability": {
+    "aggregate_pass_consumed": false,
+    "reason": "fail-closed after first instrumentation error"
+  },
+  "v55_reference": {
+    "aggregate_pass_consumed": false,
+    "reason": "fail-closed after first instrumentation error"
+  },
+  "checkpoint_hashes_unchanged": true,
+  "parameters_unchanged": true,
+  "root_cause_classification_available": false
+}

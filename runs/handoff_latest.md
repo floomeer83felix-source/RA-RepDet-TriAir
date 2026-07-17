@@ -1,40 +1,33 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-07-16
+Generated: 2026-07-17
 
 ## Current task
 
-- V57 decision: `V57_PAIRED_SINGLE_SEED_FUSION_ABLATION_COMPLETE`.
-- Starting commit: `6b767d0c23ca9b918edaed601ae999c9d9b0d6ee`.
-- Equal and reliability superset runs completed exactly 7,187 steps each, 14,374 total, followed by one 1,845-row final-checkpoint evaluation each.
-- Both variants used identical 6,645,011-parameter supersets, common initialization `846da59c...77cb9`, and sample order `27e98f75...bf27b`; alignment was enabled in both.
-- Equal scorer remained dormant and unchanged. Reliability scorer was active and departed from exact uniform weights.
+- V58 status: `V58_BLOCKED_INSTRUMENTATION_OR_INFERENCE_PATH`.
+- Starting commit: `506bdea52563fdabe732c5044b37136bc9b9d8ea`.
+- CPU/source-lock and checkpoint verification passed; tests 9/9 passed.
+- Devval order SHA256: `dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867`.
+- Seed-58 32-row subset SHA256: `d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee`.
+- Both V57 checkpoints and the optional V55 reference were available with exact expected hashes and complete finite state coverage.
 
-## Result
+## Blocker
 
-| Variant | AP50:95 | AP50 | AP75 | AR100 | Detections |
-|---|---:|---:|---:|---:|---:|
-| equal | 0.0 | 0.0 | 0.0 | 0.0 | 0 |
-| reliability | 0.0 | 0.0 | 0.0 | 0.0 | 0 |
-| reliability - equal | 0.0 | 0.0 | 0.0 | 0.0 | 0 |
+V57-equal completed its one authorized 1,845-row read-only forward pass. Exact all-row score concatenation then exceeded the supported `torch.quantile` input size before compact aggregates were written:
 
-Both evaluations covered 1,845 images and 4,198 GT boxes with finite outputs. Because both models produced zero detections above threshold `0.001`, this accuracy comparison is inconclusive and the zero deltas are not evidence of equivalence.
+```text
+RuntimeError: quantile() input tensor is too large
+```
 
-## Fusion diagnostics
+The current single-pass contract prevents rerunning V57-equal. V57-reliability and V55 were not run after fail-closed. No root-cause classification is available.
 
-- Equal weights remained exact uniform; entropy 1.0986123; scorer gradient 0; scorer state unchanged.
-- Reliability devval mean RGB/IR/Event weights: 0.47120 / 0.26063 / 0.26817.
-- Reliability entropy mean: 1.05764; dominance mean: 0.47120; RGB had maximum weight for all 1,845 rows.
-- Reliability maximum weight-sum error: `1.19209e-7`; all weights were finite and within `[0,1]`.
-- Scorer activity was confirmed, but no accuracy benefit can be inferred.
+## Safety
 
-## Artifacts and checks
-
-- Equal/reliability checkpoint SHA256: `d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142` / `b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df`.
-- Checkpoints remain under `D:\MM-UAV_v57_local` and were not committed.
-- Pre/post tests: 10/10 pass; source hashes exact; protected production/history/V51/manuscript files unchanged.
-- CUDA grid-sample backward and CuBLAS/linear operations emitted warn-only non-determinism notices.
+- Optimizer steps/backward/training mode: 0 / 0 / 0.
+- Checkpoints and parameters remained unchanged.
+- No alternate-threshold AP/AR, threshold selection, repair, or additional inference occurred.
+- Protected production/history/V51/manuscript files remained unchanged.
 
 ## Required action
 
-Stop. Do not change thresholds, rerun, tune, add seeds, or alter the experiment without a new explicit task. V57 does not authorize manuscript claims, public release, redistribution, or external sharing. V51 remains separate and unchanged.
+Stop. A new explicit task must choose either pre-registered streaming approximate quantiles or local temporary memmap/chunked exact quantiles and reset all three passes under a revised comparable protocol. Do not patch and rerun within V58.

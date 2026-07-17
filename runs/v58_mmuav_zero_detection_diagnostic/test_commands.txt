@@ -1,0 +1,3 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v58_zero_detection_diagnostic.py --prepare-only
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v58_zero_detection_diagnostic.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v58_zero_detection_diagnostic.py --run

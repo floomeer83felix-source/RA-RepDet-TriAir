@@ -4,59 +4,49 @@ Updated: 2026-07-17
 
 ## Active task
 
-`V58_MMUAV_ZERO_DETECTION_DIAGNOSTIC_AUTHORIZED`
+`V58_BLOCKED_INSTRUMENTATION_OR_INFERENCE_PATH`
 
-## User authorization
+## Outcome
 
-The user authorized continuation from completed V57 to a read-only zero-detection diagnostic. V58 may inspect the frozen V57 checkpoints, the full frozen devval inference path, raw FCOS scores, candidate filtering stages, NMS, output schema, and V55/V57 implementation differences under `docs/NEXT_TASK.md`.
+V58 passed all CPU/source-lock, devval, checkpoint, state-coverage, finite-value, and protected-file preflight checks. The required V57 checkpoints and optional V55 reference were available with exact hashes. The ordered 1,845-row devval list and deterministic seed-58 32-row subset were frozen before inference.
 
-The standing local/private-research instruction remains frozen and must not be repeatedly reconfirmed.
+The first V57-equal aggregate inference completed all 1,845 read-only forwards. During post-pass reduction, exact `torch.quantile` rejected the concatenated FPN-level tensor with `RuntimeError: quantile() input tensor is too large`. No compact aggregate was written for that pass. The current protocol allows one aggregate pass per checkpoint, so V57-equal cannot be rerun within V58. V57-reliability and the V55 reference were not executed after the failure.
 
-## V57 prerequisite evidence
+No root-cause classification is available from this incomplete diagnostic.
 
-- V57 outcome: `V57_PAIRED_SINGLE_SEED_FUSION_ABLATION_COMPLETE`.
-- Equal and reliability variants each completed 7,187 optimizer steps.
-- Each final checkpoint was evaluated once on all 1,845 devval rows.
-- Both produced zero final detections above the frozen threshold `0.001`.
-- AP50:95, AP50, AP75, and AR100 were therefore all zero for both variants.
-- Zero deltas are inconclusive and are not evidence of fusion equivalence.
-- Reliability scoring was active and favored RGB; all numerical and engineering checks passed.
+## Frozen evidence
 
-## Frozen data and checkpoints
+- Starting commit: `506bdea52563fdabe732c5044b37136bc9b9d8ea`.
+- Devval rows/hash: 1,845 / `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`.
+- Ordered devval SHA256: `dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867`.
+- Detailed subset seed/count/SHA256: 58 / 32 / `d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee`.
+- V57 equal checkpoint: 27,124,021 bytes, SHA256 `d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142`, 791 tensors, complete state coverage.
+- V57 reliability checkpoint: 27,129,047 bytes, SHA256 `b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df`, 791 tensors, complete state coverage.
+- V55 reference: available, 27,110,306 bytes, SHA256 `2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258`, 787 tensors, complete state coverage.
+- All checkpoint tensors were finite. Missing, unexpected, and shape-mismatched keys were empty.
 
-- Devval rows: 1,845.
-- Devval SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`.
-- Required equal-superset checkpoint SHA256: `d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142`.
-- Required reliability-superset checkpoint SHA256: `b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df`.
-- Optional V55 alignment-on reference SHA256: `2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258` when the local file remains available.
+## Actual score path
 
-## V58 diagnostic boundary
+The inspected torchvision FCOS implementation computes `sqrt(sigmoid(class_logit) * sigmoid(centerness_logit))`, applies strict `score > 0.001`, then per-level top-k 1000, box decoding/clipping, class-aware batched NMS at 0.6, and a global 100-detection cap. The evaluator subsequently retains foreground label 1. The fixed diagnostic ladder was frozen at `0, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2`; no alternate-threshold AP/AR was computed.
 
-V58 authorizes:
+## Safety result
 
-- exactly zero optimizer steps and no backward passes;
-- read-only checkpoint verification and inference;
-- one aggregate diagnostic pass per required V57 checkpoint over all 1,845 devval rows;
-- one optional equivalent V55 reference pass when its hash-matching checkpoint is available;
-- a frozen 32-row detailed trace subset;
-- inspection of classification, centerness, combined scores, thresholding, top-k, clipping, NMS, output schema, evaluator path, feature statistics, memory, and timing;
-- fixed pre-threshold candidate counts at `0, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2`.
+- Optimizer steps: 0.
+- Backward passes: 0.
+- Training-mode executions: 0.
+- Checkpoint hashes before and after the failed diagnostic were identical.
+- No parameter or checkpoint mutation was observed.
+- Pre-CUDA tests: 9/9 pass.
+- Production TriAir, V40-V57 evidence, V51, manuscript, and submission files were unchanged.
+- No raw predictions, images, feature maps, tensors, or checkpoints entered Git.
 
-The diagnostic ladder must not be used to calculate alternate-threshold AP/AR, choose a threshold, replace V57 metrics, or tune the system.
+## Exact blocker
 
-## Gates
+`torch.quantile` cannot process the concatenated all-row level tensor at the requested size. The failure occurred after the V57-equal full forward pass and before `aggregate_score_diagnostics.json`, stage counts, ladder counts, detailed traces, memory summaries, or a root-cause decision could be written.
 
-- Required checkpoint and devval hashes must reproduce exactly.
-- Models must remain in evaluation/inference mode and checkpoints must remain unchanged.
-- Optimizer-step count must remain exactly 0.
-- No repair, threshold change, retraining, fine-tuning, extra seed, architecture change, or evaluator modification is authorized.
-- Production TriAir behavior, V40-V57 evidence, V51 evidence, and manuscript files remain protected.
-- Raw predictions, images, feature maps, tensor dumps, and checkpoints remain local and outside Git.
+## Proposed repair options
 
-## Allowed completion states
+1. Authorize a new diagnostic task using pre-registered deterministic streaming histograms or a fixed-size deterministic reservoir to estimate the same quantiles with declared error bounds. Reset and rerun all three aggregate passes under one revised protocol so results remain comparable.
+2. Authorize a new diagnostic task using a local, non-Git NumPy memmap or chunked external selection for exact CPU quantiles, deleting the heavy temporary file after aggregation. Reset and rerun all three passes under the revised single-pass protocol.
 
-- `V58_ZERO_DETECTION_DIAGNOSIS_COMPLETE_ROOT_CAUSE_IDENTIFIED`
-- `V58_ZERO_DETECTION_DIAGNOSIS_COMPLETE_CAUSE_UNRESOLVED`
-- `V58_BLOCKED_SOURCE_OR_CHECKPOINT_CONTRACT`
-- `V58_BLOCKED_INSTRUMENTATION_OR_INFERENCE_PATH`
-- `V58_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`
+Neither repair is authorized by V58. Do not rerun, patch, change thresholds, or continue with the remaining checkpoints without a new task.

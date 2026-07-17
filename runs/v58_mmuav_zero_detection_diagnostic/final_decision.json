@@ -1,0 +1,11 @@
+{
+  "decision": "V58_BLOCKED_INSTRUMENTATION_OR_INFERENCE_PATH",
+  "optimizer_steps": 0,
+  "backward_passes": 0,
+  "v57_equal_pass_consumed": true,
+  "v57_reliability_pass_consumed": false,
+  "v55_reference_pass_consumed": false,
+  "checkpoints_unchanged": true,
+  "root_cause_identified": false,
+  "additional_inference_authorized": false
+}

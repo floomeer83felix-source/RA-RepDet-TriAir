@@ -254,7 +254,7 @@ powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 
 ## Commit Message
 
-`diag: analyze V57 zero-detection outputs`
+diag: analyze V57 zero-detection outputs
 
 ## Final Report Requirements
 

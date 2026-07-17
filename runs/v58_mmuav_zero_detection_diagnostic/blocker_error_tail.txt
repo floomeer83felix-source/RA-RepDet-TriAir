@@ -1,0 +1,12 @@
+python.exe : Traceback (most recent call last):
+  File "E:\RepViT-main\rarepdet\tools\run_v58_zero_detection_diagnostic.py", line 538, in <module>
+    main()
+  File "E:\RepViT-main\rarepdet\tools\run_v58_zero_detection_diagnostic.py", line 534, in main
+    run()
+  File "E:\RepViT-main\rarepdet\tools\run_v58_zero_detection_diagnostic.py", line 494, in run
+    score, stage, ladder, detail, aux = diagnose_model(name, spec, subset, device)
+  File "E:\RepViT-main\rarepdet\tools\run_v58_zero_detection_diagnostic.py", line 419, in diagnose_model
+    "level": level, "classification_logit_quantiles": quantile_summary(cls),
+  File "E:\RepViT-main\rarepdet\tools\run_v58_zero_detection_diagnostic.py", line 217, in quantile_summary
+    result = torch.quantile(values, q)
+RuntimeError: quantile() input tensor is too large
