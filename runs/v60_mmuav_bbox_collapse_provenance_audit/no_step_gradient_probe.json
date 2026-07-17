@@ -1,0 +1,1177 @@
+{
+  "v55_initial": {
+    "state": "v55_initial",
+    "backward_calls": 4,
+    "rows": [
+      {
+        "index": 4127,
+        "row_id": "train:00020652",
+        "losses": {
+          "classification": 1.0566424131393433,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.6917478442192078
+        },
+        "loss_total": 2.7483904361724854,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.3091810941696167,
+          "maximum": 1.2702827453613281,
+          "mean": -0.08495797216892242,
+          "std": 0.2618442177772522,
+          "negative_count": 21374,
+          "zero_count": 0,
+          "positive_count": 12626,
+          "finite": true,
+          "quantiles": {
+            "0": -1.3091810941696167,
+            "0.01": -0.7407333368062973,
+            "0.25": -0.24478906765580177,
+            "0.5": -0.07809863239526749,
+            "0.75": 0.07803397066891193,
+            "0.99": 0.5484116220474244,
+            "1": 1.2702827453613281
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.3713529407978058,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 2.5559576016173455,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9912514130207243,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 15.299011911734226,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.995613000098254,
+          "finite": true
+        }
+      },
+      {
+        "index": 5576,
+        "row_id": "train:00027963",
+        "losses": {
+          "classification": 1.1188709735870361,
+          "bbox_regression": 0.9996732473373413,
+          "bbox_ctrness": 0.703583300113678
+        },
+        "loss_total": 2.822127342224121,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.4428600072860718,
+          "maximum": 0.9647038578987122,
+          "mean": -0.08541896194219589,
+          "std": 0.25940078496932983,
+          "negative_count": 21311,
+          "zero_count": 0,
+          "positive_count": 12689,
+          "finite": true,
+          "quantiles": {
+            "0": -1.4428600072860718,
+            "0.01": -0.714692622423172,
+            "0.25": -0.25724899023771286,
+            "0.5": -0.08424694463610649,
+            "0.75": 0.08678402006626129,
+            "0.99": 0.5280319869518287,
+            "1": 0.9647038578987122
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.37320590019226074,
+        "bbox_weight_gradient": {
+          "norm": 1.0777027193080297,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.3600260416666667,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.05719888701936203,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.75,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 9.013279693461879,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9943914590747331,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 13.232770897875628,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9971875837153623,
+          "finite": true
+        }
+      },
+      {
+        "index": 2402,
+        "row_id": "train:00011770",
+        "losses": {
+          "classification": 1.0972719192504883,
+          "bbox_regression": 1.0257892608642578,
+          "bbox_ctrness": 0.7212483286857605
+        },
+        "loss_total": 2.8443095684051514,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.3647221326828003,
+          "maximum": 1.1096632480621338,
+          "mean": -0.07985112071037292,
+          "std": 0.26153600215911865,
+          "negative_count": 21335,
+          "zero_count": 0,
+          "positive_count": 12665,
+          "finite": true,
+          "quantiles": {
+            "0": -1.3647221326828003,
+            "0.01": -0.7750250977277756,
+            "0.25": -0.2281663976609707,
+            "0.5": -0.06862227991223335,
+            "0.75": 0.07428970746695995,
+            "0.99": 0.5681014269590379,
+            "1": 1.1096632480621338
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.3725000023841858,
+        "bbox_weight_gradient": {
+          "norm": 22.440049430261325,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.51171875,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.577937659821587,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.75,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 65.1197310707182,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9956993929244295,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 66.01300996298846,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9978434502780085,
+          "finite": true
+        }
+      },
+      {
+        "index": 2093,
+        "row_id": "train:00010266",
+        "losses": {
+          "classification": 1.183884620666504,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.6839832067489624
+        },
+        "loss_total": 2.867867946624756,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.4272422790527344,
+          "maximum": 1.2207133769989014,
+          "mean": -0.08474744111299515,
+          "std": 0.2656874358654022,
+          "negative_count": 21651,
+          "zero_count": 0,
+          "positive_count": 12349,
+          "finite": true,
+          "quantiles": {
+            "0": -1.4272422790527344,
+            "0.01": -0.7605448597669602,
+            "0.25": -0.24067490175366402,
+            "0.5": -0.07447558641433716,
+            "0.75": 0.07244661077857018,
+            "0.99": 0.5764835393428807,
+            "1": 1.2207133769989014
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.3632058799266815,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 6.931536528561222,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9915461586769939,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 15.979900558694291,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.99576080101378,
+          "finite": true
+        }
+      }
+    ],
+    "parameter_hash_before": "36949256c73538d2b88d905de35bcaff7dd3167325f9a0869119565f7cabd64e",
+    "parameter_hash_after": "36949256c73538d2b88d905de35bcaff7dd3167325f9a0869119565f7cabd64e",
+    "parameters_unchanged": true,
+    "buffer_hash_before": "1e81fd0c2e276fd863f58fe3ab540d0429926926ec131c8fc1d8a240f7f2b0aa",
+    "buffer_hash_after": "e5db6912fae25d85dfac51b1bad2530a7bbad99e8ffa92bda82d8198fa77df84",
+    "buffers_changed_in_ephemeral_training_mode": true,
+    "checkpoint_unchanged": true,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0
+  },
+  "v57_initial_equal": {
+    "state": "v57_initial_equal",
+    "backward_calls": 4,
+    "rows": [
+      {
+        "index": 4127,
+        "row_id": "train:00020652",
+        "losses": {
+          "classification": 1.152032732963562,
+          "bbox_regression": 1.1474603414535522,
+          "bbox_ctrness": 0.7010894417762756
+        },
+        "loss_total": 3.000582456588745,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.5974503755569458,
+          "maximum": 1.0733548402786255,
+          "mean": -0.07474851608276367,
+          "std": 0.2630250155925751,
+          "negative_count": 20672,
+          "zero_count": 0,
+          "positive_count": 13328,
+          "finite": true,
+          "quantiles": {
+            "0": -1.5974503755569458,
+            "0.01": -0.744518923163414,
+            "0.25": -0.2265465408563614,
+            "0.5": -0.06375187635421753,
+            "0.75": 0.08916880190372467,
+            "0.99": 0.570699087381364,
+            "1": 1.0733548402786255
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.3920000195503235,
+        "bbox_weight_gradient": {
+          "norm": 28.296343645236938,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.12413194444444445,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 1.4536476135253906,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.25,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 76.04760756156377,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9921942641825413,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 77.031766040217,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9960857950723511,
+          "finite": true
+        }
+      },
+      {
+        "index": 5576,
+        "row_id": "train:00027963",
+        "losses": {
+          "classification": 1.159572720527649,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.6695438623428345
+        },
+        "loss_total": 2.8291163444519043,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.2568933963775635,
+          "maximum": 1.300130844116211,
+          "mean": -0.07906096428632736,
+          "std": 0.264160692691803,
+          "negative_count": 21057,
+          "zero_count": 0,
+          "positive_count": 12943,
+          "finite": true,
+          "quantiles": {
+            "0": -1.2568933963775635,
+            "0.01": -0.711402851343155,
+            "0.25": -0.2501549571752548,
+            "0.5": -0.07765651121735573,
+            "0.75": 0.09311647154390812,
+            "0.99": 0.5764556282758716,
+            "1": 1.300130844116211
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.3806764781475067,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 8.233036795733888,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.991639941385807,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 13.986490893481308,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9958078285778109,
+          "finite": true
+        }
+      },
+      {
+        "index": 2402,
+        "row_id": "train:00011770",
+        "losses": {
+          "classification": 1.1097921133041382,
+          "bbox_regression": 1.1736114025115967,
+          "bbox_ctrness": 0.6904963254928589
+        },
+        "loss_total": 2.9738998413085938,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.3962520360946655,
+          "maximum": 1.3536171913146973,
+          "mean": -0.07645522803068161,
+          "std": 0.2638923227787018,
+          "negative_count": 21041,
+          "zero_count": 0,
+          "positive_count": 12959,
+          "finite": true,
+          "quantiles": {
+            "0": -1.3962520360946655,
+            "0.01": -0.8036488783359528,
+            "0.25": -0.19834567606449127,
+            "0.5": -0.053787462413311005,
+            "0.75": 0.06902064196765423,
+            "0.99": 0.580662199854851,
+            "1": 1.3536171913146973
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.3811470568180084,
+        "bbox_weight_gradient": {
+          "norm": 9.262376202355417,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.5023871527777778,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.24289301785991593,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.75,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 25.377815682916918,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9956324052752774,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 27.165516394962694,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9978098591608435,
+          "finite": true
+        }
+      },
+      {
+        "index": 2093,
+        "row_id": "train:00010266",
+        "losses": {
+          "classification": 1.1067090034484863,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.7197902202606201
+        },
+        "loss_total": 2.8264992237091064,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.1908948421478271,
+          "maximum": 1.0639216899871826,
+          "mean": -0.07961728423833847,
+          "std": 0.2602972388267517,
+          "negative_count": 20954,
+          "zero_count": 0,
+          "positive_count": 13046,
+          "finite": true,
+          "quantiles": {
+            "0": -1.1908948421478271,
+            "0.01": -0.7280576533079147,
+            "0.25": -0.2385724112391472,
+            "0.5": -0.06723787635564804,
+            "0.75": 0.08314285427331924,
+            "0.99": 0.5458672791719444,
+            "1": 1.0639216899871826
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.38370588421821594,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 9.513498392379269,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9914306049822064,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 17.93146235740965,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9957028563366703,
+          "finite": true
+        }
+      }
+    ],
+    "parameter_hash_before": "085a5f0c6f9c79d20ad3a82c48779d3cbf4c2d742eda068d0be67a01abf7f31b",
+    "parameter_hash_after": "085a5f0c6f9c79d20ad3a82c48779d3cbf4c2d742eda068d0be67a01abf7f31b",
+    "parameters_unchanged": true,
+    "buffer_hash_before": "1e81fd0c2e276fd863f58fe3ab540d0429926926ec131c8fc1d8a240f7f2b0aa",
+    "buffer_hash_after": "8dbd35438699c5551862d3bb30263bbb1e2e422bfc0207bac3898b4c76579b06",
+    "buffers_changed_in_ephemeral_training_mode": true,
+    "checkpoint_unchanged": true,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0
+  },
+  "v55_final": {
+    "state": "v55_final",
+    "backward_calls": 4,
+    "rows": [
+      {
+        "index": 4127,
+        "row_id": "train:00020652",
+        "losses": {
+          "classification": 0.06643195450305939,
+          "bbox_regression": 0.5822370052337646,
+          "bbox_ctrness": 0.7031261324882507
+        },
+        "loss_total": 1.3517950773239136,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": 0.08606532961130142,
+          "maximum": 8.36133098602295,
+          "mean": 1.0993380546569824,
+          "std": 1.1801397800445557,
+          "negative_count": 0,
+          "zero_count": 0,
+          "positive_count": 34000,
+          "finite": true,
+          "quantiles": {
+            "0": 0.08606532961130142,
+            "0.01": 0.19587860569357873,
+            "0.25": 0.33818691223859787,
+            "0.5": 0.6976722180843353,
+            "0.75": 1.1765037178993225,
+            "0.99": 5.419545922279361,
+            "1": 8.36133098602295
+          }
+        },
+        "bbox_post_relu_positive_fraction": 1.0,
+        "bbox_weight_gradient": {
+          "norm": 11.351992551169786,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.3567708333333333,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 1.8057517035664468,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 1.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 11.888127217876525,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9511207871048776,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 12.137337334535674,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9687510234793512,
+          "finite": true
+        }
+      },
+      {
+        "index": 5576,
+        "row_id": "train:00027963",
+        "losses": {
+          "classification": 0.31164881587028503,
+          "bbox_regression": 0.5208498239517212,
+          "bbox_ctrness": 0.7294315099716187
+        },
+        "loss_total": 1.5619301795959473,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": 0.09433747828006744,
+          "maximum": 6.352888584136963,
+          "mean": 1.1624131202697754,
+          "std": 1.153229832649231,
+          "negative_count": 0,
+          "zero_count": 0,
+          "positive_count": 34000,
+          "finite": true,
+          "quantiles": {
+            "0": 0.09433747828006744,
+            "0.01": 0.21235693767666816,
+            "0.25": 0.3690158873796463,
+            "0.5": 0.7460529506206512,
+            "0.75": 1.4027889668941498,
+            "0.99": 5.3757416915893605,
+            "1": 6.352888584136963
+          }
+        },
+        "bbox_post_relu_positive_fraction": 1.0,
+        "bbox_weight_gradient": {
+          "norm": 4.1159174190901755,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.4618055555555556,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.5542577837500474,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 1.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 4.583567626957997,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9562302700439607,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 6.889865991463406,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9707622916196041,
+          "finite": true
+        }
+      },
+      {
+        "index": 2402,
+        "row_id": "train:00011770",
+        "losses": {
+          "classification": 0.34608590602874756,
+          "bbox_regression": 0.618803083896637,
+          "bbox_ctrness": 0.6317223310470581
+        },
+        "loss_total": 1.5966112613677979,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": 0.08390480279922485,
+          "maximum": 7.840291976928711,
+          "mean": 1.1660898923873901,
+          "std": 1.1508901119232178,
+          "negative_count": 0,
+          "zero_count": 0,
+          "positive_count": 34000,
+          "finite": true,
+          "quantiles": {
+            "0": 0.08390480279922485,
+            "0.01": 0.20004784628748895,
+            "0.25": 0.37534162402153015,
+            "0.5": 0.7423565089702606,
+            "0.75": 1.4072913527488708,
+            "0.99": 5.1867279958725,
+            "1": 7.840291976928711
+          }
+        },
+        "bbox_post_relu_positive_fraction": 1.0,
+        "bbox_weight_gradient": {
+          "norm": 5.431675903655532,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.5034722222222222,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.6135060498041349,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 1.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 5.669932096230179,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9731747958970065,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 7.884408591159835,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9797999816928411,
+          "finite": true
+        }
+      },
+      {
+        "index": 2093,
+        "row_id": "train:00010266",
+        "losses": {
+          "classification": 0.9101395010948181,
+          "bbox_regression": 0.5559183359146118,
+          "bbox_ctrness": 0.7430480718612671
+        },
+        "loss_total": 2.209105968475342,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": 0.09269271790981293,
+          "maximum": 6.318657398223877,
+          "mean": 1.2482128143310547,
+          "std": 1.1124705076217651,
+          "negative_count": 0,
+          "zero_count": 0,
+          "positive_count": 34000,
+          "finite": true,
+          "quantiles": {
+            "0": 0.09269271790981293,
+            "0.01": 0.213241236358881,
+            "0.25": 0.4401557594537735,
+            "0.5": 0.8615700900554657,
+            "0.75": 1.5586124062538147,
+            "0.99": 4.882473902702333,
+            "1": 6.318657398223877
+          }
+        },
+        "bbox_post_relu_positive_fraction": 1.0,
+        "bbox_weight_gradient": {
+          "norm": 7.526293284092867,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.5008680555555556,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 1.0555132392859352,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 1.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 7.89351742184608,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9454435838392297,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 9.535792275617593,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9660670932178694,
+          "finite": true
+        }
+      }
+    ],
+    "parameter_hash_before": "71214995b31fd18fb64206c559b0b05f0ed7c559cecc7f89afc0c61bafe7a09c",
+    "parameter_hash_after": "71214995b31fd18fb64206c559b0b05f0ed7c559cecc7f89afc0c61bafe7a09c",
+    "parameters_unchanged": true,
+    "buffer_hash_before": "ec444010ec95c559f1f329c36283a3ed607571c4031803d7399281af4f37ee22",
+    "buffer_hash_after": "9cbaa461fa4480424f0ddf3f04101db13d0a36895175b4cf236458fd62968081",
+    "buffers_changed_in_ephemeral_training_mode": true,
+    "checkpoint_unchanged": true,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0
+  },
+  "v57_final_equal": {
+    "state": "v57_final_equal",
+    "backward_calls": 4,
+    "rows": [
+      {
+        "index": 4127,
+        "row_id": "train:00020652",
+        "losses": {
+          "classification": 0.09090244024991989,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.6910951733589172
+        },
+        "loss_total": 1.7819976806640625,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.841786503791809,
+          "maximum": 0.057885684072971344,
+          "mean": -0.2518799602985382,
+          "std": 0.3698009252548218,
+          "negative_count": 27628,
+          "zero_count": 0,
+          "positive_count": 6372,
+          "finite": true,
+          "quantiles": {
+            "0": -1.841786503791809,
+            "0.01": -1.4507245016098023,
+            "0.25": -0.2628702074289322,
+            "0.5": -0.1272309273481369,
+            "0.75": -0.007725584669969976,
+            "0.99": 0.03278946679085495,
+            "1": 0.057885684072971344
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.18741177022457123,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 0.27140184630900305,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.944497383294955,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 3.458542702572864,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9670118433881344,
+          "finite": true
+        }
+      },
+      {
+        "index": 5576,
+        "row_id": "train:00027963",
+        "losses": {
+          "classification": 0.6576573252677917,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.7296452522277832
+        },
+        "loss_total": 2.3873026371002197,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.727827548980713,
+          "maximum": 0.057428814470767975,
+          "mean": -0.269765168428421,
+          "std": 0.36167463660240173,
+          "negative_count": 28136,
+          "zero_count": 0,
+          "positive_count": 5864,
+          "finite": true,
+          "quantiles": {
+            "0": -1.727827548980713,
+            "0.01": -1.4021451544761658,
+            "0.25": -0.3270501345396042,
+            "0.5": -0.143058679997921,
+            "0.75": -0.009885620092973113,
+            "0.99": 0.033276586160063786,
+            "1": 0.057428814470767975
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.1724705994129181,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 1.1681774225419774,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9378723047938037,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 5.152637545427088,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9639080241620905,
+          "finite": true
+        }
+      },
+      {
+        "index": 2402,
+        "row_id": "train:00011770",
+        "losses": {
+          "classification": 0.38450631499290466,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.6511797308921814
+        },
+        "loss_total": 2.0356860160827637,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -1.8915159702301025,
+          "maximum": 0.07289157807826996,
+          "mean": -0.27961456775665283,
+          "std": 0.3572160005569458,
+          "negative_count": 28621,
+          "zero_count": 0,
+          "positive_count": 5379,
+          "finite": true,
+          "quantiles": {
+            "0": -1.8915159702301025,
+            "0.01": -1.4087512147426604,
+            "0.25": -0.36571116745471954,
+            "0.5": -0.1493781954050064,
+            "0.75": -0.014019689988344908,
+            "0.99": 0.033106001503765616,
+            "1": 0.07289157807826996
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.15820588171482086,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 0.6697128059523973,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9552957923382877,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 5.052957024261077,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9726349964015516,
+          "finite": true
+        }
+      },
+      {
+        "index": 2093,
+        "row_id": "train:00010266",
+        "losses": {
+          "classification": 0.9570084810256958,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.7247911691665649
+        },
+        "loss_total": 2.6817996501922607,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -2.543928384780884,
+          "maximum": 0.08208833634853363,
+          "mean": -0.2828945815563202,
+          "std": 0.35408270359039307,
+          "negative_count": 28453,
+          "zero_count": 0,
+          "positive_count": 5547,
+          "finite": true,
+          "quantiles": {
+            "0": -2.543928384780884,
+            "0.01": -1.3604094254970551,
+            "0.25": -0.38214587420225143,
+            "0.5": -0.15658991783857346,
+            "0.75": -0.017816273029893637,
+            "0.99": 0.04027569223195323,
+            "1": 0.08208833634853363
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.16314706206321716,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 0.8064688149646316,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9224835670923174,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 5.0293855417051425,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9561526749866265,
+          "finite": true
+        }
+      }
+    ],
+    "parameter_hash_before": "1aa03eff5ba450999a84578a150d77fd13374909a4e2cc51652d0c54a4216627",
+    "parameter_hash_after": "1aa03eff5ba450999a84578a150d77fd13374909a4e2cc51652d0c54a4216627",
+    "parameters_unchanged": true,
+    "buffer_hash_before": "fd3632b49f780f80d31349dd75061b134c6c8614074155ae34eda614167f6655",
+    "buffer_hash_after": "faf02b212e4a87c5a9e6bcc784e1e0f306d0a5f10d429199e219b25b2c799034",
+    "buffers_changed_in_ephemeral_training_mode": true,
+    "checkpoint_unchanged": true,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0
+  },
+  "v57_final_reliability": {
+    "state": "v57_final_reliability",
+    "backward_calls": 4,
+    "rows": [
+      {
+        "index": 4127,
+        "row_id": "train:00020652",
+        "losses": {
+          "classification": 0.12425877153873444,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.6946375966072083
+        },
+        "loss_total": 1.8188962936401367,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -6.795620918273926,
+          "maximum": 0.008263841271400452,
+          "mean": -0.4979713559150696,
+          "std": 0.8531820774078369,
+          "negative_count": 33999,
+          "zero_count": 0,
+          "positive_count": 1,
+          "finite": true,
+          "quantiles": {
+            "0": -6.795620918273926,
+            "0.01": -4.301948256492615,
+            "0.25": -0.47269146144390106,
+            "0.5": -0.17346874624490738,
+            "0.75": -0.08004668913781643,
+            "0.99": -0.02451150484383105,
+            "1": 0.008263841271400452
+          }
+        },
+        "bbox_post_relu_positive_fraction": 2.9411765353870578e-05,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 0.5130398494461876,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9438911450701277,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 4.308176834396877,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9678952897695733,
+          "finite": true
+        }
+      },
+      {
+        "index": 5576,
+        "row_id": "train:00027963",
+        "losses": {
+          "classification": 0.6099631786346436,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.7241133451461792
+        },
+        "loss_total": 2.334076404571533,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -7.073465824127197,
+          "maximum": 0.004982218146324158,
+          "mean": -0.4995846152305603,
+          "std": 0.854555070400238,
+          "negative_count": 33995,
+          "zero_count": 0,
+          "positive_count": 5,
+          "finite": true,
+          "quantiles": {
+            "0": -7.073465824127197,
+            "0.01": -4.380688428878784,
+            "0.25": -0.46756334602832794,
+            "0.5": -0.17769143730401993,
+            "0.75": -0.07862679101526737,
+            "0.99": -0.025694166738539914,
+            "1": 0.004982218146324158
+          }
+        },
+        "bbox_post_relu_positive_fraction": 0.0001470588322263211,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 1.2847655459477243,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9190722210592422,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 5.775217124566179,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9557722555847332,
+          "finite": true
+        }
+      },
+      {
+        "index": 2402,
+        "row_id": "train:00011770",
+        "losses": {
+          "classification": 0.4219227731227875,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.6623204946517944
+        },
+        "loss_total": 2.0842432975769043,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -7.109431266784668,
+          "maximum": 0.009185831993818283,
+          "mean": -0.5182812809944153,
+          "std": 0.8433400988578796,
+          "negative_count": 33997,
+          "zero_count": 0,
+          "positive_count": 3,
+          "finite": true,
+          "quantiles": {
+            "0": -7.109431266784668,
+            "0.01": -4.455524549484253,
+            "0.25": -0.521060973405838,
+            "0.5": -0.2235705703496933,
+            "0.75": -0.0850999653339386,
+            "0.99": -0.02500574786216019,
+            "1": 0.009185831993818283
+          }
+        },
+        "bbox_post_relu_positive_fraction": 8.823529788060114e-05,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 1.1337031313906931,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9447251413020724,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 5.201768446607805,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9681908916006251,
+          "finite": true
+        }
+      },
+      {
+        "index": 2093,
+        "row_id": "train:00010266",
+        "losses": {
+          "classification": 0.9722582697868347,
+          "bbox_regression": 1.0,
+          "bbox_ctrness": 0.7134024500846863
+        },
+        "loss_total": 2.6856608390808105,
+        "bbox_pre_relu": {
+          "count": 34000,
+          "minimum": -7.197028160095215,
+          "maximum": 0.003447514958679676,
+          "mean": -0.5377628803253174,
+          "std": 0.838665783405304,
+          "negative_count": 33997,
+          "zero_count": 0,
+          "positive_count": 3,
+          "finite": true,
+          "quantiles": {
+            "0": -7.197028160095215,
+            "0.01": -4.348552832603454,
+            "0.25": -0.5481265634298325,
+            "0.5": -0.24314404278993607,
+            "0.75": -0.09128109365701675,
+            "0.99": -0.02276838343590496,
+            "1": 0.003447514958679676
+          }
+        },
+        "bbox_post_relu_positive_fraction": 8.823529788060114e-05,
+        "bbox_weight_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "bbox_bias_gradient": {
+          "norm": 0.0,
+          "parameter_tensors_with_grad": 1,
+          "nonzero_fraction": 0.0,
+          "finite": true
+        },
+        "regression_head_gradient": {
+          "norm": 0.9583554402908201,
+          "parameter_tensors_with_grad": 20,
+          "nonzero_fraction": 0.9211287418882144,
+          "finite": true
+        },
+        "detector_head_gradient": {
+          "norm": 5.081397830143964,
+          "parameter_tensors_with_grad": 38,
+          "nonzero_fraction": 0.9567799890996824,
+          "finite": true
+        }
+      }
+    ],
+    "parameter_hash_before": "0c4761b41d546dba035489da87d383c560e8d946a197343c5001b2aa8850b6ae",
+    "parameter_hash_after": "0c4761b41d546dba035489da87d383c560e8d946a197343c5001b2aa8850b6ae",
+    "parameters_unchanged": true,
+    "buffer_hash_before": "12e2bbce06a18352e34dca56c93312e876459db2b8c245ab42dc2d65f404db39",
+    "buffer_hash_after": "b832f9e2ca29c0487a1a6871b9879652f7676e441b217823ed56acc1d84f2552",
+    "buffers_changed_in_ephemeral_training_mode": true,
+    "checkpoint_unchanged": true,
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0
+  }
+}

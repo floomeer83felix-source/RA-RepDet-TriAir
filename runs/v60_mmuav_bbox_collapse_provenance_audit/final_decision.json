@@ -1,0 +1,36 @@
+{
+  "decision": "V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_COMPLETE_CAUSE_UNRESOLVED",
+  "root_cause": {
+    "completion_state": "V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_COMPLETE_CAUSE_UNRESOLVED",
+    "primary_classification": "V57_BBOX_COLLAPSE_PROVENANCE_UNRESOLVED",
+    "explanation": "The bounded probes do not establish one provenance mechanism.",
+    "initial_bbox_heads_bit_identical": true,
+    "initial_geometry_usable": true,
+    "final_v57_dead_relu_confirmed": false,
+    "construction_rng_shift_causal_for_bbox_initialization": false,
+    "repair_authorized": false
+  },
+  "safety": {
+    "optimizer_constructions": 0,
+    "optimizer_steps": 0,
+    "backward_calls": 20,
+    "backward_limit": 20,
+    "training_mode_loss_forwards": 20,
+    "all_parameters_unchanged": true,
+    "all_checkpoints_unchanged": true,
+    "ap_ar_computed": false,
+    "threshold_selection": false,
+    "repair_performed": false,
+    "protected_fingerprint_unchanged": true
+  },
+  "states_probed": [
+    "v55_initial",
+    "v57_initial_equal",
+    "v55_final",
+    "v57_final_equal",
+    "v57_final_reliability"
+  ],
+  "geometry_train_rows_per_state": 32,
+  "geometry_devval_rows_per_final_state": 32,
+  "gradient_rows_per_state": 4
+}

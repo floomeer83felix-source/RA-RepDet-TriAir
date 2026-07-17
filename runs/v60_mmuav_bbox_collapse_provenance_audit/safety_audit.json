@@ -1,0 +1,13 @@
+{
+  "optimizer_constructions": 0,
+  "optimizer_steps": 0,
+  "backward_calls": 20,
+  "backward_limit": 20,
+  "training_mode_loss_forwards": 20,
+  "all_parameters_unchanged": true,
+  "all_checkpoints_unchanged": true,
+  "ap_ar_computed": false,
+  "threshold_selection": false,
+  "repair_performed": false,
+  "protected_fingerprint_unchanged": true
+}

@@ -1,0 +1,52 @@
+{
+  "v55_initial": {
+    "path_local_not_committed": "D:\\MM-UAV_v55_local\\common_seed0_init.pt",
+    "bytes": 27041394,
+    "sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+    "tensor_count": 787,
+    "state_fingerprint": "296e55b59fbdaa9711df2b0899a09f05511989e06e6d31fe974cc8970a159ec5",
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "nonfinite_keys": []
+  },
+  "v57_initial_equal": {
+    "path_local_not_committed": "D:\\MM-UAV_v57_local\\common_seed0_superset_init.pt",
+    "bytes": 27054277,
+    "sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+    "tensor_count": 791,
+    "state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53",
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "nonfinite_keys": []
+  },
+  "v55_final": {
+    "path_local_not_committed": "D:\\MM-UAV_v55_local\\alignment_on_equal_final_step7187.pt",
+    "bytes": 27110306,
+    "sha256": "2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258",
+    "tensor_count": 787,
+    "state_fingerprint": "ec3d56135dd5b9d67ffa0ae626c6a48f044df185b72224da4eaa40fc7d6730ea",
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "nonfinite_keys": []
+  },
+  "v57_final_equal": {
+    "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_equal_superset_final_step7187.pt",
+    "bytes": 27124021,
+    "sha256": "d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142",
+    "tensor_count": 791,
+    "state_fingerprint": "df78421d95a255772e5ec06b5bfb88d85fd6ff015d895cc1898b1a70171f972f",
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "nonfinite_keys": []
+  },
+  "v57_final_reliability": {
+    "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_reliability_superset_final_step7187.pt",
+    "bytes": 27129047,
+    "sha256": "b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df",
+    "tensor_count": 791,
+    "state_fingerprint": "f992e53aa75ee803a72978ed63d8dd39b7d235a16f962b4b1a35b21462a9c4f0",
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "nonfinite_keys": []
+  }
+}

@@ -1,52 +1,21 @@
 # Task Blocker
 
-Status: `V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
+Status: `V60_COMPLETE_NO_ACTIVE_ENGINEERING_BLOCKER_CAUSE_UNRESOLVED`
 
 Generated: 2026-07-17
 
 ## Current state
 
-V59 completed the read-only zero-detection diagnosis and directly established that both V57 fusion checkpoints collapse to degenerate bbox geometry. V57 scores, labels, checkpoint loading, preprocessing, thresholding, top-k, NMS, output schema, and evaluator execution were finite and active; the COCO adapter excluded the resulting zero-area boxes. V55 produced positive-area boxes through the same public path.
+V60 completed successfully. Data, source, V59 evidence, historical logs, exact initializations, and all five checkpoint contracts passed. The bounded CUDA probes completed with exactly twenty backward calls, zero optimizer constructions, zero optimizer steps, unchanged parameters, byte-identical checkpoints, and unchanged protected evidence. All eleven final tests passed.
 
-No active engineering blocker remains before the V60 source-lock, initialization-reconstruction, historical-log, geometry, and bounded no-step gradient audit.
+## Unresolved evidence gap
 
-## Authorized audit boundary
+The audit excludes collapse at initialization and excludes a bbox-initialization difference caused by construction-order RNG consumption. It directly establishes that both final V57 variants have all-degenerate geometry and zero bbox parameter gradients on the frozen probes while V55 final remains healthy.
 
-V60 may:
+The final V57 states nevertheless retain some positive bbox-distance components, so V60 cannot apply the task's strict `V57_TRAINING_INDUCED_DEAD_RELU_COLLAPSE` label, which requires jointly observed non-positive pre-ReLU distances, zero post-ReLU distances, and absent bbox gradients. The committed V55/V57 logs lack bbox-output and bbox-parameter-gradient fields, preventing exact first-collapse timing or a unique historical causal account.
 
-- reproduce the committed V59 diagnosis and all frozen data/checkpoint hashes;
-- reconstruct the exact historical V55 and V57 seed-0 initial states;
-- trace RNG-state consumption and construction order without altering it;
-- parse the complete committed V55/V57 logs and report all historically available bbox-loss and gradient evidence;
-- freeze one deterministic 32-row train subset and its four-row gradient subset;
-- run compact no-grad bbox geometry probes on reconstructed initial states and final checkpoints;
-- run at most twenty total backward-only gradient probes on fresh ephemeral instances;
-- record parameter/buffer snapshots, bbox output signs, post-ReLU distances, decoded geometry, loss components, gradient norms, and initialization-to-final deltas;
-- commit compact metadata, hashes, statistics, tests, and conclusions only.
+This is a scientific-evidence limitation, not a failed run or current engineering blocker.
 
-V60 may not:
+## Next authorization boundary
 
-- construct or step an optimizer;
-- change or save parameters, buffers, checkpoints, repaired states, or probe models;
-- initialize a positive bbox bias, replace ReLU, add losses, resume V57, fine-tune, or retrain;
-- compute AP/AR, select thresholds, or change threshold, top-k, NMS, preprocessing, detector, architecture, scorer, or evaluator;
-- modify historical V40-V59 evidence, V51 history, production TriAir defaults, manuscript/submission files, raw data, or annotations;
-- place checkpoints, serialized states, predictions, tensors, images, or feature maps in Git.
-
-## Fail-closed blockers
-
-Stop with the matching V60 blocked state on:
-
-1. V59 evidence, manifest, initialization, checkpoint, or historical-log mismatch;
-2. inability to reproduce the exact V55 or V57 initialization hash;
-3. instrumentation that changes construction order or historical model behavior;
-4. optimizer construction/step, parameter mutation, checkpoint mutation, or more than twenty backward probes;
-5. use of unregistered samples or non-finite values that prevent interpretation;
-6. AP/AR, threshold selection, model repair, retraining, or architecture/evaluator changes;
-7. protected-file or heavy-artifact Git violation.
-
-Do not automatically proceed to a corrected training experiment after the audit. A separate future task must pre-register any positive-bias, activation, loss, initialization-order, or retraining intervention.
-
-## Next action
-
-Execute V60 exactly as written in `docs/NEXT_TASK.md`. Refine the provenance of the V57 bbox collapse using direct initialization, historical-log, geometry, and no-step gradient evidence. A successful mechanism classification remains diagnostic and does not authorize repair.
+Do not repair or retrain automatically. A future task may separately pre-register a corrective diagnostic or training intervention, such as positive bbox-bias initialization, activation/loss changes, or denser early-step bbox instrumentation. That task must define frozen checkpoints, samples, metrics, safety limits, and an explicit GPU authorization boundary.

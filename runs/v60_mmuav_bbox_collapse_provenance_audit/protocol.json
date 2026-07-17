@@ -1,0 +1,218 @@
+{
+  "prepared_at": "2026-07-17T15:24:35+08:00",
+  "starting_commit": "d2e6030094c8c6abf0ac193ac323e816320eb0a9",
+  "train_rows": 7187,
+  "devval_rows": 1845,
+  "train_sha256": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a",
+  "devval_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54",
+  "subsets": {
+    "seed": 60,
+    "train_count": 32,
+    "train_indices": [
+      4127,
+      5576,
+      2402,
+      2093,
+      1741,
+      4982,
+      6137,
+      5352,
+      4249,
+      405,
+      490,
+      4738,
+      2996,
+      5948,
+      6395,
+      4427,
+      195,
+      5443,
+      2165,
+      329,
+      1710,
+      2839,
+      5548,
+      1528,
+      5140,
+      2335,
+      1867,
+      2270,
+      687,
+      1599,
+      3883,
+      1179
+    ],
+    "train_sha256": "d1d59950d62d7b7ed5bb54b54769d2e5af36c3084d933a65a88870a0abf7204c",
+    "gradient_count": 4,
+    "gradient_indices": [
+      4127,
+      5576,
+      2402,
+      2093
+    ],
+    "gradient_sha256": "bfb526aa632b916e61357e215d7ea2f77e2f55bed5db8f20d411703569561166",
+    "devval_seed": 58,
+    "devval_count": 32,
+    "devval_indices": [
+      1200,
+      1837,
+      149,
+      438,
+      1277,
+      1434,
+      1135,
+      355,
+      1224,
+      1002,
+      92,
+      1066,
+      1226,
+      795,
+      203,
+      1425,
+      927,
+      1627,
+      276,
+      1215,
+      678,
+      1432,
+      118,
+      712,
+      1098,
+      189,
+      169,
+      286,
+      342,
+      227,
+      722,
+      847
+    ],
+    "devval_sha256": "d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee"
+  },
+  "optimizer_constructions": 0,
+  "optimizer_steps": 0,
+  "backward_limit": 20,
+  "states": [
+    "v55_initial",
+    "v57_initial_equal",
+    "v55_final",
+    "v57_final_equal",
+    "v57_final_reliability"
+  ],
+  "geometry_train_rows_per_state": 32,
+  "geometry_devval_rows_final_states": 32,
+  "gradient_rows_per_state": 4,
+  "ap_ar_computed": false,
+  "repair_authorized": false,
+  "v59_verification": {
+    "checks": {
+      "status": true,
+      "mechanism": true,
+      "v57_equal_geometry": true,
+      "v57_reliability_geometry": true,
+      "v55_geometry": true,
+      "zero_training": true
+    },
+    "final_decision_sha256": "a06113edd5f806d130f867f34f5300c17f8b3bd284c556f499c1b1ae4baefcc6"
+  },
+  "checkpoint_verification": {
+    "v55_initial": {
+      "path_local_not_committed": "D:\\MM-UAV_v55_local\\common_seed0_init.pt",
+      "bytes": 27041394,
+      "sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+      "tensor_count": 787,
+      "state_fingerprint": "296e55b59fbdaa9711df2b0899a09f05511989e06e6d31fe974cc8970a159ec5",
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "nonfinite_keys": []
+    },
+    "v57_initial_equal": {
+      "path_local_not_committed": "D:\\MM-UAV_v57_local\\common_seed0_superset_init.pt",
+      "bytes": 27054277,
+      "sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+      "tensor_count": 791,
+      "state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53",
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "nonfinite_keys": []
+    },
+    "v55_final": {
+      "path_local_not_committed": "D:\\MM-UAV_v55_local\\alignment_on_equal_final_step7187.pt",
+      "bytes": 27110306,
+      "sha256": "2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258",
+      "tensor_count": 787,
+      "state_fingerprint": "ec3d56135dd5b9d67ffa0ae626c6a48f044df185b72224da4eaa40fc7d6730ea",
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "nonfinite_keys": []
+    },
+    "v57_final_equal": {
+      "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_equal_superset_final_step7187.pt",
+      "bytes": 27124021,
+      "sha256": "d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142",
+      "tensor_count": 791,
+      "state_fingerprint": "df78421d95a255772e5ec06b5bfb88d85fd6ff015d895cc1898b1a70171f972f",
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "nonfinite_keys": []
+    },
+    "v57_final_reliability": {
+      "path_local_not_committed": "D:\\MM-UAV_v57_local\\alignment_on_reliability_superset_final_step7187.pt",
+      "bytes": 27129047,
+      "sha256": "b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df",
+      "tensor_count": 791,
+      "state_fingerprint": "f992e53aa75ee803a72978ed63d8dd39b7d235a16f962b4b1a35b21462a9c4f0",
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "nonfinite_keys": []
+    }
+  },
+  "initialization_reconstruction": {
+    "v55": {
+      "historical_sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+      "rebuilt_sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+      "serialized_exact": true,
+      "state_tensors_exact": true,
+      "tensor_count": 787,
+      "state_fingerprint": "296e55b59fbdaa9711df2b0899a09f05511989e06e6d31fe974cc8970a159ec5"
+    },
+    "v57": {
+      "historical_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+      "rebuilt_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+      "serialized_exact": true,
+      "state_tensors_exact": true,
+      "tensor_count": 791,
+      "state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53"
+    },
+    "initial_bbox_head_v55_v57_bit_identical": true,
+    "initial_bbox_parameters": {
+      "detector.head.regression_head.bbox_reg.weight": {
+        "count": 4608,
+        "minimum": -0.04164299741387367,
+        "maximum": 0.03800453990697861,
+        "mean": -0.00025800420553423464,
+        "std": 0.010165589861571789,
+        "negative_count": 2337,
+        "zero_count": 0,
+        "positive_count": 2271,
+        "finite": true
+      },
+      "detector.head.regression_head.bbox_reg.bias": {
+        "count": 4,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "negative_count": 0,
+        "zero_count": 4,
+        "positive_count": 0,
+        "finite": true
+      }
+    }
+  },
+  "protected_baseline": {
+    "file_count": 823,
+    "total_bytes": 294187631,
+    "aggregate_sha256": "72accfe6fee0d8092ab3e44f6226b04b81875b8abe0666e148f01694943a5555"
+  }
+}

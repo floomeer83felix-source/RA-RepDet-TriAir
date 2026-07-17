@@ -1,0 +1,177 @@
+{
+  "v55": [
+    {
+      "event": "construction_start",
+      "state": {
+        "cpu": "1ccf17250133dec5e96478acd63e13d728d0dbbabb30389415a302c6f872f81f",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "parent_multimodal_front_end",
+      "before": {
+        "cpu": "1ccf17250133dec5e96478acd63e13d728d0dbbabb30389415a302c6f872f81f",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "2ec4ace17371078cfb72351f8f71c61a142514a8383227f77707a9275c91bd99",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "fcos_regression_head",
+      "before": {
+        "cpu": "177fff15f52388a8924b9384b5d38b8ad616904268062765abb7281215b6c078",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "998e63fd4194ec641eefed8a246f654c778710e6b674e5920d9691d32d7ef0a9",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "fcos_head",
+      "before": {
+        "cpu": "b4404fceac61c6e1bcb7a6ab8b976d44d1d9e4d3edd1e52a182a20ae0aed7912",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "998e63fd4194ec641eefed8a246f654c778710e6b674e5920d9691d32d7ef0a9",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "detector_backbone_fpn_fcos",
+      "before": {
+        "cpu": "3767841e97d24e04db2846b5a59ffaa192100954803ce1010e27eb01b096a7ed",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "998e63fd4194ec641eefed8a246f654c778710e6b674e5920d9691d32d7ef0a9",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "construction_end",
+      "state": {
+        "cpu": "998e63fd4194ec641eefed8a246f654c778710e6b674e5920d9691d32d7ef0a9",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    }
+  ],
+  "v57": [
+    {
+      "event": "construction_start",
+      "state": {
+        "cpu": "1ccf17250133dec5e96478acd63e13d728d0dbbabb30389415a302c6f872f81f",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "parent_multimodal_front_end",
+      "before": {
+        "cpu": "1ccf17250133dec5e96478acd63e13d728d0dbbabb30389415a302c6f872f81f",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "2ec4ace17371078cfb72351f8f71c61a142514a8383227f77707a9275c91bd99",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "fcos_regression_head",
+      "before": {
+        "cpu": "177fff15f52388a8924b9384b5d38b8ad616904268062765abb7281215b6c078",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "998e63fd4194ec641eefed8a246f654c778710e6b674e5920d9691d32d7ef0a9",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "fcos_head",
+      "before": {
+        "cpu": "b4404fceac61c6e1bcb7a6ab8b976d44d1d9e4d3edd1e52a182a20ae0aed7912",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "998e63fd4194ec641eefed8a246f654c778710e6b674e5920d9691d32d7ef0a9",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "detector_backbone_fpn_fcos",
+      "before": {
+        "cpu": "3767841e97d24e04db2846b5a59ffaa192100954803ce1010e27eb01b096a7ed",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "998e63fd4194ec641eefed8a246f654c778710e6b674e5920d9691d32d7ef0a9",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "replacement_superset_front_end_and_scorer",
+      "before": {
+        "cpu": "998e63fd4194ec641eefed8a246f654c778710e6b674e5920d9691d32d7ef0a9",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      },
+      "after": {
+        "cpu": "ca268eadc95a2cfd9768ddada97a95eb670eef6c9b6d6d2370dfd89b6b4319fc",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    },
+    {
+      "event": "construction_end",
+      "state": {
+        "cpu": "ca268eadc95a2cfd9768ddada97a95eb670eef6c9b6d6d2370dfd89b6b4319fc",
+        "cuda": [
+          "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        ]
+      }
+    }
+  ]
+}

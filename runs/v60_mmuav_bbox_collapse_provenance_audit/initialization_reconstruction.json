@@ -1,0 +1,43 @@
+{
+  "v55": {
+    "historical_sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+    "rebuilt_sha256": "91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983",
+    "serialized_exact": true,
+    "state_tensors_exact": true,
+    "tensor_count": 787,
+    "state_fingerprint": "296e55b59fbdaa9711df2b0899a09f05511989e06e6d31fe974cc8970a159ec5"
+  },
+  "v57": {
+    "historical_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+    "rebuilt_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+    "serialized_exact": true,
+    "state_tensors_exact": true,
+    "tensor_count": 791,
+    "state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53"
+  },
+  "initial_bbox_head_v55_v57_bit_identical": true,
+  "initial_bbox_parameters": {
+    "detector.head.regression_head.bbox_reg.weight": {
+      "count": 4608,
+      "minimum": -0.04164299741387367,
+      "maximum": 0.03800453990697861,
+      "mean": -0.00025800420553423464,
+      "std": 0.010165589861571789,
+      "negative_count": 2337,
+      "zero_count": 0,
+      "positive_count": 2271,
+      "finite": true
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "count": 4,
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "negative_count": 0,
+      "zero_count": 4,
+      "positive_count": 0,
+      "finite": true
+    }
+  }
+}

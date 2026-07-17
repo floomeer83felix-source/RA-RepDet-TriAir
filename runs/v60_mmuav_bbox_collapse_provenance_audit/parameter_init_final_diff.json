@@ -1,0 +1,352 @@
+{
+  "v55_initial": {
+    "detector.head.regression_head.bbox_reg.weight": {
+      "value": {
+        "count": 4608,
+        "minimum": -0.04164299741387367,
+        "maximum": 0.03800453990697861,
+        "mean": -0.00025800420553423464,
+        "std": 0.010165589861571789,
+        "negative_count": 2337,
+        "zero_count": 0,
+        "positive_count": 2271,
+        "finite": true
+      },
+      "norm": 0.690285325050354,
+      "delta_norm_from_family_initial": 0.0,
+      "delta_min": 0.0,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "value": {
+        "count": 4,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "negative_count": 0,
+        "zero_count": 4,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.0,
+      "delta_norm_from_family_initial": 0.0,
+      "delta_min": 0.0,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_ctrness.weight": {
+      "value": {
+        "count": 1152,
+        "minimum": -0.030560215935111046,
+        "maximum": 0.031613919883966446,
+        "mean": 2.2771393560105935e-05,
+        "std": 0.009833835065364838,
+        "negative_count": 584,
+        "zero_count": 0,
+        "positive_count": 568,
+        "finite": true
+      },
+      "norm": 0.33377233147621155,
+      "delta_norm_from_family_initial": 0.0,
+      "delta_min": 0.0,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_ctrness.bias": {
+      "value": {
+        "count": 1,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "negative_count": 0,
+        "zero_count": 1,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.0,
+      "delta_norm_from_family_initial": 0.0,
+      "delta_min": 0.0,
+      "delta_max": 0.0
+    }
+  },
+  "v57_initial_equal": {
+    "detector.head.regression_head.bbox_reg.weight": {
+      "value": {
+        "count": 4608,
+        "minimum": -0.04164299741387367,
+        "maximum": 0.03800453990697861,
+        "mean": -0.00025800420553423464,
+        "std": 0.010165589861571789,
+        "negative_count": 2337,
+        "zero_count": 0,
+        "positive_count": 2271,
+        "finite": true
+      },
+      "norm": 0.690285325050354,
+      "delta_norm_from_family_initial": 0.0,
+      "delta_min": 0.0,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "value": {
+        "count": 4,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "negative_count": 0,
+        "zero_count": 4,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.0,
+      "delta_norm_from_family_initial": 0.0,
+      "delta_min": 0.0,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_ctrness.weight": {
+      "value": {
+        "count": 1152,
+        "minimum": -0.030560215935111046,
+        "maximum": 0.031613919883966446,
+        "mean": 2.2771393560105935e-05,
+        "std": 0.009833835065364838,
+        "negative_count": 584,
+        "zero_count": 0,
+        "positive_count": 568,
+        "finite": true
+      },
+      "norm": 0.33377233147621155,
+      "delta_norm_from_family_initial": 0.0,
+      "delta_min": 0.0,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_ctrness.bias": {
+      "value": {
+        "count": 1,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "negative_count": 0,
+        "zero_count": 1,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.0,
+      "delta_norm_from_family_initial": 0.0,
+      "delta_min": 0.0,
+      "delta_max": 0.0
+    }
+  },
+  "v55_final": {
+    "detector.head.regression_head.bbox_reg.weight": {
+      "value": {
+        "count": 4608,
+        "minimum": -0.04549931362271309,
+        "maximum": 0.05589057505130768,
+        "mean": 0.0020814547315239906,
+        "std": 0.011344247497618198,
+        "negative_count": 2017,
+        "zero_count": 0,
+        "positive_count": 2591,
+        "finite": true
+      },
+      "norm": 0.7829282283782959,
+      "delta_norm_from_family_initial": 0.4219612181186676,
+      "delta_min": -0.02532050758600235,
+      "delta_max": 0.04345724359154701
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "value": {
+        "count": 4,
+        "minimum": 0.006357715465128422,
+        "maximum": 0.013841532170772552,
+        "mean": 0.010294727981090546,
+        "std": 0.0032882592640817165,
+        "negative_count": 0,
+        "zero_count": 0,
+        "positive_count": 4,
+        "finite": true
+      },
+      "norm": 0.021614262834191322,
+      "delta_norm_from_family_initial": 0.021614262834191322,
+      "delta_min": 0.006357715465128422,
+      "delta_max": 0.013841532170772552
+    },
+    "detector.head.regression_head.bbox_ctrness.weight": {
+      "value": {
+        "count": 1152,
+        "minimum": -0.08070419728755951,
+        "maximum": 0.05193331465125084,
+        "mean": -0.002497907727956772,
+        "std": 0.01509767398238182,
+        "negative_count": 643,
+        "zero_count": 0,
+        "positive_count": 509,
+        "finite": true
+      },
+      "norm": 0.5193982720375061,
+      "delta_norm_from_family_initial": 0.3360632359981537,
+      "delta_min": -0.062498144805431366,
+      "delta_max": 0.027174439281225204
+    },
+    "detector.head.regression_head.bbox_ctrness.bias": {
+      "value": {
+        "count": 1,
+        "minimum": -0.007102521602064371,
+        "maximum": -0.007102521602064371,
+        "mean": -0.007102521602064371,
+        "std": 0.0,
+        "negative_count": 1,
+        "zero_count": 0,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.007102521602064371,
+      "delta_norm_from_family_initial": 0.007102521602064371,
+      "delta_min": -0.007102521602064371,
+      "delta_max": -0.007102521602064371
+    }
+  },
+  "v57_final_equal": {
+    "detector.head.regression_head.bbox_reg.weight": {
+      "value": {
+        "count": 4608,
+        "minimum": -0.04164299741387367,
+        "maximum": 0.03800453990697861,
+        "mean": -0.00038947624852880836,
+        "std": 0.010159948840737343,
+        "negative_count": 2358,
+        "zero_count": 0,
+        "positive_count": 2250,
+        "finite": true
+      },
+      "norm": 0.6901867985725403,
+      "delta_norm_from_family_initial": 0.018086722120642662,
+      "delta_min": -0.0005558906123042107,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "value": {
+        "count": 4,
+        "minimum": -0.0005558892735280097,
+        "maximum": 0.0,
+        "mean": -0.00026969125610776246,
+        "std": 0.00026994370273314416,
+        "negative_count": 2,
+        "zero_count": 2,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.0007631591870449483,
+      "delta_norm_from_family_initial": 0.0007631591870449483,
+      "delta_min": -0.0005558892735280097,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_ctrness.weight": {
+      "value": {
+        "count": 1152,
+        "minimum": -0.03473208099603653,
+        "maximum": 0.030925173312425613,
+        "mean": -0.0006455068942159414,
+        "std": 0.009973333217203617,
+        "negative_count": 586,
+        "zero_count": 0,
+        "positive_count": 566,
+        "finite": true
+      },
+      "norm": 0.3392144441604614,
+      "delta_norm_from_family_initial": 0.11902089416980743,
+      "delta_min": -0.016526030376553535,
+      "delta_max": 0.010690510272979736
+    },
+    "detector.head.regression_head.bbox_ctrness.bias": {
+      "value": {
+        "count": 1,
+        "minimum": -0.010266204364597797,
+        "maximum": -0.010266204364597797,
+        "mean": -0.010266204364597797,
+        "std": 0.0,
+        "negative_count": 1,
+        "zero_count": 0,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.010266204364597797,
+      "delta_norm_from_family_initial": 0.010266204364597797,
+      "delta_min": -0.010266204364597797,
+      "delta_max": -0.010266204364597797
+    }
+  },
+  "v57_final_reliability": {
+    "detector.head.regression_head.bbox_reg.weight": {
+      "value": {
+        "count": 4608,
+        "minimum": -0.04164299741387367,
+        "maximum": 0.03800453990697861,
+        "mean": -0.0007271734066307545,
+        "std": 0.010195326060056686,
+        "negative_count": 2414,
+        "zero_count": 0,
+        "positive_count": 2194,
+        "finite": true
+      },
+      "norm": 0.6938398480415344,
+      "delta_norm_from_family_initial": 0.07070399820804596,
+      "delta_min": -0.003307509236037731,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_reg.bias": {
+      "value": {
+        "count": 4,
+        "minimum": -0.002950220135971904,
+        "maximum": 0.0,
+        "mean": -0.0008682740153744817,
+        "std": 0.0012208193074911833,
+        "negative_count": 2,
+        "zero_count": 2,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.0029961972031742334,
+      "delta_norm_from_family_initial": 0.0029961972031742334,
+      "delta_min": -0.002950220135971904,
+      "delta_max": 0.0
+    },
+    "detector.head.regression_head.bbox_ctrness.weight": {
+      "value": {
+        "count": 1152,
+        "minimum": -0.03592909872531891,
+        "maximum": 0.028720224276185036,
+        "mean": -0.0007782322936691344,
+        "std": 0.01007380336523056,
+        "negative_count": 599,
+        "zero_count": 0,
+        "positive_count": 553,
+        "finite": true
+      },
+      "norm": 0.3429349958896637,
+      "delta_norm_from_family_initial": 0.11915675550699234,
+      "delta_min": -0.014325086958706379,
+      "delta_max": 0.012691473588347435
+    },
+    "detector.head.regression_head.bbox_ctrness.bias": {
+      "value": {
+        "count": 1,
+        "minimum": -0.011815953068435192,
+        "maximum": -0.011815953068435192,
+        "mean": -0.011815953068435192,
+        "std": 0.0,
+        "negative_count": 1,
+        "zero_count": 0,
+        "positive_count": 0,
+        "finite": true
+      },
+      "norm": 0.011815953068435192,
+      "delta_norm_from_family_initial": 0.011815953068435192,
+      "delta_min": -0.011815953068435192,
+      "delta_max": -0.011815953068435192
+    }
+  }
+}

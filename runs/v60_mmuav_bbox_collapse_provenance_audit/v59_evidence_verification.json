@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "status": true,
+    "mechanism": true,
+    "v57_equal_geometry": true,
+    "v57_reliability_geometry": true,
+    "v55_geometry": true,
+    "zero_training": true
+  },
+  "final_decision_sha256": "a06113edd5f806d130f867f34f5300c17f8b3bd284c556f499c1b1ae4baefcc6"
+}

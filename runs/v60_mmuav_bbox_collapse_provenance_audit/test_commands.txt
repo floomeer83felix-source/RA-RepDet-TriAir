@@ -1,0 +1,3 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v60_bbox_collapse_provenance_audit.py --prepare-only
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v60_bbox_collapse_provenance_audit.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v60_bbox_collapse_provenance_audit.py --run
