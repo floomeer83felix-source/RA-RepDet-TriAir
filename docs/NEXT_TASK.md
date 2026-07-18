@@ -2,11 +2,16 @@
 
 ## Authorization
 
-The user authorizes **V60 MM-UAV V57 bbox-regression collapse provenance audit** under the standing local/private-research-only rule.
+The user authorizes **V61 MM-UAV early bbox-collapse prevention paired pilot** under the standing local/private-research-only rule.
 
-V59 directly established that both V57 fusion checkpoints produce finite, above-threshold foreground tensors but only degenerate decoded boxes, while the V55 alignment-on reference produces positive-area boxes through the same score, post-processing, and evaluator path. V60 must determine whether the V57 bbox collapse was already present at initialization, was induced during training, reflects a dead-ReLU gradient trap, or remains unresolved.
+V59 established that both V57 fusion checkpoints ended with all-degenerate bbox geometry. V60 then established that the V55 and V57 FCOS bbox heads were bit-identical at initialization and that usable V57 geometry existed initially, but the historical logs were too sparse to identify the first collapse step or a unique provenance mechanism. V61 therefore performs one bounded, densely instrumented corrective pilot before any full rerun.
 
-V60 is a diagnostic audit. It authorizes **zero optimizer steps** and no checkpoint repair. It does not authorize retraining, fine-tuning, parameter updates, threshold/NMS/evaluator changes, architecture changes, new seeds, metric replacement, manuscript edits, public claims, redistribution, or external sharing.
+V61 compares exactly two seed-0, alignment-on, equal-fusion V57-superset variants:
+
+1. `v57_equal_control_instrumented`: exact historical V57 initialization and training behavior;
+2. `v57_equal_bbox_bias_p001`: the same initial state, except the four-element final FCOS bbox-regression output bias is set once to exactly `+0.01` before training.
+
+The single scientific intervention is the bbox-output bias initialization. V61 does not authorize a bias sweep, reliability-fusion training, activation or loss changes, full training, AP/AR evaluation, manuscript edits, public claims, redistribution, or external sharing.
 
 ## Required Start
 
@@ -16,227 +21,232 @@ git pull --ff-only research research/ra-repdet-triair
 git rev-parse HEAD
 ```
 
-Treat the V59 completion commit at the current branch head as the prerequisite evidence base. Read `AGENTS.md`, project/status/blocker/task/handoff files, all V52-V59 evidence, V55/V57 model builders and runners, V55/V57 training logs and configs, torchvision FCOS regression-head/loss code, and protected-file rules. Record the actual starting commit. Stop on unexpected repository changes or source-lock mismatch. V51 remains untouched.
+Authorization-base evidence commit: `8e3ac7151c9b70edd4631cfd6aabfdc359a1cc95`.
 
-## Frozen V59 Evidence
+Read `AGENTS.md`, project/status/blocker/task/handoff files, all V52-V60 evidence, V55/V57 model builders and runners, V57 shared sample order, V60 initialization/geometry/gradient evidence, torchvision FCOS bbox-head/loss/decode code, and protected-file rules. Record the actual starting commit. Stop before CUDA work on unexpected repository changes or source-lock mismatch. V51 remains untouched.
+
+## Frozen V60 Evidence
 
 Reproduce without modifying historical evidence:
 
-- V59 status: `V59_STREAMING_ZERO_DETECTION_DIAGNOSIS_COMPLETE_ROOT_CAUSE_IDENTIFIED`;
-- direct mechanism: `V57_BBOX_REGRESSION_DEGENERATE_GEOMETRY`;
-- V57 equal valid/degenerate decoded candidates: `0 / 5,534,979`;
-- V57 reliability valid/degenerate decoded candidates: `0 / 5,535,000`;
-- V55 reference valid/degenerate decoded candidates: `5,535,000 / 0`;
-- V57 equal/reliability/V55 maximum-score medians: `0.34743 / 0.33545 / 0.35583`;
-- every model retained all foreground candidates above the frozen `0.001` threshold before top-k;
-- V57 bbox-regression biases were non-positive and feed torchvision's ReLU distance head; V55 final bbox-regression biases were positive;
-- V59 optimizer/backward/training/gradient executions were `0 / 0 / 0 / 0`.
+- V60 status: `V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_COMPLETE_CAUSE_UNRESOLVED`;
+- V55 and V57 seed-0 initialization SHA256: `91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983` and `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`;
+- initial bbox-regression weights and biases were bit-identical;
+- initial V55/V57 states produced `18,401 / 17,134` valid boxes on the frozen 32-row train subset, so collapse was absent at initialization;
+- final V57 equal/reliability states produced `0 / 272,000` valid boxes on both frozen train and devval probes;
+- final V57 bbox output-layer weight and bias gradients were zero on all four frozen probe rows;
+- final V55 remained geometrically valid with nonzero bbox gradients;
+- historical V57 equal/reliability bbox loss was exactly `1.0` on 4,726 / 4,725 target-bearing observations and never strictly between zero and one;
+- V60 could not identify the exact first collapse step because historical bbox-output and bbox-parameter-gradient traces were absent.
 
-V59 evidence is read-only. V60 must not reinterpret zero-area boxes as valid detections or modify V57 metrics.
+V60 evidence is read-only. Do not relabel V57 as a successful fusion experiment or modify its historical metrics.
 
-## Frozen Data, Initializations, and Checkpoints
+## Frozen Data, Initialization, and Order
 
 Use exactly:
 
 - train manifest: `runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt`;
-- devval manifest: `runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt`;
-- train/devval rows: `7,187 / 1,845`;
+- train rows: 7,187;
 - train SHA256: `e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a`;
-- devval SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
-- V55 common seed-0 initialization SHA256: `91fec577380f895c932ffeb090bba7d376abc1ea1d97d568ae46901a7bbcb983`;
+- RGB boxes as the sole detector targets;
+- historical V57 shared sample order: `runs/v57_mmuav_paired_fusion_ablation/shared_sample_order.txt`;
+- historical order SHA256: `27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b`;
 - V57 common seed-0 superset initialization SHA256: `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`;
-- V55 final alignment-on checkpoint SHA256: `2b4bf19c4ae8d160d5045bb85df17a065e25387313eb5539dfb328ddce76b258`;
-- V57 equal final checkpoint SHA256: `d298e6cf4e901a5ad9a2961ecfbcf2592391e6fa237cd5f82d43594b8ceee142`;
-- V57 reliability final checkpoint SHA256: `b1322ce43e21e7eae2d646be85e0e43628432e79d1d376924fda6f782b05e5df`.
+- V60 frozen 32-row train audit subset SHA256: `d1d59950d62d7b7ed5bb54b54769d2e5af36c3084d933a65a88870a0abf7204c`;
+- V60 frozen four-row gradient subset SHA256: `bfb526aa632b916e61357e215d7ea2f77e2f55bed5db8f20d411703569561166`;
+- V59 frozen 32-row devval subset SHA256: `d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee`.
 
-All three final checkpoints are required locally and must be verified read-only. Reconstruct the V55 and V57 seed-0 initial states using the exact historical builders, construction order, seed handling, and configuration. Their serialized state hashes must reproduce exactly before model probes. If an exact historical initialization cannot be reconstructed, fail closed rather than substituting a new initialization.
+Train on exactly the first 500 entries of the frozen historical V57 order. Materialize and hash that 500-row prefix before model construction. Both variants must use the identical prefix exactly once and in the same order. Do not substitute, reshuffle, repeat, or extend rows after observing results.
 
-## Frozen Sample Sets
+Reconstruct the exact historical V57 common initialization before either run. Verify its serialized SHA256. Create one in-memory copy per variant. For the intervention copy, locate the actual final FCOS bbox-regression output bias from the source-locked model, verify it has exactly four finite elements, and set only those four values to `+0.01`. Record the parameter name, before/after values, delta, and intervention-state hash. Every other tensor must remain bit-identical to the control initial state.
 
-Before reading model outputs, derive and hash:
+Do not initialize from V55, V57 final, or any trained checkpoint.
 
-1. a deterministic 32-row train audit subset using seed 60 and the frozen train manifest;
-2. a deterministic 4-row gradient-probe subset equal to the first four ordered rows of that frozen 32-row subset;
-3. reuse the V59 frozen 32-row devval subset, seed/count/SHA256 `58 / 32 / d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee`, for final-checkpoint no-grad geometry comparison.
+## Frozen Architecture and Configuration
 
-Do not change any subset after observing outputs. RGB boxes remain the sole detector targets.
+Use the isolated V57 equal-superset path:
 
-## Audit Questions
+```text
+independent RGB/IR/event stems
+-> learned IR/event feature alignment to RGB reference grid (enabled)
+-> V57 superset with reliability scorer instantiated but bypassed
+-> exact equal weights [1/3, 1/3, 1/3]
+-> 1x1 projection to 3 channels
+-> RepViT-M0.9-FPN-FCOS
+```
 
-V60 must determine, as far as direct evidence permits:
+Common configuration:
 
-1. whether V55 and V57 detector/bbox-head initial states differ because model-construction order consumes RNG differently;
-2. whether either reconstructed initial state already produces all-zero ReLU bbox distances or degenerate boxes;
-3. whether V57 begins with usable positive bbox distances but collapses during the 7,187-step run;
-4. whether historical V55/V57 logs show different bbox-loss trajectories, zero-loss plateaus, gradient behavior, or first-collapse timing;
-5. whether a no-step loss/gradient probe confirms a dead-ReLU trap in V57 initial or final states;
-6. whether the equal and reliability V57 variants share the same collapse mechanism;
-7. whether another loss, target, parameter-loading, or construction-path difference explains the collapse;
-8. whether provenance remains unresolved because historical evidence is insufficient.
+- seed 0;
+- input 320x320;
+- batch size 1;
+- FP32, AMP off;
+- feature channels 32;
+- FPN channels 128;
+- RepViT-M0.9 without pretrained weights;
+- FCOS historical loss and decode paths unchanged;
+- AdamW, LR `1e-4`, weight decay `1e-4`;
+- no scheduler, clipping, augmentation, workers, early stopping, checkpoint selection, or hyperparameter search;
+- alignment always enabled;
+- equal fusion always active and exactly uniform;
+- reliability scorer dormant in both variants.
 
-## Historical Source and Log Audit
+The only permitted paired difference is the four-element bbox-output bias at initialization.
 
-Source-lock and compare:
+## Frozen Run Order and Budget
 
-- V55 and V57 model construction order and RNG seeding;
-- the point at which stems, aligners, fusion scorer, detector projection, backbone/FPN, and FCOS heads are instantiated;
-- parameter names/shapes and initialization routines for FCOS classification, centerness, and bbox-regression heads;
-- the exact bbox distance activation and loss/decode path;
-- optimizer parameter inclusion and weight-decay treatment;
-- V55/V57 training-log schemas and all available per-step loss components, learning rates, finite flags, and gradient fields.
+Run exactly:
 
-Record RNG-state hashes immediately before and after construction of the multimodal front end, reliability scorer, detector, and bbox-regression head for both reconstructed historical paths. Do not reorder construction to make hashes match.
+1. `v57_equal_control_instrumented` — 500 optimizer steps;
+2. `v57_equal_bbox_bias_p001` — 500 optimizer steps.
 
-Parse the complete committed V55 and V57 training logs. When bbox-specific losses or gradients are present, report exact first/last/min/max, selected frozen step summaries, zero/non-finite counts, and the earliest sustained collapse signal. When a requested field was not historically logged, record the absence explicitly and do not fabricate it.
+V61 optimizer-step ceiling: **1,000 total**, exactly 500 per variant. An incomplete pair is not valid evidence. No restart from a partially trained checkpoint is allowed unless a purely technical crash-recovery snapshot preserves the exact next row, optimizer state, RNG state, and trace ledger; any such recovery must be reported. Final step-500 checkpoints remain local and outside Git.
 
-## Initialization and Final-State Geometry Probe
+## Dense Instrumentation Contract
 
-For these five states:
+Trace the frozen checkpoints/states at:
 
-1. reconstructed V55 seed-0 initialization;
-2. reconstructed V57 seed-0 superset initialization in equal-bypass mode;
-3. V55 final alignment-on checkpoint;
-4. V57 final equal-superset checkpoint;
-5. V57 final reliability-superset checkpoint;
+```text
+step 0, 1, 2, 5, 10, 20, 50, 100, 200, 300, 400, 500
+```
 
-run no-grad forward instrumentation on the frozen 32-row train subset and, for final states, also the frozen 32-row V59 devval subset.
+For every optimizer step, record:
 
-Record by FPN level and aggregate:
+- row ID and target-box count;
+- classification, bbox-regression, centerness, and total losses;
+- LR, global gradient norm, finite flags, time, and CUDA memory;
+- matched foreground-anchor count and valid target count;
+- final bbox-output weight and bias gradient norms before the step;
+- final bbox-output bias values after the step.
 
-- bbox-regression pre-ReLU logits: count, min, max, mean, standard deviation, and fixed quantiles on bounded compact summaries;
-- fraction `<0`, `=0`, and `>0` before ReLU;
-- post-ReLU distance positive fraction and all-zero-location fraction;
-- decoded box width/height distributions before clipping and after clipping;
-- valid, degenerate, non-finite, clipped, and out-of-image counts;
-- bbox-head weight/bias norms, signs, extrema, and parameter deltas from exact initialization;
-- classification and centerness score summaries sufficient to confirm the audit remains geometry-focused.
+At every trace step, run compact instrumentation on the frozen 32-row train subset and record by FPN level and aggregate:
 
-Do not compute AP/AR or alter score thresholds.
+- bbox pre-ReLU count, min, max, mean, standard deviation, fixed quantiles, and negative/zero/positive fractions;
+- post-ReLU positive-distance fraction and all-zero-location fraction;
+- decoded width/height summaries before and after clipping;
+- valid, degenerate, non-finite, clipped, and out-of-image box counts;
+- bbox-output weight/bias norms, extrema, signs, and deltas from initial state;
+- bbox loss and matched-anchor statistics;
+- classification/centerness summaries only as needed to confirm the failure remains geometry-specific.
 
-## Bounded No-Step Gradient Probe
+At each trace step, use a fresh ephemeral copy of the current in-memory state for one no-step backward probe on each of the exact four frozen gradient rows. This authorizes at most **96 diagnostic backward calls** total: 12 trace states x 4 rows x 2 variants. Record component losses, matched anchors, bbox pre/post-ReLU statistics, final bbox-output weight/bias gradient norms, and the fraction of finite nonzero bbox gradients. Discard each ephemeral probe state. Probe calls may not alter the training model, optimizer, RNG/order ledger, or persistent buffers.
 
-V60 authorizes diagnostic backward computation but **no optimizer construction or optimizer step**.
+At step 500, additionally run no-grad geometry instrumentation on the frozen 32-row V59 devval subset. Do not run the full 1,845-row devval set and do not compute AP/AR.
 
-Use fresh ephemeral model instances for the same five states and the fixed four-row gradient subset. For each state:
+## Pre-registered Collapse and Preservation Definitions
 
-- load or reconstruct the state, snapshot parameter and buffer hashes, and clear gradients;
-- use the historical training loss path with targets and the historical configuration;
-- perform exactly one backward probe per row, for at most four backward calls per state and at most twenty backward calls total;
-- record total and component losses, bbox-regression output positive fraction, bbox-head weight/bias gradient norms, detector-head gradient norms, and the fraction of bbox parameters receiving nonzero finite gradients;
-- record whether zero ReLU outputs coincide with zero bbox gradients;
-- discard the ephemeral instance after the probe.
+At a trace step, classify a variant as in `EARLY_BBOX_COLLAPSE` only when both conditions hold simultaneously:
 
-No model state from a probe may be saved or reused. Checkpoint files must remain byte-identical. In-memory BatchNorm or other buffer changes inside an ephemeral probe instance are permitted only when required by the historical loss path; snapshot them, report them, discard the instance, and never persist them. Parameter values must remain unchanged before versus after backward.
+1. the frozen 32-row train subset has zero positive-area decoded boxes after clipping; and
+2. the final bbox-output weight and bias gradient norms are exactly zero on all four frozen gradient-probe rows.
 
-## Root-Cause Refinement
+Classify a trace as `GEOMETRY_AND_GRADIENT_PRESERVED` only when:
 
-Choose one primary classification:
+1. the frozen 32-row train subset has at least one positive-area decoded box after clipping; and
+2. at least one frozen gradient-probe row has a finite nonzero final bbox-output weight or bias gradient.
 
-- `V57_COLLAPSE_PRESENT_AT_INITIALIZATION`;
-- `V57_TRAINING_INDUCED_DEAD_RELU_COLLAPSE`;
-- `V57_CONSTRUCTION_ORDER_RNG_SHIFT_CONTRIBUTED`;
-- `V57_LOSS_OR_GRADIENT_PATH_MISMATCH`;
-- `V57_CHECKPOINT_OR_LOG_PROVENANCE_MISMATCH`;
-- `V57_BBOX_COLLAPSE_PROVENANCE_UNRESOLVED`.
+Record the first trace step meeting either state. Do not invent an intermediate success threshold or select a favorable trace after the run.
 
-Supporting secondary factors may be recorded. A construction-order RNG difference alone is not causal unless the output/gradient probes link it to the bbox geometry. A dead-ReLU mechanism is confirmed only when non-positive pre-ReLU distances, zero post-ReLU distances, and absent bbox gradients are directly observed together.
+## Frozen Decision Logic
+
+Choose exactly one scientific outcome:
+
+- `V61_CONTROL_COLLAPSE_REPRODUCED_POSITIVE_BIAS_PREVENTS_THROUGH_STEP500`: control first reaches `EARLY_BBOX_COLLAPSE`, while the intervention never reaches it and is `GEOMETRY_AND_GRADIENT_PRESERVED` at step 500;
+- `V61_CONTROL_AND_POSITIVE_BIAS_BOTH_COLLAPSE`: both variants reach `EARLY_BBOX_COLLAPSE` by step 500;
+- `V61_CONTROL_COLLAPSE_REPRODUCED_INTERVENTION_RESULT_MIXED`: control collapses, but the intervention satisfies neither the prevention nor collapse definition at step 500;
+- `V61_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_500_STEPS`: control never reaches the strict collapse definition within the frozen budget;
+- `V61_BLOCKED_SOURCE_INITIALIZATION_ORDER_OR_INTERVENTION_CONTRACT`;
+- `V61_BLOCKED_TRAINING_OR_TRACE_INCOMPLETE`;
+- `V61_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`;
+- `V61_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`.
+
+A positive-bias prevention outcome is an early-step, single-seed engineering result only. It does not establish final accuracy, fusion benefit, statistical confirmation, or authorization for a full 7,187-step run.
 
 ## Stop Rules
 
 Fail closed on:
 
-- V59 evidence, data, subset, initialization, checkpoint, or historical-log mismatch;
-- inability to reconstruct exact committed initial states;
-- checkpoint or source mutation;
-- any optimizer construction or optimizer step;
-- more than twenty backward probes or use of rows outside the frozen subsets;
-- parameter changes during a no-step probe;
-- non-finite values that prevent interpretation;
-- AP/AR computation, threshold selection, retraining, repair, or architecture/evaluator modification;
-- production, V40-V59 evidence, V51, manuscript, or heavy-artifact violation.
+- V60 evidence, data, order, subset, or initialization mismatch;
+- any initial paired tensor difference beyond the four-element bbox-output bias;
+- bias value other than exact `+0.01`, a bias sweep, or post-start intervention change;
+- alignment disabled, non-uniform equal fusion, or reliability scorer activation;
+- incorrect run order, repeated/substituted rows, more than 500 steps per variant, or more than 1,000 total optimizer steps;
+- more than 96 diagnostic backward calls or use of samples outside the frozen subsets;
+- probe mutation of training parameters, buffers, optimizer, RNG state, or checkpoints;
+- OOM or non-finite loss, gradient, parameter, alignment, bbox geometry, or diagnostic value;
+- full-devval evaluation, AP/AR computation, threshold selection, checkpoint selection, tuning, or automatic budget extension;
+- protected-file changes or heavy artifacts entering Git.
 
-Do not automatically initialize a positive bbox bias, replace ReLU, add loss terms, resume V57, or start a corrected run. V60 diagnoses provenance only.
+Do not automatically change LR, optimizer, precision, batch size, resolution, bias value, activation, loss, training length, sample order, or trace schedule after observing results.
 
 ## Required Outputs
 
-Create `runs/v60_mmuav_bbox_collapse_provenance_audit/` containing compact files such as:
+Create `runs/v61_mmuav_early_bbox_collapse_prevention/` containing compact files such as:
 
 ```text
 protocol.json
 protocol.md
-source_lock_v60.json
-v59_evidence_verification.json
-checkpoint_verification.json
-initialization_reconstruction.json
-rng_construction_trace.json
-train_audit_subset.txt
-train_audit_subset_sha256.txt
-gradient_probe_subset.txt
-gradient_probe_subset_sha256.txt
-historical_log_schema.json
-historical_loss_trajectory.json
-parameter_init_final_diff.json
-bbox_geometry_probe.json
-no_step_gradient_probe.json
-root_cause_refinement.json
-root_cause_refinement.md
+source_lock_v61.json
+v60_evidence_verification.json
+initialization_verification.json
+intervention_delta.json
+train_prefix_500.txt
+train_prefix_500_sha256.txt
+trace_schedule.json
+per_variant_config.json
+per_variant_training_log.csv
+per_variant_trace_geometry.json
+per_variant_trace_gradient.json
+per_variant_checkpoint_metadata.json
+paired_trace_comparison.json
+final_decision.json
+memory_timing_summary.json
 safety_audit.json
 test_commands.txt
 test_output.txt
-final_decision.json
 ```
 
-Commit only compact metadata, hashes, statistics, and summaries. Checkpoints, raw tensors, predictions, images, feature maps, serialized model states, and other heavy artifacts remain local and outside Git.
+Keep checkpoints, optimizer states, raw tensors, predictions, images, feature maps, and other heavy artifacts local and outside Git.
 
 ## Required Tests
 
 Verify:
 
-- exact V59 evidence, data, initialization, checkpoint, and historical-log source locks;
-- deterministic train and gradient subsets;
-- exact historical initialization reconstruction and state hashes;
-- RNG tracing does not alter construction behavior;
-- geometry instrumentation matches torchvision's actual bbox activation/decode path;
-- five state probes use only frozen rows;
-- optimizer construction/steps remain zero;
-- backward calls do not exceed twenty and parameters remain unchanged;
-- checkpoint hashes remain unchanged before/after;
-- no AP/AR, threshold selection, retraining, or repair path exists;
-- production TriAir, V40-V59 evidence, V51, manuscript, and submission files remain unchanged;
-- heavy artifacts remain outside Git.
+- exact V60 evidence, data, historical order, subsets, and initialization hashes;
+- exact first-500 order prefix and one use per row per variant;
+- paired initial tensors differ only in the four-element bbox-output bias;
+- intervention value is exactly `+0.01` with no sweep path;
+- architecture/configuration identity and dormant scorer behavior;
+- exact 500/500 run order and 1,000-step cap;
+- trace schedule completeness and at most 96 no-step probe backward calls;
+- probe-state isolation and no persistent mutation;
+- collapse/preservation classification follows the pre-registered definitions;
+- no full-devval AP/AR, threshold selection, tuning, checkpoint selection, or automatic extension;
+- production TriAir, V40-V60 evidence, V51 evidence, manuscript, and submission files remain unchanged;
+- heavy artifacts stay outside Git.
 
-Run CPU/source-lock tests before any CUDA probe and save exact commands and outputs.
+Run CPU/source-lock tests before CUDA and save exact commands and outputs.
 
 ## Allowed Changes
 
 - current task/status/blocker/handoff files;
-- `runs/v60_mmuav_bbox_collapse_provenance_audit/**`;
-- V60-only read-only audit, instrumentation, and tests;
-- minimal backward-compatible imports needed for instrumentation without changing defaults.
+- `runs/v61_mmuav_early_bbox_collapse_prevention/**`;
+- V61-only paired runner, instrumentation, configuration, and tests;
+- a V61-only backward-compatible wrapper needed to set and verify the experimental initial bias without changing historical or production defaults.
 
 ## Forbidden Changes
 
-- checkpoint modification or repaired checkpoints;
-- optimizer construction/steps, training, fine-tuning, or resumed V57 runs;
-- raw data or annotations;
-- historical V40-V59 evidence except current pointers;
+- modification of historical V40-V60 evidence;
 - V51 history;
 - production defaults or TriAir semantics;
-- bbox-bias initialization changes, ReLU replacement, new losses, threshold/NMS/evaluator changes;
-- AP/AR recomputation or metric replacement;
+- modification or repair of V57 checkpoints;
+- reliability-fusion training;
+- bias values other than `+0.01`, bias sweeps, activation replacement, new loss terms, threshold/NMS/evaluator changes;
+- more than 1,000 optimizer steps, extra variants, seeds, reruns, tuning, full-devval evaluation, AP/AR, or checkpoint selection;
+- raw data, annotations, checkpoints, predictions, serialized states, images, tensors, or feature maps in Git;
 - public derivatives, manuscript, submission, or public benchmark files.
 
-## Completion State
-
-Choose exactly one:
-
-- `V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_COMPLETE_MECHANISM_IDENTIFIED`;
-- `V60_BBOX_COLLAPSE_PROVENANCE_AUDIT_COMPLETE_CAUSE_UNRESOLVED`;
-- `V60_BLOCKED_SOURCE_INITIALIZATION_OR_CHECKPOINT_CONTRACT`;
-- `V60_BLOCKED_AUDIT_OR_GRADIENT_INSTRUMENTATION`;
-- `V60_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`.
-
-A successful audit does not authorize checkpoint repair, retraining, positive-bias initialization, activation changes, extra evaluation, or manuscript claims. Any corrective experiment requires a separate task.
+## Completion and Handoff
 
 Update status, blocker, and handoff files, then run:
 
@@ -246,8 +256,8 @@ powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 
 ## Commit Message
 
-`diag: audit V57 bbox-regression collapse provenance`
+`exp: run V61 early bbox-collapse prevention pilot`
 
 ## Final Report Requirements
 
-Report starting/final commit SHAs; all source, data, subset, initialization, checkpoint, and log hashes; exact reconstruction and RNG traces; historical loss-field availability and trajectories; initialization/final bbox parameter differences; all geometry and no-step gradient probes; optimizer/backward counts; checkpoint/parameter immutability; root-cause refinement with direct evidence; tests and protected-file results; unresolved limitations; and the next authorization boundary.
+Report starting/final commit SHAs; all evidence/data/order/subset/initialization hashes; the exact intervention tensor and delta; paired configuration identity; exact step, row, and backward-probe counts; dense bbox loss, matched-anchor, geometry, gradient, and bias trajectories; first collapse/preservation traces; checkpoint metadata; timing/memory/finite results; tests and protected-file results; CUDA reproducibility limitations; the selected frozen outcome; and the next authorization boundary.
