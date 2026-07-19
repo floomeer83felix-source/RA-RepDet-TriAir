@@ -1,0 +1,12 @@
+{
+  "decision": "V61_BLOCKED_TRAINING_OR_TRACE_INCOMPLETE",
+  "scientific_outcome_selected": false,
+  "control_optimizer_steps": 500,
+  "intervention_optimizer_steps": 0,
+  "total_optimizer_steps": 500,
+  "diagnostic_backward_calls": 44,
+  "control_checkpoint_saved": false,
+  "recovery_snapshot_available": false,
+  "automatic_restart_authorized": false,
+  "blocker": "train-only target_to_device rejected the first frozen devval trace row"
+}

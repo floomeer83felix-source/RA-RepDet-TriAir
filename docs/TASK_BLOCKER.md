@@ -1,55 +1,97 @@
 # Task Blocker
 
-Status: `V61_EARLY_BBOX_COLLAPSE_PREVENTION_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
+Status: `V61_BLOCKED_TRAINING_OR_TRACE_INCOMPLETE`
 
-Generated: 2026-07-18
+Generated: 2026-07-19
 
-## Current state
+## Exact blocker
 
-V60 completed successfully and excluded collapse at initialization and bbox-initialization changes caused by construction-order RNG consumption. It established that both final V57 variants have all-degenerate geometry and zero bbox output-layer gradients on the frozen probes, while the historical logs lack enough instrumentation to determine the exact first-collapse step.
+The control variant completed 500 optimizer steps. During its required step-500 trace, all 32 frozen train geometry rows completed in memory, then the first frozen devval row failed before aggregation and before the four step-500 gradient probes. `geometry_row()` called the historical optimization-only `target_to_device()` helper, which rejects `devval:00005919` as an invalid optimization sample.
 
-No active engineering blocker remains before the V61 source-lock, paired-initialization, historical-order, dense-trace, and bounded 500-step CUDA pilot.
+The process exited before writing a control checkpoint, optimizer state, RNG state, or trace ledger. Therefore no exact next-state recovery snapshot exists. The frozen task prohibits a rerun or restart without such a snapshot, and the intervention variant cannot be started as an incomplete pair.
 
-## Authorized pilot boundary
+## Consumed work
 
-V61 may:
+- Training-log rows: control `500`, intervention `0`.
+- Optimizer steps: `500 / 1,000`.
+- Diagnostic backward calls: `44 / 96`.
+- Training log SHA256: `a96e0260079cbd05fd62fcc184a6908476490c42ecebe9b44373af4aebfd0965`.
+- V61 checkpoints/recovery snapshots: none.
+- Protected fingerprint and V57 initialization hash: unchanged.
 
-- reproduce the committed V60 evidence and all frozen data/order/subset/initialization hashes;
-- reconstruct the exact V57 seed-0 common superset initial state;
-- create two in-memory paired copies that differ only in the four-element final bbox-regression output bias;
-- leave the control bias unchanged and set the intervention bias once to exact `+0.01`;
-- train the control and intervention in that order for exactly 500 optimizer steps each on the identical first 500 historical V57 rows;
-- keep alignment enabled, equal fusion uniform, and the reliability scorer dormant in both runs;
-- perform dense trace instrumentation at the twelve pre-registered trace states;
-- perform at most 96 no-step backward probes on fresh ephemeral copies using only the frozen four-row subset;
-- run compact step-500 geometry probes on the frozen 32-row train and devval subsets;
-- commit compact logs, hashes, statistics, tests, and conclusions only.
+## Attempted checks
 
-V61 may not:
+1. Confirmed the Python/CUDA process exited and no background training remained.
+2. Counted the CSV ledger and verified exactly 500 control rows and zero intervention rows.
+3. Verified `D:\MM-UAV_v61_local` was not created and no checkpoint or recovery file exists.
+4. Reproduced the call chain from `trace_state()` to `geometry_row()` to the train-only helper.
+5. Rechecked the common initialization SHA256 and the protected-file aggregate fingerprint; both remain unchanged.
+6. Did not patch and restart after observing results, because that would violate the no-rerun and paired-budget contract.
 
-- change any paired factor beyond the initial four-element bbox-output bias;
-- use a bias value other than `+0.01`, run a sweep, or alter the intervention after training begins;
-- activate reliability fusion, disable alignment, change equal weights, or initialize from trained checkpoints;
-- replace ReLU, change loss, threshold, top-k, NMS, preprocessing, detector, architecture, or evaluator;
-- exceed 500 steps per variant, 1,000 optimizer steps total, or 96 diagnostic backward calls;
-- run full devval evaluation, AP/AR, tuning, extra variants/seeds, checkpoint selection, reruns, or automatic extensions;
-- modify production TriAir defaults, V40-V60 evidence, V51 history, manuscript/submission files, raw data, or annotations;
-- put checkpoints, optimizer states, predictions, images, feature maps, tensors, or other heavy artifacts in Git.
+## Related files
 
-## Fail-closed blockers
+- `rarepdet/tools/run_v61_mmuav_bbox_bias_pilot.py`
+- `rarepdet/tools/run_v56_mmuav_multiseed_alignment.py`
+- `datasets/mmuav_feature_alignment_dataset.py`
+- `runs/v61_mmuav_early_bbox_collapse_prevention/per_variant_training_log.csv`
+- `runs/v61_mmuav_early_bbox_collapse_prevention/runner_output.txt`
 
-Stop with the matching V61 blocked state on:
+## Proposed repair options
 
-1. V60 evidence, manifest, historical order, subset, or initialization mismatch;
-2. any initial paired tensor difference beyond the exact four-element bias intervention;
-3. intervention-value drift, bias sweep, incorrect run order, repeated/substituted rows, or step-budget violation;
-4. probe-state mutation, more than 96 diagnostic backward calls, or use of unregistered samples;
-5. alignment/fusion/scorer contract violation;
-6. OOM or non-finite loss, gradient, parameter, alignment, geometry, or diagnostic value;
-7. AP/AR, full-devval evaluation, tuning, checkpoint selection, protected-file change, or heavy-artifact Git violation.
+1. **Fresh paired rerun under new authorization:** replace the devval trace target transfer with a split-agnostic tensor move, add a CPU unit test using an actual frozen devval row, pre-save exact technical recovery state before every trace, archive the blocked output, and explicitly authorize a fresh 500+500 run. This repeats 500 control steps and must not be inferred from the current task.
+2. **Close V61 as blocked and define a new pilot:** preserve the partial control log as diagnostic-only evidence, create a separately numbered task with the corrected trace path and a newly frozen budget, and make no prevention claim from V61.
 
-Do not automatically change the bias, LR, optimizer, precision, batch size, resolution, activation, loss, run length, sample order, or trace schedule after observing behavior.
+## Last 50 error lines
 
-## Next action
+```text
+KSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas
+/index.html#results-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp
+:208.)
+At line:2 char:93
++ ... v,noheader; & 'C:\Users\xinnan\.conda\envs\pytorch\python.exe' rarepd ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\xinnan...ntext.cpp:208.):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
 
-Execute V61 exactly as written in `docs/NEXT_TASK.md`. The task determines whether exact `+0.01` bbox-output bias initialization prevents the strict early geometry-and-gradient collapse through step 500. Even a positive result does not authorize a full corrected training run.
+  return torch.affine_grid_generator(theta, size, align_corners)
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\autograd\graph.py:825: UserWarning: grid_sampler_2d_backwar
+d_cuda does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=Tr
+ue)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic sup
+port for this operation. (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:95.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\autograd\graph.py:825: UserWarning: Deterministic behavior
+was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`,
+but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behav
+ior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG
+=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#r
+esults-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:208.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=1 valid=19038
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=2 valid=19178
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=5 valid=1934
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=10 valid=192
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=20 valid=0
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=50 valid=2
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=100 valid=0
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=200 valid=0
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=300 valid=0
+V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=400 valid=0
+Traceback (most recent call last):
+  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 818, in <module>
+    main()
+  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 813, in main
+    run()
+  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 745, in run
+    summary, traces = train_variant(name, states[name], order, train_dataset, dev_dataset,
+  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 672, in train_variant
+    traces.append(trace_state(model, optimizer, completed, train_dataset, dev_dataset, subsets, device))
+  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 571, in trace_state
+    dev_records = [geometry_row(model, dev_dataset[index], device) for index in subsets["devval_indices"]]
+  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 571, in <listcomp>
+    dev_records = [geometry_row(model, dev_dataset[index], device) for index in subsets["devval_indices"]]
+  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 372, in geometry_row
+    targets = target_to_device(sample, device)
+  File "E:\RepViT-main\rarepdet\tools\run_v56_mmuav_multiseed_alignment.py", line 292, in target_to_device
+    raise RuntimeError(f"Invalid optimization sample: {sample['original_row_id']}")
+RuntimeError: Invalid optimization sample: devval:00005919
+```

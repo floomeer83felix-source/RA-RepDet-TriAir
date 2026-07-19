@@ -1,0 +1,19 @@
+{
+  "optimizer_steps": 500,
+  "optimizer_step_limit": 1000,
+  "per_variant_optimizer_steps": {
+    "v57_equal_control_instrumented": 500,
+    "v57_equal_bbox_bias_p001": 0
+  },
+  "probe_backward_calls": 44,
+  "probe_backward_limit": 96,
+  "checkpoint_files_created": 0,
+  "full_devval_evaluation": false,
+  "ap_ar_computed": false,
+  "threshold_selection": false,
+  "tuning": false,
+  "reruns": 0,
+  "protected_fingerprint_unchanged": true,
+  "common_initialization_unchanged": true,
+  "run_complete": false
+}

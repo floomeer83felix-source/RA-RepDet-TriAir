@@ -1,0 +1,16 @@
+{
+  "status": "V61_BLOCKED_TRAINING_OR_TRACE_INCOMPLETE",
+  "failed_variant": "v57_equal_control_instrumented",
+  "failed_trace_step": 500,
+  "failed_phase": "frozen_devval_geometry_trace",
+  "failed_row_id": "devval:00005919",
+  "exception": "RuntimeError: Invalid optimization sample: devval:00005919",
+  "training_log_rows": 500,
+  "training_log_sha256": "a96e0260079cbd05fd62fcc184a6908476490c42ecebe9b44373af4aebfd0965",
+  "control_steps": 500,
+  "intervention_steps": 0,
+  "diagnostic_backward_calls": 44,
+  "checkpoint_or_recovery_snapshot": false,
+  "protected_fingerprint_unchanged": true,
+  "common_init_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9"
+}

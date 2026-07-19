@@ -1,0 +1,3 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v61_mmuav_bbox_bias_pilot.py --prepare-only
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v61_mmuav_bbox_bias_pilot.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v61_mmuav_bbox_bias_pilot.py --run

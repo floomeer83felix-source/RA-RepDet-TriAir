@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "decision": true,
+    "classification": true,
+    "initial_usable": true,
+    "initial_bbox_identical": true,
+    "zero_optimizer": true,
+    "twenty_backward": true,
+    "immutable": true
+  },
+  "file_sha256": {
+    "final_decision.json": "2b5477fa5a72b6b8e5e5c02ef63e64912d35048623413b43c5906671227c4b84",
+    "initialization_reconstruction.json": "40cf9dac04c4e700a0843a7acd5b396b5e282ee45a26206314ef52878f390797",
+    "safety_audit.json": "224ca64932fcf30dce2b458e599e038604f7d4923b3ea9218bf0c8e205b9d8df"
+  }
+}
