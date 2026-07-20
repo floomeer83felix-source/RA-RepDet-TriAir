@@ -1,0 +1,27 @@
+{
+  "parameter_name": "detector.head.regression_head.bbox_reg.bias",
+  "before": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "after": [
+    0.009999999776482582,
+    0.009999999776482582,
+    0.009999999776482582,
+    0.009999999776482582
+  ],
+  "delta": [
+    0.009999999776482582,
+    0.009999999776482582,
+    0.009999999776482582,
+    0.009999999776482582
+  ],
+  "changed_tensor_count": 1,
+  "changed_element_count": 4,
+  "control_state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53",
+  "intervention_state_fingerprint": "0177870ceb542ee36856214f8c9e3df36fd35498d9c89d58e28c585aaaa30569",
+  "all_other_tensors_bit_identical": true,
+  "bias_sweep": false
+}

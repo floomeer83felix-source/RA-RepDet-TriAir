@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "decision": true,
+    "failed_row": true,
+    "failed_step": true,
+    "steps": true,
+    "backward": true,
+    "no_recovery": true,
+    "log_hash": true,
+    "safety": true
+  },
+  "file_sha256": {
+    "failure_report.json": "0a49a8789f615376535f21ecd656ac5f94c53db4a989a70e4a70bebd10ff96b1",
+    "final_decision.json": "104874906bc83ce8720c200f7687106e0ff2ceaa86fde9ec8dd9f9fe120f6ec9",
+    "safety_audit.json": "58ed19e517e24a2c8b1255684fd912db67afaf644cf0f8b40df7aad1d266f674",
+    "per_variant_training_log.csv": "a96e0260079cbd05fd62fcc184a6908476490c42ecebe9b44373af4aebfd0965",
+    "runner_output.txt": "43584790e90ea0160e636643fbc026e61c4628cc26a1587faa0b33ec4e5d02d6"
+  }
+}

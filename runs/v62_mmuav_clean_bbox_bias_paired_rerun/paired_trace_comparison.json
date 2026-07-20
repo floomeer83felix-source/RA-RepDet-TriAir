@@ -1,0 +1,114 @@
+{
+  "trace_classifications": {
+    "v62_equal_control_instrumented": [
+      {
+        "step": 0,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 1,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 2,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 5,
+        "state": "NEITHER_PREREGISTERED_STATE"
+      },
+      {
+        "step": 10,
+        "state": "NEITHER_PREREGISTERED_STATE"
+      },
+      {
+        "step": 20,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 50,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 100,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 200,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 300,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 400,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 500,
+        "state": "EARLY_BBOX_COLLAPSE"
+      }
+    ],
+    "v62_equal_bbox_bias_p001": [
+      {
+        "step": 0,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 1,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 2,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 5,
+        "state": "NEITHER_PREREGISTERED_STATE"
+      },
+      {
+        "step": 10,
+        "state": "NEITHER_PREREGISTERED_STATE"
+      },
+      {
+        "step": 20,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 50,
+        "state": "NEITHER_PREREGISTERED_STATE"
+      },
+      {
+        "step": 100,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 200,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 300,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 400,
+        "state": "EARLY_BBOX_COLLAPSE"
+      },
+      {
+        "step": 500,
+        "state": "EARLY_BBOX_COLLAPSE"
+      }
+    ]
+  },
+  "first_collapse_step": {
+    "v62_equal_control_instrumented": 20,
+    "v62_equal_bbox_bias_p001": 20
+  },
+  "first_preserved_step": {
+    "v62_equal_control_instrumented": 0,
+    "v62_equal_bbox_bias_p001": 0
+  },
+  "selected_outcome": "V62_CONTROL_AND_POSITIVE_BIAS_BOTH_COLLAPSE",
+  "single_seed_early_engineering_evidence_only": true
+}

@@ -1,0 +1,633 @@
+{
+  "variants": {
+    "v62_equal_control_instrumented": [
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 0,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 27054080,
+        "sha256": "40d64e060e5a32a2fefbf7e3ef53a6573e1712cca16d9070b172d2843421f68b",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 0,
+        "log_sha256": "8bd45e4fcd796e2d0a07fa1077e9811a5affe3bb098db00b7b0b4b16ce6997f3",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 0
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 1,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80598712,
+        "sha256": "9206d194b47ae7b28f67fc86b097219276d4e6c098ea9709bd05786b83e42bec",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 1,
+        "log_sha256": "0326793146dcc025519e0af4ef9d244108dc31ff6c9426397e9f5912cbe603ec",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 1
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 2,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80599096,
+        "sha256": "71c9abc82d5ac07cc1678139b6e2faff05bb3258a83d82772bb0739158e1b380",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 2,
+        "log_sha256": "299d5d32bca57f2eb44d6eecea29128d59123a05bcf7cf3f256ed0cbf77e15d5",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 2
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 5,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80599480,
+        "sha256": "893df08c740248fe3655feeaeba0c032ad1e98152b659f032c6710e157e8b344",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 5,
+        "log_sha256": "0809c8ee544be987ed94ff3128e30853b5b0929a7d6641cff64e1ea8222cee54",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 5
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 10,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80599928,
+        "sha256": "aa8e8f251a105b503c6ebc118bf6b72d2a7ff554d2feaad8b37036d739b11708",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 10,
+        "log_sha256": "09ba57d059dcbbba8aed62e12d39aba1cd7cd246e9d2fe7c09fc197600a6d32f",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 10
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 20,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80600312,
+        "sha256": "0897c969d12666a8c28515a64ce4a7738b6a1ef63b65b63e2caf2b59cfa7210d",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 20,
+        "log_sha256": "f2b0960d1df9fd217445a32d3cc155834ea30816892be2857df4bb2fbb9b1a33",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 20
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 50,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80600696,
+        "sha256": "4b039e3d5acd819e61f878431a640c45014a6e4460ea9819fac896f617ce9d4d",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 50,
+        "log_sha256": "afcad5bf982b94ddfc0f20fc534478df3a089c2087514a7c96c7a9baf2eed0b3",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 50
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 100,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80601080,
+        "sha256": "7892a35ff1572fd7b61ff3385d55c8ef1405939439eba4c94ad411c7f6a75c34",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 100,
+        "log_sha256": "1c62c979bec4c88ba79327bd8984c9d13291e42344e3556046f6f8928f6dd5be",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 100
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 200,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80601464,
+        "sha256": "0e13e8fbe2a0ebb5c4a73be9f755452a55d96ec701fd9d39000c3ec4e58229ab",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 200,
+        "log_sha256": "3af286d8aa307e26c12fbe55f226bd2a0dd41b11c8a92139f559d164fb7bf200",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 200
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 300,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80601912,
+        "sha256": "898d861cbf756c2e84e2c743b9b354ae5633fdc079358fbef30f9b8cb7cc8a0c",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 300,
+        "log_sha256": "0bb511a08ba138269675086e92bd4656d63f439b65141d1d89bd570f213c5210",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 300
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 400,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80602296,
+        "sha256": "819ef5c637a86926f4193e33f4f58ad72fbe5e4b38494f92405e31996aa058a7",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 400,
+        "log_sha256": "0a45cf74fe825c3a19241e47d75e33c618f357ea1f5771875b06c85c7723803c",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 400
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 500,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_control_instrumented_latest.pt",
+        "bytes": 80602680,
+        "sha256": "5fc6b5dbbdaecff1b6022b018c3607d8ecf3c932404bd2f3780f50682f37909d",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 500,
+        "log_sha256": "78b3fbfe62cd4346d097f5d6eeff764e36fd1ecdfb7c012ded2bd4a5ab1be7b0",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_control_instrumented",
+        "trace_step": 500
+      }
+    ],
+    "v62_equal_bbox_bias_p001": [
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 0,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 27054080,
+        "sha256": "afd6037529ad7ac5a41da90d215c13054c64824dbe1ac791b66f779b5106b84f",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 500,
+        "log_sha256": "78b3fbfe62cd4346d097f5d6eeff764e36fd1ecdfb7c012ded2bd4a5ab1be7b0",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 0
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 1,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80598712,
+        "sha256": "a5f0ea412e42b8da9dce8364992787a33ad50ed04c22d5ab821046bf383f5629",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 501,
+        "log_sha256": "5f447c08279cc30ad29619c057f6649cc7b5ee8f4a63b8fa67bbe9a97c854018",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 1
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 2,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80599096,
+        "sha256": "bdab9c1d9942adb191442a5fa571ed12352bf93d655df61123747d85fa9398f4",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 502,
+        "log_sha256": "3952ad0a143fce08f5511bb6f32274bb7477cc9f6bdf1892d66a02ad6a1a6b5f",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 2
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 5,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80599480,
+        "sha256": "e62a82a2ed0ce0343334e0f5a0acbef3e27dd28a010c2dd4e5fbad1f7782512c",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 505,
+        "log_sha256": "ad4499ad81f146f1554ff1eadad9ca27776382e0a9366205e0851727b65ea65e",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 5
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 10,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80599864,
+        "sha256": "e7d98af422f1c2804c312f4d17b99e4619130c379c9d51879117ae1d0b5916c8",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 510,
+        "log_sha256": "84228ac3e4bea9914f11ece8a11cf308e0f96804d2923c111a4aee106e81bcb7",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 10
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 20,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80600248,
+        "sha256": "04adf3010451ba06d7809150e7d7992538f57bf173267ec44e68a8a7083da709",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 520,
+        "log_sha256": "1099b5fe10aea6e77622ef674d6dc1662eec550a4541d9af78952cb126c26cc5",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 20
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 50,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80600696,
+        "sha256": "3965666ef6d06f14fcaabb2893563b0ef4b55781c7c7cfc531a90afa425bfc09",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 550,
+        "log_sha256": "7d5bc5f119069acd4e7da2ee053a15fdb82f1e0c65122b6f91a15649f2d21593",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 50
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 100,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80601080,
+        "sha256": "d7a78171e9664bc62d6beb623070663f98989e6f4fc8b70c601e1f8355aead02",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 600,
+        "log_sha256": "ed3c64efe5bfe83ef1e3130c140ee44ecf945c6a19682716a54fc179edb29518",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 100
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 200,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80601464,
+        "sha256": "daf4d8490a4dbbe80ebbaaa717fa0730fd300afce5858ba8b19f64e6b45ec3e7",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 700,
+        "log_sha256": "86b7c7ca4f00bfc55073404e6e97d4ec8bf818b0dc59f9ba101219cab7f9cc7f",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 200
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 300,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80601848,
+        "sha256": "1711efc99f3a2978127682e841fe1c875476cb974dcd0dfe2f2f9177564a1403",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 800,
+        "log_sha256": "8866eedefb59aa097779aebea418b5beda48f9f0978a6129951727521271047d",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 300
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 400,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80602232,
+        "sha256": "93a4a3b9277af336ed3a0a31154d0f7a9cfe72f98d4ecc4cdc395919f703bdba",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 900,
+        "log_sha256": "8eb883e4628bcb77501dc74cb38e31c1f0c9927c882eadfb6d584c2b437d3697",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 400
+      },
+      {
+        "event": "snapshot_verified",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 500,
+        "path_local_not_committed": "D:\\MM-UAV_v62_local\\recovery\\v62_equal_bbox_bias_p001_latest.pt",
+        "bytes": 80602616,
+        "sha256": "bf69e56304ff634bed2b01c69c7f2704de386dddf14a8d9edfaa091516eba84f",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "log_row_count": 1000,
+        "log_sha256": "664128138115b74774e5e04e4e7b3429821661ec63c73fa7a6a931f451d47e40",
+        "recovery_used": false
+      },
+      {
+        "event": "trace_complete",
+        "variant": "v62_equal_bbox_bias_p001",
+        "trace_step": 500
+      }
+    ]
+  },
+  "recovery_events": 0
+}

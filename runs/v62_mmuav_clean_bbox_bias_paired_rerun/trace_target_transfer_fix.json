@@ -1,0 +1,9 @@
+{
+  "failed_row_id": "devval:00005919",
+  "devval_index": 1200,
+  "trace_mover_accepted": true,
+  "boxes_labels_exact": true,
+  "row_identity_preserved": true,
+  "historical_optimization_helper_still_rejects": true,
+  "coordinate_or_label_rewrite": false
+}

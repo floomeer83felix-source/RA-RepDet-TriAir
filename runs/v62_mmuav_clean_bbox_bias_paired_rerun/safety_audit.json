@@ -1,0 +1,23 @@
+{
+  "optimizer_steps": 1000,
+  "optimizer_step_limit": 1000,
+  "per_variant_optimizer_steps": {
+    "v62_equal_control_instrumented": 500,
+    "v62_equal_bbox_bias_p001": 500
+  },
+  "probe_backward_calls": 96,
+  "probe_backward_limit": 96,
+  "verified_recovery_snapshots": 24,
+  "recovery_events": 0,
+  "all_recovery_round_trips": true,
+  "all_trace_isolation_checks": true,
+  "all_finite": true,
+  "v61_evidence_unchanged": true,
+  "protected_fingerprint_unchanged": true,
+  "frozen_devval_rows_per_variant": 32,
+  "full_devval_rows": 0,
+  "ap_ar_computed": false,
+  "threshold_selection": false,
+  "tuning": false,
+  "checkpoint_selection": false
+}

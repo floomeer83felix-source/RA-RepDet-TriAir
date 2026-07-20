@@ -1,0 +1,4086 @@
+{
+  "v62_equal_control_instrumented": [
+    {
+      "step": 0,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 1.1520026922225952,
+              "bbox_regression": 1.1473605632781982,
+              "bbox_ctrness": 0.7010951042175293
+            },
+            "loss_total": 3.000458240509033,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5974047183990479,
+              "maximum": 1.0729655027389526,
+              "mean": -0.0747482106089592,
+              "std": 0.2630249559879303,
+              "negative_count": 20672,
+              "zero_count": 0,
+              "positive_count": 13328,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5974047183990479,
+                "0.01": -0.7442478710412979,
+                "0.25": -0.22654268890619278,
+                "0.5": -0.06378840655088425,
+                "0.75": 0.08909095451235771,
+                "0.99": 0.5706905150413524,
+                "1": 1.0729655027389526
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3920000195503235,
+            "bbox_weight_gradient_norm": 28.2994599412599,
+            "bbox_bias_gradient_norm": 1.4539880752563477,
+            "bbox_gradient_nonzero_fraction": 0.12424111366271973,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.1595838069915771,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6695119738578796
+            },
+            "loss_total": 2.8290958404541016,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.2567009925842285,
+              "maximum": 1.2996790409088135,
+              "mean": -0.07905925810337067,
+              "std": 0.2641613483428955,
+              "negative_count": 21059,
+              "zero_count": 0,
+              "positive_count": 12941,
+              "finite": true,
+              "quantiles": {
+                "0": -1.2567009925842285,
+                "0.01": -0.7115931087732315,
+                "0.25": -0.2501755878329277,
+                "0.5": -0.0776599757373333,
+                "0.75": 0.0931308027356863,
+                "0.99": 0.5762690061330805,
+                "1": 1.2996790409088135
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3806176483631134,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 1.109809398651123,
+              "bbox_regression": 1.173500895500183,
+              "bbox_ctrness": 0.6905105113983154
+            },
+            "loss_total": 2.973820924758911,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.395999550819397,
+              "maximum": 1.3539795875549316,
+              "mean": -0.07645322382450104,
+              "std": 0.2638929486274719,
+              "negative_count": 21042,
+              "zero_count": 0,
+              "positive_count": 12958,
+              "finite": true,
+              "quantiles": {
+                "0": -1.395999550819397,
+                "0.01": -0.8035625290870666,
+                "0.25": -0.19836437702178955,
+                "0.5": -0.05383656173944473,
+                "0.75": 0.068960752338171,
+                "0.99": 0.580842670202256,
+                "1": 1.3539795875549316
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.38111764192581177,
+            "bbox_weight_gradient_norm": 9.273465622425052,
+            "bbox_bias_gradient_norm": 0.2432612272898857,
+            "bbox_gradient_nonzero_fraction": 0.5026019215583801,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.1066408157348633,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7197641134262085
+            },
+            "loss_total": 2.8264050483703613,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.191186547279358,
+              "maximum": 1.0642439126968384,
+              "mean": -0.07961688190698624,
+              "std": 0.26029857993125916,
+              "negative_count": 20956,
+              "zero_count": 0,
+              "positive_count": 13044,
+              "finite": true,
+              "quantiles": {
+                "0": -1.191186547279358,
+                "0.01": -0.7281780785322189,
+                "0.25": -0.23852651193737984,
+                "0.5": -0.06726116687059402,
+                "0.75": 0.08315430395305157,
+                "0.99": 0.5460381680727009,
+                "1": 1.0642439126968384
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.38364705443382263,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "085a5f0c6f9c79d20ad3a82c48779d3cbf4c2d742eda068d0be67a01abf7f31b",
+        "parameter_hash_after": "085a5f0c6f9c79d20ad3a82c48779d3cbf4c2d742eda068d0be67a01abf7f31b",
+        "buffer_hash_before": "1e81fd0c2e276fd863f58fe3ab540d0429926926ec131c8fc1d8a240f7f2b0aa",
+        "buffer_hash_after": "ea0ded0251ef9a3a7d6fb75611020b861fad276bd63ed795669fdde103549e9f",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "7f19b0b306cc4c6779e87915c3f733ebe338fe52cffc1a3c4621dea23f5a7a50",
+      "rng_hash_after": "7f19b0b306cc4c6779e87915c3f733ebe338fe52cffc1a3c4621dea23f5a7a50"
+    },
+    {
+      "step": 1,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 1.096329927444458,
+              "bbox_regression": 1.2762012481689453,
+              "bbox_ctrness": 0.7059516310691833
+            },
+            "loss_total": 3.0784828662872314,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5245859622955322,
+              "maximum": 1.1093792915344238,
+              "mean": -0.05576460063457489,
+              "std": 0.27391335368156433,
+              "negative_count": 19660,
+              "zero_count": 0,
+              "positive_count": 14340,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5245859622955322,
+                "0.01": -0.7402176576852798,
+                "0.25": -0.2177431881427765,
+                "0.5": -0.05010377615690231,
+                "0.75": 0.11467203125357628,
+                "0.99": 0.6276947909593583,
+                "1": 1.1093792915344238
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.42176470160484314,
+            "bbox_weight_gradient_norm": 20.498859041157658,
+            "bbox_bias_gradient_norm": 1.0477694272994995,
+            "bbox_gradient_nonzero_fraction": 0.12098872661590576,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.1088043451309204,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6739088296890259
+            },
+            "loss_total": 2.782712936401367,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.328472375869751,
+              "maximum": 1.335076928138733,
+              "mean": -0.057746101170778275,
+              "std": 0.2750762104988098,
+              "negative_count": 19979,
+              "zero_count": 0,
+              "positive_count": 14021,
+              "finite": true,
+              "quantiles": {
+                "0": -1.328472375869751,
+                "0.01": -0.7118893557786942,
+                "0.25": -0.23821859061717987,
+                "0.5": -0.06021813675761223,
+                "0.75": 0.12249666638672352,
+                "0.99": 0.6235755717754383,
+                "1": 1.335076928138733
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.4123823642730713,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 1.0796364545822144,
+              "bbox_regression": 1.184988260269165,
+              "bbox_ctrness": 0.6991259455680847
+            },
+            "loss_total": 2.9637506008148193,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.3707199096679688,
+              "maximum": 1.4554152488708496,
+              "mean": -0.059261634945869446,
+              "std": 0.2730509042739868,
+              "negative_count": 19939,
+              "zero_count": 0,
+              "positive_count": 14061,
+              "finite": true,
+              "quantiles": {
+                "0": -1.3707199096679688,
+                "0.01": -0.7964435225725174,
+                "0.25": -0.1901783049106598,
+                "0.5": -0.043365975841879845,
+                "0.75": 0.09077238850295544,
+                "0.99": 0.6394363385438923,
+                "1": 1.4554152488708496
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.41355884075164795,
+            "bbox_weight_gradient_norm": 8.138739036478583,
+            "bbox_bias_gradient_norm": 0.2110464151079331,
+            "bbox_gradient_nonzero_fraction": 0.5002168416976929,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.0483839511871338,
+              "bbox_regression": 0.9977955222129822,
+              "bbox_ctrness": 0.7017444372177124
+            },
+            "loss_total": 2.7479238510131836,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.2321105003356934,
+              "maximum": 1.1682193279266357,
+              "mean": -0.06057777628302574,
+              "std": 0.27094340324401855,
+              "negative_count": 19956,
+              "zero_count": 0,
+              "positive_count": 14044,
+              "finite": true,
+              "quantiles": {
+                "0": -1.2321105003356934,
+                "0.01": -0.7148034286499023,
+                "0.25": -0.22805839776992798,
+                "0.5": -0.053968509659171104,
+                "0.75": 0.10835127159953117,
+                "0.99": 0.5999428576231006,
+                "1": 1.1682193279266357
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.4130588471889496,
+            "bbox_weight_gradient_norm": 2.0342397444167473,
+            "bbox_bias_gradient_norm": 0.06885041224385174,
+            "bbox_gradient_nonzero_fraction": 0.36816999316215515,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "e5cb17e746b283a7e4883f625ae93e338861b6a403731719768da07bfb771ba2",
+        "parameter_hash_after": "e5cb17e746b283a7e4883f625ae93e338861b6a403731719768da07bfb771ba2",
+        "buffer_hash_before": "dc42264c00d013d6cbd3dbe8cf88567cfff9a5a8c1334c33c4bae83fe995e8e2",
+        "buffer_hash_after": "16ff264a5bd826726b4e063f371ea318c60593b62bc8cc2b66525de9019fe74d",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "9493a112a06a74b1774fdaee65cd9ecca8139bba7d1931e111c8bfa168aa250c",
+      "rng_hash_after": "9493a112a06a74b1774fdaee65cd9ecca8139bba7d1931e111c8bfa168aa250c"
+    },
+    {
+      "step": 2,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 1.0435435771942139,
+              "bbox_regression": 1.0816948413848877,
+              "bbox_ctrness": 0.7077253460884094
+            },
+            "loss_total": 2.832963705062866,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.4913491010665894,
+              "maximum": 1.0376746654510498,
+              "mean": -0.08376847207546234,
+              "std": 0.24237214028835297,
+              "negative_count": 21863,
+              "zero_count": 0,
+              "positive_count": 12137,
+              "finite": true,
+              "quantiles": {
+                "0": -1.4913491010665894,
+                "0.01": -0.7327561068534851,
+                "0.25": -0.21199771016836166,
+                "0.5": -0.06785517558455467,
+                "0.75": 0.061072501353919506,
+                "0.99": 0.5103600651025775,
+                "1": 1.0376746654510498
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3569706082344055,
+            "bbox_weight_gradient_norm": 31.127624902039255,
+            "bbox_bias_gradient_norm": 1.6865689754486084,
+            "bbox_gradient_nonzero_fraction": 0.12098872661590576,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.0676130056381226,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6703222990036011
+            },
+            "loss_total": 2.7379355430603027,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.4159184694290161,
+              "maximum": 1.3089113235473633,
+              "mean": -0.0869203731417656,
+              "std": 0.24266356229782104,
+              "negative_count": 21934,
+              "zero_count": 0,
+              "positive_count": 12066,
+              "finite": true,
+              "quantiles": {
+                "0": -1.4159184694290161,
+                "0.01": -0.713950320482254,
+                "0.25": -0.23147927969694138,
+                "0.5": -0.07974931225180626,
+                "0.75": 0.0635899119079113,
+                "0.99": 0.5048642480373395,
+                "1": 1.3089113235473633
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3548823595046997,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 1.0541019439697266,
+              "bbox_regression": 1.1730108261108398,
+              "bbox_ctrness": 0.7089371681213379
+            },
+            "loss_total": 2.9360499382019043,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.2814123630523682,
+              "maximum": 1.2171096801757812,
+              "mean": -0.08633201569318771,
+              "std": 0.24394120275974274,
+              "negative_count": 22408,
+              "zero_count": 0,
+              "positive_count": 11592,
+              "finite": true,
+              "quantiles": {
+                "0": -1.2814123630523682,
+                "0.01": -0.7906634104251862,
+                "0.25": -0.18840409815311432,
+                "0.5": -0.06233636662364006,
+                "0.75": 0.04579942673444748,
+                "0.99": 0.516905476450921,
+                "1": 1.2171096801757812
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3409411907196045,
+            "bbox_weight_gradient_norm": 10.69004705625608,
+            "bbox_bias_gradient_norm": 0.26755372224279367,
+            "bbox_gradient_nonzero_fraction": 0.5017346143722534,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.0050073862075806,
+              "bbox_regression": 0.9985783100128174,
+              "bbox_ctrness": 0.710049033164978
+            },
+            "loss_total": 2.713634967803955,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.182502269744873,
+              "maximum": 0.8943517208099365,
+              "mean": -0.08811067044734955,
+              "std": 0.23914700746536255,
+              "negative_count": 22051,
+              "zero_count": 0,
+              "positive_count": 11949,
+              "finite": true,
+              "quantiles": {
+                "0": -1.182502269744873,
+                "0.01": -0.7135788565874099,
+                "0.25": -0.22394193708896637,
+                "0.5": -0.0736931748688221,
+                "0.75": 0.060383765026926994,
+                "0.99": 0.4744913658499722,
+                "1": 0.8943517208099365
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3514411747455597,
+            "bbox_weight_gradient_norm": 1.010452191088539,
+            "bbox_bias_gradient_norm": 0.032783637595478005,
+            "bbox_gradient_nonzero_fraction": 0.3688204884529114,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "b18005191badcff82632f1db757e33d994e4d1cba7c460a74f0b6eb427d82ab4",
+        "parameter_hash_after": "b18005191badcff82632f1db757e33d994e4d1cba7c460a74f0b6eb427d82ab4",
+        "buffer_hash_before": "e20a8366dd05de9b589aab47ea0a5fab6f7bf5607240590b73b1cd2b44e18879",
+        "buffer_hash_after": "d2afcc212bb59929fdd0e20ed177c9813426af3f2fad34422570552d1fe2f29d",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "d4277e4621103e8f9aac469ccfe27717276440e7ed641655a168d37cb44bcb78",
+      "rng_hash_after": "d4277e4621103e8f9aac469ccfe27717276440e7ed641655a168d37cb44bcb78"
+    },
+    {
+      "step": 5,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.9944416284561157,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6994775533676147
+            },
+            "loss_total": 2.6939191818237305,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5442490577697754,
+              "maximum": 1.0415186882019043,
+              "mean": -0.18400008976459503,
+              "std": 0.20576797425746918,
+              "negative_count": 28688,
+              "zero_count": 0,
+              "positive_count": 5312,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5442490577697754,
+                "0.01": -0.7631563812494278,
+                "0.25": -0.29353640228509903,
+                "0.5": -0.16125985234975815,
+                "0.75": -0.05208789370954037,
+                "0.99": 0.27639353185892174,
+                "1": 1.0415186882019043
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.15623529255390167,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.9994242787361145,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6875882744789124
+            },
+            "loss_total": 2.6870124340057373,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5948083400726318,
+              "maximum": 1.1442482471466064,
+              "mean": -0.19014093279838562,
+              "std": 0.20477405190467834,
+              "negative_count": 28987,
+              "zero_count": 0,
+              "positive_count": 5013,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5948083400726318,
+                "0.01": -0.7450268733501434,
+                "0.25": -0.3069419041275978,
+                "0.5": -0.17765072733163834,
+                "0.75": -0.06089230813086033,
+                "0.99": 0.2953745004534724,
+                "1": 1.1442482471466064
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.14744117856025696,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 1.020890712738037,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7190673351287842
+            },
+            "loss_total": 2.7399580478668213,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.3824173212051392,
+              "maximum": 0.8886919617652893,
+              "mean": -0.18058496713638306,
+              "std": 0.21218644082546234,
+              "negative_count": 28728,
+              "zero_count": 0,
+              "positive_count": 5272,
+              "finite": true,
+              "quantiles": {
+                "0": -1.3824173212051392,
+                "0.01": -0.8054640573263169,
+                "0.25": -0.2843833640217781,
+                "0.5": -0.14590920507907867,
+                "0.75": -0.04491413850337267,
+                "0.99": 0.27372450709342955,
+                "1": 0.8886919617652893
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.1550588309764862,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.9277965426445007,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7359474897384644
+            },
+            "loss_total": 2.6637439727783203,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.2662885189056396,
+              "maximum": 0.6397061347961426,
+              "mean": -0.18793118000030518,
+              "std": 0.19950491189956665,
+              "negative_count": 28760,
+              "zero_count": 0,
+              "positive_count": 5240,
+              "finite": true,
+              "quantiles": {
+                "0": -1.2662885189056396,
+                "0.01": -0.7396835350990295,
+                "0.25": -0.3022216036915779,
+                "0.5": -0.16829267889261246,
+                "0.75": -0.05704375449568033,
+                "0.99": 0.23625844284892125,
+                "1": 0.6397061347961426
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.1541176438331604,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "83c3373911cf73089f73354f2065b7c10bb561f43ff67aef5db361c353817268",
+        "parameter_hash_after": "83c3373911cf73089f73354f2065b7c10bb561f43ff67aef5db361c353817268",
+        "buffer_hash_before": "d0ec2c483f390ebf7484b16fa810205b95ba3f83cd6176b9e427d1bd70e9ced2",
+        "buffer_hash_after": "867eaebb801aae5fedc5c00dbb5331a16b71b10bc7e3a50c05e15259bfe95738",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "5fc4d1a2b6ec86eed756af9d425b2afd99c87cc3e728d6628933e12646e9e82a",
+      "rng_hash_after": "5fc4d1a2b6ec86eed756af9d425b2afd99c87cc3e728d6628933e12646e9e82a"
+    },
+    {
+      "step": 10,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 1.0026657581329346,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6878978610038757
+            },
+            "loss_total": 2.690563678741455,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.807564616203308,
+              "maximum": 0.9887259006500244,
+              "mean": -0.2906470000743866,
+              "std": 0.22668026387691498,
+              "negative_count": 32143,
+              "zero_count": 0,
+              "positive_count": 1857,
+              "finite": true,
+              "quantiles": {
+                "0": -1.807564616203308,
+                "0.01": -0.9234024906158447,
+                "0.25": -0.41954096406698227,
+                "0.5": -0.25926031172275543,
+                "0.75": -0.12537816539406776,
+                "0.99": 0.13275552868843196,
+                "1": 0.9887259006500244
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.05461764708161354,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.9246454834938049,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7349917888641357
+            },
+            "loss_total": 2.659637212753296,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.4450112581253052,
+              "maximum": 0.8663768768310547,
+              "mean": -0.3004104495048523,
+              "std": 0.2216806262731552,
+              "negative_count": 32106,
+              "zero_count": 0,
+              "positive_count": 1894,
+              "finite": true,
+              "quantiles": {
+                "0": -1.4450112581253052,
+                "0.01": -0.9171827447414398,
+                "0.25": -0.4282453954219818,
+                "0.5": -0.2751516103744507,
+                "0.75": -0.15012729167938232,
+                "0.99": 0.1529223813116553,
+                "1": 0.8663768768310547
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.05570588260889053,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9571529626846313,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7361098527908325
+            },
+            "loss_total": 2.693262815475464,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.722765326499939,
+              "maximum": 0.6867539286613464,
+              "mean": -0.2823852300643921,
+              "std": 0.23962444067001343,
+              "negative_count": 32006,
+              "zero_count": 0,
+              "positive_count": 1994,
+              "finite": true,
+              "quantiles": {
+                "0": -1.722765326499939,
+                "0.01": -0.9781026840209961,
+                "0.25": -0.4124264195561409,
+                "0.5": -0.23727473616600037,
+                "0.75": -0.1051663663238287,
+                "0.99": 0.12796077400445968,
+                "1": 0.6867539286613464
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.05864705890417099,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8872358798980713,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.8087152242660522
+            },
+            "loss_total": 2.695950984954834,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5203529596328735,
+              "maximum": 0.44308042526245117,
+              "mean": -0.29665252566337585,
+              "std": 0.2230568826198578,
+              "negative_count": 32190,
+              "zero_count": 0,
+              "positive_count": 1810,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5203529596328735,
+                "0.01": -0.9318139815330505,
+                "0.25": -0.4254109039902687,
+                "0.5": -0.26607954502105713,
+                "0.75": -0.13403195515275002,
+                "0.99": 0.10169692344963692,
+                "1": 0.44308042526245117
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.05323529615998268,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "10e3b67cd4eb7e479908fa220220053aee8ff17e2fa23549f9f106c88186930f",
+        "parameter_hash_after": "10e3b67cd4eb7e479908fa220220053aee8ff17e2fa23549f9f106c88186930f",
+        "buffer_hash_before": "db716d43f516892679f5ecc5b16e2fa39a4cae0d1248340e717d73d4b3fe7134",
+        "buffer_hash_after": "cad09bdcef60099157386ec92ace99d8eb271ae2eb203794c28f22c466570b28",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "73f9a6d40d4b1e05a9bd73865a73ea1eff33ec1e91d26d4b2b38b06ad1f70879",
+      "rng_hash_after": "73f9a6d40d4b1e05a9bd73865a73ea1eff33ec1e91d26d4b2b38b06ad1f70879"
+    },
+    {
+      "step": 20,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.9301977753639221,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6882157921791077
+            },
+            "loss_total": 2.6184134483337402,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.1298153400421143,
+              "maximum": 0.6905232667922974,
+              "mean": -0.36237651109695435,
+              "std": 0.27001503109931946,
+              "negative_count": 33065,
+              "zero_count": 0,
+              "positive_count": 935,
+              "finite": true,
+              "quantiles": {
+                "0": -2.1298153400421143,
+                "0.01": -1.1738923621177673,
+                "0.25": -0.4984622225165367,
+                "0.5": -0.3212011307477951,
+                "0.75": -0.1556532271206379,
+                "0.99": 0.050211949869990634,
+                "1": 0.6905232667922974
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.027499999850988388,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8794464468955994,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7566646337509155
+            },
+            "loss_total": 2.636111259460449,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.8308316469192505,
+              "maximum": 0.7171075940132141,
+              "mean": -0.37567445635795593,
+              "std": 0.26052531599998474,
+              "negative_count": 32992,
+              "zero_count": 0,
+              "positive_count": 1008,
+              "finite": true,
+              "quantiles": {
+                "0": -1.8308316469192505,
+                "0.01": -1.1616971349716188,
+                "0.25": -0.5160377770662308,
+                "0.5": -0.3367430418729782,
+                "0.75": -0.18822159990668297,
+                "0.99": 0.081737051829696,
+                "1": 0.7171075940132141
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.029647059738636017,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9670717120170593,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7471913695335388
+            },
+            "loss_total": 2.7142632007598877,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.1225569248199463,
+              "maximum": 0.46997392177581787,
+              "mean": -0.34726426005363464,
+              "std": 0.2917178273200989,
+              "negative_count": 32939,
+              "zero_count": 0,
+              "positive_count": 1061,
+              "finite": true,
+              "quantiles": {
+                "0": -2.1225569248199463,
+                "0.01": -1.2761151254177094,
+                "0.25": -0.4790452644228935,
+                "0.5": -0.29027217626571655,
+                "0.75": -0.12333729863166809,
+                "0.99": 0.0648717301338913,
+                "1": 0.46997392177581787
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.031205883249640465,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.9462423920631409,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7935352325439453
+            },
+            "loss_total": 2.7397775650024414,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.7247135639190674,
+              "maximum": 0.4809510111808777,
+              "mean": -0.37190553545951843,
+              "std": 0.2655807435512543,
+              "negative_count": 33110,
+              "zero_count": 0,
+              "positive_count": 890,
+              "finite": true,
+              "quantiles": {
+                "0": -1.7247135639190674,
+                "0.01": -1.1739055240154266,
+                "0.25": -0.5066198110580444,
+                "0.5": -0.3306804597377777,
+                "0.75": -0.17253662273287773,
+                "0.99": 0.04521378204226521,
+                "1": 0.4809510111808777
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.026176471263170242,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "77fec19e341aacc378d9d19ed679925cffb6b41a6358c6f3e7e76bcc08047e82",
+        "parameter_hash_after": "77fec19e341aacc378d9d19ed679925cffb6b41a6358c6f3e7e76bcc08047e82",
+        "buffer_hash_before": "c38bb2bb5969d7fa7a3dda06932b747c07f05e15da89c5c315159b995bff502c",
+        "buffer_hash_after": "3a1d1d7526be6eaabb932083a2074caad8e6d1d4ad04eedeb96a63ec0943fe39",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "21cc9e0383336c5add67fc44623fc048b477f96737c98fa293b50909960db780",
+      "rng_hash_after": "21cc9e0383336c5add67fc44623fc048b477f96737c98fa293b50909960db780"
+    },
+    {
+      "step": 50,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.9560948610305786,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6991919875144958
+            },
+            "loss_total": 2.6552867889404297,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.4152607917785645,
+              "maximum": 0.43427321314811707,
+              "mean": -0.4279913306236267,
+              "std": 0.323085755109787,
+              "negative_count": 33582,
+              "zero_count": 0,
+              "positive_count": 418,
+              "finite": true,
+              "quantiles": {
+                "0": -2.4152607917785645,
+                "0.01": -1.4618418002128601,
+                "0.25": -0.5514207631349564,
+                "0.5": -0.3745051622390747,
+                "0.75": -0.1827189140021801,
+                "0.99": 0.006069738510996359,
+                "1": 0.43427321314811707
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.012294118292629719,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8593707084655762,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7113908529281616
+            },
+            "loss_total": 2.5707616806030273,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.209911823272705,
+              "maximum": 0.32311975955963135,
+              "mean": -0.43938714265823364,
+              "std": 0.3127378523349762,
+              "negative_count": 33637,
+              "zero_count": 0,
+              "positive_count": 363,
+              "finite": true,
+              "quantiles": {
+                "0": -2.209911823272705,
+                "0.01": -1.4874510538578034,
+                "0.25": -0.5697039663791656,
+                "0.5": -0.3896268159151077,
+                "0.75": -0.21097536385059357,
+                "0.99": 0.0031686734454710354,
+                "1": 0.32311975955963135
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.010676470585167408,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9818892478942871,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7484908103942871
+            },
+            "loss_total": 2.730380058288574,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.469041585922241,
+              "maximum": 0.20282292366027832,
+              "mean": -0.40634676814079285,
+              "std": 0.34644532203674316,
+              "negative_count": 33626,
+              "zero_count": 0,
+              "positive_count": 374,
+              "finite": true,
+              "quantiles": {
+                "0": -2.469041585922241,
+                "0.01": -1.5818236696720123,
+                "0.25": -0.5313475281000137,
+                "0.5": -0.3432525396347046,
+                "0.75": -0.1412477008998394,
+                "0.99": 0.0034309667930941972,
+                "1": 0.20282292366027832
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.010999999940395355,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8325281739234924,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.727583646774292
+            },
+            "loss_total": 2.5601117610931396,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.1496334075927734,
+              "maximum": 0.23592813313007355,
+              "mean": -0.4472910761833191,
+              "std": 0.31042414903640747,
+              "negative_count": 33680,
+              "zero_count": 0,
+              "positive_count": 320,
+              "finite": true,
+              "quantiles": {
+                "0": -2.1496334075927734,
+                "0.01": -1.4022163152694702,
+                "0.25": -0.5751663744449615,
+                "0.5": -0.3991488963365555,
+                "0.75": -0.21803734079003334,
+                "0.99": -0.002237582053057792,
+                "1": 0.23592813313007355
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.00941176526248455,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "b62696ffbc49c9d343daaa295d69c991bfd7d51ec5efc126a1443b57849e361b",
+        "parameter_hash_after": "b62696ffbc49c9d343daaa295d69c991bfd7d51ec5efc126a1443b57849e361b",
+        "buffer_hash_before": "a1459493566a78a41e31f5c876428abb53f34668881901e5dadf086c7ea66011",
+        "buffer_hash_after": "ffec0782676b94fefcdf76947ea9a7eeb5df3f1a0dd8c907136dcc3288c7498b",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "2fe71c6d8c1e45dca0ffbba115e928ccef52d2e35d219c2e15f55b0328872521",
+      "rng_hash_after": "2fe71c6d8c1e45dca0ffbba115e928ccef52d2e35d219c2e15f55b0328872521"
+    },
+    {
+      "step": 100,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.8583468198776245,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6879965662956238
+            },
+            "loss_total": 2.5463433265686035,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.9387160539627075,
+              "maximum": 0.10091163218021393,
+              "mean": -0.47300228476524353,
+              "std": 0.3083115518093109,
+              "negative_count": 33429,
+              "zero_count": 0,
+              "positive_count": 571,
+              "finite": true,
+              "quantiles": {
+                "0": -1.9387160539627075,
+                "0.01": -1.3688165938854218,
+                "0.25": -0.6088922321796417,
+                "0.5": -0.44187353551387787,
+                "0.75": -0.2509096786379814,
+                "0.99": 0.011742230979725867,
+                "1": 0.10091163218021393
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.01679411716759205,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8133293390274048,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7216245532035828
+            },
+            "loss_total": 2.5349538326263428,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.7933822870254517,
+              "maximum": 0.09230706095695496,
+              "mean": -0.4867797791957855,
+              "std": 0.2981696128845215,
+              "negative_count": 33762,
+              "zero_count": 0,
+              "positive_count": 238,
+              "finite": true,
+              "quantiles": {
+                "0": -1.7933822870254517,
+                "0.01": -1.3952271854877472,
+                "0.25": -0.632110059261322,
+                "0.5": -0.46183328330516815,
+                "0.75": -0.26478079706430435,
+                "0.99": -0.00999479204416271,
+                "1": 0.09230706095695496
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.007000000216066837,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9606161117553711,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.640288233757019
+            },
+            "loss_total": 2.6009044647216797,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.117791175842285,
+              "maximum": 0.07105454057455063,
+              "mean": -0.44873180985450745,
+              "std": 0.3284040689468384,
+              "negative_count": 33257,
+              "zero_count": 0,
+              "positive_count": 743,
+              "finite": true,
+              "quantiles": {
+                "0": -2.117791175842285,
+                "0.01": -1.5179584693908692,
+                "0.25": -0.5849190801382065,
+                "0.5": -0.40717093646526337,
+                "0.75": -0.20963626727461815,
+                "0.99": 0.01650336388498575,
+                "1": 0.07105454057455063
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.021852942183613777,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8071441054344177,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6950579881668091
+            },
+            "loss_total": 2.502202033996582,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.7521393299102783,
+              "maximum": 0.0929248183965683,
+              "mean": -0.48213696479797363,
+              "std": 0.3005409836769104,
+              "negative_count": 33614,
+              "zero_count": 0,
+              "positive_count": 386,
+              "finite": true,
+              "quantiles": {
+                "0": -1.7521393299102783,
+                "0.01": -1.3508341574668885,
+                "0.25": -0.617088183760643,
+                "0.5": -0.4437236785888672,
+                "0.75": -0.2745247706770897,
+                "0.99": 0.003964693816378956,
+                "1": 0.0929248183965683
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.011352941393852234,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "893355781c6a1b76cb486358f89bb452f203adfe4702a068d863bc5e16cf4cea",
+        "parameter_hash_after": "893355781c6a1b76cb486358f89bb452f203adfe4702a068d863bc5e16cf4cea",
+        "buffer_hash_before": "02e070c6aaf1f6bd326704fa58a20c3e5e362643bd287d1ebd64a5ab0a66db8b",
+        "buffer_hash_after": "54d3ed08be753dd93a46aef5c0cd93091e344defe7df9d33c440a59da61f3572",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "db4767a38d9a7424a3fe98600c9a34f4983b39f8c22b1cf181f1c0b48e55590f",
+      "rng_hash_after": "db4767a38d9a7424a3fe98600c9a34f4983b39f8c22b1cf181f1c0b48e55590f"
+    },
+    {
+      "step": 200,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.8248782157897949,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6921542882919312
+            },
+            "loss_total": 2.5170326232910156,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.204810619354248,
+              "maximum": 0.014256068505346775,
+              "mean": -0.4398497939109802,
+              "std": 0.29335087537765503,
+              "negative_count": 33997,
+              "zero_count": 0,
+              "positive_count": 3,
+              "finite": true,
+              "quantiles": {
+                "0": -2.204810619354248,
+                "0.01": -1.4216325640678407,
+                "0.25": -0.5426518768072128,
+                "0.5": -0.38420118391513824,
+                "0.75": -0.23346151784062386,
+                "0.99": -0.06336199969053219,
+                "1": 0.014256068505346775
+              }
+            },
+            "bbox_post_relu_positive_fraction": 8.823529788060114e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7592488527297974,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.711341142654419
+            },
+            "loss_total": 2.470590114593506,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.8541899919509888,
+              "maximum": 0.011840255931019783,
+              "mean": -0.43685659766197205,
+              "std": 0.2963162064552307,
+              "negative_count": 33999,
+              "zero_count": 0,
+              "positive_count": 1,
+              "finite": true,
+              "quantiles": {
+                "0": -1.8541899919509888,
+                "0.01": -1.4981740808486939,
+                "0.25": -0.5311882346868515,
+                "0.5": -0.37262657284736633,
+                "0.75": -0.23390207067131996,
+                "0.99": -0.0675759493559598,
+                "1": 0.011840255931019783
+              }
+            },
+            "bbox_post_relu_positive_fraction": 2.9411765353870578e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9165598154067993,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7044007182121277
+            },
+            "loss_total": 2.6209604740142822,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.1024558544158936,
+              "maximum": 0.0055302344262599945,
+              "mean": -0.4187818467617035,
+              "std": 0.31711769104003906,
+              "negative_count": 33990,
+              "zero_count": 0,
+              "positive_count": 10,
+              "finite": true,
+              "quantiles": {
+                "0": -2.1024558544158936,
+                "0.01": -1.6095609641075135,
+                "0.25": -0.52724489569664,
+                "0.5": -0.35563163459300995,
+                "0.75": -0.19860504195094109,
+                "0.99": -0.04645759753882875,
+                "1": 0.0055302344262599945
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0002941176644526422,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7642797231674194,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.693708062171936
+            },
+            "loss_total": 2.4579877853393555,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.8651659488677979,
+              "maximum": 0.011489992961287498,
+              "mean": -0.45491957664489746,
+              "std": 0.27818822860717773,
+              "negative_count": 33996,
+              "zero_count": 0,
+              "positive_count": 4,
+              "finite": true,
+              "quantiles": {
+                "0": -1.8651659488677979,
+                "0.01": -1.3078892135620117,
+                "0.25": -0.5720292031764984,
+                "0.5": -0.3968350291252136,
+                "0.75": -0.2557613477110863,
+                "0.99": -0.0696629651635883,
+                "1": 0.011489992961287498
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.00011764706141548231,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "868f684a426f21550e2360f3462cf974380f0d397216eb5c0a408bec90aa75a9",
+        "parameter_hash_after": "868f684a426f21550e2360f3462cf974380f0d397216eb5c0a408bec90aa75a9",
+        "buffer_hash_before": "83d37ba8a26d8bdcf8125bed8cca35cea86cef6f099426ad6ad9500501d4a6fb",
+        "buffer_hash_after": "40cbabec898f047f06848e8ab80288081b35fa0ecd69968f2018bac74e496ebe",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "ceba1cc3d955ace0f27c99e03c4f8e3e0ca0cc34b7df68352ea0482df22b741a",
+      "rng_hash_after": "ceba1cc3d955ace0f27c99e03c4f8e3e0ca0cc34b7df68352ea0482df22b741a"
+    },
+    {
+      "step": 300,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.8204773664474487,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6875959634780884
+            },
+            "loss_total": 2.508073329925537,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.2574868202209473,
+              "maximum": -0.001981823705136776,
+              "mean": -0.48152902722358704,
+              "std": 0.31774458289146423,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -2.2574868202209473,
+                "0.01": -1.4832185518741607,
+                "0.25": -0.6307551860809326,
+                "0.5": -0.4115793853998184,
+                "0.75": -0.2523977532982826,
+                "0.99": -0.06395415514707559,
+                "1": -0.001981823705136776
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.769852340221405,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7428109645843506
+            },
+            "loss_total": 2.5126633644104004,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.990435242652893,
+              "maximum": 0.00453445129096508,
+              "mean": -0.4815519154071808,
+              "std": 0.318995863199234,
+              "negative_count": 33999,
+              "zero_count": 0,
+              "positive_count": 1,
+              "finite": true,
+              "quantiles": {
+                "0": -1.990435242652893,
+                "0.01": -1.5498914337158203,
+                "0.25": -0.6305099725723267,
+                "0.5": -0.41105832159519196,
+                "0.75": -0.25062569975852966,
+                "0.99": -0.07238965243101107,
+                "1": 0.00453445129096508
+              }
+            },
+            "bbox_post_relu_positive_fraction": 2.9411765353870578e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.8747692108154297,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6799941062927246
+            },
+            "loss_total": 2.5547633171081543,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.516249179840088,
+              "maximum": 0.00293440162204206,
+              "mean": -0.4511711299419403,
+              "std": 0.3501717746257782,
+              "negative_count": 33999,
+              "zero_count": 0,
+              "positive_count": 1,
+              "finite": true,
+              "quantiles": {
+                "0": -2.516249179840088,
+                "0.01": -1.730661827325821,
+                "0.25": -0.583019956946373,
+                "0.5": -0.36503902077674866,
+                "0.75": -0.21026870980858803,
+                "0.99": -0.040538497790694086,
+                "1": 0.00293440162204206
+              }
+            },
+            "bbox_post_relu_positive_fraction": 2.9411765353870578e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7808443903923035,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7362208366394043
+            },
+            "loss_total": 2.5170652866363525,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.9490368366241455,
+              "maximum": 0.007460660766810179,
+              "mean": -0.4979654848575592,
+              "std": 0.2965472936630249,
+              "negative_count": 33999,
+              "zero_count": 0,
+              "positive_count": 1,
+              "finite": true,
+              "quantiles": {
+                "0": -1.9490368366241455,
+                "0.01": -1.4041774940490723,
+                "0.25": -0.6394961029291153,
+                "0.5": -0.4429081976413727,
+                "0.75": -0.28261014074087143,
+                "0.99": -0.07552109882235505,
+                "1": 0.007460660766810179
+              }
+            },
+            "bbox_post_relu_positive_fraction": 2.9411765353870578e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "b04c58e91992aaa82d68bacb76538495487c9721c51ebf65ef32b7d7656beccd",
+        "parameter_hash_after": "b04c58e91992aaa82d68bacb76538495487c9721c51ebf65ef32b7d7656beccd",
+        "buffer_hash_before": "9bb2031703e8eef2680b43ac34955e297ac6a26b189a2db0d652115fb9332723",
+        "buffer_hash_after": "95473559f4bb298e3b1344e4c6439a5ef12e10f67110951ef55218dd47375748",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "b78b08d83bba93dcfeef01add42bb14009aae4bc6e53fb306820d2d32b20ff51",
+      "rng_hash_after": "b78b08d83bba93dcfeef01add42bb14009aae4bc6e53fb306820d2d32b20ff51"
+    },
+    {
+      "step": 400,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.8561992049217224,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6880639791488647
+            },
+            "loss_total": 2.5442633628845215,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.266655445098877,
+              "maximum": 0.011169811710715294,
+              "mean": -0.4473721981048584,
+              "std": 0.33641135692596436,
+              "negative_count": 33988,
+              "zero_count": 0,
+              "positive_count": 12,
+              "finite": true,
+              "quantiles": {
+                "0": -2.266655445098877,
+                "0.01": -1.5671999311447145,
+                "0.25": -0.6042180061340332,
+                "0.5": -0.3676784187555313,
+                "0.75": -0.2134637013077736,
+                "0.99": -0.021821793168783077,
+                "1": 0.011169811710715294
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.00035294119152240455,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7814803123474121,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7430174946784973
+            },
+            "loss_total": 2.5244977474212646,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.128514051437378,
+              "maximum": 0.017502566799521446,
+              "mean": -0.4412304759025574,
+              "std": 0.34249475598335266,
+              "negative_count": 33994,
+              "zero_count": 0,
+              "positive_count": 6,
+              "finite": true,
+              "quantiles": {
+                "0": -2.128514051437378,
+                "0.01": -1.6422479271888732,
+                "0.25": -0.5928118079900742,
+                "0.5": -0.36185799539089203,
+                "0.75": -0.21275506913661957,
+                "0.99": -0.014802892431616725,
+                "1": 0.017502566799521446
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.00017647059576120228,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.8199169635772705,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6674383878707886
+            },
+            "loss_total": 2.4873552322387695,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.4773123264312744,
+              "maximum": 0.003619534894824028,
+              "mean": -0.42078089714050293,
+              "std": 0.35467761754989624,
+              "negative_count": 33995,
+              "zero_count": 0,
+              "positive_count": 5,
+              "finite": true,
+              "quantiles": {
+                "0": -2.4773123264312744,
+                "0.01": -1.8268311727046966,
+                "0.25": -0.5672934800386429,
+                "0.5": -0.32202838361263275,
+                "0.75": -0.1828448362648487,
+                "0.99": -0.011706546349450894,
+                "1": 0.003619534894824028
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0001470588322263211,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8758692741394043,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7125815749168396
+            },
+            "loss_total": 2.5884509086608887,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.424226999282837,
+              "maximum": 0.009703258983790874,
+              "mean": -0.441771537065506,
+              "std": 0.34223854541778564,
+              "negative_count": 33990,
+              "zero_count": 0,
+              "positive_count": 10,
+              "finite": true,
+              "quantiles": {
+                "0": -2.424226999282837,
+                "0.01": -1.7274714016914368,
+                "0.25": -0.5875544846057892,
+                "0.5": -0.3616429269313812,
+                "0.75": -0.18165523931384087,
+                "0.99": -0.038781237155199044,
+                "1": 0.009703258983790874
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0002941176644526422,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "43928089da9c1cb85af8f33bcd4c3f957085b73486993f5ac82d70ecb2d78f4d",
+        "parameter_hash_after": "43928089da9c1cb85af8f33bcd4c3f957085b73486993f5ac82d70ecb2d78f4d",
+        "buffer_hash_before": "a31ed737351cc38023eeba53f82d96f8169d0a3b4fadee5d784027a5fca40bcb",
+        "buffer_hash_after": "3701be9b914b6009fe7d3512e6446800217f79a61e6581d237dab14e60d85e07",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "d7813f8d2a6cc68ca34a0ce4f58138a7d8e88d6c7b8eef57bd416bcfad83ee0e",
+      "rng_hash_after": "d7813f8d2a6cc68ca34a0ce4f58138a7d8e88d6c7b8eef57bd416bcfad83ee0e"
+    },
+    {
+      "step": 500,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.8145743012428284,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6898287534713745
+            },
+            "loss_total": 2.5044031143188477,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.2515299320220947,
+              "maximum": 0.006797675974667072,
+              "mean": -0.4515030086040497,
+              "std": 0.3391711413860321,
+              "negative_count": 33998,
+              "zero_count": 0,
+              "positive_count": 2,
+              "finite": true,
+              "quantiles": {
+                "0": -2.2515299320220947,
+                "0.01": -1.6030167484283446,
+                "0.25": -0.6018626093864441,
+                "0.5": -0.3652685433626175,
+                "0.75": -0.20603236183524132,
+                "0.99": -0.045275312513112884,
+                "1": 0.006797675974667072
+              }
+            },
+            "bbox_post_relu_positive_fraction": 5.8823530707741156e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7837545871734619,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7596325874328613
+            },
+            "loss_total": 2.5433871746063232,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.057307481765747,
+              "maximum": -0.0033867242746055126,
+              "mean": -0.4440292716026306,
+              "std": 0.34650832414627075,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -2.057307481765747,
+                "0.01": -1.6728623926639556,
+                "0.25": -0.5974872410297394,
+                "0.5": -0.3547000288963318,
+                "0.75": -0.19750743731856346,
+                "0.99": -0.04509089428931468,
+                "1": -0.0033867242746055126
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.6277575492858887,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6626832485198975
+            },
+            "loss_total": 2.290440797805786,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.4189014434814453,
+              "maximum": -0.010817018337547779,
+              "mean": -0.42585289478302,
+              "std": 0.36121734976768494,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -2.4189014434814453,
+                "0.01": -1.871040074825287,
+                "0.25": -0.568920835852623,
+                "0.5": -0.32370781898498535,
+                "0.75": -0.1732405088841915,
+                "0.99": -0.03646755464375007,
+                "1": -0.010817018337547779
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7224917411804199,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7251964807510376
+            },
+            "loss_total": 2.447688102722168,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.2702834606170654,
+              "maximum": 0.001979811117053032,
+              "mean": -0.4351077079772949,
+              "std": 0.3553360402584076,
+              "negative_count": 33999,
+              "zero_count": 0,
+              "positive_count": 1,
+              "finite": true,
+              "quantiles": {
+                "0": -2.2702834606170654,
+                "0.01": -1.8249304676055909,
+                "0.25": -0.56789730489254,
+                "0.5": -0.34122057259082794,
+                "0.75": -0.16128815338015556,
+                "0.99": -0.0541271382570266,
+                "1": 0.001979811117053032
+              }
+            },
+            "bbox_post_relu_positive_fraction": 2.9411765353870578e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "65910d63d1cdb320118aa585f88ba20a5c51bf23b353153c4a8997c6f43c40e1",
+        "parameter_hash_after": "65910d63d1cdb320118aa585f88ba20a5c51bf23b353153c4a8997c6f43c40e1",
+        "buffer_hash_before": "16354fb1fb704a58e074f4a5eb272ece5950cbfdb93933c45e0f9f3b0d62278f",
+        "buffer_hash_after": "81df577df777738c3f02d86d59a6e515335a6af971beda4a370a4b45f76a8baa",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "de43fc718f1825d4bdce30cf6cdea944782fbe82d31a0a5d1ebdc927a6a81f0b",
+      "rng_hash_after": "de43fc718f1825d4bdce30cf6cdea944782fbe82d31a0a5d1ebdc927a6a81f0b"
+    }
+  ],
+  "v62_equal_bbox_bias_p001": [
+    {
+      "step": 0,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 1.1520026922225952,
+              "bbox_regression": 1.1616569757461548,
+              "bbox_ctrness": 0.7010951042175293
+            },
+            "loss_total": 3.0147547721862793,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.587404727935791,
+              "maximum": 1.0829654932022095,
+              "mean": -0.06474821269512177,
+              "std": 0.2630249559879303,
+              "negative_count": 20084,
+              "zero_count": 0,
+              "positive_count": 13916,
+              "finite": true,
+              "quantiles": {
+                "0": -1.587404727935791,
+                "0.01": -0.734247880578041,
+                "0.25": -0.21654268354177475,
+                "0.5": -0.053788408637046814,
+                "0.75": 0.09909095242619514,
+                "0.99": 0.5806905055046092,
+                "1": 1.0829654932022095
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.40929412841796875,
+            "bbox_weight_gradient_norm": 27.349175859955,
+            "bbox_bias_gradient_norm": 1.4056380987167358,
+            "bbox_gradient_nonzero_fraction": 0.12424111366271973,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.1595838069915771,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6695119738578796
+            },
+            "loss_total": 2.8290958404541016,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.2467010021209717,
+              "maximum": 1.3096790313720703,
+              "mean": -0.06905925273895264,
+              "std": 0.2641613781452179,
+              "negative_count": 20562,
+              "zero_count": 0,
+              "positive_count": 13438,
+              "finite": true,
+              "quantiles": {
+                "0": -1.2467010021209717,
+                "0.01": -0.7015931183099746,
+                "0.25": -0.24017558246850967,
+                "0.5": -0.06765997782349586,
+                "0.75": 0.10313080064952374,
+                "0.99": 0.5862689965963374,
+                "1": 1.3096790313720703
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3952353000640869,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 1.109809398651123,
+              "bbox_regression": 1.175886869430542,
+              "bbox_ctrness": 0.6905105113983154
+            },
+            "loss_total": 2.9762067794799805,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.3859995603561401,
+              "maximum": 1.3639795780181885,
+              "mean": -0.0664532259106636,
+              "std": 0.2638929486274719,
+              "negative_count": 20308,
+              "zero_count": 0,
+              "positive_count": 13692,
+              "finite": true,
+              "quantiles": {
+                "0": -1.3859995603561401,
+                "0.01": -0.7935625386238098,
+                "0.25": -0.18836437165737152,
+                "0.5": -0.0438365638256073,
+                "0.75": 0.07896075025200844,
+                "0.99": 0.5908426606655128,
+                "1": 1.3639795780181885
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.4027058780193329,
+            "bbox_weight_gradient_norm": 8.826183055559266,
+            "bbox_bias_gradient_norm": 0.23016985678107596,
+            "bbox_gradient_nonzero_fraction": 0.5026019215583801,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.1066408157348633,
+              "bbox_regression": 0.9997787475585938,
+              "bbox_ctrness": 0.7197641134262085
+            },
+            "loss_total": 2.826183795928955,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.181186556816101,
+              "maximum": 1.0742439031600952,
+              "mean": -0.0696168765425682,
+              "std": 0.26029857993125916,
+              "negative_count": 20345,
+              "zero_count": 0,
+              "positive_count": 13655,
+              "finite": true,
+              "quantiles": {
+                "0": -1.181186556816101,
+                "0.01": -0.7181780880689621,
+                "0.25": -0.2285265065729618,
+                "0.5": -0.05726116895675659,
+                "0.75": 0.093154301866889,
+                "0.99": 0.5560381585359577,
+                "1": 1.0742439031600952
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.4016176462173462,
+            "bbox_weight_gradient_norm": 1.068338122373263,
+            "bbox_bias_gradient_norm": 0.035483810579019254,
+            "bbox_gradient_nonzero_fraction": 0.35450997948646545,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "8504dd976c6e9a88609c8f0473e1114ce090db189e36614de274ebe9f2d6039a",
+        "parameter_hash_after": "8504dd976c6e9a88609c8f0473e1114ce090db189e36614de274ebe9f2d6039a",
+        "buffer_hash_before": "1e81fd0c2e276fd863f58fe3ab540d0429926926ec131c8fc1d8a240f7f2b0aa",
+        "buffer_hash_after": "ea0ded0251ef9a3a7d6fb75611020b861fad276bd63ed795669fdde103549e9f",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "7f19b0b306cc4c6779e87915c3f733ebe338fe52cffc1a3c4621dea23f5a7a50",
+      "rng_hash_after": "7f19b0b306cc4c6779e87915c3f733ebe338fe52cffc1a3c4621dea23f5a7a50"
+    },
+    {
+      "step": 1,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 1.096329927444458,
+              "bbox_regression": 1.2865296602249146,
+              "bbox_ctrness": 0.7059516310691833
+            },
+            "loss_total": 3.0888113975524902,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5145859718322754,
+              "maximum": 1.1193792819976807,
+              "mean": -0.04576460272073746,
+              "std": 0.27391335368156433,
+              "negative_count": 19123,
+              "zero_count": 0,
+              "positive_count": 14877,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5145859718322754,
+                "0.01": -0.730217667222023,
+                "0.25": -0.20774318277835846,
+                "0.5": -0.04010377824306488,
+                "0.75": 0.12467202916741371,
+                "0.99": 0.6376947814226152,
+                "1": 1.1193792819976807
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.4375588297843933,
+            "bbox_weight_gradient_norm": 19.925731574955677,
+            "bbox_bias_gradient_norm": 1.0180799961090088,
+            "bbox_gradient_nonzero_fraction": 0.12098872661590576,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.1088043451309204,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6739088296890259
+            },
+            "loss_total": 2.782712936401367,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.3184723854064941,
+              "maximum": 1.3450769186019897,
+              "mean": -0.04774610325694084,
+              "std": 0.2750762104988098,
+              "negative_count": 19514,
+              "zero_count": 0,
+              "positive_count": 14486,
+              "finite": true,
+              "quantiles": {
+                "0": -1.3184723854064941,
+                "0.01": -0.7018893653154373,
+                "0.25": -0.22821858525276184,
+                "0.5": -0.050218138843774796,
+                "0.75": 0.1324966698884964,
+                "0.99": 0.6335755622386952,
+                "1": 1.3450769186019897
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.426058828830719,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 1.0796641111373901,
+              "bbox_regression": 1.1868183612823486,
+              "bbox_ctrness": 0.6991047263145447
+            },
+            "loss_total": 2.9655871391296387,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.3605700731277466,
+              "maximum": 1.4652431011199951,
+              "mean": -0.04926018789410591,
+              "std": 0.27304941415786743,
+              "negative_count": 19217,
+              "zero_count": 0,
+              "positive_count": 14783,
+              "finite": true,
+              "quantiles": {
+                "0": -1.3605700731277466,
+                "0.01": -0.786615749001503,
+                "0.25": -0.18024393171072006,
+                "0.5": -0.033424895256757736,
+                "0.75": 0.10073599964380264,
+                "0.99": 0.6493287122249605,
+                "1": 1.4652431011199951
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.4347941279411316,
+            "bbox_weight_gradient_norm": 7.775028252910827,
+            "bbox_bias_gradient_norm": 0.20122413717196622,
+            "bbox_gradient_nonzero_fraction": 0.5006504654884338,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.0483839511871338,
+              "bbox_regression": 0.9968910217285156,
+              "bbox_ctrness": 0.7017444372177124
+            },
+            "loss_total": 2.7470192909240723,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.2221105098724365,
+              "maximum": 1.1782193183898926,
+              "mean": -0.05057777464389801,
+              "std": 0.27094340324401855,
+              "negative_count": 19389,
+              "zero_count": 0,
+              "positive_count": 14611,
+              "finite": true,
+              "quantiles": {
+                "0": -1.2221105098724365,
+                "0.01": -0.7048034381866455,
+                "0.25": -0.21805839240550995,
+                "0.5": -0.04396850988268852,
+                "0.75": 0.1183512695133686,
+                "0.99": 0.6099428480863575,
+                "1": 1.1782193183898926
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.42973530292510986,
+            "bbox_weight_gradient_norm": 2.2100142541636054,
+            "bbox_bias_gradient_norm": 0.07482073971264946,
+            "bbox_gradient_nonzero_fraction": 0.36816999316215515,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "9ae3fd4c5c309d9dade750d09b427d84f71f4d3e13fe91046c2b8e462d454528",
+        "parameter_hash_after": "9ae3fd4c5c309d9dade750d09b427d84f71f4d3e13fe91046c2b8e462d454528",
+        "buffer_hash_before": "dc42264c00d013d6cbd3dbe8cf88567cfff9a5a8c1334c33c4bae83fe995e8e2",
+        "buffer_hash_after": "260e7a08fa5152248bca90f4c0f22ec74147743913e44bbc45ed924e7c24b6fb",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "9493a112a06a74b1774fdaee65cd9ecca8139bba7d1931e111c8bfa168aa250c",
+      "rng_hash_after": "9493a112a06a74b1774fdaee65cd9ecca8139bba7d1931e111c8bfa168aa250c"
+    },
+    {
+      "step": 2,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 1.0434291362762451,
+              "bbox_regression": 1.0984210968017578,
+              "bbox_ctrness": 0.7077394723892212
+            },
+            "loss_total": 2.8495898246765137,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.481436848640442,
+              "maximum": 1.046546220779419,
+              "mean": -0.07370562851428986,
+              "std": 0.24240781366825104,
+              "negative_count": 21164,
+              "zero_count": 0,
+              "positive_count": 12836,
+              "finite": true,
+              "quantiles": {
+                "0": -1.481436848640442,
+                "0.01": -0.7223289781808853,
+                "0.25": -0.20196956396102905,
+                "0.5": -0.05788183957338333,
+                "0.75": 0.07114054635167122,
+                "0.99": 0.5204277771711351,
+                "1": 1.046546220779419
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.37752941250801086,
+            "bbox_weight_gradient_norm": 30.025814904182162,
+            "bbox_bias_gradient_norm": 1.6256892681121826,
+            "bbox_gradient_nonzero_fraction": 0.12077189981937408,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.0675458908081055,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6703070998191833
+            },
+            "loss_total": 2.7378530502319336,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.4062180519104004,
+              "maximum": 1.318878412246704,
+              "mean": -0.0768572986125946,
+              "std": 0.2427029311656952,
+              "negative_count": 21363,
+              "zero_count": 0,
+              "positive_count": 12637,
+              "finite": true,
+              "quantiles": {
+                "0": -1.4062180519104004,
+                "0.01": -0.7042129510641097,
+                "0.25": -0.22150720283389091,
+                "0.5": -0.06959330290555954,
+                "0.75": 0.07361116446554661,
+                "0.99": 0.515091823935509,
+                "1": 1.318878412246704
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3716764748096466,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 1.05409836769104,
+              "bbox_regression": 1.1764699220657349,
+              "bbox_ctrness": 0.7088860273361206
+            },
+            "loss_total": 2.9394545555114746,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.2716894149780273,
+              "maximum": 1.2268550395965576,
+              "mean": -0.0762748122215271,
+              "std": 0.24397529661655426,
+              "negative_count": 21605,
+              "zero_count": 0,
+              "positive_count": 12395,
+              "finite": true,
+              "quantiles": {
+                "0": -1.2716894149780273,
+                "0.01": -0.7806022888422013,
+                "0.25": -0.17835096269845963,
+                "0.5": -0.05232188664376736,
+                "0.75": 0.05591503717005253,
+                "0.99": 0.5275959479808815,
+                "1": 1.2268550395965576
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3645588457584381,
+            "bbox_weight_gradient_norm": 10.13649216196532,
+            "bbox_bias_gradient_norm": 0.25059737004850385,
+            "bbox_gradient_nonzero_fraction": 0.5013009905815125,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 1.0049030780792236,
+              "bbox_regression": 0.9979418516159058,
+              "bbox_ctrness": 0.710082471370697
+            },
+            "loss_total": 2.7129273414611816,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.1723343133926392,
+              "maximum": 0.9045361280441284,
+              "mean": -0.07804583013057709,
+              "std": 0.23918484151363373,
+              "negative_count": 21407,
+              "zero_count": 0,
+              "positive_count": 12593,
+              "finite": true,
+              "quantiles": {
+                "0": -1.1723343133926392,
+                "0.01": -0.7032223260402679,
+                "0.25": -0.21388552710413933,
+                "0.5": -0.0635913833975792,
+                "0.75": 0.07047400623559952,
+                "0.99": 0.48453927874565134,
+                "1": 0.9045361280441284
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.3703823685646057,
+            "bbox_weight_gradient_norm": 1.2145389754018514,
+            "bbox_bias_gradient_norm": 0.03940286162904366,
+            "bbox_gradient_nonzero_fraction": 0.3688204884529114,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "c5eda31603f3758d4e7eabd072ebb7afb108b196e25f2b3cb03ca856400af1ce",
+        "parameter_hash_after": "c5eda31603f3758d4e7eabd072ebb7afb108b196e25f2b3cb03ca856400af1ce",
+        "buffer_hash_before": "e20a8366dd05de9b589aab47ea0a5fab6f7bf5607240590b73b1cd2b44e18879",
+        "buffer_hash_after": "2c2f3f062eb7cbc2aa68fec044498dbdb83d0e6a37d229604b19ded4a40e8952",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "d4277e4621103e8f9aac469ccfe27717276440e7ed641655a168d37cb44bcb78",
+      "rng_hash_after": "d4277e4621103e8f9aac469ccfe27717276440e7ed641655a168d37cb44bcb78"
+    },
+    {
+      "step": 5,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.996048092842102,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6998533010482788
+            },
+            "loss_total": 2.695901393890381,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.4934383630752563,
+              "maximum": 1.0522639751434326,
+              "mean": -0.17394152283668518,
+              "std": 0.20579896867275238,
+              "negative_count": 28148,
+              "zero_count": 0,
+              "positive_count": 5852,
+              "finite": true,
+              "quantiles": {
+                "0": -1.4934383630752563,
+                "0.01": -0.7519849717617035,
+                "0.25": -0.28397639095783234,
+                "0.5": -0.15102923661470413,
+                "0.75": -0.042255657725036144,
+                "0.99": 0.28917561352253207,
+                "1": 1.0522639751434326
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.17211765050888062,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.998149037361145,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6864219903945923
+            },
+            "loss_total": 2.6845710277557373,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5796791315078735,
+              "maximum": 1.1742198467254639,
+              "mean": -0.1801098883152008,
+              "std": 0.20500797033309937,
+              "negative_count": 28486,
+              "zero_count": 0,
+              "positive_count": 5514,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5796791315078735,
+                "0.01": -0.737864333987236,
+                "0.25": -0.2964893653988838,
+                "0.5": -0.16746752709150314,
+                "0.75": -0.05092757660895586,
+                "0.99": 0.303754166066649,
+                "1": 1.1742198467254639
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.1621764749288559,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 1.0187715291976929,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7214659452438354
+            },
+            "loss_total": 2.7402377128601074,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.351370930671692,
+              "maximum": 0.9265606999397278,
+              "mean": -0.1705089956521988,
+              "std": 0.21193042397499084,
+              "negative_count": 28086,
+              "zero_count": 0,
+              "positive_count": 5914,
+              "finite": true,
+              "quantiles": {
+                "0": -1.351370930671692,
+                "0.01": -0.793922598361969,
+                "0.25": -0.2747209593653679,
+                "0.5": -0.1357673928141594,
+                "0.75": -0.0350254038348794,
+                "0.99": 0.28337819039821643,
+                "1": 0.9265606999397278
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.17394118010997772,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.927527666091919,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7366482019424438
+            },
+            "loss_total": 2.6641759872436523,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.278219223022461,
+              "maximum": 0.6444272994995117,
+              "mean": -0.17811401188373566,
+              "std": 0.19933868944644928,
+              "negative_count": 28255,
+              "zero_count": 0,
+              "positive_count": 5745,
+              "finite": true,
+              "quantiles": {
+                "0": -1.278219223022461,
+                "0.01": -0.7280823451280594,
+                "0.25": -0.29272961616516113,
+                "0.5": -0.1585632935166359,
+                "0.75": -0.04709208011627197,
+                "0.99": 0.24325454428792023,
+                "1": 0.6444272994995117
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.16897058486938477,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "a28b0bb95813b62ce12587f8ae9d4b3059121baf94f4f3337db05d3420a4b941",
+        "parameter_hash_after": "a28b0bb95813b62ce12587f8ae9d4b3059121baf94f4f3337db05d3420a4b941",
+        "buffer_hash_before": "13708dfc36132d14cb2e9552cd724b35d6b370dd5ba31b408e8b1fba7d6c0bee",
+        "buffer_hash_after": "388f701b22fd01210196e9e826597a036f683cd48ceaea76f211d0d0ae43c369",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "5fc4d1a2b6ec86eed756af9d425b2afd99c87cc3e728d6628933e12646e9e82a",
+      "rng_hash_after": "5fc4d1a2b6ec86eed756af9d425b2afd99c87cc3e728d6628933e12646e9e82a"
+    },
+    {
+      "step": 10,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 1.0111680030822754,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6880924105644226
+            },
+            "loss_total": 2.6992604732513428,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.701973557472229,
+              "maximum": 0.9884625673294067,
+              "mean": -0.2828195095062256,
+              "std": 0.22753305733203888,
+              "negative_count": 31847,
+              "zero_count": 0,
+              "positive_count": 2153,
+              "finite": true,
+              "quantiles": {
+                "0": -1.701973557472229,
+                "0.01": -0.9133886009454727,
+                "0.25": -0.4140035808086395,
+                "0.5": -0.25046271085739136,
+                "0.75": -0.11624378710985184,
+                "0.99": 0.13909394204616687,
+                "1": 0.9884625673294067
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.06332352757453918,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.9223743081092834,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7330045700073242
+            },
+            "loss_total": 2.655378818511963,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.4593579769134521,
+              "maximum": 0.8869228959083557,
+              "mean": -0.2920522093772888,
+              "std": 0.22303153574466705,
+              "negative_count": 31948,
+              "zero_count": 0,
+              "positive_count": 2052,
+              "finite": true,
+              "quantiles": {
+                "0": -1.4593579769134521,
+                "0.01": -0.9165270537137985,
+                "0.25": -0.42008349299430847,
+                "0.5": -0.2661818712949753,
+                "0.75": -0.13987885788083076,
+                "0.99": 0.1621330367028715,
+                "1": 0.8869228959083557
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.06035294383764267,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9591264128684998,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7444307208061218
+            },
+            "loss_total": 2.703557252883911,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.709342360496521,
+              "maximum": 0.7381366491317749,
+              "mean": -0.2731100022792816,
+              "std": 0.2411162406206131,
+              "negative_count": 31669,
+              "zero_count": 0,
+              "positive_count": 2331,
+              "finite": true,
+              "quantiles": {
+                "0": -1.709342360496521,
+                "0.01": -0.9782187449932098,
+                "0.25": -0.40236154198646545,
+                "0.5": -0.2258376181125641,
+                "0.75": -0.09430320933461189,
+                "0.99": 0.12732627213001294,
+                "1": 0.7381366491317749
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.06855882704257965,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8800531625747681,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.8108396530151367
+            },
+            "loss_total": 2.6908926963806152,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5176630020141602,
+              "maximum": 0.5157192945480347,
+              "mean": -0.2884032130241394,
+              "std": 0.22363561391830444,
+              "negative_count": 31869,
+              "zero_count": 0,
+              "positive_count": 2131,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5176630020141602,
+                "0.01": -0.9272063344717025,
+                "0.25": -0.4173864871263504,
+                "0.5": -0.2565542757511139,
+                "0.75": -0.12538371607661247,
+                "0.99": 0.10966532684862658,
+                "1": 0.5157192945480347
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.06267647445201874,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "040621347a4a49747613e4aa72d1877aba9f3a53ed2ed1b7c118efe0ae03337b",
+        "parameter_hash_after": "040621347a4a49747613e4aa72d1877aba9f3a53ed2ed1b7c118efe0ae03337b",
+        "buffer_hash_before": "42af4907365ee1d799c8cc335199f99ed4bea905fbb52bf54390d03df14cb80d",
+        "buffer_hash_after": "c7bb1ce9decd1ebaabc20efbee12f9a4b48f8884ccdeb81fbe7414eb4ffec930",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "73f9a6d40d4b1e05a9bd73865a73ea1eff33ec1e91d26d4b2b38b06ad1f70879",
+      "rng_hash_after": "73f9a6d40d4b1e05a9bd73865a73ea1eff33ec1e91d26d4b2b38b06ad1f70879"
+    },
+    {
+      "step": 20,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.9299846291542053,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6875808238983154
+            },
+            "loss_total": 2.617565393447876,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.3627378940582275,
+              "maximum": 0.719753086566925,
+              "mean": -0.35714590549468994,
+              "std": 0.2708069980144501,
+              "negative_count": 32925,
+              "zero_count": 0,
+              "positive_count": 1075,
+              "finite": true,
+              "quantiles": {
+                "0": -2.3627378940582275,
+                "0.01": -1.1782526803016662,
+                "0.25": -0.49344517290592194,
+                "0.5": -0.31447985768318176,
+                "0.75": -0.15135490521788597,
+                "0.99": 0.061284736655652865,
+                "1": 0.719753086566925
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.031617648899555206,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8779041171073914,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7594205141067505
+            },
+            "loss_total": 2.637324810028076,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.799148440361023,
+              "maximum": 0.776641309261322,
+              "mean": -0.37061670422554016,
+              "std": 0.2608318626880646,
+              "negative_count": 32902,
+              "zero_count": 0,
+              "positive_count": 1098,
+              "finite": true,
+              "quantiles": {
+                "0": -1.799148440361023,
+                "0.01": -1.159035053253174,
+                "0.25": -0.5095593631267548,
+                "0.5": -0.3306063413619995,
+                "0.75": -0.18546423688530922,
+                "0.99": 0.09003230914473567,
+                "1": 0.776641309261322
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.03229411691427231,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9571957588195801,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7436615824699402
+            },
+            "loss_total": 2.700857400894165,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.095060110092163,
+              "maximum": 0.5099861025810242,
+              "mean": -0.34222304821014404,
+              "std": 0.2923120856285095,
+              "negative_count": 32828,
+              "zero_count": 0,
+              "positive_count": 1172,
+              "finite": true,
+              "quantiles": {
+                "0": -2.095060110092163,
+                "0.01": -1.2683018553256988,
+                "0.25": -0.47362199425697327,
+                "0.5": -0.282534196972847,
+                "0.75": -0.11977487057447433,
+                "0.99": 0.0741481939703241,
+                "1": 0.5099861025810242
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.034470587968826294,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.9492409825325012,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.8038972616195679
+            },
+            "loss_total": 2.7531380653381348,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.7256861925125122,
+              "maximum": 0.4388374090194702,
+              "mean": -0.36591383814811707,
+              "std": 0.26747462153434753,
+              "negative_count": 33021,
+              "zero_count": 0,
+              "positive_count": 979,
+              "finite": true,
+              "quantiles": {
+                "0": -1.7256861925125122,
+                "0.01": -1.1776253116130828,
+                "0.25": -0.4998764991760254,
+                "0.5": -0.3223244398832321,
+                "0.75": -0.16641619428992271,
+                "0.99": 0.05285201467573651,
+                "1": 0.4388374090194702
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.028794119134545326,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "dd600b01743aeeaa09c4895d8e34510d193202a3890510d50300044605a121a7",
+        "parameter_hash_after": "dd600b01743aeeaa09c4895d8e34510d193202a3890510d50300044605a121a7",
+        "buffer_hash_before": "f7fbb4a32be42be8d24b5b8ece306305e7da4e44672c31a74048944bbc9b6b0e",
+        "buffer_hash_after": "70f85aabba06e72a6e2f753df331701f4e69eb21dfd7f0603f528e75b49cba99",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "21cc9e0383336c5add67fc44623fc048b477f96737c98fa293b50909960db780",
+      "rng_hash_after": "21cc9e0383336c5add67fc44623fc048b477f96737c98fa293b50909960db780"
+    },
+    {
+      "step": 50,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.9464759230613708,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7030609250068665
+            },
+            "loss_total": 2.6495368480682373,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.135399341583252,
+              "maximum": 0.38860654830932617,
+              "mean": -0.42032161355018616,
+              "std": 0.3116929531097412,
+              "negative_count": 33618,
+              "zero_count": 0,
+              "positive_count": 382,
+              "finite": true,
+              "quantiles": {
+                "0": -2.135399341583252,
+                "0.01": -1.397849419116974,
+                "0.25": -0.5509205460548401,
+                "0.5": -0.36383529007434845,
+                "0.75": -0.18306437134742737,
+                "0.99": 0.004583399444819024,
+                "1": 0.38860654830932617
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.011235293932259083,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8472213745117188,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7040492296218872
+            },
+            "loss_total": 2.5512704849243164,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.2505621910095215,
+              "maximum": 0.5006434321403503,
+              "mean": -0.4322894513607025,
+              "std": 0.30063098669052124,
+              "negative_count": 33633,
+              "zero_count": 0,
+              "positive_count": 367,
+              "finite": true,
+              "quantiles": {
+                "0": -2.2505621910095215,
+                "0.01": -1.4151899206638336,
+                "0.25": -0.5620603561401367,
+                "0.5": -0.3798254728317261,
+                "0.75": -0.21413366496562958,
+                "0.99": 0.003298051990568653,
+                "1": 0.5006434321403503
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.010794118046760559,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9580574035644531,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7493870258331299
+            },
+            "loss_total": 2.707444429397583,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.310537815093994,
+              "maximum": 0.4004535973072052,
+              "mean": -0.3977310061454773,
+              "std": 0.33664441108703613,
+              "negative_count": 33608,
+              "zero_count": 0,
+              "positive_count": 392,
+              "finite": true,
+              "quantiles": {
+                "0": -2.310537815093994,
+                "0.01": -1.5191362774372101,
+                "0.25": -0.5266723036766052,
+                "0.5": -0.32758936285972595,
+                "0.75": -0.14085764065384865,
+                "0.99": 0.005846691476181468,
+                "1": 0.4004535973072052
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.011529412120580673,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.847774088382721,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7235028743743896
+            },
+            "loss_total": 2.571276903152466,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.0117061138153076,
+              "maximum": 0.2862533628940582,
+              "mean": -0.44185128808021545,
+              "std": 0.2979475259780884,
+              "negative_count": 33659,
+              "zero_count": 0,
+              "positive_count": 341,
+              "finite": true,
+              "quantiles": {
+                "0": -2.0117061138153076,
+                "0.01": -1.3413449263572692,
+                "0.25": -0.5748064070940018,
+                "0.5": -0.3962991535663605,
+                "0.75": -0.2193894386291504,
+                "0.99": 2.9527861625136626e-05,
+                "1": 0.2862533628940582
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.010029411874711514,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "044eb78c1a3df6b3f9fbb10151f4f80d5bcb371bce9ed49057efcbb47e0cf809",
+        "parameter_hash_after": "044eb78c1a3df6b3f9fbb10151f4f80d5bcb371bce9ed49057efcbb47e0cf809",
+        "buffer_hash_before": "0403f91bd7d7391b2eda741e75a8189b963dbe67eeec5f65033c9d87eb5e4c0d",
+        "buffer_hash_after": "47653ca72daaaf8f2bc9ab19d25bcba6c5f8a3d159d534d9bd23060a17a542e2",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "2fe71c6d8c1e45dca0ffbba115e928ccef52d2e35d219c2e15f55b0328872521",
+      "rng_hash_after": "2fe71c6d8c1e45dca0ffbba115e928ccef52d2e35d219c2e15f55b0328872521"
+    },
+    {
+      "step": 100,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.8673822283744812,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6904003024101257
+            },
+            "loss_total": 2.5577826499938965,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.6898472309112549,
+              "maximum": 0.11385870724916458,
+              "mean": -0.4600377380847931,
+              "std": 0.2782709002494812,
+              "negative_count": 33666,
+              "zero_count": 0,
+              "positive_count": 334,
+              "finite": true,
+              "quantiles": {
+                "0": -1.6898472309112549,
+                "0.01": -1.2158789706230164,
+                "0.25": -0.5980578511953354,
+                "0.5": -0.43500879406929016,
+                "0.75": -0.2551799863576889,
+                "0.99": -0.0005511117726563792,
+                "1": 0.11385870724916458
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.009823529981076717,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8220505714416504,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7193348407745361
+            },
+            "loss_total": 2.5413854122161865,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.845821499824524,
+              "maximum": 0.16125541925430298,
+              "mean": -0.4771891236305237,
+              "std": 0.26076921820640564,
+              "negative_count": 33895,
+              "zero_count": 0,
+              "positive_count": 105,
+              "finite": true,
+              "quantiles": {
+                "0": -1.845821499824524,
+                "0.01": -1.2436791563034058,
+                "0.25": -0.6141252815723419,
+                "0.5": -0.4405946433544159,
+                "0.75": -0.293738953769207,
+                "0.99": -0.0348752722889181,
+                "1": 0.16125541925430298
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0030882353894412518,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9479784965515137,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6280653476715088
+            },
+            "loss_total": 2.5760438442230225,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.8892836570739746,
+              "maximum": 0.07500062137842178,
+              "mean": -0.43826133012771606,
+              "std": 0.30007779598236084,
+              "negative_count": 33409,
+              "zero_count": 0,
+              "positive_count": 591,
+              "finite": true,
+              "quantiles": {
+                "0": -1.8892836570739746,
+                "0.01": -1.3110203897953034,
+                "0.25": -0.5866424441337585,
+                "0.5": -0.3965401351451874,
+                "0.75": -0.20907992497086525,
+                "0.99": 0.011136669367551814,
+                "1": 0.07500062137842178
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.01738235354423523,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8553187847137451,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7089040279388428
+            },
+            "loss_total": 2.564222812652588,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.6331326961517334,
+              "maximum": 0.09923756867647171,
+              "mean": -0.46880871057510376,
+              "std": 0.27545106410980225,
+              "negative_count": 33621,
+              "zero_count": 0,
+              "positive_count": 379,
+              "finite": true,
+              "quantiles": {
+                "0": -1.6331326961517334,
+                "0.01": -1.241410481929779,
+                "0.25": -0.6037753075361252,
+                "0.5": -0.44382280111312866,
+                "0.75": -0.27490492165088654,
+                "0.99": 0.0030549387400970528,
+                "1": 0.09923756867647171
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.011147059500217438,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "eee9f47b05a9c015a04e7f48cc1a9aee1ff81bf3f096eed77c1e948e3d121808",
+        "parameter_hash_after": "eee9f47b05a9c015a04e7f48cc1a9aee1ff81bf3f096eed77c1e948e3d121808",
+        "buffer_hash_before": "841634dcdbec5cb3a94fd868360a6bbf1f519a91207532bb8b4630ccb68b3e33",
+        "buffer_hash_after": "bcba620c39345353274bf95a999b99d9eb897450e457fb669a062a10c33eb605",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "db4767a38d9a7424a3fe98600c9a34f4983b39f8c22b1cf181f1c0b48e55590f",
+      "rng_hash_after": "db4767a38d9a7424a3fe98600c9a34f4983b39f8c22b1cf181f1c0b48e55590f"
+    },
+    {
+      "step": 200,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.7984286546707153,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6938255429267883
+            },
+            "loss_total": 2.4922542572021484,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.6603822708129883,
+              "maximum": 0.02122773788869381,
+              "mean": -0.4791792929172516,
+              "std": 0.2574237287044525,
+              "negative_count": 33989,
+              "zero_count": 0,
+              "positive_count": 11,
+              "finite": true,
+              "quantiles": {
+                "0": -1.6603822708129883,
+                "0.01": -1.2539881038665772,
+                "0.25": -0.5806674510240555,
+                "0.5": -0.4388526529073715,
+                "0.75": -0.3183281794190407,
+                "0.99": -0.0529686892032623,
+                "1": 0.02122773788869381
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.00032352941343560815,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7478313446044922,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7092833518981934
+            },
+            "loss_total": 2.4571146965026855,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.757849931716919,
+              "maximum": 0.013516995124518871,
+              "mean": -0.4852517247200012,
+              "std": 0.24862341582775116,
+              "negative_count": 33992,
+              "zero_count": 0,
+              "positive_count": 8,
+              "finite": true,
+              "quantiles": {
+                "0": -1.757849931716919,
+                "0.01": -1.2683340942859649,
+                "0.25": -0.587607279419899,
+                "0.5": -0.44090498983860016,
+                "0.75": -0.33320385962724686,
+                "0.99": -0.08106852851808054,
+                "1": 0.013516995124518871
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.00023529412283096462,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.9165284633636475,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7171244025230408
+            },
+            "loss_total": 2.633652925491333,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.8308990001678467,
+              "maximum": 0.015016010962426662,
+              "mean": -0.46011626720428467,
+              "std": 0.2816542387008667,
+              "negative_count": 33985,
+              "zero_count": 0,
+              "positive_count": 15,
+              "finite": true,
+              "quantiles": {
+                "0": -1.8308990001678467,
+                "0.01": -1.368390415906906,
+                "0.25": -0.5652322918176651,
+                "0.5": -0.40966103971004486,
+                "0.75": -0.27934732288122177,
+                "0.99": -0.032420789077877786,
+                "1": 0.015016010962426662
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.00044117646757513285,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8330367207527161,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7103005647659302
+            },
+            "loss_total": 2.543337345123291,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.6155446767807007,
+              "maximum": 0.03694577142596245,
+              "mean": -0.47956934571266174,
+              "std": 0.2585446536540985,
+              "negative_count": 33981,
+              "zero_count": 0,
+              "positive_count": 19,
+              "finite": true,
+              "quantiles": {
+                "0": -1.6155446767807007,
+                "0.01": -1.232379994392395,
+                "0.25": -0.5877769887447357,
+                "0.5": -0.4351334869861603,
+                "0.75": -0.31787481158971786,
+                "0.99": -0.04261449046432953,
+                "1": 0.03694577142596245
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0005588235217146575,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "da840fd1da568223787de5401d962828f676fa26dec215d34d84c11ee15e8757",
+        "parameter_hash_after": "da840fd1da568223787de5401d962828f676fa26dec215d34d84c11ee15e8757",
+        "buffer_hash_before": "ac239271459f97a5fbb15d3eaa88610608aef74fe85b9aed7629a02e06a99040",
+        "buffer_hash_after": "0454b8d1c602fc93b4dabe90e26ad5d8f077e3b5cecd4e7caf38c761d162de93",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "ceba1cc3d955ace0f27c99e03c4f8e3e0ca0cc34b7df68352ea0482df22b741a",
+      "rng_hash_after": "ceba1cc3d955ace0f27c99e03c4f8e3e0ca0cc34b7df68352ea0482df22b741a"
+    },
+    {
+      "step": 300,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.7954809665679932,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6876513957977295
+            },
+            "loss_total": 2.4831323623657227,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.123032331466675,
+              "maximum": 0.0029752226546406746,
+              "mean": -0.479430615901947,
+              "std": 0.2831491231918335,
+              "negative_count": 33998,
+              "zero_count": 0,
+              "positive_count": 2,
+              "finite": true,
+              "quantiles": {
+                "0": -2.123032331466675,
+                "0.01": -1.3604730021953582,
+                "0.25": -0.5918228626251221,
+                "0.5": -0.4056694209575653,
+                "0.75": -0.2970077767968178,
+                "0.99": -0.08462708048522466,
+                "1": 0.0029752226546406746
+              }
+            },
+            "bbox_post_relu_positive_fraction": 5.8823530707741156e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7698310613632202,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.730655312538147
+            },
+            "loss_total": 2.500486373901367,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -2.0075111389160156,
+              "maximum": -0.001408526673913002,
+              "mean": -0.4874124526977539,
+              "std": 0.27458029985427856,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -2.0075111389160156,
+                "0.01": -1.3705673670768739,
+                "0.25": -0.6084944605827332,
+                "0.5": -0.4054904282093048,
+                "0.75": -0.31103528290987015,
+                "0.99": -0.10272672109305828,
+                "1": -0.001408526673913002
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.8749371767044067,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6898907423019409
+            },
+            "loss_total": 2.5648279190063477,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.9479806423187256,
+              "maximum": -0.01452486403286457,
+              "mean": -0.4635344445705414,
+              "std": 0.3013376295566559,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.9479806423187256,
+                "0.01": -1.4698175227642059,
+                "0.25": -0.5778342187404633,
+                "0.5": -0.38090939819812775,
+                "0.75": -0.27108459919691086,
+                "0.99": -0.0719460757821798,
+                "1": -0.01452486403286457
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8119832277297974,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7376052141189575
+            },
+            "loss_total": 2.549588441848755,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.9579895734786987,
+              "maximum": 0.019409524276852608,
+              "mean": -0.47704288363456726,
+              "std": 0.286700040102005,
+              "negative_count": 33999,
+              "zero_count": 0,
+              "positive_count": 1,
+              "finite": true,
+              "quantiles": {
+                "0": -1.9579895734786987,
+                "0.01": -1.3728032875061036,
+                "0.25": -0.5910841375589371,
+                "0.5": -0.4005384147167206,
+                "0.75": -0.29783041775226593,
+                "0.99": -0.07809739693999279,
+                "1": 0.019409524276852608
+              }
+            },
+            "bbox_post_relu_positive_fraction": 2.9411765353870578e-05,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "d650bea95659e1d4e410d9ef3253c64dcaa636af85255b8104e018ac57203c74",
+        "parameter_hash_after": "d650bea95659e1d4e410d9ef3253c64dcaa636af85255b8104e018ac57203c74",
+        "buffer_hash_before": "db49a8145fa91e484e16d4cc5423f981144ef1256a478f568977002faa65f262",
+        "buffer_hash_after": "043a437639333f3f1c3048336ff52df977d266b129d3a2eb8cd7d05c98295677",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "b78b08d83bba93dcfeef01add42bb14009aae4bc6e53fb306820d2d32b20ff51",
+      "rng_hash_after": "b78b08d83bba93dcfeef01add42bb14009aae4bc6e53fb306820d2d32b20ff51"
+    },
+    {
+      "step": 400,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.818022608757019,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6876388788223267
+            },
+            "loss_total": 2.5056614875793457,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5288280248641968,
+              "maximum": -0.03321392834186554,
+              "mean": -0.4581194221973419,
+              "std": 0.2539823651313782,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5288280248641968,
+                "0.01": -1.2278297746181488,
+                "0.25": -0.56882144510746,
+                "0.5": -0.4021345525979996,
+                "0.75": -0.28260330855846405,
+                "0.99": -0.08593434110283849,
+                "1": -0.03321392834186554
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.7534768581390381,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7429522275924683
+            },
+            "loss_total": 2.496428966522217,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.758212685585022,
+              "maximum": -0.02871473878622055,
+              "mean": -0.4612312912940979,
+              "std": 0.25233492255210876,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.758212685585022,
+                "0.01": -1.2737091052532197,
+                "0.25": -0.5794634521007538,
+                "0.5": -0.3875224441289902,
+                "0.75": -0.2916053608059883,
+                "0.99": -0.10538693770766236,
+                "1": -0.02871473878622055
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.7761611938476562,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6588167548179626
+            },
+            "loss_total": 2.4349780082702637,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.7845467329025269,
+              "maximum": -0.029141319915652275,
+              "mean": -0.4472590684890747,
+              "std": 0.2641448974609375,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.7845467329025269,
+                "0.01": -1.295251625776291,
+                "0.25": -0.5493357926607132,
+                "0.5": -0.38861915469169617,
+                "0.75": -0.258215494453907,
+                "0.99": -0.09484799906611434,
+                "1": -0.029141319915652275
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8343251347541809,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7126356363296509
+            },
+            "loss_total": 2.5469608306884766,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.5311341285705566,
+              "maximum": -0.0339961051940918,
+              "mean": -0.47166016697883606,
+              "std": 0.23961709439754486,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.5311341285705566,
+                "0.01": -1.1751035368442535,
+                "0.25": -0.5838479250669479,
+                "0.5": -0.4099915623664856,
+                "0.75": -0.31034478545188904,
+                "0.99": -0.10953444555401799,
+                "1": -0.0339961051940918
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "afc57e8b2c37ebaaded7fcb84cee668e049e7c46955130af923e3ee7ecacd9b9",
+        "parameter_hash_after": "afc57e8b2c37ebaaded7fcb84cee668e049e7c46955130af923e3ee7ecacd9b9",
+        "buffer_hash_before": "94e2fc26946d504c1e52fd51ce5a050401af54e3e17f121196b973e9b4e7b694",
+        "buffer_hash_after": "9cc9fcd753b307904b387ad0185cf9972eb66d56a6c6f31766ef0f94edc24095",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "d7813f8d2a6cc68ca34a0ce4f58138a7d8e88d6c7b8eef57bd416bcfad83ee0e",
+      "rng_hash_after": "d7813f8d2a6cc68ca34a0ce4f58138a7d8e88d6c7b8eef57bd416bcfad83ee0e"
+    },
+    {
+      "step": 500,
+      "gradient_probe": {
+        "backward_calls": 4,
+        "rows": [
+          {
+            "index": 4127,
+            "row_id": "train:00020652",
+            "target_box_count": 3,
+            "matched_anchor_count": 1,
+            "losses": {
+              "classification": 0.7865476608276367,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6889907121658325
+            },
+            "loss_total": 2.4755382537841797,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.7010658979415894,
+              "maximum": -0.02528325654566288,
+              "mean": -0.4656502604484558,
+              "std": 0.26546886563301086,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.7010658979415894,
+                "0.01": -1.3263198637962341,
+                "0.25": -0.5737574398517609,
+                "0.5": -0.3848283588886261,
+                "0.75": -0.2989650219678879,
+                "0.99": -0.11226102054119105,
+                "1": -0.02528325654566288
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 5576,
+            "row_id": "train:00027963",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.8178158402442932,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7638929486274719
+            },
+            "loss_total": 2.5817086696624756,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.79380202293396,
+              "maximum": -0.02606467343866825,
+              "mean": -0.4663090407848358,
+              "std": 0.26674237847328186,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.79380202293396,
+                "0.01": -1.3395169079303741,
+                "0.25": -0.5759378522634506,
+                "0.5": -0.38056983053684235,
+                "0.75": -0.2908482626080513,
+                "0.99": -0.12159654125571231,
+                "1": -0.02606467343866825
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2402,
+            "row_id": "train:00011770",
+            "target_box_count": 3,
+            "matched_anchor_count": 3,
+            "losses": {
+              "classification": 0.7057286500930786,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.6673168540000916
+            },
+            "loss_total": 2.3730454444885254,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.8094476461410522,
+              "maximum": -0.02476353384554386,
+              "mean": -0.45908215641975403,
+              "std": 0.27062854170799255,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.8094476461410522,
+                "0.01": -1.366518613100052,
+                "0.25": -0.5519390553236008,
+                "0.5": -0.3792946934700012,
+                "0.75": -0.2820662334561348,
+                "0.99": -0.11698891669511777,
+                "1": -0.02476353384554386
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          },
+          {
+            "index": 2093,
+            "row_id": "train:00010266",
+            "target_box_count": 3,
+            "matched_anchor_count": 2,
+            "losses": {
+              "classification": 0.9047604203224182,
+              "bbox_regression": 1.0,
+              "bbox_ctrness": 0.7431496381759644
+            },
+            "loss_total": 2.6479101181030273,
+            "bbox_pre_relu": {
+              "count": 34000,
+              "minimum": -1.6556273698806763,
+              "maximum": -0.027083860710263252,
+              "mean": -0.4839472770690918,
+              "std": 0.25012627243995667,
+              "negative_count": 34000,
+              "zero_count": 0,
+              "positive_count": 0,
+              "finite": true,
+              "quantiles": {
+                "0": -1.6556273698806763,
+                "0.01": -1.263554620742798,
+                "0.25": -0.6046337783336639,
+                "0.5": -0.39785902202129364,
+                "0.75": -0.32689666748046875,
+                "0.99": -0.12220438241958584,
+                "1": -0.027083860710263252
+              }
+            },
+            "bbox_post_relu_positive_fraction": 0.0,
+            "bbox_weight_gradient_norm": 0.0,
+            "bbox_bias_gradient_norm": 0.0,
+            "bbox_gradient_nonzero_fraction": 0.0,
+            "bbox_gradient_finite": true
+          }
+        ],
+        "parameters_unchanged": true,
+        "parameter_hash_before": "c330ccd0f59108ce71bf5daf981b2789503d5e7a5888f4075fd90646af30b212",
+        "parameter_hash_after": "c330ccd0f59108ce71bf5daf981b2789503d5e7a5888f4075fd90646af30b212",
+        "buffer_hash_before": "4a44af987bb42f5aed664ca63f2c4064a2c5df52f7e6edd234b3310f9c2001dd",
+        "buffer_hash_after": "7fdd392877ad31d98c63cd96047ab9ce3eb8893d2e5122c3ecdc37e6f4f1c3c2",
+        "ephemeral_buffers_changed": true
+      },
+      "isolation": {
+        "training_parameters": true,
+        "training_buffers": true,
+        "optimizer": true,
+        "rng": true
+      },
+      "rng_hash_before": "de43fc718f1825d4bdce30cf6cdea944782fbe82d31a0a5d1ebdc927a6a81f0b",
+      "rng_hash_after": "de43fc718f1825d4bdce30cf6cdea944782fbe82d31a0a5d1ebdc927a6a81f0b"
+    }
+  ]
+}
