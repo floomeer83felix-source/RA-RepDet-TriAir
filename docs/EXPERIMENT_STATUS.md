@@ -1,38 +1,67 @@
 # Experiment Status
 
-Updated: 2026-07-19
+Updated: 2026-07-20
 
 ## Active task
 
-`V61_BLOCKED_TRAINING_OR_TRACE_INCOMPLETE`
+`V62_MMUAV_CLEAN_BBOX_BIAS_PAIRED_RERUN_AUTHORIZED`
 
-## Execution state
+## User authorization
 
-V61 passed CPU preparation and all eleven pre-CUDA contract tests, with one expected CUDA-result test skipped. The GPU run then completed all 500 authorized optimizer steps for `v57_equal_control_instrumented` but failed during the step-500 devval geometry trace before the control checkpoint and recovery state were saved. The intervention variant executed zero optimizer steps.
+The user explicitly selected V61 blocker repair option 2 and authorized V62 as a newly numbered clean paired pilot. V61 remains closed as `V61_BLOCKED_TRAINING_OR_TRACE_INCOMPLETE`; its partial control run is diagnostic-only evidence and may not be resumed, pooled with V62, or used to skip the V62 control run.
 
-The failure occurred because the V61 geometry helper reused the historical optimization-only `target_to_device` helper. That helper rejects rows whose ID does not start with `train:`; the first frozen devval row was `devval:00005919`.
+The standing local/private-research instruction remains frozen and must not be repeatedly reconfirmed.
 
-## Consumed budget
+## V61 prerequisite evidence
 
-- Control optimizer steps: `500 / 500`.
-- Positive-bias optimizer steps: `0 / 500`.
-- Total optimizer steps: `500 / 1,000`.
-- Completed diagnostic backward probes: `44 / 96`.
-- Completed persisted trace markers: steps `0, 1, 2, 5, 10, 20, 50, 100, 200, 300, 400` for control.
-- V61 checkpoints or optimizer recovery snapshots: `0`.
+- V61 control completed 500 optimizer steps; the `+0.01` intervention completed 0 steps.
+- The run failed during the control step-500 frozen devval geometry trace on `devval:00005919`.
+- The trace path incorrectly reused a train-only target-transfer helper.
+- No control checkpoint, optimizer state, RNG state, or exact recovery snapshot was saved.
+- V61 training-log SHA256: `a96e0260079cbd05fd62fcc184a6908476490c42ecebe9b44373af4aebfd0965`.
+- V57 common initialization SHA256 remained `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`.
+- V61 protected evidence remains immutable and cannot support a paired prevention conclusion.
 
-## Partial engineering observations
+## V62 trace-path correction
 
-These observations are not a paired V61 outcome. Control valid boxes on the frozen 32-row train geometry traces fell from `19,038` at step 1 to `192` at step 10 and `0` at steps 20, 100, 200, 300, and 400, with `2` at step 50. The 500-row training log is complete and has SHA256 `a96e0260079cbd05fd62fcc184a6908476490c42ecebe9b44373af4aebfd0965`. The bbox output gradient was already zero on the historical training row at step 1, was nonzero at step 2, and was zero at the selected rows from step 10 onward. No strict paired prevention classification is permitted because the control step-500 trace was not completed and the intervention was never run.
+V62 must introduce a trace-specific, split-agnostic RGB-target tensor mover that accepts train and devval rows without weakening the historical train-only optimization guard. Before CUDA work, CPU tests must use the actual frozen failing row `devval:00005919`, verify exact boxes/labels preservation, verify that the optimization helper still rejects devval, and exercise the bounded geometry trace call chain.
 
-## Safety
+## V62 clean pair
 
-- No full-devval evaluation or AP/AR was run.
-- No threshold selection, tuning, bias sweep, checkpoint selection, or rerun occurred.
-- The common initialization remains byte-identical at SHA256 `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`.
-- Protected V40-V60 evidence, V51, production TriAir, manuscript, and submission fingerprints remain unchanged.
-- No heavy artifact or checkpoint is present in the repository.
+Run exactly, in order:
 
-## Authorization boundary
+1. `v62_equal_control_instrumented` — exact historical V57 seed-0 common initialization, 500 optimizer steps;
+2. `v62_equal_bbox_bias_p001` — the same initial state except the four-element final bbox-regression output bias is set once to exact `+0.01`, 500 optimizer steps.
 
-Do not restart V61 automatically. A clean paired rerun would repeat the already consumed 500 control steps and therefore requires a new explicit authorization after the devval target-transfer bug is corrected and tested. The existing partial log remains diagnostic-only blocked evidence.
+Both variants use alignment enabled, exact equal fusion, dormant reliability scorer, the same first 500 rows of the frozen historical V57 order, and the historical FP32 AdamW configuration. Every initial tensor except the four intervention bias elements must be bit-identical.
+
+V62 optimizer-step ceiling: **1,000 total**, exactly 500 per variant. This new authorization explicitly permits repeating the blocked V61 control budget, but no V61 trained state may be reused.
+
+## Dense evidence and recovery contract
+
+Trace steps are `0, 1, 2, 5, 10, 20, 50, 100, 200, 300, 400, 500`. Record bbox losses, matched anchors, pre/post-ReLU geometry, valid/degenerate boxes, output-layer parameters, and output-layer gradients. At most 96 no-step diagnostic backward calls are authorized.
+
+Immediately before every trace, write and round-trip verify an atomic local technical recovery snapshot containing model, optimizer, RNG, order, step, log, and trace-ledger state. A technical restart is allowed only from an exact verified V62 snapshot and may not replay or skip optimizer steps.
+
+At step 500, run only the frozen 32-row devval geometry subset through the corrected trace path. Do not run the complete 1,845-row devval set and do not compute AP/AR.
+
+## Safety and claim boundary
+
+- No bias sweep; the sole intervention is exact `+0.01`.
+- No reliability-fusion training, activation/loss changes, V57/V61 checkpoint repair, or resume.
+- No full 7,187-step run, full-devval evaluation, AP/AR, tuning, early stopping, checkpoint selection, extra variant, extra seed, or automatic budget extension.
+- Production TriAir behavior, V40-V61 evidence, V51, manuscript, and submission files remain protected.
+- Checkpoints, optimizer states, recovery snapshots, and heavy artifacts remain local and outside Git.
+
+A positive step-500 prevention result is single-seed early engineering evidence only. It does not authorize a full corrected training run or an accuracy/reliability-fusion claim.
+
+## Allowed completion states
+
+- `V62_CONTROL_COLLAPSE_REPRODUCED_POSITIVE_BIAS_PREVENTS_THROUGH_STEP500`
+- `V62_CONTROL_AND_POSITIVE_BIAS_BOTH_COLLAPSE`
+- `V62_CONTROL_COLLAPSE_REPRODUCED_INTERVENTION_RESULT_MIXED`
+- `V62_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_500_STEPS`
+- `V62_BLOCKED_SOURCE_INITIALIZATION_ORDER_OR_TRACE_FIX_CONTRACT`
+- `V62_BLOCKED_TRAINING_TRACE_OR_RECOVERY_INCOMPLETE`
+- `V62_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`
+- `V62_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`
