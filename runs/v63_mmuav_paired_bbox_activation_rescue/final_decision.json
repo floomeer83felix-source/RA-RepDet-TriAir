@@ -1,0 +1,168 @@
+{
+  "decision": "V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200",
+  "comparison": {
+    "trace_classifications": {
+      "v63_equal_relu_control": [
+        {
+          "step": 0,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 1,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 2,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 3,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 5,
+          "state": "NEITHER_PREREGISTERED_STATE"
+        },
+        {
+          "step": 10,
+          "state": "NEITHER_PREREGISTERED_STATE"
+        },
+        {
+          "step": 15,
+          "state": "EARLY_BBOX_COLLAPSE"
+        },
+        {
+          "step": 20,
+          "state": "EARLY_BBOX_COLLAPSE"
+        },
+        {
+          "step": 30,
+          "state": "EARLY_BBOX_COLLAPSE"
+        },
+        {
+          "step": 50,
+          "state": "NEITHER_PREREGISTERED_STATE"
+        },
+        {
+          "step": 100,
+          "state": "EARLY_BBOX_COLLAPSE"
+        },
+        {
+          "step": 150,
+          "state": "EARLY_BBOX_COLLAPSE"
+        },
+        {
+          "step": 200,
+          "state": "EARLY_BBOX_COLLAPSE"
+        }
+      ],
+      "v63_equal_softplus_b1_t20": [
+        {
+          "step": 0,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 1,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 2,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 3,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 5,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 10,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 15,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 20,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 30,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 50,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 100,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 150,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        },
+        {
+          "step": 200,
+          "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+        }
+      ]
+    },
+    "first_collapse_step": {
+      "v63_equal_relu_control": 15,
+      "v63_equal_softplus_b1_t20": null
+    },
+    "first_preserved_step": {
+      "v63_equal_relu_control": 0,
+      "v63_equal_softplus_b1_t20": 0
+    },
+    "selected_outcome": "V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200",
+    "single_seed_early_mechanistic_evidence_only": true
+  },
+  "safety": {
+    "optimizer_steps": 400,
+    "optimizer_step_limit": 400,
+    "per_variant_optimizer_steps": {
+      "v63_equal_relu_control": 200,
+      "v63_equal_softplus_b1_t20": 200
+    },
+    "probe_backward_calls": 104,
+    "probe_backward_limit": 104,
+    "verified_recovery_snapshots": 26,
+    "recovery_events": 0,
+    "all_recovery_round_trips": true,
+    "all_trace_isolation_checks": true,
+    "all_finite": true,
+    "v62_evidence_unchanged": true,
+    "protected_fingerprint_unchanged": true,
+    "frozen_devval_rows_per_variant": 32,
+    "full_devval_rows": 0,
+    "ap_ar_computed": false,
+    "threshold_selection": false,
+    "tuning": false,
+    "checkpoint_selection": false
+  },
+  "checkpoint_metadata": {
+    "v63_equal_relu_control": {
+      "path_local_not_committed": "D:\\MM-UAV_v63_local\\v63_equal_relu_control_final_step200.pt",
+      "sha256": "ddd6b79e4695672c981f9083865f881c6b623ea818a3236e72acc691b148b2e6",
+      "bytes": 27118867,
+      "completed_optimizer_steps": 200,
+      "selection_metric": null,
+      "common_init_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+      "final_state_fingerprint": "cb39ba0980aa483f2ac26ad8b3cbce86e540635a7508a70ad3eac2cdece0a219"
+    },
+    "v63_equal_softplus_b1_t20": {
+      "path_local_not_committed": "D:\\MM-UAV_v63_local\\v63_equal_softplus_b1_t20_final_step200.pt",
+      "sha256": "6df9b915a2f520cbe1e51dc5ee962bd1e0b8fbb11465314377c9a3ba08a6269d",
+      "bytes": 27121636,
+      "completed_optimizer_steps": 200,
+      "selection_metric": null,
+      "common_init_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+      "final_state_fingerprint": "256a862aad9e9c6df1f36e1e70839e4cf1de65d1598e1469387fe2e4f2199f17"
+    }
+  }
+}

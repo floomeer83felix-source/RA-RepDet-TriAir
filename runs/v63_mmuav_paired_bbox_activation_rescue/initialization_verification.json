@@ -1,0 +1,33 @@
+{
+  "common_init_path_local_not_committed": "D:\\MM-UAV_v57_local\\common_seed0_superset_init.pt",
+  "common_init_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+  "changed_tensor_count": 0,
+  "changed_element_count": 0,
+  "state_dict_keys_identical": true,
+  "state_tensors_bit_identical": true,
+  "state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53",
+  "historical_bbox_bias_unchanged": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sole_difference": "parameter-free bbox-distance activation",
+  "softplus": {
+    "beta": 1.0,
+    "threshold": 20.0
+  },
+  "step0_identity": {
+    "row_id": "train:00006249",
+    "checks": {
+      "state": true,
+      "pre_activation": true,
+      "classification": true,
+      "centerness": true,
+      "fused_features": true,
+      "post_activation_differs": true
+    },
+    "pre_activation_tensor_count": 4,
+    "state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53"
+  }
+}

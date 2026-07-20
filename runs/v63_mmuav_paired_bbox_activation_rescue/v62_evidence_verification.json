@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "final_decision.json": true,
+    "safety_audit.json": true,
+    "per_variant_training_log.csv": true,
+    "decision": true,
+    "first_collapse_both_step20": true,
+    "optimizer_steps": true,
+    "backward_calls": true,
+    "snapshots": true,
+    "no_full_eval": true
+  },
+  "file_sha256": {
+    "final_decision.json": "6228e9ad27756facdf80a6aab05c44c2b69eeb2c87f8cab9e7bd275b6c2e2c0a",
+    "safety_audit.json": "e844eefc263c781228815bdbba0f1b81fbbad013edd8afd0703b7154f5822b74",
+    "per_variant_training_log.csv": "664128138115b74774e5e04e4e7b3429821661ec63c73fa7a6a931f451d47e40"
+  }
+}
