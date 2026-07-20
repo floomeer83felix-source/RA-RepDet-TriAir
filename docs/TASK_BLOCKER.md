@@ -1,97 +1,65 @@
 # Task Blocker
 
-Status: `V61_BLOCKED_TRAINING_OR_TRACE_INCOMPLETE`
+Status: `V62_CLEAN_BBOX_BIAS_PAIRED_RERUN_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
 
-Generated: 2026-07-19
+Generated: 2026-07-20
 
-## Exact blocker
+## Current state
 
-The control variant completed 500 optimizer steps. During its required step-500 trace, all 32 frozen train geometry rows completed in memory, then the first frozen devval row failed before aggregation and before the four step-500 gradient probes. `geometry_row()` called the historical optimization-only `target_to_device()` helper, which rejects `devval:00005919` as an invalid optimization sample.
+V61 remains closed as `V61_BLOCKED_TRAINING_OR_TRACE_INCOMPLETE`. Its exact failure was a trace-only implementation defect: the step-500 frozen devval geometry path reused the train-only optimization target mover and rejected `devval:00005919`. The control consumed 500 optimizer steps, the intervention consumed 0, and no exact recovery snapshot exists.
 
-The process exited before writing a control checkpoint, optimizer state, RNG state, or trace ledger. Therefore no exact next-state recovery snapshot exists. The frozen task prohibits a rerun or restart without such a snapshot, and the intervention variant cannot be started as an incomplete pair.
+The user selected blocker repair option 2: preserve V61 as blocked diagnostic evidence and create a separately numbered clean V62 paired pilot with a corrected trace path and a newly frozen 500+500 budget.
 
-## Consumed work
+No active engineering blocker remains before V62 CPU source-lock, trace-fix, actual-devval-row, recovery-snapshot, and paired-initialization tests. CUDA work may begin only after those tests pass.
 
-- Training-log rows: control `500`, intervention `0`.
-- Optimizer steps: `500 / 1,000`.
-- Diagnostic backward calls: `44 / 96`.
-- Training log SHA256: `a96e0260079cbd05fd62fcc184a6908476490c42ecebe9b44373af4aebfd0965`.
-- V61 checkpoints/recovery snapshots: none.
-- Protected fingerprint and V57 initialization hash: unchanged.
+## Authorized correction boundary
 
-## Attempted checks
+V62 may:
 
-1. Confirmed the Python/CUDA process exited and no background training remained.
-2. Counted the CSV ledger and verified exactly 500 control rows and zero intervention rows.
-3. Verified `D:\MM-UAV_v61_local` was not created and no checkpoint or recovery file exists.
-4. Reproduced the call chain from `trace_state()` to `geometry_row()` to the train-only helper.
-5. Rechecked the common initialization SHA256 and the protected-file aggregate fingerprint; both remain unchanged.
-6. Did not patch and restart after observing results, because that would violate the no-rerun and paired-budget contract.
+- verify and preserve all V61 blocked evidence byte-identically;
+- implement a trace-specific split-agnostic mover for RGB boxes and labels;
+- test that mover on the actual frozen failing row `devval:00005919`;
+- retain the historical train-only optimization helper and prove that it still rejects devval rows;
+- execute a bounded train/devval geometry call-chain test before CUDA;
+- implement atomic local recovery snapshots that preserve model, optimizer, RNG, order, step, log, and trace-ledger state;
+- reconstruct the exact historical V57 seed-0 common initialization;
+- create a control and exact `+0.01` four-bias intervention pair;
+- run the control and intervention in that order for exactly 500 optimizer steps each on the identical frozen 500-row prefix;
+- perform the twelve frozen traces and at most 96 no-step diagnostic backward probes;
+- run only the frozen 32-row devval geometry subset at step 500;
+- commit compact source, tests, hashes, logs, statistics, and conclusions.
 
-## Related files
+V62 may not:
 
-- `rarepdet/tools/run_v61_mmuav_bbox_bias_pilot.py`
-- `rarepdet/tools/run_v56_mmuav_multiseed_alignment.py`
-- `datasets/mmuav_feature_alignment_dataset.py`
-- `runs/v61_mmuav_early_bbox_collapse_prevention/per_variant_training_log.csv`
-- `runs/v61_mmuav_early_bbox_collapse_prevention/runner_output.txt`
+- modify, resume, pool, repair, or initialize from the V61 partial run;
+- weaken the global train-only optimization guard;
+- alter any paired tensor beyond the four-element initial bbox-output bias;
+- use a bias other than exact `+0.01`, run a sweep, or alter the intervention after start;
+- activate reliability fusion, disable alignment, or change uniform equal fusion;
+- replace ReLU, alter the loss, threshold, top-k, NMS, preprocessing, detector, architecture, or evaluator;
+- exceed 500 steps per variant, 1,000 total optimizer steps, or 96 diagnostic backward calls;
+- run full devval, AP/AR, tuning, checkpoint selection, extra variants/seeds, or automatic extensions;
+- modify production TriAir defaults, V40-V61 evidence, V51, manuscript/submission files, raw data, or annotations;
+- put checkpoints, optimizer states, recovery snapshots, predictions, tensors, images, feature maps, or other heavy artifacts in Git.
 
-## Proposed repair options
+## Fail-closed blockers
 
-1. **Fresh paired rerun under new authorization:** replace the devval trace target transfer with a split-agnostic tensor move, add a CPU unit test using an actual frozen devval row, pre-save exact technical recovery state before every trace, archive the blocked output, and explicitly authorize a fresh 500+500 run. This repeats 500 control steps and must not be inferred from the current task.
-2. **Close V61 as blocked and define a new pilot:** preserve the partial control log as diagnostic-only evidence, create a separately numbered task with the corrected trace path and a newly frozen budget, and make no prevention claim from V61.
+Stop with the matching V62 blocked state on:
 
-## Last 50 error lines
+1. V61 evidence, data, historical order, subset, or initialization mismatch;
+2. any V61 historical-file mutation;
+3. failure of the actual `devval:00005919` trace-target or complete bounded geometry-call-chain tests;
+4. any weakening of the optimization split guard;
+5. any initial paired tensor difference beyond the exact four-element `+0.01` intervention;
+6. invalid or non-round-trippable recovery state;
+7. incorrect run order, repeated/substituted rows, replayed/skipped steps, or optimizer-budget violation;
+8. more than 96 diagnostic backward calls, unregistered samples, or diagnostic mutation of persistent state;
+9. alignment/fusion/scorer contract violation;
+10. OOM or non-finite loss, gradient, parameter, alignment, geometry, or diagnostic value;
+11. full-devval evaluation, AP/AR, tuning, checkpoint selection, protected-file change, or heavy-artifact Git violation.
 
-```text
-KSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas
-/index.html#results-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp
-:208.)
-At line:2 char:93
-+ ... v,noheader; & 'C:\Users\xinnan\.conda\envs\pytorch\python.exe' rarepd ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (C:\Users\xinnan...ntext.cpp:208.):String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
+Do not automatically change the bias, LR, optimizer, precision, batch size, resolution, activation, loss, run length, sample order, trace schedule, or recovery policy after observing behavior.
 
-  return torch.affine_grid_generator(theta, size, align_corners)
-C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\autograd\graph.py:825: UserWarning: grid_sampler_2d_backwar
-d_cuda does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True, warn_only=Tr
-ue)'. You can file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic sup
-port for this operation. (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:95.)
-  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-C:\Users\xinnan\.conda\envs\pytorch\lib\site-packages\torch\autograd\graph.py:825: UserWarning: Deterministic behavior
-was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`,
-but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behav
-ior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG
-=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#r
-esults-reproducibility (Triggered internally at C:\cb\pytorch_1000000000000\work\aten\src\ATen\Context.cpp:208.)
-  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=1 valid=19038
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=2 valid=19178
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=5 valid=1934
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=10 valid=192
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=20 valid=0
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=50 valid=2
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=100 valid=0
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=200 valid=0
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=300 valid=0
-V61_TRACE_COMPLETE variant=v57_equal_control_instrumented step=400 valid=0
-Traceback (most recent call last):
-  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 818, in <module>
-    main()
-  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 813, in main
-    run()
-  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 745, in run
-    summary, traces = train_variant(name, states[name], order, train_dataset, dev_dataset,
-  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 672, in train_variant
-    traces.append(trace_state(model, optimizer, completed, train_dataset, dev_dataset, subsets, device))
-  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 571, in trace_state
-    dev_records = [geometry_row(model, dev_dataset[index], device) for index in subsets["devval_indices"]]
-  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 571, in <listcomp>
-    dev_records = [geometry_row(model, dev_dataset[index], device) for index in subsets["devval_indices"]]
-  File "E:\RepViT-main\rarepdet\tools\run_v61_mmuav_bbox_bias_pilot.py", line 372, in geometry_row
-    targets = target_to_device(sample, device)
-  File "E:\RepViT-main\rarepdet\tools\run_v56_mmuav_multiseed_alignment.py", line 292, in target_to_device
-    raise RuntimeError(f"Invalid optimization sample: {sample['original_row_id']}")
-RuntimeError: Invalid optimization sample: devval:00005919
-```
+## Next action
+
+Execute V62 exactly as written in `docs/NEXT_TASK.md`. First correct and test the trace-only target transfer and atomic recovery path. Then perform a clean 500+500 pair from the exact common initialization. Even a positive step-500 prevention result does not authorize a full 7,187-step corrected run.
