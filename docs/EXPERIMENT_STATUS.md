@@ -4,45 +4,63 @@ Updated: 2026-07-20
 
 ## Active task
 
-`V62_CONTROL_AND_POSITIVE_BIAS_BOTH_COLLAPSE`
+`V63_MMUAV_PAIRED_BBOX_ACTIVATION_RESCUE_PILOT_AUTHORIZED`
 
-## V62 outcome
+## User authorization
 
-V62 completed the clean paired 500+500 pilot from the exact historical V57 seed-0 initialization. The trace-only target mover accepted the actual V61 failing row `devval:00005919` without changing boxes or labels, while the historical optimization helper remained train-only. All 24 scheduled recovery snapshots were atomically written and round-trip verified; no recovery event was needed.
+The user reported that V62 completed and was pushed. Under the standing automatic task-handoff workflow, V63 is authorized as the next bounded stage: a paired 200-step-per-variant pilot testing whether replacing the historical hard ReLU bbox-distance activation with exact parameter-free Softplus prevents the early V57 geometry-and-gradient collapse.
 
-The selected frozen outcome is `V62_CONTROL_AND_POSITIVE_BIAS_BOTH_COLLAPSE`.
+The standing local/private-research instruction remains frozen and must not be repeatedly reconfirmed.
 
-## Paired result
+## V62 prerequisite evidence
 
-- Both variants were `GEOMETRY_AND_GRADIENT_PRESERVED` at steps 0, 1, and 2.
-- Both variants first met strict `EARLY_BBOX_COLLAPSE` at step 20: zero valid boxes on the frozen 32-row train subset and zero bbox output-layer gradients on all four frozen probe rows.
-- Control remained collapsed at every later trace through step 500.
-- The `+0.01` intervention had five valid boxes at step 50 but zero probe gradients, so that trace was `NEITHER_PREREGISTERED_STATE`; it returned to strict collapse at step 100 and remained collapsed through step 500.
-- At step 500, both variants produced `0 / 272,000` valid train boxes and `0 / 272,000` valid frozen-devval boxes.
-- The exact `+0.01` four-element initial bbox-output bias did not prevent the early V57 geometry/gradient collapse.
+- V62 completion commit: `286508ff34d4cd0ac494d803e5a146a686318f14`.
+- V62 outcome: `V62_CONTROL_AND_POSITIVE_BIAS_BOTH_COLLAPSE`.
+- Both the historical ReLU control and exact `+0.01` bbox-output-bias intervention were preserved at steps 0, 1, and 2.
+- Both first met strict `EARLY_BBOX_COLLAPSE` at step 20.
+- Both ended step 500 with `0 / 272,000` valid train boxes and `0 / 272,000` valid frozen-devval boxes.
+- The `+0.01` initial bias therefore did not prevent collapse.
+- V62 completed `500 / 500` optimizer steps, `96 / 96` diagnostic backward calls, and 24 verified recovery snapshots with zero recovery events.
+- No full devval, AP/AR, tuning, threshold selection, or checkpoint selection occurred.
 
-## Budgets and safety
+## V63 paired intervention
 
-- Optimizer steps: control/intervention/total `500 / 500 / 1,000`.
-- No-step diagnostic backward calls: `96 / 96`.
-- Verified atomic recovery snapshots: `24`; recovery events: `0`.
-- Frozen devval geometry rows: `32` per variant at step 500; full-devval rows: `0`.
-- AP/AR, threshold selection, tuning, early stopping, and checkpoint selection: none.
-- All losses, gradients, parameters, geometry summaries, and recovery checks were finite.
-- Reliability scorer remained dormant and unchanged in both equal-fusion variants.
-- V61 blocked evidence and the protected V40-V61/V51/production/manuscript/submission fingerprint remained unchanged.
+Run exactly, in order:
 
-## Local checkpoints
+1. `v63_equal_relu_control` — exact historical V57 seed-0 equal-superset state and ReLU bbox-distance activation, 200 optimizer steps;
+2. `v63_equal_softplus_b1_t20` — the same bit-identical state, replacing only the bbox-distance activation with `softplus(beta=1.0, threshold=20.0)` in both training and inference paths, 200 optimizer steps.
 
-- Control SHA256: `644b26444f09707aa463658c2437585dc8664f237cd0dea006995312b77c097f`.
-- `+0.01` SHA256: `8980901d2a4d8e137cb44d36f34139ef97ef4eba57b733f6e414448a41c100a4`.
+Both variants use alignment enabled, exact uniform equal fusion, dormant reliability scorer, the same first 200 rows of the frozen historical V57 order, historical FP32 AdamW settings, and the unchanged historical bbox-output bias. The sole paired scientific difference is the parameter-free activation.
 
-Checkpoints and recovery snapshots remain local under `D:\MM-UAV_v62_local` and are not committed.
+V63 optimizer-step ceiling: **400 total**, exactly 200 per variant.
 
-## Reproducibility limitation
+## Dense evidence contract
 
-PyTorch warned that CUDA affine-grid/grid-sampler backward and CuBLAS operations are not strictly deterministic under the current environment. V62 is therefore bounded single-run, single-seed engineering evidence. The clean pair used identical frozen order/configuration and passed all internal state-isolation checks, but bitwise reproduction on another CUDA run is not claimed.
+Trace steps are `0, 1, 2, 3, 5, 10, 15, 20, 30, 50, 100, 150, 200`.
 
-## Authorization boundary
+At each trace, record pre/post-activation geometry, valid/degenerate boxes, matched anchors, bbox losses, bbox-output and regression-tower gradients, and activation local-derivative summaries. Use the frozen four-row probe subset on fresh ephemeral copies, with at most 104 no-step backward calls total.
 
-V62 does not authorize a bias sweep, another initialization intervention, activation/loss changes, a full 7,187-step run, AP/AR evaluation, reliability-fusion claims, or manuscript changes. Any next experiment requires a separately frozen task and explicit GPU authorization.
+Before every trace, atomically save and round-trip verify exact local recovery state. At step 200, run only the frozen 32-row devval geometry subset. Do not run full devval and do not compute AP/AR.
+
+`EARLY_BBOX_COLLAPSE` retains the frozen definition: zero valid train boxes and zero bbox-output weight/bias gradients on all four probe rows at the same trace. `GEOMETRY_AND_GRADIENT_PRESERVED` requires at least one valid train box and at least one finite nonzero bbox-output gradient.
+
+## Safety and claim boundary
+
+- No bias intervention or sweep; both variants keep the historical common-initialization bias.
+- No loss, target, matcher, anchor, scale, decode, clipping, threshold, NMS, preprocessing, detector, evaluator, or fusion changes.
+- No reliability-fusion training, full 7,187-step run, full-devval evaluation, AP/AR, tuning, early stopping, checkpoint selection, extra variant/seed, rerun, or automatic budget extension.
+- Production TriAir behavior, V40-V62 evidence, V51, manuscript, and submission files remain protected.
+- Checkpoints, optimizer states, recovery snapshots, and heavy artifacts remain local and outside Git.
+
+A Softplus rescue is single-seed early mechanistic evidence only. It may support hard ReLU zero-derivative behavior as a necessary contributor, but it does not establish the sole cause, final localization quality, accuracy, or authorization for a full corrected run.
+
+## Allowed completion states
+
+- `V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200`
+- `V63_RELU_AND_SOFTPLUS_BOTH_COLLAPSE`
+- `V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_MIXED`
+- `V63_RELU_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_200_STEPS`
+- `V63_BLOCKED_SOURCE_INITIALIZATION_OR_ACTIVATION_CONTRACT`
+- `V63_BLOCKED_TRAINING_TRACE_OR_RECOVERY_INCOMPLETE`
+- `V63_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`
+- `V63_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`
