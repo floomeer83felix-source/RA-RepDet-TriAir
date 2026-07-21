@@ -1,0 +1,20 @@
+{
+  "v64_seed1_equal_relu_control": {
+    "path_local_not_committed": "D:\\MM-UAV_v64_local\\v64_seed1_equal_relu_control_final_step200.pt",
+    "sha256": "f8778088aec12a38ec288c6cfb2e683eac86788ae25a805939d7a95b6022c390",
+    "bytes": 27124021,
+    "completed_optimizer_steps": 200,
+    "selection_metric": null,
+    "common_init_sha256": "50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476",
+    "final_state_fingerprint": "49133e6ddd6fcc2effa6073b34f5e809e27b98c3cdf284958e9aaa06bb0ad50a"
+  },
+  "v64_seed1_equal_softplus_b1_t20": {
+    "path_local_not_committed": "D:\\MM-UAV_v64_local\\v64_seed1_equal_softplus_b1_t20_final_step200.pt",
+    "sha256": "b2b74bb2d4f67dcb651e6348b5bc33ce056d630b03b33997938e2ef1bd210104",
+    "bytes": 27126406,
+    "completed_optimizer_steps": 200,
+    "selection_metric": null,
+    "common_init_sha256": "50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476",
+    "final_state_fingerprint": "b81ac0e7fd609f121e58a5b83fdbd147199ef65b296ec66249306f5949aca9ed"
+  }
+}

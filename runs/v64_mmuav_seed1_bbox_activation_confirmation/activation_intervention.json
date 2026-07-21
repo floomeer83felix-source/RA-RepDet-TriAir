@@ -1,0 +1,8 @@
+{
+  "control": "native torchvision ReLU",
+  "intervention": "softplus",
+  "beta": 1.0,
+  "threshold": 20.0,
+  "parameter_free": true,
+  "same_regression_head_training_and_inference": true
+}

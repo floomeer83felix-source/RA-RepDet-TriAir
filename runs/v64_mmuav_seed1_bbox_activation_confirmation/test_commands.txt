@@ -1,0 +1,3 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v64_mmuav_seed1_bbox_activation_confirmation.py --prepare-only
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v64_mmuav_seed1_bbox_activation_confirmation.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v64_mmuav_seed1_bbox_activation_confirmation.py --run

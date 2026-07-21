@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "final_decision.json": true,
+    "safety_audit.json": true,
+    "per_variant_training_log.csv": true,
+    "source_lock_v63.json": true,
+    "decision": true,
+    "relu_collapse_step15": true,
+    "softplus_never_collapsed": true,
+    "softplus_all_preserved": true,
+    "prefix": true,
+    "steps": true,
+    "backward": true,
+    "recovery": true,
+    "relu_checkpoint": true,
+    "softplus_checkpoint": true,
+    "no_full_eval": true
+  },
+  "file_sha256": {
+    "final_decision.json": "2985ac382639dca8da6b3303b9e0e3fdb74bc6b54485de7c140f3f8dbda818bd",
+    "safety_audit.json": "90f2a837e480d8947616ea60401805843487cf47541e50837522e766f7871e18",
+    "per_variant_training_log.csv": "4b6e0ba9f89fe0314dff58a3a1b6ef9eefe021974643a384fe7e00a00c593dc9",
+    "source_lock_v63.json": "489db6a090c8b38c4aa36c72bf238d116743ded91916ff006785ab382762776a"
+  }
+}

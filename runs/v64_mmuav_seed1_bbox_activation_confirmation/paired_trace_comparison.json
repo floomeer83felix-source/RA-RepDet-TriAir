@@ -1,0 +1,122 @@
+{
+  "trace_classifications": {
+    "v64_seed1_equal_relu_control": [
+      {
+        "step": 0,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 1,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 2,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 3,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 5,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 10,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 15,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 20,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 30,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 50,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 100,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 150,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 200,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      }
+    ],
+    "v64_seed1_equal_softplus_b1_t20": [
+      {
+        "step": 0,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 1,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 2,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 3,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 5,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 10,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 15,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 20,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 30,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 50,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 100,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 150,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "step": 200,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      }
+    ]
+  },
+  "first_collapse_step": {
+    "v64_seed1_equal_relu_control": null,
+    "v64_seed1_equal_softplus_b1_t20": null
+  },
+  "first_preserved_step": {
+    "v64_seed1_equal_relu_control": 0,
+    "v64_seed1_equal_softplus_b1_t20": 0
+  },
+  "selected_outcome": "V64_SEED1_RELU_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_200_STEPS",
+  "independent_seed1_bounded_mechanistic_evidence_only": true
+}

@@ -1,0 +1,21 @@
+{
+  "starting_commit": "2d257de8dbc5164c3cd36b3d0b6dd1ef5c258c34",
+  "authorization_base": "83bb9351a5d0a6115d81047482e23fef5eed26bb",
+  "source_hashes": {
+    "rarepdet/tools/run_v64_mmuav_seed1_bbox_activation_confirmation.py": "73a583a610cd343f0da1a9967f8cfd76895324ba161978ab003ea03fadefa339",
+    "tests/test_v64_mmuav_seed1_bbox_activation_confirmation.py": "578dd8b634e4ce5e8128051ad84b15458a244c48082f70321047e67852c7aada",
+    "rarepdet/tools/run_v63_mmuav_bbox_activation_rescue.py": "b889a83778f6a7826cb8527b68194848b70085c311cd04a0b74a08629ad60081",
+    "rarepdet/experimental/v63_bbox_activation_detector.py": "f2ac8fc826f3dda66eaec4200ffc7747efee5a892e4931aa2f95c356de67fe4d",
+    "rarepdet/tools/run_v62_mmuav_clean_bbox_bias_pilot.py": "45ce7dbce258f52743b8cedc26e1fd99cd69522d042ff477127208518c46f488",
+    "rarepdet/tools/run_v61_mmuav_bbox_bias_pilot.py": "b8a4d7bbd03887ac0cad98643a4a7f7c968752731ab92191dbef76968d28f930",
+    "rarepdet/experimental/v57_fusion_superset_detector.py": "dd044cd8cbfcbfbbf83b829897e77723cf25ca6d2b7f71c67984a33b779ef082",
+    "datasets/mmuav_feature_alignment_dataset.py": "ae10aec2fe60e6e744949f87dc0599332edd87c95dd77dee182ff1be687e539e"
+  },
+  "installed_fcos_path": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\lib\\site-packages\\torchvision\\models\\detection\\fcos.py",
+  "installed_fcos_sha256": "dea8b8e029d4bde23b5b752eeeedfd7e0ec7e7ed894f50bdedd1207523912e88",
+  "historical_relu_line": 251,
+  "historical_relu_expression": "nn.functional.relu(self.bbox_reg(bbox_feature))",
+  "softplus_expression": "F.softplus(pre_activation, beta=1.0, threshold=20.0)",
+  "shared_training_inference_head": true,
+  "seed1_initialization_sha256": "50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476"
+}

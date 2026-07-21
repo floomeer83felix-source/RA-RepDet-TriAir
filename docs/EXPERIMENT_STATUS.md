@@ -4,55 +4,50 @@ Updated: 2026-07-21
 
 ## Active task
 
-`V64_MMUAV_SEED1_PAIRED_BBOX_ACTIVATION_CONFIRMATION_AUTHORIZED`
+`V64_COMPLETE_NO_FURTHER_GPU_STAGE_AUTHORIZED`
 
-## User authorization
+## V64 result
 
-The user reported that V63 completed and was pushed. Under the standing automatic task-handoff workflow, V64 is authorized as the next bounded stage: an independent-initialization paired confirmation of the V63 ReLU-versus-Softplus mechanism.
+V64 completed with the preregistered outcome:
 
-The standing local/private-research instruction remains frozen and must not be repeatedly reconfirmed.
+`V64_SEED1_RELU_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_200_STEPS`
 
-## V63 prerequisite evidence
+One fresh seed-1 common initialization was generated exactly once, serialized
+locally, round-trip verified, and frozen with SHA256
+`50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476`.
+Both paired models loaded this state strictly and were bit-identical before the
+parameter-free activation difference.
 
-- Completion commit: `83bb9351a5d0a6115d81047482e23fef5eed26bb`.
-- Outcome: `V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200`.
-- Seed-0 ReLU first met strict `EARLY_BBOX_COLLAPSE` at step 15.
-- Seed-0 Softplus was `GEOMETRY_AND_GRADIENT_PRESERVED` at every scheduled trace through step 200.
-- Step-200 valid train/devval boxes, ReLU versus Softplus: `0 / 272,000` versus `272,000 / 272,000`.
-- Optimizer steps: `200 / 200`; diagnostic backward calls: `104 / 104`.
+The seed-1 native ReLU control and exact
+`softplus(beta=1.0, threshold=20.0)` intervention each completed 200 optimizer
+steps. Both were `GEOMETRY_AND_GRADIENT_PRESERVED` at every scheduled trace
+through step 200. Therefore the V63 seed-0 ReLU collapse was not independently
+reproduced within the V64 budget.
+
+At step 200, ReLU had `271,931 / 272,000` valid train boxes and
+`271,930 / 272,000` valid frozen-devval boxes. Softplus had
+`272,000 / 272,000` valid boxes on both subsets. On train FPN level 0, ReLU's
+mean local derivative was `0.996676` with exact-zero fraction `0.00332397`;
+Softplus was `0.427073` with exact-zero fraction `0`.
+
+## Safety and completion
+
+- Optimizer steps: `400 / 400`, exactly `200 / 200` in the authorized order.
+- Diagnostic backward calls: `104 / 104`.
 - Verified recovery snapshots: `26`; recovery events: `0`.
-- All 11 post-run tests passed; no full devval, AP/AR, tuning, threshold selection, or checkpoint selection occurred.
+- Initialization candidates generated: exactly `1`; no regeneration or checkpoint initialization occurred.
+- All losses, gradients, parameters, activations, geometry, and recovery metadata were finite.
+- V63 evidence and the protected V40-V63/V51/production/manuscript/submission fingerprint remained unchanged.
+- Frozen devval rows: 32 per variant; full-devval rows: 0.
+- No AP/AR, tuning, threshold selection, checkpoint selection, extra variant, seed, or rerun occurred.
+- Post-run V64 tests: `10 / 10` passed.
 
-## V64 paired confirmation
+## Claim boundary
 
-Run exactly, in order:
-
-1. `v64_seed1_equal_relu_control` — fresh frozen seed-1 common initialization, native ReLU, 200 optimizer steps;
-2. `v64_seed1_equal_softplus_b1_t20` — the same bit-identical seed-1 state, replacing only bbox-distance activation with exact `softplus(beta=1.0, threshold=20.0)`, 200 optimizer steps.
-
-Both variants use the same V63 first-200 historical rows and order, enabled alignment, exact uniform equal fusion, dormant reliability scorer, historical zero bbox-output bias, FP32 AdamW configuration, and unchanged FCOS losses/matching/decode. The only paired difference is the activation.
-
-V64 optimizer-step ceiling: **400 total**, exactly 200 per variant. Maximum diagnostic backward calls: **104**.
-
-## Evidence and safety contract
-
-- Generate the seed-1 common initialization exactly once before CUDA, serialize locally, hash and round-trip verify it, then freeze it for both variants.
-- Trace steps: `0, 1, 2, 3, 5, 10, 15, 20, 30, 50, 100, 150, 200`.
-- Save and verify an atomic local recovery snapshot before every trace.
-- At step 200, trace only the frozen 32-row devval geometry subset.
-- No trained V55-V63 checkpoint initialization, full 7,187-step run, full-devval evaluation, AP/AR, tuning, checkpoint selection, extra seed/variant, rerun, or automatic extension.
-- Production TriAir behavior, V40-V63 evidence, V51, manuscript, and submission files remain protected.
-- Heavy artifacts remain local and outside Git.
-
-## Allowed completion states
-
-- `V64_SEED1_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200`
-- `V64_SEED1_RELU_AND_SOFTPLUS_BOTH_COLLAPSE`
-- `V64_SEED1_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_MIXED`
-- `V64_SEED1_RELU_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_200_STEPS`
-- `V64_BLOCKED_SOURCE_INITIALIZATION_OR_ACTIVATION_CONTRACT`
-- `V64_BLOCKED_TRAINING_TRACE_OR_RECOVERY_INCOMPLETE`
-- `V64_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`
-- `V64_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`
-
-A positive seed-1 confirmation is still bounded mechanistic evidence. It does not establish final accuracy, generalization, sole causality, or authorization for full training or AP/AR.
+V64 does not provide independent-initialization confirmation of the V63
+seed-0 collapse/rescue contrast because the seed-1 ReLU control did not
+collapse. The result instead demonstrates initialization sensitivity within
+the bounded 200-step path. It does not refute the V63 seed-0 observation,
+establish sole causality, final localization quality, generalization, or AP/AR,
+and it does not authorize a full 7,187-step run. No further GPU experiment is
+currently authorized.
