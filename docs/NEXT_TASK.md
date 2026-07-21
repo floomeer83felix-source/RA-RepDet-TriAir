@@ -2,16 +2,16 @@
 
 ## Authorization
 
-The user reported that V62 completed and was pushed. Under the standing automatic task-handoff workflow, the user authorizes **V63 MM-UAV paired bbox-activation rescue pilot** under the standing local/private-research-only rule.
+The user reported that V63 completed and was pushed. Under the standing automatic task-handoff workflow, the user authorizes **V64 MM-UAV seed-1 paired bbox-activation confirmation pilot** under the standing local/private-research-only rule.
 
-V62 is frozen as `V62_CONTROL_AND_POSITIVE_BIAS_BOTH_COLLAPSE`. Both the historical ReLU control and the exact `+0.01` four-element bbox-output-bias intervention first met strict early geometry-and-gradient collapse at step 20 and ended step 500 with zero valid boxes. V63 therefore tests one different, mechanistically targeted intervention: replace only the hard ReLU bbox-distance activation with a fixed parameter-free Softplus activation while preserving all parameters, initialization tensors, data, order, optimizer, losses, matching, decode semantics, alignment, and equal fusion.
+V63 is frozen as `V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200`. On the exact historical seed-0 initialization, the native torchvision FCOS hard-ReLU bbox-distance path first met strict early geometry-and-gradient collapse at step 15, while exact parameter-free `softplus(beta=1.0, threshold=20.0)` remained `GEOMETRY_AND_GRADIENT_PRESERVED` at every scheduled trace through step 200.
 
-V63 compares exactly two seed-0, alignment-on, equal-fusion V57-superset variants:
+V64 tests whether that mechanistic rescue transfers to a fresh independent initialization. It compares exactly two seed-1, alignment-on, equal-fusion V57-superset variants:
 
-1. `v63_equal_relu_control`: exact historical V57 FCOS bbox-distance ReLU path;
-2. `v63_equal_softplus_b1_t20`: the same model and state, except the actual FCOS bbox-distance activation is `torch.nn.functional.softplus(x, beta=1.0, threshold=20.0)` in both training and inference/decode paths.
+1. `v64_seed1_equal_relu_control`: native historical FCOS bbox-distance ReLU;
+2. `v64_seed1_equal_softplus_b1_t20`: the same paired seed-1 state, replacing only the shared training/inference bbox-distance activation with `torch.nn.functional.softplus(x, beta=1.0, threshold=20.0)`.
 
-The sole scientific intervention is the bbox-distance activation. V63 does not authorize a bias change or sweep, loss change, target/matching change, reliability-fusion training, full training, AP/AR evaluation, tuning, manuscript edits, public claims, redistribution, or external sharing.
+The sole paired scientific difference is the bbox-distance activation. V64 does not authorize a bias or activation sweep, loss or matching changes, reliability-fusion training, full training, full-devval evaluation, AP/AR, tuning, manuscript edits, public claims, redistribution, or external sharing.
 
 ## Required Start
 
@@ -21,29 +21,32 @@ git pull --ff-only research research/ra-repdet-triair
 git rev-parse HEAD
 ```
 
-Authorization-base evidence commit: `286508ff34d4cd0ac494d803e5a146a686318f14`.
+Authorization-base and V63 completion commit: `83bb9351a5d0a6115d81047482e23fef5eed26bb`.
 
-Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, this task, all V52-V62 evidence and handoffs, V55/V57/V61/V62 model builders and runners, torchvision FCOS bbox-head/loss/decode code, and protected-file rules. Record the actual starting commit. Stop before CUDA work on unexpected repository changes or source-lock mismatch. V51 remains untouched.
+Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, this task, all V52-V63 evidence and handoffs, the V57/V61/V62/V63 builders and runners, installed torchvision FCOS bbox-head/loss/decode source, and protected-file rules. Record the actual starting commit. Stop before CUDA on unexpected repository changes or source-lock mismatch. V51 remains untouched.
 
-## Frozen V62 Evidence
+## Frozen V63 Evidence
 
 Reproduce without modifying historical evidence:
 
-- V62 decision: `V62_CONTROL_AND_POSITIVE_BIAS_BOTH_COLLAPSE`;
-- V62 completion commit: `286508ff34d4cd0ac494d803e5a146a686318f14`;
-- exact V57 common seed-0 initialization SHA256: `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`;
-- both V62 variants were `GEOMETRY_AND_GRADIENT_PRESERVED` at steps 0, 1, and 2;
-- both first met strict `EARLY_BBOX_COLLAPSE` at step 20;
-- both had `0 / 272,000` valid train boxes and `0 / 272,000` valid frozen-devval boxes at step 500;
-- V62 control/intervention optimizer steps: `500 / 500`;
-- V62 diagnostic backward calls: `96`;
-- V62 verified recovery snapshots/recovery events: `24 / 0`;
-- V62 control checkpoint SHA256: `644b26444f09707aa463658c2437585dc8664f237cd0dea006995312b77c097f`;
-- V62 `+0.01` checkpoint SHA256: `8980901d2a4d8e137cb44d36f34139ef97ef4eba57b733f6e414448a41c100a4`.
+- V63 decision: `V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200`;
+- V63 completion commit: `83bb9351a5d0a6115d81047482e23fef5eed26bb`;
+- V63 starting commit: `08783ed02856403d5cb0171f728f6244cef4bcd6`;
+- V57 seed-0 common initialization SHA256: `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`;
+- first-200 prefix SHA256: `6345848e3287bea04f5c89927be7a714a6eed549a6b73d352779a6192b5c86ec`;
+- ReLU first strict collapse: step `15`;
+- Softplus preserved at every trace through step `200`;
+- step-200 train and frozen-devval valid boxes, ReLU versus Softplus: `0 / 272,000` versus `272,000 / 272,000`;
+- optimizer steps: `200 / 200`;
+- diagnostic backward calls: `104`;
+- verified recovery snapshots/recovery events: `26 / 0`;
+- ReLU checkpoint SHA256: `ddd6b79e4695672c981f9083865f881c6b623ea818a3236e72acc691b148b2e6`;
+- Softplus checkpoint SHA256: `6df9b915a2f520cbe1e51dc5ee962bd1e0b8fbb11465314377c9a3ba08a6269d`;
+- post-run tests: `11 / 11` passed.
 
-V61 and V62 evidence are read-only. Do not resume, repair, pool, relabel, or initialize from their trained checkpoints.
+V63 and all earlier evidence are read-only. Do not resume, repair, pool, relabel, or initialize V64 from any trained V55-V63 checkpoint.
 
-## Frozen Data, Initialization, Order, and Subsets
+## Frozen Data, Order, and Subsets
 
 Use exactly:
 
@@ -54,15 +57,31 @@ Use exactly:
 - devval SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
 - historical V57 sample order: `runs/v57_mmuav_paired_fusion_ablation/shared_sample_order.txt`;
 - historical order SHA256: `27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b`;
-- V57 common seed-0 initialization SHA256: `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`;
-- V60/V62 frozen 32-row train audit subset SHA256: `d1d59950d62d7b7ed5bb54b54769d2e5af36c3084d933a65a88870a0abf7204c`;
+- exact V63 first-200 prefix and SHA256 `6345848e3287bea04f5c89927be7a714a6eed549a6b73d352779a6192b5c86ec`;
+- frozen 32-row train audit subset SHA256: `d1d59950d62d7b7ed5bb54b54769d2e5af36c3084d933a65a88870a0abf7204c`;
 - frozen four-row gradient subset SHA256: `bfb526aa632b916e61357e215d7ea2f77e2f55bed5db8f20d411703569561166`;
 - frozen 32-row devval subset SHA256: `d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee`;
 - RGB boxes as the sole detector targets.
 
-Materialize and hash the first exactly 200 entries of the frozen historical V57 order before model construction. Both variants must use this identical prefix exactly once and in the same order. Do not reshuffle, repeat, substitute, or extend rows after observing results.
+Both variants must use the identical first-200 prefix exactly once and in the same order. Do not reshuffle, repeat, substitute, truncate, or extend rows after observing results.
 
-Reconstruct the exact historical V57 common initialization and reproduce its serialized SHA256 before either run. Create one independent in-memory copy per variant. At step 0, all parameter and buffer tensors must be bit-identical across variants. The historical bbox-output bias remains unchanged in both variants; the V62 `+0.01` intervention must not be reused.
+## Fresh Seed-1 Common Initialization Contract
+
+V64 must use a newly generated seed-1 common initialization, not the V57/V63 seed-0 state and not a trained checkpoint.
+
+Before model construction:
+
+1. set Python, NumPy, CPU Torch, and all CUDA RNG seeds to exact integer `1`;
+2. apply the same deterministic/warn-only environment and constructor sequence used by V63;
+3. construct one V57 equal-superset common model with the historical zero bbox-output bias and native state-dict contract;
+4. serialize the complete CPU state dictionary to a local-only temporary artifact;
+5. compute and record its SHA256, tensor count, parameter/buffer key lists, shapes, dtypes, and finite status;
+6. reload it strictly into two independently constructed V64 models;
+7. verify every step-0 parameter and buffer tensor is bit-identical across the pair.
+
+The seed-1 initialization SHA256 is intentionally not preregistered because it has not yet been generated. It becomes frozen immediately after the pre-CUDA source-locked generation and round-trip verification. Once recorded, it may not be regenerated, selected among candidates, or changed after observing any training result.
+
+At step 0, the two variants must have bit-identical state dictionaries, bbox pre-activation logits, classification logits, centerness logits, fused features, alignment outputs, and historical bbox-output weights/bias. Only post-activation bbox distances may differ.
 
 ## Frozen Architecture and Common Configuration
 
@@ -79,12 +98,12 @@ independent RGB/IR/event stems
 
 Common configuration:
 
-- seed 0;
-- input 320x320;
-- batch size 1;
+- initialization seed `1`;
+- input `320x320`;
+- batch size `1`;
 - FP32, AMP off;
-- feature channels 32;
-- FPN channels 128;
+- feature channels `32`;
+- FPN channels `128`;
 - RepViT-M0.9 without pretrained weights;
 - historical FCOS target matching, losses, anchor generation, clipping, and decode paths unchanged;
 - AdamW, LR `1e-4`, weight decay `1e-4`;
@@ -93,44 +112,46 @@ Common configuration:
 - equal fusion always active and exactly uniform;
 - reliability scorer dormant and unchanged.
 
-The only paired difference is the bbox-distance activation:
+The only paired difference is:
 
-- control: the exact historical ReLU expression and source location;
-- intervention: `softplus(beta=1.0, threshold=20.0)` at that same source location.
+- control: exact source-locked native ReLU bbox-distance activation;
+- intervention: exact `softplus(beta=1.0, threshold=20.0)` at the same shared training/inference semantic location.
 
-The Softplus intervention must be parameter-free and V63-specific. It may not change parameter names, shapes, state-dict keys, initialization, logits, matching, losses, anchors, scales, clipping, or evaluator behavior. At step 0, verify bit-identical pre-activation bbox logits, classification logits, centerness logits, fused features, and all state tensors. Only post-activation bbox distances may differ.
+Use the V63-only activation wrapper or an equivalently source-locked V64 wrapper. Do not modify production defaults.
 
 ## CPU and Source-Lock Gates Before CUDA
 
 Before any GPU work, tests must prove:
 
-1. the historical control calls the exact source-locked ReLU bbox-distance path;
-2. the intervention calls Softplus exactly once at the same semantic location for both training and inference;
-3. Softplus parameters are exactly `beta=1.0`, `threshold=20.0`;
-4. no bias, weight, loss, target, matcher, anchor, scale, decode, clipping, threshold, NMS, or evaluator field differs;
-5. the two step-0 state dictionaries are bit-identical;
-6. pre-activation bbox logits and non-bbox outputs are bit-identical on fixed CPU inputs;
-7. the historical train-only optimization target guard remains unchanged;
-8. the V62 split-agnostic trace target mover still accepts actual frozen devval row `devval:00005919` without box/label mutation;
-9. atomic recovery snapshots round-trip model, optimizer, CPU/CUDA RNG, sample position, log ledger, and trace ledger;
-10. production and historical protected-file fingerprints remain unchanged.
+1. V63 evidence, manifests, historical order, first-200 prefix, subsets, and protected fingerprints match exactly;
+2. the installed torchvision FCOS source hash and historical ReLU source location match V63;
+3. Softplus is applied exactly once per FPN feature at the same shared training/inference semantic location;
+4. Softplus parameters are exactly `beta=1.0`, `threshold=20.0`;
+5. the seed-1 common initialization is generated once, saved locally, hashed, strictly reloaded, and then frozen;
+6. both paired step-0 state dictionaries are bit-identical;
+7. fixed-input pre-activation bbox logits, classification logits, centerness logits, fused features, and alignment outputs are bit-identical;
+8. no bias, weight, loss, target, matcher, anchor, scale, decode, clipping, threshold, top-k, NMS, preprocessing, evaluator, fusion, or scorer field differs;
+9. the historical train-only optimization target guard remains unchanged;
+10. the split-agnostic trace target mover accepts actual frozen row `devval:00005919` without boxes/labels mutation;
+11. atomic recovery snapshots round-trip model, optimizer, all RNG states, sample position, training log, and trace ledger;
+12. production and historical V40-V63/V51/manuscript/submission fingerprints remain unchanged.
 
 Fail closed before CUDA on any mismatch.
 
 ## Frozen Run Order and Budget
 
-Run exactly:
+Run exactly, in order:
 
-1. `v63_equal_relu_control` — 200 optimizer steps;
-2. `v63_equal_softplus_b1_t20` — 200 optimizer steps.
+1. `v64_seed1_equal_relu_control` — exactly 200 optimizer steps;
+2. `v64_seed1_equal_softplus_b1_t20` — exactly 200 optimizer steps.
 
-V63 optimizer-step ceiling: **400 total**, exactly 200 per variant. An incomplete pair is not valid evidence. Do not initialize from any trained V55-V62 checkpoint.
+V64 optimizer-step ceiling is **400 total**, exactly 200 per variant. Both variants are required. Do not stop after control collapse and do not initialize from any trained checkpoint.
 
-Immediately before every scheduled trace, atomically save and round-trip verify a local technical recovery snapshot containing model, optimizer, all RNG states, variant, next sample position, completed optimizer-step count, training-log state, and trace ledger. A technical restart is allowed only from an exact verified V63 snapshot and may not replay or skip optimizer steps. Recovery files remain local and outside Git.
+Immediately before every scheduled trace, atomically save and round-trip verify a local technical recovery snapshot containing model, optimizer, all RNG states, variant, next sample position, completed optimizer-step count, source/config/initialization hashes, training-log state, and trace ledger. A technical restart is allowed only from an exact verified V64 snapshot and may not replay or skip optimizer steps. Recovery files remain local and outside Git.
 
 ## Dense Trace Contract
 
-Trace at exactly:
+Trace exactly at:
 
 ```text
 step 0, 1, 2, 3, 5, 10, 15, 20, 30, 50, 100, 150, 200
@@ -138,89 +159,83 @@ step 0, 1, 2, 3, 5, 10, 15, 20, 30, 50, 100, 150, 200
 
 For every optimizer step, record:
 
-- variant, step, row ID, and target-box count;
+- variant, step, row ID, target-box count, and matched foreground anchors;
 - classification, bbox-regression, centerness, and total losses;
-- matched foreground-anchor count and valid target count;
 - LR, global gradient norm, finite flags, elapsed time, and CUDA memory;
-- final bbox-output weight and bias gradient norms before the step;
-- bbox-output weight and bias values after the step;
+- final bbox-output weight/bias gradients and values;
 - regression-tower and detector-head gradient norms.
 
-At every trace step, run compact no-grad geometry instrumentation on the frozen 32-row train subset and record by FPN level and aggregate:
+At every trace, run compact no-grad geometry instrumentation on the frozen 32-row train subset and record:
 
-- bbox pre-activation count, min, max, mean, standard deviation, fixed quantiles, and negative/zero/positive fractions;
-- post-activation distance count, min, max, mean, fixed quantiles, positive fraction, and all-zero-location fraction;
-- local activation derivative summaries: ReLU indicator `x > 0` for control and `sigmoid(x)` for Softplus, including all-location and matched-anchor derivative min/mean/quantiles and exact-zero fraction;
-- decoded width/height summaries before and after clipping;
-- valid, degenerate, non-finite, clipped, and out-of-image box counts;
-- bbox-output weight/bias norms, extrema, signs, and deltas from initialization;
-- bbox loss, matched-anchor counts, and classification/centerness summaries sufficient to keep the diagnosis geometry-focused.
+- bbox pre-activation distribution by FPN level and aggregate;
+- post-activation distance distribution and all-zero-location fraction;
+- local activation derivative summaries for all locations and matched anchors;
+- decoded width/height before and after clipping;
+- valid, degenerate, clipped, out-of-image, and non-finite box counts;
+- bbox-output parameter statistics and deltas from initialization;
+- bbox loss, matched-anchor, and minimal classification/centerness context.
 
-At each trace step, use a fresh ephemeral copy of the current in-memory state for exactly one no-step backward probe on each of the four frozen gradient rows. Maximum diagnostic backward calls: **104 total** (`13 traces x 4 rows x 2 variants`). Record component losses, matched anchors, pre/post-activation summaries, activation-derivative summaries at matched anchors, bbox-output weight/bias gradient norms, regression-tower gradients, and finite/nonzero gradient fractions. Discard every ephemeral state. Probe work may not mutate persistent parameters, buffers, optimizer, RNG/order ledger, or recovery state.
+At each trace, use a fresh ephemeral copy for exactly one no-step backward probe on each of the same four frozen gradient rows. Maximum diagnostic backward calls: **104 total** (`13 traces x 4 rows x 2 variants`). Record component losses, matched anchors, activation derivatives at matched anchors, bbox-output and regression-tower gradients, finite/nonzero fractions, and state-isolation hashes. Discard every ephemeral state.
 
-At step 200, additionally run no-grad geometry instrumentation on the frozen 32-row devval subset through the split-agnostic trace path. Do not run the full 1,845-row devval set and do not compute AP/AR.
+At step 200, additionally trace only the frozen 32-row devval subset. Do not run all 1,845 devval rows and do not compute AP/AR.
 
 ## Pre-registered State Definitions
 
-At a trace step, classify a variant as `EARLY_BBOX_COLLAPSE` only when both conditions hold simultaneously:
+At a trace, classify a variant as `EARLY_BBOX_COLLAPSE` only when both hold:
 
-1. the frozen 32-row train subset has zero positive-area decoded boxes after clipping; and
-2. the final bbox-output weight and bias gradient norms are exactly zero on all four frozen gradient-probe rows.
+1. zero positive-area decoded boxes on the frozen 32-row train subset after clipping;
+2. exactly zero final bbox-output weight and bias gradient norms on all four frozen gradient rows.
 
-Classify a trace as `GEOMETRY_AND_GRADIENT_PRESERVED` only when:
+Classify as `GEOMETRY_AND_GRADIENT_PRESERVED` only when both hold:
 
-1. the frozen 32-row train subset has at least one positive-area decoded box after clipping; and
-2. at least one frozen gradient-probe row has a finite nonzero final bbox-output weight or bias gradient.
+1. at least one positive-area decoded train box;
+2. at least one frozen gradient row has a finite nonzero final bbox-output weight or bias gradient.
 
-Otherwise classify it as `NEITHER_PREREGISTERED_STATE`.
-
-Record the first trace satisfying each state. Do not select a favorable trace or invent a post-hoc threshold.
+Otherwise classify as `NEITHER_PREREGISTERED_STATE`. Record the first trace satisfying each state without post-hoc thresholds.
 
 ## Frozen Decision Logic
 
 Choose exactly one scientific outcome:
 
-- `V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200`: control reaches `EARLY_BBOX_COLLAPSE` at or before step 50; Softplus never reaches collapse and is `GEOMETRY_AND_GRADIENT_PRESERVED` at step 200;
-- `V63_RELU_AND_SOFTPLUS_BOTH_COLLAPSE`: both variants reach `EARLY_BBOX_COLLAPSE` by step 200;
-- `V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_MIXED`: control collapses, but Softplus satisfies neither the rescue nor collapse definition at step 200;
-- `V63_RELU_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_200_STEPS`: control never reaches strict collapse within the frozen budget;
-- `V63_BLOCKED_SOURCE_INITIALIZATION_OR_ACTIVATION_CONTRACT`;
-- `V63_BLOCKED_TRAINING_TRACE_OR_RECOVERY_INCOMPLETE`;
-- `V63_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`;
-- `V63_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`.
+- `V64_SEED1_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200`: ReLU reaches strict collapse at or before step 50; Softplus never reaches collapse and is preserved at step 200;
+- `V64_SEED1_RELU_AND_SOFTPLUS_BOTH_COLLAPSE`: both variants reach strict collapse by step 200;
+- `V64_SEED1_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_MIXED`: ReLU collapses, while Softplus is neither preserved nor collapsed at step 200;
+- `V64_SEED1_RELU_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_200_STEPS`: the seed-1 ReLU control never reaches strict collapse;
+- `V64_BLOCKED_SOURCE_INITIALIZATION_OR_ACTIVATION_CONTRACT`;
+- `V64_BLOCKED_TRAINING_TRACE_OR_RECOVERY_INCOMPLETE`;
+- `V64_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`;
+- `V64_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`.
 
-A Softplus rescue outcome supports the hard zero-derivative ReLU path as a necessary contributing mechanism under this V57 training path. It does not prove that ReLU is the sole cause, does not establish final localization quality or AP/AR, and does not authorize a full 7,187-step run. If both variants collapse, the result points away from a ReLU-only explanation and toward matching, loss, optimization, or upstream representation mechanisms, but does not itself identify one.
+A seed-1 Softplus rescue would provide independent-initialization confirmation that hard-ReLU zero derivative is a reproducible necessary contributor under this bounded path. It would not prove sole causality, final localization quality, generalization, AP/AR, or authorize a full 7,187-step run. A failed seed-1 rescue must not trigger parameter tuning or a sweep.
 
 ## Stop Rules
 
 Fail closed on:
 
-- V62 evidence, manifests, order, subsets, or initialization mismatch;
-- any historical V40-V62 or V51 evidence mutation;
-- any paired tensor, parameter, buffer, state-dict, bias, or weight difference at step 0;
-- Softplus parameters or source location differing from the frozen contract;
-- activation applied only in training or only in inference rather than both;
-- any loss, matching, anchor, scale, clipping, decode, threshold, NMS, preprocessing, architecture, fusion, or evaluator difference;
-- alignment disabled, equal weights non-uniform, or reliability scorer activated;
-- incorrect run order, repeated/substituted rows, more than 200 optimizer steps per variant, or more than 400 total steps;
+- any V63 evidence, data, order, prefix, subset, or source mismatch;
+- any historical V40-V63, V51, production, manuscript, or submission mutation;
+- multiple seed-1 initialization candidates, regeneration after observation, or paired step-0 mismatch;
+- wrong activation source location, parameters, call count, or train/inference asymmetry;
+- any paired difference in parameters, buffers, bias, weight, loss, target, matching, anchors, scales, clipping, decode, threshold, NMS, preprocessing, architecture, alignment, fusion, scorer, or evaluator;
+- incorrect run order, repeated/substituted rows, more than 200 steps per variant, or more than 400 total steps;
 - more than 104 diagnostic backward calls or use of unregistered samples;
-- invalid recovery snapshots, replayed/skipped optimizer steps, or diagnostic mutation of persistent state;
-- OOM or non-finite loss, gradient, parameter, alignment, activation, geometry, or recovery value;
-- full-devval evaluation, AP/AR, tuning, early stopping, checkpoint selection, extra variant/seed, rerun, or automatic budget extension;
-- production, manuscript/submission, protected-file, or heavy-artifact Git violation.
+- invalid recovery state, replayed/skipped steps, or diagnostic mutation of persistent state;
+- OOM or non-finite loss, gradient, parameter, activation, alignment, geometry, or recovery value;
+- full devval, AP/AR, tuning, early stopping, checkpoint selection, extra seed/variant, rerun, or automatic extension;
+- heavy artifacts entering Git.
 
-Do not automatically change activation parameters, bias, LR, optimizer, precision, batch size, resolution, loss, run length, sample order, trace schedule, or recovery policy after observing results.
+Do not automatically change seed, activation parameters, bias, LR, optimizer, precision, batch size, resolution, loss, run length, order, trace schedule, or recovery policy after observing behavior.
 
 ## Required Outputs
 
-Create `runs/v63_mmuav_paired_bbox_activation_rescue/` containing compact files such as:
+Create `runs/v64_mmuav_seed1_bbox_activation_confirmation/` containing compact files such as:
 
 ```text
 protocol.json
 protocol.md
-source_lock_v63.json
-v62_evidence_verification.json
-initialization_verification.json
+source_lock_v64.json
+v63_evidence_verification.json
+seed1_initialization_verification.json
 activation_intervention.json
 train_prefix_200.txt
 train_prefix_200_sha256.txt
@@ -241,52 +256,50 @@ test_output.txt
 handoff.md
 ```
 
-Keep checkpoints, optimizer states, recovery snapshots, raw tensors, predictions, images, feature maps, and other heavy artifacts local and outside Git.
+Keep initialization artifacts, checkpoints, optimizer states, recovery snapshots, raw tensors, predictions, images, feature maps, and other heavy artifacts local and outside Git.
 
 ## Required Tests
 
 Verify:
 
-- exact V62 evidence, data, order, subset, and common-initialization hashes;
-- exact first-200 order prefix and one use per row per variant;
-- bit-identical paired step-0 states and pre-activation/non-bbox outputs;
-- exact historical ReLU versus exact `softplus(beta=1.0, threshold=20.0)` as the only intervention;
-- identical target matching, losses, anchors, scales, clipping, decode, threshold, NMS, and evaluator paths;
-- dormant scorer, enabled alignment, and exact equal weights;
-- actual `devval:00005919` trace-path preservation and unchanged train-only optimization guard;
-- exact 200/200 run order and 400-step cap;
-- exact trace schedule and at most 104 diagnostic backward calls;
-- valid atomic recovery round trips and no replay/skipped steps;
-- persistent training-state isolation from no-step probes;
+- exact V63 evidence and protected-file immutability;
+- exact manifests, order, first-200 prefix, and subset hashes;
+- one-time seed-1 initialization generation, local serialization, SHA256, strict reload, and freeze;
+- bit-identical paired step-0 state and pre-activation/non-bbox outputs;
+- exact ReLU versus exact Softplus as the only intervention;
+- identical losses, matching, anchors, scale, clipping, decode, threshold, NMS, evaluator, alignment, fusion, and scorer paths;
+- unchanged train-only optimization guard and valid `devval:00005919` trace path;
+- exact 200/200 order, 400-step ceiling, trace schedule, and 104-call ceiling;
+- valid recovery round trips with no replay or skipped steps;
+- persistent-state isolation from diagnostic probes;
 - finite losses, gradients, activations, geometry, and recovery metadata;
-- zero full-devval rows and no AP/AR, threshold selection, tuning, or checkpoint selection;
-- unchanged V40-V62, V51, production, manuscript, and submission fingerprints;
+- zero full-devval rows and no AP/AR, tuning, threshold selection, or checkpoint selection;
 - no heavy artifacts in Git.
 
-Run CPU/source-lock tests before CUDA and post-run tests afterward. Save exact commands and outputs.
+Run all CPU/source-lock tests before CUDA and post-run tests afterward. Save exact commands and outputs.
 
 ## Allowed Changes
 
-- current task/status/blocker/handoff files;
-- `runs/v63_mmuav_paired_bbox_activation_rescue/**`;
-- V63-only experimental activation wrapper, runner, instrumentation, recovery utilities, and tests;
+- current task/status/blocker/write-record and V64 handoff files;
+- `runs/v64_mmuav_seed1_bbox_activation_confirmation/**`;
+- V64-only runner, seed-1 initialization freezer, activation wrapper/instrumentation, recovery utilities, and tests;
 - minimal backward-compatible imports that do not change production defaults.
 
 ## Forbidden Changes
 
-- modification of historical V40-V62 evidence or V51 history;
-- modification, repair, resume, or initialization from trained V55-V62 checkpoints;
+- historical V40-V63 evidence or V51 history;
+- trained V55-V63 checkpoint modification, repair, resume, pooling, or initialization;
 - production TriAir defaults or semantics;
 - raw data or annotations;
-- bbox bias/weight initialization changes or sweeps;
-- loss, target, matcher, anchor, scale, clipping, decode, threshold, NMS, preprocessing, detector, evaluator, or fusion changes;
+- bias/weight changes, activation parameters other than exact Softplus, or any sweep;
+- loss, target, matcher, anchor, scale, clipping, decode, threshold, NMS, preprocessing, detector, evaluator, alignment, fusion, or scorer changes;
 - reliability-fusion training;
-- full 7,187-step training, full devval, AP/AR, tuning, checkpoint selection, extra seeds/variants, or automatic extension;
-- public derivatives, manuscript, submission, or public benchmark files.
+- full 7,187-step training, full devval, AP/AR, tuning, checkpoint selection, additional seeds/variants, reruns, or automatic extension;
+- public derivatives, manuscript, submission, or benchmark files.
 
 ## Completion State
 
-Choose exactly one allowed V63 state, update `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, and the V63 handoff, then run:
+Choose exactly one allowed V64 state, update `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, and the V64 handoff, then run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
@@ -294,8 +307,8 @@ powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
 
 ## Commit Message
 
-`exp: run V63 MM-UAV paired bbox activation rescue pilot`
+`exp: run V64 seed1 paired bbox activation confirmation`
 
 ## Final Report Requirements
 
-Report starting/final commit SHAs; all source/data/order/subset/initialization hashes; exact activation source location and parameters; proof of step-0 state and pre-activation identity; per-variant optimizer/backward/recovery counts; all trace classifications and first-collapse/preservation steps; activation-derivative evidence; train and frozen-devval geometry at step 200; checkpoint hashes and local-only locations; finite/safety results; tests; protected-file status; reproducibility warnings; selected scientific outcome; and the strict no-full-run/no-AP claim boundary.
+Report starting/final commit SHAs; V63 evidence verification; source/data/order/prefix/subset hashes; seed-1 generation procedure and frozen initialization SHA256; activation source location and exact parameters; proof of paired step-0 and pre-activation identity; optimizer/backward/recovery counts; every trace classification and first-collapse/preservation step; activation-derivative evidence; step-200 frozen train/devval geometry; checkpoint hashes and local-only locations; timing/memory and finite-state results; tests and protected-file status; reproducibility warnings; selected bounded V64 outcome; and the strict no-full-run/no-AP claim boundary.
