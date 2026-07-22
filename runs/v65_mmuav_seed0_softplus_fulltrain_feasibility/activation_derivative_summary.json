@@ -1,0 +1,332 @@
+[
+  {
+    "step": 0,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.4794726986438036,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.3465442154556513,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.4630488967522979,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.48709734715521336,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.48223949782550335,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 15,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.5022139679640532,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.3616499910131097,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.4926882879808545,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.5022599268704653,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.49582694191485643,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 50,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.4777455497533083,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.33780114259570837,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.48401641845703125,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.4845907920971513,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.4851749772205949,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 200,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.4535546014085412,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.31841203663498163,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.4551255153492093,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.45672377943992615,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.45962182991206646,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 500,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.43438827712088823,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.3082550708204508,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.4329449161887169,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.43539893720299006,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.4395716832950711,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 1000,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.4468764876946807,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.3186775045469403,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.44783528707921505,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.45063205622136593,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.45475257094949484,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 2000,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.48406051751226187,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.32447479013353586,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.4904913632199168,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.4910088051110506,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.4974141316488385,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 4000,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.42616226989775896,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.28947141766548157,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.4341267701238394,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.43725292570888996,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.44351006392389536,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 6000,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.4675973765552044,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.29896897077560425,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.47510911989957094,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.485729293897748,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.491963017731905,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  },
+  {
+    "step": 7187,
+    "levels": [
+      {
+        "level": 0,
+        "all_mean": 0.48822438810020685,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.3154935222119093,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 1,
+        "all_mean": 0.49559916742146015,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 2,
+        "all_mean": 0.4914086777716875,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      },
+      {
+        "level": 3,
+        "all_mean": 0.508535273373127,
+        "all_exact_zero_fraction": 0.0,
+        "matched_mean": 0.0,
+        "matched_exact_zero_fraction": 0.0
+      }
+    ]
+  }
+]

@@ -4,58 +4,30 @@ Updated: 2026-07-22
 
 ## Active task
 
-`V65_MMUAV_SEED0_SOFTPLUS_FULLTRAIN_DEVVAL_FEASIBILITY_AUTHORIZED`
+`V65_COMPLETE_NO_FURTHER_GPU_STAGE_AUTHORIZED`
 
-## User authorization
+## V65 result
 
-The user reported that V64 completed, was pushed, and the completion-state audit was executed. Under the standing automatic task-handoff workflow, V65 is authorized as the next bounded stage: one complete seed-0 equal-fusion Softplus training pass followed by one final-checkpoint-only full-devval evaluation.
+V65 completed with the preregistered outcome:
 
-The standing local/private-research instruction remains frozen and must not be repeatedly reconfirmed.
+`V65_FULLTRAIN_COMPLETE_NONZERO_AP`
 
-## Frozen V63/V64 evidence
+The exact historical seed-0 equal-fusion initialization was strictly loaded into one Softplus model. The complete frozen 7,187-row V57 order was consumed exactly once, followed by one final-checkpoint-only evaluation on all 1,845 frozen devval rows.
 
-- V63 completion commit: `83bb9351a5d0a6115d81047482e23fef5eed26bb`.
-- V63 outcome: `V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200`.
-- V64 completion commit: `402eabb23896f7908b6a3eccd4d394d3ce41d487`.
-- V64 outcome: `V64_SEED1_RELU_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_200_STEPS`.
-- V64 seed-1 ReLU and Softplus were both geometry-and-gradient preserved at all thirteen traces through step 200.
-- V64 therefore establishes bounded initialization sensitivity, not independent confirmation of a universal ReLU-collapse contrast.
-- V63 and V64 both showed exact Softplus remained preserved through step 200.
-- V64 completed 400/400 optimizer steps, 104/104 diagnostic backward calls, 26 verified recovery snapshots, and 10/10 post-run tests.
+Final COCO-style metrics were AP@[0.50:0.95] `0.0363043928`, AP50 `0.1493416683`, AP75 `0.0035733839`, AR@1 `0.0501429252`, AR@10 `0.0753692234`, and AR@100 `0.0815388280`.
 
-## V65 authorized run
+## Geometry and safety
 
-Run exactly one variant:
+- All ten scheduled audits through step 7,187 were `GEOMETRY_AND_GRADIENT_PRESERVED`.
+- Final compact train/devval geometry was `272,000 / 272,000` valid boxes for each subset.
+- Optimizer steps: `7,187 / 7,187`; unique ordered rows: `7,187 / 7,187`.
+- Diagnostic backward calls: `40 / 40`.
+- Verified recovery snapshots: `19 / 19`; recovery events: `0`.
+- Full-devval evaluation attempts: `1`; evaluated rows: `1,845`.
+- All finite-state, source-lock, initialization, protected-file, and diagnostic-isolation checks passed.
+- Post-run tests: `10 / 10` passed.
+- No tuning, threshold selection, checkpoint selection, extra variant, extra seed, rerun, or automatic extension occurred.
 
-`v65_seed0_equal_softplus_b1_t20_fulltrain`
+## Claim boundary
 
-Frozen configuration:
-
-- exact historical seed-0 initialization SHA256 `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`;
-- exact historical 7,187-row V57 order, consumed once without reshuffle or repetition;
-- alignment enabled;
-- exact equal fusion `[1/3, 1/3, 1/3]`;
-- reliability scorer dormant;
-- exact parameter-free `softplus(beta=1.0, threshold=20.0)` in the shared training/inference bbox-distance path;
-- FP32 AdamW, LR `1e-4`, weight decay `1e-4`;
-- exactly 7,187 optimizer steps;
-- compact geometry/gradient audits at steps `0, 15, 50, 200, 500, 1000, 2000, 4000, 6000, 7187`;
-- maximum 40 diagnostic backward calls;
-- one full 1,845-row devval evaluation using only the final step-7,187 checkpoint.
-
-## Evidence and safety boundary
-
-V65 may compute final COCO-style AP/AR metrics only after all training steps complete. It may not tune thresholds, select checkpoints, run extra variants or seeds, rerun after observing metrics, train the ReLU control, activate reliability fusion, or modify model/loss/matching/decode/evaluator semantics.
-
-A successful V65 result is a single-seed equal-fusion feasibility and performance signal. It does not establish superiority, generalization, a final paper comparison, or an independent-test result.
-
-## Allowed completion states
-
-- `V65_FULLTRAIN_COMPLETE_NONZERO_AP`
-- `V65_FULLTRAIN_COMPLETE_ZERO_AP`
-- `V65_FULLTRAIN_BBOX_COLLAPSE`
-- `V65_BLOCKED_SOURCE_INITIALIZATION_OR_EVALUATOR_CONTRACT`
-- `V65_BLOCKED_TRAINING_TRACE_OR_RECOVERY_INCOMPLETE`
-- `V65_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`
-- `V65_BLOCKED_FULL_DEVVAL_EVALUATION`
-- `V65_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`
+V65 provides a single-seed equal-fusion Softplus feasibility and performance signal. It does not establish superiority over ReLU, reliability fusion, other seeds, an independent test set, or an external dataset, and it does not authorize a manuscript comparison claim by itself. No further GPU experiment is currently authorized.

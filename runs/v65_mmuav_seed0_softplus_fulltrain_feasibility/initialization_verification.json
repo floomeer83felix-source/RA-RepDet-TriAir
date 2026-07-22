@@ -1,0 +1,19 @@
+{
+  "source_path_local_not_committed": "D:\\MM-UAV_v57_local\\common_seed0_superset_init.pt",
+  "v65_path_local_not_committed": "D:\\MM-UAV_v65_local\\seed0_common_init.pt",
+  "sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+  "bytes": 27054277,
+  "seed": 0,
+  "tensor_count": 791,
+  "state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53",
+  "trained_checkpoint_used": false,
+  "checks": {
+    "historical_artifact_sha256": true,
+    "v65_serialized_sha256": true,
+    "strict_reload": true,
+    "tensor_count": true,
+    "round_trip_bit_identical": true,
+    "all_finite": true,
+    "historical_zero_bbox_bias": true
+  }
+}

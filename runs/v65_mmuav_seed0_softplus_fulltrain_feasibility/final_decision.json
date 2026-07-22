@@ -1,0 +1,89 @@
+{
+  "decision": "V65_FULLTRAIN_COMPLETE_NONZERO_AP",
+  "trace_classifications": [
+    {
+      "step": 0,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 15,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 50,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 200,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 500,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 1000,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 2000,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 4000,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 6000,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    },
+    {
+      "step": 7187,
+      "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+    }
+  ],
+  "full_devval_metrics": {
+    "ap50_95": 0.036304392782128436,
+    "ap50": 0.14934166830177412,
+    "ap75": 0.0035733839300669244,
+    "ar1": 0.05014292520247737,
+    "ar10": 0.07536922343973321,
+    "ar100": 0.08153882801333968
+  },
+  "checkpoint": {
+    "path_local_not_committed": "D:\\MM-UAV_v65_local\\v65_seed0_equal_softplus_b1_t20_fulltrain_final_step7187.pt",
+    "sha256": "50ae3b6148742794f1c26f2d5733809736005cee8e86ea80ffccad9e2d96a5e7",
+    "bytes": 27135663,
+    "completed_optimizer_steps": 7187,
+    "selection_metric": null,
+    "common_init_sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+    "final_state_fingerprint": "e8adef2355cfd82be9395254a72f87c90d97eb583438d99ba9dbf9509bbf701d"
+  },
+  "safety": {
+    "optimizer_steps": 7187,
+    "optimizer_step_limit": 7187,
+    "unique_training_rows": 7187,
+    "full_order_sha256": "27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b",
+    "probe_backward_calls": 40,
+    "probe_backward_limit": 40,
+    "verified_recovery_snapshots": 19,
+    "expected_recovery_snapshots": 19,
+    "recovery_events": 0,
+    "all_recovery_round_trips": true,
+    "all_audit_isolation_checks": true,
+    "all_finite": true,
+    "prior_evidence_unchanged": true,
+    "initialization_unchanged": true,
+    "protected_fingerprint_unchanged": true,
+    "full_devval_rows": 1845,
+    "evaluation_attempts": 1,
+    "final_checkpoint_only": true,
+    "ap_ar_computed": true,
+    "threshold_selection": false,
+    "tuning": false,
+    "checkpoint_selection": false,
+    "extra_variants": 0,
+    "extra_seeds": 0,
+    "reruns": 0
+  }
+}

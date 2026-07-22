@@ -1,0 +1,36 @@
+{
+  "v63": {
+    "checks": {
+      "file_hashes": true,
+      "decision": true,
+      "all_finite": true,
+      "protected_unchanged": true,
+      "no_full_devval": true,
+      "no_ap_ar": true
+    },
+    "file_sha256": {
+      "final_decision.json": "2985ac382639dca8da6b3303b9e0e3fdb74bc6b54485de7c140f3f8dbda818bd",
+      "safety_audit.json": "90f2a837e480d8947616ea60401805843487cf47541e50837522e766f7871e18",
+      "per_variant_training_log.csv": "4b6e0ba9f89fe0314dff58a3a1b6ef9eefe021974643a384fe7e00a00c593dc9",
+      "source_lock_v63.json": "489db6a090c8b38c4aa36c72bf238d116743ded91916ff006785ab382762776a"
+    },
+    "decision": "V63_RELU_COLLAPSE_REPRODUCED_SOFTPLUS_PRESERVES_THROUGH_STEP200"
+  },
+  "v64": {
+    "checks": {
+      "file_hashes": true,
+      "decision": true,
+      "all_finite": true,
+      "protected_unchanged": true,
+      "no_full_devval": true,
+      "no_ap_ar": true
+    },
+    "file_sha256": {
+      "final_decision.json": "8ecaf1422795e7d739753e58c5f04f2b10b49bfc70a316a7ad391ebea5c3abfc",
+      "safety_audit.json": "148271855dd700934e56f3becb4557928abcb2f408dc64cc840e066edb8d01b3",
+      "per_variant_training_log.csv": "f693f7ade0b358e5544e6f66d4f2d344aceeb06e927390fb8c95092cf5d72e21",
+      "source_lock_v64.json": "da6084d6509cf5be2b9f84045b7c3055f2e1da8ed6f90ddd792f3a7baade5292"
+    },
+    "decision": "V64_SEED1_RELU_CONTROL_COLLAPSE_NOT_REPRODUCED_WITHIN_200_STEPS"
+  }
+}
