@@ -1,27 +1,27 @@
 # Next Task Write Record
 
-Written: 2026-07-21
+Written: 2026-07-22
 Branch: `research/ra-repdet-triair`
-V63 completion commit: `83bb9351a5d0a6115d81047482e23fef5eed26bb`
+V64 completion commit: `402eabb23896f7908b6a3eccd4d394d3ce41d487`
 Canonical task file: `docs/NEXT_TASK.md`
 
 ## Active next task
 
-`V64_MMUAV_SEED1_PAIRED_BBOX_ACTIVATION_CONFIRMATION_AUTHORIZED`
+`V65_MMUAV_SEED0_SOFTPLUS_FULLTRAIN_DEVVAL_FEASIBILITY_AUTHORIZED`
 
-Execute the frozen V64 seed-1 paired bbox-activation confirmation exactly as specified in `docs/NEXT_TASK.md`:
+Execute the frozen V65 full-training feasibility run exactly as specified in `docs/NEXT_TASK.md`:
 
-1. Generate exactly one fresh seed-1 common initialization, serialize it locally, compute its SHA256, strictly reload it, and freeze it before CUDA.
-2. Run `v64_seed1_equal_relu_control` for exactly 200 optimizer steps.
-3. Run `v64_seed1_equal_softplus_b1_t20` for exactly 200 optimizer steps.
-4. Use the identical V63 first-200 historical rows and order for both variants.
-5. Preserve bit-identical paired step-0 parameters, buffers, pre-activation bbox logits, classification/centerness outputs, fused features, alignment outputs, historical bbox bias, losses, matching, decode, and equal-fusion behavior.
-6. Permit only the bbox-distance activation difference: native historical ReLU versus exact `softplus(beta=1.0, threshold=20.0)` in the shared training/inference path.
-7. Complete all source-lock, seed-1 freeze, paired-state, actual-devval-row, protected-file, and recovery-snapshot gates before CUDA.
-8. Respect the 400 optimizer-step and 104 diagnostic-backward-call ceilings.
-9. Do not run full devval, AP/AR, tuning, checkpoint selection, extra seeds/variants, reruns, or automatic extensions.
-10. Keep initialization artifacts, checkpoints, optimizer states, recovery snapshots, tensors, predictions, and media local and outside Git.
+1. Verify and preserve all V63/V64 and earlier evidence.
+2. Reconstruct the exact historical seed-0 initialization with SHA256 `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`.
+3. Build one alignment-on, exact equal-fusion, dormant-scorer model using exact `softplus(beta=1.0, threshold=20.0)` in the shared training/inference bbox-distance path.
+4. Consume all 7,187 frozen historical training rows exactly once and run exactly 7,187 optimizer steps.
+5. Run compact audits only at steps `0, 15, 50, 200, 500, 1000, 2000, 4000, 6000, 7187`, with at most 40 diagnostic backward calls.
+6. Save and round-trip verify local recovery snapshots without replaying or skipping rows or steps.
+7. Evaluate only the final step-7,187 checkpoint once on all 1,845 frozen devval rows.
+8. Report fixed COCO-style AP/AR and prediction-safety metrics without tuning, threshold selection, or checkpoint selection.
+9. Do not run a ReLU full control, reliability-fusion training, extra seed/variant, rerun, or automatic extension.
+10. Keep checkpoints, optimizer states, recovery snapshots, raw predictions, tensors, images, and other heavy artifacts local and outside Git.
 
 ## Handoff status
 
-The V64 instruction is written and active. Begin with the pre-CUDA V63 evidence verification, torchvision source lock, and one-time seed-1 initialization freeze. Stop fail-closed on any contract mismatch.
+The V65 instruction is written and active. Begin with the CPU source-lock, exact seed-0 initialization, complete-order, recovery, and evaluator-contract gates. Stop fail-closed on any contract mismatch.
