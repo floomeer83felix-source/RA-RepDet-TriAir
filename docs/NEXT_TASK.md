@@ -2,13 +2,11 @@
 
 ## Authorization
 
-The user reported that V65 completed and was pushed. Under the standing automatic task-handoff workflow, the user authorizes **V66 MM-UAV seed-1 equal-fusion Softplus full-train and full-devval confirmation run** under the standing local/private-research-only rule.
+The user reported that V66 completed. Under the standing automatic task-handoff workflow, the user authorizes **V67 MM-UAV matched two-seed reliability-fusion Softplus full-training benchmark** under the standing local/private-research-only rule.
 
-V65 is frozen as `V65_FULLTRAIN_COMPLETE_NONZERO_AP`. The exact seed-0 equal-fusion Softplus model completed all 7,187 optimizer steps, remained geometry-and-gradient preserved at all ten audits, and produced final-checkpoint-only full-devval AP@[0.50:0.95] `0.0363043928`, AP50 `0.1493416683`, AP75 `0.0035733839`, AR@1 `0.0501429252`, AR@10 `0.0753692234`, and AR@100 `0.0815388280`.
+V65 and V66 are frozen as the two-seed equal-fusion Softplus baseline. V65 seed 0 produced AP@[0.50:0.95] `0.0363043928`; V66 seed 1 produced `0.0030357792`. Their mean/sample standard deviation were `0.0196700860 / 0.0235244622`, documenting substantial initialization sensitivity. V67 therefore must use both exact frozen seeds and matched protocols; a one-seed reliability result is not sufficient for a method comparison.
 
-V66 performs the same complete run with the single frozen seed-1 common initialization from V64. Its purpose is to convert the V65 single-seed feasibility signal into a two-seed equal-fusion Softplus baseline before any reliability-fusion method comparison.
-
-V66 does not authorize reliability-fusion training, ReLU full training, tuning, checkpoint selection, threshold selection, extra seeds, reruns, manuscript edits, public claims, redistribution, or external sharing.
+V67 activates the already-present V57 image-conditioned reliability scorer while retaining the same parameter superset, alignment path, Softplus detector head, data, order, optimizer, audits, recovery policy, and evaluator. No modality dropout is introduced. The only scientific difference from the V65/V66 baseline is whether the existing reliability scorer controls the three fusion weights.
 
 ## Required Start
 
@@ -18,34 +16,27 @@ git pull --ff-only research research/ra-repdet-triair
 git rev-parse HEAD
 ```
 
-Authorization-base and V65 completion commit: `33609052b798a89fb8d3a1ab9351f8497e8f95d1`.
+Authorization base and V66 completion commit: `70a54d92b8deb8cb9a0f748230731cddad641d9f`.
 
-Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, this task, all V52-V65 evidence and handoffs, V57/V63/V64/V65 model builders and runners, the installed torchvision FCOS source, evaluator code, recovery utilities, and protected-file rules. Record the actual starting commit. Stop before CUDA on any unexpected repository change, evidence mismatch, source-lock mismatch, seed-1 initialization mismatch, or evaluator-contract mismatch. V51 remains untouched.
+Read `AGENTS.md`, project/status/blocker files, this task, V57 and V63-V66 source and evidence, the installed torchvision FCOS source, evaluator code, recovery utilities, and protected-file rules. Record the actual starting commit. Stop before CUDA on any unexpected repository, evidence, source, initialization, state-identity, data-order, scorer, evaluator, or protected-file mismatch. V51 remains untouched.
 
-## Frozen V65 Evidence
+## Frozen Prior Evidence
 
 Verify without modifying:
 
 - V65 completion commit: `33609052b798a89fb8d3a1ab9351f8497e8f95d1`;
-- V65 outcome: `V65_FULLTRAIN_COMPLETE_NONZERO_AP`;
-- V65 optimizer steps and unique ordered rows: `7,187 / 7,187`;
-- V65 diagnostic backward calls: `40 / 40`;
-- V65 verified recovery snapshots/recovery events: `19 / 0`;
-- V65 full-devval evaluation attempts and rows: `1 / 1,845`;
-- V65 AP@[0.50:0.95]: `0.0363043928`;
-- V65 AP50: `0.1493416683`;
-- V65 AP75: `0.0035733839`;
-- V65 AR@1: `0.0501429252`;
-- V65 AR@10: `0.0753692234`;
-- V65 AR@100: `0.0815388280`;
-- all ten V65 audits were `GEOMETRY_AND_GRADIENT_PRESERVED`;
-- final compact train/devval geometry was `272,000 / 272,000` valid boxes on each subset;
-- V65 post-run tests: `10 / 10` passed;
+- V65 decision: `V65_FULLTRAIN_COMPLETE_NONZERO_AP`;
+- V66 completion commit: `70a54d92b8deb8cb9a0f748230731cddad641d9f`;
+- V66 decision: `V66_SEED1_FULLTRAIN_COMPLETE_NONZERO_AP`;
+- V65 seed-0 metrics: AP/AP50/AP75 `0.0363043928 / 0.1493416683 / 0.0035733839`, AR@1/10/100 `0.0501429252 / 0.0753692234 / 0.0815388280`;
+- V66 seed-1 metrics: AP/AP50/AP75 `0.0030357792 / 0.0174066630 / 0.0003960396`, AR@1/10/100 `0.0109337780 / 0.0180323964 / 0.0195569319`;
+- both runs completed `7,187 / 7,187` ordered optimizer steps, 40 diagnostic backward calls, 19 verified recovery snapshots, one 1,845-row final-checkpoint-only devval evaluation, and 10/10 post-run tests;
+- all twenty baseline audits were `GEOMETRY_AND_GRADIENT_PRESERVED`;
 - no tuning, threshold selection, checkpoint selection, rerun, or extra seed/variant occurred.
 
-V65 and all earlier evidence are read-only. Do not resume, repair, pool, relabel, select, or initialize V66 from any trained V55-V65 checkpoint.
+All V40-V66 evidence is read-only. Do not initialize from trained checkpoints, resume baseline runs, relabel outcomes, select the better seed, or pool checkpoints.
 
-## Frozen Data, Initialization, and Order
+## Frozen Data, Seeds, and Order
 
 Use exactly:
 
@@ -54,213 +45,128 @@ Use exactly:
 - train/devval rows: `7,187 / 1,845`;
 - train SHA256: `e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a`;
 - devval SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
-- historical V57 sample order: `runs/v57_mmuav_paired_fusion_ablation/shared_sample_order.txt`;
-- historical order SHA256: `27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b`;
-- exact V64 frozen seed-1 common initialization SHA256: `50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476`;
-- frozen 32-row train geometry subset SHA256: `d1d59950d62d7b7ed5bb54b54769d2e5af36c3084d933a65a88870a0abf7204c`;
-- frozen four-row gradient subset SHA256: `bfb526aa632b916e61357e215d7ea2f77e2f55bed5db8f20d411703569561166`;
-- frozen 32-row devval geometry subset SHA256: `d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee`;
+- frozen V57 order SHA256: `27e98f752d4707c862c41495420cd1776a9095ad0a010becff2035deef0bf27b`;
+- seed-0 common initialization SHA256: `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`;
+- seed-1 common initialization SHA256: `50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476`;
+- frozen train geometry, gradient, and devval geometry subsets and hashes used by V65/V66;
 - RGB boxes as the sole detector targets.
 
-Materialize and hash all exactly 7,187 entries of the frozen V57 order before model construction. Consume each row exactly once, in the same order used by V65. Do not reshuffle, repeat, substitute, truncate, or extend rows.
+Each seed consumes all 7,187 frozen rows exactly once and in the same order. Run seed 0 first, then seed 1. Do not reshuffle, repeat, substitute, truncate, extend, or condition the second run on the first result.
 
-Reconstruct or strictly reload the exact frozen V64 seed-1 common initialization and reproduce SHA256 `50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476` before training. Generate no alternative initialization candidates. Do not initialize from the V64 or V65 trained checkpoints.
+## Frozen Model and Sole Intervention
 
-## Frozen Model and Training Configuration
-
-Use exactly:
+For each seed use:
 
 ```text
 independent RGB/IR/event stems
--> learned IR/event feature alignment to the RGB reference grid (enabled)
--> V57 superset with reliability scorer instantiated but bypassed
--> exact equal weights [1/3, 1/3, 1/3]
+-> learned IR/event feature alignment to RGB (enabled)
+-> V57 identical parameter superset
+-> active shared image-conditioned reliability scorer
+-> softmax RGB/IR/event weights
+-> weighted feature fusion
 -> 1x1 projection to 3 channels
 -> RepViT-M0.9-FPN-FCOS
--> exact Softplus bbox-distance activation
+-> softplus(beta=1.0, threshold=20.0) bbox-distance activation
 ```
 
-Configuration:
+The reliability scorer is the existing shared `AdaptiveAvgPool2d -> Flatten -> Linear -> ReLU -> Linear` scorer from the V57 superset. Its frozen initialization remains part of each seed-specific common state. The final scorer layer is initially zero, so the active reliability model must produce exact uniform `[1/3, 1/3, 1/3]` weights and bit-identical fused/detector outputs to its matched equal-fusion baseline at step 0. After optimization begins, scorer parameters may learn normally.
 
-- seed `1`;
-- input `320x320`;
-- batch size `1`;
-- FP32, AMP off;
-- feature channels `32`;
-- FPN channels `128`;
-- RepViT-M0.9 without pretrained weights;
-- exact `softplus(beta=1.0, threshold=20.0)` in both training and inference/decode;
-- historical FCOS losses, target matching, anchors, scales, clipping, decode, threshold, top-k, NMS, preprocessing, and evaluator semantics unchanged;
-- AdamW, LR `1e-4`, weight decay `1e-4`;
-- no scheduler, gradient clipping, augmentation, workers, early stopping, checkpoint selection, hyperparameter search, or adaptive extension;
-- alignment enabled;
-- equal fusion exactly uniform;
-- reliability scorer dormant and unchanged.
+Configuration remains exactly V65/V66: input `320x320`, batch size 1, FP32, AMP off, feature channels 32, FPN channels 128, no pretrained weights, AdamW LR `1e-4`, weight decay `1e-4`, no scheduler, clipping, augmentation, workers, early stopping, tuning, or adaptive extension. Losses, targets, matching, anchors, scales, decode, score threshold, top-k, NMS, preprocessing, and evaluator remain frozen.
 
-The only intentional difference from V65 is the frozen initialization seed/state. Source, model semantics, data, order, optimizer, evaluator, audit schedule, recovery policy, and Softplus activation must otherwise match V65 exactly.
+Do not add modality dropout, static learned global weights, per-modality scorers, auxiliary reliability losses, weight regularization, entropy penalties, temperature parameters, missing-modality simulation, or any other fusion change.
 
 ## CPU and Source-Lock Gates Before CUDA
 
-Before GPU work, prove:
+Prove before GPU work:
 
-1. V65 evidence and all protected fingerprints match exactly;
-2. manifests, full order, subsets, and evaluator inputs match V65;
-3. the installed torchvision FCOS source and activation location match V65;
-4. Softplus is applied exactly once per FPN feature with `beta=1.0`, `threshold=20.0` in the shared training/inference path;
-5. the exact V64 seed-1 initialization is reconstructed or strictly loaded and matches the frozen SHA256;
-6. step-0 state dictionaries, pre-activation bbox logits, classification logits, centerness logits, fused features, and alignment outputs are deterministic for the frozen seed-1 state;
-7. no bias, weight, loss, target, matcher, anchor, scale, clipping, decode, threshold, top-k, NMS, preprocessing, evaluator, fusion, or scorer field differs from V65;
-8. the train-only optimization target guard remains unchanged;
-9. the split-agnostic evaluation target path accepts actual row `devval:00005919` without boxes/labels mutation;
-10. the full-devval evaluator reproduces the exact V65 schema and fixed configuration on a micro-fixture;
-11. recovery snapshots round-trip model, optimizer, all RNG states, next row position, completed step count, logs, audit ledger, and hashes;
-12. production and historical V40-V65/V51/manuscript/submission fingerprints remain unchanged.
+1. V65/V66 evidence, manifests, order, subsets, evaluator, and protected fingerprints match exactly;
+2. seed-0 and seed-1 initialization files strictly reproduce their frozen SHA256 values;
+3. reliability and equal variants have identical parameter names, tensors, buffers, and state dictionaries for each seed;
+4. at step 0 the active scorer emits exact uniform weights, and fused features, pre-activation bbox logits, classification logits, centerness logits, alignment outputs, losses, and decoded predictions are bit-identical to the matched equal-fusion model;
+5. the sole behavior switch is V57 `alignment_on_reliability_superset` versus `alignment_on_equal_superset`;
+6. scorer parameters receive finite gradients after the first training backward pass while baseline-frozen contracts remain unchanged;
+7. Softplus source location, call count, beta, and threshold match V65/V66;
+8. the full-devval evaluator reproduces the exact frozen schema/configuration without selecting thresholds or checkpoints;
+9. recovery snapshots round-trip model, optimizer, all RNG states, seed/run identity, next row, completed step count, logs, audit ledger, and hashes;
+10. production, manuscript, submission, and V40-V66/V51 fingerprints remain unchanged.
 
 Fail closed before CUDA on any mismatch.
 
 ## Frozen Run Budget
 
-Run exactly one variant:
+Run exactly, in order:
 
-`v66_seed1_equal_softplus_b1_t20_fulltrain`
+1. `v67_seed0_reliability_softplus_b1_t20_fulltrain` — 7,187 optimizer steps;
+2. `v67_seed1_reliability_softplus_b1_t20_fulltrain` — 7,187 optimizer steps.
 
-Train for exactly **7,187 optimizer steps**, consuming the complete frozen order exactly once. The final scientific checkpoint is the state immediately after step 7,187. No intermediate checkpoint may be selected by loss, geometry, or devval performance.
+Total ceiling: **14,374 optimizer steps**. Each run uses its own exact seed-specific common initialization and the complete frozen order once. Only the final step-7,187 checkpoint of each run is scientific; no intermediate checkpoint selection is allowed.
 
-Save and round-trip verify local recovery snapshots immediately before each audit and additionally every 500 completed optimizer steps. Recovery is allowed only from the latest exact verified V66 snapshot, with no replayed or skipped row or optimizer step. Heavy recovery artifacts remain local and outside Git.
+Save verified local recovery snapshots before every audit and every 500 completed steps. Recovery is allowed only from the latest exact snapshot of the same seed/run, with no replayed or skipped row. Heavy artifacts remain local and outside Git.
 
-## Frozen Audit Schedule
+## Audits and Evaluation
 
-Run compact train-geometry and four-row no-step gradient audits at exactly:
+For each seed audit at:
 
 ```text
 step 0, 15, 50, 200, 500, 1000, 2000, 4000, 6000, 7187
 ```
 
-Maximum diagnostic backward calls: **40 total**. Every probe must use a fresh ephemeral copy and must not mutate persistent model, optimizer, RNG, sample-order, recovery, or logging state.
+Maximum diagnostic backward calls: **80 total**, exactly 40 per seed. Use ephemeral copies and preserve persistent-state isolation.
 
-Record the same geometry, activation-derivative, matched-anchor, component-loss, bbox-output gradient, regression-tower gradient, finite-state, timing, CUDA-memory, isolation, and recovery fields used by V65.
+Record all V65/V66 geometry, gradient, loss, activation, finite-state, timing, memory, and recovery fields. Additionally record per-sample and aggregate RGB/IR/event weights, weight sums, entropy, dominant modality fractions, scorer logits, scorer parameter/gradient norms, exact-uniform departure step, and finite-state checks. Weight concentration is evidence to report, not an automatic reason to stop unless values become non-finite.
 
-At step 7,187, additionally run the frozen 32-row devval geometry audit, then evaluate the final checkpoint exactly once on all 1,845 frozen devval rows.
+After each run completes, evaluate only its final checkpoint exactly once on all 1,845 frozen devval rows with the frozen evaluator. Report AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, AR@100, image/ground-truth/prediction counts, zero-prediction images, non-finite predictions, time, and memory.
 
-## Full-Devval Evaluation Contract
+Create a matched comparison summary containing:
 
-Use the exact V65 evaluator configuration and source hash. Compute at minimum:
+- immutable V65/V66 equal-fusion metrics;
+- V67 reliability-fusion metrics for seeds 0 and 1;
+- per-seed reliability-minus-equal deltas for every AP/AR metric;
+- two-seed reliability mean, sample standard deviation, minimum, maximum, and range;
+- mean and range of the matched per-seed deltas;
+- fusion-weight and scorer diagnostics by seed;
+- a clear descriptive-only/no-independent-test/no-significance boundary.
 
-- AP@[0.50:0.95];
-- AP50;
-- AP75;
-- AR@1;
-- AR@10;
-- AR@100;
-- evaluated image and ground-truth counts;
-- prediction count, zero-prediction image count, and non-finite prediction count;
-- elapsed evaluation time and peak memory.
+Do not use either seed result to select, rerun, tune, terminate, or alter the other run.
 
-Use only the final step-7,187 checkpoint. Do not inspect full-devval metrics before training completes. Do not change score threshold, NMS, max detections, IoU settings, preprocessing, or checkpoint choice after observing results.
+## Completion States
 
-After evaluation, create a compact `two_seed_equal_fusion_summary.json` containing the immutable V65 seed-0 metrics, the V66 seed-1 metrics, arithmetic mean, sample standard deviation when defined, minimum, maximum, and absolute seed-to-seed difference for every AP/AR metric. This summary is descriptive only and may not be used to select or rerun a seed.
+Choose exactly one:
 
-## Frozen Decision Logic
+- `V67_TWO_SEED_RELIABILITY_FULLTRAIN_COMPLETE`;
+- `V67_SEED0_COMPLETE_SEED1_BLOCKED`;
+- `V67_RELIABILITY_BBOX_COLLAPSE` if strict zero-valid-geometry and zero-bbox-output-gradient collapse occurs on two consecutive audits in either run;
+- `V67_BLOCKED_SOURCE_STATE_OR_SCORER_CONTRACT`;
+- `V67_BLOCKED_TRAINING_TRACE_OR_RECOVERY_INCOMPLETE`;
+- `V67_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`;
+- `V67_BLOCKED_FULL_DEVVAL_EVALUATION`;
+- `V67_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`.
 
-Choose exactly one outcome:
-
-- `V66_SEED1_FULLTRAIN_COMPLETE_NONZERO_AP`;
-- `V66_SEED1_FULLTRAIN_COMPLETE_ZERO_AP`;
-- `V66_SEED1_FULLTRAIN_BBOX_COLLAPSE` if strict collapse is observed on two consecutive audits;
-- `V66_BLOCKED_SOURCE_INITIALIZATION_OR_EVALUATOR_CONTRACT`;
-- `V66_BLOCKED_TRAINING_TRACE_OR_RECOVERY_INCOMPLETE`;
-- `V66_BLOCKED_OOM_OR_NUMERICAL_INSTABILITY`;
-- `V66_BLOCKED_FULL_DEVVAL_EVALUATION`;
-- `V66_BLOCKED_TEST_OR_PROTECTED_FILE_VIOLATION`.
-
-A successful V66 run establishes a two-seed equal-fusion Softplus baseline on the frozen MM-UAV devval protocol. It does not establish superiority, an independent-test result, or a reliability-fusion contribution. No method claim is authorized until matched reliability-fusion runs are completed under the same seeds and protocol.
+Successful completion establishes a matched two-seed devval comparison between equal and image-conditioned reliability fusion under the frozen MM-UAV Softplus protocol. It does not establish independent-test performance, broad generalization, statistical significance with n=2, or the value of modality dropout.
 
 ## Stop Rules
 
-Fail closed on:
-
-- any V65 evidence, data, order, subset, source, initialization, evaluator, or protected-file mismatch;
-- any initialization candidate other than the exact frozen V64 seed-1 state;
-- initialization from a trained checkpoint;
-- any activation, model, loss, matcher, anchor, decode, threshold, preprocessing, alignment, equal-fusion, scorer, or evaluator difference from the frozen contract;
-- reshuffled, repeated, substituted, replayed, or skipped rows or steps;
-- more than 7,187 optimizer steps or more than 40 diagnostic backward calls;
-- invalid recovery round trip or diagnostic mutation of persistent state;
-- OOM or any non-finite training, geometry, prediction, metric, or recovery value;
-- full-devval evaluation before the final checkpoint;
-- tuning, threshold selection, checkpoint selection, extra variants/seeds, reruns, reliability-fusion training, or automatic extension;
-- heavy artifacts entering Git.
-
-If strict bbox collapse occurs at two consecutive audits, stop and record `V66_SEED1_FULLTRAIN_BBOX_COLLAPSE`; do not modify the activation, LR, optimizer, precision, resolution, loss, order, or audit schedule.
+Fail closed on any prior-evidence, source, state, step-0 identity, scorer, data/order, Softplus, evaluator, recovery, protected-file, finite-state, step-count, audit-count, or final-evaluation mismatch. Do not modify the model, scorer, optimizer, LR, loss, activation, thresholds, order, run length, or audit schedule after observing results. No extra seed, variant, rerun, ReLU run, modality-dropout experiment, static-fusion experiment, checkpoint selection, or tuning is authorized.
 
 ## Required Outputs
 
-Create `runs/v66_mmuav_seed1_softplus_fulltrain_confirmation/` containing compact files such as:
-
-```text
-protocol.json
-protocol.md
-source_lock_v66.json
-v65_evidence_verification.json
-seed1_initialization_verification.json
-full_train_order_sha256.txt
-audit_schedule.json
-training_config.json
-training_log.csv
-geometry_audits.json
-gradient_audits.json
-activation_derivative_summary.json
-recovery_ledger.json
-final_checkpoint_metadata.json
-full_devval_evaluator_contract.json
-full_devval_metrics.json
-prediction_safety_summary.json
-two_seed_equal_fusion_summary.json
-memory_timing_summary.json
-safety_audit.json
-test_commands.txt
-test_output.txt
-final_decision.json
-handoff.md
-```
-
-Keep checkpoints, optimizer states, recovery snapshots, initialization artifacts, raw predictions, tensors, images, feature maps, and other heavy artifacts local and outside Git.
-
-## Required Tests
-
-Verify exact prior evidence and protected-file immutability; frozen data/order/subset hashes; exact seed-1 initialization hash; exact V65-equivalent source/model/evaluator contract; exact 7,187-row one-pass execution; audit schedule and 40-call ceiling; valid recovery round trips; diagnostic isolation; finite state; final-checkpoint-only full-devval evaluation; correct two-seed descriptive summary; zero tuning, selection, extra seeds/variants, reruns, or extensions; and no heavy artifacts in Git.
-
-Run all CPU/source-lock/evaluator-contract tests before CUDA and post-run tests afterward. Save exact commands and outputs.
+Create `runs/v67_mmuav_two_seed_reliability_softplus_benchmark/` with compact protocol, source/state verification, per-seed configuration/log/audit/recovery/checkpoint/evaluator/metrics files, fusion-weight diagnostics, prediction safety, timing/memory, matched comparison summary, final decision, tests, safety audit, and handoff. Keep checkpoints, optimizer states, recovery snapshots, initialization artifacts, raw predictions, tensors, images, and feature maps local and outside Git.
 
 ## Allowed Changes
 
-- current task/status/blocker/write-record and V66 handoff files;
-- `runs/v66_mmuav_seed1_softplus_fulltrain_confirmation/**`;
-- V66-only runner, frozen seed-1 loader, evaluator wrapper, audit/recovery utilities, and tests;
+- current task/status/blocker/write-record and V67 handoff files;
+- `runs/v67_mmuav_two_seed_reliability_softplus_benchmark/**`;
+- V67-only reliability/Softplus wrapper, runner, instrumentation, recovery utilities, and tests;
 - minimal backward-compatible imports that do not change production defaults.
 
 ## Forbidden Changes
 
-- historical V40-V65 evidence or V51 history;
-- production TriAir defaults or semantics;
-- raw data or annotations;
-- ReLU full training or reliability-fusion training;
-- activation, bias, optimizer, LR, loss, target, matcher, anchor, decode, threshold, NMS, preprocessing, alignment, fusion, scorer, or evaluator sweeps/changes;
-- independent-test claims, manuscript/submission changes, public derivatives, redistribution, or external sharing;
-- additional seeds, variants, reruns, or automatic extension.
+Historical evidence, V51, production TriAir defaults, manuscript/submission files, raw data/annotations, detector/loss/matching/decode/evaluator semantics, Softplus parameters, model width/depth, optimizer, modality dropout, auxiliary losses, static-weight controls, ReLU full training, extra seeds/variants, tuning, threshold/checkpoint selection, and automatic extension.
 
-## Completion State
+## Completion
 
-Choose exactly one allowed V66 state, update `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, and the V66 handoff, then run:
+Update `docs/EXPERIMENT_STATUS.md`, `docs/TASK_BLOCKER.md`, the V67 handoff, and the write record; run `powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1`.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File rarepdet/tools/finish_task.ps1
-```
+Commit message:
 
-## Commit Message
-
-`exp: run V66 MM-UAV seed1 Softplus full-train confirmation`
-
-## Final Report Requirements
-
-Report starting/final commit SHAs; V65 evidence verification; source/data/order/subset/evaluator hashes; exact seed-1 initialization proof; all training/audit/recovery counts; every audit classification; final train/devval compact geometry; final checkpoint hash and local-only location; complete seed-1 AP/AR; two-seed mean/std/min/max/difference summary; prediction safety; timing/memory; test and protected-file results; selected V66 outcome; and the strict no-superiority/no-independent-test claim boundary.
+`exp: run V67 MM-UAV two-seed reliability Softplus benchmark`
