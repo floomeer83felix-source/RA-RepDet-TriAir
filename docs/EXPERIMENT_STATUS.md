@@ -4,30 +4,44 @@ Updated: 2026-07-22
 
 ## Active task
 
-`V65_COMPLETE_NO_FURTHER_GPU_STAGE_AUTHORIZED`
+`V66_MMUAV_SEED1_SOFTPLUS_FULLTRAIN_CONFIRMATION_AUTHORIZED`
 
-## V65 result
+## User authorization
 
-V65 completed with the preregistered outcome:
+The user reported that V65 completed and was pushed. Under the standing automatic task-handoff workflow, V66 is authorized as the next bounded stage: one seed-1 equal-fusion Softplus full-training confirmation using the exact V65 protocol.
 
-`V65_FULLTRAIN_COMPLETE_NONZERO_AP`
+## V65 prerequisite evidence
 
-The exact historical seed-0 equal-fusion initialization was strictly loaded into one Softplus model. The complete frozen 7,187-row V57 order was consumed exactly once, followed by one final-checkpoint-only evaluation on all 1,845 frozen devval rows.
-
-Final COCO-style metrics were AP@[0.50:0.95] `0.0363043928`, AP50 `0.1493416683`, AP75 `0.0035733839`, AR@1 `0.0501429252`, AR@10 `0.0753692234`, and AR@100 `0.0815388280`.
-
-## Geometry and safety
-
-- All ten scheduled audits through step 7,187 were `GEOMETRY_AND_GRADIENT_PRESERVED`.
-- Final compact train/devval geometry was `272,000 / 272,000` valid boxes for each subset.
-- Optimizer steps: `7,187 / 7,187`; unique ordered rows: `7,187 / 7,187`.
+- Completion commit: `33609052b798a89fb8d3a1ab9351f8497e8f95d1`.
+- Outcome: `V65_FULLTRAIN_COMPLETE_NONZERO_AP`.
+- Full training: `7,187 / 7,187` optimizer steps and unique ordered rows.
+- Full-devval evaluation: exactly one attempt on all `1,845` rows.
+- AP@[0.50:0.95]: `0.0363043928`.
+- AP50: `0.1493416683`.
+- AP75: `0.0035733839`.
+- AR@1 / AR@10 / AR@100: `0.0501429252 / 0.0753692234 / 0.0815388280`.
+- All ten audits were `GEOMETRY_AND_GRADIENT_PRESERVED`.
 - Diagnostic backward calls: `40 / 40`.
-- Verified recovery snapshots: `19 / 19`; recovery events: `0`.
-- Full-devval evaluation attempts: `1`; evaluated rows: `1,845`.
-- All finite-state, source-lock, initialization, protected-file, and diagnostic-isolation checks passed.
+- Verified recovery snapshots: `19`; recovery events: `0`.
 - Post-run tests: `10 / 10` passed.
-- No tuning, threshold selection, checkpoint selection, extra variant, extra seed, rerun, or automatic extension occurred.
 
-## Claim boundary
+## V66 authorized run
 
-V65 provides a single-seed equal-fusion Softplus feasibility and performance signal. It does not establish superiority over ReLU, reliability fusion, other seeds, an independent test set, or an external dataset, and it does not authorize a manuscript comparison claim by itself. No further GPU experiment is currently authorized.
+Run exactly one variant:
+
+`v66_seed1_equal_softplus_b1_t20_fulltrain`
+
+Use the exact frozen V64 seed-1 initialization SHA256 `50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476`, the same complete 7,187-row order, equal fusion, enabled alignment, dormant reliability scorer, exact Softplus activation, optimizer, audit schedule, recovery policy, and final-checkpoint-only evaluator used by V65.
+
+Train exactly 7,187 steps and evaluate the final checkpoint exactly once on all 1,845 frozen devval rows. Produce the complete AP/AR metrics and a descriptive two-seed equal-fusion summary combining immutable V65 seed-0 results with V66 seed-1 results.
+
+## Safety and claim boundary
+
+- No initialization from a trained checkpoint.
+- No ReLU full training or reliability-fusion training.
+- No tuning, threshold selection, checkpoint selection, extra seed/variant, rerun, or automatic extension.
+- No full-devval access before the final checkpoint.
+- Production TriAir behavior, V40-V65 evidence, V51, manuscript, and submission files remain protected.
+- Heavy artifacts remain local and outside Git.
+
+A completed V66 run may establish a two-seed equal-fusion Softplus devval baseline. It does not establish superiority, an independent-test result, or a reliability-fusion contribution.
