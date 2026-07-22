@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "file_hashes": true,
+    "decision": true,
+    "optimizer_steps": true,
+    "backward_calls": true,
+    "recovery": true,
+    "evaluation": true,
+    "metrics": true,
+    "audits_preserved": true,
+    "final_geometry": true,
+    "safety": true,
+    "no_selection_or_rerun": true
+  },
+  "file_sha256": {
+    "final_decision.json": "977c35622147d72c08edc86ffbdd34cf05ab6ec0ab5fb0548acd9087d3d1bf9e",
+    "safety_audit.json": "27b8534aaf3746a721d12b05d89e7f3d7573d244b935d01903d5a6355d5a00f2",
+    "training_log.csv": "1edc3b773d90ae5cabd4b27e4f32376aea4003c1c8dc23e43133c46a3c357f16",
+    "source_lock_v65.json": "47e183cf1a56edd400227b9c448cacbdeed337c9e7d203a514ec91dc0c53dd03",
+    "full_devval_metrics.json": "e6e5bde9db36c01ef052ac11339116d73916ee1a04749099ec9e077b1c9604ac",
+    "geometry_audits.json": "9b626cefec3c9d9b4c1521d69ba0c7d352fb2e9b55f3a9d233e6fef77be71e7f"
+  },
+  "metrics": {
+    "ap50_95": 0.036304392782128436,
+    "ap50": 0.14934166830177412,
+    "ap75": 0.0035733839300669244,
+    "ar1": 0.05014292520247737,
+    "ar10": 0.07536922343973321,
+    "ar100": 0.08153882801333968
+  },
+  "completion_commit": "33609052b798a89fb8d3a1ab9351f8497e8f95d1"
+}

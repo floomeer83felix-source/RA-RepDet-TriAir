@@ -1,0 +1,9 @@
+{
+  "path_local_not_committed": "D:\\MM-UAV_v66_local\\v66_seed1_equal_softplus_b1_t20_fulltrain_final_step7187.pt",
+  "sha256": "8be20d25128f92b65dd78f2fa49ec55f8b3870d59ae0dfba3717ec67724ca6cc",
+  "bytes": 27135663,
+  "completed_optimizer_steps": 7187,
+  "selection_metric": null,
+  "common_init_sha256": "50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476",
+  "final_state_fingerprint": "5e34b86af4d1ce89bbeb0f9a95a19d821053bfc158e94bf6d8fe156566d76d11"
+}

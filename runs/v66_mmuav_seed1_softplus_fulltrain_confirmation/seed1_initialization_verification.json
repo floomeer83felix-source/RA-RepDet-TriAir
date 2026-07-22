@@ -1,0 +1,23 @@
+{
+  "source_path_local_not_committed": "D:\\MM-UAV_v64_local\\seed1_common_init.pt",
+  "v66_path_local_not_committed": "D:\\MM-UAV_v66_local\\seed1_common_init.pt",
+  "sha256": "50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476",
+  "bytes": 27150276,
+  "seed": 1,
+  "generation_count": 1,
+  "tensor_count": 791,
+  "state_fingerprint": "9641362c77fd9641395eb66263df489c3a806c6ec40c7b44ab3b9bee7bab149d",
+  "trained_checkpoint_used": false,
+  "alternative_candidates_generated": 0,
+  "checks": {
+    "source_sha256": true,
+    "v66_serialized_sha256": true,
+    "payload_seed_one": true,
+    "generation_count_one": true,
+    "strict_reload": true,
+    "tensor_count": true,
+    "round_trip_bit_identical": true,
+    "all_finite": true,
+    "historical_zero_bbox_bias": true
+  }
+}

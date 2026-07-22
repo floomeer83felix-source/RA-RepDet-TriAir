@@ -1,0 +1,26 @@
+{
+  "starting_commit": "72f4c936dfe1b7d1007aba56c9fe503c494e73f9",
+  "authorization_base": "33609052b798a89fb8d3a1ab9351f8497e8f95d1",
+  "source_hashes": {
+    "rarepdet/tools/run_v66_mmuav_seed1_softplus_fulltrain.py": "c98f02f44f70642acd3bba8369c77d524f2781c13a6755983a294d5712940fb5",
+    "tests/test_v66_mmuav_seed1_softplus_fulltrain.py": "f530dc10ba07c76fab200640d095e09904b41a0d87430ec08865e04566b896b6",
+    "rarepdet/tools/run_v65_mmuav_seed0_softplus_fulltrain.py": "ef43eb6eb951d6e32218e4983955ff30f4633bb73394a75e9a4de6580450cc6f",
+    "tests/test_v65_mmuav_seed0_softplus_fulltrain.py": "9407517fc1bc7d981e932738f09409d8228849e14d4b0d791009f6753fca56fb",
+    "rarepdet/tools/run_v63_mmuav_bbox_activation_rescue.py": "b889a83778f6a7826cb8527b68194848b70085c311cd04a0b74a08629ad60081",
+    "rarepdet/experimental/v63_bbox_activation_detector.py": "f2ac8fc826f3dda66eaec4200ffc7747efee5a892e4931aa2f95c356de67fe4d",
+    "datasets/mmuav_feature_alignment_dataset.py": "ae10aec2fe60e6e744949f87dc0599332edd87c95dd77dee182ff1be687e539e",
+    "rarepdet/coco_metrics.py": "7d59ae82f07a399bb464362ab3e5e42096847eba761953555315c271dbd397e1"
+  },
+  "installed_fcos_path": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\lib\\site-packages\\torchvision\\models\\detection\\fcos.py",
+  "installed_fcos_sha256": "dea8b8e029d4bde23b5b752eeeedfd7e0ec7e7ed894f50bdedd1207523912e88",
+  "historical_relu_line": 251,
+  "softplus_expression": "F.softplus(pre_activation, beta=1.0, threshold=20.0)",
+  "softplus_beta": 1.0,
+  "softplus_threshold": 20.0,
+  "shared_training_inference_head": true,
+  "coco_metrics_sha256": "7d59ae82f07a399bb464362ab3e5e42096847eba761953555315c271dbd397e1",
+  "v65_installed_fcos_sha256": "dea8b8e029d4bde23b5b752eeeedfd7e0ec7e7ed894f50bdedd1207523912e88",
+  "v65_coco_metrics_sha256": "7d59ae82f07a399bb464362ab3e5e42096847eba761953555315c271dbd397e1",
+  "v65_runner_sha256": "ef43eb6eb951d6e32218e4983955ff30f4633bb73394a75e9a4de6580450cc6f",
+  "sole_runtime_difference_from_v65": "seed and frozen initialization state"
+}

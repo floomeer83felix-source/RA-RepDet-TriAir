@@ -1,0 +1,29 @@
+{
+  "training": {
+    "variant": "v66_seed1_equal_softplus_b1_t20_fulltrain",
+    "completed_optimizer_steps": 7187,
+    "all_finite": true,
+    "elapsed_seconds": 3144.4554755999998,
+    "step_time_mean_sec": 0.41150059383609255,
+    "step_time_min_sec": 0.23481200000014724,
+    "step_time_max_sec": 6.7860546,
+    "peak_allocated_bytes": 523038720,
+    "peak_reserved_bytes": 578813952,
+    "dormant_scorer_unchanged": true,
+    "checkpoint": {
+      "path_local_not_committed": "D:\\MM-UAV_v66_local\\v66_seed1_equal_softplus_b1_t20_fulltrain_final_step7187.pt",
+      "sha256": "8be20d25128f92b65dd78f2fa49ec55f8b3870d59ae0dfba3717ec67724ca6cc",
+      "bytes": 27135663,
+      "completed_optimizer_steps": 7187,
+      "selection_metric": null,
+      "common_init_sha256": "50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476",
+      "final_state_fingerprint": "5e34b86af4d1ce89bbeb0f9a95a19d821053bfc158e94bf6d8fe156566d76d11"
+    }
+  },
+  "evaluation": {
+    "elapsed_seconds": 123.21671030000016,
+    "fps": 14.973618395653578,
+    "peak_allocated_bytes": 125612032,
+    "peak_reserved_bytes": 213909504
+  }
+}
