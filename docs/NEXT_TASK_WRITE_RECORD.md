@@ -2,26 +2,26 @@
 
 Written: 2026-07-22
 Branch: `research/ra-repdet-triair`
-V64 completion commit: `402eabb23896f7908b6a3eccd4d394d3ce41d487`
+V65 completion commit: `33609052b798a89fb8d3a1ab9351f8497e8f95d1`
 Canonical task file: `docs/NEXT_TASK.md`
 
 ## Active next task
 
-`V65_MMUAV_SEED0_SOFTPLUS_FULLTRAIN_DEVVAL_FEASIBILITY_AUTHORIZED`
+`V66_MMUAV_SEED1_SOFTPLUS_FULLTRAIN_CONFIRMATION_AUTHORIZED`
 
-Execute the frozen V65 full-training feasibility run exactly as specified in `docs/NEXT_TASK.md`:
+Execute the frozen V66 seed-1 equal-fusion Softplus full-training confirmation exactly as specified in `docs/NEXT_TASK.md`:
 
-1. Verify and preserve all V63/V64 and earlier evidence.
-2. Reconstruct the exact historical seed-0 initialization with SHA256 `846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9`.
-3. Build one alignment-on, exact equal-fusion, dormant-scorer model using exact `softplus(beta=1.0, threshold=20.0)` in the shared training/inference bbox-distance path.
-4. Consume all 7,187 frozen historical training rows exactly once and run exactly 7,187 optimizer steps.
-5. Run compact audits only at steps `0, 15, 50, 200, 500, 1000, 2000, 4000, 6000, 7187`, with at most 40 diagnostic backward calls.
-6. Save and round-trip verify local recovery snapshots without replaying or skipping rows or steps.
-7. Evaluate only the final step-7,187 checkpoint once on all 1,845 frozen devval rows.
-8. Report fixed COCO-style AP/AR and prediction-safety metrics without tuning, threshold selection, or checkpoint selection.
-9. Do not run a ReLU full control, reliability-fusion training, extra seed/variant, rerun, or automatic extension.
-10. Keep checkpoints, optimizer states, recovery snapshots, raw predictions, tensors, images, and other heavy artifacts local and outside Git.
+1. Verify V65 completion evidence and protected-file fingerprints.
+2. Reconstruct or strictly load the exact frozen V64 seed-1 initialization SHA256 `50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476`.
+3. Run `v66_seed1_equal_softplus_b1_t20_fulltrain` for exactly 7,187 optimizer steps.
+4. Consume the complete frozen historical order exactly once and in the same order as V65.
+5. Preserve exact V65 source, architecture, equal fusion, enabled alignment, dormant scorer, Softplus, optimizer, audit, recovery, and evaluator contracts.
+6. Run the ten scheduled audits with at most 40 diagnostic backward calls.
+7. Evaluate only the final step-7,187 checkpoint exactly once on all 1,845 frozen devval rows.
+8. Produce AP/AP50/AP75/AR metrics and a descriptive two-seed equal-fusion summary combining V65 seed 0 and V66 seed 1.
+9. Do not run ReLU or reliability-fusion training, tune, select checkpoints or thresholds, add seeds/variants, rerun, or automatically extend.
+10. Keep checkpoints, optimizer states, recovery snapshots, raw predictions, tensors, and media local and outside Git.
 
 ## Handoff status
 
-The V65 instruction is written and active. Begin with the CPU source-lock, exact seed-0 initialization, complete-order, recovery, and evaluator-contract gates. Stop fail-closed on any contract mismatch.
+The V66 instruction is written and active. Begin with the V65 evidence, source-lock, frozen seed-1 initialization, evaluator-contract, and recovery tests. Stop fail-closed on any mismatch.
