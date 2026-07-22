@@ -4,35 +4,29 @@ Updated: 2026-07-22
 
 ## Active task
 
-`V66_COMPLETE_NO_FURTHER_GPU_STAGE_AUTHORIZED`
+`V67_MMUAV_TWO_SEED_RELIABILITY_SOFTPLUS_BENCHMARK_AUTHORIZED`
 
-## V66 result
+## V66 completion evidence
 
-V66 completed with the preregistered outcome:
+V66 completed with `V66_SEED1_FULLTRAIN_COMPLETE_NONZERO_AP` at commit `70a54d92b8deb8cb9a0f748230731cddad641d9f`.
 
-`V66_SEED1_FULLTRAIN_COMPLETE_NONZERO_AP`
+Seed-1 equal-fusion Softplus metrics were AP@[0.50:0.95] `0.0030357792`, AP50 `0.0174066630`, AP75 `0.0003960396`, AR@1 `0.0109337780`, AR@10 `0.0180323964`, and AR@100 `0.0195569319`.
 
-The exact frozen V64 seed-1 equal-fusion Softplus initialization completed all 7,187 optimizer steps and one final-checkpoint-only evaluation on all 1,845 devval rows.
+Across V65 seed 0 and V66 seed 1, equal-fusion AP mean/sample standard deviation were `0.0196700860 / 0.0235244622`; the absolute seed difference was `0.0332686135`. This substantial initialization sensitivity requires any reliability-fusion comparison to use both matched seeds.
 
-Seed-1 metrics were AP@[0.50:0.95] `0.0030357792`, AP50 `0.0174066630`, AP75 `0.0003960396`, AR@1 `0.0109337780`, AR@10 `0.0180323964`, and AR@100 `0.0195569319`.
+Both baseline runs completed all 7,187 ordered steps, remained `GEOMETRY_AND_GRADIENT_PRESERVED` at every audit, evaluated only their final checkpoints once on all 1,845 devval rows, and passed all frozen safety tests without tuning or selection.
 
-## Two-seed baseline
+## V67 authorized benchmark
 
-Across V65 seed-0 and V66 seed-1, AP@[0.50:0.95] mean/sample standard deviation/minimum/maximum/absolute difference were `0.0196700860 / 0.0235244622 / 0.0030357792 / 0.0363043928 / 0.0332686135`.
+Run exactly, in order:
 
-The large seed difference documents substantial initialization sensitivity under the frozen equal-fusion Softplus protocol. This descriptive result did not trigger selection, tuning, or a rerun.
+1. `v67_seed0_reliability_softplus_b1_t20_fulltrain` — 7,187 steps and one final full-devval evaluation;
+2. `v67_seed1_reliability_softplus_b1_t20_fulltrain` — 7,187 steps and one final full-devval evaluation.
 
-## Geometry and safety
+Use the exact V65/V66 seed-specific initialization states, data, order, alignment, detector, Softplus activation, optimizer, audits, recovery policy, and evaluator. The sole method difference is activation of the existing V57 shared image-conditioned reliability scorer. No modality dropout or auxiliary fusion change is authorized.
 
-- All ten V66 audits were `GEOMETRY_AND_GRADIENT_PRESERVED`.
-- Final compact train/devval geometry was `272,000 / 272,000` valid boxes on each subset.
-- Optimizer steps/unique rows: `7,187 / 7,187`.
-- Diagnostic backward calls: `40 / 40`.
-- Verified recovery snapshots: `19 / 19`; recovery events: `0`.
-- Full-devval evaluation attempts/rows: `1 / 1,845`.
-- Post-run tests: `10 / 10` passed.
-- No tuning, threshold selection, checkpoint selection, extra seed/variant, rerun, or extension occurred.
+V67 ceiling: **14,374 optimizer steps**, **80 diagnostic backward calls**, **38 expected verified recovery snapshots**, and **two final-checkpoint-only 1,845-row devval evaluations**.
 
-## Claim boundary
+## Intended evidence
 
-V65 and V66 establish only a two-seed equal-fusion Softplus baseline on frozen MM-UAV devval. They do not establish superiority, independent-test performance, or a reliability-fusion contribution. No further GPU experiment is currently authorized.
+V67 will produce a matched two-seed devval comparison of equal fusion versus reliability fusion, including per-seed AP/AR deltas and fusion-weight diagnostics. Results remain descriptive: n=2, no independent test set, no threshold/checkpoint selection, no tuning, and no automatic manuscript claim.
