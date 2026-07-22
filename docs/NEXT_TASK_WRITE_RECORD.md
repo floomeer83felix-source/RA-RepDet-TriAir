@@ -2,26 +2,28 @@
 
 Written: 2026-07-22
 Branch: `research/ra-repdet-triair`
-V65 completion commit: `33609052b798a89fb8d3a1ab9351f8497e8f95d1`
+V66 completion commit: `70a54d92b8deb8cb9a0f748230731cddad641d9f`
 Canonical task file: `docs/NEXT_TASK.md`
 
 ## Active next task
 
-`V66_MMUAV_SEED1_SOFTPLUS_FULLTRAIN_CONFIRMATION_AUTHORIZED`
+`V67_MMUAV_TWO_SEED_RELIABILITY_SOFTPLUS_BENCHMARK_AUTHORIZED`
 
-Execute the frozen V66 seed-1 equal-fusion Softplus full-training confirmation exactly as specified in `docs/NEXT_TASK.md`:
+Execute the frozen V67 matched reliability-fusion benchmark exactly as specified in `docs/NEXT_TASK.md`:
 
-1. Verify V65 completion evidence and protected-file fingerprints.
-2. Reconstruct or strictly load the exact frozen V64 seed-1 initialization SHA256 `50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476`.
-3. Run `v66_seed1_equal_softplus_b1_t20_fulltrain` for exactly 7,187 optimizer steps.
-4. Consume the complete frozen historical order exactly once and in the same order as V65.
-5. Preserve exact V65 source, architecture, equal fusion, enabled alignment, dormant scorer, Softplus, optimizer, audit, recovery, and evaluator contracts.
-6. Run the ten scheduled audits with at most 40 diagnostic backward calls.
-7. Evaluate only the final step-7,187 checkpoint exactly once on all 1,845 frozen devval rows.
-8. Produce AP/AP50/AP75/AR metrics and a descriptive two-seed equal-fusion summary combining V65 seed 0 and V66 seed 1.
-9. Do not run ReLU or reliability-fusion training, tune, select checkpoints or thresholds, add seeds/variants, rerun, or automatically extend.
-10. Keep checkpoints, optimizer states, recovery snapshots, raw predictions, tensors, and media local and outside Git.
+1. Verify immutable V65/V66 two-seed equal-fusion evidence and protected fingerprints.
+2. Strictly reproduce the frozen seed-0 and seed-1 common initialization hashes.
+3. Prove reliability/equal state-dictionary identity and exact uniform step-0 weights/outputs for each seed.
+4. Run seed 0 reliability Softplus for exactly 7,187 ordered steps.
+5. Run seed 1 reliability Softplus for exactly 7,187 ordered steps, regardless of the seed-0 result unless a fail-closed blocker occurs.
+6. Preserve exact V65/V66 data, order, alignment, detector, Softplus, optimizer, audit, recovery, and evaluator contracts.
+7. Permit only activation of the existing V57 shared image-conditioned reliability scorer; add no modality dropout or auxiliary change.
+8. Run ten audits per seed with at most 40 diagnostic backward calls per seed.
+9. Evaluate only each final checkpoint once on all 1,845 frozen devval rows.
+10. Produce matched per-seed AP/AR deltas, two-seed reliability summaries, and fusion-weight/scorer diagnostics.
+11. Do not tune, select checkpoints or thresholds, add seeds/variants, rerun, or automatically extend.
+12. Keep checkpoints, optimizer states, recovery snapshots, predictions, tensors, and media local and outside Git.
 
 ## Handoff status
 
-The V66 instruction is written and active. Begin with the V65 evidence, source-lock, frozen seed-1 initialization, evaluator-contract, and recovery tests. Stop fail-closed on any mismatch.
+The V67 instruction is written and active. Begin with V65/V66 evidence verification, source/state/scorer identity tests, frozen evaluator tests, and recovery round trips. Stop fail-closed on any mismatch.
