@@ -1,0 +1,864 @@
+{
+  "seeds": {
+    "0": [
+      {
+        "event": "snapshot_verified",
+        "step": 0,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "e417d4794135420047fb963c018ff6e2ae2e32127badd9d77ee31205c5e155e4",
+        "bytes": 27054080,
+        "log_row_count": 0,
+        "log_sha256": "8eb362d49a1130f4b3ea95b7b64cad062d06c338fc0308ca81b221bfbf5d5b5c",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 0,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 15,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "ca9921fcbf15c6c39718ca4ce34f2004da53d6cfcd90b424558222f9bd280ed7",
+        "bytes": 80610796,
+        "log_row_count": 15,
+        "log_sha256": "13c46e38849afd48e5fddaf7b45c91e022e04ce3c9536978566cec80de851328",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 15,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 50,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "5efa56f816a4d7e63140b8afe10f01eafa1c46b86025b859c17090c6c267f128",
+        "bytes": 80611116,
+        "log_row_count": 50,
+        "log_sha256": "6f3a3320eff59c27dc98da0615739ff20563b84b1edafb9f165ff0e30a1d1268",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 50,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 200,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "335e4c9f7b26cecfb26554a212ac55f1994416b398b2f98a39b9c4724c5b26de",
+        "bytes": 80611436,
+        "log_row_count": 200,
+        "log_sha256": "02a7ac17dfe8ac350d03caed77d05c258eab613ed6fddb7863f52fd2096824c2",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 200,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "0d065b3851ca143f97a85839f9a4394d1ae1f411b0686336eb169d4ce5ac934e",
+        "bytes": 80611756,
+        "log_row_count": 500,
+        "log_sha256": "7b4ea994c79cbb21ce66e42379c6a58428b40fbc46e467ccbac4efac4333da4e",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 500,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 1000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "97522cbeebee9d67d70e358e0922442119f58c4ad7de78ae38d8e0dec25c26b6",
+        "bytes": 80612076,
+        "log_row_count": 1000,
+        "log_sha256": "88b673bf69d8d91043c00cfac0561d4a08b9fa5b5c300e459197f4b469c0685c",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 1000,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 1500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "31e05f8cb9b446391e64bb5bc1081b3fd59b7f157504fb7e0bfa477bf3bb2b39",
+        "bytes": 80612396,
+        "log_row_count": 1500,
+        "log_sha256": "ff1ef050dd6e2ab2b47876dacef18562c7d43c385c33387245facd644e8a67b3",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 2000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "cba58b73ed27db6e796c158146f12939f73e1bbc0d91d0a58fb61769193d3a59",
+        "bytes": 80612652,
+        "log_row_count": 2000,
+        "log_sha256": "0d42d1c3dfc5dd59df65876ed96cb512ae098373a76adf232c7d8aee0f9be57d",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 2000,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 2500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "26c86e9c8f2ad8c4a570231247c33e698d9983bb5f1a004066bfb87227d64fce",
+        "bytes": 80612972,
+        "log_row_count": 2500,
+        "log_sha256": "d8d6cfc39d787bf5a602eb735bef595a6e0cd5d4198fb65d15c3552d9477eb1c",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 3000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "917ef8a441f2a461aba95c48d4fa1e3c1956025ddc33b723771ba243984975db",
+        "bytes": 80613228,
+        "log_row_count": 3000,
+        "log_sha256": "07907dcda80e332e95406b2fd7ca4a44646ff2556536843596dd3a940ddbb0b3",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 3500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "51a21a032416620495356b05e9871e8f12bd8e1b906eb54b9817243800404d28",
+        "bytes": 80613548,
+        "log_row_count": 3500,
+        "log_sha256": "aeb31903438576a22d54f4f4ee4838afc46f615839c8f2e5d7db0ad756e58c64",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 4000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "3666d51d83a506b4ab639ca73b56980267ee5d37d029900718fec65566d78bbd",
+        "bytes": 80613804,
+        "log_row_count": 4000,
+        "log_sha256": "45ea4fabecbdd20fc28d642bada48f291c3287683808dea4aefcf464a65715fa",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 4000,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 4500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "54fbe6aea63547f099b04fd3fe3beb30e02cdd2bdde303c07e0395884656bad6",
+        "bytes": 80614124,
+        "log_row_count": 4500,
+        "log_sha256": "baf226b13746f16e2395b2a5e76bbe868e5f28d736ebf7419ebc185158072670",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 5000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "c025d6191d4cd3cfa719f2439085e0540f7f308225f38a777e3e03acb4e1b16e",
+        "bytes": 80614380,
+        "log_row_count": 5000,
+        "log_sha256": "6c6d48660b49d5cb56b8eb3cedbc2c9eac4e1c0724b75b0e35074e0483a3d27c",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 5500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "e6b867c2619d4629a77dc0aae41d47d00fc203e4c756576fd708a48fb3190f21",
+        "bytes": 80614700,
+        "log_row_count": 5500,
+        "log_sha256": "8cb411ce681179d4a16cd56a3002261243a42e6bbbaf928c8a46fe46bf6632e2",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 6000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "c1004c8e950cf5e861d0266841140e8a7011a82d7651706551dde1c220b639eb",
+        "bytes": 80614956,
+        "log_row_count": 6000,
+        "log_sha256": "bf03275334ce259d7154bd37e9e656282b42d16c4fbff90842f14f156783a7d1",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 6000,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 6500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "fa113b21b92407ef0907b3c20c5bd3688d3a6547b78017d80614e1ffe06265fd",
+        "bytes": 80615276,
+        "log_row_count": 6500,
+        "log_sha256": "435edac2997ef3d5f4f1e005c930fb46cb196eb417317d6207c221a65c8767cc",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 7000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "6aab8abcd7ae978497cb69db0328611b581544a7e2e3c0186e36a3d30a11d0f7",
+        "bytes": 80615532,
+        "log_row_count": 7000,
+        "log_sha256": "fd70008148439c0b94a7cb6a92767e0b3214ce7fd869ea0fa905152caa1d6604",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 7187,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed0_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "b952a43ed5470d59d6d552f9b04f1f3a115dffa0271781ed68a1a34f7aae3962",
+        "bytes": 80615852,
+        "log_row_count": 7187,
+        "log_sha256": "4664cb8b4c851e6e6fe16059b249ec25bd5ac9f463d95714c64a93860fdc4d42",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 7187,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      }
+    ],
+    "1": [
+      {
+        "event": "snapshot_verified",
+        "step": 0,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "694ac68c74926a546e01a0051c56fe73e48f6b6f75ad2202964d07a215b0cb85",
+        "bytes": 27054144,
+        "log_row_count": 0,
+        "log_sha256": "8eb362d49a1130f4b3ea95b7b64cad062d06c338fc0308ca81b221bfbf5d5b5c",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 0,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 15,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "ab430e620c9e2241ffa9bcd004bbae129b368f54cda92d4bff520ff8d254105d",
+        "bytes": 80610860,
+        "log_row_count": 15,
+        "log_sha256": "6dc3abdea053ac4de2caae9675426ae43ec84e78a0811379326479605f5d48b1",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 15,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 50,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "aec760f58495acf8b75ec0df59dc94b5ef07268daa41fe7fb00fdcc76f3441d7",
+        "bytes": 80611180,
+        "log_row_count": 50,
+        "log_sha256": "219d79e3a879f33e3d7f296fbed34fae9460dea0331a8a790b7d6d982ac90253",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 50,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 200,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "c528afbb33b8f6f4b5f2e10c9b6c0800c3d19d181c851af89d598538bc6864a8",
+        "bytes": 80611500,
+        "log_row_count": 200,
+        "log_sha256": "27044f11e6fe954b3b6530253d7ddf95c6d4d60febce09c1d08507ee9aa160b1",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 200,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "47de3512a3f16a8c9abfd76ee6145917e313f6d8a3dc12865b0bc4f7a788142d",
+        "bytes": 80611820,
+        "log_row_count": 500,
+        "log_sha256": "a7b31ff2a9f6cac49fe1b7809ec78109e1542f883f2a3de8931305c75cc98523",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 500,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 1000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "b41a0d65d54011ff8934af70b3bf7ed1f7ff155c0cfbb11cc42932e7794d5aae",
+        "bytes": 80612140,
+        "log_row_count": 1000,
+        "log_sha256": "58409705c9bc539163731b9019b135ba38ff0f86bb7d419a32ff0c70c1e28159",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 1000,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 1500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "26d6fa441630427ab9b26ee80cf06c92e6d5e2d798797168d91ca43150adb4fd",
+        "bytes": 80612460,
+        "log_row_count": 1500,
+        "log_sha256": "cbaffbfe2e9f3a72f1b73579d884f5559f1853f71dfd0dc4f6c8b3d9623dda71",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 2000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "83e4cd38fdd14f27757862860b3120f9fc8269c3a3b2242b1b9f26b9e7e8687f",
+        "bytes": 80612716,
+        "log_row_count": 2000,
+        "log_sha256": "d4706fdab48c766c20ff7c1fcab608bd20e77176ae867d0524a6c9671d715696",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 2000,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 2500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "c1a130e77898405063f93a98ab3a072b3ede713bf11e8740d5c0cf8f6eab78d6",
+        "bytes": 80613036,
+        "log_row_count": 2500,
+        "log_sha256": "f22768d142bb5db275cb25767baf881c276391fb3904d5f5bedee4bd8951b418",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 3000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "3065931c4286fb489a62d601598976117e718c860fe54707053f2bf388dbeb76",
+        "bytes": 80613292,
+        "log_row_count": 3000,
+        "log_sha256": "ba03a199c446b3020f0ed21fbee2a71757beb8ac230790b8c79c5f9262613890",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 3500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "5fd4d3ed1051bc73971872f1db2c9cc1841edf555d05280be5df9fe4c44af626",
+        "bytes": 80613612,
+        "log_row_count": 3500,
+        "log_sha256": "eced3b734f8a98590e1ff45d156a05c39a935b916b2adf77ff808cb866468015",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 4000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "fc051d095e51cfb546451eab617fe7de13f3ea3951a6fa34c0908985a62f38ca",
+        "bytes": 80613868,
+        "log_row_count": 4000,
+        "log_sha256": "0da73ac20fc4915e59ef1a08eaa8a1b78c3d6ea1bfbc35e09b06722fd1bf742b",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 4000,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 4500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "ecdd74908c13a50c6cf6417c34ef80fd1252ca01c6422f82e6f59c890e6d808d",
+        "bytes": 80614188,
+        "log_row_count": 4500,
+        "log_sha256": "79412f517d1acbf48b7c439adff01044bdb05ee13c377c172a3ba1a7f626462a",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 5000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "0a2a37949a1617b0526ae5e7c6d9f5ead95d6144e7c675e61ec7c860deb22fb2",
+        "bytes": 80614444,
+        "log_row_count": 5000,
+        "log_sha256": "af86d4e65d055f1d3f8868038dc6a1a76408ca25b385aceded66a08022dcdc71",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 5500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "f86e2d30789d4b810964a5ecc979bdc413bded2674a524a45f3e4aa964a36eee",
+        "bytes": 80614764,
+        "log_row_count": 5500,
+        "log_sha256": "ac83997c23f7b08dac523f1821406c3057b10ba02035931fa29b352516f57fe7",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 6000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "0f6a32610220d6645eee7f8354c21fd733265112cb0bdc8b3cbe1578329464b1",
+        "bytes": 80615020,
+        "log_row_count": 6000,
+        "log_sha256": "4ca77f1e1ccecdd109c59fa973176282f877889cfd4240f3fdf0206fd003b91a",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "audit_complete",
+        "step": 6000,
+        "state": "GEOMETRY_AND_GRADIENT_PRESERVED"
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 6500,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "98c8605a2e77049d300c0872fac611219694cda9199f450cef95c6f6702c8f2d",
+        "bytes": 80615340,
+        "log_row_count": 6500,
+        "log_sha256": "1ded3c5904d2da50ef63ed70efa478cf0316230bfcb0bf020bea086f5527c9fd",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 7000,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "da3c0a8a3393576759ee08dd17906ba5780e93405d99bf9ea840ad1e886c1e10",
+        "bytes": 80615596,
+        "log_row_count": 7000,
+        "log_sha256": "0876bfc96adfbb12c8a3075ab1be0dd83ed265e9063b2bb76d42a13585f69a71",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      },
+      {
+        "event": "snapshot_verified",
+        "step": 7187,
+        "path_local_not_committed": "D:\\MM-UAV_v67_local\\recovery\\v67_seed1_reliability_softplus_b1_t20_fulltrain_latest.pt",
+        "sha256": "17c1dbd9976a4d5987c4fd7f60d24709b28f90122e9e89997b29381784165a72",
+        "bytes": 80615916,
+        "log_row_count": 7187,
+        "log_sha256": "992391170d509413dc3d2b3bbdda55ef6d53653c17cf07b2c3a64d5590dc2d79",
+        "round_trip_checks": {
+          "model": true,
+          "optimizer": true,
+          "rng": true,
+          "step": true,
+          "next_order": true,
+          "variant": true,
+          "log": true,
+          "ledger": true
+        },
+        "recovery_used": false
+      }
+    ]
+  },
+  "recovery_events": 0
+}

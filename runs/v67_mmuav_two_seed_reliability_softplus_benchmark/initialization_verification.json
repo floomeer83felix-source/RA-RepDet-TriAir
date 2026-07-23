@@ -1,0 +1,38 @@
+{
+  "0": {
+    "source_path_local_not_committed": "D:\\MM-UAV_v57_local\\common_seed0_superset_init.pt",
+    "v67_path_local_not_committed": "D:\\MM-UAV_v67_local\\seed0_common_init.pt",
+    "sha256": "846da59cc8d908dfeb429fca2acb4985e73ff5fda3915154f9f764c571977cb9",
+    "bytes": 27054277,
+    "state_fingerprint": "500abe1428ef2db06ecc0ab4d14d958937020ae7e56c092adc29b85fb05d3d53",
+    "trained_checkpoint_used": false,
+    "checks": {
+      "sha256": true,
+      "strict_equal": true,
+      "strict_reliability": true,
+      "state_keys_identical": true,
+      "state_tensors_identical": true,
+      "tensor_count": true,
+      "finite": true,
+      "final_scorer_zero": true
+    }
+  },
+  "1": {
+    "source_path_local_not_committed": "D:\\MM-UAV_v64_local\\seed1_common_init.pt",
+    "v67_path_local_not_committed": "D:\\MM-UAV_v67_local\\seed1_common_init.pt",
+    "sha256": "50612d58789b935ed8345494a7830a64d07b83c841ac9b6d24bcda3ea3f2c476",
+    "bytes": 27150276,
+    "state_fingerprint": "9641362c77fd9641395eb66263df489c3a806c6ec40c7b44ab3b9bee7bab149d",
+    "trained_checkpoint_used": false,
+    "checks": {
+      "sha256": true,
+      "strict_equal": true,
+      "strict_reliability": true,
+      "state_keys_identical": true,
+      "state_tensors_identical": true,
+      "tensor_count": true,
+      "finite": true,
+      "final_scorer_zero": true
+    }
+  }
+}

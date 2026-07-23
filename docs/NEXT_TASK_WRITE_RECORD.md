@@ -1,29 +1,34 @@
 # Next Task Write Record
 
-Written: 2026-07-22
+Written: 2026-07-23
 Branch: `research/ra-repdet-triair`
-V66 completion commit: `70a54d92b8deb8cb9a0f748230731cddad641d9f`
+V67 starting commit: `2d79d722b93ef4206527e2bef531bafa370c4b95`
+Authorization base: `70a54d92b8deb8cb9a0f748230731cddad641d9f`
 Canonical task file: `docs/NEXT_TASK.md`
 
-## Active next task
+## Completed task
 
-`V67_MMUAV_TWO_SEED_RELIABILITY_SOFTPLUS_BENCHMARK_AUTHORIZED`
+`V67_TWO_SEED_RELIABILITY_FULLTRAIN_COMPLETE`
 
-Execute the frozen V67 matched reliability-fusion benchmark exactly as specified in `docs/NEXT_TASK.md`:
+V67 executed the exact matched two-seed reliability-fusion Softplus benchmark:
 
-1. Verify immutable V65/V66 two-seed equal-fusion evidence and protected fingerprints.
-2. Strictly reproduce the frozen seed-0 and seed-1 common initialization hashes.
-3. Prove reliability/equal state-dictionary identity and exact uniform step-0 weights/outputs for each seed.
-4. Run seed 0 reliability Softplus for exactly 7,187 ordered steps.
-5. Run seed 1 reliability Softplus for exactly 7,187 ordered steps, regardless of the seed-0 result unless a fail-closed blocker occurs.
-6. Preserve exact V65/V66 data, order, alignment, detector, Softplus, optimizer, audit, recovery, and evaluator contracts.
-7. Permit only activation of the existing V57 shared image-conditioned reliability scorer; add no modality dropout or auxiliary change.
-8. Run ten audits per seed with at most 40 diagnostic backward calls per seed.
-9. Evaluate only each final checkpoint once on all 1,845 frozen devval rows.
-10. Produce matched per-seed AP/AR deltas, two-seed reliability summaries, and fusion-weight/scorer diagnostics.
-11. Do not tune, select checkpoints or thresholds, add seeds/variants, rerun, or automatically extend.
-12. Keep checkpoints, optimizer states, recovery snapshots, predictions, tensors, and media local and outside Git.
+1. Immutable V65/V66 evidence and protected fingerprints matched.
+2. Both frozen initialization SHA256 values matched and strictly loaded into identical equal/reliability state dictionaries.
+3. Step-0 uniform weights, features, detector outputs, losses, and predictions were bit-identical; scorer gradients were finite and nonzero.
+4. Seed 0 and seed 1 each consumed all 7,187 frozen rows once in order.
+5. All 20 audits, 80 diagnostic backward calls, and 38 recovery snapshots satisfied their contracts.
+6. Each final checkpoint received exactly one 1,845-image devval evaluation.
+7. Post-run tests passed `10 / 10`.
+8. No tuning, selection, extra seed/variant, completed-step rerun, or extension occurred.
+
+## Result record
+
+- Seed 0 reliability AP: `0.0404763204`; matched delta: `+0.0041719276`.
+- Seed 1 reliability AP: `0.0025823958`; matched delta: `-0.0004533834`.
+- Reliability AP mean/sample standard deviation: `0.0215293581 / 0.0267950511`.
+- Mean matched AP delta: `+0.0018592721`.
+- Devval mean RGB/IR/event weights: seed 0 `0.5550344586 / 0.1881090552 / 0.2568564415`; seed 1 `0.5600358248 / 0.1698493063 / 0.2701148987`.
 
 ## Handoff status
 
-The V67 instruction is written and active. Begin with V65/V66 evidence verification, source/state/scorer identity tests, frozen evaluator tests, and recovery round trips. Stop fail-closed on any mismatch.
+The V67 instruction is complete. No subsequent GPU task is implied by this record. Any next experiment or manuscript claim requires a new explicit task and must preserve the descriptive-only, `n=2`, no-independent-test boundary.

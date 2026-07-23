@@ -1,0 +1,54 @@
+{
+  "v65": {
+    "checks": {
+      "hashes": true,
+      "decision": true,
+      "steps": true,
+      "probes": true,
+      "snapshots": true,
+      "evaluation": true,
+      "audits": true,
+      "finite": true,
+      "no_selection": true
+    },
+    "file_sha256": {
+      "final_decision.json": "977c35622147d72c08edc86ffbdd34cf05ab6ec0ab5fb0548acd9087d3d1bf9e",
+      "safety_audit.json": "27b8534aaf3746a721d12b05d89e7f3d7573d244b935d01903d5a6355d5a00f2",
+      "full_devval_metrics.json": "e6e5bde9db36c01ef052ac11339116d73916ee1a04749099ec9e077b1c9604ac"
+    },
+    "metrics": {
+      "ap50_95": 0.036304392782128436,
+      "ap50": 0.14934166830177412,
+      "ap75": 0.0035733839300669244,
+      "ar1": 0.05014292520247737,
+      "ar10": 0.07536922343973321,
+      "ar100": 0.08153882801333968
+    }
+  },
+  "v66": {
+    "checks": {
+      "hashes": true,
+      "decision": true,
+      "steps": true,
+      "probes": true,
+      "snapshots": true,
+      "evaluation": true,
+      "audits": true,
+      "finite": true,
+      "no_selection": true
+    },
+    "file_sha256": {
+      "final_decision.json": "08bca25ba87de913a8f2088de73b3df8443a177aa24ecb1dee017486e3cb4709",
+      "safety_audit.json": "441a0e4d641f1fc8adda5ee453dc95553943cac240fcb48444a5327cd2e57687",
+      "full_devval_metrics.json": "2a8510e2cdce7e65441fff5f5344d1de984e02ffd1ca5fc57f6bc4962511eb89"
+    },
+    "metrics": {
+      "ap50_95": 0.0030357792333739137,
+      "ap50": 0.01740666298460704,
+      "ap75": 0.00039603960396039607,
+      "ar1": 0.010933777989518818,
+      "ar10": 0.018032396379228204,
+      "ar100": 0.019556931872320153
+    }
+  }
+}

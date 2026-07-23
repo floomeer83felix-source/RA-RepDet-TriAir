@@ -1,0 +1,48 @@
+{
+  "0": {
+    "checks": {
+      "exact_uniform_weights": true,
+      "features_identical": true,
+      "captured_output_keys_identical": true,
+      "captured_output_counts_identical": true,
+      "captured_outputs_identical": true,
+      "decoded_prediction_keys_identical": true,
+      "decoded_predictions_identical": true,
+      "losses_identical": true,
+      "scorer_gradients_present": true,
+      "scorer_gradients_finite": true,
+      "scorer_gradient_nonzero": true
+    },
+    "weights": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "scorer_gradient_norm": 0.07727065207102439
+  },
+  "1": {
+    "checks": {
+      "exact_uniform_weights": true,
+      "features_identical": true,
+      "captured_output_keys_identical": true,
+      "captured_output_counts_identical": true,
+      "captured_outputs_identical": true,
+      "decoded_prediction_keys_identical": true,
+      "decoded_predictions_identical": true,
+      "losses_identical": true,
+      "scorer_gradients_present": true,
+      "scorer_gradients_finite": true,
+      "scorer_gradient_nonzero": true
+    },
+    "weights": [
+      [
+        0.3333333432674408,
+        0.3333333432674408,
+        0.3333333432674408
+      ]
+    ],
+    "scorer_gradient_norm": 0.10518989528806785
+  }
+}

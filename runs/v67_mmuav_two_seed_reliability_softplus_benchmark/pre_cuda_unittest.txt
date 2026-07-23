@@ -1,0 +1,13 @@
+﻿test_cuda_outputs_when_present_and_no_heavy_git_artifacts (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... skipped 'CUDA run not complete'
+test_data_order_and_subsets_are_frozen (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+test_evaluator_budget_audits_and_recovery_contract (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+test_matched_summary_math (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+test_prior_evidence_is_exact_and_immutable (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+test_softplus_source_parameters_and_call_count (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+test_sole_switch_and_parameter_superset (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+test_source_and_protected_locks (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+test_step0_identity_and_scorer_gradient_gate (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+test_two_initializations_are_exact_state_identical_and_untrained (test_v67_mmuav_two_seed_reliability_softplus.V67ContractTests) ... ok
+----------------------------------------------------------------------
+Ran 10 tests in 1.837s
+OK (skipped=1)

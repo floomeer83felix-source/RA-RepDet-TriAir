@@ -1,32 +1,44 @@
 # Experiment Status
 
-Updated: 2026-07-22
+Updated: 2026-07-23
 
-## Active task
+## Active state
 
-`V67_MMUAV_TWO_SEED_RELIABILITY_SOFTPLUS_BENCHMARK_AUTHORIZED`
+`V67_TWO_SEED_RELIABILITY_FULLTRAIN_COMPLETE`
 
-## V66 completion evidence
+## V67 completion
 
-V66 completed with `V66_SEED1_FULLTRAIN_COMPLETE_NONZERO_AP` at commit `70a54d92b8deb8cb9a0f748230731cddad641d9f`.
+V67 completed the frozen MM-UAV matched two-seed reliability-fusion Softplus benchmark. Both runs used the exact V65/V66 seed-specific initializations, the complete 7,187-row frozen order, active V57 shared image-conditioned reliability scoring, and the unchanged Softplus FCOS/evaluator protocol.
 
-Seed-1 equal-fusion Softplus metrics were AP@[0.50:0.95] `0.0030357792`, AP50 `0.0174066630`, AP75 `0.0003960396`, AR@1 `0.0109337780`, AR@10 `0.0180323964`, and AR@100 `0.0195569319`.
+- Optimizer steps: `14,374 / 14,374`, exactly `7,187` per seed.
+- Diagnostic backward calls: `80 / 80`, exactly `40` per seed.
+- Verified recovery snapshots: `38 / 38`; recovery events: `0`.
+- Audits: `20 / 20` were `GEOMETRY_AND_GRADIENT_PRESERVED`.
+- Evaluation: each final checkpoint was evaluated exactly once on all `1,845` devval images.
+- Post-run tests: `10 / 10` passed.
+- No tuning, threshold selection, checkpoint selection, extra seed/variant, completed-step rerun, or adaptive extension occurred.
 
-Across V65 seed 0 and V66 seed 1, equal-fusion AP mean/sample standard deviation were `0.0196700860 / 0.0235244622`; the absolute seed difference was `0.0332686135`. This substantial initialization sensitivity requires any reliability-fusion comparison to use both matched seeds.
+An initial V67 instrumentation launch stopped before the first optimizer step because the diagnostic method was called on the scaffold rather than the detector. The one-line V57 API correction and regression test were source-locked before the formal run. The zero-step attempt did not consume training budget or produce a scientific checkpoint.
 
-Both baseline runs completed all 7,187 ordered steps, remained `GEOMETRY_AND_GRADIENT_PRESERVED` at every audit, evaluated only their final checkpoints once on all 1,845 devval rows, and passed all frozen safety tests without tuning or selection.
+## Matched devval results
 
-## V67 authorized benchmark
+Seed 0 reliability metrics were AP/AP50/AP75 `0.0404763204 / 0.1567504662 / 0.0056653983` and AR@1/10/100 `0.0518818485 / 0.0829680800 / 0.0890424011`.
 
-Run exactly, in order:
+Seed 1 reliability metrics were AP/AP50/AP75 `0.0025823958 / 0.0139110456 / 0.0002883784` and AR@1/10/100 `0.0115292997 / 0.0188661267 / 0.0203191996`.
 
-1. `v67_seed0_reliability_softplus_b1_t20_fulltrain` — 7,187 steps and one final full-devval evaluation;
-2. `v67_seed1_reliability_softplus_b1_t20_fulltrain` — 7,187 steps and one final full-devval evaluation.
+Relative to the matched V65/V66 equal-fusion baselines, AP deltas were `+0.0041719276` for seed 0 and `-0.0004533834` for seed 1. Their mean was `+0.0018592721`, with range `0.0046253111`.
 
-Use the exact V65/V66 seed-specific initialization states, data, order, alignment, detector, Softplus activation, optimizer, audits, recovery policy, and evaluator. The sole method difference is activation of the existing V57 shared image-conditioned reliability scorer. No modality dropout or auxiliary fusion change is authorized.
+The reliability AP mean/sample standard deviation were `0.0215293581 / 0.0267950511`, again showing substantial initialization sensitivity.
 
-V67 ceiling: **14,374 optimizer steps**, **80 diagnostic backward calls**, **38 expected verified recovery snapshots**, and **two final-checkpoint-only 1,845-row devval evaluations**.
+## Fusion evidence
 
-## Intended evidence
+Both scorers departed from exact uniform weights at step 2. On the complete devval set, mean RGB/IR/event weights were:
 
-V67 will produce a matched two-seed devval comparison of equal fusion versus reliability fusion, including per-seed AP/AR deltas and fusion-weight diagnostics. Results remain descriptive: n=2, no independent test set, no threshold/checkpoint selection, no tuning, and no automatic manuscript claim.
+- seed 0: `0.5550344586 / 0.1881090552 / 0.2568564415`;
+- seed 1: `0.5600358248 / 0.1698493063 / 0.2701148987`.
+
+RGB was the largest weight on all 1,845 devval images for both seeds. Weight sums, logits, entropy, losses, gradients, parameters, predictions, and metrics remained finite.
+
+## Evidence boundary
+
+V67 establishes only a matched two-seed devval comparison of equal and image-conditioned reliability fusion under the frozen MM-UAV Softplus protocol. With `n=2`, mixed per-seed AP deltas, and no independent test set, it does not establish statistical significance, broad generalization, or automatic manuscript superiority. No further GPU stage is authorized by V67.

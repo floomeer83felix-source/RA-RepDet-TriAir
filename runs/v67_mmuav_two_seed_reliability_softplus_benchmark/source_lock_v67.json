@@ -1,0 +1,21 @@
+{
+  "starting_commit": "2d79d722b93ef4206527e2bef531bafa370c4b95",
+  "authorization_base": "70a54d92b8deb8cb9a0f748230731cddad641d9f",
+  "source_hashes": {
+    "rarepdet/tools/run_v67_mmuav_two_seed_reliability_softplus.py": "03e4749fc514b91bd06dc8df0ba3045072bfac5aae0e8989b1ef537cedb28fab",
+    "rarepdet/experimental/v67_reliability_softplus_detector.py": "f222d499be057bf89b0dec689ee2af4984147c24cad51e60e5e56c2704ec472f",
+    "tests/test_v67_mmuav_two_seed_reliability_softplus.py": "f8e778dcbb19afb18bbd37ae4c90d33280ceb3593c60e0208a5a0e24d63c4553",
+    "rarepdet/tools/run_v65_mmuav_seed0_softplus_fulltrain.py": "ef43eb6eb951d6e32218e4983955ff30f4633bb73394a75e9a4de6580450cc6f",
+    "rarepdet/experimental/v63_bbox_activation_detector.py": "f2ac8fc826f3dda66eaec4200ffc7747efee5a892e4931aa2f95c356de67fe4d",
+    "rarepdet/experimental/v57_fusion_superset_detector.py": "dd044cd8cbfcbfbbf83b829897e77723cf25ca6d2b7f71c67984a33b779ef082",
+    "datasets/mmuav_feature_alignment_dataset.py": "ae10aec2fe60e6e744949f87dc0599332edd87c95dd77dee182ff1be687e539e",
+    "rarepdet/coco_metrics.py": "7d59ae82f07a399bb464362ab3e5e42096847eba761953555315c271dbd397e1"
+  },
+  "installed_fcos_path": "C:\\Users\\xinnan\\.conda\\envs\\pytorch\\lib\\site-packages\\torchvision\\models\\detection\\fcos.py",
+  "installed_fcos_sha256": "dea8b8e029d4bde23b5b752eeeedfd7e0ec7e7ed894f50bdedd1207523912e88",
+  "historical_relu_line": 251,
+  "softplus_expression": "F.softplus(pre_activation, beta=1.0, threshold=20.0)",
+  "coco_metrics_sha256": "7d59ae82f07a399bb464362ab3e5e42096847eba761953555315c271dbd397e1",
+  "v57_superset_sha256": "dd044cd8cbfcbfbbf83b829897e77723cf25ca6d2b7f71c67984a33b779ef082",
+  "sole_behavior_switch": "alignment_on_reliability_superset versus alignment_on_equal_superset"
+}

@@ -1,0 +1,9 @@
+{
+  "seed": 0,
+  "evaluated_images": 1845,
+  "ground_truth_boxes": 4198,
+  "prediction_count": 184500,
+  "zero_prediction_images": 0,
+  "non_finite_prediction_images": 0,
+  "all_predictions_finite": true
+}
