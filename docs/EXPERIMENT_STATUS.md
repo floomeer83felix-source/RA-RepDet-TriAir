@@ -2,45 +2,63 @@
 
 Updated: 2026-07-25
 
-## Active state
+## Active task
+
+`V70_MMUAV_UNTOUCHED_EXTERNAL_PARTITION_INTAKE_AND_BLIND_FREEZE_AUTHORIZED`
+
+## V69 completion evidence
+
+V69 completed at commit `dbf728207396df869dfe7165f432010d303174dc` with:
 
 `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`
 
-## V69 completion
-
-V69 completed the authorized CPU/metadata-only MM-UAV blind external-validation preflight. No CUDA, model inference, training, fine-tuning, adaptation, checkpoint selection, threshold tuning, candidate-label inspection, prediction generation, or metric computation occurred.
-
-The complete local exposure ledger contains `897,578` synchronized provider-train triplets across `424` sequences:
+The local MM-UAV inventory contains `897,578` synchronized provider-train triplets across `424` sequences. All `424` sequences are linked to V52-V67 development, leaving zero blind-eligible sequences and rows under the frozen same-sequence independence rule.
 
 - direct `DEVELOPMENT_USED`: `9,032`;
 - direct `CONTENT_EXPOSED`: `36,004`;
-- direct `IDENTITY_ONLY`: `852,542`;
-- development-linked sequences: `424 / 424`;
-- blind-eligible sequences: `0`;
-- blind-eligible rows: `0`.
+- direct `IDENTITY_ONLY` but sequence-ineligible: `852,542`;
+- blind-eligible sequences/rows: `0 / 0`;
+- candidate media opened: `false`;
+- candidate labels parsed: `false`;
+- predictions or metrics computed: `false`;
+- V69 tests: `9 / 9` passed.
 
-V52 interval-20 manifests cover every local sequence. V53 supervised rows, subsequently used throughout V54-V67 development, also cover every sequence. Under the frozen same-sequence exclusion rule, the 852,542 directly identity-only frames remain ineligible because every one belongs to a development-used sequence.
+Only the provider train split is locally present. Existing 7,187/1,845 train/devval material and the remaining frames from those sequences cannot be renamed or resplit into an independent external test set.
 
-Only the provider train split is locally available. The frozen V52 audit records a partial source-train extraction and no source test split.
+## Active V70 work
 
-## Gate ordering
+V70 is an external-input-gated CPU/metadata task. It may accept only:
 
-V69 stopped at the candidate-partition gate. The following downstream work was intentionally not attempted:
+1. a provider-defined official MM-UAV test split absent from V52-V69; or
+2. wholly new provider flights/sequences/components with metadata proving independence from all `424` development-linked sequences.
 
-- six TriAir checkpoint verification;
-- parameter-free five-channel adapter freeze;
-- class ontology freeze;
-- zero-shot evaluator freeze;
-- candidate label hashing/sealing.
+After new material is supplied, V70 will:
 
-Completing those stages cannot create an eligible blind partition and would risk implying protocol readiness where none exists.
+- verify provider/split/version/package identity and hashes before media access;
+- prove zero prohibited overlap using the frozen V69 ledger;
+- freeze a blind manifest and hash/seal labels without parsing them;
+- verify the six frozen TriAir manuscript checkpoints;
+- freeze a deterministic parameter-free five-channel adapter at `640 x 640`;
+- freeze vehicle ontology, score threshold `0.001`, NMS `0.6`, maximum `100` detections, and COCO AP/AR evaluator semantics;
+- perform only a post-freeze schema pass;
+- generate no predictions and compute no metrics.
 
-## Independent rights status
+## Scientific boundary
 
-`internal_scientific_protocol_ready`: `false`.
+The intended path remains:
 
-`manuscript_reporting_ready`: `false`.
+`TriAir-trained frozen checkpoints -> untouched MM-UAV blind partition -> later one-time zero-shot evaluation`
 
-V68 remains separately blocked on provider authority, canonical citation, dataset version, license/access terms, research-use permission, aggregate-reporting permission, and redistribution terms.
+No MM-UAV training, fine-tuning, learned alignment, domain adaptation, calibration, Softplus MM-UAV wrapper, checkpoint selection, threshold tuning, candidate-label inspection, inference, or metric computation is authorized in V70.
 
-No V70 evaluation is authorized. A future blind-evaluation preflight requires a provider-defined official test split or wholly unexposed sequence/component material that was never linked to V52-V68 development.
+## Rights boundary
+
+V68 remains separately blocked on provider authority, canonical citation, exact version, license/access terms, research-use permission, aggregate-results reporting permission, and redistribution terms. V70 success may establish internal scientific readiness only; it does not authorize manuscript inclusion or public reporting.
+
+## Intended completion
+
+A successful V70 outcome is:
+
+`V70_MMUAV_BLIND_EXTERNAL_TEST_FROZEN_INTERNAL_ONLY`
+
+Only that successful state may authorize a separate V71 one-time zero-shot external evaluation task.
