@@ -1,55 +1,61 @@
 # Task Blocker
 
-Status: `V69_MANUSCRIPT_SUBMISSION_READINESS_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
+Status: `V69_ZERO_SHOT_EXTERNAL_VALIDATION_PREFLIGHT_AUTHORIZED`
 
 Generated: 2026-07-25
 
 ## Current state
 
-V68 completed normally with `V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE`. Its scientific evidence is internally valid, but the MM-UAV data-rights and canonical-citation gate failed.
+The corrected V69 task may begin immediately with CPU-only repository and local-data inventory work. There is no known engineering blocker to starting the exposure ledger, checkpoint verification, adapter specification, and evaluator freeze.
 
-This remains a permanent exclusion condition for the current submission unless provider-verifiable documentation or written release-authority permission is supplied and a separate documentation-only re-audit passes.
+The central unresolved scientific gate is whether MM-UAV contains a genuinely untouched partition after V52-V68. This must be determined from a complete sample/sequence exposure audit; it must not be assumed.
 
-The MM-UAV blocker does not prevent finalization of the existing TriAir-only manuscript.
+## Authorized boundary
 
-## Authorized V69 boundary
+V69 may:
 
-V69 may audit and correct the active TriAir manuscript, bibliography, cross-references, tables, figures, declarations, compilation support, and submission package when each change is traceable to frozen evidence and does not strengthen the scientific claims.
-
-V69 may create compact audit, compile, rendered-page-review, package-manifest, checklist, decision, and handoff files under `runs/v69_triair_manuscript_submission_readiness/`.
+- classify historical MM-UAV exposure as identity-only, content-exposed, or development-used;
+- identify an unused official test split or wholly unexposed sequence/component holdout using metadata only;
+- freeze a local blind manifest and commit only compact hashes/counts/audit conclusions;
+- locate and strictly verify the six frozen TriAir manuscript checkpoints;
+- implement and test a deterministic, parameter-free five-channel MM-UAV-to-TriAir adapter using exposed development material and frozen TriAir preprocessing;
+- freeze class mapping, thresholds, NMS, maximum detections, and COCO evaluator semantics;
+- hash and seal candidate labels without parsing them;
+- run schema-only, no-label candidate validation after every protocol component is frozen.
 
 V69 may not:
 
-- run CUDA, training, evaluation, new seeds, new variants, or reruns;
-- tune hyperparameters, thresholds, checkpoints, or result presentation;
-- modify historical V40-V68 scientific evidence;
-- change production model, training, loss, matching, decode, or evaluator behavior;
-- add MM-UAV evidence, metrics, claims, citations, appendix material, or data-availability language;
-- invent author, affiliation, journal, ethics, funding, license, citation, reviewer, or provider facts;
-- describe the TriAir holdout as independent or external;
-- claim statistical significance, calibrated physical sensor reliability, universal modality-dropout benefit, or external generalization.
+- train, fine-tune, adapt, calibrate, pseudo-label, or optimize any model on MM-UAV;
+- use MM-UAV-trained checkpoints, learned alignment, or the V63/V65-V67 Softplus detector path;
+- inspect candidate labels, visualize candidate samples, run candidate inference, or compute candidate metrics;
+- reuse V52-V68 train/devval samples or linked sequence/duplicate components as an independent test set;
+- modify TriAir manuscript results, production behavior, or historical evidence;
+- publish or add MM-UAV material to the manuscript while the V68 rights gate remains unresolved.
 
 ## Fail-closed conditions
 
-Stop with the matching V69 blocked state on:
+Stop with the matching V69 decision when:
 
-1. any active manuscript number or table value that cannot be traced to frozen TriAir evidence;
-2. contradictory abstract, method, result, discussion, limitation, declaration, or availability language;
-3. unresolved citations, references, labels, equations, tables, figures, or source dependencies;
-4. clean compilation failure, missing files, corrupted figures, unreadable rendering, or non-self-contained source package;
-5. MM-UAV content appearing anywhere in the active submission package;
-6. protected historical, experimental, production, raw-data, or private-artifact drift;
-7. a required fact that only an author, provider, or journal can supply.
+1. no unused official split or defensible unexposed sequence/component holdout exists;
+2. the V52-V68 exposure ledger is incomplete or candidate overlap cannot be excluded;
+3. any of the six authoritative TriAir checkpoints cannot be found, hashed, and strictly loaded;
+4. a semantically defensible parameter-free RGB/thermal/event-to-five-channel conversion cannot be frozen;
+5. class ontology or box-coordinate semantics cannot be mapped without candidate-label inspection;
+6. evaluator determinism or candidate-label sealing cannot be proven;
+7. candidate data causes a post-freeze schema mismatch—the protocol must block rather than be changed using test information;
+8. raw/private/heavy MM-UAV artifacts enter Git or protected files drift.
 
-## Separate unresolved MM-UAV requirement
+## Separate publication blocker
 
-To reconsider MM-UAV in a future manuscript version, obtain either:
-
-- provider-issued terms identifying the exact dataset/version, canonical citation, license/access terms, research-use permission, aggregate-results reporting permission, and redistribution restrictions; or
-- written authorization from the dataset release authority covering those same items.
-
-Until then, preserve V52-V68 as internal research history only.
+V68's unresolved provider/citation/license/reporting-permission status remains a publication blocker only. It does not authorize abandoning the zero-shot protocol, and it does not permit public reporting of any future result.
 
 ## Next action
 
-Execute V69 exactly as specified in `docs/NEXT_TASK.md`: fingerprint the active TriAir manuscript and evidence, perform the line-level claim and number audit, make only source-backed corrections, compile cleanly, inspect all rendered pages, build the submission package manifest, and issue the final readiness decision.
+Execute `docs/NEXT_TASK.md` in order:
+
+1. inventory every V52-V68 sample and sequence exposure;
+2. discover an eligible untouched partition;
+3. verify the six frozen TriAir checkpoints;
+4. freeze the deterministic five-channel adapter and ontology;
+5. freeze the evaluator before candidate schema access;
+6. seal labels and issue the V69 decision without running inference or AP/AR.
