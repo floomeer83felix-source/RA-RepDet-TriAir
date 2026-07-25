@@ -1,25 +1,38 @@
 # Task Blocker
 
-Status: `V67_COMPLETE_NO_ACTIVE_BLOCKER`
+Status: `V68_MANUSCRIPT_EVIDENCE_AUDIT_AUTHORIZED_NO_GPU_STAGE`
 
-Generated: 2026-07-23
+Generated: 2026-07-25
 
 ## Current state
 
-V67 completed successfully with `V67_TWO_SEED_RELIABILITY_FULLTRAIN_COMPLETE`.
+V67 completed with `V67_TWO_SEED_RELIABILITY_FULLTRAIN_COMPLETE`. Both matched reliability runs completed all frozen training, audit, recovery, and final-devval contracts.
 
-Both seed-specific runs completed exactly 7,187 optimizer steps, all twenty audits preserved geometry and gradients, all 38 recovery snapshots round-tripped, and each final checkpoint was evaluated exactly once on all 1,845 frozen devval rows. Post-run tests passed `10 / 10`.
+The scientific result is mixed: reliability-minus-equal AP was `+0.0041719276` for seed 0 and `-0.0004533834` for seed 1. The mean matched delta `+0.0018592721` is descriptive only and does not establish consistent superiority.
 
-## Resolved instrumentation issue
+## Active V68 boundary
 
-The first CUDA launch stopped before optimizer step 1 because V67 called the existing V57 `fusion_diagnostics()` method on `feature_scaffold` instead of the detector. The failure left only a step-0 snapshot and a header-only training log.
+V68 may verify evidence, reproduce table arithmetic, audit protocol differences and dataset rights, create a claim matrix, and prepare a draft-only appendix package when justified.
 
-The runner was corrected to call `model.fusion_diagnostics()`, a regression assertion was added, source hashes were refreshed, and all CPU/source-lock tests passed before the formal run. No optimizer step, final checkpoint, evaluation, or scientific result existed in the stopped attempt, so the completed formal runs consumed the authorized budget exactly once.
+V68 may not:
 
-## Scientific limitation
+- run CUDA, training, evaluation, new seeds, new variants, or reruns;
+- tune hyperparameters, thresholds, or checkpoints;
+- modify historical V40-V67 evidence;
+- modify production code behavior, `main.tex`, or `submission/**`;
+- claim statistical significance, stable superiority, independent-test performance, external generalization of the TriAir headline configuration, calibrated sensor reliability, or broad robustness;
+- place raw data, annotations, predictions, checkpoints, media, or local-only paths in Git or manuscript drafts.
 
-Reliability-minus-equal AP was positive for seed 0 (`+0.0041719276`) and negative for seed 1 (`-0.0004533834`). The mean matched AP delta was `+0.0018592721`, but this is descriptive only. The result remains initialization-sensitive, uses only two matched seeds, and has no independent-test or significance support.
+## Fail-closed blockers
+
+Stop with the appropriate V68 blocked decision if:
+
+1. any V65-V67 decision, hash, metric, or safety record does not match;
+2. arithmetic cannot be reproduced exactly;
+3. the MM-UAV provider, citation, license, research-use permission, or aggregate-results reporting permission is unresolved;
+4. manuscript and MM-UAV protocol differences cannot be disclosed clearly;
+5. protected manuscript, submission, production, or historical files drift.
 
 ## Next action
 
-Preserve V65-V67 evidence and local authoritative checkpoints. Do not infer a new GPU experiment, tune from these devval results, or promote a manuscript claim until a separate task is explicitly authorized.
+Execute the CPU/documentation-only V68 evidence audit in `docs/NEXT_TASK.md`. Do not infer or authorize a new GPU experiment from the V67 outcome.
