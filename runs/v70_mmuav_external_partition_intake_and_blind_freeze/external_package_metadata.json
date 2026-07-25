@@ -1,0 +1,13 @@
+{
+  "gate": "external_input",
+  "new_external_package_supplied": false,
+  "accepted_package_count": 0,
+  "known_provider_split_directory_names": [
+    "train"
+  ],
+  "official_test_split_present": false,
+  "new_provider_flights_or_sequences_present": false,
+  "media_opened": false,
+  "annotations_opened": false,
+  "note": "No package source, authority, release, split, hash, or independent sequence metadata was supplied."
+}

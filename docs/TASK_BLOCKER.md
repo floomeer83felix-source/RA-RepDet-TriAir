@@ -1,16 +1,20 @@
 # Task Blocker
 
-Status: `V70_EXTERNAL_TEST_MATERIAL_REQUIRED_BEFORE_BLIND_FREEZE`
+Status: `V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
 
 Generated: 2026-07-25
 
 ## Current state
 
-V69 completed successfully as a fail-closed audit with `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`.
+V70 completed the authorized external-input gate and stopped with:
 
-The complete local inventory contains `897,578` synchronized triplets from `424` provider-train sequences. Every sequence is linked to V52-V67 development, so no local row or sequence is eligible for a defensible independent external test.
+`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
+
+No provider-defined official test package or wholly new independent provider flight/sequence package was supplied. The known MM-UAV root still exposes only the previously audited `train` split at directory-identity level. No package metadata, source authority, exact release/split identity, archive hash, or new sequence/component identity was available for intake.
 
 This is a scientific data-availability blocker, not a runtime or engineering failure.
+
+V69 evidence remains unchanged at Git tree `c799600b63fa7746cc4aea031904baa1ebd77971`. V70 did not open candidate media or labels, run inference, compute metrics, verify checkpoints, freeze an adapter/evaluator, or use CUDA.
 
 ## Required external input
 

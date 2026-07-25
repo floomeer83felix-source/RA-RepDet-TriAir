@@ -1,0 +1,9 @@
+{
+  "v69_completion_commit": "dbf728207396df869dfe7165f432010d303174dc",
+  "v69_evidence_tree_sha1_at_completion": "c799600b63fa7746cc4aea031904baa1ebd77971",
+  "v69_evidence_tree_sha1_at_v70_start": "c799600b63fa7746cc4aea031904baa1ebd77971",
+  "unchanged": true,
+  "source_lock_sha256": "6766dbc1774cb38a69099411c551b1cdd45bacc070b7ccb7958f09dfb687ff8f",
+  "final_decision_sha256": "d41bab260e65cc4aeb5ffcb85070f07126d8aa3f89812bc0961015cdbf245dee",
+  "ledger_summary_sha256": "4f459122323389edae8e4c2a7721f2617f4a8ec96684d517a4ac96354722f4f5"
+}

@@ -1,0 +1,28 @@
+{
+  "decision": "V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED",
+  "internal_scientific_protocol_ready": false,
+  "manuscript_reporting_ready": false,
+  "starting_commit": "d851d4b2d855311a52578c6071df96ef07d1e253",
+  "external_package_supplied": false,
+  "accepted_package_count": 0,
+  "reason": "No provider-defined official test package or wholly new independent provider flight/sequence package with required metadata was supplied.",
+  "checks": {
+    "known_provider_root_contains_only_train": true,
+    "v69_evidence_unchanged": true,
+    "candidate_media_opened": false,
+    "candidate_labels_parsed": false,
+    "candidate_inference_run": false,
+    "candidate_metrics_computed": false,
+    "cuda_or_training_used": false,
+    "protected_files_unchanged": true
+  },
+  "downstream_not_attempted": {
+    "independence_audit": true,
+    "blind_manifest_freeze": true,
+    "label_seal": true,
+    "triair_checkpoint_verification": true,
+    "adapter_freeze": true,
+    "ontology_and_evaluator_freeze": true,
+    "candidate_schema_pass": true
+  }
+}

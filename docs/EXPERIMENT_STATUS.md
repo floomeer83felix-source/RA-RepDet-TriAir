@@ -4,7 +4,7 @@ Updated: 2026-07-25
 
 ## Active task
 
-`V70_MMUAV_UNTOUCHED_EXTERNAL_PARTITION_INTAKE_AND_BLIND_FREEZE_AUTHORIZED`
+`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
 
 ## V69 completion evidence
 
@@ -25,14 +25,33 @@ The local MM-UAV inventory contains `897,578` synchronized provider-train triple
 
 Only the provider train split is locally present. Existing 7,187/1,845 train/devval material and the remaining frames from those sequences cannot be renamed or resplit into an independent external test set.
 
-## Active V70 work
+## V70 completion evidence
 
-V70 is an external-input-gated CPU/metadata task. It may accept only:
+V70 completed as a fail-closed external-input audit with:
+
+`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
+
+The known MM-UAV provider root still contains only the previously audited `train` split. No provider-defined official test package, wholly new flight/sequence package, package hash, release identity, or provider metadata was supplied. The audit used directory identities only and did not open media or annotations.
+
+- actual starting commit: `d851d4b2d855311a52578c6071df96ef07d1e253`;
+- V69 evidence tree unchanged: `c799600b63fa7746cc4aea031904baa1ebd77971`;
+- external packages accepted: `0`;
+- candidate media opened: `false`;
+- candidate labels parsed: `false`;
+- predictions or metrics computed: `false`;
+- CUDA or training used: `false`;
+- V70 tests: `10 / 10` passed.
+
+V70 stopped before independence, blind-manifest, label-seal, checkpoint, adapter, evaluator, and candidate-schema work because the required external package was absent.
+
+## Authorized V70 input boundary
+
+V70 may be resumed only after receiving:
 
 1. a provider-defined official MM-UAV test split absent from V52-V69; or
 2. wholly new provider flights/sequences/components with metadata proving independence from all `424` development-linked sequences.
 
-After new material is supplied, V70 will:
+After new material is supplied, a resumed V70 will:
 
 - verify provider/split/version/package identity and hashes before media access;
 - prove zero prohibited overlap using the frozen V69 ledger;
@@ -55,7 +74,7 @@ No MM-UAV training, fine-tuning, learned alignment, domain adaptation, calibrati
 
 V68 remains separately blocked on provider authority, canonical citation, exact version, license/access terms, research-use permission, aggregate-results reporting permission, and redistribution terms. V70 success may establish internal scientific readiness only; it does not authorize manuscript inclusion or public reporting.
 
-## Intended completion
+## Intended completion after external input
 
 A successful V70 outcome is:
 

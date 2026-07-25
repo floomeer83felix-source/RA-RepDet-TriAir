@@ -1,0 +1,16 @@
+{
+  "starting_commit": "d851d4b2d855311a52578c6071df96ef07d1e253",
+  "checks": {
+    "v69_evidence_tree_unchanged": true,
+    "protected_core_diff_empty": true,
+    "candidate_content_accessed": false,
+    "cuda_or_training_used": false,
+    "private_or_heavy_artifacts_added": false
+  },
+  "protected_core_sha256": {
+    "rarepdet/train_early_fusion.py": "c791fc4e669320dc6b6fd984cfbd37fdf2d96daecd1e347acff33ae54ff30a2d",
+    "rarepdet/models/early_fusion_fcos.py": "a2ed2bb58e33428ab3e84267782a38797bfa154cbca6ca1f386bea36bc08b425",
+    "datasets/triair_dataset.py": "f3592421394c465f469c45410e1981613223634e0dd3cfffded281777ddad705"
+  },
+  "note": "The AGENTS.md protected path rarepdet/models/reliability_fusion_fcos.py is absent from the repository at both the V69 completion commit and V70 start."
+}

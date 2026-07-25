@@ -1,0 +1,8 @@
+git rev-parse HEAD
+git rev-parse dbf728207396df869dfe7165f432010d303174dc:runs/v69_mmuav_zero_shot_external_validation_preflight
+git rev-parse HEAD:runs/v69_mmuav_zero_shot_external_validation_preflight
+directory-identity-only known provider split check
+JSON syntax validation for V70 compact outputs
+decision-state and downstream-gate assertions
+protected-core and V69 evidence diff checks
+private/heavy artifact and forbidden output checks

@@ -1,0 +1,11 @@
+PASS decision_state
+PASS external_package_absent
+PASS known_provider_root_directory_identity_only
+PASS v69_evidence_tree_unchanged
+PASS v69_source_lock_hash_unchanged
+PASS compact_json_outputs_parse
+PASS no_content_inference_metrics_or_cuda
+PASS protected_core_unchanged
+PASS no_private_heavy_or_absolute_path_artifacts
+PASS task_status_and_blocker_updated
+RESULT 10/10 passed

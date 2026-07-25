@@ -24,11 +24,19 @@ V69 completed the metadata-only exposure audit and established:
 
 Existing local MM-UAV data may not be randomly resplit, renamed, or reused as an independent external test set.
 
+## V70 execution result
+
+`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
+
+V70 checked the external-input gate using directory identities only. The known MM-UAV root still contains only the previously audited provider `train` split, and no official test package or wholly new provider sequence package with required authority, version, split, hash, and identity metadata was supplied.
+
+The task stopped before candidate media/label access and before independence, checkpoint, adapter, evaluator, label-seal, or schema work. No CUDA, training, inference, prediction, or metric computation occurred. V69 evidence remained unchanged.
+
 ## Active next task
 
 `V70_MMUAV_UNTOUCHED_EXTERNAL_PARTITION_INTAKE_AND_BLIND_FREEZE_AUTHORIZED`
 
-Execute V70 exactly as specified in `docs/NEXT_TASK.md`:
+Resume V70 only after the required external package is supplied. Then execute it exactly as specified in `docs/NEXT_TASK.md`:
 
 1. accept only a provider-defined official MM-UAV test split absent from V52-V69, or wholly new provider sequences/components with metadata proving independence from all `424` old sequences;
 2. stop with `V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED` when no such package is supplied;

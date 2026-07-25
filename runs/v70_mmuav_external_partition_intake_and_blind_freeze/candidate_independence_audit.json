@@ -1,0 +1,8 @@
+{
+  "status": "NOT_ATTEMPTED_EXTERNAL_PACKAGE_NOT_SUPPLIED",
+  "candidate_count": 0,
+  "overlap_comparison_performed": false,
+  "reason": "No candidate package identities existed to compare against the frozen V69 ledger.",
+  "media_accessed": false,
+  "labels_accessed": false
+}
