@@ -2,18 +2,13 @@
 
 ## Authorization
 
-The user reported that V69 completed and was pushed. Under the standing automatic handoff workflow, the next task is authorized as:
+The user reported that V70 completed and was pushed. Under the standing automatic handoff workflow, the next task is authorized as:
 
-`V70_MMUAV_UNTOUCHED_EXTERNAL_PARTITION_INTAKE_AND_BLIND_FREEZE_AUTHORIZED`
+`V71_MMUAV_PROVIDER_SOURCE_RIGHTS_AND_OFFICIAL_TEST_ACQUISITION_AUTHORIZED`
 
-V69 completed at commit `dbf728207396df869dfe7165f432010d303174dc` with `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`. The complete locally available provider-train inventory contains `897,578` synchronized triplets across `424` sequences, and every sequence is linked to V52-V67 development. Existing local MM-UAV material therefore cannot provide an independent external test set.
+V70 completed at commit `bd62068aa0f3ab046d8545c4eef69938b4e73c9b` with `V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`. It verified that the known local MM-UAV root still contains only the previously audited provider `train` split and that no official test package or wholly new independent provider sequence package had been supplied.
 
-V70 is an external-input-gated CPU/metadata/documentation task. It may accept and audit only one of the following:
-
-1. a provider-defined official MM-UAV test split that was absent from and unexposed during V52-V69; or
-2. wholly new provider flights/sequences/components with provider metadata proving independence from all `424` development-linked sequences.
-
-V70 performs no model training, fine-tuning, adaptation, calibration, checkpoint selection, threshold tuning, candidate prediction generation, AP/AR computation, or result-driven protocol modification.
+V71 is a source-recovery, rights-verification, and external-package-acquisition task. Its purpose is to obtain or make request-ready the provider-defined untouched MM-UAV material required for a genuine TriAir-trained-model zero-shot external evaluation. It authorizes no model inference, training, fine-tuning, adaptation, prediction generation, metric computation, or manuscript claim.
 
 ## Required Start
 
@@ -23,189 +18,134 @@ git pull --ff-only research research/ra-repdet-triair
 git rev-parse HEAD
 ```
 
-Expected authorization base and V69 completion commit:
+Expected authorization base and V70 completion commit:
 
-`dbf728207396df869dfe7165f432010d303174dc`
+`bd62068aa0f3ab046d8545c4eef69938b4e73c9b`
 
-Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, the current task/status/blocker files, V52-V69 evidence and handoffs, the V69 exposure-ledger outputs, the frozen TriAir manuscript protocol and checkpoint evidence, V68 rights records, evaluator code, and protected-file rules. Record the actual starting commit.
+Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, the four current task files, V52/V68/V69/V70 provenance and rights records, all preserved MM-UAV paper/code/provider references, the active TriAir manuscript data-availability boundary, and protected-file rules. Record the actual starting commit.
 
-Stop before candidate media or label access on any repository drift, incomplete external source metadata, ambiguous split identity, overlap with V52-V69 exposure, or unauthorized acquisition route.
+## Correct Objective
 
-## External Input Gate
-
-Do not begin candidate schema, checkpoint, adapter, or evaluator work until a new external package is supplied through an authorized route.
-
-The package must include enough provider-issued metadata to establish:
-
-- dataset or split name;
-- provider or release authority;
-- exact version or release identifier;
-- official split designation, or new sequence/flight identifiers;
-- acquisition/download source and date;
-- archive or package SHA256 and byte count;
-- modality inventory without opening media content;
-- sequence/component identity metadata;
-- canonical citation or provider documentation when available;
-- license/access/research-use/reporting/redistribution terms when available.
-
-Local possession, a code repository license, an arXiv license, or a manually renamed directory is not sufficient evidence of an official or independent test split.
-
-If no new external package is supplied, finish with:
-
-`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
-
-## Independence Audit Before Media Access
-
-Using only provider metadata, archive directory identities, filenames, opaque IDs, and cryptographic hashes:
-
-1. compare all candidate split, flight, sequence, and component identifiers against the frozen V69 ledger;
-2. prove that the candidate was absent from all V52-V69 inventories, manifests, development rows, diagnostics, visualizations, predictions, and metrics;
-3. exclude any same-flight, same-sequence, adjacent, duplicate, near-duplicate, or provider-linked component associated with the existing `424` sequences;
-4. verify that the candidate was not derived by randomly resplitting the currently available provider-train material;
-5. record candidate sequence/component count and opaque identity hash without opening media or annotations;
-6. preserve the full candidate manifest locally and outside Git.
-
-If independence cannot be proved, finish with:
-
-`V70_BLOCKED_EXTERNAL_PARTITION_OVERLAP_OR_PROVENANCE`
-
-No candidate sample may be visualized, decoded, statistically summarized, or passed through a model before this gate passes.
-
-## Blind Partition Freeze
-
-After the metadata-only independence gate passes:
-
-- create a local authoritative blind manifest using dataset-relative or opaque identifiers;
-- record row count, sequence/component count, modality-presence schema, manifest SHA256, and source-package SHA256;
-- hash all annotation files without parsing annotation contents;
-- record a label-seal timestamp and hash ledger;
-- prohibit class counts, box counts, object-size distributions, difficulty summaries, sample visualization, or any label-derived statistic;
-- commit only compact hashes, counts, schemas, and audit conclusions;
-- keep raw media, labels, the full manifest, provider correspondence, credentials, and local absolute paths outside Git.
-
-The blind partition must remain sealed until a separately authorized one-time zero-shot evaluation task.
-
-## Frozen TriAir Checkpoints
-
-Only after the blind partition identity is frozen, locate and strictly verify the six authoritative TriAir manuscript checkpoints:
-
-- matched early fusion: seeds `0`, `1`, and `2`;
-- full reliability-aware fusion with modality dropout `p=0.15`: seeds `0`, `1`, and `2`.
-
-For each checkpoint record:
-
-- method and seed;
-- opaque local identifier;
-- SHA256 and byte count;
-- source commit and model class;
-- state-dictionary key/tensor fingerprint;
-- original TriAir checkpoint-selection rule and evidence reference;
-- strict-load success in the unchanged manuscript architecture.
-
-No MM-UAV-trained V57/V63/V65/V66/V67 checkpoint, learned alignment state, Softplus MM-UAV wrapper, optimizer state, checkpoint averaging, ensembling, repair, or replacement is permitted.
-
-If any authoritative checkpoint cannot be located and strictly verified, finish with:
-
-`V70_BLOCKED_TRIAIR_CHECKPOINT_OR_MODEL_CONTRACT`
-
-## Parameter-Free MM-UAV-to-TriAir Adapter
-
-Freeze a deterministic non-learned conversion into the exact five-channel representation expected by the TriAir manuscript models:
+The required path remains:
 
 ```text
-RGB channels 0-2 + thermal channel 3 + event channel 4
+identify the authoritative MM-UAV release source
+-> determine whether an official untouched test split or new provider sequences exist
+-> establish access, citation, version, and reporting terms
+-> acquire or request the package without opening media or labels
+-> hash and seal the received archive outside Git
+-> hand off to a later blind-independence and protocol-freeze task
 ```
 
-The adapter may use only:
+Do not repeat V70 against the unchanged local `train` root. Do not randomly split, rename, sample, or repurpose any of the existing `424` provider-train sequences.
 
-- the frozen TriAir preprocessing contract;
-- provider documentation and metadata;
-- already exposed V52-V69 MM-UAV development material for non-test micro-fixtures.
+## Authoritative Source Recovery
 
-Freeze and hash:
+Using existing V52/V68 records as leads, identify and preserve the strongest available authoritative chain for MM-UAV:
 
-- modality-to-channel mapping;
-- bit depth, dtype conversion, clipping, scaling, and normalization;
-- event representation semantics;
-- spatial registration policy;
-- deterministic resize/crop/pad/interpolation to `640 x 640`;
-- box-coordinate transformation;
-- corrupt/missing-modality stop policy;
-- deterministic ordering and prohibition of randomness;
-- implementation source hash and micro-fixture expected outputs.
+1. dataset or benchmark full name and accepted aliases;
+2. original paper title, authors, venue, DOI/arXiv identifier, and canonical citation;
+3. official project page, institutional page, provider repository, data portal, or release page;
+4. dataset release authority and maintainers;
+5. exact version, release date, package names, and documented split structure;
+6. whether an official `test`, evaluation-server, hidden-label, challenge, or additional-sequence route exists;
+7. whether test annotations are public, private, server-scored, or available by request;
+8. provider-issued license, access terms, data card, README, download notice, or terms of use;
+9. permitted research use, publication of aggregate derived metrics and methodological descriptions, citation requirements, and redistribution restrictions;
+10. official contact route when access or clarification is required.
 
-Do not use learned feature alignment, domain adaptation, calibration, test-time fitting, candidate predictions, or candidate labels. If a defensible parameter-free conversion cannot be fixed, finish with:
+Prefer original provider, institutional, publisher, official repository, or official data-portal records. Mirrors, reposts, search snippets, code licenses, paper-content licenses, and unattributed archives are not sufficient authority.
 
-`V70_BLOCKED_INPUT_REPRESENTATION_OR_LABEL_ONTOLOGY`
+Save source URLs and retrieval dates in the internal evidence package. Do not place credentials, private messages, access tokens, or personal contact details in Git.
 
-## Frozen Evaluator Contract
+## Official Test Availability Decision
 
-Before any candidate media schema pass, freeze:
+Determine exactly one of the following:
 
-- the six unchanged TriAir checkpoints and model classes;
-- the `640 x 640` TriAir preprocessing contract;
-- one shared vehicle-class ontology mapping;
-- score threshold `0.001`;
-- NMS threshold `0.6`;
-- maximum `100` detections per image;
-- canonical COCO-style AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, and AR@100;
-- exactly one final evaluation attempt per checkpoint in the later task;
-- paired seed-wise Early Fusion versus RA-RepDet reporting;
-- descriptive mean and sample standard deviation only;
-- no test-time augmentation, calibration, adaptation, checkpoint selection, threshold selection, or dataset-specific normalization fitting.
+- an official untouched MM-UAV test split is publicly downloadable;
+- an official test split exists but requires registration, application, credentials, challenge access, or provider approval;
+- a provider evaluation server or hidden-label submission route exists;
+- the provider offers additional wholly new sequences/flights/components by request;
+- the available official release contains only train/development material and no defensible external-test route can be verified.
 
-Validate determinism only on synthetic fixtures or previously exposed MM-UAV development rows. Candidate predictions and metrics remain forbidden in V70.
+Do not infer a test split from directory names in unofficial packages. Do not treat withheld labels alone as independence if the sequences were already linked to V52-V70 development.
 
-## Candidate Schema Pass
+## Publicly Available Package Acquisition
 
-Only after the partition, checkpoints, adapter, ontology, and evaluator are frozen may V70 perform a schema-only pass that verifies:
+If an authoritative untouched official test package is openly available and its terms permit the standing private research use:
 
-- files can be read;
-- modalities required by the frozen adapter exist;
-- tensor shapes and dtypes match the frozen contract;
-- converted tensors are finite;
-- annotation files remain sealed and unparsed.
+1. download it only from the authoritative source or a provider-declared mirror;
+2. keep the complete archive and extracted material outside Git;
+3. record source URL, retrieval timestamp, redirect chain when relevant, exact filename, byte count, SHA256, and provider version/split identity;
+4. preserve provider README, data card, license/terms, checksum, and citation files without modifying them;
+5. do not decode media, inspect annotations, compute label statistics, visualize samples, or run model inference;
+6. do not merge the package with the existing local train root;
+7. mark the archive as sealed pending the later independence audit.
 
-Do not visualize media, run a model, generate predictions, inspect labels, or change the adapter because of candidate content. Any unexpected candidate schema must block with:
+A successful public acquisition must finish with:
 
-`V70_BLOCKED_CANDIDATE_SCHEMA_OR_LABEL_SEAL_CONTRACT`
+`V71_MMUAV_OFFICIAL_TEST_PACKAGE_ACQUIRED_AND_SEALED`
 
-## Rights and Reporting Boundary
+## Access-Controlled or Provider-Request Route
 
-Maintain two independent statuses:
+If the official test package or new independent sequences require provider action:
 
-- `internal_scientific_protocol_ready`;
-- `manuscript_reporting_ready`.
+1. identify the authoritative contact or application route;
+2. prepare a concise access request describing the research purpose as zero-shot evaluation of already frozen TriAir-trained RGB/thermal/event vehicle detectors;
+3. explicitly request the exact official test split or wholly new independent sequences, version identity, sequence/component metadata, canonical citation, and terms governing research use and publication of aggregate metrics;
+4. state that raw data will not be redistributed and that no MM-UAV training, fine-tuning, adaptation, or test-informed tuning is planned;
+5. request clarification on hidden labels or evaluation-server procedures when applicable;
+6. create a reviewable request draft and submission checklist, but do not send messages automatically or expose private correspondence in Git.
 
-V70 may become internally ready while manuscript reporting remains false. V68 remains blocked until provider authority, canonical citation, exact version, dataset license/access terms, research-use permission, aggregate-results reporting permission, and redistribution restrictions are verified.
+When the request package is complete but provider response or user submission is required, finish with:
 
-No MM-UAV result, split description, metric, table, figure, or claim may enter the manuscript or be publicly shared solely because V70 succeeds.
+`V71_MMUAV_ACCESS_REQUEST_READY_PROVIDER_RESPONSE_REQUIRED`
+
+## Rights and Reporting Repair
+
+V71 must attempt to repair the independent V68 blocker using provider-verifiable records. Record separately whether the evidence establishes:
+
+- provider/release authority;
+- canonical citation;
+- exact dataset version and split identity;
+- license/access terms;
+- research-use permission;
+- permission to publish aggregate derived metrics and methodological descriptions;
+- redistribution restrictions;
+- required acknowledgments or challenge rules.
+
+An acquired package may be scientifically usable internally while manuscript reporting remains blocked. Do not claim publication readiness unless every required item is supported by provider-issued documentation or written release-authority authorization.
+
+## Package Acceptance Boundary
+
+Reject and quarantine, without opening content, any candidate package that is:
+
+- an unofficial mirror with no provider endorsement;
+- a renamed or repackaged copy of the existing local train data;
+- missing source authority, version, split identity, or package hash;
+- offered through an unauthorized route;
+- covered only by a code-repository or paper-content license;
+- ambiguous about whether it contains new sequences or an official test split.
+
+Do not run V70/V72 intake against a rejected or ambiguous package.
 
 ## Required Outputs
 
-Create `runs/v70_mmuav_external_partition_intake_and_blind_freeze/` containing compact files such as:
+Create `runs/v71_mmuav_provider_source_rights_and_test_acquisition/` containing compact records such as:
 
 ```text
 protocol.md
-external_package_metadata.json
-external_package_hashes.json
-provider_split_identity_audit.md
-v69_exposure_ledger_verification.json
-candidate_independence_audit.json
-candidate_blind_manifest_metadata.json
-candidate_manifest_sha256.txt
-label_seal_record.json
-triair_checkpoint_manifest.json
-triair_checkpoint_verification.json
-triair_model_contract.json
-mmuav_to_triair_adapter_spec.md
-mmuav_to_triair_adapter_spec.json
-adapter_source_lock.json
-adapter_determinism_tests.json
-class_ontology_mapping.json
-zero_shot_evaluator_contract.json
-candidate_schema_audit.json
-rights_and_reporting_boundary.md
+source_chain.json
+official_source_inventory.md
+canonical_citation_record.json
+release_and_split_structure.json
+official_test_availability.json
+rights_and_reporting_matrix.json
+download_or_access_route.json
+acquired_package_seal.json
+provider_access_request_draft.md
+provider_request_submission_checklist.md
+rejected_source_audit.json
 protected_file_audit.json
 test_commands.txt
 test_output.txt
@@ -213,79 +153,56 @@ final_decision.json
 handoff.md
 ```
 
-Keep the full manifest, raw media, labels, checkpoints, predictions, tensors, credentials, provider correspondence, and local paths outside Git.
+Keep downloaded archives, extracted data, provider correspondence, credentials, account identifiers, private email addresses, access tokens, and local absolute paths outside Git. Commit only compact metadata, hashes, public institutional contact routes where appropriate, redacted request text, tests, and conclusions.
 
-## Required Tests
+## Required Checks
 
-Prove before completion:
+Before completion, prove:
 
-- V69 evidence and all historical hashes remain unchanged;
-- the candidate external package is newly supplied and not a renamed local train split;
-- candidate sequence/component identity has zero prohibited overlap with V52-V69;
-- the blind manifest and label seal are deterministic and hashed;
-- all six TriAir checkpoints strictly load and match frozen evidence;
-- the adapter is parameter-free, deterministic, and identical across runs;
-- no learned alignment, MM-UAV-trained checkpoint, Softplus MM-UAV wrapper, adaptation, or calibration is present;
-- ontology, preprocessing, thresholds, NMS, detections, and evaluator are frozen before candidate schema access;
-- candidate labels were not parsed;
-- no candidate model inference, prediction, or metric computation occurred;
-- no CUDA training, fine-tuning, tuning, checkpoint selection, seed addition, or variant addition occurred;
-- protected manuscript, submission, production, TriAir, and V40-V69 files remain unchanged;
-- no raw/private/heavy artifacts entered Git.
+- V52-V70 historical evidence and protected files remain unchanged;
+- every asserted source, version, split, license, and permission traces to an authoritative record;
+- no existing local provider-train material was renamed or resplit;
+- no candidate media or annotation content was opened;
+- no labels, predictions, or metrics were computed;
+- no CUDA, model inference, training, fine-tuning, adaptation, calibration, checkpoint selection, threshold tuning, or new experiment occurred;
+- any acquired archive is outside Git and has deterministic filename/byte-count/SHA256 records;
+- any request draft accurately describes the zero-shot protocol and does not overstate rights or scientific readiness;
+- private/heavy artifacts and credentials did not enter Git.
 
 ## Decision States
 
 Choose exactly one:
 
-- `V70_MMUAV_BLIND_EXTERNAL_TEST_FROZEN_INTERNAL_ONLY` — an eligible new external partition, six TriAir checkpoints, deterministic adapter, ontology, label seal, and evaluator contract are frozen; no inference or metrics were computed;
-- `V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`;
-- `V70_BLOCKED_EXTERNAL_PARTITION_OVERLAP_OR_PROVENANCE`;
-- `V70_BLOCKED_TRIAIR_CHECKPOINT_OR_MODEL_CONTRACT`;
-- `V70_BLOCKED_INPUT_REPRESENTATION_OR_LABEL_ONTOLOGY`;
-- `V70_BLOCKED_CANDIDATE_SCHEMA_OR_LABEL_SEAL_CONTRACT`;
-- `V70_BLOCKED_SOURCE_PROTECTED_OR_PRIVATE_ARTIFACT_VIOLATION`.
+- `V71_MMUAV_OFFICIAL_TEST_PACKAGE_ACQUIRED_AND_SEALED`;
+- `V71_MMUAV_ACCESS_REQUEST_READY_PROVIDER_RESPONSE_REQUIRED`;
+- `V71_BLOCKED_NO_PROVIDER_DEFINED_TEST_OR_NEW_SEQUENCE_ROUTE`;
+- `V71_BLOCKED_PROVIDER_IDENTITY_VERSION_OR_RIGHTS_UNRESOLVED`;
+- `V71_BLOCKED_UNAUTHORIZED_OR_UNVERIFIABLE_PACKAGE`;
+- `V71_BLOCKED_SOURCE_PROTECTED_OR_PRIVATE_ARTIFACT_VIOLATION`.
 
-A successful V70 permits a separate V71 one-time zero-shot external evaluation task. No V70 outcome itself authorizes predictions, metrics, public reporting, or manuscript inclusion.
+No V71 outcome authorizes model inference or AP/AR computation. An acquired-and-sealed result authorizes a later blind independence/protocol-freeze task. A request-ready result requires the user or authorized project representative to submit the request and preserve the provider response before intake resumes.
 
 ## Allowed Changes
 
 - the four current task/status/blocker/write-record files;
-- `runs/v70_mmuav_external_partition_intake_and_blind_freeze/**` compact audit outputs;
-- V70-only metadata intake, exposure comparison, adapter, checkpoint-verification, label-seal, evaluator-freeze, and test utilities;
-- minimal backward-compatible imports that do not change production or manuscript behavior.
+- `runs/v71_mmuav_provider_source_rights_and_test_acquisition/**` compact evidence;
+- V71-only source-recovery, metadata, download-hash, redaction, and validation utilities;
+- local acquisition of an authorized official package outside Git.
 
 ## Forbidden Changes
 
-- V40-V69 historical scientific evidence;
+- V40-V70 historical scientific evidence;
 - active TriAir manuscript or submission claims;
-- production model/training/evaluator behavior;
-- reuse or random resplitting of the existing `424` provider-train sequences;
-- MM-UAV training, fine-tuning, pseudo-labeling, learned alignment, domain adaptation, calibration, Softplus substitution, or checkpoint averaging;
-- candidate-label inspection, visualization, prediction generation, or metric computation;
-- threshold, preprocessing, ontology, checkpoint, seed, or variant selection using candidate information;
-- raw media, labels, checkpoints, credentials, private correspondence, or heavy artifacts in Git;
-- manuscript/public reporting before the separate V68 rights gate passes.
+- production detector/training/evaluator behavior;
+- any MM-UAV training, fine-tuning, learned alignment, domain adaptation, calibration, pseudo-labeling, or model inference;
+- candidate media/annotation inspection, visualization, label statistics, predictions, or metrics;
+- random resplitting or relabeling of the existing `424` sequences;
+- automatic sending of provider communications;
+- raw data, archives, labels, credentials, private correspondence, checkpoints, predictions, or heavy artifacts in Git;
+- manuscript/public reporting without provider-verifiable rights and a later evidence re-audit.
 
 ## Completion
 
-Update the four task/status files, V70 final decision, and handoff. Commit with:
+Update the four task/status files, V71 final decision, source/rights records, and handoff. Commit with:
 
-`docs: freeze V70 untouched MM-UAV external partition intake`
-
-## Execution Result
-
-Executed: 2026-07-25
-
-Actual starting commit:
-
-`d851d4b2d855311a52578c6071df96ef07d1e253`
-
-Decision:
-
-`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
-
-The external-input gate found no newly supplied provider-defined official test split or wholly new independent provider flight/sequence package. The known MM-UAV root still contains only the previously audited provider `train` split at directory-identity level. V70 stopped before media or annotation access and before independence, blind-manifest, label-seal, checkpoint, adapter, evaluator, or schema work.
-
-Commit message:
-
-`docs: freeze V70 untouched MM-UAV external partition intake`
+`docs: acquire V71 MM-UAV official external test source`
