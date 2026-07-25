@@ -1,44 +1,28 @@
 # Experiment Status
 
-Updated: 2026-07-23
+Updated: 2026-07-25
 
-## Active state
+## Active task
 
-`V67_TWO_SEED_RELIABILITY_FULLTRAIN_COMPLETE`
+`V68_MMUAV_MANUSCRIPT_EVIDENCE_AUDIT_AUTHORIZED`
 
-## V67 completion
+## V67 completion evidence
 
-V67 completed the frozen MM-UAV matched two-seed reliability-fusion Softplus benchmark. Both runs used the exact V65/V66 seed-specific initializations, the complete 7,187-row frozen order, active V57 shared image-conditioned reliability scoring, and the unchanged Softplus FCOS/evaluator protocol.
+V67 completed successfully at commit `305a49f06483923eadf7c2a60048a2ca51e7743c` with `V67_TWO_SEED_RELIABILITY_FULLTRAIN_COMPLETE`.
 
-- Optimizer steps: `14,374 / 14,374`, exactly `7,187` per seed.
-- Diagnostic backward calls: `80 / 80`, exactly `40` per seed.
-- Verified recovery snapshots: `38 / 38`; recovery events: `0`.
-- Audits: `20 / 20` were `GEOMETRY_AND_GRADIENT_PRESERVED`.
-- Evaluation: each final checkpoint was evaluated exactly once on all `1,845` devval images.
-- Post-run tests: `10 / 10` passed.
-- No tuning, threshold selection, checkpoint selection, extra seed/variant, completed-step rerun, or adaptive extension occurred.
+- Seed 0 reliability AP: `0.0404763204`; matched reliability-minus-equal delta: `+0.0041719276`.
+- Seed 1 reliability AP: `0.0025823958`; matched delta: `-0.0004533834`.
+- Reliability AP mean/sample standard deviation: `0.0215293581 / 0.0267950511`.
+- Equal-fusion AP mean/sample standard deviation: `0.0196700860 / 0.0235244622`.
+- Mean matched AP delta: `+0.0018592721`.
+- All 14,374 optimizer steps, 80 diagnostic backward calls, 38 recovery snapshots, 20 audits, two final-checkpoint-only full-devval evaluations, and 10/10 tests completed under the frozen contract.
 
-An initial V67 instrumentation launch stopped before the first optimizer step because the diagnostic method was called on the scaffold rather than the detector. The one-line V57 API correction and regression test were source-locked before the formal run. The zero-step attempt did not consume training budget or produce a scientific checkpoint.
+The paired direction is mixed and the seed sensitivity is large. V67 therefore supports a descriptive matched devval comparison, not a stable superiority claim.
 
-## Matched devval results
+## V68 authorized work
 
-Seed 0 reliability metrics were AP/AP50/AP75 `0.0404763204 / 0.1567504662 / 0.0056653983` and AR@1/10/100 `0.0518818485 / 0.0829680800 / 0.0890424011`.
+V68 is a CPU/documentation-only evidence-readiness gate. It will verify V65-V67 evidence, generate an exact paper table and claim matrix, compare the MM-UAV and TriAir protocols, audit data rights/citation requirements, and decide whether the MM-UAV evidence belongs in an appendix, should remain internal, or is blocked by provenance/permission gaps.
 
-Seed 1 reliability metrics were AP/AP50/AP75 `0.0025823958 / 0.0139110456 / 0.0002883784` and AR@1/10/100 `0.0115292997 / 0.0188661267 / 0.0203191996`.
+No CUDA work, experiment rerun, additional seed/variant, tuning, threshold selection, checkpoint selection, or automatic manuscript performance claim is authorized.
 
-Relative to the matched V65/V66 equal-fusion baselines, AP deltas were `+0.0041719276` for seed 0 and `-0.0004533834` for seed 1. Their mean was `+0.0018592721`, with range `0.0046253111`.
-
-The reliability AP mean/sample standard deviation were `0.0215293581 / 0.0267950511`, again showing substantial initialization sensitivity.
-
-## Fusion evidence
-
-Both scorers departed from exact uniform weights at step 2. On the complete devval set, mean RGB/IR/event weights were:
-
-- seed 0: `0.5550344586 / 0.1881090552 / 0.2568564415`;
-- seed 1: `0.5600358248 / 0.1698493063 / 0.2701148987`.
-
-RGB was the largest weight on all 1,845 devval images for both seeds. Weight sums, logits, entropy, losses, gradients, parameters, predictions, and metrics remained finite.
-
-## Evidence boundary
-
-V67 establishes only a matched two-seed devval comparison of equal and image-conditioned reliability fusion under the frozen MM-UAV Softplus protocol. With `n=2`, mixed per-seed AP deltas, and no independent test set, it does not establish statistical significance, broad generalization, or automatic manuscript superiority. No further GPU stage is authorized by V67.
+`main.tex`, `submission/**`, production model behavior, and historical evidence remain protected. Appendix-ready text may be created only as a separate draft under `manuscript/v68_mmuav_extension_draft/**`.
