@@ -126,6 +126,8 @@ CUDA work, new training/evaluation, new seeds or variants, tuning, threshold/che
 
 ## Completion
 
-Update status, blocker, write record, final decision, and handoff. Commit with:
+Update status, blocker, write record, final decision, and handoff.
+
+Commit message:
 
 `docs: audit V68 MM-UAV manuscript evidence readiness`

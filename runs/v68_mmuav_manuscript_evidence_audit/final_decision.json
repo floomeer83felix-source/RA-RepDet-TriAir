@@ -1,0 +1,24 @@
+{
+  "decision": "V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE",
+  "scientific_evidence_valid": true,
+  "rights_and_citation_gate_passed": false,
+  "manuscript_inclusion": "exclude_from_current_manuscript",
+  "appendix_draft_created": false,
+  "reason": "Dataset provider/citation/version/license/research-use and aggregate-reporting permissions are incomplete.",
+  "evidence_boundary": {
+    "descriptive_only": true,
+    "matched_seeds": 2,
+    "independent_test": false,
+    "significance_claim": false,
+    "external_generalization_claim": false,
+    "calibrated_reliability_claim": false
+  },
+  "checks": {
+    "frozen_evidence_verified": true,
+    "arithmetic_reproduced": true,
+    "protected_files_unchanged": true,
+    "no_cuda": true,
+    "no_historical_edits": true,
+    "no_active_manuscript_edits": true
+  }
+}

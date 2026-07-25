@@ -2,28 +2,33 @@
 
 Written: 2026-07-25
 Branch: `research/ra-repdet-triair`
+V68 starting commit: `c40d51f96ee56094f22b879d1fe88f385d177325`
 V67 completion commit: `305a49f06483923eadf7c2a60048a2ca51e7743c`
 Canonical task file: `docs/NEXT_TASK.md`
 
-## Active next task
+## Completed task
 
-`V68_MMUAV_MANUSCRIPT_EVIDENCE_AUDIT_AUTHORIZED`
+`V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE`
 
-Execute the CPU/documentation-only V68 gate exactly as specified in `docs/NEXT_TASK.md`:
+V68 completed the authorized CPU/documentation evidence gate:
 
-1. Verify immutable V65, V66, and V67 decisions, hashes, metrics, and safety records.
-2. Reproduce the matched two-seed table arithmetic independently.
-3. Record equal and reliability AP/AR values, means, standard deviations, and per-seed deltas without selecting seeds.
-4. Document the mixed paired direction and substantial initialization sensitivity.
-5. Summarize learned RGB/IR/event weights without treating them as calibrated sensor-health probabilities.
-6. Compare the MM-UAV 320x320 one-pass aligned-feature Softplus protocol with the 640x640 50-epoch TriAir headline protocol.
-7. Audit MM-UAV provider, citation, license, research-use permission, aggregate-results reporting permission, and redistribution restrictions.
-8. Produce an allowed/disallowed/qualified claim matrix.
-9. Decide appendix-ready descriptive stress test, internal-only exclusion, rights/citation blocker, or evidence-contract blocker.
-10. Create draft-only appendix material only when the evidence and rights audit pass.
-11. Do not modify `main.tex`, `submission/**`, production behavior, or historical evidence.
-12. Do not run CUDA, training, evaluation, new seeds/variants, reruns, tuning, threshold selection, or checkpoint selection.
+1. Verified immutable hashes, decisions, and safety contracts for V65-V67.
+2. Rebuilt the exact matched AP/AP50/AP75/AR table for both methods and seeds.
+3. Independently reproduced means, sample standard deviations, and matched deltas.
+4. Recorded mixed paired direction and large initialization sensitivity.
+5. Summarized learned fusion weights without treating them as calibrated sensor health.
+6. Documented the 320 x 320 one-pass aligned-feature Softplus MM-UAV protocol versus the 640 x 640, 50-epoch TriAir headline protocol.
+7. Audited provider, citation, version, license, research-use, aggregate-reporting, and redistribution records.
+8. Produced allowed/disallowed/qualified claim boundaries.
+9. Verified protected-file integrity and passed `9 / 9` tests.
+10. Performed no CUDA, training, evaluation, tuning, or selection work.
 
-## Handoff status
+## Decision rationale
 
-The V68 instruction is written and active. It is the fastest path from the completed MM-UAV benchmark to a defensible manuscript decision while preserving the mixed-result and no-independent-test boundary.
+The scientific evidence is reproducible, but the provider/release authority, canonical citation, dataset version, dataset license, research-use permission, and aggregate-results reporting permission remain unresolved. The task therefore requires fail-closed exclusion from the current manuscript.
+
+No optional appendix draft was created. No subsequent GPU task or manuscript claim is authorized by this record.
+
+## Required next input
+
+Provide either provider-issued terms/documentation or written authorization from the dataset release authority covering the exact dataset/version, research use, publication of aggregate derived results, citation, and redistribution restrictions. A future re-audit must remain documentation-only unless a separate task explicitly authorizes other work.

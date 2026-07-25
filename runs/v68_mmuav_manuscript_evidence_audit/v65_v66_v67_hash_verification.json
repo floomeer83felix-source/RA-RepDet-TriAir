@@ -1,0 +1,111 @@
+{
+  "starting_commit": "c40d51f96ee56094f22b879d1fe88f385d177325",
+  "records": {
+    "v65_final": {
+      "path": "runs/v65_mmuav_seed0_softplus_fulltrain_feasibility/final_decision.json",
+      "expected_sha256": "977c35622147d72c08edc86ffbdd34cf05ab6ec0ab5fb0548acd9087d3d1bf9e",
+      "actual_sha256": "977c35622147d72c08edc86ffbdd34cf05ab6ec0ab5fb0548acd9087d3d1bf9e",
+      "match": true
+    },
+    "v65_safety": {
+      "path": "runs/v65_mmuav_seed0_softplus_fulltrain_feasibility/safety_audit.json",
+      "expected_sha256": "27b8534aaf3746a721d12b05d89e7f3d7573d244b935d01903d5a6355d5a00f2",
+      "actual_sha256": "27b8534aaf3746a721d12b05d89e7f3d7573d244b935d01903d5a6355d5a00f2",
+      "match": true
+    },
+    "v65_metrics": {
+      "path": "runs/v65_mmuav_seed0_softplus_fulltrain_feasibility/full_devval_metrics.json",
+      "expected_sha256": "e6e5bde9db36c01ef052ac11339116d73916ee1a04749099ec9e077b1c9604ac",
+      "actual_sha256": "e6e5bde9db36c01ef052ac11339116d73916ee1a04749099ec9e077b1c9604ac",
+      "match": true
+    },
+    "v66_final": {
+      "path": "runs/v66_mmuav_seed1_softplus_fulltrain_confirmation/final_decision.json",
+      "expected_sha256": "08bca25ba87de913a8f2088de73b3df8443a177aa24ecb1dee017486e3cb4709",
+      "actual_sha256": "08bca25ba87de913a8f2088de73b3df8443a177aa24ecb1dee017486e3cb4709",
+      "match": true
+    },
+    "v66_safety": {
+      "path": "runs/v66_mmuav_seed1_softplus_fulltrain_confirmation/safety_audit.json",
+      "expected_sha256": "441a0e4d641f1fc8adda5ee453dc95553943cac240fcb48444a5327cd2e57687",
+      "actual_sha256": "441a0e4d641f1fc8adda5ee453dc95553943cac240fcb48444a5327cd2e57687",
+      "match": true
+    },
+    "v66_metrics": {
+      "path": "runs/v66_mmuav_seed1_softplus_fulltrain_confirmation/full_devval_metrics.json",
+      "expected_sha256": "2a8510e2cdce7e65441fff5f5344d1de984e02ffd1ca5fc57f6bc4962511eb89",
+      "actual_sha256": "2a8510e2cdce7e65441fff5f5344d1de984e02ffd1ca5fc57f6bc4962511eb89",
+      "match": true
+    },
+    "v67_final": {
+      "path": "runs/v67_mmuav_two_seed_reliability_softplus_benchmark/final_decision.json",
+      "expected_sha256": "171b059821a06272793b2a037b8dad7c18de97bf06f45f396fbad08f5ad4e1f4",
+      "actual_sha256": "171b059821a06272793b2a037b8dad7c18de97bf06f45f396fbad08f5ad4e1f4",
+      "match": true
+    },
+    "v67_safety": {
+      "path": "runs/v67_mmuav_two_seed_reliability_softplus_benchmark/safety_audit.json",
+      "expected_sha256": "257eb16bbb3aaaca702a10c516933de0af961efedf7f281b32df400b1d1ac862",
+      "actual_sha256": "257eb16bbb3aaaca702a10c516933de0af961efedf7f281b32df400b1d1ac862",
+      "match": true
+    },
+    "v67_comparison": {
+      "path": "runs/v67_mmuav_two_seed_reliability_softplus_benchmark/matched_comparison_summary.json",
+      "expected_sha256": "98165ed7aa4468cd83ab2008cd379434121d09cd81670698e9795ef392eafe63",
+      "actual_sha256": "98165ed7aa4468cd83ab2008cd379434121d09cd81670698e9795ef392eafe63",
+      "match": true
+    },
+    "v67_seed0_metrics": {
+      "path": "runs/v67_mmuav_two_seed_reliability_softplus_benchmark/seed0_full_devval_metrics.json",
+      "expected_sha256": "f4b80c73025b8f8592152e17df67867e932146d85b4bc87547538c17de307805",
+      "actual_sha256": "f4b80c73025b8f8592152e17df67867e932146d85b4bc87547538c17de307805",
+      "match": true
+    },
+    "v67_seed1_metrics": {
+      "path": "runs/v67_mmuav_two_seed_reliability_softplus_benchmark/seed1_full_devval_metrics.json",
+      "expected_sha256": "44f3782e367be88857ceeb5ed6e5c6491c23a3c020360d05c9f6a125efd21b27",
+      "actual_sha256": "44f3782e367be88857ceeb5ed6e5c6491c23a3c020360d05c9f6a125efd21b27",
+      "match": true
+    },
+    "license_contract": {
+      "path": "runs/v52_mmuav_audit/license_contract.json",
+      "expected_sha256": "c9f8e86a9795238ffcc39e94a56ba6a9a7350087cdf493c1b0ce9c0cc6d4408e",
+      "actual_sha256": "c9f8e86a9795238ffcc39e94a56ba6a9a7350087cdf493c1b0ce9c0cc6d4408e",
+      "match": true
+    },
+    "provider_contract": {
+      "path": "runs/v52_mmuav_audit/provider_contract_audit.json",
+      "expected_sha256": "e69609fabe6dcdc6329476cb2b981c1387ba1106dbeb0503f3dbfe7bb25b1866",
+      "actual_sha256": "e69609fabe6dcdc6329476cb2b981c1387ba1106dbeb0503f3dbfe7bb25b1866",
+      "match": true
+    },
+    "provenance": {
+      "path": "runs/v52_mmuav_audit/provenance_and_license.md",
+      "expected_sha256": "9cc6fb0c8c382accad05cc2499ad11a1645cab24d03be2ca7ba8a8f6e7564a44",
+      "actual_sha256": "9cc6fb0c8c382accad05cc2499ad11a1645cab24d03be2ca7ba8a8f6e7564a44",
+      "match": true
+    }
+  },
+  "decisions": {
+    "v65": true,
+    "v66": true,
+    "v67": true
+  },
+  "safety": {
+    "v65_steps": true,
+    "v65_evaluation": true,
+    "v66_steps": true,
+    "v66_evaluation": true,
+    "v67_steps": true,
+    "v67_probes": true,
+    "v67_snapshots": true,
+    "v67_evaluations": true,
+    "v67_finite": true
+  },
+  "checks": {
+    "all_hashes_match": true,
+    "all_decisions_match": true,
+    "all_safety_contracts_match": true,
+    "v67_commit_is_ancestor": true
+  }
+}

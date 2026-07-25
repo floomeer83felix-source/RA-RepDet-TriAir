@@ -1,0 +1,13 @@
+{
+  "dataset_name": "MM-UAV",
+  "provider": "unresolved",
+  "canonical_citation": "incomplete",
+  "dataset_version": "unresolved",
+  "dataset_license": null,
+  "research_use_permission": "unresolved",
+  "aggregate_reporting_permission": "unresolved",
+  "redistribution_permission": "unresolved; fail-closed prohibition applies",
+  "code_license_is_not_dataset_license": true,
+  "paper_license_is_not_dataset_license": true,
+  "submission_gate_passed": false
+}

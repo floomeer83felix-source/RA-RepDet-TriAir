@@ -1,0 +1,90 @@
+{
+  "interpretation_boundary": "Learned softmax coefficients; not calibrated sensor-health measurements.",
+  "seed0": {
+    "samples": 1845,
+    "per_modality": {
+      "rgb": {
+        "mean": 0.5550344586372375,
+        "std": 0.012736089527606964,
+        "min": 0.48480281233787537,
+        "max": 0.5759812593460083
+      },
+      "ir": {
+        "mean": 0.18810905516147614,
+        "std": 0.006973608396947384,
+        "min": 0.16934823989868164,
+        "max": 0.21551163494586945
+      },
+      "event": {
+        "mean": 0.25685644149780273,
+        "std": 0.008380109444260597,
+        "min": 0.24716892838478088,
+        "max": 0.2996855676174164
+      }
+    },
+    "weight_sum_max_abs_error": 1.1920928955078125e-07,
+    "entropy_mean": 0.98976069688797,
+    "entropy_min": 0.9678225517272949,
+    "entropy_max": 1.0428855419158936,
+    "dominance_fraction_mean": 0.5550344586372375,
+    "dominant_modality_counts": {
+      "rgb": 1845,
+      "ir": 0,
+      "event": 0
+    },
+    "logits": {
+      "minimum": -0.7504794001579285,
+      "maximum": 0.5070478320121765,
+      "mean": -0.17048326134681702,
+      "std": 0.45654553174972534
+    },
+    "departed_from_exact_uniform": true,
+    "finite": true
+  },
+  "seed1": {
+    "samples": 1845,
+    "per_modality": {
+      "rgb": {
+        "mean": 0.5600358247756958,
+        "std": 0.007789436727762222,
+        "min": 0.5111585855484009,
+        "max": 0.5681149959564209
+      },
+      "ir": {
+        "mean": 0.16984930634498596,
+        "std": 0.0029682458844035864,
+        "min": 0.16452573239803314,
+        "max": 0.18852892518043518
+      },
+      "event": {
+        "mean": 0.2701148986816406,
+        "std": 0.005068651866167784,
+        "min": 0.26582497358322144,
+        "max": 0.30031251907348633
+      }
+    },
+    "weight_sum_max_abs_error": 1.1920928955078125e-07,
+    "entropy_mean": 0.9792278409004211,
+    "entropy_min": 0.9711397886276245,
+    "entropy_max": 1.0188425779342651,
+    "dominance_fraction_mean": 0.560035765171051,
+    "dominant_modality_counts": {
+      "rgb": 1845,
+      "ir": 0,
+      "event": 0
+    },
+    "logits": {
+      "minimum": -0.7729485630989075,
+      "maximum": 0.4719093143939972,
+      "mean": -0.19611765444278717,
+      "std": 0.49148255586624146
+    },
+    "departed_from_exact_uniform": true,
+    "finite": true
+  },
+  "checks": {
+    "both_departed_from_uniform": true,
+    "both_finite": true,
+    "rgb_dominant_all_devval": true
+  }
+}
