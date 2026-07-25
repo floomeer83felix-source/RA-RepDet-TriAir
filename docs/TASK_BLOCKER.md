@@ -1,63 +1,55 @@
 # Task Blocker
 
-Status: `V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE`
+Status: `V69_MANUSCRIPT_SUBMISSION_READINESS_AUTHORIZED_NO_ACTIVE_PREFLIGHT_BLOCKER`
 
 Generated: 2026-07-25
 
-## Exact blocker
+## Current state
 
-V68 verified that the V65-V67 scientific files and arithmetic are internally consistent. The manuscript gate nevertheless fails because the available MM-UAV records do not establish:
+V68 completed normally with `V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE`. Its scientific evidence is internally valid, but the MM-UAV data-rights and canonical-citation gate failed.
 
-1. provider or dataset release authority;
-2. canonical dataset citation and version;
-3. dataset license/access terms;
-4. research-use permission;
-5. permission to publish aggregate derived metrics and methodological descriptions;
-6. redistribution terms.
+This remains a permanent exclusion condition for the current submission unless provider-verifiable documentation or written release-authority permission is supplied and a separate documentation-only re-audit passes.
 
-Apache-2.0 applies to audited repository code, not expressly to dataset files. The preserved arXiv content license is not a dataset-use grant. Local archive possession and completed experiments are not permission evidence.
+The MM-UAV blocker does not prevent finalization of the existing TriAir-only manuscript.
 
-## Error tail
+## Authorized V69 boundary
 
-There was no runtime exception. The documentary gate completed normally with:
+V69 may audit and correct the active TriAir manuscript, bibliography, cross-references, tables, figures, declarations, compilation support, and submission package when each change is traceable to frozen evidence and does not strengthen the scientific claims.
 
-```text
-decision=V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE
-scientific_evidence_valid=true
-rights_and_citation_gate_passed=false
-appendix_draft_created=false
-frozen_evidence_verified=true
-arithmetic_reproduced=true
-protected_files_unchanged=true
-no_cuda=true
-tests=9/9 passed
-```
+V69 may create compact audit, compile, rendered-page-review, package-manifest, checklist, decision, and handoff files under `runs/v69_triair_manuscript_submission_readiness/`.
 
-## Attempted checks
+V69 may not:
 
-- Re-verified frozen SHA256 values and decision/safety files for V65, V66, and V67.
-- Reproduced every AP/AR mean, sample standard deviation, and matched delta through two arithmetic paths.
-- Reviewed V52 provider evidence, pinned official code commits, preserved arXiv record, code licenses, extracted-subset inventory, and local provider-text search.
-- Reviewed current TriAir manuscript protocol and data-availability records.
-- Confirmed that V52 found no dataset README, provider metadata, version identifier, dataset license, research-use grant, aggregate-reporting permission, or redistribution permission.
+- run CUDA, training, evaluation, new seeds, new variants, or reruns;
+- tune hyperparameters, thresholds, checkpoints, or result presentation;
+- modify historical V40-V68 scientific evidence;
+- change production model, training, loss, matching, decode, or evaluator behavior;
+- add MM-UAV evidence, metrics, claims, citations, appendix material, or data-availability language;
+- invent author, affiliation, journal, ethics, funding, license, citation, reviewer, or provider facts;
+- describe the TriAir holdout as independent or external;
+- claim statistical significance, calibrated physical sensor reliability, universal modality-dropout benefit, or external generalization.
 
-## Related files
+## Fail-closed conditions
 
-- `runs/v52_mmuav_audit/license_contract.json`
-- `runs/v52_mmuav_audit/provider_contract_audit.json`
-- `runs/v52_mmuav_audit/provenance_and_license.md`
-- `runs/v68_mmuav_manuscript_evidence_audit/data_rights_and_citation_audit.md`
-- `runs/v68_mmuav_manuscript_evidence_audit/manuscript_inclusion_recommendation.md`
-- `runs/v68_mmuav_manuscript_evidence_audit/final_decision.json`
+Stop with the matching V69 blocked state on:
 
-## Repair options
+1. any active manuscript number or table value that cannot be traced to frozen TriAir evidence;
+2. contradictory abstract, method, result, discussion, limitation, declaration, or availability language;
+3. unresolved citations, references, labels, equations, tables, figures, or source dependencies;
+4. clean compilation failure, missing files, corrupted figures, unreadable rendering, or non-self-contained source package;
+5. MM-UAV content appearing anywhere in the active submission package;
+6. protected historical, experimental, production, raw-data, or private-artifact drift;
+7. a required fact that only an author, provider, or journal can supply.
 
-### Option 1: Provider documentation
+## Separate unresolved MM-UAV requirement
 
-Obtain and preserve a provider-issued data card, download/access page, license or terms of use, canonical citation, dataset version, and explicit wording that research use and publication of aggregate derived results are permitted. Then run a documentation-only V68 re-audit against those immutable records.
+To reconsider MM-UAV in a future manuscript version, obtain either:
 
-### Option 2: Direct written authorization
+- provider-issued terms identifying the exact dataset/version, canonical citation, license/access terms, research-use permission, aggregate-results reporting permission, and redistribution restrictions; or
+- written authorization from the dataset release authority covering those same items.
 
-Obtain written authorization from the dataset release authority that identifies the exact dataset/version and permits the existing research use plus journal reporting of aggregate metrics and methodological descriptions. Preserve the authorization metadata without publishing confidential contact details, then rerun the documentary gate.
+Until then, preserve V52-V68 as internal research history only.
 
-Until one option is complete, keep MM-UAV results internal, do not create the appendix draft, do not modify the active manuscript, and do not infer a new GPU experiment.
+## Next action
+
+Execute V69 exactly as specified in `docs/NEXT_TASK.md`: fingerprint the active TriAir manuscript and evidence, perform the line-level claim and number audit, make only source-backed corrections, compile cleanly, inspect all rendered pages, build the submission package manifest, and issue the final readiness decision.
