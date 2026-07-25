@@ -1,34 +1,29 @@
 # Next Task Write Record
 
-Written: 2026-07-23
+Written: 2026-07-25
 Branch: `research/ra-repdet-triair`
-V67 starting commit: `2d79d722b93ef4206527e2bef531bafa370c4b95`
-Authorization base: `70a54d92b8deb8cb9a0f748230731cddad641d9f`
+V67 completion commit: `305a49f06483923eadf7c2a60048a2ca51e7743c`
 Canonical task file: `docs/NEXT_TASK.md`
 
-## Completed task
+## Active next task
 
-`V67_TWO_SEED_RELIABILITY_FULLTRAIN_COMPLETE`
+`V68_MMUAV_MANUSCRIPT_EVIDENCE_AUDIT_AUTHORIZED`
 
-V67 executed the exact matched two-seed reliability-fusion Softplus benchmark:
+Execute the CPU/documentation-only V68 gate exactly as specified in `docs/NEXT_TASK.md`:
 
-1. Immutable V65/V66 evidence and protected fingerprints matched.
-2. Both frozen initialization SHA256 values matched and strictly loaded into identical equal/reliability state dictionaries.
-3. Step-0 uniform weights, features, detector outputs, losses, and predictions were bit-identical; scorer gradients were finite and nonzero.
-4. Seed 0 and seed 1 each consumed all 7,187 frozen rows once in order.
-5. All 20 audits, 80 diagnostic backward calls, and 38 recovery snapshots satisfied their contracts.
-6. Each final checkpoint received exactly one 1,845-image devval evaluation.
-7. Post-run tests passed `10 / 10`.
-8. No tuning, selection, extra seed/variant, completed-step rerun, or extension occurred.
-
-## Result record
-
-- Seed 0 reliability AP: `0.0404763204`; matched delta: `+0.0041719276`.
-- Seed 1 reliability AP: `0.0025823958`; matched delta: `-0.0004533834`.
-- Reliability AP mean/sample standard deviation: `0.0215293581 / 0.0267950511`.
-- Mean matched AP delta: `+0.0018592721`.
-- Devval mean RGB/IR/event weights: seed 0 `0.5550344586 / 0.1881090552 / 0.2568564415`; seed 1 `0.5600358248 / 0.1698493063 / 0.2701148987`.
+1. Verify immutable V65, V66, and V67 decisions, hashes, metrics, and safety records.
+2. Reproduce the matched two-seed table arithmetic independently.
+3. Record equal and reliability AP/AR values, means, standard deviations, and per-seed deltas without selecting seeds.
+4. Document the mixed paired direction and substantial initialization sensitivity.
+5. Summarize learned RGB/IR/event weights without treating them as calibrated sensor-health probabilities.
+6. Compare the MM-UAV 320x320 one-pass aligned-feature Softplus protocol with the 640x640 50-epoch TriAir headline protocol.
+7. Audit MM-UAV provider, citation, license, research-use permission, aggregate-results reporting permission, and redistribution restrictions.
+8. Produce an allowed/disallowed/qualified claim matrix.
+9. Decide appendix-ready descriptive stress test, internal-only exclusion, rights/citation blocker, or evidence-contract blocker.
+10. Create draft-only appendix material only when the evidence and rights audit pass.
+11. Do not modify `main.tex`, `submission/**`, production behavior, or historical evidence.
+12. Do not run CUDA, training, evaluation, new seeds/variants, reruns, tuning, threshold selection, or checkpoint selection.
 
 ## Handoff status
 
-The V67 instruction is complete. No subsequent GPU task is implied by this record. Any next experiment or manuscript claim requires a new explicit task and must preserve the descriptive-only, `n=2`, no-independent-test boundary.
+The V68 instruction is written and active. It is the fastest path from the completed MM-UAV benchmark to a defensible manuscript decision while preserving the mixed-result and no-independent-test boundary.
