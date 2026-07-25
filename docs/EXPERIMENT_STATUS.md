@@ -2,39 +2,37 @@
 
 Updated: 2026-07-25
 
-## Active state
+## Active task
+
+`V69_TRIAIR_MANUSCRIPT_SUBMISSION_READINESS_AUTHORIZED`
+
+## V68 completion evidence
+
+V68 completed at commit `805342be2aba7bc57cb41704903ec9f47a8f1482` with:
 
 `V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE`
 
-## V68 evidence audit
+The V65-V67 MM-UAV scientific evidence and arithmetic were verified, and V68 tests passed `9 / 9`. However, provider/release authority, canonical citation, dataset version, dataset license, research-use permission, aggregate-results reporting permission, and redistribution terms remain unresolved.
 
-V68 completed the CPU/documentation-only MM-UAV manuscript-evidence audit. No CUDA, training, evaluation, tuning, checkpoint selection, new seed, or new variant was run.
+MM-UAV is therefore frozen as internal-only evidence and excluded from the current manuscript and submission package. No further MM-UAV GPU work or manuscript claim is authorized.
 
-- V65-V67 frozen file hashes, decisions, safety records, and final metrics matched exactly.
-- The matched metric table was reproduced from immutable source files.
-- Means and sample standard deviations matched through both Python `statistics` and an independent high-precision Decimal calculation.
-- V68 tests passed `9 / 9`.
-- Production, V40-V67 historical evidence, active manuscript, and submission fingerprints remained unchanged.
-- No draft was created under `manuscript/v68_mmuav_extension_draft/`.
+## Active V69 work
 
-## Scientific result
+V69 is a CPU/documentation-only TriAir manuscript finalization task. It will:
 
-The MM-UAV evidence is internally valid but weak and protocol-divergent:
+- audit every headline claim and numerical value against frozen TriAir evidence;
+- verify development-validation, locked within-dataset holdout, limitation, and descriptive-statistics wording;
+- enforce complete MM-UAV exclusion;
+- resolve supported manuscript, bibliography, cross-reference, formatting, and source-package issues;
+- perform a clean Springer/SIVP compilation and rendered-page inspection;
+- produce the final submission-readiness checklist and package manifest.
 
-- seed-0 reliability-minus-equal AP: `+0.0041719276`;
-- seed-1 reliability-minus-equal AP: `-0.0004533834`;
-- mean matched AP delta: `+0.0018592721`;
-- equal AP mean/sample standard deviation: `0.0196700860 / 0.0235244622`;
-- reliability AP mean/sample standard deviation: `0.0215293581 / 0.0267950511`.
+V69 authorizes no training, evaluation rerun, new seed or variant, tuning, threshold selection, checkpoint selection, or experimental change.
 
-The paired direction is mixed and initialization sensitivity is large. The scorer learned non-uniform model weights, but these are not calibrated physical sensor-reliability measurements.
+## Frozen claim boundary
 
-## Protocol boundary
+The active TriAir manuscript may report only its existing source-locked results. The 837-image holdout remains a locked within-dataset holdout, not an external test set. Multi-seed comparisons remain descriptive. Fusion weights are adaptive representation coefficients, not calibrated sensor-health probabilities. Modality dropout is not universally beneficial.
 
-V65-V67 used 320 x 320 inputs, one ordered pass, learned IR/event feature alignment to RGB, no modality dropout, a Softplus bbox-distance path, and source-train-derived devval. The active TriAir manuscript uses a 640 x 640, 50-epoch headline protocol and a different input/method/evaluation contract. MM-UAV is therefore not an external replication or independent-test validation of the TriAir headline configuration.
+## Intended completion
 
-## Manuscript gate
-
-The current records do not establish MM-UAV provider/release authority, canonical dataset citation, version, dataset license, research-use permission, or permission to report aggregate derived metrics. Code and paper licenses are not dataset grants.
-
-Recommendation: exclude MM-UAV evidence from the current manuscript and keep it internal until provider-verifiable rights and citation records are supplied. No additional GPU work is implied or authorized.
+A successful V69 outcome is `V69_TRIAIR_MANUSCRIPT_SUBMISSION_READY`. Any missing author, journal, provider, ethics, funding, or license fact must be reported as a blocker rather than invented.
