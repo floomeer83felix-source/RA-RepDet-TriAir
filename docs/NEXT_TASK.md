@@ -2,15 +2,18 @@
 
 ## Authorization
 
-The user clarified that the intended MM-UAV objective is **independent external validation of the frozen TriAir models**, not training a new detector on MM-UAV. The previously authorized `V69_TRIAIR_MANUSCRIPT_SUBMISSION_READINESS_AUTHORIZED` task is superseded before execution.
+The user reported that V69 completed and was pushed. Under the standing automatic handoff workflow, the next task is authorized as:
 
-The active task is:
+`V70_MMUAV_UNTOUCHED_EXTERNAL_PARTITION_INTAKE_AND_BLIND_FREEZE_AUTHORIZED`
 
-`V69_MMUAV_ZERO_SHOT_EXTERNAL_VALIDATION_PROTOCOL_AND_BLIND_TEST_FREEZE_AUTHORIZED`
+V69 completed at commit `dbf728207396df869dfe7165f432010d303174dc` with `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`. The complete locally available provider-train inventory contains `897,578` synchronized triplets across `424` sequences, and every sequence is linked to V52-V67 development. Existing local MM-UAV material therefore cannot provide an independent external test set.
 
-V69 is a CPU/documentation/preflight task. It must establish whether a genuinely unused MM-UAV partition exists, freeze a parameter-free MM-UAV-to-TriAir input adapter, verify the frozen TriAir checkpoints and evaluator, and seal a blind external-test protocol. V69 performs **no model training, fine-tuning, checkpoint selection, threshold tuning, prediction generation, AP/AR computation, or test-label inspection**.
+V70 is an external-input-gated CPU/metadata/documentation task. It may accept and audit only one of the following:
 
-The standing local/private-research-only rule remains in force. The unresolved V68 data-rights and citation gate blocks manuscript/public reporting, but it does not block an internal protocol audit or blind evaluation preparation. No MM-UAV result may enter the manuscript until a provider-verifiable documentation re-audit passes.
+1. a provider-defined official MM-UAV test split that was absent from and unexposed during V52-V69; or
+2. wholly new provider flights/sequences/components with provider metadata proving independence from all `424` development-linked sequences.
+
+V70 performs no model training, fine-tuning, adaptation, calibration, checkpoint selection, threshold tuning, candidate prediction generation, AP/AR computation, or result-driven protocol modification.
 
 ## Required Start
 
@@ -20,148 +23,177 @@ git pull --ff-only research research/ra-repdet-triair
 git rev-parse HEAD
 ```
 
-Authorization base: `0c5cafc695cbdb6d8b0e91c62eb18f84e14c0706`.
+Expected authorization base and V69 completion commit:
 
-Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, the current task/status/blocker files, all V40-V49 TriAir manuscript evidence, all V52-V68 MM-UAV manifests/evidence/handoffs, the active TriAir model and dataset code, the frozen evaluator, checkpoint metadata, and protected-file rules. Record the actual starting commit.
+`dbf728207396df869dfe7165f432010d303174dc`
 
-Stop on unexpected repository drift, missing historical evidence, unavailable frozen TriAir checkpoints, an unresolvable data-exposure ledger, an input-representation mismatch, or any attempt to reuse an exposed MM-UAV partition as an independent test set.
+Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, the current task/status/blocker files, V52-V69 evidence and handoffs, the V69 exposure-ledger outputs, the frozen TriAir manuscript protocol and checkpoint evidence, V68 rights records, evaluator code, and protected-file rules. Record the actual starting commit.
 
-## Correct Scientific Objective
+Stop before candidate media or label access on any repository drift, incomplete external source metadata, ambiguous split identity, overlap with V52-V69 exposure, or unauthorized acquisition route.
 
-The required scientific path is:
+## External Input Gate
 
-```text
-TriAir training and model selection only
--> freeze the six manuscript checkpoints
--> freeze a deterministic MM-UAV five-channel adapter
--> identify a never-used MM-UAV blind partition
--> seal labels and evaluator
--> run zero-shot inference in a later task
-```
+Do not begin candidate schema, checkpoint, adapter, or evaluator work until a new external package is supplied through an authorized route.
 
-The following path is explicitly not the objective and must not be resumed:
+The package must include enough provider-issued metadata to establish:
 
-```text
-MM-UAV training -> MM-UAV devval evaluation
-```
+- dataset or split name;
+- provider or release authority;
+- exact version or release identifier;
+- official split designation, or new sequence/flight identifiers;
+- acquisition/download source and date;
+- archive or package SHA256 and byte count;
+- modality inventory without opening media content;
+- sequence/component identity metadata;
+- canonical citation or provider documentation when available;
+- license/access/research-use/reporting/redistribution terms when available.
 
-V65-V67 remain valid internal MM-UAV development evidence, but their 7,187-row train and 1,845-row devval partitions cannot be renamed or reused as an independent external test set.
+Local possession, a code repository license, an arXiv license, or a manually renamed directory is not sufficient evidence of an official or independent test split.
 
-## Independence and Exposure Contract
+If no new external package is supplied, finish with:
 
-Build a complete sample-level and sequence/component-level exposure ledger for V52-V68. Classify every MM-UAV item into at least:
+`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
 
-- `IDENTITY_ONLY`: path/name/hash/inventory metadata was recorded without viewing modality or label content;
-- `CONTENT_EXPOSED`: any RGB, IR, event, annotation, visualization, decoded prediction, or per-sample statistic was inspected;
-- `DEVELOPMENT_USED`: used for training, devval evaluation, geometry/gradient probes, adapter/model debugging, threshold/evaluator debugging, or result-driven decisions.
+## Independence Audit Before Media Access
 
-`IDENTITY_ONLY` inventory does not by itself disqualify a sample. `CONTENT_EXPOSED` and `DEVELOPMENT_USED` samples are ineligible for the blind test. Any same-flight, same-sequence, temporally adjacent, exact-content duplicate, or near-duplicate component linked to an ineligible sample is also ineligible unless provider metadata proves independence.
+Using only provider metadata, archive directory identities, filenames, opaque IDs, and cryptographic hashes:
 
-The preferred candidate is an official provider-defined test split never used by V52-V68. If no unused official split exists, a pre-registered blind external holdout may be formed only from wholly unexposed sequences/components using provider metadata and file identity, without label content, model predictions, or performance information. Do not randomly resplit the V52-V68 train/devval data.
+1. compare all candidate split, flight, sequence, and component identifiers against the frozen V69 ledger;
+2. prove that the candidate was absent from all V52-V69 inventories, manifests, development rows, diagnostics, visualizations, predictions, and metrics;
+3. exclude any same-flight, same-sequence, adjacent, duplicate, near-duplicate, or provider-linked component associated with the existing `424` sequences;
+4. verify that the candidate was not derived by randomly resplitting the currently available provider-train material;
+5. record candidate sequence/component count and opaque identity hash without opening media or annotations;
+6. preserve the full candidate manifest locally and outside Git.
 
-If no eligible untouched partition remains, finish with `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`. Do not compensate by adding seeds, retraining, or relabeling an old split.
+If independence cannot be proved, finish with:
 
-## Blind-Test Data Freeze
+`V70_BLOCKED_EXTERNAL_PARTITION_OVERLAP_OR_PROVENANCE`
 
-For an eligible candidate partition:
+No candidate sample may be visualized, decoded, statistically summarized, or passed through a model before this gate passes.
 
-1. create a local authoritative manifest using dataset-relative identifiers;
-2. record its row count, sequence/component count, modality-presence schema, and SHA256;
-3. keep the full manifest and any sensitive paths local and outside Git;
-4. commit only compact hashes, counts, opaque identifiers when permitted, and audit conclusions;
-5. hash candidate annotation files without parsing their contents;
-6. do not compute class counts, box counts, size distributions, difficulty statistics, or any metric from candidate labels;
-7. seal the labels until the later zero-shot evaluation task;
-8. prove zero overlap with all `CONTENT_EXPOSED` and `DEVELOPMENT_USED` items at sample, sequence/component, exact-content, and available near-duplicate levels.
+## Blind Partition Freeze
 
-A schema-only candidate pass is permitted only after the adapter, model contract, and evaluator are frozen. It may verify readable files, tensor shapes, finite values, and modality presence, but may not visualize samples, generate model predictions, inspect labels, or trigger a protocol change. Any unexpected candidate schema must block the task rather than cause test-informed adapter modification.
+After the metadata-only independence gate passes:
+
+- create a local authoritative blind manifest using dataset-relative or opaque identifiers;
+- record row count, sequence/component count, modality-presence schema, manifest SHA256, and source-package SHA256;
+- hash all annotation files without parsing annotation contents;
+- record a label-seal timestamp and hash ledger;
+- prohibit class counts, box counts, object-size distributions, difficulty summaries, sample visualization, or any label-derived statistic;
+- commit only compact hashes, counts, schemas, and audit conclusions;
+- keep raw media, labels, the full manifest, provider correspondence, credentials, and local absolute paths outside Git.
+
+The blind partition must remain sealed until a separately authorized one-time zero-shot evaluation task.
 
 ## Frozen TriAir Checkpoints
 
-Identify and verify the exact six frozen manuscript checkpoints:
+Only after the blind partition identity is frozen, locate and strictly verify the six authoritative TriAir manuscript checkpoints:
 
-- matched early fusion, seeds 0, 1, and 2;
-- full reliability-aware configuration with modality dropout `p=0.15`, seeds 0, 1, and 2.
+- matched early fusion: seeds `0`, `1`, and `2`;
+- full reliability-aware fusion with modality dropout `p=0.15`: seeds `0`, `1`, and `2`.
 
-For each checkpoint record locally and in compact Git metadata where allowed:
+For each checkpoint record:
 
 - method and seed;
-- local checkpoint filename or opaque identifier;
+- opaque local identifier;
 - SHA256 and byte count;
 - source commit and model class;
-- state-dictionary key fingerprint;
-- frozen TriAir checkpoint-selection rule and original evidence reference;
-- successful strict load into the unchanged manuscript architecture.
+- state-dictionary key/tensor fingerprint;
+- original TriAir checkpoint-selection rule and evidence reference;
+- strict-load success in the unchanged manuscript architecture.
 
-No MM-UAV-trained V57/V63/V65/V66/V67 checkpoint, feature aligner, Softplus detector wrapper, reliability scorer state, or optimizer state may be used. No checkpoint may be selected, rejected, repaired, averaged, ensembled, or recalibrated using MM-UAV data.
+No MM-UAV-trained V57/V63/V65/V66/V67 checkpoint, learned alignment state, Softplus MM-UAV wrapper, optimizer state, checkpoint averaging, ensembling, repair, or replacement is permitted.
 
-If the six authoritative TriAir checkpoints cannot be located and strictly verified, finish with `V69_BLOCKED_TRIAIR_CHECKPOINT_OR_MODEL_CONTRACT`.
+If any authoritative checkpoint cannot be located and strictly verified, finish with:
+
+`V70_BLOCKED_TRIAIR_CHECKPOINT_OR_MODEL_CONTRACT`
 
 ## Parameter-Free MM-UAV-to-TriAir Adapter
 
-Freeze a deterministic, non-learned conversion to the exact five-channel input expected by the TriAir manuscript models:
+Freeze a deterministic non-learned conversion into the exact five-channel representation expected by the TriAir manuscript models:
 
 ```text
 RGB channels 0-2 + thermal channel 3 + event channel 4
 ```
 
-The adapter must be derived only from the frozen TriAir preprocessing contract, provider metadata, and already exposed MM-UAV development material. It must not learn parameters or use candidate-test labels, predictions, or metrics.
+The adapter may use only:
 
-Freeze and hash at minimum:
+- the frozen TriAir preprocessing contract;
+- provider documentation and metadata;
+- already exposed V52-V69 MM-UAV development material for non-test micro-fixtures.
 
-- modality-to-channel mapping and class/label ontology mapping;
-- source bit depth, value range, dtype conversion, clipping, and normalization;
+Freeze and hash:
+
+- modality-to-channel mapping;
+- bit depth, dtype conversion, clipping, scaling, and normalization;
 - event representation semantics;
-- spatial registration source and policy;
-- resize/crop/pad/interpolation policy to the TriAir `640 x 640` input;
-- box-coordinate transformation rules;
-- missing/corrupt modality policy;
-- deterministic ordering and random-state prohibition;
-- code/source hashes and micro-fixture expected outputs.
+- spatial registration policy;
+- deterministic resize/crop/pad/interpolation to `640 x 640`;
+- box-coordinate transformation;
+- corrupt/missing-modality stop policy;
+- deterministic ordering and prohibition of randomness;
+- implementation source hash and micro-fixture expected outputs.
 
-Do not use the V53-V67 learned IR/event feature alignment path. If MM-UAV cannot be converted to a semantically defensible TriAir five-channel representation without learned adaptation or test-informed choices, finish with `V69_BLOCKED_INPUT_REPRESENTATION_OR_LABEL_ONTOLOGY`.
+Do not use learned feature alignment, domain adaptation, calibration, test-time fitting, candidate predictions, or candidate labels. If a defensible parameter-free conversion cannot be fixed, finish with:
 
-## Frozen Zero-Shot Evaluator Contract
+`V70_BLOCKED_INPUT_REPRESENTATION_OR_LABEL_ONTOLOGY`
 
-Freeze the exact inference and evaluation semantics before labels are unsealed:
+## Frozen Evaluator Contract
 
-- the unchanged TriAir model architectures and checkpoints;
-- input size and preprocessing from the TriAir manuscript protocol;
+Before any candidate media schema pass, freeze:
+
+- the six unchanged TriAir checkpoints and model classes;
+- the `640 x 640` TriAir preprocessing contract;
+- one shared vehicle-class ontology mapping;
 - score threshold `0.001`;
 - NMS threshold `0.6`;
-- maximum 100 detections per image;
+- maximum `100` detections per image;
 - canonical COCO-style AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, and AR@100;
-- one shared vehicle-class ontology mapping fixed without candidate-label inspection;
-- no test-time augmentation, calibration, adaptation, checkpoint selection, threshold selection, or per-dataset normalization fitting;
-- one final evaluation attempt per checkpoint in the later task;
-- paired seed-wise comparison of early fusion and reliability-aware fusion, with descriptive mean and sample standard deviation only.
+- exactly one final evaluation attempt per checkpoint in the later task;
+- paired seed-wise Early Fusion versus RA-RepDet reporting;
+- descriptive mean and sample standard deviation only;
+- no test-time augmentation, calibration, adaptation, checkpoint selection, threshold selection, or dataset-specific normalization fitting.
 
-Validate evaluator determinism and schema using synthetic fixtures or already exposed MM-UAV development rows only. Do not run any frozen TriAir checkpoint on the candidate blind partition in V69.
+Validate determinism only on synthetic fixtures or previously exposed MM-UAV development rows. Candidate predictions and metrics remain forbidden in V70.
+
+## Candidate Schema Pass
+
+Only after the partition, checkpoints, adapter, ontology, and evaluator are frozen may V70 perform a schema-only pass that verifies:
+
+- files can be read;
+- modalities required by the frozen adapter exist;
+- tensor shapes and dtypes match the frozen contract;
+- converted tensors are finite;
+- annotation files remain sealed and unparsed.
+
+Do not visualize media, run a model, generate predictions, inspect labels, or change the adapter because of candidate content. Any unexpected candidate schema must block with:
+
+`V70_BLOCKED_CANDIDATE_SCHEMA_OR_LABEL_SEAL_CONTRACT`
 
 ## Rights and Reporting Boundary
 
-Record two independent statuses:
+Maintain two independent statuses:
 
-1. `internal_scientific_protocol_ready`: whether a strict blind zero-shot protocol is scientifically ready;
-2. `manuscript_reporting_ready`: remains false until provider authority, canonical citation, exact version, dataset license/access terms, research-use permission, aggregate-results reporting permission, and redistribution restrictions are verified.
+- `internal_scientific_protocol_ready`;
+- `manuscript_reporting_ready`.
 
-The rights blocker must not be used to justify training on MM-UAV or abandoning the zero-shot protocol. Conversely, scientific protocol readiness does not authorize publication.
+V70 may become internally ready while manuscript reporting remains false. V68 remains blocked until provider authority, canonical citation, exact version, dataset license/access terms, research-use permission, aggregate-results reporting permission, and redistribution restrictions are verified.
+
+No MM-UAV result, split description, metric, table, figure, or claim may enter the manuscript or be publicly shared solely because V70 succeeds.
 
 ## Required Outputs
 
-Create `runs/v69_mmuav_zero_shot_external_validation_preflight/` containing compact files such as:
+Create `runs/v70_mmuav_external_partition_intake_and_blind_freeze/` containing compact files such as:
 
 ```text
 protocol.md
-protocol.json
-historical_exposure_ledger_summary.json
-historical_exposure_ledger_schema.md
-full_inventory_metadata.json
-candidate_partition_discovery.json
+external_package_metadata.json
+external_package_hashes.json
+provider_split_identity_audit.md
+v69_exposure_ledger_verification.json
+candidate_independence_audit.json
 candidate_blind_manifest_metadata.json
 candidate_manifest_sha256.txt
-sequence_component_independence_audit.json
-exact_and_near_duplicate_audit.json
 label_seal_record.json
 triair_checkpoint_manifest.json
 triair_checkpoint_verification.json
@@ -172,6 +204,7 @@ adapter_source_lock.json
 adapter_determinism_tests.json
 class_ontology_mapping.json
 zero_shot_evaluator_contract.json
+candidate_schema_audit.json
 rights_and_reporting_boundary.md
 protected_file_audit.json
 test_commands.txt
@@ -180,61 +213,61 @@ final_decision.json
 handoff.md
 ```
 
-Keep the full blind manifest, raw media, annotations, candidate-label statistics, checkpoints, predictions, tensors, local absolute paths, provider correspondence, and other sensitive/heavy artifacts local and outside Git.
+Keep the full manifest, raw media, labels, checkpoints, predictions, tensors, credentials, provider correspondence, and local paths outside Git.
 
 ## Required Tests
 
-Before completion, prove:
+Prove before completion:
 
-- all V52-V68 exposed samples and linked sequences/components are represented in the ledger;
-- candidate-test membership was chosen without labels, predictions, or metrics;
-- candidate test has zero prohibited sample/sequence/component overlap;
-- adapter output is deterministic and matches the frozen five-channel TriAir contract;
-- no learned alignment, Softplus MM-UAV wrapper, MM-UAV-trained weight, or trainable adaptation is present;
-- all six TriAir checkpoints strictly load and match frozen manuscript evidence;
-- model, preprocessing, threshold, NMS, max-detection, class mapping, and evaluator settings are frozen before candidate schema validation;
-- candidate labels were hashed but not parsed;
-- no inference or metric computation occurred on the candidate partition;
-- no CUDA training, fine-tuning, rerun, seed addition, variant addition, tuning, checkpoint selection, or threshold selection occurred;
-- protected TriAir evidence, V52-V68 history, manuscript, and production files remain unchanged;
-- no heavy/private MM-UAV artifacts enter Git.
+- V69 evidence and all historical hashes remain unchanged;
+- the candidate external package is newly supplied and not a renamed local train split;
+- candidate sequence/component identity has zero prohibited overlap with V52-V69;
+- the blind manifest and label seal are deterministic and hashed;
+- all six TriAir checkpoints strictly load and match frozen evidence;
+- the adapter is parameter-free, deterministic, and identical across runs;
+- no learned alignment, MM-UAV-trained checkpoint, Softplus MM-UAV wrapper, adaptation, or calibration is present;
+- ontology, preprocessing, thresholds, NMS, detections, and evaluator are frozen before candidate schema access;
+- candidate labels were not parsed;
+- no candidate model inference, prediction, or metric computation occurred;
+- no CUDA training, fine-tuning, tuning, checkpoint selection, seed addition, or variant addition occurred;
+- protected manuscript, submission, production, TriAir, and V40-V69 files remain unchanged;
+- no raw/private/heavy artifacts entered Git.
 
 ## Decision States
 
 Choose exactly one:
 
-- `V69_MMUAV_BLIND_EXTERNAL_TEST_FROZEN_INTERNAL_ONLY` — an eligible untouched partition, six frozen TriAir checkpoints, deterministic adapter, sealed labels, and evaluator contract are all verified; publication rights remain unresolved;
-- `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION` — no untouched official split or defensible unexposed sequence/component holdout exists;
-- `V69_BLOCKED_EXPOSURE_OR_SPLIT_INDEPENDENCE` — exposure or sequence/content overlap cannot be resolved;
-- `V69_BLOCKED_TRIAIR_CHECKPOINT_OR_MODEL_CONTRACT` — one or more authoritative TriAir checkpoints or model contracts cannot be verified;
-- `V69_BLOCKED_INPUT_REPRESENTATION_OR_LABEL_ONTOLOGY` — a defensible parameter-free five-channel conversion or class mapping cannot be frozen;
-- `V69_BLOCKED_EVALUATOR_OR_LABEL_SEAL_CONTRACT` — evaluator determinism or blind-label sealing cannot be established;
-- `V69_BLOCKED_SOURCE_PROTECTED_OR_PRIVATE_ARTIFACT_VIOLATION`.
+- `V70_MMUAV_BLIND_EXTERNAL_TEST_FROZEN_INTERNAL_ONLY` — an eligible new external partition, six TriAir checkpoints, deterministic adapter, ontology, label seal, and evaluator contract are frozen; no inference or metrics were computed;
+- `V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`;
+- `V70_BLOCKED_EXTERNAL_PARTITION_OVERLAP_OR_PROVENANCE`;
+- `V70_BLOCKED_TRIAIR_CHECKPOINT_OR_MODEL_CONTRACT`;
+- `V70_BLOCKED_INPUT_REPRESENTATION_OR_LABEL_ONTOLOGY`;
+- `V70_BLOCKED_CANDIDATE_SCHEMA_OR_LABEL_SEAL_CONTRACT`;
+- `V70_BLOCKED_SOURCE_PROTECTED_OR_PRIVATE_ARTIFACT_VIOLATION`.
 
-No V69 outcome may itself compute external-test metrics. A successful V69 completion permits the standing handoff workflow to authorize a separate V70 zero-shot evaluation task.
+A successful V70 permits a separate V71 one-time zero-shot external evaluation task. No V70 outcome itself authorizes predictions, metrics, public reporting, or manuscript inclusion.
 
 ## Allowed Changes
 
 - the four current task/status/blocker/write-record files;
-- `runs/v69_mmuav_zero_shot_external_validation_preflight/**` compact audit outputs;
-- V69-only inventory, exposure-ledger, adapter, checkpoint-verification, evaluator-freeze, and test utilities;
-- minimal backward-compatible imports that do not change production or manuscript model behavior.
+- `runs/v70_mmuav_external_partition_intake_and_blind_freeze/**` compact audit outputs;
+- V70-only metadata intake, exposure comparison, adapter, checkpoint-verification, label-seal, evaluator-freeze, and test utilities;
+- minimal backward-compatible imports that do not change production or manuscript behavior.
 
 ## Forbidden Changes
 
-- V40-V68 historical scientific evidence;
+- V40-V69 historical scientific evidence;
 - active TriAir manuscript or submission claims;
-- raw MM-UAV data or annotations;
 - production model/training/evaluator behavior;
-- MM-UAV training, fine-tuning, learned alignment, Softplus-head substitution, domain adaptation, calibration, pseudo-labeling, or checkpoint averaging;
-- candidate-label inspection or candidate prediction/metric generation;
-- threshold, NMS, preprocessing, class-map, checkpoint, seed, or variant selection using MM-UAV candidate-test results;
-- publication or external-sharing claims before the V68 rights gate is repaired.
+- reuse or random resplitting of the existing `424` provider-train sequences;
+- MM-UAV training, fine-tuning, pseudo-labeling, learned alignment, domain adaptation, calibration, Softplus substitution, or checkpoint averaging;
+- candidate-label inspection, visualization, prediction generation, or metric computation;
+- threshold, preprocessing, ontology, checkpoint, seed, or variant selection using candidate information;
+- raw media, labels, checkpoints, credentials, private correspondence, or heavy artifacts in Git;
+- manuscript/public reporting before the separate V68 rights gate passes.
 
 ## Completion
 
-Update the four task/status files, final decision, and handoff.
+Update the four task/status files, V70 final decision, and handoff. Commit with:
 
-Commit message:
-
-`docs: freeze V69 MM-UAV zero-shot external validation protocol`
+`docs: freeze V70 untouched MM-UAV external partition intake`
