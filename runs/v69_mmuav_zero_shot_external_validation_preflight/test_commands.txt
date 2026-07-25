@@ -1,0 +1,2 @@
+python rarepdet/tools/run_v69_mmuav_zero_shot_preflight.py
+python -m unittest discover -s tests -p test_v69_mmuav_zero_shot_preflight.py -v

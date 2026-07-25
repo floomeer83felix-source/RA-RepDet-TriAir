@@ -1,0 +1,13 @@
+{
+  "provider_train_sequences": 424,
+  "v52_sampled_sequences": 424,
+  "v53_v67_development_used_sequences": 424,
+  "wholly_unexposed_sequences": 0,
+  "same_sequence_exclusion_applied": true,
+  "eligible_sequences": 0,
+  "checks": {
+    "v52_covers_all_sequences": true,
+    "development_covers_all_sequences": true,
+    "all_inventory_sequences_linked": true
+  }
+}

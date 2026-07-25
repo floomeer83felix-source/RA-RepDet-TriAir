@@ -1,0 +1,31 @@
+{
+  "decision": "V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION",
+  "internal_scientific_protocol_ready": false,
+  "manuscript_reporting_ready": false,
+  "candidate_partition_exists": false,
+  "reason": "All 424 locally available provider-train sequences are linked to V53-V67 development-used rows, and no local official test split exists.",
+  "counts": {
+    "local_synchronized_triplets": 897578,
+    "direct_development_used": 9032,
+    "direct_content_exposed": 36004,
+    "direct_identity_only_but_sequence_ineligible": 852542,
+    "development_linked_sequences": 424,
+    "eligible_sequences": 0,
+    "eligible_rows": 0
+  },
+  "downstream_not_attempted": {
+    "triair_checkpoint_verification": true,
+    "adapter_freeze": true,
+    "evaluator_freeze": true,
+    "label_seal": true
+  },
+  "checks": {
+    "source_evidence_verified": true,
+    "complete_sample_ledger": true,
+    "complete_sequence_ledger": true,
+    "no_candidate_inference": true,
+    "no_candidate_label_inspection": true,
+    "no_cuda_or_training": true,
+    "protected_files_unchanged": true
+  }
+}

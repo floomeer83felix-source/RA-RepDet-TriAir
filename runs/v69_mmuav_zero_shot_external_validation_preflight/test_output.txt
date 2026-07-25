@@ -1,0 +1,12 @@
+﻿test_blocked_decision_and_independent_rights_status (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+test_candidate_content_labels_predictions_and_metrics_untouched (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+test_complete_sample_and_sequence_ledger (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+test_downstream_checkpoint_adapter_and_evaluator_gates_not_attempted (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+test_git_outputs_are_compact_private_safe_and_have_no_heavy_artifacts (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+test_local_ledger_hash_and_privacy_contract (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+test_no_official_or_unexposed_candidate_exists (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+test_protected_files_are_unchanged (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+test_source_evidence_is_frozen (test_v69_mmuav_zero_shot_preflight.V69ZeroShotPreflightTests) ... ok
+----------------------------------------------------------------------
+Ran 9 tests in 1.060s
+OK

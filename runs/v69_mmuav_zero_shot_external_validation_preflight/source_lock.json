@@ -1,0 +1,41 @@
+{
+  "starting_commit": "744650efe4f6daff3cf2d07a07ae52e3e51638d1",
+  "sources": {
+    "rarepdet/tools/run_v69_mmuav_zero_shot_preflight.py": {
+      "sha256": "0cb3c1e43e398cd5c8b580a2a63228a755b539dd1d00c3952f524fb9aa95b958"
+    },
+    "tests/test_v69_mmuav_zero_shot_preflight.py": {
+      "sha256": "cc98e21a2c959c56f9412b3f6777448d495f892e811182fb1b5442acdfe8ed3a"
+    },
+    "runs/v52_mmuav_audit/sequence_alignment.csv": {
+      "sha256": "57d60fe9ea19aa1de8e2ff7f95c33f8579d8b544598ae9526c5d62c217deb4c9"
+    },
+    "runs/v52_mmuav_audit/directory_inventory.csv": {
+      "sha256": "cf9d353b632ebb588a1268449c61f3d10e212bcde558ec309fe3baad4a54626f"
+    },
+    "runs/v52_mmuav_audit/manifests/train_sampled.txt": {
+      "sha256": "9feee0e362a6885dd9ba68a4dd9a903c6ee3dc459be04a9699d725a9184582d1"
+    },
+    "runs/v52_mmuav_audit/manifests/devval_sampled.txt": {
+      "sha256": "88a2f32000b2c3b1b9cb5021916a29e55df73e46daeaf22f537c854488aa8800"
+    },
+    "runs/v52_mmuav_audit/dataset_audit.json": {
+      "sha256": "3c4782aa7d5f83ec9205d1a73065bcb11e35b734796b939f3bcd5b721faae0b3"
+    },
+    "runs/v52_mmuav_audit/sampling_protocol.json": {
+      "sha256": "3d410e812874b29f0688b2d24bcac781192c883264daba598be596b649c89e65"
+    },
+    "runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt": {
+      "sha256": "e81973b95dd6fd5ce2d3c5de526310a3bef083df49b8db584fdf39b78a34d67a"
+    },
+    "runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt": {
+      "sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54"
+    },
+    "runs/v53_mmuav_feature_alignment_preflight/preflight_result.json": {
+      "sha256": "4b424715b34d34626cbbf693cd6a7e91c1a4f668f1f11777005dab643d12df55"
+    },
+    "runs/v68_mmuav_manuscript_evidence_audit/final_decision.json": {
+      "sha256": "8926c3f776309f626a6d8f77b10d4c9a95cba8b40d08dec64291d5057e319a5e"
+    }
+  }
+}

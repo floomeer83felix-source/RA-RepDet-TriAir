@@ -1,61 +1,67 @@
 # Task Blocker
 
-Status: `V69_ZERO_SHOT_EXTERNAL_VALIDATION_PREFLIGHT_AUTHORIZED`
+Status: `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`
 
 Generated: 2026-07-25
 
-## Current state
+## Exact blocker
 
-The corrected V69 task may begin immediately with CPU-only repository and local-data inventory work. There is no known engineering blocker to starting the exposure ledger, checkpoint verification, adapter specification, and evaluator freeze.
+The locally available MM-UAV material contains only `424` complete provider-train sequences. Every sequence contains V53 supervised rows used by V54-V67 development. Therefore all `897,578` synchronized local triplets are ineligible under V69's same-sequence independence rule, including `852,542` frames that were directly identity-only.
 
-The central unresolved scientific gate is whether MM-UAV contains a genuinely untouched partition after V52-V68. This must be determined from a complete sample/sequence exposure audit; it must not be assumed.
+No local provider-defined test split exists, and V69 forbids randomly resplitting or relabeling the previously used train/devval material.
 
-## Authorized boundary
+## Error tail
 
-V69 may:
+There was no runtime exception. The fail-closed scientific gate completed normally:
 
-- classify historical MM-UAV exposure as identity-only, content-exposed, or development-used;
-- identify an unused official test split or wholly unexposed sequence/component holdout using metadata only;
-- freeze a local blind manifest and commit only compact hashes/counts/audit conclusions;
-- locate and strictly verify the six frozen TriAir manuscript checkpoints;
-- implement and test a deterministic, parameter-free five-channel MM-UAV-to-TriAir adapter using exposed development material and frozen TriAir preprocessing;
-- freeze class mapping, thresholds, NMS, maximum detections, and COCO evaluator semantics;
-- hash and seal candidate labels without parsing them;
-- run schema-only, no-label candidate validation after every protocol component is frozen.
+```text
+decision=V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION
+ledger_rows=897578
+direct_development_used=9032
+direct_content_exposed=36004
+direct_identity_only_but_sequence_ineligible=852542
+development_linked_sequences=424
+eligible_sequences=0
+eligible_rows=0
+candidate_media_opened=false
+candidate_labels_parsed=false
+candidate_predictions_generated=false
+candidate_metrics_computed=false
+cuda_or_training=false
+tests=9/9 passed
+```
 
-V69 may not:
+## Attempted checks
 
-- train, fine-tune, adapt, calibrate, pseudo-label, or optimize any model on MM-UAV;
-- use MM-UAV-trained checkpoints, learned alignment, or the V63/V65-V67 Softplus detector path;
-- inspect candidate labels, visualize candidate samples, run candidate inference, or compute candidate metrics;
-- reuse V52-V68 train/devval samples or linked sequence/duplicate components as an independent test set;
-- modify TriAir manuscript results, production behavior, or historical evidence;
-- publish or add MM-UAV material to the manuscript while the V68 rights gate remains unresolved.
+- Verified immutable hashes for V52 sequence/inventory/manifests, V53 supervised manifests, and the V68 rights decision.
+- Built a local-only `897,578`-row sample exposure ledger from frozen sequence identity metadata.
+- Verified V52 interval-20 coverage of all `424` sequences.
+- Verified V53-V67 development use of all `424` sequences.
+- Compared current sequence directory identities with the frozen V52 sequence ledger.
+- Checked provider split names using identity metadata only; only `train` is present.
+- Applied the same-sequence exclusion rule before candidate content, labels, checkpoints, adapter, or evaluator access.
+- Recomputed protected V40-V68, manuscript, submission, production, and TriAir fingerprints.
 
-## Fail-closed conditions
+## Related files
 
-Stop with the matching V69 decision when:
+- `runs/v52_mmuav_audit/sequence_alignment.csv`
+- `runs/v52_mmuav_audit/manifests/train_sampled.txt`
+- `runs/v52_mmuav_audit/manifests/devval_sampled.txt`
+- `runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt`
+- `runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt`
+- `runs/v69_mmuav_zero_shot_external_validation_preflight/historical_exposure_ledger_summary.json`
+- `runs/v69_mmuav_zero_shot_external_validation_preflight/sequence_component_independence_audit.json`
+- `runs/v69_mmuav_zero_shot_external_validation_preflight/candidate_partition_discovery.json`
+- `runs/v69_mmuav_zero_shot_external_validation_preflight/final_decision.json`
 
-1. no unused official split or defensible unexposed sequence/component holdout exists;
-2. the V52-V68 exposure ledger is incomplete or candidate overlap cannot be excluded;
-3. any of the six authoritative TriAir checkpoints cannot be found, hashed, and strictly loaded;
-4. a semantically defensible parameter-free RGB/thermal/event-to-five-channel conversion cannot be frozen;
-5. class ontology or box-coordinate semantics cannot be mapped without candidate-label inspection;
-6. evaluator determinism or candidate-label sealing cannot be proven;
-7. candidate data causes a post-freeze schema mismatch—the protocol must block rather than be changed using test information;
-8. raw/private/heavy MM-UAV artifacts enter Git or protected files drift.
+## Repair options
 
-## Separate publication blocker
+### Option 1: Obtain the untouched official test split
 
-V68's unresolved provider/citation/license/reporting-permission status remains a publication blocker only. It does not authorize abandoning the zero-shot protocol, and it does not permit public reporting of any future result.
+Acquire the provider-defined MM-UAV test split through an authorized route. Before opening media or labels, inventory only split/sequence identities and prove it was absent from all V52-V69 exposure. Then repeat V69 from the candidate gate, with labels sealed and V68 rights handled independently.
 
-## Next action
+### Option 2: Obtain wholly unexposed provider sequences/components
 
-Execute `docs/NEXT_TASK.md` in order:
+Acquire additional flights or sequences that provider metadata proves are independent of all 424 development-linked sequences and their adjacent/duplicate components. Do not derive them by random resplitting the existing local train material. Repeat the metadata-only exposure audit before any schema or model access.
 
-1. inventory every V52-V68 sample and sequence exposure;
-2. discover an eligible untouched partition;
-3. verify the six frozen TriAir checkpoints;
-4. freeze the deterministic five-channel adapter and ontology;
-5. freeze the evaluator before candidate schema access;
-6. seal labels and issue the V69 decision without running inference or AP/AR.
+Neither option authorizes publication. V68 provider/citation/license/reporting-permission requirements must also be resolved before manuscript use.

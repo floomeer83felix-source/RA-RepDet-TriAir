@@ -233,6 +233,8 @@ No V69 outcome may itself compute external-test metrics. A successful V69 comple
 
 ## Completion
 
-Update the four task/status files, final decision, and handoff. Commit the completed preflight with:
+Update the four task/status files, final decision, and handoff.
+
+Commit message:
 
 `docs: freeze V69 MM-UAV zero-shot external validation protocol`

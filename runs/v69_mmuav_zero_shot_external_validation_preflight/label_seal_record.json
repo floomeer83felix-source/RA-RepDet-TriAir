@@ -1,0 +1,7 @@
+{
+  "status": "NOT_ATTEMPTED_UPSTREAM_NO_UNUSED_PARTITION",
+  "reason": "V69 stops after the blind-partition gate; no downstream contract may imply readiness.",
+  "candidate_annotation_files_hashed": false,
+  "candidate_labels_parsed": false,
+  "seal_created": false
+}

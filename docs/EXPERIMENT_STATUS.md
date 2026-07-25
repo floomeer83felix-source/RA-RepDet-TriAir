@@ -2,43 +2,45 @@
 
 Updated: 2026-07-25
 
-## Active task
+## Active state
 
-`V69_MMUAV_ZERO_SHOT_EXTERNAL_VALIDATION_PROTOCOL_AND_BLIND_TEST_FREEZE_AUTHORIZED`
+`V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`
 
-## Route correction
+## V69 completion
 
-The prior `V69_TRIAIR_MANUSCRIPT_SUBMISSION_READINESS_AUTHORIZED` task was superseded before execution. The intended research objective is now explicit: evaluate frozen TriAir manuscript models on a genuinely unused MM-UAV partition without MM-UAV training, fine-tuning, adaptation, checkpoint selection, or threshold tuning.
+V69 completed the authorized CPU/metadata-only MM-UAV blind external-validation preflight. No CUDA, model inference, training, fine-tuning, adaptation, checkpoint selection, threshold tuning, candidate-label inspection, prediction generation, or metric computation occurred.
 
-V65-V67 remain valid internal MM-UAV development experiments, but their 7,187-row train and 1,845-row devval partitions cannot be relabeled as an independent external test set.
+The complete local exposure ledger contains `897,578` synchronized provider-train triplets across `424` sequences:
 
-## Active V69 work
+- direct `DEVELOPMENT_USED`: `9,032`;
+- direct `CONTENT_EXPOSED`: `36,004`;
+- direct `IDENTITY_ONLY`: `852,542`;
+- development-linked sequences: `424 / 424`;
+- blind-eligible sequences: `0`;
+- blind-eligible rows: `0`.
 
-V69 is a CPU/documentation/preflight task that will:
+V52 interval-20 manifests cover every local sequence. V53 supervised rows, subsequently used throughout V54-V67 development, also cover every sequence. Under the frozen same-sequence exclusion rule, the 852,542 directly identity-only frames remain ineligible because every one belongs to a development-used sequence.
 
-- build a sample- and sequence-level exposure ledger for V52-V68;
-- determine whether an untouched official split or unexposed sequence/component holdout exists;
-- exclude all content-exposed, development-used, same-sequence, adjacent, duplicate, and near-duplicate items;
-- locate and strictly verify the six frozen TriAir manuscript checkpoints;
-- freeze a deterministic parameter-free MM-UAV-to-TriAir five-channel adapter at 640 x 640;
-- freeze the unchanged TriAir inference and COCO-style evaluator contract;
-- hash and seal candidate test labels without parsing them;
-- produce no candidate predictions or metrics.
+Only the provider train split is locally available. The frozen V52 audit records a partial source-train extraction and no source test split.
 
-## Strict scientific boundary
+## Gate ordering
 
-The target is `TriAir-trained model -> MM-UAV zero-shot blind evaluation`. No MM-UAV-trained V57/V63/V65-V67 model, learned feature aligner, Softplus wrapper, calibration, pseudo-labeling, domain adaptation, or fine-tuning may be used.
+V69 stopped at the candidate-partition gate. The following downstream work was intentionally not attempted:
 
-If no untouched MM-UAV partition exists, V69 must stop with `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`; it may not create an independent-test claim by renaming previously used data.
+- six TriAir checkpoint verification;
+- parameter-free five-channel adapter freeze;
+- class ontology freeze;
+- zero-shot evaluator freeze;
+- candidate label hashing/sealing.
 
-## Rights boundary
+Completing those stages cannot create an eligible blind partition and would risk implying protocol readiness where none exists.
 
-V68 remains frozen as `V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE`. Internal protocol preparation may continue under the standing private-research rule, but manuscript/public reporting remains forbidden until provider authority, citation, version, license, research-use, aggregate-reporting, and redistribution terms are verified.
+## Independent rights status
 
-## Intended completion
+`internal_scientific_protocol_ready`: `false`.
 
-A successful V69 outcome is:
+`manuscript_reporting_ready`: `false`.
 
-`V69_MMUAV_BLIND_EXTERNAL_TEST_FROZEN_INTERNAL_ONLY`
+V68 remains separately blocked on provider authority, canonical citation, dataset version, license/access terms, research-use permission, aggregate-reporting permission, and redistribution terms.
 
-That outcome freezes the blind partition, six TriAir checkpoints, deterministic adapter, label seal, and evaluator. It does not compute AP/AR; a separate V70 task is required for the one-time zero-shot evaluation.
+No V70 evaluation is authorized. A future blind-evaluation preflight requires a provider-defined official test split or wholly unexposed sequence/component material that was never linked to V52-V68 development.

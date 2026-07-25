@@ -1,0 +1,22 @@
+{
+  "inventory_mode": "identity_metadata_only",
+  "provider_split_names_present": [
+    "train"
+  ],
+  "complete_sequence_count": 424,
+  "synchronized_triplet_count": 897578,
+  "native_modality_schema_from_frozen_v52": {
+    "rgb": "640x360",
+    "ir": "640x512",
+    "event": "346x260"
+  },
+  "candidate_media_opened": false,
+  "candidate_labels_opened": false,
+  "checks": {
+    "sequence_identity_match": true,
+    "sequence_count": true,
+    "only_provider_train_split_present": true,
+    "all_sequence_indices_exact": true,
+    "all_modal_counts_match": true
+  }
+}

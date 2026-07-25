@@ -1,0 +1,18 @@
+{
+  "local_only": true,
+  "committed": false,
+  "rows": 897578,
+  "sha256": "c534f37d2299191086acb912bb681080f0c4f4bd2b76d7786e8f78b09c54617d",
+  "bytes": 101056170,
+  "direct_exposure_counts": {
+    "CONTENT_EXPOSED": 36004,
+    "DEVELOPMENT_USED": 9032,
+    "IDENTITY_ONLY": 852542
+  },
+  "sequence_exposure": {
+    "DEVELOPMENT_USED": 424
+  },
+  "blind_eligible_rows": 0,
+  "contains_absolute_paths": false,
+  "contains_media_or_labels": false
+}

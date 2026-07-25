@@ -1,0 +1,6 @@
+{
+  "status": "NOT_ATTEMPTED_UPSTREAM_NO_UNUSED_PARTITION",
+  "reason": "V69 stops after the blind-partition gate; no downstream contract may imply readiness.",
+  "mapping_frozen": false,
+  "candidate_labels_inspected": false
+}

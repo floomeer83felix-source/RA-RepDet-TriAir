@@ -1,0 +1,16 @@
+{
+  "discovery_mode": "identity_metadata_only",
+  "official_splits_locally_present": [
+    "train"
+  ],
+  "official_test_split_present": false,
+  "provider_train_sequences": 424,
+  "wholly_unexposed_sequence_components": 0,
+  "eligible_candidate_rows": 0,
+  "candidate_selected": false,
+  "labels_read": false,
+  "media_opened": false,
+  "predictions_generated": false,
+  "metrics_computed": false,
+  "decision": "V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION"
+}
