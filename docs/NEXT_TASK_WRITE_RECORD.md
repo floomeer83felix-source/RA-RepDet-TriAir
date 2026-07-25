@@ -2,61 +2,48 @@
 
 Written: 2026-07-25
 Branch: `research/ra-repdet-triair`
-V69 completion commit: `dbf728207396df869dfe7165f432010d303174dc`
+V70 completion commit: `bd62068aa0f3ab046d8545c4eef69938b4e73c9b`
 Canonical task file: `docs/NEXT_TASK.md`
 
 ## Completed prior task
 
-`V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`
-
-V69 completed the metadata-only exposure audit and established:
-
-1. the local inventory contains `897,578` synchronized triplets across `424` provider-train sequences;
-2. direct `DEVELOPMENT_USED`, `CONTENT_EXPOSED`, and `IDENTITY_ONLY` counts are `9,032`, `36,004`, and `852,542`;
-3. every one of the `424` sequences is linked to V52-V67 development;
-4. blind-eligible sequences and rows are both zero;
-5. only the provider train split is locally present;
-6. no candidate media or labels were opened;
-7. no predictions or metrics were produced;
-8. no CUDA, training, adaptation, tuning, or checkpoint selection occurred;
-9. protected files remained unchanged;
-10. V69 tests passed `9 / 9`.
-
-Existing local MM-UAV data may not be randomly resplit, renamed, or reused as an independent external test set.
-
-## V70 execution result
-
 `V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
 
-V70 checked the external-input gate using directory identities only. The known MM-UAV root still contains only the previously audited provider `train` split, and no official test package or wholly new provider sequence package with required authority, version, split, hash, and identity metadata was supplied.
+V70 completed the authorized external-input gate:
 
-The task stopped before candidate media/label access and before independence, checkpoint, adapter, evaluator, label-seal, or schema work. No CUDA, training, inference, prediction, or metric computation occurred. V69 evidence remained unchanged.
+1. verified the known MM-UAV root still contains only the previously audited provider `train` split;
+2. accepted zero new external packages;
+3. opened no candidate media and parsed no candidate labels;
+4. ran no inference, predictions, metrics, CUDA, training, adaptation, tuning, or checkpoint selection;
+5. preserved the V69 evidence tree and protected files;
+6. passed V70 tests `10 / 10`;
+7. stopped before independence, blind-manifest, label-seal, checkpoint, adapter, evaluator, and schema stages.
+
+The V70 outcome is a data/source-access blocker. Repeating V70 without a new authoritative package cannot advance the external-validation objective.
 
 ## Active next task
 
-`V70_MMUAV_UNTOUCHED_EXTERNAL_PARTITION_INTAKE_AND_BLIND_FREEZE_AUTHORIZED`
+`V71_MMUAV_PROVIDER_SOURCE_RIGHTS_AND_OFFICIAL_TEST_ACQUISITION_AUTHORIZED`
 
-Resume V70 only after the required external package is supplied. Then execute it exactly as specified in `docs/NEXT_TASK.md`:
+Execute V71 exactly as specified in `docs/NEXT_TASK.md`:
 
-1. accept only a provider-defined official MM-UAV test split absent from V52-V69, or wholly new provider sequences/components with metadata proving independence from all `424` old sequences;
-2. stop with `V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED` when no such package is supplied;
-3. audit provider, split, version, archive hash, and sequence/component identities before opening media or labels;
-4. prove zero prohibited overlap against the frozen V69 exposure ledger;
-5. freeze a local blind manifest and commit only compact hashes/counts;
-6. hash and seal annotations without parsing their contents;
-7. verify the six frozen TriAir manuscript checkpoints for Early Fusion and RA-RepDet seeds 0, 1, and 2;
-8. freeze a deterministic parameter-free RGB/thermal/event-to-five-channel adapter at `640 x 640`;
-9. freeze vehicle ontology, score threshold `0.001`, NMS `0.6`, maximum `100` detections, and canonical COCO AP/AR evaluator semantics;
-10. perform only a post-freeze schema pass;
-11. do not run candidate inference, generate predictions, compute metrics, train, fine-tune, adapt, calibrate, or tune;
-12. keep raw data, labels, full manifests, checkpoints, credentials, private correspondence, and heavy artifacts outside Git.
+1. reconstruct the authoritative MM-UAV provider, original publication, project/institutional page, official repository or data portal, and maintainer chain;
+2. verify canonical citation, exact release/version, documented split structure, and whether an official test, hidden-label evaluation, challenge, or new-sequence route exists;
+3. verify provider-issued license/access terms, research-use permission, aggregate-results reporting permission, citation requirements, and redistribution restrictions;
+4. when an authorized official untouched test package is openly available, download it outside Git, record source/filename/bytes/SHA256/version, preserve provider documents, and seal it without opening media or labels;
+5. when approval, registration, credentials, evaluation-server access, or direct provider action is required, prepare a complete reviewable access request and submission checklist but do not send automatically;
+6. reject unofficial mirrors, renamed local data, random resplits, ambiguous versions, and unverifiable archives;
+7. do not run model inference, predictions, metrics, training, fine-tuning, adaptation, calibration, checkpoint selection, or threshold tuning;
+8. keep archives, data, labels, credentials, private correspondence, and heavy artifacts outside Git.
 
 ## Completion boundary
 
-A successful V70 outcome is:
+Preferred successful state:
 
-`V70_MMUAV_BLIND_EXTERNAL_TEST_FROZEN_INTERNAL_ONLY`
+`V71_MMUAV_OFFICIAL_TEST_PACKAGE_ACQUIRED_AND_SEALED`
 
-That state freezes the untouched external partition and complete zero-shot protocol but computes no metrics. Only after successful V70 completion may a separate V71 one-time zero-shot external evaluation be authorized.
+Request-ready state:
 
-V68 remains an independent manuscript/public-reporting blocker until provider-verifiable citation, version, license, research-use, aggregate-reporting, and redistribution documentation passes re-audit.
+`V71_MMUAV_ACCESS_REQUEST_READY_PROVIDER_RESPONSE_REQUIRED`
+
+Neither state authorizes inference or AP/AR. An acquired-and-sealed package must pass a later metadata independence audit, blind-manifest/label-seal freeze, six-checkpoint verification, adapter freeze, and evaluator freeze before one-time zero-shot evaluation can be authorized.
