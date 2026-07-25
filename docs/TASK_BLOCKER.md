@@ -1,67 +1,70 @@
 # Task Blocker
 
-Status: `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`
+Status: `V70_EXTERNAL_TEST_MATERIAL_REQUIRED_BEFORE_BLIND_FREEZE`
 
 Generated: 2026-07-25
 
-## Exact blocker
+## Current state
 
-The locally available MM-UAV material contains only `424` complete provider-train sequences. Every sequence contains V53 supervised rows used by V54-V67 development. Therefore all `897,578` synchronized local triplets are ineligible under V69's same-sequence independence rule, including `852,542` frames that were directly identity-only.
+V69 completed successfully as a fail-closed audit with `V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION`.
 
-No local provider-defined test split exists, and V69 forbids randomly resplitting or relabeling the previously used train/devval material.
+The complete local inventory contains `897,578` synchronized triplets from `424` provider-train sequences. Every sequence is linked to V52-V67 development, so no local row or sequence is eligible for a defensible independent external test.
 
-## Error tail
+This is a scientific data-availability blocker, not a runtime or engineering failure.
 
-There was no runtime exception. The fail-closed scientific gate completed normally:
+## Required external input
 
-```text
-decision=V69_BLOCKED_NO_UNUSED_MMUAV_PARTITION
-ledger_rows=897578
-direct_development_used=9032
-direct_content_exposed=36004
-direct_identity_only_but_sequence_ineligible=852542
-development_linked_sequences=424
-eligible_sequences=0
-eligible_rows=0
-candidate_media_opened=false
-candidate_labels_parsed=false
-candidate_predictions_generated=false
-candidate_metrics_computed=false
-cuda_or_training=false
-tests=9/9 passed
-```
+Before V70 can pass its first gate, supply either:
 
-## Attempted checks
+- an authorized provider-defined official MM-UAV test split that was absent from and unexposed during V52-V69; or
+- wholly new provider flights/sequences/components with provider metadata proving independence from all `424` development-linked sequences.
 
-- Verified immutable hashes for V52 sequence/inventory/manifests, V53 supervised manifests, and the V68 rights decision.
-- Built a local-only `897,578`-row sample exposure ledger from frozen sequence identity metadata.
-- Verified V52 interval-20 coverage of all `424` sequences.
-- Verified V53-V67 development use of all `424` sequences.
-- Compared current sequence directory identities with the frozen V52 sequence ledger.
-- Checked provider split names using identity metadata only; only `train` is present.
-- Applied the same-sequence exclusion rule before candidate content, labels, checkpoints, adapter, or evaluator access.
-- Recomputed protected V40-V68, manuscript, submission, production, and TriAir fingerprints.
+The package must identify the provider/release authority, exact dataset/version or split, sequence/component identities, acquisition source, and archive/package hashes. License, citation, research-use, aggregate-reporting, and redistribution terms must be preserved when available.
 
-## Related files
+A renamed local directory, random resplit of existing train sequences, code-repository license, paper license, or unverified archive is not sufficient.
 
-- `runs/v52_mmuav_audit/sequence_alignment.csv`
-- `runs/v52_mmuav_audit/manifests/train_sampled.txt`
-- `runs/v52_mmuav_audit/manifests/devval_sampled.txt`
-- `runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt`
-- `runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt`
-- `runs/v69_mmuav_zero_shot_external_validation_preflight/historical_exposure_ledger_summary.json`
-- `runs/v69_mmuav_zero_shot_external_validation_preflight/sequence_component_independence_audit.json`
-- `runs/v69_mmuav_zero_shot_external_validation_preflight/candidate_partition_discovery.json`
-- `runs/v69_mmuav_zero_shot_external_validation_preflight/final_decision.json`
+## Authorized V70 boundary
 
-## Repair options
+After new external material is supplied, V70 may:
 
-### Option 1: Obtain the untouched official test split
+- inspect package and sequence identity metadata before media access;
+- compare identities and hashes against the frozen V69 ledger;
+- freeze an independent blind manifest locally;
+- hash and seal candidate labels without parsing them;
+- verify six frozen TriAir manuscript checkpoints;
+- freeze a deterministic parameter-free MM-UAV-to-TriAir five-channel adapter;
+- freeze ontology, preprocessing, thresholds, NMS, maximum detections, and evaluator semantics;
+- run a post-freeze schema-only pass without visualization, inference, or label access;
+- commit compact hashes, counts, contracts, tests, and conclusions.
 
-Acquire the provider-defined MM-UAV test split through an authorized route. Before opening media or labels, inventory only split/sequence identities and prove it was absent from all V52-V69 exposure. Then repeat V69 from the candidate gate, with labels sealed and V68 rights handled independently.
+V70 may not:
 
-### Option 2: Obtain wholly unexposed provider sequences/components
+- reuse, randomly resplit, or relabel any of the existing `424` provider-train sequences;
+- train, fine-tune, adapt, calibrate, pseudo-label, or optimize on MM-UAV;
+- use MM-UAV-trained V57/V63/V65-V67 checkpoints, learned alignment, or the Softplus MM-UAV path;
+- inspect candidate labels, visualize candidate media, run candidate inference, generate predictions, or compute metrics;
+- tune preprocessing, ontology, thresholds, NMS, checkpoints, seeds, or variants using candidate information;
+- add MM-UAV material to the manuscript or publicly report results while V68 remains blocked;
+- place raw media, labels, checkpoints, credentials, private correspondence, or heavy artifacts in Git.
 
-Acquire additional flights or sequences that provider metadata proves are independent of all 424 development-linked sequences and their adjacent/duplicate components. Do not derive them by random resplitting the existing local train material. Repeat the metadata-only exposure audit before any schema or model access.
+## Fail-closed conditions
 
-Neither option authorizes publication. V68 provider/citation/license/reporting-permission requirements must also be resolved before manuscript use.
+Finish with the matching V70 blocked state when:
+
+1. no new external material is supplied;
+2. provider/split/version identity is missing or ambiguous;
+3. candidate sequence/component overlap with V52-V69 cannot be excluded;
+4. the package is a renamed or randomly resplit form of the existing local train material;
+5. any authoritative TriAir checkpoint or model contract cannot be verified;
+6. a parameter-free five-channel adapter or vehicle ontology cannot be frozen;
+7. evaluator determinism or label sealing cannot be established;
+8. candidate schema differs after protocol freeze;
+9. protected files drift or private/heavy artifacts enter Git.
+
+## Independent publication blocker
+
+V68 remains `V68_BLOCKED_DATA_RIGHTS_OR_CITATION_INCOMPLETE`. Even a scientifically valid V70 blind freeze does not authorize manuscript inclusion or public reporting until provider-verifiable rights and citation documentation pass a separate documentation-only re-audit.
+
+## Next action
+
+Place the authorized official test split or wholly new independent provider sequences in a local location outside Git together with provider metadata. Then execute V70 exactly as specified in `docs/NEXT_TASK.md`, beginning with identity-only package and sequence auditing. Do not open media or labels before that gate passes.
