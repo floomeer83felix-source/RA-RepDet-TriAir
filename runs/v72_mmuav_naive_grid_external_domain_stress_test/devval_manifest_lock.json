@@ -1,0 +1,20 @@
+{
+  "annotation_content_hash_aggregate_sha256": "87527679982f043177247acd5fcdd29c811d5d77b55ec4a044937b816c614da4",
+  "annotations_parsed_during_lock": false,
+  "manifest_id": "v53_frozen_devval_rgb_supervised",
+  "manifest_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54",
+  "modality_presence_counts": {
+    "event": 1845,
+    "gt_rgb": 1845,
+    "ir": 1845,
+    "rgb": 1845
+  },
+  "opaque_row_identity_sha256": "6cd61cf44742bbdc53b70b43cd52cc0f72f904ad67499f0ac97a4c7b00717c17",
+  "previously_exposed": true,
+  "row_order_preserved": true,
+  "row_order_sha256": "dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867",
+  "rows": 1845,
+  "sequence_count": 85,
+  "status": "LOCKED",
+  "unique_rgb_annotation_files": 85
+}

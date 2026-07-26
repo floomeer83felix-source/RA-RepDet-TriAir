@@ -49,3 +49,21 @@ Successful state:
 Required commit message:
 
 `exp: run V72 MM-UAV naive-grid external-domain stress test`
+
+## V72 execution result
+
+Executed: 2026-07-26
+
+Decision:
+
+`V72_MMUAV_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_COMPLETE`
+
+The one fixed adapter, one 8-row smoke attempt, and six one-time full-devval evaluations completed under the frozen protocol. Each checkpoint processed all 1,845 rows and produced 184,500 finite, valid decoded predictions.
+
+Mean AP@[.50:.95]:
+
+- Early Fusion: `9.48024e-9`;
+- RA-RepDet: `7.20800e-7`;
+- paired `RA-RepDet - Early Fusion`: `7.11320e-7`.
+
+These values belong only to the exposed-devval naive normalized-grid stress test. No physical registration, independent-test, official-test, or public-reporting claim is authorized.

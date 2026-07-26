@@ -1,0 +1,11 @@
+{
+  "starting_commit": "9dcd0806032ec296703805121c38584d85ee6621",
+  "protected_core_diff_empty": true,
+  "v52_v71_historical_evidence_diff_empty": true,
+  "training_core_modified": false,
+  "training_or_backward_calls": 0,
+  "unauthorized_adaptation_calibration_or_tuning": false,
+  "checkpoint_substitutions": 0,
+  "extra_seeds_or_variants": 0,
+  "raw_private_or_heavy_git_artifacts": false
+}

@@ -1,0 +1,20 @@
+Pre-execution V72 focused tests: 10/10 passed
+Post-execution V72 focused tests: 10/10 passed
+V52 alignment regression tests: 9/9 passed
+V53 feature-alignment regression tests: 9/9 passed
+
+Execution checks:
+- fixed smoke rows: 8/8 complete
+- smoke attempts: 1
+- checkpoint metric records: 6/6 complete
+- rows per checkpoint: 1845
+- attempts per checkpoint: exactly 1
+- failures: 0
+- finite decoded boxes per checkpoint: 184500
+- valid decoded boxes per checkpoint: 184500
+- non-finite metrics: 0
+- protected core diff: empty
+- V52-V71 historical evidence diff: empty
+- private/heavy Git artifacts: none
+
+RESULT: PASS

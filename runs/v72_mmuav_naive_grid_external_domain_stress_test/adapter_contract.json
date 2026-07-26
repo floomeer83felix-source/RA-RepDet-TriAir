@@ -1,0 +1,28 @@
+{
+  "adapter_function_source_sha256": "71c4431a1752ad2ddf48362c22bfd51adff0d50e1acb6e30cb675876dd6b4735",
+  "box_geometry": "RGB letterbox transform only",
+  "branch_output_size": [
+    640,
+    640
+  ],
+  "channel_order": [
+    "rgb_r",
+    "rgb_g",
+    "rgb_b",
+    "ir_grayscale",
+    "event_grayscale"
+  ],
+  "dtype": "torch.float32",
+  "interpolation": "bilinear_align_corners_false",
+  "learned_alignment": false,
+  "padding": "zero_centered_letterbox",
+  "physical_registration_asserted": false,
+  "randomness": false,
+  "range": [
+    0.0,
+    1.0
+  ],
+  "source_decoder_and_letterbox": "datasets/mmuav_feature_alignment_dataset.py",
+  "source_sha256": "521978cea211f2879c478e1bb33d52cc423d305243c58b435948834c455a3e1d",
+  "status": "FROZEN"
+}

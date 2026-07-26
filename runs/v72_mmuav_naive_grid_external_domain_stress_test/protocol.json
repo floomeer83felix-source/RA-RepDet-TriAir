@@ -1,0 +1,15 @@
+{
+  "adapter": "V53 independent letterbox to 640x640 then RGB+IR+event concatenation",
+  "checkpoint_count": 6,
+  "evaluation_attempt_limit_per_checkpoint": 1,
+  "manifest_rows": 1845,
+  "maximum_detections": 100,
+  "nms_threshold": 0.6,
+  "physical_registration_asserted": false,
+  "scientific_label": "zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter",
+  "score_threshold": 0.001,
+  "smoke_rows": 8,
+  "starting_commit": "9dcd0806032ec296703805121c38584d85ee6621",
+  "task": "V72_MMUAV_EXISTING_DEVVAL_TRIAIR_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST",
+  "training_adaptation_calibration_or_tuning": false
+}

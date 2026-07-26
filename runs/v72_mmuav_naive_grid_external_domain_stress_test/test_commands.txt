@@ -1,0 +1,8 @@
+python -m py_compile rarepdet/tools/run_v72_mmuav_naive_grid_stress_test.py tests/test_v72_mmuav_naive_grid_stress_test.py
+python rarepdet/tools/run_v72_mmuav_naive_grid_stress_test.py prepare --checkpoint-repo <private-repo-root>
+python -m unittest discover -s tests -p test_v72_mmuav_naive_grid_stress_test.py -v
+python rarepdet/tools/run_v72_mmuav_naive_grid_stress_test.py execute --checkpoint-repo <private-repo-root> --batch-size 4
+python -m unittest discover -s tests -p test_v72_mmuav_naive_grid_stress_test.py -v
+python -m unittest discover -s tests -p test_v52_mmuav.py -v
+python -m unittest discover -s tests -p test_v53_mmuav_feature_alignment.py -v
+git diff --name-only <starting-commit> -- <protected-core-and-v52-v71-paths>

@@ -137,3 +137,23 @@ Commit with exactly:
 `exp: run V72 MM-UAV naive-grid external-domain stress test`
 
 Push to `research/ra-repdet-triair`.
+
+## Execution Result
+
+Executed: 2026-07-26
+
+Actual starting commit:
+
+`9dcd0806032ec296703805121c38584d85ee6621`
+
+Decision:
+
+`V72_MMUAV_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_COMPLETE`
+
+The fixed 8-row smoke pass and all six one-time 1,845-row evaluations completed. Every checkpoint produced one complete finite AP/AR record; no runtime retry, training, adaptation, calibration, tuning, checkpoint substitution, or protocol change occurred.
+
+Mean AP@[.50:.95] was `9.48024e-9` for Early Fusion and `7.20800e-7` for RA-RepDet. The mean paired difference was `7.11320e-7`. These near-zero metrics are limited to the exposed MM-UAV devval naive normalized-grid stress test and do not establish physical registration or independent external validity.
+
+Commit message:
+
+`exp: run V72 MM-UAV naive-grid external-domain stress test`

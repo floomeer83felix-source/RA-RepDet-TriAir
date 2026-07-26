@@ -1,0 +1,72 @@
+{
+  "checkpoint_attempts": {
+    "triair_v40_matched_early_seed0_best": [
+      {
+        "attempt": 1,
+        "completed_at_utc": "2026-07-26T03:46:33.327229+00:00",
+        "completed_rows": 1845,
+        "failure_reason": null,
+        "metric_record_complete": true,
+        "started_at_utc": "2026-07-26T03:44:50.448035+00:00",
+        "status": "COMPLETE"
+      }
+    ],
+    "triair_v40_matched_early_seed2_best": [
+      {
+        "attempt": 1,
+        "completed_at_utc": "2026-07-26T03:48:27.437475+00:00",
+        "completed_rows": 1845,
+        "failure_reason": null,
+        "metric_record_complete": true,
+        "started_at_utc": "2026-07-26T03:47:30.777618+00:00",
+        "status": "COMPLETE"
+      }
+    ],
+    "triair_v40_reliability_p015_seed0_best": [
+      {
+        "attempt": 1,
+        "completed_at_utc": "2026-07-26T03:49:26.685745+00:00",
+        "completed_rows": 1845,
+        "failure_reason": null,
+        "metric_record_complete": true,
+        "started_at_utc": "2026-07-26T03:48:27.547570+00:00",
+        "status": "COMPLETE"
+      }
+    ],
+    "triair_v40_reliability_p015_seed2_best": [
+      {
+        "attempt": 1,
+        "completed_at_utc": "2026-07-26T03:51:25.249373+00:00",
+        "completed_rows": 1845,
+        "failure_reason": null,
+        "metric_record_complete": true,
+        "started_at_utc": "2026-07-26T03:50:26.096016+00:00",
+        "status": "COMPLETE"
+      }
+    ],
+    "triair_v41_matched_early_seed1_best": [
+      {
+        "attempt": 1,
+        "completed_at_utc": "2026-07-26T03:47:30.673052+00:00",
+        "completed_rows": 1845,
+        "failure_reason": null,
+        "metric_record_complete": true,
+        "started_at_utc": "2026-07-26T03:46:33.429222+00:00",
+        "status": "COMPLETE"
+      }
+    ],
+    "triair_v41_reliability_p015_seed1_best": [
+      {
+        "attempt": 1,
+        "completed_at_utc": "2026-07-26T03:50:25.989816+00:00",
+        "completed_rows": 1845,
+        "failure_reason": null,
+        "metric_record_complete": true,
+        "started_at_utc": "2026-07-26T03:49:26.886732+00:00",
+        "status": "COMPLETE"
+      }
+    ]
+  },
+  "smoke_attempts": 1,
+  "status": "ALL_EVALUATIONS_COMPLETE"
+}

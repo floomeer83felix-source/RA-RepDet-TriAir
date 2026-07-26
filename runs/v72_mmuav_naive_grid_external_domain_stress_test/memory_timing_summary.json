@@ -1,0 +1,42 @@
+{
+  "maximum_peak_gpu_memory_mib": 818.443359375,
+  "per_checkpoint": [
+    {
+      "method": "matched_early",
+      "peak_gpu_memory_mib": 410.89501953125,
+      "seed": 0,
+      "wall_clock_seconds": 95.2366397
+    },
+    {
+      "method": "matched_early",
+      "peak_gpu_memory_mib": 410.89501953125,
+      "seed": 1,
+      "wall_clock_seconds": 49.8473802
+    },
+    {
+      "method": "matched_early",
+      "peak_gpu_memory_mib": 410.89501953125,
+      "seed": 2,
+      "wall_clock_seconds": 49.30468239999999
+    },
+    {
+      "method": "reliability_p015",
+      "peak_gpu_memory_mib": 817.755859375,
+      "seed": 0,
+      "wall_clock_seconds": 51.738179299999985
+    },
+    {
+      "method": "reliability_p015",
+      "peak_gpu_memory_mib": 818.443359375,
+      "seed": 1,
+      "wall_clock_seconds": 51.73177300000003
+    },
+    {
+      "method": "reliability_p015",
+      "peak_gpu_memory_mib": 818.443359375,
+      "seed": 2,
+      "wall_clock_seconds": 51.741366400000004
+    }
+  ],
+  "total_wall_clock_seconds": 349.600021
+}

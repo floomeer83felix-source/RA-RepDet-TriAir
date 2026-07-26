@@ -1,0 +1,73 @@
+{
+  "entries": [
+    {
+      "checkpoint_best_ap50": 0.9403660297393799,
+      "checkpoint_epoch": 9,
+      "hash_matches_frozen_evidence": true,
+      "inference_run": false,
+      "missing_keys": [],
+      "opaque_id": "triair_v40_matched_early_seed0_best",
+      "optimizer_state_used": false,
+      "strict_load": true,
+      "unexpected_keys": []
+    },
+    {
+      "checkpoint_best_ap50": 0.9423841238021851,
+      "checkpoint_epoch": 4,
+      "hash_matches_frozen_evidence": true,
+      "inference_run": false,
+      "missing_keys": [],
+      "opaque_id": "triair_v41_matched_early_seed1_best",
+      "optimizer_state_used": false,
+      "strict_load": true,
+      "unexpected_keys": []
+    },
+    {
+      "checkpoint_best_ap50": 0.9324124455451965,
+      "checkpoint_epoch": 5,
+      "hash_matches_frozen_evidence": true,
+      "inference_run": false,
+      "missing_keys": [],
+      "opaque_id": "triair_v40_matched_early_seed2_best",
+      "optimizer_state_used": false,
+      "strict_load": true,
+      "unexpected_keys": []
+    },
+    {
+      "checkpoint_best_ap50": 0.9570935368537903,
+      "checkpoint_epoch": 9,
+      "hash_matches_frozen_evidence": true,
+      "inference_run": false,
+      "missing_keys": [],
+      "opaque_id": "triair_v40_reliability_p015_seed0_best",
+      "optimizer_state_used": false,
+      "strict_load": true,
+      "unexpected_keys": []
+    },
+    {
+      "checkpoint_best_ap50": 0.9544403553009033,
+      "checkpoint_epoch": 8,
+      "hash_matches_frozen_evidence": true,
+      "inference_run": false,
+      "missing_keys": [],
+      "opaque_id": "triair_v41_reliability_p015_seed1_best",
+      "optimizer_state_used": false,
+      "strict_load": true,
+      "unexpected_keys": []
+    },
+    {
+      "checkpoint_best_ap50": 0.9576058387756348,
+      "checkpoint_epoch": 7,
+      "hash_matches_frozen_evidence": true,
+      "inference_run": false,
+      "missing_keys": [],
+      "opaque_id": "triair_v40_reliability_p015_seed2_best",
+      "optimizer_state_used": false,
+      "strict_load": true,
+      "unexpected_keys": []
+    }
+  ],
+  "mmuav_trained_checkpoints_used": false,
+  "softplus_wrapper_used": false,
+  "status": "PASS_6_OF_6_STRICT_CPU_LOAD"
+}

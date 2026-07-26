@@ -1,0 +1,8 @@
+{
+  "independent_or_blind_external_test": false,
+  "official_test_performance": false,
+  "physical_multimodal_registration": false,
+  "previously_exposed_devval": true,
+  "public_or_manuscript_reporting_authorized": false,
+  "scientific_label": "zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter"
+}

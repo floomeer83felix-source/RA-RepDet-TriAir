@@ -1,0 +1,75 @@
+{
+  "all_finite_and_valid": true,
+  "attempts": 1,
+  "checkpoint": "triair_v40_matched_early_seed0_best",
+  "metrics_computed": false,
+  "peak_gpu_memory_mib": 123.43115234375,
+  "records": [
+    {
+      "finite_decoded_boxes": 100,
+      "index": 0,
+      "input_sha256": "377eda3d3fff06a2ab845fbe86bb3033d3bd01f4bd5126df89fbed436344c286",
+      "predictions": 100,
+      "target_boxes": 3,
+      "valid_decoded_boxes": 100
+    },
+    {
+      "finite_decoded_boxes": 100,
+      "index": 1,
+      "input_sha256": "c514ce5dcda842ceb07f6c344d17af8d66510e49c2cdd07b6577034e00dcc98c",
+      "predictions": 100,
+      "target_boxes": 3,
+      "valid_decoded_boxes": 100
+    },
+    {
+      "finite_decoded_boxes": 100,
+      "index": 2,
+      "input_sha256": "fd6aed977369d303bf70bf5cdcc776eeb448a7de8bee7e1e1a6d1523064c981d",
+      "predictions": 100,
+      "target_boxes": 3,
+      "valid_decoded_boxes": 100
+    },
+    {
+      "finite_decoded_boxes": 100,
+      "index": 3,
+      "input_sha256": "b67d23b0b1dfcf089864e9c1f4637d4ef2dd3968e690f2d2480bb62b12fe8668",
+      "predictions": 100,
+      "target_boxes": 3,
+      "valid_decoded_boxes": 100
+    },
+    {
+      "finite_decoded_boxes": 100,
+      "index": 4,
+      "input_sha256": "f94b065e4003a3ac64e68dee7f91d6a22dd0d7b5e5f147bd2607e321915be8e7",
+      "predictions": 100,
+      "target_boxes": 3,
+      "valid_decoded_boxes": 100
+    },
+    {
+      "finite_decoded_boxes": 100,
+      "index": 5,
+      "input_sha256": "dd84b84effdfc48bec007954f82e9da99bb9ea766c3b142ea05dca2400a89ed0",
+      "predictions": 100,
+      "target_boxes": 3,
+      "valid_decoded_boxes": 100
+    },
+    {
+      "finite_decoded_boxes": 100,
+      "index": 6,
+      "input_sha256": "356732cea7730d3957c58c1db57d095524afa9240b2662ad9b35b8089a9f3143",
+      "predictions": 100,
+      "target_boxes": 3,
+      "valid_decoded_boxes": 100
+    },
+    {
+      "finite_decoded_boxes": 100,
+      "index": 7,
+      "input_sha256": "7642d2f48f37603b61708cab578614989fe265206b9c87d9d922d8e337cee6fa",
+      "predictions": 100,
+      "target_boxes": 3,
+      "valid_decoded_boxes": 100
+    }
+  ],
+  "rows": 8,
+  "status": "PASS"
+}

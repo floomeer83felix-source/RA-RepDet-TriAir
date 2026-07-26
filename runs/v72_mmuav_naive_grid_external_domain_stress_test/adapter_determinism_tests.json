@@ -1,0 +1,17 @@
+{
+  "output_dtype": "torch.float32",
+  "output_finite": true,
+  "output_shape": [
+    5,
+    640,
+    640
+  ],
+  "physical_registration_asserted": false,
+  "real_row_box_sha256": "94276abfaccdce64a8808a168d128ca91192a44c9a5ed6aa5f0234a179dde4ca",
+  "real_row_index": 0,
+  "real_row_output_sha256": "377eda3d3fff06a2ab845fbe86bb3033d3bd01f4bd5126df89fbed436344c286",
+  "repeat_exact_equal": true,
+  "status": "PASS",
+  "synthetic_box_sha256": "d3072464e6457f53f3c9d97eb3bb21ea704378ed84e1f2b25ae794e2ff828693",
+  "synthetic_output_sha256": "2bdb0fba0de7236bb12595c33c9c68c314a41f637b250154e7150d6d8efdb94d"
+}

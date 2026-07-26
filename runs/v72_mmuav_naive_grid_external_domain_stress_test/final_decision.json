@@ -1,0 +1,11 @@
+{
+  "checkpoint_metric_records": 6,
+  "decision": "V72_MMUAV_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_COMPLETE",
+  "evaluation_attempts_per_checkpoint": 1,
+  "manifest_rows_per_checkpoint": 1845,
+  "metrics_computed": true,
+  "physical_registration_asserted": false,
+  "scientific_label": "zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter",
+  "smoke_attempts": 1,
+  "training_adaptation_calibration_or_tuning": false
+}

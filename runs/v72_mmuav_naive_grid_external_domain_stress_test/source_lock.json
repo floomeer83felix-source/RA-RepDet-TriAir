@@ -1,0 +1,14 @@
+{
+  "clean_execution_worktree_at_start": true,
+  "source_hashes": {
+    "datasets/mmuav_feature_alignment_dataset.py": "521978cea211f2879c478e1bb33d52cc423d305243c58b435948834c455a3e1d",
+    "rarepdet/coco_metrics.py": "7d59ae82f07a399bb464362ab3e5e42096847eba761953555315c271dbd397e1",
+    "rarepdet/models/early_fusion_fcos.py": "5ab2e0936d39cb7a598311085ccfaf26b21581dc5fb44cba97ce698c74901cf8",
+    "rarepdet/models/repvit_fpn_backbone.py": "856c61b35235e9eda3751d1e82c99727568856609b1c90c3c43d0166b2b2fbe3",
+    "rarepdet/tools/run_v71_mmuav_existing_devval_zero_shot.py": "1586ca3a146fa9190b62421f5b394e1864b39a6bca9778ce92128930aef223a4",
+    "rarepdet/tools/run_v72_mmuav_naive_grid_stress_test.py": "71c4431a1752ad2ddf48362c22bfd51adff0d50e1acb6e30cb675876dd6b4735",
+    "tests/test_v72_mmuav_naive_grid_stress_test.py": "c589ff05b733f53689c6a0e42768e1a3282800581bced92249d7d7a3ddb72e04"
+  },
+  "starting_commit": "9dcd0806032ec296703805121c38584d85ee6621",
+  "v71_completion_is_ancestor": true
+}

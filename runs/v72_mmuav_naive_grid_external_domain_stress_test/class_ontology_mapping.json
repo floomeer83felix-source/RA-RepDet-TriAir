@@ -1,0 +1,8 @@
+{
+  "background_label": 0,
+  "provider_rgb_category": "drone",
+  "single_vehicle_class_evaluation": true,
+  "source": "V65-V67 frozen MM-UAV RGB target contract",
+  "status": "FROZEN",
+  "torchvision_foreground_label": 1
+}
