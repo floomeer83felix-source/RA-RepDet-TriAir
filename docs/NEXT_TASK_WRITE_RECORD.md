@@ -3,47 +3,58 @@
 Written: 2026-07-25
 Branch: `research/ra-repdet-triair`
 V70 completion commit: `bd62068aa0f3ab046d8545c4eef69938b4e73c9b`
+Superseded V71 authorization head: `9f650b80023beebeda241beb3904ed8f1f9cfd6d`
 Canonical task file: `docs/NEXT_TASK.md`
 
-## Completed prior task
+## User-directed correction
 
-`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
+The user directed the project to begin MM-UAV dataset validation immediately and not spend the active task on provider authority, official version, rights, or official-test acquisition.
 
-V70 completed the authorized external-input gate:
-
-1. verified the known MM-UAV root still contains only the previously audited provider `train` split;
-2. accepted zero new external packages;
-3. opened no candidate media and parsed no candidate labels;
-4. ran no inference, predictions, metrics, CUDA, training, adaptation, tuning, or checkpoint selection;
-5. preserved the V69 evidence tree and protected files;
-6. passed V70 tests `10 / 10`;
-7. stopped before independence, blind-manifest, label-seal, checkpoint, adapter, evaluator, and schema stages.
-
-The V70 outcome is a data/source-access blocker. Repeating V70 without a new authoritative package cannot advance the external-validation objective.
-
-## Active next task
+The following task was superseded before execution:
 
 `V71_MMUAV_PROVIDER_SOURCE_RIGHTS_AND_OFFICIAL_TEST_ACQUISITION_AUTHORIZED`
 
+## Active task
+
+`V71_MMUAV_EXISTING_DEVVAL_TRIAIR_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_AUTHORIZED`
+
 Execute V71 exactly as specified in `docs/NEXT_TASK.md`:
 
-1. reconstruct the authoritative MM-UAV provider, original publication, project/institutional page, official repository or data portal, and maintainer chain;
-2. verify canonical citation, exact release/version, documented split structure, and whether an official test, hidden-label evaluation, challenge, or new-sequence route exists;
-3. verify provider-issued license/access terms, research-use permission, aggregate-results reporting permission, citation requirements, and redistribution restrictions;
-4. when an authorized official untouched test package is openly available, download it outside Git, record source/filename/bytes/SHA256/version, preserve provider documents, and seal it without opening media or labels;
-5. when approval, registration, credentials, evaluation-server access, or direct provider action is required, prepare a complete reviewable access request and submission checklist but do not send automatically;
-6. reject unofficial mirrors, renamed local data, random resplits, ambiguous versions, and unverifiable archives;
-7. do not run model inference, predictions, metrics, training, fine-tuning, adaptation, calibration, checkpoint selection, or threshold tuning;
-8. keep archives, data, labels, credentials, private correspondence, and heavy artifacts outside Git.
+1. lock the existing frozen 1,845-row MM-UAV devval manifest and unchanged evaluator;
+2. locate, hash, and strictly load Early Fusion and RA-RepDet checkpoints for seeds 0, 1, and 2;
+3. freeze a deterministic parameter-free RGB/thermal/event-to-five-channel adapter at `640 x 640`;
+4. freeze the vehicle ontology, score threshold `0.001`, NMS `0.6`, and maximum `100` detections;
+5. run a fixed no-metric finite-output smoke pass;
+6. evaluate each checkpoint exactly once over all 1,845 rows;
+7. report AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, AR@100, prediction coverage, valid geometry, timing, and memory;
+8. compute matched seed-wise RA-RepDet minus Early Fusion differences and descriptive three-seed summaries;
+9. run focused tests and protected-file audits;
+10. stop without result-driven tuning, checkpoint substitution, seed addition, variant addition, or rerun.
+
+## Scientific label
+
+The dataset and its sequences were previously exposed during V52-V70 development. Therefore the output must be labeled:
+
+`zero-shot external-domain validation on the existing exposed MM-UAV devval split`
+
+It must not be labeled:
+
+- independent external validation;
+- blind external test;
+- official MM-UAV test performance.
+
+This limitation does not block the authorized internal validation run.
 
 ## Completion boundary
 
-Preferred successful state:
+Successful completion state:
 
-`V71_MMUAV_OFFICIAL_TEST_PACKAGE_ACQUIRED_AND_SEALED`
+`V71_MMUAV_EXISTING_DEVVAL_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_COMPLETE`
 
-Request-ready state:
+Required completion commit message:
 
-`V71_MMUAV_ACCESS_REQUEST_READY_PROVIDER_RESPONSE_REQUIRED`
+`exp: run V71 MM-UAV existing-devval TriAir zero-shot external-domain validation`
 
-Neither state authorizes inference or AP/AR. An acquired-and-sealed package must pass a later metadata independence audit, blind-manifest/label-seal freeze, six-checkpoint verification, adapter freeze, and evaluator freeze before one-time zero-shot evaluation can be authorized.
+Push to:
+
+`research/ra-repdet-triair`
