@@ -2,17 +2,23 @@
 
 ## Authorization
 
-The user explicitly directed the project to begin MM-UAV dataset validation immediately and to stop spending the active task on provider authority, official-version, rights, or official-test acquisition work.
+V71 completed at commit `bfca2e21ca7a46a5087b3addfcac7dab9d7e1618` with `V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`. The exact MM-UAV devval manifest and all six frozen TriAir checkpoints passed verification, but no metrics were produced because physical cross-modal pixel registration could not be established.
 
-The previously authorized `V71_MMUAV_PROVIDER_SOURCE_RIGHTS_AND_OFFICIAL_TEST_ACQUISITION_AUTHORIZED` task is superseded before execution.
+The user has directed the project to begin the external-domain experiment immediately and not spend further work on provider authority, release/version, rights, calibration acquisition, or additional preflight research.
 
 The active task is:
 
-`V71_MMUAV_EXISTING_DEVVAL_TRIAIR_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_AUTHORIZED`
+`V72_MMUAV_EXISTING_DEVVAL_TRIAIR_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_AUTHORIZED`
 
-V71 will evaluate the six frozen TriAir manuscript checkpoints directly on the existing frozen `1,845`-row MM-UAV devval manifest. No MM-UAV training, fine-tuning, adaptation, calibration, checkpoint selection, threshold tuning, or result-driven rerun is authorized.
+V72 must implement one frozen naive normalized-grid adapter and immediately run all six frozen TriAir checkpoints on the existing `1,845`-row MM-UAV devval manifest.
 
-This is an **external-domain zero-shot validation on a previously exposed development split**. It is not an independent blind external test and must never be described as one.
+## Required Scientific Label
+
+Use exactly this description:
+
+`zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter`
+
+Do not call it an independent/blind external test, physically registered multimodal validation, or official MM-UAV test performance. The lack of physical RGB/IR/event registration is an explicit limitation, not a V72 blocker.
 
 ## Required Start
 
@@ -23,234 +29,111 @@ git status --short
 git rev-parse HEAD
 ```
 
-Require a clean worktree. Record the actual starting commit and verify that V70 completion commit `bd62068aa0f3ab046d8545c4eef69938b4e73c9b` is an ancestor of `HEAD`.
+Require a clean worktree and verify that `bfca2e21ca7a46a5087b3addfcac7dab9d7e1618` is an ancestor of `HEAD`.
 
-Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, the current task/status/blocker files, frozen TriAir checkpoint evidence, the V52-V70 MM-UAV manifests and evaluator evidence, active model/dataset code, and protected-file rules.
+## Frozen Dataset
 
-## Frozen Evaluation Dataset
+Use exactly the V71-verified devval manifest:
 
-Use exactly the existing frozen MM-UAV devval manifest used by V65-V67:
+- rows: `1,845`;
+- sequences: `85`;
+- manifest SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
+- row-order SHA256: `dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867`;
+- RGB/IR/event/annotation presence: `1,845 / 1,845 / 1,845 / 1,845`.
 
-- row count: exactly `1,845`;
-- preserve exact row order, modality pairing, annotation mapping, and file identities;
-- do not add, remove, replace, resample, or reorder rows;
-- do not create a new split;
-- do not use the 7,187-row MM-UAV training manifest for model updates or fitting.
-
-Record the exact manifest path, row count, SHA256, modality-presence counts, annotation-file hashes, and overlap with prior V52-V70 work.
-
-The overlap is expected and must be reported honestly. It is not a blocker for this task because V71 is explicitly an exposed external-domain validation, not a blind test.
+Do not add, remove, replace, resample, reorder, or create another split.
 
 ## Frozen Models
 
-Locate and strictly verify exactly six frozen TriAir manuscript checkpoints:
+Use exactly the six checkpoints already verified by V71:
 
-1. matched Early Fusion, seed `0`;
-2. matched Early Fusion, seed `1`;
-3. matched Early Fusion, seed `2`;
-4. full reliability-aware RA-RepDet with modality dropout `p=0.15`, seed `0`;
-5. full reliability-aware RA-RepDet with modality dropout `p=0.15`, seed `1`;
-6. full reliability-aware RA-RepDet with modality dropout `p=0.15`, seed `2`.
+- matched Early Fusion: seeds `0`, `1`, `2`;
+- reliability-aware RA-RepDet with modality dropout `p=0.15`: seeds `0`, `1`, `2`.
 
-For each checkpoint record:
+Reverify their SHA256 and strict loading. Do not use MM-UAV-trained checkpoints, learned MM-UAV alignment, the MM-UAV Softplus wrapper, checkpoint averaging, ensembling, repair, or replacement weights.
 
-- method and seed;
-- local opaque identifier;
-- filename, byte count, and SHA256;
-- source commit and model class;
-- state-dictionary key/tensor fingerprint;
-- original checkpoint-selection rule and evidence reference;
-- strict-load result in the unchanged TriAir architecture.
+## Frozen Naive Five-Channel Adapter
 
-Do not use MM-UAV-trained V57/V63/V65/V66/V67 checkpoints, optimizer states, learned MM-UAV alignment, the MM-UAV Softplus wrapper, checkpoint averaging, ensembling, checkpoint repair, or replacement checkpoints.
+Before any prediction or metric, implement exactly one deterministic parameter-free adapter:
 
-If the six authoritative checkpoints cannot be located and strictly loaded, stop with `V71_BLOCKED_TRIAIR_CHECKPOINT_OR_MODEL_CONTRACT`.
-
-## Deterministic MM-UAV-to-TriAir Adapter
-
-Freeze a parameter-free deterministic conversion into the exact five-channel TriAir input:
+1. reuse the existing V53 per-modality decoding and independent letterbox implementation;
+2. independently letterbox RGB, IR, and event to `640 x 640` using the same interpolation, aspect-ratio, padding, dtype, clipping, scaling, and normalization rules;
+3. construct channels as:
 
 ```text
-RGB channels 0-2 + thermal channel 3 + event channel 4
+RGB[0:3] + independently-letterboxed IR grayscale + independently-letterboxed event grayscale
 ```
 
-Freeze before metric computation:
+4. transform ground-truth boxes using RGB annotation geometry;
+5. apply no homography, calibration, optical-flow warp, feature alignment, learned alignment, registration fitting, test-time fitting, or label-informed transform;
+6. fail on missing, corrupt, unreadable, unexpected-channel, or non-finite inputs;
+7. prohibit randomness and record adapter source SHA256 plus deterministic fixture outputs.
 
-- source modality mapping;
-- bit depth, dtype conversion, clipping, scaling, and normalization;
-- event representation semantics;
-- spatial registration policy;
-- deterministic resize/crop/pad/interpolation to `640 x 640`;
-- box-coordinate transformation;
-- missing/corrupt modality stop policy;
-- deterministic ordering and prohibition of randomness;
-- adapter source hash and micro-fixture expected outputs.
+This adapter places independently normalized modality coordinates on one canvas. It does not assert physical pixel correspondence. Do not change it after the smoke pass begins.
 
-The adapter may use only the frozen TriAir preprocessing contract and already exposed MM-UAV development evidence. It may not learn parameters or be changed after observing V71 AP/AR.
+## Frozen Evaluator
 
-If a defensible fixed conversion or vehicle ontology cannot be established, stop with `V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`.
-
-## Frozen Inference and Evaluator Contract
-
-Use the unchanged TriAir inference contract:
-
-- input size: `640 x 640`;
+- input: `640 x 640`;
 - score threshold: `0.001`;
 - NMS threshold: `0.6`;
-- maximum detections per image: `100`;
-- shared vehicle-class mapping frozen before evaluation;
-- no test-time augmentation;
-- no per-dataset normalization fitting;
-- no calibration, adaptation, threshold selection, or checkpoint selection.
+- maximum detections: `100`;
+- vehicle ontology: reuse the frozen V65-V67 MM-UAV mapping;
+- metrics: AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, AR@100;
+- no TTA, calibration, dataset-specific fitting, threshold selection, checkpoint selection, or post-result protocol changes.
 
-Report for every checkpoint:
+## Immediate Execution Order
 
-- COCO AP@[0.50:0.95];
-- AP50;
-- AP75;
-- AR@1;
-- AR@10;
-- AR@100;
+1. Reverify manifest, six checkpoints, protected paths, adapter determinism, and evaluator constants.
+2. Run focused tests.
+3. Run one no-metric smoke pass on the first `8` rows with Early Fusion seed `0`.
+4. Fix only implementation errors such as imports, device placement, shapes, dtypes, finite-state handling, or decoding. Do not alter the scientific adapter contract.
+5. Immediately evaluate each of the six checkpoints exactly once over all `1,845` rows.
+6. Compute all frozen metrics and seed-matched `RA-RepDet - Early Fusion` differences.
+7. Report per-method and paired-difference mean, sample standard deviation, minimum, and maximum across seeds.
+8. Repeat focused tests and protected-file checks, then commit and push.
+
+No result-driven rerun is allowed. A checkpoint may be rerun only when the first attempt ended before producing a complete metric record because of a documented implementation/runtime failure; preserve the failed-attempt record.
+
+## Required Per-Checkpoint Results
+
+- AP@[0.50:0.95], AP50, AP75;
+- AR@1, AR@10, AR@100;
 - prediction count;
-- images with and without predictions;
-- finite and valid decoded-box counts;
-- wall-clock time and peak memory.
-
-Report matched seed-wise `RA-RepDet - Early Fusion` differences for every metric, plus descriptive mean, sample standard deviation, minimum, and maximum across seeds. Do not run significance tests with only three seeds unless the repository already contains a frozen, pre-authorized analysis contract.
-
-## Execution Order
-
-1. verify source and protected-file fingerprints;
-2. verify the exact 1,845-row devval manifest and evaluator contract;
-3. strictly load and hash all six checkpoints;
-4. freeze and test the deterministic five-channel adapter;
-5. run a no-metric finite-output smoke pass on a fixed small prefix solely to catch runtime/schema failures;
-6. run each checkpoint exactly once over all 1,845 rows;
-7. compute the frozen AP/AR metrics;
-8. create the matched three-seed comparison table;
-9. repeat focused tests and protected-file audit;
-10. stop without tuning or rerunning based on results.
-
-The smoke pass may not compute AP/AR or change preprocessing, ontology, thresholds, checkpoints, seeds, or variants. Any smoke failure must be fixed only when it is an implementation error relative to the frozen contract; semantic ambiguity must block.
-
-## Fail-Closed Conditions
-
-Stop with the matching decision when:
-
-- any frozen checkpoint or model contract cannot be verified;
-- the 1,845-row manifest, row order, modality pairing, annotation mapping, or evaluator differs from the frozen evidence;
-- the deterministic five-channel adapter or vehicle ontology cannot be fixed without learned or result-informed choices;
-- any loss-free inference tensor, parameter, activation, decoded box, prediction, or metric input is non-finite;
-- OOM, corrupted data, unreadable modality, coordinate mismatch, evaluator mismatch, or protected-file drift occurs;
-- any training, fine-tuning, adaptation, calibration, tuning, checkpoint selection, seed addition, variant addition, or result-driven rerun is attempted;
-- raw data, labels, checkpoints, predictions, local absolute paths, or heavy/private artifacts are added to Git.
-
-Do not silently substitute data, checkpoints, preprocessing, class maps, thresholds, or evaluators.
+- images with/without predictions;
+- finite and valid decoded boxes;
+- wall-clock time;
+- peak GPU memory;
+- execution-attempt count and any failure reason.
 
 ## Decision States
 
 Choose exactly one:
 
-- `V71_MMUAV_EXISTING_DEVVAL_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_COMPLETE`;
-- `V71_BLOCKED_TRIAIR_CHECKPOINT_OR_MODEL_CONTRACT`;
-- `V71_BLOCKED_DATA_MANIFEST_OR_EVALUATOR_CONTRACT`;
-- `V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`;
-- `V71_BLOCKED_RUNTIME_OR_FINITE_STATE`;
-- `V71_BLOCKED_SOURCE_PROTECTED_OR_PRIVATE_ARTIFACT_VIOLATION`.
+- `V72_MMUAV_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_COMPLETE`;
+- `V72_BLOCKED_CHECKPOINT_OR_MANIFEST_CONTRACT`;
+- `V72_BLOCKED_RUNTIME_OOM_OR_FINITE_STATE`;
+- `V72_BLOCKED_EVALUATOR_OR_OUTPUT_CONTRACT`;
+- `V72_BLOCKED_SOURCE_PROTECTED_OR_PRIVATE_ARTIFACT_VIOLATION`.
+
+Physical registration uncertainty is not a V72 blocked state because it is already declared as the central limitation of this stress test.
 
 ## Required Outputs
 
-Create:
+Create `runs/v72_mmuav_naive_grid_external_domain_stress_test/` with compact protocol, source lock, manifest/checkpoint verification, adapter contract/tests, smoke record, per-checkpoint metrics, paired comparison, timing/memory, claim boundary, tests, final decision, and handoff files. Keep raw data, annotations, full predictions, tensors, checkpoints, local paths, and heavy/private artifacts outside Git.
 
-`runs/v71_mmuav_existing_devval_triair_zero_shot_external_domain_validation/`
+## Forbidden Work
 
-Commit compact text/JSON/CSV evidence only, including:
-
-- `protocol.md`
-- `protocol.json`
-- `source_lock.json`
-- `devval_manifest_lock.json`
-- `exposure_and_claim_boundary.json`
-- `triair_checkpoint_manifest.json`
-- `triair_checkpoint_verification.json`
-- `triair_model_contract.json`
-- `mmuav_to_triair_adapter_spec.md`
-- `mmuav_to_triair_adapter_spec.json`
-- `adapter_source_lock.json`
-- `adapter_determinism_tests.json`
-- `class_ontology_mapping.json`
-- `zero_shot_evaluator_contract.json`
-- `smoke_test_summary.json`
-- `per_checkpoint_metrics.csv`
-- `per_checkpoint_metrics.json`
-- `paired_seed_comparison.csv`
-- `paired_seed_comparison.json`
-- `external_domain_validation_summary.md`
-- `memory_timing_summary.json`
-- `protected_file_audit.json`
-- `test_commands.txt`
-- `test_output.txt`
-- `final_decision.json`
-- `handoff.md`
-
-Keep raw MM-UAV media, annotations, full predictions, tensors, checkpoints, local paths, and heavy artifacts outside Git.
-
-## Tests
-
-Add focused V71 tests covering at minimum:
-
-- exact manifest row count/order/hash;
-- six-checkpoint identity and strict loading;
-- deterministic five-channel adapter output;
-- frozen ontology, thresholds, NMS, maximum detections, and evaluator settings;
-- no trainable or MM-UAV-trained adaptation path;
-- one evaluation attempt per checkpoint;
-- metric aggregation and paired-seed arithmetic;
-- claim-boundary text stating exposed external-domain validation, not independent blind test;
-- protected-file and private/heavy-artifact checks.
-
-Run the V71 focused tests before inference and after completion, plus protected regression tests referenced by the latest TriAir manuscript handoff.
-
-## Claim Boundary
-
-V71 may establish only how the six frozen TriAir manuscript checkpoints perform zero-shot on the previously exposed MM-UAV devval domain under one frozen conversion and evaluator.
-
-It may not establish:
-
-- independent or blind external validation;
-- performance on an official MM-UAV test set;
-- absence of development-set influence;
-- external generalization beyond this exposed MM-UAV devval split;
-- permission for public redistribution or manuscript reporting.
-
-Provider-source, official-version, and rights acquisition are not part of this active task. They must not delay the internal validation run.
+- MM-UAV training, fine-tuning, adaptation, calibration, pseudo-labeling, or threshold tuning;
+- additional adapter variants or alignment methods;
+- checkpoint/seed/variant additions;
+- result-driven preprocessing changes or reruns;
+- provider/source/version/rights investigation as part of V72;
+- manuscript edits before the metric run is complete and reviewed.
 
 ## Completion
 
-Update the four task/status/blocker/write-record files and the V71 run evidence. Commit the completed validation with exactly:
+Commit with exactly:
 
-`exp: run V71 MM-UAV existing-devval TriAir zero-shot external-domain validation`
+`exp: run V72 MM-UAV naive-grid external-domain stress test`
 
-Push to:
-
-`research/ra-repdet-triair`
-
-## Execution Result
-
-Executed: 2026-07-26
-
-Actual starting commit:
-
-`042a2228e8575518a23348225b323876179bbd75`
-
-Decision:
-
-`V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`
-
-The exact 1,845-row exposed MM-UAV devval manifest and all six frozen TriAir checkpoints passed their gates. V71 stopped before smoke inference at the parameter-free adapter gate because the frozen V52 evidence establishes no pixel alignment or executable provider raw-grid transform, while V53 explicitly forbids raw-channel concatenation and requires learned feature alignment. Learned alignment is prohibited in V71.
-
-No CUDA inference, predictions, AP/AR metrics, training, tuning, or result-driven reruns occurred.
-
-Commit message:
-
-`exp: run V71 MM-UAV existing-devval TriAir zero-shot external-domain validation`
+Push to `research/ra-repdet-triair`.
