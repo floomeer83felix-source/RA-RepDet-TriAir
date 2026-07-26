@@ -4,66 +4,54 @@ Updated: 2026-07-25
 
 ## Active task
 
-`V71_MMUAV_PROVIDER_SOURCE_RIGHTS_AND_OFFICIAL_TEST_ACQUISITION_AUTHORIZED`
+`V71_MMUAV_EXISTING_DEVVAL_TRIAIR_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_AUTHORIZED`
 
-## V70 completion evidence
+## Route correction
 
-V70 completed at commit `bd62068aa0f3ab046d8545c4eef69938b4e73c9b` with:
+The previously authorized provider-source, rights, and official-test acquisition task was superseded before execution at the user's direction. The project will now begin dataset validation immediately using the existing frozen MM-UAV devval split.
 
-`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
+This change does not convert the existing data into an independent blind test. The result will be reported as an exposed external-domain zero-shot validation only.
 
-The external-input gate found no newly supplied provider-defined official MM-UAV test split or wholly new independent provider flight/sequence package. The known provider root still contained only the previously audited `train` split.
+## Frozen evaluation target
 
-- external packages accepted: `0`;
-- candidate media opened: `false`;
-- candidate labels parsed: `false`;
-- predictions or metrics computed: `false`;
-- CUDA or training used: `false`;
-- V69 evidence unchanged: `true`;
-- V70 tests: `10 / 10` passed.
+- dataset manifest: existing frozen MM-UAV devval manifest from V65-V67;
+- row count: exactly `1,845`;
+- model source: six frozen TriAir manuscript checkpoints;
+- methods: matched Early Fusion and full reliability-aware RA-RepDet;
+- seeds: `0`, `1`, and `2` for each method;
+- input: deterministic parameter-free RGB/thermal/event-to-five-channel conversion;
+- resolution: `640 x 640`;
+- score threshold: `0.001`;
+- NMS: `0.6`;
+- maximum detections: `100`;
+- metrics: AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, AR@100.
 
-V70 stopped before independence auditing, blind-manifest freezing, label sealing, six-checkpoint verification, adapter/evaluator freezing, or candidate schema access.
+## Execution boundary
 
-## Frozen local-data conclusion
+V71 will:
 
-The local MM-UAV inventory remains ineligible for an independent external test:
+- verify and strictly load all six frozen TriAir checkpoints;
+- freeze and test the deterministic five-channel adapter;
+- run one no-metric finite-output smoke pass;
+- evaluate each checkpoint exactly once over all 1,845 rows;
+- produce per-checkpoint metrics and seed-matched `RA-RepDet - Early Fusion` comparisons;
+- report mean, sample standard deviation, minimum, and maximum across the three seeds;
+- commit compact metrics, hashes, tests, and summaries only.
 
-- `897,578` synchronized provider-train triplets;
-- `424 / 424` sequences linked to V52-V67 development;
-- blind-eligible local sequences/rows: `0 / 0`.
+V71 will not:
 
-The existing 7,187/1,845 train/devval material and all remaining frames from those linked sequences may not be renamed, randomly resplit, or reused as an independent test set.
+- train or fine-tune on MM-UAV;
+- use MM-UAV-trained V57/V63/V65-V67 checkpoints;
+- adapt, calibrate, tune thresholds, select checkpoints, add seeds, or rerun based on results;
+- describe the result as an independent blind external test;
+- place raw data, annotations, full predictions, checkpoints, local paths, or heavy/private artifacts in Git.
 
-## Active V71 work
+## Prior audit context
 
-V71 directly addresses the external-input and V68 documentation blockers. It will:
-
-- reconstruct the authoritative MM-UAV provider, paper, project, release, version, and split chain;
-- determine whether an official test split, hidden-label evaluation route, or wholly new provider sequence route exists;
-- verify canonical citation, license/access terms, research-use permission, aggregate-results reporting permission, and redistribution restrictions;
-- acquire and cryptographically seal an openly available authorized official test archive outside Git, without opening media or labels; or
-- prepare a reviewable provider access request and submission checklist when approval or registration is required;
-- reject unofficial, ambiguous, renamed, or unverifiable packages;
-- run no model inference, training, adaptation, prediction, or metric computation.
-
-## Scientific boundary
-
-The intended path remains:
-
-`TriAir-trained frozen checkpoints -> provider-authorized untouched MM-UAV partition -> blind protocol freeze -> later one-time zero-shot evaluation`
-
-V71 does not authorize V70/V72 blind intake unless an authoritative package is acquired or a provider response supplies the required package and metadata.
-
-## Rights boundary
-
-Manuscript/public reporting remains false unless provider-verifiable records establish provider authority, canonical citation, exact version/split identity, license/access terms, research use, aggregate-results reporting permission, and redistribution restrictions.
+V69 established that all `424` locally available provider-train sequences are linked to prior development, and V70 found no newly supplied official test package. Those findings remain true but no longer block this explicitly non-blind external-domain validation.
 
 ## Intended completion
 
-Preferred completion:
+`V71_MMUAV_EXISTING_DEVVAL_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_COMPLETE`
 
-`V71_MMUAV_OFFICIAL_TEST_PACKAGE_ACQUIRED_AND_SEALED`
-
-When direct acquisition is not possible but the official request route is documented and a complete request package is prepared:
-
-`V71_MMUAV_ACCESS_REQUEST_READY_PROVIDER_RESPONSE_REQUIRED`
+Completion requires six valid full-devval metric records, a matched three-seed comparison, passing focused tests, and an explicit claim boundary that the split was previously exposed.
