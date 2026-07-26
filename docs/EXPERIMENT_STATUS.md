@@ -4,7 +4,7 @@ Updated: 2026-07-26
 
 ## Active task
 
-`V73_TRIAIR_MANUSCRIPT_MMUAV_EXTERNAL_STRESS_TEST_INTEGRATION_AUTHORIZED`
+`V73_MMUAV_TRIAIR_INITIALIZED_ALIGNMENT_AWARE_TRANSFER_BENCHMARK_AUTHORIZED`
 
 ## V72 completion evidence
 
@@ -12,75 +12,78 @@ V72 completed at commit `121d444e4885445e42f0755f7413c579e4ccf66e` with:
 
 `V72_MMUAV_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_COMPLETE`
 
-The completed experiment was:
+The six frozen TriAir checkpoints were evaluated exactly once on all `1,845` exposed MM-UAV devval rows under one naive unregistered five-channel adapter. All predictions and metric inputs were finite, but AP was effectively zero:
 
-`zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter`
+- Early Fusion mean AP@[.50:.95]: `9.48024496878457e-9`;
+- RA-RepDet mean AP@[.50:.95]: `7.208000851646425e-7`;
+- paired mean difference: `7.11319840195858e-7`.
 
-Execution facts:
+V72 remains frozen as the unadapted zero-shot external-domain stress-test baseline. It is not an independent or physically registered external validation.
 
-- fixed smoke pass: `1 / 1` complete;
-- full checkpoint evaluations: `6 / 6` complete;
-- rows per checkpoint: `1,845`;
-- sequences: `85`;
-- ground-truth boxes: `4,198`;
-- attempts per checkpoint: exactly `1`;
-- predictions per checkpoint: `184,500`;
-- finite/valid predictions: all;
-- total checkpoint inference time: `349.60` seconds;
-- maximum peak GPU memory: `818.44` MiB;
-- focused and V52/V53 regression tests: `28 / 28` passed;
-- training, adaptation, calibration, tuning, checkpoint substitution, and result-driven reruns: none.
+## Superseded task
 
-| Method | Seed | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Early Fusion | 0 | `1.7089382511905107e-8` | `8.544691255952553e-8` | `0` | `0` | `0` | `4.764173415912339e-5` |
-| Early Fusion | 1 | `1.1351352394448599e-8` | `1.1351352394448599e-7` | `0` | `0` | `0` | `2.3820867079561694e-5` |
-| Early Fusion | 2 | `0` | `0` | `0` | `0` | `0` | `0` |
-| RA-RepDet | 0 | `8.672098945411591e-8` | `5.150327766859084e-7` | `0` | `0` | `0` | `1.9056693663649358e-4` |
-| RA-RepDet | 1 | `2.0756792660398117e-6` | `1.0378396330199058e-5` | `0` | `4.764173415912339e-5` | `4.764173415912339e-5` | `1.1910433539780849e-4` |
-| RA-RepDet | 2 | `0` | `0` | `0` | `0` | `0` | `0` |
+The manuscript-only task:
 
-Three-seed AP@[.50:.95] summary:
+`V73_TRIAIR_MANUSCRIPT_MMUAV_EXTERNAL_STRESS_TEST_INTEGRATION_AUTHORIZED`
 
-- Early Fusion mean: `9.48024496878457e-9`;
-- Early Fusion sample standard deviation: `8.69698401219258e-9`;
-- RA-RepDet mean: `7.208000851646425e-7`;
-- RA-RepDet sample standard deviation: `1.174160691123537e-6`;
-- paired `RA-RepDet - Early Fusion` mean: `7.11319840195858e-7`;
-- paired sample standard deviation: `1.172256488694345e-6`.
+was superseded before execution after the user authorized retraining to obtain a useful supervised target-domain transfer result.
 
-The values are near zero. They must not be presented as meaningful robustness, superiority, or successful external generalization.
+## Active V73 benchmark
 
-## Active V73 work
+V73 will run a unified `640 x 640` learned-feature-alignment benchmark using the frozen MM-UAV train/devval manifests.
 
-V73 will immediately integrate the completed V72 experiment into the TriAir research manuscript as an appendix-level negative external-domain stress test.
+Exactly nine runs are authorized:
 
-Required changes:
+- `scratch_equal`, seeds `0`, `1`, `2`;
+- `triair_init_equal`, seeds `0`, `1`, `2`;
+- `triair_init_reliability`, seeds `0`, `1`, `2`.
 
-- add the exact six-checkpoint AP/AR table;
-- add protocol and aggregate-statistics text;
-- state that the split was previously exposed and was not blind;
-- state that the adapter independently normalized modality grids without physical registration;
-- explain that direct cross-sensor transfer failed under this adapter;
-- add one concise main discussion/limitations reference to the appendix;
-- keep the result out of the abstract, headline contributions, primary TriAir table, and positive conclusion claims;
-- trace every inserted number to committed V72 JSON;
-- compile and inspect the manuscript.
+The architecture uses independent RGB/IR/event stems, learned feature alignment, Softplus bbox-distance output, and either equal or reliability-aware fusion. No raw five-channel concatenation is used.
 
-No new experiment, inference, training, adapter search, threshold change, seed addition, or metric recomputation is authorized.
+Each run uses:
+
+- MM-UAV train rows: `7,187`;
+- exactly `10` epochs;
+- exactly `71,870` optimizer steps;
+- batch size `1`;
+- AdamW, initial LR `1e-4`, weight decay `1e-4`;
+- `500`-step warmup and cosine decay to `1e-6`;
+- AMP disabled;
+- no augmentation, early stopping, devval monitoring, tuning, or checkpoint selection;
+- final checkpoint evaluated exactly once on all `1,845` devval rows.
+
+Total planned optimizer steps across nine runs: `646,830`.
+
+## Transfer contract
+
+For `triair_init_equal`, seed-matched frozen TriAir Early Fusion checkpoints initialize exact compatible shared backbone/FPN/FCOS tensors.
+
+For `triair_init_reliability`, seed-matched frozen TriAir RA-RepDet `p=0.15` checkpoints initialize exact compatible shared tensors.
+
+MM-UAV-specific modality stems, alignment modules, fusion projections, and unmatched parameters use the same frozen seed-specific initialization as the scratch control. All transferred and skipped tensors must be recorded exactly; tensor repair, averaging, reshaping, or seed substitution is forbidden.
+
+## Required comparisons
+
+For every seed and metric V73 will report:
+
+1. `triair_init_equal - scratch_equal`;
+2. `triair_init_reliability - triair_init_equal`;
+3. `triair_init_reliability - scratch_equal`.
+
+All nine run metrics, three-seed means, sample standard deviations, minima, maxima, ranges, transfer coverage, and reliability-weight diagnostics are required.
 
 ## Scientific boundary
 
-Allowed conclusion:
+The output is a:
 
-> Frozen TriAir models did not transfer meaningfully to the exposed MM-UAV devval domain under the naive normalized-grid adapter, indicating that cross-sensor geometry and acquisition mismatch dominate direct channel-level transfer.
+`MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment`
 
-Forbidden conclusions include independent external validation, official MM-UAV test performance, physically registered validation, robust cross-dataset generalization, or meaningful RA-RepDet superiority from the tiny paired differences.
+It is not zero-shot or independent external validation because MM-UAV train labels are used and the devval set was previously exposed during engineering. V65-V67 remain pilot evidence only and may not be numerically mixed with V73 because their protocol differs.
 
 ## Intended completion
 
-`V73_TRIAIR_MANUSCRIPT_MMUAV_STRESS_TEST_INTEGRATED`
+`V73_MMUAV_THREE_SEED_TRANSFER_BENCHMARK_COMPLETE`
 
 Required completion commit:
 
-`docs: integrate V72 MM-UAV external-domain stress test into manuscript`
+`exp: run V73 MM-UAV TriAir-initialized alignment-aware transfer benchmark`
