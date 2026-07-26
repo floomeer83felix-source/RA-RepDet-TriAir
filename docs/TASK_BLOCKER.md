@@ -1,67 +1,58 @@
 # Task Blocker
 
-Status: `V71_PROVIDER_SOURCE_AND_TEST_ACCESS_AUDIT_AUTHORIZED`
+Status: `V71_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_AUTHORIZED`
 
 Generated: 2026-07-25
 
 ## Current state
 
-V70 completed with:
+There is no provider-source or official-test acquisition gate for the active task. V71 may begin immediately with local checkpoint, adapter, manifest, and evaluator preflight, followed by the authorized six-checkpoint evaluation.
 
-`V70_BLOCKED_EXTERNAL_TEST_MATERIAL_NOT_SUPPLIED`
+The existing MM-UAV devval split is previously exposed and therefore is not an independent blind test. This is a required reporting limitation, not a blocker for the authorized external-domain validation.
 
-No official provider-defined MM-UAV test package or wholly new independent provider sequence package was available at execution time. The known local root contains only the previously audited provider `train` split, and every local sequence is linked to V52-V67 development.
+## Required start conditions
 
-This is an external data/source-access blocker, not a runtime failure.
+Before model inference, verify:
 
-## Active repair task
+1. the worktree is clean and the current task commit is present;
+2. the exact frozen 1,845-row MM-UAV devval manifest, row order, modality pairing, annotations, and evaluator are available;
+3. the six authoritative frozen TriAir checkpoints can be located, hashed, and strictly loaded;
+4. a deterministic parameter-free five-channel adapter can be frozen at `640 x 640`;
+5. vehicle ontology, score threshold `0.001`, NMS `0.6`, maximum `100` detections, and COCO AP/AR semantics are fixed;
+6. protected files and historical evidence match their frozen fingerprints.
 
-V71 is authorized to resolve the blocker at its source rather than rerunning intake against unchanged local data. It may:
+## Authorized work
 
-- identify the authoritative provider, original paper, project page, institutional release, repository, data portal, and maintainers;
-- verify exact version, release date, package names, split structure, and official test/evaluation routes;
-- preserve canonical citation, license/access terms, research-use permission, aggregate-reporting permission, and redistribution restrictions;
-- acquire an openly available authorized official test archive outside Git and record filename, byte count, SHA256, source, and version without opening media or labels;
-- prepare a reviewable provider access request and submission checklist when registration, approval, credentials, hidden-label evaluation, or new-sequence access is required;
-- reject unofficial mirrors, renamed local data, unverifiable archives, and ambiguous split claims.
+V71 may:
 
-## Required evidence
+- use the existing frozen 1,845-row MM-UAV devval manifest;
+- parse its annotations for the final frozen metric computation;
+- run a fixed no-metric smoke pass;
+- run each of six frozen TriAir checkpoints exactly once on the full devval set;
+- compute AP, AP50, AP75, AR@1, AR@10, and AR@100;
+- compute matched seed-wise RA-RepDet minus Early Fusion differences and descriptive three-seed summaries;
+- commit compact hashes, contracts, metrics, tests, and conclusions.
 
-A package or request route is acceptable only when the record identifies:
+V71 may not:
 
-1. provider or release authority;
-2. canonical dataset/paper citation;
-3. exact version or release identifier;
-4. official test split, evaluation-server route, or wholly new sequence route;
-5. source/download/application path;
-6. archive/package filename, byte count, and SHA256 when acquired;
-7. sequence/component identity metadata sufficient for later comparison with the frozen V69 ledger;
-8. license/access and research-use terms;
-9. aggregate-results reporting permission or the exact unresolved question;
-10. redistribution restrictions.
-
-A code license, arXiv license, mirror, renamed folder, local possession, or random resplit is not sufficient.
-
-## V71 may not
-
-- rerun V70 against the unchanged provider-train root;
-- reuse or randomly resplit any of the existing `424` sequences;
-- open candidate media or parse annotations;
-- visualize samples or compute class/box/difficulty statistics;
-- run model inference, predictions, AP/AR, CUDA, training, fine-tuning, adaptation, calibration, checkpoint selection, or threshold tuning;
-- send provider communications automatically;
-- place raw archives, data, labels, credentials, private correspondence, checkpoints, or heavy artifacts in Git;
-- add MM-UAV claims to the manuscript before rights and reporting evidence passes re-audit.
+- call the dataset an independent or blind external test;
+- train, fine-tune, adapt, calibrate, pseudo-label, or optimize on MM-UAV;
+- use MM-UAV-trained V57/V63/V65-V67 weights, learned MM-UAV alignment, or the MM-UAV Softplus wrapper;
+- tune preprocessing, ontology, thresholds, NMS, checkpoints, seeds, or variants using V71 results;
+- rerun a checkpoint because its metric is poor;
+- place raw media, labels, full predictions, tensors, checkpoints, local paths, or heavy/private artifacts in Git.
 
 ## Fail-closed conditions
 
-Finish with the matching V71 state when:
+Stop with the matching V71 blocked state if:
 
-1. no authoritative provider-defined test or new-sequence route exists;
-2. provider identity, version, split, citation, or rights remain unresolved;
-3. a candidate package is unofficial, ambiguous, unauthorized, or unverifiable;
-4. private/heavy artifacts or protected files are affected.
+- any frozen TriAir checkpoint or model contract cannot be verified;
+- the 1,845-row manifest or evaluator differs from frozen evidence;
+- the five-channel adapter or ontology requires learned or result-informed choices;
+- inference, decoded boxes, predictions, or metric inputs become non-finite;
+- OOM, unreadable modalities, coordinate mismatch, evaluator mismatch, protected-file drift, or private/heavy Git artifacts occur;
+- any unauthorized tuning, checkpoint substitution, seed addition, variant addition, or result-driven rerun is attempted.
 
 ## Next action
 
-Execute V71 exactly as specified in `docs/NEXT_TASK.md`. Search and preserve authoritative source records, acquire and seal an authorized official package when directly available, or create a complete provider request package for user review when external approval is required. Do not open candidate content or run models.
+Execute `docs/NEXT_TASK.md` immediately. Complete CPU/source-lock and checkpoint/adapter/evaluator preflight, then run the six full 1,845-row evaluations under the frozen protocol.
