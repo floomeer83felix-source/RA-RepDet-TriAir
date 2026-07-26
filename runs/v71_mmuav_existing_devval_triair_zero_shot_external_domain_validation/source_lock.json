@@ -1,0 +1,18 @@
+{
+  "clean_execution_worktree_at_start": true,
+  "source_hashes": {
+    "datasets/mmuav_feature_alignment_dataset.py": "521978cea211f2879c478e1bb33d52cc423d305243c58b435948834c455a3e1d",
+    "rarepdet/coco_metrics.py": "7d59ae82f07a399bb464362ab3e5e42096847eba761953555315c271dbd397e1",
+    "rarepdet/models/early_fusion_fcos.py": "5ab2e0936d39cb7a598311085ccfaf26b21581dc5fb44cba97ce698c74901cf8",
+    "rarepdet/models/repvit_fpn_backbone.py": "856c61b35235e9eda3751d1e82c99727568856609b1c90c3c43d0166b2b2fbe3",
+    "rarepdet/tools/run_v71_mmuav_existing_devval_zero_shot.py": "3aff75b578de1265edee02c696c1b91a5c623108f3120476b6f38a1c61641d24",
+    "runs/v52_mmuav_audit/alignment_source_audit.json": "a38f02e90c745be100cfd7e868d63d768991b4b6d00bcdd3185e22df78f381e7",
+    "runs/v52_mmuav_audit/official_alignment_verification.json": "678d771a59f9420bc5cdeb8990d558d72c5983c1c71603403e9a077d0b9dabfa",
+    "runs/v52_mmuav_audit/synchronization_audit.json": "f90f015746a91bc1925a7ff1717b3c867e8d37c29cfb9430828b61d2936dd320",
+    "runs/v53_mmuav_feature_alignment_preflight/alignment_design.json": "0df6e0567fe2da0125b355e3f63b0b8b3b1277889967ff8d11424176cd721f69",
+    "runs/v53_mmuav_feature_alignment_preflight/method_contract.json": "fa44628c14e3855d5bb9ab0408fa6550ae35974dac599ec7d89e90319108d829",
+    "tests/test_v71_mmuav_existing_devval_zero_shot.py": "6a91dcc1bd7e2bec0b8e29bcf4f4d4ff771aedc2fd916705da3fdb7dfb10f519"
+  },
+  "starting_commit": "042a2228e8575518a23348225b323876179bbd75",
+  "v70_completion_is_ancestor": true
+}

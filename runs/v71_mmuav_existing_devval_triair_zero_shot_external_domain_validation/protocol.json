@@ -1,0 +1,26 @@
+{
+  "checkpoint_count": 6,
+  "dataset_rows": 1845,
+  "frozen_inference": {
+    "input_size": [
+      640,
+      640
+    ],
+    "maximum_detections": 100,
+    "nms_threshold": 0.6,
+    "score_threshold": 0.001,
+    "test_time_augmentation": false
+  },
+  "gate_order": [
+    "source",
+    "manifest",
+    "checkpoints",
+    "adapter",
+    "smoke",
+    "evaluation"
+  ],
+  "starting_commit": "042a2228e8575518a23348225b323876179bbd75",
+  "stopped_at": "adapter",
+  "task": "V71_MMUAV_EXISTING_DEVVAL_TRIAIR_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION",
+  "training_or_tuning": false
+}

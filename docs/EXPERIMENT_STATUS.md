@@ -1,10 +1,30 @@
 # Experiment Status
 
-Updated: 2026-07-25
+Updated: 2026-07-26
 
 ## Active task
 
-`V71_MMUAV_EXISTING_DEVVAL_TRIAIR_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_AUTHORIZED`
+`V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`
+
+## V71 completion evidence
+
+V71 completed its ordered CPU preflight and stopped fail-closed at the adapter gate:
+
+`V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`
+
+- starting commit: `042a2228e8575518a23348225b323876179bbd75`;
+- clean linked execution worktree: verified;
+- frozen devval manifest: `1,845` rows, `85` sequences, SHA256 `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
+- row-order SHA256: `dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867`;
+- modality presence: RGB/IR/event/RGB annotation `1,845 / 1,845 / 1,845 / 1,845`;
+- six authoritative TriAir checkpoints: frozen hashes matched and `6 / 6` strictly loaded on CPU;
+- parameter-free five-channel adapter: not frozen;
+- smoke passes / GPU evaluations / metric computations: `0 / 0 / 0`;
+- training, fine-tuning, adaptation, calibration, or tuning: none;
+- V71 focused tests: `10 / 10` passed;
+- V52/V53 regression tests: `18 / 18` passed.
+
+The blocker is scientific: V52 establishes filename-index temporal synchronization but not pixel alignment. Native RGB, IR, and event grids differ, and no complete provider-issued raw-grid transform or calibration recipe exists. V53 explicitly forbids raw-channel concatenation and requires independent branches with learned feature alignment, while V71 forbids learned alignment. Independent letterboxing therefore cannot defensibly create the five pixel-aligned channels expected by the frozen TriAir models.
 
 ## Route correction
 
@@ -55,3 +75,5 @@ V69 established that all `424` locally available provider-train sequences are li
 `V71_MMUAV_EXISTING_DEVVAL_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_COMPLETE`
 
 Completion requires six valid full-devval metric records, a matched three-seed comparison, passing focused tests, and an explicit claim boundary that the split was previously exposed.
+
+That completion state was not reached. No AP/AR value was produced.

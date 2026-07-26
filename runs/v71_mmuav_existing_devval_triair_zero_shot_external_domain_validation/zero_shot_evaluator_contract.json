@@ -1,0 +1,17 @@
+{
+  "evaluation_attempts": 0,
+  "frozen_requested_settings": {
+    "maximum_detections": 100,
+    "metrics": [
+      "AP50_95",
+      "AP50",
+      "AP75",
+      "AR1",
+      "AR10",
+      "AR100"
+    ],
+    "nms_threshold": 0.6,
+    "score_threshold": 0.001
+  },
+  "status": "NOT_ACTIVATED_UPSTREAM_ADAPTER_BLOCKED"
+}

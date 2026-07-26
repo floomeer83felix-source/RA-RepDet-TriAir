@@ -1,0 +1,13 @@
+{
+  "adapter_gate": "BLOCKED",
+  "checkpoint_gate": "PASS_6_OF_6",
+  "decision": "V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT",
+  "evaluation_attempts": 0,
+  "generated_at_utc": "2026-07-26T02:40:35.978119+00:00",
+  "gpu_used": false,
+  "manifest_gate": "PASS",
+  "metrics_computed": false,
+  "reason": "V52 proves only filename-index temporal synchronization. Native modality dimensions differ, pixel alignment is not established, and no complete provider raw-grid transform or calibration recipe exists. Independent letterboxing would place unrelated coordinates into the same pixels. V53 explicitly forbids raw-channel concatenation and uses independent branches with learned feature alignment, which V71 forbids.",
+  "smoke_runs": 0,
+  "training_fine_tuning_adaptation_or_tuning": false
+}

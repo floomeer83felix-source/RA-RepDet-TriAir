@@ -1,0 +1,7 @@
+python -m unittest discover -s tests -p test_v71_mmuav_existing_devval_zero_shot.py -v
+python rarepdet/tools/run_v71_mmuav_existing_devval_zero_shot.py --checkpoint-repo <private-repo-root>
+python -m unittest discover -s tests -p test_v71_mmuav_existing_devval_zero_shot.py -v
+python -m unittest discover -s tests -p test_v52_mmuav.py -v
+python -m unittest discover -s tests -p test_v53_mmuav_feature_alignment.py -v
+python -m unittest discover -s tests -p test_v69_mmuav_zero_shot_preflight.py -v
+git diff --name-only <starting-commit> -- <protected-core-and-v52-v70-paths>

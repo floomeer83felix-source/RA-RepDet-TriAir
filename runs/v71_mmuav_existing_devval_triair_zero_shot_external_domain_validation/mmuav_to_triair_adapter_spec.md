@@ -1,0 +1,5 @@
+# Adapter Decision
+
+`BLOCKED_NO_DEFENSIBLE_PARAMETER_FREE_SPATIAL_REGISTRATION`
+
+V52 proves only filename-index temporal synchronization. Native modality dimensions differ, pixel alignment is not established, and no complete provider raw-grid transform or calibration recipe exists. Independent letterboxing would place unrelated coordinates into the same pixels. V53 explicitly forbids raw-channel concatenation and uses independent branches with learned feature alignment, which V71 forbids.

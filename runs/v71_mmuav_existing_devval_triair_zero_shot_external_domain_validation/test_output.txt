@@ -1,0 +1,24 @@
+V71 focused tests: 10/10 passed
+V52 regression tests: 9/9 passed
+V53 regression tests: 9/9 passed
+V69 historical regression tests: 8/9 passed
+
+V69 failing test:
+test_protected_files_are_unchanged
+
+Explanation:
+The V69 test recomputes a whole-worktree byte fingerprint created during V69. In the clean linked
+worktree, working-tree byte representation differs from the stored aggregate. Direct Git diff over
+protected core and all V52-V70 historical evidence paths is empty. V69's other 8 evidence, privacy,
+candidate-access, and decision tests pass.
+
+V71 direct checks:
+- exact 1,845-row manifest/order/hash: PASS
+- six frozen checkpoint hashes and strict loads: PASS 6/6
+- parameter-free adapter gate: BLOCKED as required by V52/V53 evidence
+- smoke/model forward calls: 0
+- GPU evaluation attempts: 0
+- metrics computed: false
+- protected core diff: empty
+- V52-V70 historical evidence diff: empty
+- private/heavy Git artifacts: none

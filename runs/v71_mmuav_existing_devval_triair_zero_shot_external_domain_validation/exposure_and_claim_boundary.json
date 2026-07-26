@@ -1,0 +1,8 @@
+{
+  "blind_external_test": false,
+  "independent_external_validation": false,
+  "label": "zero-shot external-domain validation on the existing exposed MM-UAV devval split",
+  "official_test_performance": false,
+  "previously_exposed": true,
+  "public_or_manuscript_reporting_authorized": false
+}

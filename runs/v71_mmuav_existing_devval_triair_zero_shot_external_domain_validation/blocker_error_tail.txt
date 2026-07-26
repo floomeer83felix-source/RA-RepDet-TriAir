@@ -1,0 +1,26 @@
+Corrected implementation-only preflight errors:
+
+ModuleNotFoundError: No module named 'rarepdet'
+Fix: add repository root to sys.path before local imports.
+
+RuntimeError: self.dim() cannot be 0 to view Long as Byte (different element sizes)
+Fix: flatten scalar state tensors before byte fingerprinting.
+
+Historical regression failure:
+
+FAIL: test_protected_files_are_unchanged
+AssertionError: current whole-worktree byte fingerprint differs from V69 stored baseline.
+
+Interpretation:
+The linked worktree byte representation makes V69's recomputed whole-worktree aggregate stale.
+Direct Git diff over protected core and V52-V70 evidence paths is empty.
+
+Scientific blocker:
+
+V52: deterministic_raw_grid_transform_found=false
+V52: pixel_alignment_established=false
+V52: native_dimensions_differ=true
+V53: raw_channel_concatenation=false
+V71: learned feature alignment forbidden
+
+Therefore no defensible parameter-free five-channel adapter can be frozen.

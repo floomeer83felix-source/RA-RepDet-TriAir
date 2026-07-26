@@ -1,0 +1,9 @@
+{
+  "frozen_evidence": {
+    "v52_alignment_source_audit": "a38f02e90c745be100cfd7e868d63d768991b4b6d00bcdd3185e22df78f381e7",
+    "v52_official_alignment_verification": "678d771a59f9420bc5cdeb8990d558d72c5983c1c71603403e9a077d0b9dabfa",
+    "v52_synchronization_audit": "f90f015746a91bc1925a7ff1717b3c867e8d37c29cfb9430828b61d2936dd320",
+    "v53_method_contract": "fa44628c14e3855d5bb9ab0408fa6550ae35974dac599ec7d89e90319108d829"
+  },
+  "status": "NO_ADAPTER_IMPLEMENTED"
+}

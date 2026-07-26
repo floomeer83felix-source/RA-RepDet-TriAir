@@ -1,0 +1,8 @@
+{
+  "historical_regression_note": "V69 whole-worktree byte fingerprint is stale in a linked worktree; direct Git diff for V52-V70 historical paths is empty.",
+  "cuda_training_or_inference": false,
+  "historical_v52_v70_diff_empty": true,
+  "protected_core_diff_empty": true,
+  "raw_private_or_heavy_git_artifacts": false,
+  "starting_commit": "042a2228e8575518a23348225b323876179bbd75"
+}

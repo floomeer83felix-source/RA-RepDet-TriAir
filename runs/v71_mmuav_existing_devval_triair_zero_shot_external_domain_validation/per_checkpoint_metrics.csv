@@ -1,0 +1,1 @@
+method,seed,ap50_95,ap50,ap75,ar1,ar10,ar100,prediction_count,images_with_predictions,images_without_predictions,valid_decoded_boxes,wall_clock_seconds,peak_memory_mib

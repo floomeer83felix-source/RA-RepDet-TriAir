@@ -234,3 +234,23 @@ Update the four task/status/blocker/write-record files and the V71 run evidence.
 Push to:
 
 `research/ra-repdet-triair`
+
+## Execution Result
+
+Executed: 2026-07-26
+
+Actual starting commit:
+
+`042a2228e8575518a23348225b323876179bbd75`
+
+Decision:
+
+`V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`
+
+The exact 1,845-row exposed MM-UAV devval manifest and all six frozen TriAir checkpoints passed their gates. V71 stopped before smoke inference at the parameter-free adapter gate because the frozen V52 evidence establishes no pixel alignment or executable provider raw-grid transform, while V53 explicitly forbids raw-channel concatenation and requires learned feature alignment. Learned alignment is prohibited in V71.
+
+No CUDA inference, predictions, AP/AR metrics, training, tuning, or result-driven reruns occurred.
+
+Commit message:
+
+`exp: run V71 MM-UAV existing-devval TriAir zero-shot external-domain validation`

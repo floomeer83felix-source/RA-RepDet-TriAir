@@ -58,3 +58,17 @@ Required completion commit message:
 Push to:
 
 `research/ra-repdet-triair`
+
+## V71 execution result
+
+Executed: 2026-07-26
+
+Decision:
+
+`V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`
+
+The frozen 1,845-row devval manifest passed identity, order, modality-presence, and annotation-hash checks. The six authoritative TriAir Early Fusion and reliability-aware checkpoints matched their frozen hashes and strictly loaded on CPU.
+
+V71 stopped before smoke inference because V52 proves temporal synchronization but not pixel alignment and provides no executable deterministic raw-grid transform. V53 forbids raw-channel concatenation and uses learned feature alignment, which V71 explicitly forbids. No defensible parameter-free five-channel adapter was implemented.
+
+GPU evaluations, predictions, AP/AR metrics, training, adaptation, tuning, and reruns: `0`.

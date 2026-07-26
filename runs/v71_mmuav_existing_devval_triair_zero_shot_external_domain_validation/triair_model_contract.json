@@ -1,0 +1,19 @@
+{
+  "input_channels": [
+    "rgb_r",
+    "rgb_g",
+    "rgb_b",
+    "thermal",
+    "event"
+  ],
+  "input_size": [
+    640,
+    640
+  ],
+  "model_types": [
+    "early",
+    "reliability"
+  ],
+  "production_source_modified": false,
+  "status": "VERIFIED"
+}
