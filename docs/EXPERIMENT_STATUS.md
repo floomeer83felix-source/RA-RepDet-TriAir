@@ -4,90 +4,83 @@ Updated: 2026-07-26
 
 ## Active task
 
-`V72_MMUAV_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_COMPLETE`
+`V73_TRIAIR_MANUSCRIPT_MMUAV_EXTERNAL_STRESS_TEST_INTEGRATION_AUTHORIZED`
 
 ## V72 completion evidence
 
-V72 completed the authorized:
-
-`zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter`
-
-The adapter reused V53 decoding and independently letterboxed RGB, IR, and event to `640 x 640`, then concatenated RGB + IR grayscale + event grayscale. It does not establish physical cross-modal registration.
-
-- fixed 8-row smoke pass: `1 / 1` passed without metrics;
-- full evaluations: `6 / 6` complete;
-- rows per checkpoint: `1,845`;
-- attempts per checkpoint: exactly `1`;
-- predictions per checkpoint: `184,500`, all finite and valid;
-- ground-truth boxes: `4,198`;
-- total checkpoint inference time: `349.60` seconds;
-- maximum peak GPU memory: `818.44` MiB;
-- V72 focused tests: `10 / 10` passed;
-- V52/V53 regressions: `18 / 18` passed;
-- protected core and V52-V71 evidence: unchanged.
-
-| Method | Seed | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Early Fusion | 0 | 1.70894e-8 | 8.54469e-8 | 0 | 0 | 0 | 4.76417e-5 |
-| Early Fusion | 1 | 1.13514e-8 | 1.13514e-7 | 0 | 0 | 0 | 2.38209e-5 |
-| Early Fusion | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
-| RA-RepDet | 0 | 8.67210e-8 | 5.15033e-7 | 0 | 0 | 0 | 1.90567e-4 |
-| RA-RepDet | 1 | 2.07568e-6 | 1.03784e-5 | 0 | 4.76417e-5 | 4.76417e-5 | 1.19104e-4 |
-| RA-RepDet | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
-
-Mean AP@[.50:.95] across three seeds was `9.48024e-9` for Early Fusion and `7.20800e-7` for RA-RepDet. The mean paired `RA-RepDet - Early Fusion` difference was `7.11320e-7`. These near-zero values are descriptive stress-test results under the naive unregistered-grid assumption, not evidence of physically registered external validation.
-
-## V71 completion evidence
-
-V71 completed at commit `bfca2e21ca7a46a5087b3addfcac7dab9d7e1618` with:
-
-`V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`
-
-V71 verified:
-
-- frozen MM-UAV devval: `1,845` rows across `85` sequences;
-- manifest SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
-- row-order SHA256: `dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867`;
-- modality/annotation presence: `1,845 / 1,845 / 1,845 / 1,845`;
-- six frozen TriAir checkpoints: hashes matched and `6 / 6` strictly loaded on CPU;
-- focused tests: `10 / 10` passed;
-- V52/V53 regression tests: `18 / 18` passed.
-
-No smoke inference, GPU evaluation, predictions, or AP/AR were produced because physical RGB/IR/event registration could not be established.
-
-## Active V72 experiment
-
-At the user's direction, provider/source/version/rights and calibration acquisition work will not delay the experiment. V72 freezes one naive normalized-grid adapter:
-
-- reuse V53 per-modality decoding and independent letterbox;
-- independently map RGB, IR, and event to `640 x 640`;
-- concatenate RGB + IR grayscale + event grayscale into five channels;
-- use RGB annotation geometry for boxes;
-- use no physical registration, learned alignment, adaptation, calibration, or fitting.
-
-V72 will run:
-
-- Early Fusion seeds `0`, `1`, `2`;
-- RA-RepDet `p=0.15` seeds `0`, `1`, `2`;
-- exactly `1,845` rows per checkpoint;
-- AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, AR@100;
-- seed-matched `RA-RepDet - Early Fusion` comparisons;
-- descriptive mean, sample standard deviation, minimum, and maximum.
-
-## Claim boundary
-
-The result is a:
-
-`zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter`
-
-It is not an independent/blind external test and does not establish physical multimodal registration. Physical-registration uncertainty is an explicit limitation rather than a V72 blocker.
-
-## Intended completion
+V72 completed at commit `121d444e4885445e42f0755f7413c579e4ccf66e` with:
 
 `V72_MMUAV_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_COMPLETE`
 
+The completed experiment was:
+
+`zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter`
+
+Execution facts:
+
+- fixed smoke pass: `1 / 1` complete;
+- full checkpoint evaluations: `6 / 6` complete;
+- rows per checkpoint: `1,845`;
+- sequences: `85`;
+- ground-truth boxes: `4,198`;
+- attempts per checkpoint: exactly `1`;
+- predictions per checkpoint: `184,500`;
+- finite/valid predictions: all;
+- total checkpoint inference time: `349.60` seconds;
+- maximum peak GPU memory: `818.44` MiB;
+- focused and V52/V53 regression tests: `28 / 28` passed;
+- training, adaptation, calibration, tuning, checkpoint substitution, and result-driven reruns: none.
+
+| Method | Seed | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Early Fusion | 0 | `1.7089382511905107e-8` | `8.544691255952553e-8` | `0` | `0` | `0` | `4.764173415912339e-5` |
+| Early Fusion | 1 | `1.1351352394448599e-8` | `1.1351352394448599e-7` | `0` | `0` | `0` | `2.3820867079561694e-5` |
+| Early Fusion | 2 | `0` | `0` | `0` | `0` | `0` | `0` |
+| RA-RepDet | 0 | `8.672098945411591e-8` | `5.150327766859084e-7` | `0` | `0` | `0` | `1.9056693663649358e-4` |
+| RA-RepDet | 1 | `2.0756792660398117e-6` | `1.0378396330199058e-5` | `0` | `4.764173415912339e-5` | `4.764173415912339e-5` | `1.1910433539780849e-4` |
+| RA-RepDet | 2 | `0` | `0` | `0` | `0` | `0` | `0` |
+
+Three-seed AP@[.50:.95] summary:
+
+- Early Fusion mean: `9.48024496878457e-9`;
+- Early Fusion sample standard deviation: `8.69698401219258e-9`;
+- RA-RepDet mean: `7.208000851646425e-7`;
+- RA-RepDet sample standard deviation: `1.174160691123537e-6`;
+- paired `RA-RepDet - Early Fusion` mean: `7.11319840195858e-7`;
+- paired sample standard deviation: `1.172256488694345e-6`.
+
+The values are near zero. They must not be presented as meaningful robustness, superiority, or successful external generalization.
+
+## Active V73 work
+
+V73 will immediately integrate the completed V72 experiment into the TriAir research manuscript as an appendix-level negative external-domain stress test.
+
+Required changes:
+
+- add the exact six-checkpoint AP/AR table;
+- add protocol and aggregate-statistics text;
+- state that the split was previously exposed and was not blind;
+- state that the adapter independently normalized modality grids without physical registration;
+- explain that direct cross-sensor transfer failed under this adapter;
+- add one concise main discussion/limitations reference to the appendix;
+- keep the result out of the abstract, headline contributions, primary TriAir table, and positive conclusion claims;
+- trace every inserted number to committed V72 JSON;
+- compile and inspect the manuscript.
+
+No new experiment, inference, training, adapter search, threshold change, seed addition, or metric recomputation is authorized.
+
+## Scientific boundary
+
+Allowed conclusion:
+
+> Frozen TriAir models did not transfer meaningfully to the exposed MM-UAV devval domain under the naive normalized-grid adapter, indicating that cross-sensor geometry and acquisition mismatch dominate direct channel-level transfer.
+
+Forbidden conclusions include independent external validation, official MM-UAV test performance, physically registered validation, robust cross-dataset generalization, or meaningful RA-RepDet superiority from the tiny paired differences.
+
+## Intended completion
+
+`V73_TRIAIR_MANUSCRIPT_MMUAV_STRESS_TEST_INTEGRATED`
+
 Required completion commit:
 
-`exp: run V72 MM-UAV naive-grid external-domain stress test`
-
-This state was reached with six complete metric records and no reruns.
+`docs: integrate V72 MM-UAV external-domain stress test into manuscript`
