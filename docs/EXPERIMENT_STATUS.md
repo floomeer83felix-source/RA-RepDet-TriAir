@@ -4,76 +4,57 @@ Updated: 2026-07-26
 
 ## Active task
 
-`V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`
+`V72_MMUAV_EXISTING_DEVVAL_TRIAIR_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_AUTHORIZED`
 
 ## V71 completion evidence
 
-V71 completed its ordered CPU preflight and stopped fail-closed at the adapter gate:
+V71 completed at commit `bfca2e21ca7a46a5087b3addfcac7dab9d7e1618` with:
 
 `V71_BLOCKED_ADAPTER_OR_ONTOLOGY_CONTRACT`
 
-- starting commit: `042a2228e8575518a23348225b323876179bbd75`;
-- clean linked execution worktree: verified;
-- frozen devval manifest: `1,845` rows, `85` sequences, SHA256 `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
+V71 verified:
+
+- frozen MM-UAV devval: `1,845` rows across `85` sequences;
+- manifest SHA256: `113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54`;
 - row-order SHA256: `dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867`;
-- modality presence: RGB/IR/event/RGB annotation `1,845 / 1,845 / 1,845 / 1,845`;
-- six authoritative TriAir checkpoints: frozen hashes matched and `6 / 6` strictly loaded on CPU;
-- parameter-free five-channel adapter: not frozen;
-- smoke passes / GPU evaluations / metric computations: `0 / 0 / 0`;
-- training, fine-tuning, adaptation, calibration, or tuning: none;
-- V71 focused tests: `10 / 10` passed;
+- modality/annotation presence: `1,845 / 1,845 / 1,845 / 1,845`;
+- six frozen TriAir checkpoints: hashes matched and `6 / 6` strictly loaded on CPU;
+- focused tests: `10 / 10` passed;
 - V52/V53 regression tests: `18 / 18` passed.
 
-The blocker is scientific: V52 establishes filename-index temporal synchronization but not pixel alignment. Native RGB, IR, and event grids differ, and no complete provider-issued raw-grid transform or calibration recipe exists. V53 explicitly forbids raw-channel concatenation and requires independent branches with learned feature alignment, while V71 forbids learned alignment. Independent letterboxing therefore cannot defensibly create the five pixel-aligned channels expected by the frozen TriAir models.
+No smoke inference, GPU evaluation, predictions, or AP/AR were produced because physical RGB/IR/event registration could not be established.
 
-## Route correction
+## Active V72 experiment
 
-The previously authorized provider-source, rights, and official-test acquisition task was superseded before execution at the user's direction. The project will now begin dataset validation immediately using the existing frozen MM-UAV devval split.
+At the user's direction, provider/source/version/rights and calibration acquisition work will not delay the experiment. V72 freezes one naive normalized-grid adapter:
 
-This change does not convert the existing data into an independent blind test. The result will be reported as an exposed external-domain zero-shot validation only.
+- reuse V53 per-modality decoding and independent letterbox;
+- independently map RGB, IR, and event to `640 x 640`;
+- concatenate RGB + IR grayscale + event grayscale into five channels;
+- use RGB annotation geometry for boxes;
+- use no physical registration, learned alignment, adaptation, calibration, or fitting.
 
-## Frozen evaluation target
+V72 will run:
 
-- dataset manifest: existing frozen MM-UAV devval manifest from V65-V67;
-- row count: exactly `1,845`;
-- model source: six frozen TriAir manuscript checkpoints;
-- methods: matched Early Fusion and full reliability-aware RA-RepDet;
-- seeds: `0`, `1`, and `2` for each method;
-- input: deterministic parameter-free RGB/thermal/event-to-five-channel conversion;
-- resolution: `640 x 640`;
-- score threshold: `0.001`;
-- NMS: `0.6`;
-- maximum detections: `100`;
-- metrics: AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, AR@100.
+- Early Fusion seeds `0`, `1`, `2`;
+- RA-RepDet `p=0.15` seeds `0`, `1`, `2`;
+- exactly `1,845` rows per checkpoint;
+- AP@[0.50:0.95], AP50, AP75, AR@1, AR@10, AR@100;
+- seed-matched `RA-RepDet - Early Fusion` comparisons;
+- descriptive mean, sample standard deviation, minimum, and maximum.
 
-## Execution boundary
+## Claim boundary
 
-V71 will:
+The result is a:
 
-- verify and strictly load all six frozen TriAir checkpoints;
-- freeze and test the deterministic five-channel adapter;
-- run one no-metric finite-output smoke pass;
-- evaluate each checkpoint exactly once over all 1,845 rows;
-- produce per-checkpoint metrics and seed-matched `RA-RepDet - Early Fusion` comparisons;
-- report mean, sample standard deviation, minimum, and maximum across the three seeds;
-- commit compact metrics, hashes, tests, and summaries only.
+`zero-shot external-domain stress test on the exposed MM-UAV devval split using a naive normalized-grid five-channel adapter`
 
-V71 will not:
-
-- train or fine-tune on MM-UAV;
-- use MM-UAV-trained V57/V63/V65-V67 checkpoints;
-- adapt, calibrate, tune thresholds, select checkpoints, add seeds, or rerun based on results;
-- describe the result as an independent blind external test;
-- place raw data, annotations, full predictions, checkpoints, local paths, or heavy/private artifacts in Git.
-
-## Prior audit context
-
-V69 established that all `424` locally available provider-train sequences are linked to prior development, and V70 found no newly supplied official test package. Those findings remain true but no longer block this explicitly non-blind external-domain validation.
+It is not an independent/blind external test and does not establish physical multimodal registration. Physical-registration uncertainty is an explicit limitation rather than a V72 blocker.
 
 ## Intended completion
 
-`V71_MMUAV_EXISTING_DEVVAL_ZERO_SHOT_EXTERNAL_DOMAIN_VALIDATION_COMPLETE`
+`V72_MMUAV_NAIVE_GRID_EXTERNAL_DOMAIN_STRESS_TEST_COMPLETE`
 
-Completion requires six valid full-devval metric records, a matched three-seed comparison, passing focused tests, and an explicit claim boundary that the split was previously exposed.
+Required completion commit:
 
-That completion state was not reached. No AP/AR value was produced.
+`exp: run V72 MM-UAV naive-grid external-domain stress test`
