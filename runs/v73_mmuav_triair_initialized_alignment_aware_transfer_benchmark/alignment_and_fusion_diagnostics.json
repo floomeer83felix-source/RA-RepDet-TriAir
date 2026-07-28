@@ -1,0 +1,38 @@
+{
+  "reliability_runs": [
+    {
+      "departed_from_uniform": true,
+      "mean_dominant_fraction": 0.5094598733797306,
+      "mean_entropy": 1.0153623486922039,
+      "mean_weights": {
+        "event": 0.3095824818624067,
+        "ir": 0.1809576449678519,
+        "rgb": 0.5094598733797306
+      },
+      "run_id": "v73_seed0_triair_init_reliability"
+    },
+    {
+      "departed_from_uniform": true,
+      "mean_dominant_fraction": 0.628512998486599,
+      "mean_entropy": 0.8792123509616386,
+      "mean_weights": {
+        "event": 0.26763603702631744,
+        "ir": 0.1038509652301225,
+        "rgb": 0.628512998486599
+      },
+      "run_id": "v73_seed1_triair_init_reliability"
+    },
+    {
+      "departed_from_uniform": true,
+      "mean_dominant_fraction": 0.6726930914209464,
+      "mean_entropy": 0.8060027545706689,
+      "mean_weights": {
+        "event": 0.2538240432416197,
+        "ir": 0.07348286413403385,
+        "rgb": 0.6726930914209464
+      },
+      "run_id": "v73_seed2_triair_init_reliability"
+    }
+  ],
+  "status": "COMPLETE"
+}

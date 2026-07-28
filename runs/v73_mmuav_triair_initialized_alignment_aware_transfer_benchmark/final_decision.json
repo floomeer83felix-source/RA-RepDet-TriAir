@@ -1,0 +1,44 @@
+{
+  "decision": "V73_MMUAV_THREE_SEED_TRANSFER_BENCHMARK_COMPLETE",
+  "devval_evaluations": 9,
+  "optimizer_steps": 646830,
+  "scientific_label": "MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment",
+  "transfer_coverage": [
+    {
+      "run_id": "v73_seed0_scratch_equal",
+      "transferred_parameter_fraction": 0.0
+    },
+    {
+      "run_id": "v73_seed0_triair_init_equal",
+      "transferred_parameter_fraction": 0.9920156853111293
+    },
+    {
+      "run_id": "v73_seed0_triair_init_reliability",
+      "transferred_parameter_fraction": 0.9920156853111293
+    },
+    {
+      "run_id": "v73_seed1_scratch_equal",
+      "transferred_parameter_fraction": 0.0
+    },
+    {
+      "run_id": "v73_seed1_triair_init_equal",
+      "transferred_parameter_fraction": 0.9920156853111293
+    },
+    {
+      "run_id": "v73_seed1_triair_init_reliability",
+      "transferred_parameter_fraction": 0.9920156853111293
+    },
+    {
+      "run_id": "v73_seed2_scratch_equal",
+      "transferred_parameter_fraction": 0.0
+    },
+    {
+      "run_id": "v73_seed2_triair_init_equal",
+      "transferred_parameter_fraction": 0.9920156853111293
+    },
+    {
+      "run_id": "v73_seed2_triair_init_reliability",
+      "transferred_parameter_fraction": 0.9920156853111293
+    }
+  ]
+}

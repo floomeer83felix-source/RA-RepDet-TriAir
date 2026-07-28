@@ -1,0 +1,4 @@
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v73_mmuav_transfer_benchmark.py --prepare
+C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v73_mmuav_transfer_benchmark.py -v
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v73_mmuav_transfer_benchmark.py --timing-steps 10
+C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v73_mmuav_transfer_benchmark.py --run-all

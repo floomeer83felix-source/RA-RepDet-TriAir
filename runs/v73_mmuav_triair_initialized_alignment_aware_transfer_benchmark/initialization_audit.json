@@ -1,0 +1,37 @@
+{
+  "seed_initializations": [
+    {
+      "all_finite": true,
+      "bytes": 27050238,
+      "equal_and_reliability_strict_compatible": true,
+      "file_sha256": "bccec04f4408b17cbf7ed301b700757c4f2bcc1bc5eccad283582d47a180a7e4",
+      "local_artifact_id": "seed0_v73_common_init.pt",
+      "reliability_final_layer_exact_zero": true,
+      "seed": 0,
+      "state_sha256": "f4d084341e66bfd45c8b8771126d9af9888ebf2c9ce0f5b0bd1c5a30dac988c8",
+      "tensor_count": 791
+    },
+    {
+      "all_finite": true,
+      "bytes": 27050238,
+      "equal_and_reliability_strict_compatible": true,
+      "file_sha256": "c6d4bf9158edfcfbc388768381f7e5fdd47877c652afb50cf13a6ba0e25d7ec2",
+      "local_artifact_id": "seed1_v73_common_init.pt",
+      "reliability_final_layer_exact_zero": true,
+      "seed": 1,
+      "state_sha256": "5b3525cd3073a02ec3bd2954179966adfdec1b8ed9dba6f1687b21469a1c0cdc",
+      "tensor_count": 791
+    },
+    {
+      "all_finite": true,
+      "bytes": 27050238,
+      "equal_and_reliability_strict_compatible": true,
+      "file_sha256": "b5373cd077f96dc6c7f173618dbf60206e7b4c39f1383dcef2b470ce4602a6fa",
+      "local_artifact_id": "seed2_v73_common_init.pt",
+      "reliability_final_layer_exact_zero": true,
+      "seed": 2,
+      "state_sha256": "e58900a272020b5fe5d738be8a48092699cd10366b3b0b57c21b4f6b8a01d285",
+      "tensor_count": 791
+    }
+  ]
+}

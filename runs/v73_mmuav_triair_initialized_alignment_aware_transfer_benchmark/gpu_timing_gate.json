@@ -1,0 +1,10 @@
+{
+  "estimated_per_run_hours": 1.4921932887222218,
+  "estimated_total_gpu_days": 0.5595724832708331,
+  "mean_step_seconds": 0.07474461999999997,
+  "peak_allocated_bytes": 1125417472,
+  "peak_reserved_bytes": 1310720000,
+  "protocol_mutation": false,
+  "timing_model": "seed0_triair_init_reliability",
+  "timing_steps": 10
+}

@@ -1,0 +1,68 @@
+{
+  "runs": [
+    {
+      "bytes": 27065636,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed0_scratch_equal_final_step71870.pt",
+      "run_id": "v73_seed0_scratch_equal",
+      "sha256": "090c46de5b330781f44a362508ddd257d70717718cfea29fde04cf48cbed95ca"
+    },
+    {
+      "bytes": 27068816,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed0_triair_init_equal_final_step71870.pt",
+      "run_id": "v73_seed0_triair_init_equal",
+      "sha256": "9b7799789d1cdf04219d772a8183e73685972a5ea4ac0f7e5e2288c243f99e41"
+    },
+    {
+      "bytes": 27073842,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed0_triair_init_reliability_final_step71870.pt",
+      "run_id": "v73_seed0_triair_init_reliability",
+      "sha256": "b943c15dca34425300a8a9006beff5dc29a4acf1cc833b02c2b618bcd726d8de"
+    },
+    {
+      "bytes": 27065636,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed1_scratch_equal_final_step71870.pt",
+      "run_id": "v73_seed1_scratch_equal",
+      "sha256": "db140d9b2eba6094fd6b9ea1b88a2914912ae54518d2fff2d030239375d80ed3"
+    },
+    {
+      "bytes": 27068816,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed1_triair_init_equal_final_step71870.pt",
+      "run_id": "v73_seed1_triair_init_equal",
+      "sha256": "6bd47f2f557075232510ad8847d2226b50c99c07991692efc37180380caa849d"
+    },
+    {
+      "bytes": 27073842,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed1_triair_init_reliability_final_step71870.pt",
+      "run_id": "v73_seed1_triair_init_reliability",
+      "sha256": "c9fe9102b88df7816d330eed1e5bdaecc2e86a63f650f220f4692c5092a9d6a1"
+    },
+    {
+      "bytes": 27065636,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed2_scratch_equal_final_step71870.pt",
+      "run_id": "v73_seed2_scratch_equal",
+      "sha256": "44019eed6c27d49e28c454015d074917510bcb68153e90e2f1a43ce51063a578"
+    },
+    {
+      "bytes": 27068816,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed2_triair_init_equal_final_step71870.pt",
+      "run_id": "v73_seed2_triair_init_equal",
+      "sha256": "be274fdbd7ebce95d319d17b7d2addec729ee71dbd70f116869f9a33b9db9459"
+    },
+    {
+      "bytes": 27073842,
+      "completed_optimizer_steps": 71870,
+      "local_artifact_id": "v73_seed2_triair_init_reliability_final_step71870.pt",
+      "run_id": "v73_seed2_triair_init_reliability",
+      "sha256": "28d2929b7ea6ef873568740682e89aec7536b6672094897929964dfe14d5f74b"
+    }
+  ],
+  "status": "COMPLETE"
+}

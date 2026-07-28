@@ -1,0 +1,11 @@
+{
+  "changes": [],
+  "protected_files": [
+    "rarepdet/train_early_fusion.py",
+    "rarepdet/models/early_fusion_fcos.py",
+    "rarepdet/models/reliability_fusion_fcos.py",
+    "datasets/triair_dataset.py"
+  ],
+  "starting_commit": "3841455a39cced13a4925a6488a40b4a8f0c440b",
+  "verified_at_completion": true
+}

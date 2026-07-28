@@ -1,0 +1,7 @@
+{
+  "official_untouched_test": false,
+  "scientific_label": "MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment",
+  "statistical_significance_claim": false,
+  "supervised_target_domain_training": true,
+  "zero_shot_or_independent_blind_external_test": false
+}

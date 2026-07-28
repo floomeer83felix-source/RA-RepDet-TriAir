@@ -1,0 +1,11 @@
+$ C:\Users\xinnan\.conda\envs\pytorch\python.exe -m unittest discover -s tests -p test_v73_mmuav_transfer_benchmark.py -v
+test_equal_and_reliability_share_state_contract (test_v73_mmuav_transfer_benchmark.V73ContractTests) ... ok
+test_frozen_run_order_and_budget (test_v73_mmuav_transfer_benchmark.V73ContractTests) ... ok
+test_learning_rate_schedule_boundaries (test_v73_mmuav_transfer_benchmark.V73ContractTests) ... ok
+test_reliability_final_layer_is_zero (test_v73_mmuav_transfer_benchmark.V73ContractTests) ... ok
+test_softplus_is_installed_for_both_modes (test_v73_mmuav_transfer_benchmark.V73ContractTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.258s
+
+OK
