@@ -1,0 +1,11 @@
+{
+  "decision": "V74_TRIAIR_MANUSCRIPT_MMUAV_TRANSFER_STUDY_INTEGRATED",
+  "manuscript_build": "PASS",
+  "rendered_page_audit": "PASS",
+  "invalidated_seed_level_evidence_removed": true,
+  "remaining_submission_blockers": [
+    "canonical dataset citations",
+    "competing-interests confirmation",
+    "corrected V73 seed-level traceability for paired/statistical analysis"
+  ]
+}
