@@ -1,0 +1,25 @@
+{
+  "files_modified": [
+    "main.tex",
+    "main_sivp_snjnl.tex",
+    "make_figures.py",
+    "submission/v74_corrected_manuscript/main_part1.tex",
+    "submission/v74_corrected_manuscript/main_part2.tex",
+    "submission/v74_corrected_manuscript/main_part3.tex",
+    "submission/v74_corrected_manuscript/main_part4.tex"
+  ],
+  "files_added": [
+    "ARTICLE_EVALUATION.md",
+    "runs/v74_triair_manuscript_mmuav_cross_dataset_transfer_integration/*"
+  ],
+  "major_changes": [
+    "corrected abstract and contribution claims",
+    "replaced V73 aggregate table",
+    "removed invalidated per-seed table and paired differences",
+    "regenerated MM-UAV AP figure",
+    "replaced negative-transfer discussion",
+    "corrected dataset dissemination wording",
+    "added scientific and submission-readiness evaluation"
+  ],
+  "triair_scientific_numbers_changed": false
+}
