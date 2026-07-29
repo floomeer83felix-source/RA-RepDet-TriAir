@@ -1,10 +1,10 @@
 # Experiment Status
 
-Updated: 2026-07-29
+Updated: 2026-07-30
 
 ## Active status
 
-`V79_SINGLE_MODALITY_EVALUATOR_ONLY_CODE_READY_LOCAL_CHECKPOINT_EXECUTION_PENDING`
+`V80_BLOCKED_ALL_NINE_AUTHORIZED_SINGLE_MODALITY_CHECKPOINTS_MISSING`
 
 ## Closed submission items
 
@@ -16,7 +16,7 @@ Updated: 2026-07-29
 6. Count boundary: paper-reported 24,223 vehicles and current-archive 30,634 valid label lines remain distinct; the 6,411 difference is unresolved.
 7. Redistribution: upstream MIT statement applies to code; no explicit dataset-archive license was located, so data are not redistributed.
 
-## V79 evaluator-only completion
+## V80 evaluator-only execution
 
 The evaluator contract now reports:
 
@@ -28,23 +28,22 @@ The evaluator contract now reports:
 
 A fail-closed nine-checkpoint queue was added at `rarepdet/tools/run_v79_single_modality_eval_only.py`. It verifies the dataset root, the component-disjoint validation manifest, and all nine retained `best.pt` files before running inference. It contains no training entrypoint and does not access the guard partition.
 
-The current ChatGPT environment does not contain `D:\download\triair` or the nine retained checkpoints, so no new AP/AR value has been generated or inferred. Execute on the authorized local workspace:
+The authorized local RTX 3090 environment was checked on 2026-07-30. The TriAir root and frozen V40 validation manifest are present, and the manifest SHA256 is `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`. CUDA, PyTorch, torchvision, and pycocotools are operational.
 
-```powershell
-python rarepdet/tools/run_v79_single_modality_eval_only.py --data D:\download\triair --device cuda --resume
-```
+The evaluator preflight found all nine required V76 `weights/best.pt` files missing under both repository worktrees. It stopped before inference as required. Exact paths are recorded in `runs/v79_single_modality_evaluator_completion/preflight.json` and `docs/TASK_BLOCKER.md`.
 
 ## Validation
 
 - V79 Python syntax compile: `PASS`;
-- V79 source-contract tests: `2 passed`;
+- V79 source-contract tests: `3 passed`;
 - preflight missing-input behavior: `PASS`;
 - new training: `none`;
-- new checkpoint evaluation in this environment: `none`.
+- new checkpoint inference: `none`;
+- guard access: `none`.
 
 ## Manuscript status
 
-The V78 15-page manuscript remains authoritative until all nine standardized evaluator JSON files are complete and reconciled against the supplied V77 AP50/AP75 rows. Existing values must not be silently overwritten.
+The V78 15-page manuscript remains authoritative. No V80 manuscript was created because 0/9 standardized checkpoint evaluations completed. Existing values were not overwritten.
 
 ## Scientific boundary
 

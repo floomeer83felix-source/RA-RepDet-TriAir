@@ -5,7 +5,7 @@ Branch: `research/ra-repdet-triair`
 
 ## Active handoff
 
-`V79_SINGLE_MODALITY_EVALUATOR_ONLY_LOCAL_EXECUTION`
+`V80_BLOCKED_RESTORE_EXACT_V76_SINGLE_MODALITY_CHECKPOINTS`
 
 The user requested that the complete Codex execution instruction be persisted in the GitHub repository. The authoritative task is now:
 
@@ -40,9 +40,21 @@ Codex must:
 - no inferred metrics;
 - no independent-test or statistical-significance claim.
 
+## 2026-07-30 execution record
+
+- authorized RTX 3090 CUDA environment: verified;
+- TriAir root: present;
+- frozen V40 component-disjoint validation manifest: present;
+- manifest SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
+- evaluator compilation: pass;
+- evaluator contract tests: `3 passed`;
+- required retained checkpoints: `0/9` present;
+- inference and training: not started;
+- manuscript integration: not started.
+
 ## Current execution boundary
 
-The evaluator-only code and Codex runbook are committed. Actual GPU inference remains pending on the authorized local workspace because the ChatGPT environment does not contain the private TriAir data or nine retained checkpoints.
+The task is blocked until the exact nine retained V76 `best.pt` files are restored. No alternate checkpoint may be used. If they are irrecoverable, V78 remains authoritative and retraining requires a separately authorized task.
 
 ## Task-writing commits
 

@@ -1,6 +1,6 @@
 # V79 single-modality evaluator-only completion
 
-Status: `EVALUATOR_ONLY_CODE_READY_CHECKPOINT_EXECUTION_PENDING_LOCAL_WORKSPACE`
+Status: `V80_BLOCKED_ALL_NINE_AUTHORIZED_CHECKPOINTS_MISSING`
 
 ## Purpose
 
@@ -54,6 +54,10 @@ runs/v79_single_modality_evaluator_completion/
 
 The summary also records AP50/AP75 differences relative to the user-supplied V77 table. A discrepancy is reported explicitly and never silently overwritten.
 
-## Current environment boundary
+## 2026-07-30 local preflight
 
-The ChatGPT execution environment used to prepare this package contains neither `D:\download\triair` nor the nine retained `best.pt` files. Therefore no AP@[0.50:0.95] or AR value has been fabricated or inferred here.
+The authorized RTX 3090 workspace contains the TriAir dataset and the frozen validation manifest. CUDA, PyTorch 2.5.1, torchvision 0.20.1, and pycocotools are operational, and the evaluator contract tests report `3 passed`.
+
+All nine required retained V76 `best.pt` files are absent. The queue stopped before inference and wrote `preflight.json`. The same relative paths are absent in `E:\RepViT-main`; no alternate checkpoint was used.
+
+V78 remains authoritative. No AP/AR metric or V80 manuscript was created.

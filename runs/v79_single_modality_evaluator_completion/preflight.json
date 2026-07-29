@@ -1,0 +1,90 @@
+{
+  "status": "BLOCKED",
+  "task": "V79_SINGLE_MODALITY_EVALUATOR_ONLY_COMPLETION",
+  "training_authorized": false,
+  "guard_used": false,
+  "data": "D:\\download\\triair",
+  "data_exists": true,
+  "validation_split": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+  "validation_split_exists": true,
+  "validation_split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+  "required_checkpoints": [
+    {
+      "run_id": "rgb_seed0",
+      "input_mode": "rgb",
+      "seed": 0,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed0\\weights\\best.pt"
+    },
+    {
+      "run_id": "rgb_seed1",
+      "input_mode": "rgb",
+      "seed": 1,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed1\\weights\\best.pt"
+    },
+    {
+      "run_id": "rgb_seed2",
+      "input_mode": "rgb",
+      "seed": 2,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed2\\weights\\best.pt"
+    },
+    {
+      "run_id": "thermal_seed0",
+      "input_mode": "thermal",
+      "seed": 0,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed0\\weights\\best.pt"
+    },
+    {
+      "run_id": "thermal_seed1",
+      "input_mode": "thermal",
+      "seed": 1,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed1\\weights\\best.pt"
+    },
+    {
+      "run_id": "thermal_seed2",
+      "input_mode": "thermal",
+      "seed": 2,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed2\\weights\\best.pt"
+    },
+    {
+      "run_id": "event_seed0",
+      "input_mode": "event",
+      "seed": 0,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed0\\weights\\best.pt"
+    },
+    {
+      "run_id": "event_seed1",
+      "input_mode": "event",
+      "seed": 1,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed1\\weights\\best.pt"
+    },
+    {
+      "run_id": "event_seed2",
+      "input_mode": "event",
+      "seed": 2,
+      "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed2\\weights\\best.pt"
+    }
+  ],
+  "missing_checkpoints": [
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed0\\weights\\best.pt",
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed1\\weights\\best.pt",
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed2\\weights\\best.pt",
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed0\\weights\\best.pt",
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed1\\weights\\best.pt",
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed2\\weights\\best.pt",
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed0\\weights\\best.pt",
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed1\\weights\\best.pt",
+    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed2\\weights\\best.pt"
+  ],
+  "metrics": [
+    "ap50_95",
+    "ap50",
+    "ap75",
+    "ar1",
+    "ar10",
+    "ar100"
+  ],
+  "score_threshold": 0.001,
+  "nms_threshold": 0.6,
+  "max_detections": 100,
+  "selection_rule": "evaluate the already-retained best development-validation project-local AP50 checkpoint once"
+}

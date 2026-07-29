@@ -2,9 +2,9 @@
 
 ## Active task
 
-`V79_SINGLE_MODALITY_EVALUATOR_ONLY_LOCAL_EXECUTION`
+`V80_BLOCKED_RESTORE_EXACT_V76_SINGLE_MODALITY_CHECKPOINTS`
 
-The user selected the first recommended pre-submission action: run one standardized evaluator pass on each of the nine already-retained RGB-only, thermal-only, and event-only checkpoints, reconcile the results against V77, and create V80 only after all completion gates pass.
+V80 preflight ran on the authorized RTX 3090 workspace. The dataset, frozen validation manifest, CUDA runtime, evaluator compilation, and contract tests passed, but all nine exact retained V76 `best.pt` files are absent. The evaluator stopped before inference.
 
 ## Authoritative Codex instruction
 
@@ -26,7 +26,11 @@ Codex must follow that file as the authoritative runbook. It covers environment 
 - training: forbidden;
 - threshold tuning, schedule changes, seed replacement, selective rerun, checkpoint substitution, and guard access: forbidden.
 
-## Execution command
+## Required recovery
+
+Restore exactly the nine checkpoint files listed in `docs/CODEX_V80_SINGLE_MODALITY_EVALUATION_TASK.md` to their required paths. Do not use other `best.pt` files, `last.pt`, replacement epochs, or reconstructed metrics.
+
+After the exact files are restored, run:
 
 From `E:\RepViT-main`:
 
@@ -53,4 +57,8 @@ V78 remains authoritative until all nine standardized evaluator records are comp
 
 ## Current boundary
 
-The evaluator-only implementation, AR1/AR10/AR100 extension, static compilation checks, contract tests, and fail-closed preflight are complete. Actual inference remains pending because the ChatGPT environment does not contain the local TriAir data or nine retained checkpoint files.
+V78 remains authoritative. V80 has 0/9 completed evaluations and no manuscript integration. Retraining is outside this task and requires new explicit authorization if the retained checkpoints cannot be recovered.
+
+## Commit Message
+
+docs: record V80 missing-checkpoint blocker
