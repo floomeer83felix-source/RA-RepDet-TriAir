@@ -1,0 +1,9 @@
+{
+  "old_aggregate_only_limitation_removed": true,
+  "per_seed_table_added": true,
+  "paired_ap_table_added": true,
+  "all_ap_pair_directions_positive": true,
+  "significance_claim_present": false,
+  "independent_external_test_claim_present": false,
+  "official_untouched_test_claim_present": false
+}
