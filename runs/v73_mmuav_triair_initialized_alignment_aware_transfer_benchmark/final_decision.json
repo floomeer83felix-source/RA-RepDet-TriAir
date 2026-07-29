@@ -1,60 +1,35 @@
 {
   "decision": "V73_MMUAV_THREE_SEED_TRANSFER_BENCHMARK_COMPLETE",
   "execution_status": "COMPLETE",
-  "metric_upload_status": "CORRECTED_AFTER_UPLOAD",
+  "metric_upload_status": "CORRECTED_SEED_LEVEL_VALUES_SUPPLIED",
   "corrected_at": "2026-07-29",
   "authoritative_result_file": "RESULT_CORRECTION.md",
-  "authoritative_aggregate_file": "three_seed_summary.json",
+  "authoritative_seed_level_file": "corrected_per_run_metrics.json",
+  "authoritative_summary_file": "three_seed_summary.json",
+  "authoritative_paired_file": "corrected_paired_transfer_comparison.json",
   "devval_evaluations": 9,
   "optimizer_steps": 646830,
   "scientific_label": "MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment",
-  "corrected_conclusion": "Aligned MM-UAV supervision recovered performance after naive-grid zero-shot failure; TriAir initialization improved over scratch equal fusion; reliability-aware fusion improved performance further.",
-  "invalidated_metric_sources": [
+  "corrected_conclusion": "Aligned MM-UAV supervision recovered performance after naive-grid zero-shot failure; TriAir initialization improved every paired seed over scratch equal fusion; reliability-aware fusion improved every paired seed further.",
+  "corrected_seed_level_values_available": true,
+  "paired_differences_authorized_for_descriptive_reporting": true,
+  "statistical_significance_claim_authorized": false,
+  "invalidated_historical_metric_sources": [
     "per_run_metrics.csv",
     "per_run_metrics.json",
     "paired_transfer_comparison.csv",
     "paired_transfer_comparison.json",
-    "pre-correction aggregate values and conclusions in commit eafceccdedfc0bea93170a671906619b004412f4"
+    "pre-correction values and conclusions in commit eafceccdedfc0bea93170a671906619b004412f4"
   ],
-  "corrected_seed_level_values_available": false,
-  "paired_differences_authorized": false,
-  "do_not_reconstruct_seed_values_from_aggregates": true,
   "transfer_coverage": [
-    {
-      "run_id": "v73_seed0_scratch_equal",
-      "transferred_parameter_fraction": 0.0
-    },
-    {
-      "run_id": "v73_seed0_triair_init_equal",
-      "transferred_parameter_fraction": 0.9920156853111293
-    },
-    {
-      "run_id": "v73_seed0_triair_init_reliability",
-      "transferred_parameter_fraction": 0.9920156853111293
-    },
-    {
-      "run_id": "v73_seed1_scratch_equal",
-      "transferred_parameter_fraction": 0.0
-    },
-    {
-      "run_id": "v73_seed1_triair_init_equal",
-      "transferred_parameter_fraction": 0.9920156853111293
-    },
-    {
-      "run_id": "v73_seed1_triair_init_reliability",
-      "transferred_parameter_fraction": 0.9920156853111293
-    },
-    {
-      "run_id": "v73_seed2_scratch_equal",
-      "transferred_parameter_fraction": 0.0
-    },
-    {
-      "run_id": "v73_seed2_triair_init_equal",
-      "transferred_parameter_fraction": 0.9920156853111293
-    },
-    {
-      "run_id": "v73_seed2_triair_init_reliability",
-      "transferred_parameter_fraction": 0.9920156853111293
-    }
+    {"run_id": "v73_seed0_scratch_equal", "transferred_parameter_fraction": 0.0},
+    {"run_id": "v73_seed0_triair_init_equal", "transferred_parameter_fraction": 0.9920156853111293},
+    {"run_id": "v73_seed0_triair_init_reliability", "transferred_parameter_fraction": 0.9920156853111293},
+    {"run_id": "v73_seed1_scratch_equal", "transferred_parameter_fraction": 0.0},
+    {"run_id": "v73_seed1_triair_init_equal", "transferred_parameter_fraction": 0.9920156853111293},
+    {"run_id": "v73_seed1_triair_init_reliability", "transferred_parameter_fraction": 0.9920156853111293},
+    {"run_id": "v73_seed2_scratch_equal", "transferred_parameter_fraction": 0.0},
+    {"run_id": "v73_seed2_triair_init_equal", "transferred_parameter_fraction": 0.9920156853111293},
+    {"run_id": "v73_seed2_triair_init_reliability", "transferred_parameter_fraction": 0.9920156853111293}
   ]
 }
