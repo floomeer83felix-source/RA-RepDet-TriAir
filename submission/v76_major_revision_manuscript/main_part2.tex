@@ -1,0 +1,100 @@
+\end{equation}
+where $\boldsymbol{\alpha}=[\alpha_{\mathrm{rgb}},\alpha_{\mathrm{th}},\alpha_{\mathrm{ev}}]$ and the three entries sum to one. The fused feature is
+\begin{equation}
+\mathbf{F}_{\mathrm{fuse}}=\alpha_{\mathrm{rgb}}\mathbf{F}_{\mathrm{rgb}}+\alpha_{\mathrm{th}}\mathbf{F}_{\mathrm{th}}+\alpha_{\mathrm{ev}}\mathbf{F}_{\mathrm{ev}}.
+\end{equation}
+A projection converts $\mathbf{F}_{\mathrm{fuse}}$ to the three-channel interface expected by the shared backbone. The gate is a learned feature-mixture mechanism; its weights are not calibrated probabilities of physical sensor health.
+
+\subsection{Modality-Dropout Training}
+For the reliability-aware model, RGB channels $0{:}3$, thermal channel 3, and event channel 4 are independently zeroed during training with probability $p=0.15$. If all three groups are selected, one group is restored uniformly at random so that at least one stream remains. The $p=0.15$ setting was fixed for the component-disjoint comparison before any results from that partition were examined. Ordinary all-modal inference supplies all available streams.
+
+\section{Dataset and Component-Disjoint Validation Protocol}
+\subsection{TriAir Representation}
+The local TriAir representation contains 10,489 five-channel samples and 30,634 valid vehicle boxes. Among the samples, 9,751 have label text files, 738 have no label text file, and one label text file is empty. The data pipeline treats missing and empty label files as empty-target observations rather than removing them. The sample count and RGB--thermal--event sensing configuration align with the 10,489-frame dataset introduced by Iaboni and Abichandani \cite{iaboni2026trimodal}; because the local label inventory differs from the published annotation count, exact provider version and conversion provenance remain explicitly tracked rather than inferred. Readers should obtain data from the original provider and comply with the applicable terms.
+
+\subsection{Expanded-Adjacency Component-Disjoint Assignment}
+The component-disjoint split uses a frozen pre-validation train-plus-validation universe of 9,652 samples. A graph is constructed from (i) exact decoded RGB-content matches, (ii) pHash or dHash candidate relations under the locked audit rule, and (iii) pair relations from clusters manually adjudicated as adjacent-or-near-identical. Filename proximity was used only to organize the human review; filename numbers were not treated as verified temporal metadata. Connected components are assigned wholly to train or validation by a deterministic objective that targets the original validation count, then minimizes moved samples, then minimizes the validation ground-truth-box difference, and finally uses a stable lexicographic tie-break. No detection metric, prediction, loss, or model result is used to construct the split.
+
+The resulting manifests contain 7,439 training images with 22,480 boxes and 2,213 validation images with 5,867 boxes. The unchanged 837-image guard partition is excluded from training, checkpoint retention, hyperparameter choice, and the component-disjoint development analysis. After the six primary checkpoints were fixed, it was unlocked once for the secondary held-out evaluation reported below. The post-assignment audit records zero train-validation sample overlap, zero exact RGB cross pairs, zero pHash/dHash cross pairs under the locked rule, zero human-adjudicated adjacency cross edges, and zero extended-graph component violations. These checks support a precisely scoped component-disjoint claim; they do not prove the absence of every possible unobserved scene correlation.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig2_protocol.pdf}
+\caption{Component-disjoint validation protocol. Components of the fixed candidate-and-adjacency graph are assigned as indivisible units to train or validation. The post-assignment audit verifies that no original candidate, human-adjudicated adjacency, or extended-graph edge crosses the train-validation boundary. The guard partition is evaluated only after checkpoint lock and is never used for model selection or tuning.}
+\label{fig:protocol}
+\end{figure*}
+
+\begin{table*}[t]
+\centering
+\caption{TriAir inventory and component-disjoint validation protocol. The guard partition is excluded from model selection and tuning and is reported only as a secondary locked internal holdout.}
+\label{tab:protocol}
+\small
+\begin{tabularx}{\textwidth}{@{}l r Y@{}}
+\toprule
+Item & Value & Note\\
+\midrule
+Total local samples & 10,489 & Five-channel RGB-thermal-event arrays\\
+Total valid vehicle boxes & 30,634 & Single vehicle class\\
+Images with label text files & 9,751 & Includes one empty label text file\\
+Images without label text files & 738 & Retained as empty-target images\\
+Training partition & 7,439 / 22,480 boxes & Used for the fixed three-seed training program\\
+Component-disjoint validation partition & 2,213 / 5,867 boxes & Checkpoint retention and primary development analysis\\
+Guard partition & 837 / 2,287 inventory boxes & Locked internal holdout; evaluator retains 1,264 GT boxes\\
+Candidate graph & decoded exact RGB + pHash/dHash & Locked audit procedure\\
+Additional graph evidence & human-adjudicated adjacency & Only confirmed adjacent-or-near-identical clusters add edges\\
+Post-assignment cross-partition violations & 0 & Exact, perceptual, human-adjacency, and extended-component audit counts are zero\\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\section{Experiments and Results}
+\subsection{Frozen Training and Evaluation Protocol}
+The TriAir development program uses the same component-disjoint manifests, 50 epochs, $640\times640$ inputs, batch size 4, learning rate $10^{-4}$, AdamW, no mosaic/mixup/crop/flip/color-jitter augmentation, and fixed seeds 0, 1, and 2. Within each run, the checkpoint with the highest project-local validation AP50 is retained. The standardized COCO evaluator then uses score threshold 0.001, NMS threshold 0.6, and at most 100 detections per image. COCO AP denotes AP@[0.50:0.95]. These are development-validation results because the validation partition participates in checkpoint retention.
+
+The completed causal program contains six variants: matched early fusion; early fusion with modality dropout; modality-specific stems with fixed equal weights; modality-specific stems with learned deterministic projection; dynamic reliability gating without modality dropout; and the full dynamic gate with $p=0.15$ modality dropout. Every variant has three seeds under the same schedule and evaluator.
+
+\subsection{Three-Seed Full-Input Comparison}
+\tabref{tab:core} reports the principal all-modal comparison. Matched early fusion reaches $0.6803\pm0.0221$ COCO AP, while the full reliability-aware system reaches $0.7156\pm0.0172$. The seed-paired AP gain is $0.0354\pm0.0206$. AP50 and AP75 also increase in the three-seed aggregate. These descriptive results are stronger than the earlier two-run snapshot but remain development-validation evidence.
+
+\begin{table*}[t]
+\centering
+\caption{Three-seed component-disjoint development-validation results using the standardized COCO evaluator. Values are mean $\pm$ sample standard deviation.}
+\label{tab:core}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Model group & AP & AP50 & AP75\\
+\midrule
+Matched early fusion & $0.6803\pm0.0221$ & $0.9372\pm0.0047$ & $0.8090\pm0.0251$\\
+Reliability-aware $p=0.15$ & $\mathbf{0.7156\pm0.0172}$ & $\mathbf{0.9534\pm0.0017}$ & $\mathbf{0.8729\pm0.0192}$\\
+Paired difference & $+0.0354\pm0.0206$ & $+0.0162\pm0.0056$ & $+0.0638\pm0.0164$\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig3_core_results.pdf}
+\caption{Three-seed component-disjoint validation. Bars show mean COCO metrics and error bars show sample standard deviations.}
+\label{fig:core}
+\end{figure}
+
+\subsection{Causal Fusion Ablation}
+The six-variant ablation in \tabref{tab:causal-groups} separates the gate from modality dropout and from the mere presence of modality-specific stems. The no-dropout dynamic gate attains the highest mean AP, $0.7251\pm0.0121$. In paired comparisons (\tabref{tab:causal-contrasts}), it exceeds fixed equal stem fusion by $0.0621\pm0.0188$ AP and learned deterministic projection by $0.0404\pm0.0074$. Modality dropout is not the source of the gain: adding $p=0.15$ within the gated architecture changes AP by $-0.0095\pm0.0258$, and adding it to early fusion changes AP by only $+0.0038\pm0.0322$. Thus, the most defensible mechanism-level conclusion is that image-conditioned dynamic weighting contributes beyond the tested static fusion controls, while dropout is a training intervention with mixed average effect.
+
+\begin{table*}[t]
+\centering
+\caption{Completed three-seed causal ablation on component-disjoint development-validation. Values are mean $\pm$ sample standard deviation.}
+\label{tab:causal-groups}
+\scriptsize
+\setlength{\tabcolsep}{3.0pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Variant & AP & AP50 & AP75 & AR100\\
+\midrule
+Matched early fusion & $0.6803\pm0.0221$ & $0.9372\pm0.0047$ & $0.8090\pm0.0251$ & $0.7578\pm0.0184$\\
+Early fusion + dropout & $0.6840\pm0.0101$ & $0.9437\pm0.0028$ & $0.8211\pm0.0070$ & $0.7607\pm0.0094$\\
+Separate stems, fixed equal fusion & $0.6631\pm0.0068$ & $0.9341\pm0.0078$ & $0.8053\pm0.0095$ & $0.7478\pm0.0085$\\
+Separate stems, learned projection & $0.6848\pm0.0095$ & $0.9405\pm0.0065$ & $0.8341\pm0.0100$ & $0.7643\pm0.0090$\\
+Dynamic gate, no dropout & $\mathbf{0.7251\pm0.0121}$ & $0.9475\pm0.0003$ & $\mathbf{0.8742\pm0.0081}$ & $\mathbf{0.7917\pm0.0098}$\\
+Dynamic gate + dropout $p=0.15$ & $0.7156\pm0.0172$ & $\mathbf{0.9534\pm0.0017}$ & $0.8729\pm0.0192$ & $0.7826\pm0.0161$\\
