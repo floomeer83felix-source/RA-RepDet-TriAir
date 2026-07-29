@@ -1,0 +1,11 @@
+{
+  "invalidated_metric_sources": [
+    "per_run_metrics.csv",
+    "per_run_metrics.json",
+    "paired_transfer_comparison.csv",
+    "paired_transfer_comparison.json"
+  ],
+  "reason": "Pre-correction values conflict with the authoritative corrected aggregate result set.",
+  "corrected_seed_level_records_available": false,
+  "permitted_use": "none for manuscript metrics, paired differences, ranges, or seed-wise claims"
+}
