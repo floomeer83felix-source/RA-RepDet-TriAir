@@ -1,73 +1,68 @@
 # Task Blocker
 
-Status: `V74_MANUSCRIPT_INTEGRATION_AUTHORIZED_NO_ACTIVE_EXPERIMENT_BLOCKER`
+Status: `V74_MANUSCRIPT_INTEGRATION_AUTHORIZED_WITH_V73_AGGREGATE_CORRECTION_LOCK`
 
 Generated: 2026-07-29
 
 ## Current state
 
-V73 completed successfully at commit `eafceccdedfc0bea93170a671906619b004412f4` with all nine frozen runs, nine final-checkpoint-only devval evaluations, transfer audits, recovery records, and compact evidence outputs complete.
+V73 completed its authorized training and evaluation protocol at commit `eafceccdedfc0bea93170a671906619b004412f4`. Its uploaded aggregate metric values and negative-transfer conclusion were incorrect and have been superseded by:
 
-There is no active training or runtime blocker. The required V72 zero-shot and V73 supervised transfer evidence is frozen and available for manuscript integration.
+`runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/RESULT_CORRECTION.md`
+
+There is no active training or runtime blocker. V74 may proceed as aggregate-only manuscript integration under the correction lock below.
+
+## Corrected result boundary
+
+| Training setting | AP | AP50 | AP75 | AR100 | Conclusion |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Frozen TriAir, naive-grid zero-shot | 0.000 | 0.000 | 0.000 | 0.000 | Direct transfer failed |
+| MM-UAV Scratch Equal | 0.220 ± 0.007 | 0.557 | 0.134 | 0.351 | Aligned supervised training recovered performance |
+| TriAir Init Equal | 0.233 ± 0.006 | 0.580 | 0.151 | 0.374 | Source-domain pretraining was beneficial |
+| TriAir Init Reliability | 0.250 ± 0.008 | 0.610 | 0.178 | 0.398 | Reliability-aware fusion improved performance further |
+
+The combined conclusion is:
+
+- naive-grid frozen zero-shot transfer failed;
+- aligned MM-UAV supervision recovered useful performance;
+- TriAir initialization improved the corrected aggregate result over scratch;
+- reliability-aware fusion improved the corrected aggregate result further and achieved the best reported values.
+
+## Invalidated evidence boundary
+
+The pre-correction `per_run_metrics.csv`, `per_run_metrics.json`, `paired_transfer_comparison.csv`, and `paired_transfer_comparison.json` must not be used. Corrected seed-level records were not supplied.
+
+V74 may not:
+
+- include the invalidated nine-row per-seed table;
+- report paired differences, seed-wise directions, minima, maxima, or ranges;
+- reconstruct seed-level values from aggregate means and standard deviations;
+- retain wording that scratch equal is best, TriAir initialization is negative transfer, or reliability fusion provides no gain.
 
 ## Active task
 
 `V74_TRIAIR_MANUSCRIPT_MMUAV_CROSS_DATASET_TRANSFER_INTEGRATION_AUTHORIZED`
 
-V74 is documentation/build work only. It must integrate the exact V72 and V73 results into the research manuscript and perform arithmetic, claim, citation, build, and rendering audits.
+V74 is documentation and build work only. It must integrate the corrected aggregate table, update the scientific interpretation, perform traceability and claim audits, build the manuscript cleanly, and inspect rendered pages.
 
-## Required result boundary
+## Scientific boundary
 
-The combined conclusion is:
-
-- unadapted naive-grid zero-shot transfer produced effectively zero AP;
-- MM-UAV supervision with learned feature alignment recovered mean AP to approximately `0.22`;
-- `scratch_equal` achieved the highest three-seed mean AP: `0.2234327171146003`;
-- `triair_init_equal` mean AP was `0.2177868187542824`, a paired mean change of `-0.00564589836031786` versus scratch;
-- `triair_init_reliability` mean AP was `0.21510604967221716`, a paired mean change of `-0.008326667442383104` versus scratch and `-0.002680769082065243` versus initialized equal fusion;
-- TriAir initialization and reliability weighting did not provide additional average target-domain benefit under the fixed V73 protocol.
-
-The study may not be described as independent/blind external validation, official untouched-test performance, zero-shot success, source-pretraining benefit, reliability-fusion superiority, or statistically significant external generalization.
-
-## Authorized work
-
-V74 may:
-
-- edit the active manuscript and internal appendix/supplement sources;
-- add exact V72/V73 protocol and result tables;
-- add all nine V73 per-seed results and three-seed summaries;
-- add paired-difference and transfer-coverage discussion;
-- explain supervised alignment-aware recovery and the negative-transfer result;
-- preserve one explicit internal MM-UAV citation placeholder when no established entry exists;
-- run clean LaTeX/BibTeX builds and inspect rendered pages;
-- create compact traceability, claim-audit, build, and handoff records.
-
-## V74 may not
-
-- run new training, inference, evaluation, tuning, adapter variants, epochs, seeds, checkpoints, or datasets;
-- rerun V72 or V73 because results are unfavorable;
-- omit seeds or select favorable comparisons;
-- change frozen metrics or original TriAir in-domain evidence;
-- place V72/V73 in the abstract or headline contributions as positive independent external validation;
-- claim that TriAir initialization or reliability fusion improved MM-UAV performance;
-- place raw data, labels, predictions, checkpoints, private paths, credentials, or heavy artifacts in Git.
+The study remains supervised target-domain transfer. It may not be described as independent/blind external validation, official untouched-test performance, V73 zero-shot success, statistically significant external generalization, or generalization without MM-UAV labels.
 
 ## Fail-closed conditions
 
-Finish with the matching V74 blocked state only when:
+Finish with the matching blocked state only when:
 
-1. the manuscript source or clean build procedure cannot be resolved;
-2. any inserted number cannot be traced to committed V72/V73 evidence;
-3. independently reproduced arithmetic differs from the committed summary;
-4. prohibited external-validation or superiority wording remains;
+1. the corrected aggregate numbers cannot be traced to the correction record;
+2. any invalidated old value or conclusion remains in active manuscript sources;
+3. the manuscript source or clean build procedure cannot be resolved;
+4. prohibited external-validation wording remains;
 5. new tables or text cannot be rendered legibly;
-6. protected files drift outside the authorized manuscript/task scope;
+6. protected files drift outside the authorized scope;
 7. private or heavy artifacts enter Git.
-
-A missing established MM-UAV bibliography entry may remain as one explicit internal draft placeholder and does not block research-branch integration.
 
 ## Next action
 
-Execute `docs/NEXT_TASK.md`. Integrate the complete V72-V73 cross-dataset transfer study, verify every number and claim, build and inspect the manuscript, and push with:
+Execute `docs/NEXT_TASK.md`. Integrate the corrected aggregate V72-V73 transfer study and push with:
 
-`docs: integrate V72-V73 MM-UAV cross-dataset transfer study`
+`docs: integrate corrected V72-V73 MM-UAV cross-dataset transfer study`
