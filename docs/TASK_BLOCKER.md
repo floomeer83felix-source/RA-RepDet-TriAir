@@ -1,25 +1,26 @@
 # Task Blocker
 
-Status: `V77_COMPLETE_SUBMISSION_METADATA_AND_FULL_EVALUATOR_PROVENANCE_PENDING`
+Status: `V78_COMPLETE_FINAL_AUTHOR_METADATA_AND_OPTIONAL_EVALUATOR_ENRICHMENT_PENDING`
 
 Generated: 2026-07-29
 
-## Completed
+## Closed
 
-- all nine trained single-modality metric rows received and integrated;
-- independent three-seed arithmetic passed;
-- thermal-only identified as the strongest standalone modality;
-- paired multimodal-over-thermal comparisons are positive for all three seeds;
-- revised 15-page manuscript built and visually inspected;
-- no unavailable result was fabricated.
+- competing-interests declaration confirmed: no competing interests;
+- exact provider archive identity recorded;
+- 20,240-entry local identity audit recorded;
+- provider archive and runtime conversion provenance recorded;
+- initial random split identified as project-generated and non-official;
+- 24,223 publication count separated from 30,634 current-archive label lines;
+- data non-redistribution boundary retained;
+- 15-page manuscript rebuilt and visually inspected.
 
-## Remaining non-training closure
+## Remaining
 
-1. Confirm competing interests and final institutional metadata.
-2. Verify the exact local TriAir version and conversion mapping.
-3. Confirm data-access and dissemination wording.
-4. If retained checkpoints exist, run evaluator-only completion for AP@[0.50:0.95], AR1, AR10, AR100, and checkpoint/evaluator hashes.
+1. Final author, affiliation, correspondence, and ORCID metadata.
+2. Live journal-format and portal check before submission.
+3. Optional evaluator-only completion of single-modality AP@[0.50:0.95], AR metrics, checkpoint hashes, and evaluator identities.
 
-## Scientific boundary
+## Boundary
 
-The single-modality results are descriptive component-disjoint development-validation evidence. They do not establish independent-test performance, statistical significance, physical sensor-failure robustness, or calibrated modality reliability.
+There is no active scientific experiment blocker. The optional evaluator pass must not involve retraining, threshold tuning, schedule changes, seed replacement, or selective reruns.
