@@ -1,26 +1,40 @@
 # Task Blocker
 
-Status: `V78_COMPLETE_FINAL_AUTHOR_METADATA_AND_OPTIONAL_EVALUATOR_ENRICHMENT_PENDING`
+Status: `V79_EVALUATOR_ONLY_EXECUTION_REQUIRES_LOCAL_DATA_AND_NINE_RETAINED_CHECKPOINTS`
 
 Generated: 2026-07-29
 
-## Closed
+## Completed
 
-- competing-interests declaration confirmed: no competing interests;
-- exact provider archive identity recorded;
-- 20,240-entry local identity audit recorded;
-- provider archive and runtime conversion provenance recorded;
-- initial random split identified as project-generated and non-official;
-- 24,223 publication count separated from 30,634 current-archive label lines;
-- data non-redistribution boundary retained;
-- 15-page manuscript rebuilt and visually inspected.
+- COCO evaluator extended from AR100-only reporting to AR1, AR10, and AR100;
+- AP@[0.50:0.95], AP50, and AP75 retained under the existing 101-point COCO contract;
+- fail-closed nine-checkpoint evaluator-only queue added;
+- checkpoint and split SHA256 recording retained;
+- V77 AP50/AP75 reconciliation added to the summary builder;
+- source-contract tests passed;
+- no training entrypoint is present in the V79 queue.
 
-## Remaining
+## Execution blocker in this environment
 
-1. Final author, affiliation, correspondence, and ORCID metadata.
-2. Live journal-format and portal check before submission.
-3. Optional evaluator-only completion of single-modality AP@[0.50:0.95], AR metrics, checkpoint hashes, and evaluator identities.
+The current ChatGPT runtime does not contain:
+
+1. the TriAir dataset at `D:\download\triair`;
+2. the frozen V40 component-disjoint validation manifest inside the local repository checkout;
+3. the nine retained checkpoints under `runs/v76_triair_single_modality_ablation/training/<mode>_seed<seed>/weights/best.pt`;
+4. the authorized CUDA workspace.
+
+The preflight therefore stops before inference and records all missing paths. No AP@[0.50:0.95] or AR value has been fabricated or estimated.
+
+## Resolution
+
+Run from `E:\RepViT-main`:
+
+```powershell
+python rarepdet/tools/run_v79_single_modality_eval_only.py --data D:\download\triair --device cuda --resume
+```
+
+When all nine raw JSON files and the complete summary are available, integrate the standardized AP/AR table into the manuscript only after checking the recorded AP50/AP75 deltas against V77.
 
 ## Boundary
 
-There is no active scientific experiment blocker. The optional evaluator pass must not involve retraining, threshold tuning, schedule changes, seed replacement, or selective reruns.
+This is evaluation-only completion on the existing component-disjoint development-validation split. It does not establish independent-test performance or statistical significance and must not involve retraining, tuning, seed replacement, or guard access.
