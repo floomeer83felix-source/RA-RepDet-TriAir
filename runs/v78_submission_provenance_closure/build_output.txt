@@ -1,0 +1,10 @@
+V78 manuscript build
+- make_figures.py: not required; figures unchanged from V77
+- pdfLaTeX pass 1: PASS
+- pdfLaTeX pass 2: PASS
+- pages: 15
+- fatal errors: 0
+- undefined citations/references: 0
+- overfull boxes: 0
+- PDF preflight: openable, unencrypted, 15 pages, not scanned
+- rendered-page audit: PASS on pages 4, 5, 13, and 14
