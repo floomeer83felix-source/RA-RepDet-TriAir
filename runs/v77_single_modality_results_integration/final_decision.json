@@ -1,0 +1,14 @@
+{
+  "decision": "V77_SINGLE_MODALITY_RESULTS_INTEGRATED_MANUSCRIPT_REBUILT",
+  "user_supplied_rows": 9,
+  "three_seed_arithmetic": "PASS",
+  "manuscript_pages": 15,
+  "latex_passes": 2,
+  "undefined_citations_or_references": 0,
+  "overfull_boxes": 0,
+  "rendered_page_audit": "PASS",
+  "available_single_modality_metrics": ["precision", "recall", "f1", "ap50", "ap75"],
+  "unavailable_not_inferred": ["ap50_95", "ar1", "ar10", "ar100", "checkpoint_sha256", "evaluator_artifacts"],
+  "article_readiness_score": 4.4,
+  "submission_authorized": false
+}
