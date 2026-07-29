@@ -1,68 +1,54 @@
-# RA-RepDet manuscript evaluation - V76 major revision
+# RA-RepDet manuscript evaluation - V77 single-modality integration
 
 ## Overall recommendation
 
-**Major revision package completed; targeted single-modality experiments remain pending execution.** The manuscript is materially stronger than V75 because it now uses the already-completed three-seed COCO evaluation, six-variant causal fusion ablation, and locked internal holdout instead of relying on a two-run system comparison. The central mechanism claim is now better isolated: dynamic gating outperforms fixed equal stem fusion and deterministic learned stem projection, while modality dropout has mixed average effect.
+**Major revision evidence package is complete at the supplied metric scope; pre-submission closure remains.** The trained RGB-only, thermal-only, and event-only controls close the largest basic experimental gap identified in V76. Thermal is the strongest standalone stream, but both multimodal systems exceed thermal-only on AP50 and AP75 in every paired seed. This supports a multimodal benefit rather than a result driven only by the strongest sensor.
 
-The remaining experimental gap is narrow and explicit: trained RGB-only, thermal-only, and event-only baselines. A frozen nine-run execution package (three modalities by three seeds) is included, but no unexecuted result is inserted into the paper.
+The remaining technical reporting gap is narrower: the supplied single-modality table contains precision, recall, F1, AP50, and AP75, but not COCO AP@[0.50:0.95], AR1, AR10, AR100, checkpoint hashes, or evaluator artifacts. These values were not inferred. If the retained checkpoints are available, a standardized evaluation-only pass should add them without retraining.
 
 ## Scorecard
 
 | Dimension | Score | Assessment |
 | --- | ---: | --- |
-| Novelty and relevance | 4.1 / 5 | Lightweight tri-modal dynamic fusion remains timely and relevant. |
-| Method clarity | 4.4 / 5 | Gate, stems, dropout, detector interface, split construction, and transfer boundaries are clear. |
-| Experimental rigor | 4.1 / 5 | Three-seed full comparison, six causal variants, and a locked holdout substantially improve rigor. |
-| Evidence traceability | 4.5 / 5 | V42, V48, V73, and V75 evidence is directly linked to compact source records. |
-| Statistical support | 3.8 / 5 | Three paired seeds support descriptive consistency, but not strong inference. |
-| Reproducibility | 4.5 / 5 | Frozen manifests, checkpoint hashes, evaluation contracts, and the new single-modality queue are explicit. |
-| Writing and organization | 4.4 / 5 | The revised narrative separates development validation, locked holdout, and supervised transfer. |
-| Submission readiness | 3.8 / 5 | Single-modality results, declarations, and exact TriAir provenance still require closure. |
+| Novelty and relevance | 4.1 / 5 | Lightweight tri-modal dynamic fusion remains relevant. |
+| Method clarity | 4.4 / 5 | Architecture, controls, splits, transfer protocol, and boundaries are clear. |
+| Experimental rigor | 4.3 / 5 | Three-seed main systems, six fusion controls, locked holdout, transfer study, and trained single-modality baselines are now present. |
+| Evidence traceability | 4.4 / 5 | Most evidence is source-locked; V77 values are traceable to the supplied nine-row table but lack checkpoint/evaluator identities. |
+| Statistical support | 3.9 / 5 | Three paired seeds show consistent direction, but remain descriptive. |
+| Reproducibility | 4.3 / 5 | Frozen protocols and scripts are strong; V77 checkpoint hashes and full evaluator records are still missing. |
+| Writing and organization | 4.5 / 5 | The narrative now separates modality contribution, dynamic gating, dropout, holdout evidence, and supervised transfer. |
+| Submission readiness | 4.0 / 5 | Experimental coverage is strong; declarations, exact data provenance, and optional full COCO/AR completion remain. |
 
-**Overall: 4.2 / 5.** The paper is technically credible and much closer to submission, but the fixed single-modality experiment should be completed before making a comprehensive modality-contribution claim.
+**Overall: 4.4 / 5.** The manuscript is technically persuasive and suitable for final pre-submission editing after metadata/provenance closure.
 
-## Major revisions completed
+## New evidence interpretation
 
-1. Replaced the two-run headline with three-seed standardized COCO results.
-2. Added six-variant causal ablation:
-   - matched early fusion;
-   - early fusion plus modality dropout;
-   - separate stems with fixed equal fusion;
-   - separate stems with learned deterministic projection;
-   - dynamic gate without dropout;
-   - dynamic gate with dropout.
-3. Added seed-paired causal contrasts.
-4. Added the 837-image locked internal holdout evaluated after checkpoint lock.
-5. Corrected the discussion: static controls do exist and support a gate-specific descriptive conclusion.
-6. Added canonical TriAir-related and MM-UAV dataset-paper citations, while retaining an explicit local-version provenance caveat.
-7. Preserved the MM-UAV boundary: supervised target-domain adaptation on an exposed devval split, not independent external testing.
+| Modality | F1 | AP50 | AP75 |
+| --- | ---: | ---: | ---: |
+| RGB-only | 0.6790 ± 0.0080 | 0.6527 ± 0.0086 | 0.3807 ± 0.0085 |
+| Thermal-only | 0.8040 ± 0.0070 | 0.8497 ± 0.0080 | 0.6263 ± 0.0111 |
+| Event-only | 0.4143 ± 0.0110 | 0.3347 ± 0.0125 | 0.1260 ± 0.0080 |
 
-## Evidence interpretation
+Thermal-only is strongest across all supplied metrics. Relative to thermal-only, the full reliability-aware system gains `0.1057 ± 0.0133` F1, `0.1037 ± 0.0094` AP50, and `0.2465 ± 0.0253` AP75; every paired difference is positive. Matched early fusion also exceeds thermal-only by `0.0876 ± 0.0101` AP50 and `0.1827 ± 0.0352` AP75.
 
-On component-disjoint development-validation, matched early fusion reaches `0.6803 +/- 0.0221` COCO AP and the full reliability-aware system reaches `0.7156 +/- 0.0172`, with paired gain `0.0354 +/- 0.0206`. The no-dropout dynamic gate reaches the highest mean AP (`0.7251 +/- 0.0121`) and exceeds fixed equal stem fusion by `0.0621 +/- 0.0188` and deterministic learned projection by `0.0404 +/- 0.0074`.
+This closes the basic question of whether fusion merely reproduces the strongest modality. It does not establish calibrated reliability, causal physical-sensor importance, or universal superiority.
 
-The modality-dropout increment is mixed: `-0.0095 +/- 0.0258` inside the gated architecture and `+0.0038 +/- 0.0322` inside early fusion. This prevents over-attributing the gain to dropout.
+## Remaining reviewer concerns
 
-On the locked internal holdout, AP50 improves by `0.0086 +/- 0.0062` and is positive in all three seed pairs. AP75 is mixed. This supports a robust AP50 trend under checkpoint lock, not universal improvement or an independent public-test claim.
+1. The main TriAir development partition still participates in checkpoint retention.
+2. The locked holdout is internal to the same local dataset inventory.
+3. Three seeds support descriptive consistency but not strong statistical inference.
+4. Exact local TriAir version/conversion provenance and final declarations require author confirmation.
+5. The V77 single-modality records lack AP@[0.50:0.95], AR metrics, checkpoint hashes, and original evaluator files.
 
-## Experiment still required
+## Recommended final closure
 
-Run the frozen V76 single-modality queue:
-
-- RGB-only: seeds 0, 1, 2;
-- thermal-only: seeds 0, 1, 2;
-- event-only: seeds 0, 1, 2.
-
-All nine runs use the frozen V40 component-disjoint train/validation manifests, 50 epochs, batch size 4, image size 640, AdamW learning rate `1e-4`, no modality dropout, checkpoint retention by project-local validation AP50, and one standardized COCO evaluation of the retained checkpoint. No adaptive rerun, seed replacement, or result-driven schedule change is permitted.
-
-## Remaining author closure
-
-1. Confirm competing interests and final author/institution metadata.
-2. Verify the exact local TriAir dataset version and conversion mapping against the cited provider paper.
-3. Confirm data access and dissemination wording.
-4. Execute and audit the nine single-modality runs.
-5. Preserve the distinction between component-disjoint development validation, locked internal holdout, and exposed supervised MM-UAV devval.
+1. Run the standardized evaluator once on the nine retained single-modality checkpoints to add AP@[0.50:0.95], AR1, AR10, and AR100; do not retrain or tune.
+2. Record checkpoint SHA256 values and the frozen split/evaluator hashes.
+3. Confirm competing interests and author/institution metadata.
+4. Verify the exact local TriAir version and conversion mapping.
+5. Preserve validation-only, internal-holdout, and supervised exposed-devval wording.
 
 ## Acceptance outlook
 
-With the single-modality table and metadata/provenance closure, the manuscript is a plausible journal submission. The most likely reviewer request after that would concern a truly independent sensor-compatible test set or broader seed replication rather than a missing basic control.
+With metadata/provenance closure, the manuscript is a plausible journal submission. A reviewer may still request an independently acquired sensor-compatible test set or more seeds, but the absence of basic single-modality controls is no longer a defensible major objection.
