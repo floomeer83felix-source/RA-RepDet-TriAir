@@ -1,22 +1,42 @@
 # Current Task
 
-## Completion
+## Active task
 
-`V78_SUBMISSION_PROVENANCE_AND_DECLARATIONS_CLOSED`
+`V79_SINGLE_MODALITY_EVALUATOR_ONLY_LOCAL_EXECUTION`
 
-The manuscript now records the exact untagged TriAir provider archive, complete local archive audit, provider-supplied data representation, runtime-only conversion path, original non-official random split, published-versus-current label-count discrepancy, no-competing-interests declaration, and non-redistribution boundary.
+The user selected the first recommended pre-submission action: run one standardized evaluator pass on each of the nine already-retained RGB-only, thermal-only, and event-only checkpoints.
 
-## Remaining submission preparation
+## Frozen scope
 
-Before upload, complete only the following:
+- checkpoints: exactly `rgb`, `thermal`, and `event`, seeds `0`, `1`, and `2`;
+- checkpoint identity: each run's retained `weights/best.pt`;
+- split: frozen V40 component-disjoint development-validation manifest;
+- metrics: AP@[0.50:0.95], AP50, AP75, AR1, AR10, AR100;
+- identities: checkpoint SHA256 and split SHA256;
+- training: forbidden;
+- threshold tuning, schedule changes, seed replacement, selective rerun, and guard access: forbidden.
 
-1. confirm final author names, affiliations, corresponding-author details, and ORCID fields;
-2. check the live target-journal template, required statements, file limits, and submission metadata;
-3. retain the explicit 24,223-versus-30,634 distinction and dataset non-redistribution wording;
-4. optionally run evaluator-only completion for the nine retained single-modality checkpoints if AP@[0.50:0.95], AR1/10/100, and checkpoint hashes are desired.
+## Execution command
 
-No retraining, tuning, selective rerun, seed replacement, or new public-test claim is authorized.
+From `E:\RepViT-main`:
 
-## Commit message
+```powershell
+python rarepdet/tools/run_v79_single_modality_eval_only.py --data D:\download\triair --device cuda --resume
+```
 
-`docs: close V78 data provenance and competing interests`
+## Required completion files
+
+```text
+runs/v79_single_modality_evaluator_completion/
+  preflight.json
+  raw/rgb_seed0.json ... raw/event_seed2.json
+  per_run.csv
+  summary.json
+  summary.md
+```
+
+The summary builder compares standardized AP50/AP75 with the user-supplied V77 rows and records every delta. It must not silently replace the earlier table.
+
+## Current boundary
+
+The evaluator-only implementation and static checks are complete. Actual inference remains pending because the current ChatGPT environment does not contain the local dataset or nine retained checkpoint files.
