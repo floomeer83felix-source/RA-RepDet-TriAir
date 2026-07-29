@@ -1,8 +1,7 @@
 {
-  "status": "CORRECTED_AFTER_UPLOAD",
+  "status": "CORRECTED_SEED_LEVEL_VALUES_SUPPLIED",
   "corrected_at": "2026-07-29",
-  "authoritative_source": "user-provided aggregate correction",
-  "reporting_precision": "values are stored at the precision supplied by the correction",
+  "authoritative_source": "user-provided corrected nine-row seed-level metric table",
   "zero_shot_baseline": {
     "name": "frozen_triair_naive_grid_zero_shot",
     "ap50_95": 0.0,
@@ -14,153 +13,52 @@
   "methods": {
     "scratch_equal": {
       "display_name": "MM-UAV Scratch Equal",
-      "ap50_95": {
-        "mean": 0.22,
-        "sample_std": 0.007,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ap50": {
-        "mean": 0.557,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ap75": {
-        "mean": 0.134,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar1": {
-        "mean": null,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar10": {
-        "mean": null,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar100": {
-        "mean": 0.351,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
+      "ap50_95": {"mean": 0.221, "sample_std": 0.003, "min": 0.218, "max": 0.224, "range": 0.006},
+      "ap50": {"mean": 0.5566666666666667, "sample_std": 0.004509249752822899, "min": 0.552, "max": 0.561, "range": 0.009},
+      "ap75": {"mean": 0.1346666666666667, "sample_std": 0.003511884584284249, "min": 0.131, "max": 0.138, "range": 0.007},
+      "ar1": {"mean": 0.1736666666666667, "sample_std": 0.002516611478423571, "min": 0.171, "max": 0.176, "range": 0.005},
+      "ar10": {"mean": 0.336, "sample_std": 0.004, "min": 0.332, "max": 0.340, "range": 0.008},
+      "ar100": {"mean": 0.353, "sample_std": 0.004, "min": 0.349, "max": 0.357, "range": 0.008},
       "conclusion": "Aligned supervised training recovered performance"
     },
     "triair_init_equal": {
       "display_name": "TriAir Init Equal",
-      "ap50_95": {
-        "mean": 0.233,
-        "sample_std": 0.006,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ap50": {
-        "mean": 0.58,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ap75": {
-        "mean": 0.151,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar1": {
-        "mean": null,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar10": {
-        "mean": null,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar100": {
-        "mean": 0.374,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
+      "ap50_95": {"mean": 0.234, "sample_std": 0.002, "min": 0.232, "max": 0.236, "range": 0.004},
+      "ap50": {"mean": 0.5796666666666667, "sample_std": 0.004509249752822899, "min": 0.575, "max": 0.584, "range": 0.009},
+      "ap75": {"mean": 0.151, "sample_std": 0.003, "min": 0.148, "max": 0.154, "range": 0.006},
+      "ar1": {"mean": 0.1813333333333333, "sample_std": 0.002516611478423586, "min": 0.179, "max": 0.184, "range": 0.005},
+      "ar10": {"mean": 0.3526666666666666, "sample_std": 0.003511884584284249, "min": 0.349, "max": 0.356, "range": 0.007},
+      "ar100": {"mean": 0.3716666666666666, "sample_std": 0.003511884584284249, "min": 0.368, "max": 0.375, "range": 0.007},
       "conclusion": "Source-domain pretraining was beneficial"
     },
     "triair_init_reliability": {
       "display_name": "TriAir Init Reliability",
-      "ap50_95": {
-        "mean": 0.25,
-        "sample_std": 0.008,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ap50": {
-        "mean": 0.61,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ap75": {
-        "mean": 0.178,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar1": {
-        "mean": null,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar10": {
-        "mean": null,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
-      "ar100": {
-        "mean": 0.398,
-        "sample_std": null,
-        "min": null,
-        "max": null,
-        "range": null
-      },
+      "ap50_95": {"mean": 0.2503333333333334, "sample_std": 0.002516611478423586, "min": 0.248, "max": 0.253, "range": 0.005},
+      "ap50": {"mean": 0.6076666666666667, "sample_std": 0.004509249752822899, "min": 0.603, "max": 0.612, "range": 0.009},
+      "ap75": {"mean": 0.175, "sample_std": 0.004, "min": 0.171, "max": 0.179, "range": 0.008},
+      "ar1": {"mean": 0.1903333333333333, "sample_std": 0.002516611478423586, "min": 0.188, "max": 0.193, "range": 0.005},
+      "ar10": {"mean": 0.371, "sample_std": 0.004, "min": 0.367, "max": 0.375, "range": 0.008},
+      "ar100": {"mean": 0.392, "sample_std": 0.004, "min": 0.388, "max": 0.396, "range": 0.008},
       "conclusion": "Reliability-aware fusion improved performance further"
     }
   },
-  "paired_differences": null,
-  "paired_difference_status": "INVALIDATED_PENDING_CORRECTED_SEED_LEVEL_VALUES",
-  "invalidated_metric_sources": [
+  "paired_ap_differences": {
+    "triair_init_equal_minus_scratch_equal": {"mean": 0.013, "sample_std": 0.001, "all_positive": true},
+    "triair_init_reliability_minus_triair_init_equal": {"mean": 0.0163333333333333, "sample_std": 0.000577350269189626, "all_positive": true},
+    "triair_init_reliability_minus_scratch_equal": {"mean": 0.0293333333333333, "sample_std": 0.000577350269189626, "all_positive": true}
+  },
+  "corrected_metric_sources": [
+    "corrected_per_run_metrics.csv",
+    "corrected_per_run_metrics.json",
+    "corrected_paired_transfer_comparison.csv",
+    "corrected_paired_transfer_comparison.json"
+  ],
+  "invalidated_historical_sources": [
     "per_run_metrics.csv",
     "per_run_metrics.json",
     "paired_transfer_comparison.csv",
     "paired_transfer_comparison.json",
-    "pre-correction aggregate values in commit eafceccdedfc0bea93170a671906619b004412f4"
+    "pre-correction values in commit eafceccdedfc0bea93170a671906619b004412f4"
   ],
-  "do_not_reconstruct_seed_values_from_aggregates": true,
-  "authoritative_correction_record": "RESULT_CORRECTION.md",
-  "scientific_boundary": "Supervised MM-UAV cross-dataset transfer with learned feature alignment; not zero-shot, independent/blind external validation, or official untouched-test performance."
+  "scientific_boundary": "Supervised MM-UAV cross-dataset transfer with learned feature alignment on an exposed devval split; not zero-shot, independent/blind external validation, official untouched-test performance, or statistical-significance evidence."
 }
