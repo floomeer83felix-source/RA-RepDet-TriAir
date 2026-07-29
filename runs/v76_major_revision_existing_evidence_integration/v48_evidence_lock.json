@@ -1,0 +1,19 @@
+{
+  "status": "LOCKED_COMPLETE",
+  "source": "runs/v48_complete_ablation/causal_ablation_summary.json",
+  "protocol": "frozen V40 component-disjoint development-validation",
+  "seeds": [0, 1, 2],
+  "variants": ["matched_early", "early_moddrop", "ra_static_equal", "ra_stems_project", "ra_no_moddrop", "ra_full_p015"],
+  "headline_ap": {
+    "matched_early": {"mean": 0.6802551568394229, "sample_std": 0.022050111999368},
+    "ra_full_p015": {"mean": 0.7156055407632192, "sample_std": 0.017212061699236},
+    "paired_delta": {"mean": 0.0353503839237963, "sample_std": 0.020585835748691}
+  },
+  "causal_ap_deltas": {
+    "ra_no_moddrop_minus_ra_static_equal": {"mean": 0.0620546827821181, "sample_std": 0.018780514752374},
+    "ra_no_moddrop_minus_ra_stems_project": {"mean": 0.0403756530395093, "sample_std": 0.007356826371349},
+    "ra_full_p015_minus_ra_no_moddrop": {"mean": -0.0095423062783212, "sample_std": 0.025797358556617}
+  },
+  "guard_used_for_training_or_selection": false,
+  "significance_claim": false
+}
