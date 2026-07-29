@@ -1,0 +1,17 @@
+{
+  "allowed": [
+    "The authors declare no competing interests.",
+    "The local tree matched the current provider archive on 20,240 paths, sizes, and CRC32 values according to the author audit.",
+    "The paper reports 24,223 annotated vehicles.",
+    "The current archive audit counts 30,634 valid single-class label lines.",
+    "The initial local 80:20 split is project-generated and not official.",
+    "No explicit dataset-archive license was located; data are not redistributed."
+  ],
+  "forbidden": [
+    "30,634 is the official vehicle count reported by the provider paper.",
+    "The dataset archive is licensed under MIT merely because the code repository says MIT.",
+    "The original local random split is an official provider split.",
+    "The archive audit creates independent-test evidence.",
+    "The unresolved 6,411 count difference has been explained."
+  ]
+}
