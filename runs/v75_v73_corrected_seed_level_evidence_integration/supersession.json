@@ -1,0 +1,11 @@
+{
+  "supersedes": "V74 aggregate-only V73 manuscript evidence",
+  "reason": "corrected nine-row seed-level metric table supplied",
+  "v74_historical_artifacts_retained": true,
+  "authoritative_metric_sources": [
+    "corrected_per_run_metrics.csv",
+    "corrected_per_run_metrics.json",
+    "corrected_three_seed_summary.json",
+    "corrected_paired_differences.json"
+  ]
+}
