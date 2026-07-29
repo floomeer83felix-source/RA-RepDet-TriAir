@@ -1,0 +1,99 @@
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\caption{Seed-paired COCO AP contrasts from the completed causal ablation. No significance test is claimed.}
+\label{tab:causal-contrasts}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}YrrY@{}}
+\toprule
+Contrast & Mean delta & Sample SD & Interpretation\\
+\midrule
+Full gate + dropout $-$ matched early & +0.0354 & 0.0206 & Overall pre-specified system comparison\\
+Gate without dropout $-$ matched early & +0.0449 & 0.0341 & Separate stems plus dynamic weighting\\
+Full gate + dropout $-$ gate without dropout & -0.0095 & 0.0258 & Dropout increment inside gated architecture\\
+Early + dropout $-$ matched early & +0.0038 & 0.0322 & Dropout increment inside early fusion\\
+Gate without dropout $-$ fixed equal stems & +0.0621 & 0.0188 & Dynamic weighting beyond equal stem fusion\\
+Gate without dropout $-$ learned projection & +0.0404 & 0.0074 & Dynamic weighting beyond deterministic learned fusion\\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\subsection{Image-Level Bootstrap Uncertainty}
+An archived conditional uncertainty analysis resamples validation images 2,000 times with a fixed bootstrap seed. Each resample computes the project-local metric for fixed seed-0 and seed-2 checkpoints, averages those two checkpoints within each model group, and then calculates the reliability-minus-early difference. Images with no ground-truth boxes remain in the resampling frame; they contribute false positives when predictions are present and zero ground-truth boxes to denominators. The percentile intervals for AP50, AP75, and F1 are positive (\tabref{tab:bootstrap}). These intervals are conditional on two fixed checkpoints and this validation partition; they do not replace the three-seed training variability above and are not used for model selection.
+
+\begin{table}[t]
+\centering
+\caption{Image-level bootstrap differences, reliability-aware $p=0.15$ minus matched early fusion. Values are descriptive percentile intervals from 2,000 image resamples.}
+\label{tab:bootstrap}
+\scriptsize
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & Mean difference & 95\% CI\\
+\midrule
+AP50 & +0.0177 & [+0.0153, +0.0203]\\
+AP75 & +0.0553 & [+0.0483, +0.0622]\\
+F1 & +0.0187 & [+0.0150, +0.0226]\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Synthetic Channel Removal}
+To test controlled missing-input behavior, one channel group is deterministically set to zero at a time while weights, thresholds, and postprocessing remain fixed. \tabref{tab:removal} summarizes the archived seed-0/seed-2 checkpoint means. The reliability-aware system retains higher AP50 after removal of RGB, thermal, or event inputs. The largest separation follows thermal removal, where AP50 is 0.7030 for reliability-aware fusion and 0.3648 for early fusion. This deterministic intervention does not emulate measured physical sensor outages, temporal misalignment, or cross-device deployment failures.
+
+\begin{table*}[t]
+\centering
+\caption{Synthetic channel removal on component-disjoint validation. Each value is the two-checkpoint mean. Delta is relative to the all-modal mean of the same model group. The intervention is deterministic zero-channel input, not a physical sensor-failure experiment.}
+\label{tab:removal}
+\scriptsize
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Model group & Condition & Precision & Recall & F1 & AP50 & AP75\\
+\midrule
+Matched early & All modalities & 0.9188 & 0.8720 & 0.8945 & 0.9408 & 0.8208\\
+Matched early & RGB removed & 0.8202 & 0.6531 & 0.7269 & 0.7379 & 0.5265\\
+Matched early & Thermal removed & 0.8226 & 0.3003 & 0.4400 & 0.3648 & 0.2626\\
+Matched early & Event removed & 0.9001 & 0.8731 & 0.8863 & 0.9339 & 0.8021\\
+\midrule
+Reliability $p=0.15$ & All modalities & 0.9273 & 0.8997 & 0.9133 & 0.9586 & 0.8760\\
+Reliability $p=0.15$ & RGB removed & 0.8569 & 0.8229 & 0.8394 & 0.8985 & 0.7051\\
+Reliability $p=0.15$ & Thermal removed & 0.8321 & 0.5885 & 0.6894 & 0.7030 & 0.3883\\
+Reliability $p=0.15$ & Event removed & 0.9305 & 0.8970 & 0.9134 & 0.9582 & 0.8600\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig4_channel_removal.pdf}
+\caption{AP50 under deterministic synthetic channel removal. Reliability-aware $p=0.15$ retains higher AP50 under all four input conditions.}
+\label{fig:removal}
+\end{figure}
+
+\subsection{Locked Internal Holdout}
+After the six matched early and full reliability-aware checkpoints were fixed, the unchanged 837-image guard manifest was evaluated once without retraining, threshold tuning, or checkpoint reselection. The split inventory contains 2,287 boxes, while the standardized evaluator retains 1,264 ground-truth boxes after its label and geometry contract; both counts are reported to avoid conflating inventory and evaluator populations.
+
+\tabref{tab:guard} shows that reliability-aware fusion improves mean AP50 from $0.9588\pm0.0058$ to $0.9674\pm0.0033$. The paired AP50 gain is $0.0086\pm0.0062$ and is positive for all three seeds. Mean F1 increases by $0.0069\pm0.0089$. AP75 improves slightly on average but is mixed by seed, including a negative seed-2 difference. The guard therefore provides useful locked internal holdout evidence, not an independent public test or a basis for post-hoc tuning.
+
+\begin{table*}[t]
+\centering
+\caption{Locked 837-image internal holdout. Project-local AP50/AP75 and F1 are reported after all six checkpoints were fixed.}
+\label{tab:guard}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Model/statistic & F1 & AP50 & AP75\\
+\midrule
+Matched early, mean $\pm$ SD & $0.9253\pm0.0170$ & $0.9588\pm0.0058$ & $0.9007\pm0.0209$\\
+Reliability $p=0.15$, mean $\pm$ SD & $0.9322\pm0.0106$ & $0.9674\pm0.0033$ & $0.9029\pm0.0323$\\
+Paired difference, mean $\pm$ SD & $+0.0069\pm0.0089$ & $+0.0086\pm0.0062$ & $+0.0022\pm0.0173$\\
+Positive seed pairs & 2 / 3 & 3 / 3 & 2 / 3\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Efficiency}
+The reliability-aware system adds 1,684 parameters and approximately 0.77 GFLOPs under the reported profiling scope. Measurement uses batch size 1, image size 640, model evaluation mode, \texttt{torch.inference\_mode()}, 200 warm-up iterations, five trials of 1,000 timed iterations, and CUDA synchronization. Raw-forward timing covers the backbone call only; detector inference covers the torchvision FCOS transform, backbone, head, NMS, and postprocessing but excludes data loading and file I/O. \tabref{tab:efficiency} reports the mean of the median latency across the two fixed checkpoints and the observed peak-memory range. Reliability-aware fusion is slightly slower and uses more memory; it should not be described as faster.
+
