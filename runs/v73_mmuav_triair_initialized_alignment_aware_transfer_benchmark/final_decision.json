@@ -1,8 +1,24 @@
 {
   "decision": "V73_MMUAV_THREE_SEED_TRANSFER_BENCHMARK_COMPLETE",
+  "execution_status": "COMPLETE",
+  "metric_upload_status": "CORRECTED_AFTER_UPLOAD",
+  "corrected_at": "2026-07-29",
+  "authoritative_result_file": "RESULT_CORRECTION.md",
+  "authoritative_aggregate_file": "three_seed_summary.json",
   "devval_evaluations": 9,
   "optimizer_steps": 646830,
   "scientific_label": "MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment",
+  "corrected_conclusion": "Aligned MM-UAV supervision recovered performance after naive-grid zero-shot failure; TriAir initialization improved over scratch equal fusion; reliability-aware fusion improved performance further.",
+  "invalidated_metric_sources": [
+    "per_run_metrics.csv",
+    "per_run_metrics.json",
+    "paired_transfer_comparison.csv",
+    "paired_transfer_comparison.json",
+    "pre-correction aggregate values and conclusions in commit eafceccdedfc0bea93170a671906619b004412f4"
+  ],
+  "corrected_seed_level_values_available": false,
+  "paired_differences_authorized": false,
+  "do_not_reconstruct_seed_values_from_aggregates": true,
   "transfer_coverage": [
     {
       "run_id": "v73_seed0_scratch_equal",
