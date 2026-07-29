@@ -1,52 +1,6 @@
-% !TEX root = main.tex
-% V49 integrated SIVP source. Springer/BibTeX closure is tracked in the V49 compile report.
-\documentclass[pdflatex,iicol,sn-mathphys-num]{sn-jnl}
-
-\usepackage{graphicx}
-\usepackage{amsmath,amssymb}
-\usepackage{booktabs}
-\usepackage{url}
-\usepackage{hyperref}
-
-\raggedbottom
-
-\begin{document}
-
-\title[RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion]{RA-RepDet: Reliability-Aware RGB--Thermal--Event Fusion for Lightweight UAV Vehicle Detection}
-
-\author*[1]{\fnm{Nan} \sur{Xin}}\email{floomeer83felix@gmail.com}
-\author[1]{\fnm{Xueting} \sur{Jin}}
-
-\affil*[1]{\orgname{Anhui Police College}, \orgaddress{\city{Hefei}, \state{Anhui}, \country{China}}}
-
-\abstract{Lightweight UAV vehicle detection can benefit from complementary RGB, thermal, and event cues, but evaluation can be optimistic when visually related samples cross training and validation partitions. This paper presents RA-RepDet, a compact RepViT--FPN--FCOS detector with modality-specific stems and sample-dependent softmax fusion. Evaluation uses a frozen component-disjoint development-validation protocol on TriAir and a locked 837-image within-dataset holdout accessed only after the six main checkpoints were fixed. Across three paired seeds, the preselected full configuration with modality dropout $p=0.15$ improves canonical COCO AP50:95 over matched early fusion by $0.0354\pm0.0206$ on development-validation and by $0.0062\pm0.0187$ on the locked holdout; the holdout result is mixed across seeds, although AP50 improves in all three pairs. Three-seed development-validation ablations show that dynamic gating exceeds equal-weight stem fusion by $0.0621\pm0.0188$ AP50:95 and a deterministic learned-projection control by $0.0404\pm0.0074$. Adding $p=0.15$ modality dropout within the reliability-aware architecture changes AP50:95 by $-0.0095\pm0.0258$, so dropout is not interpreted as universally beneficial. On an RTX 3090, the full front end adds 1684 parameters and 0.27 ms mean batch-one latency, while peak allocated memory increases from 122.49 to 236.40 MiB. The evidence is descriptive and within TriAir; it does not establish external generalization, calibrated sensor reliability, or real sensor-fault robustness.}
-
-\keywords{UAV vehicle detection, RGB--thermal--event fusion, adaptive modality weighting, COCO-style evaluation, causal ablation, leakage-aware validation}
-
-\maketitle
-
-\input{submission/sivp/tex/ra_repdet_sivp}
-
-\section*{Statements and Declarations}
-
-\bmhead{Funding}
-This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
-
-\bmhead{Competing Interests}
-The authors declare that they have no competing interests.
-
-\bmhead{Author Contributions}
-Nan Xin conceived the study, designed the method, implemented the experiments, performed the evaluation, analyzed the results, and drafted the manuscript. Xueting Jin supervised the research, contributed to the study design and result interpretation, and reviewed and revised the manuscript. Both authors read and approved the final manuscript.
-
-\bmhead{Acknowledgments}
-Not applicable.
-
-\bmhead{Data Availability}
-The dataset used for the experiments in this study is the publicly available TriAir dataset. The authors do not redistribute the original dataset files. Use of the original dataset is subject to the terms specified by its original provider.
-
-\bmhead{Code Availability}
-Source code, split manifests, source-lock records, evaluation summaries, and manuscript evidence tables generated in this work are available in the current project repository.
-
-\bibliography{references,submission/sivp/tex/references_literature_pack,submission/sivp/tex/references_fusion_event,submission/sivp/tex/references_evaluation_efficiency,submission/sivp/tex/references_top_conferences,submission/sivp/tex/references_recent_q12_2023_2025}
-
-\end{document}
+% V74 corrected complete manuscript entrypoint.
+% Source is split only to keep the repository handoff compact and auditable.
+\input{submission/v74_corrected_manuscript/main_part1.tex}
+\input{submission/v74_corrected_manuscript/main_part2.tex}
+\input{submission/v74_corrected_manuscript/main_part3.tex}
+\input{submission/v74_corrected_manuscript/main_part4.tex}
