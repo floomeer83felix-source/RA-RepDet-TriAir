@@ -1,0 +1,9 @@
+{
+  "training_setting": "Frozen TriAir, naive-grid zero-shot",
+  "ap": 0.000,
+  "ap50": 0.000,
+  "ap75": 0.000,
+  "ar100": 0.000,
+  "interpretation": "Direct transfer failed",
+  "claim_boundary": "exposed-devval stress test with no physical registration"
+}
