@@ -4,7 +4,7 @@ Updated: 2026-07-29
 
 ## Active status
 
-`V78_SUBMISSION_PROVENANCE_AND_DECLARATIONS_CLOSED`
+`V79_SINGLE_MODALITY_EVALUATOR_ONLY_CODE_READY_LOCAL_CHECKPOINT_EXECUTION_PENDING`
 
 ## Closed submission items
 
@@ -16,20 +16,36 @@ Updated: 2026-07-29
 6. Count boundary: paper-reported 24,223 vehicles and current-archive 30,634 valid label lines remain distinct; the 6,411 difference is unresolved.
 7. Redistribution: upstream MIT statement applies to code; no explicit dataset-archive license was located, so data are not redistributed.
 
-## Manuscript validation
+## V79 evaluator-only completion
 
-- PDF pages: `15`;
-- two pdfLaTeX passes: `PASS`;
-- undefined citations/references: `0`;
-- overfull boxes: `0`;
-- rendered-page audit: `PASS`;
-- PDF preflight: `PASS`;
-- new training or evaluation: `none`.
+The evaluator contract now reports:
 
-## Article evaluation
+- COCO AP@[0.50:0.95];
+- AP50 and AP75;
+- AR1, AR10, and AR100;
+- checkpoint SHA256;
+- frozen validation-manifest SHA256.
 
-Updated readiness: `4.5 / 5`. Major scientific, competing-interest, and local-data-identity blockers are closed. Remaining work is final author/institution metadata, current journal-format checks, and optional evaluator-only completion of missing single-modality COCO AP/AR and checkpoint identities.
+A fail-closed nine-checkpoint queue was added at `rarepdet/tools/run_v79_single_modality_eval_only.py`. It verifies the dataset root, the component-disjoint validation manifest, and all nine retained `best.pt` files before running inference. It contains no training entrypoint and does not access the guard partition.
+
+The current ChatGPT environment does not contain `D:\download\triair` or the nine retained checkpoints, so no new AP/AR value has been generated or inferred. Execute on the authorized local workspace:
+
+```powershell
+python rarepdet/tools/run_v79_single_modality_eval_only.py --data D:\download\triair --device cuda --resume
+```
+
+## Validation
+
+- V79 Python syntax compile: `PASS`;
+- V79 source-contract tests: `2 passed`;
+- preflight missing-input behavior: `PASS`;
+- new training: `none`;
+- new checkpoint evaluation in this environment: `none`.
+
+## Manuscript status
+
+The V78 15-page manuscript remains authoritative until all nine standardized evaluator JSON files are complete and reconciled against the supplied V77 AP50/AP75 rows. Existing values must not be silently overwritten.
 
 ## Scientific boundary
 
-The development-validation, locked internal holdout, and supervised exposed-MM-UAV-devval boundaries remain unchanged. The provenance audit does not convert any internal result into independent public-test evidence.
+The development-validation, locked internal holdout, and supervised exposed-MM-UAV-devval boundaries remain unchanged. The evaluator-only pass does not convert any internal result into independent public-test evidence.
