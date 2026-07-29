@@ -1,0 +1,13 @@
+V76 major-revision local build record
+
+Figure regeneration: PASS
+pdfLaTeX pass 1: PASS
+pdfLaTeX pass 2: PASS
+Output pages: 14
+Undefined citations: 0
+Undefined references: 0
+Overfull boxes: 0
+Fatal LaTeX errors: 0
+Python syntax compilation for V76 experiment package: PASS
+
+Build scope: manuscript source package reconstructed from the active V76 split source and bundled Springer class resources.
