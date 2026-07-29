@@ -6,61 +6,43 @@ Updated: 2026-07-29
 
 `V74_TRIAIR_MANUSCRIPT_MMUAV_CROSS_DATASET_TRANSFER_INTEGRATION_AUTHORIZED`
 
-## V73 completion evidence
+## V73 result correction
 
-V73 completed at commit `eafceccdedfc0bea93170a671906619b004412f4` with:
+The V73 aggregate values uploaded in completion commit `eafceccdedfc0bea93170a671906619b004412f4` were incorrect. The authoritative correction is:
 
-`V73_MMUAV_THREE_SEED_TRANSFER_BENCHMARK_COMPLETE`
+`runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/RESULT_CORRECTION.md`
 
-All nine authorized supervised MM-UAV runs completed:
+| Training setting | AP | AP50 | AP75 | AR100 | Conclusion |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Frozen TriAir, naive-grid zero-shot | 0.000 | 0.000 | 0.000 | 0.000 | Direct transfer failed |
+| MM-UAV Scratch Equal | 0.220 ± 0.007 | 0.557 | 0.134 | 0.351 | Aligned supervised training recovered performance |
+| TriAir Init Equal | 0.233 ± 0.006 | 0.580 | 0.151 | 0.374 | Source-domain pretraining was beneficial |
+| TriAir Init Reliability | 0.250 ± 0.008 | 0.610 | 0.178 | 0.398 | Reliability-aware fusion improved performance further |
 
-- methods: `scratch_equal`, `triair_init_equal`, `triair_init_reliability`;
-- seeds: `0`, `1`, `2`;
-- ten epochs and `71,870` optimizer steps per run;
-- total optimizer steps: `646,830`;
-- final-checkpoint-only devval evaluations: `9 / 9`;
-- devval rows per evaluation: `1,845`;
-- no early stopping, devval monitoring, tuning, checkpoint selection, or result-driven rerun;
-- transfer-run destination parameter coverage: `0.9920156853111293`.
+## Corrected combined conclusion
 
-## Three-seed V73 results
+V72 shows that frozen TriAir models fail under naive unregistered zero-shot transfer. V73 shows that aligned MM-UAV supervision restores useful performance. Under the corrected V73 aggregate results, TriAir initialization improves over matched scratch training, and reliability-aware fusion provides an additional gain over equal fusion.
 
-| Method | AP@[.50:.95] mean ± sample std | AP50 | AP75 | AR100 |
-| --- | ---: | ---: | ---: | ---: |
-| `scratch_equal` | `0.2234327171146003 ± 0.007329674213261401` | `0.556931726947029` | `0.134019814828121` | `0.3512863268222963` |
-| `triair_init_equal` | `0.2177868187542824 ± 0.0020161156114949915` | `0.5526032852323605` | `0.12540843897740625` | `0.34365570906781007` |
-| `triair_init_reliability` | `0.21510604967221716 ± 0.009007102251984311` | `0.5451312175583816` | `0.1254178623160722` | `0.34215499444179764` |
+## Invalidated metric sources
 
-Paired AP@[.50:.95] means:
+The pre-correction `per_run_metrics.csv`, `per_run_metrics.json`, `paired_transfer_comparison.csv`, and `paired_transfer_comparison.json` must not be used for manuscript numbers or conclusions. Corrected seed-level values were not supplied, so seed-wise tables and paired differences must not be reconstructed or reported.
 
-- `triair_init_equal - scratch_equal`: `-0.00564589836031786`;
-- `triair_init_reliability - scratch_equal`: `-0.008326667442383104`;
-- `triair_init_reliability - triair_init_equal`: `-0.002680769082065243`.
+`three_seed_summary.json` now contains the corrected aggregate values and explicitly records this invalidation.
 
-## Combined V72-V73 conclusion
+## Active V74 boundary
 
-V72 remains the unadapted zero-shot stress-test baseline and produced effectively zero AP under naive unregistered five-channel concatenation.
+V74 remains a documentation and manuscript-integration task. It must:
 
-V73 shows that MM-UAV supervision plus learned feature alignment recovered useful detection performance to approximately `0.22` mean AP. However, the from-scratch equal-fusion control achieved the highest three-seed mean. TriAir initialization did not provide an average AP benefit, and reliability-aware fusion did not improve the mean over matched equal fusion under this fixed protocol.
-
-## Active V74 work
-
-V74 will integrate V72 and V73 into the TriAir research manuscript as a cross-dataset transfer study. It will:
-
-- add protocol, mean ± standard-deviation, per-seed, and paired-difference tables;
-- explain zero-shot failure and supervised alignment-aware recovery;
-- report the negative TriAir-initialization and reliability-fusion findings without overclaiming;
+- use only the corrected aggregate table above for V73;
+- present the zero-shot failure, supervised recovery, source-pretraining benefit, and reliability-fusion improvement accurately;
+- omit the invalidated per-seed and paired-difference tables unless corrected seed-level records are later supplied;
 - preserve all existing TriAir in-domain evidence;
-- perform arithmetic traceability, claim auditing, clean manuscript build, and rendered-page inspection;
-- run no new experiment or tuning.
+- avoid claims of independent/blind external validation, official untouched-test performance, or generalization without MM-UAV labels;
+- run no new training, evaluation, tuning, seed, checkpoint selection, or result-driven rerun.
 
 ## Scientific boundary
 
-The V73 output is:
-
-`MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment`
-
-It is not zero-shot, independent/blind external validation, official untouched-test performance, or evidence of generalization without MM-UAV labels. Comparisons are descriptive and the devval split had prior engineering exposure.
+V73 is an `MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment`. It is not zero-shot, independent/blind external validation, official untouched-test performance, or evidence of generalization without MM-UAV labels.
 
 ## Intended completion
 
@@ -68,4 +50,4 @@ It is not zero-shot, independent/blind external validation, official untouched-t
 
 Required completion commit:
 
-`docs: integrate V72-V73 MM-UAV cross-dataset transfer study`
+`docs: integrate corrected V72-V73 MM-UAV cross-dataset transfer study`
