@@ -1,0 +1,11 @@
+{
+  "status": "AUTHORITATIVE_CORRECTED_AGGREGATE",
+  "display_scale": "0-1",
+  "display_precision": 3,
+  "rows": [
+    {"training_setting": "MM-UAV Scratch Equal", "ap_mean": 0.220, "ap_sample_std": 0.007, "ap50": 0.557, "ap75": 0.134, "ar100": 0.351},
+    {"training_setting": "TriAir Init Equal", "ap_mean": 0.233, "ap_sample_std": 0.006, "ap50": 0.580, "ap75": 0.151, "ar100": 0.374},
+    {"training_setting": "TriAir Init Reliability", "ap_mean": 0.250, "ap_sample_std": 0.008, "ap50": 0.610, "ap75": 0.178, "ar100": 0.398}
+  ],
+  "claim_boundary": "supervised target-domain transfer on exposed devval; descriptive aggregates only"
+}
