@@ -1,0 +1,5 @@
+{
+  "protected_training_files_changed": false,
+  "new_training_or_evaluation_run": false,
+  "scope": "documentation, arithmetic, figure regeneration, and manuscript build only"
+}
