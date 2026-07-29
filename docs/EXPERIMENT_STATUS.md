@@ -2,15 +2,13 @@
 
 Updated: 2026-07-29
 
-## Active task
+## Active status
 
-`V74_TRIAIR_MANUSCRIPT_MMUAV_CROSS_DATASET_TRANSFER_INTEGRATION_AUTHORIZED`
+`V74_TRIAIR_MANUSCRIPT_MMUAV_TRANSFER_STUDY_INTEGRATED`
 
-## V73 result correction
+## Corrected manuscript integration
 
-The V73 aggregate values uploaded in completion commit `eafceccdedfc0bea93170a671906619b004412f4` were incorrect. The authoritative correction is:
-
-`runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/RESULT_CORRECTION.md`
+The complete SIVP manuscript now integrates the authoritative corrected V72-V73 aggregate evidence:
 
 | Training setting | AP | AP50 | AP75 | AR100 | Conclusion |
 | --- | ---: | ---: | ---: | ---: | --- |
@@ -19,35 +17,45 @@ The V73 aggregate values uploaded in completion commit `eafceccdedfc0bea93170a67
 | TriAir Init Equal | 0.233 ± 0.006 | 0.580 | 0.151 | 0.374 | Source-domain pretraining was beneficial |
 | TriAir Init Reliability | 0.250 ± 0.008 | 0.610 | 0.178 | 0.398 | Reliability-aware fusion improved performance further |
 
-## Corrected combined conclusion
+The old negative-transfer conclusion, invalidated nine-row per-seed table, paired differences, ranges, and seed-direction claims have been removed from all active manuscript source.
 
-V72 shows that frozen TriAir models fail under naive unregistered zero-shot transfer. V73 shows that aligned MM-UAV supervision restores useful performance. Under the corrected V73 aggregate results, TriAir initialization improves over matched scratch training, and reliability-aware fusion provides an additional gain over equal fusion.
+## Active manuscript source
 
-## Invalidated metric sources
+- entrypoint: `main.tex`;
+- SIVP wrapper: `main_sivp_snjnl.tex`;
+- complete split source: `submission/v74_corrected_manuscript/main_part1.tex` through `main_part4.tex`;
+- figure generator: `make_figures.py`;
+- scientific and submission-readiness review: `ARTICLE_EVALUATION.md`.
 
-The pre-correction `per_run_metrics.csv`, `per_run_metrics.json`, `paired_transfer_comparison.csv`, and `paired_transfer_comparison.json` must not be used for manuscript numbers or conclusions. Corrected seed-level values were not supplied, so seed-wise tables and paired differences must not be reconstructed or reported.
+## Validation
 
-`three_seed_summary.json` now contains the corrected aggregate values and explicitly records this invalidation.
+The uploaded complete source package was built with two pdfLaTeX passes after regenerating all figures:
 
-## Active V74 boundary
+- manuscript pages: `12`;
+- fatal LaTeX errors: `0`;
+- undefined citations: `0`;
+- undefined references: `0`;
+- overfull boxes: `0`;
+- rendered-page audit: `PASS`;
+- protected training files changed: `false`;
+- new experiment, inference, or tuning: `none`.
 
-V74 remains a documentation and manuscript-integration task. It must:
+Compact traceability and build evidence are stored under:
 
-- use only the corrected aggregate table above for V73;
-- present the zero-shot failure, supervised recovery, source-pretraining benefit, and reliability-fusion improvement accurately;
-- omit the invalidated per-seed and paired-difference tables unless corrected seed-level records are later supplied;
-- preserve all existing TriAir in-domain evidence;
-- avoid claims of independent/blind external validation, official untouched-test performance, or generalization without MM-UAV labels;
-- run no new training, evaluation, tuning, seed, checkpoint selection, or result-driven rerun.
+`runs/v74_triair_manuscript_mmuav_cross_dataset_transfer_integration/`
+
+## Article evaluation
+
+The manuscript evaluation recommends **major revision before submission** with an overall readiness score of `3.6 / 5`. The technical narrative is coherent and appropriately scoped, but submission closure still requires:
+
+1. verified canonical TriAir and MM-UAV dataset citations;
+2. author confirmation of the competing-interests declaration and final institutional metadata;
+3. corrected V73 seed-level records if paired, seed-consistency, reproducibility, or statistical claims are desired.
 
 ## Scientific boundary
 
-V73 is an `MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment`. It is not zero-shot, independent/blind external validation, official untouched-test performance, or evidence of generalization without MM-UAV labels.
+V73 remains an `MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment`. It uses MM-UAV labels and an exposed devval split. It is not zero-shot success, independent/blind external validation, official untouched-test performance, statistically significant external generalization, or evidence of generalization without MM-UAV labels.
 
-## Intended completion
+## Authorization boundary
 
-`V74_TRIAIR_MANUSCRIPT_MMUAV_TRANSFER_STUDY_INTEGRATED`
-
-Required completion commit:
-
-`docs: integrate corrected V72-V73 MM-UAV cross-dataset transfer study`
+V74 is complete. No new experiment, evaluation, rerun, tuning, seed reconstruction, or public submission is authorized by this completion record.
