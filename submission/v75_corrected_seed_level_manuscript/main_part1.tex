@@ -1,0 +1,108 @@
+% complete research manuscript draft.
+% Evidence basis: component-disjoint TriAir validation plus controlled MM-UAV cross-dataset studies.
+% Neither MM-UAV study is an independent untouched-test experiment.
+\documentclass[pdflatex,sn-basic,Numbered,iicol]{sn-jnl}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{balance}
+\hypersetup{hidelinks}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlist[itemize]{leftmargin=*,nosep,topsep=1pt}
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\ap}{\mathrm{AP}}
+
+\title[Reliability-aware RGB-thermal-event fusion]{Reliability-Aware RGB-Thermal-Event Fusion for Lightweight UAV Vehicle Detection: Component-Disjoint Validation and Cross-Dataset Transfer Analysis}
+
+\author[1]{\fnm{Nan} \sur{Xin}}
+\author*[1]{\fnm{Xueting} \sur{Jin}}\email{jinxueting@ahpc.edu.cn}
+\affil*[1]{\orgname{Anhui Police College}, \orgaddress{\city{Hefei}, \state{Anhui}, \country{China}}}
+
+\abstract{RGB, thermal, and event observations can be complementary for UAV vehicle detection, but their evaluation can be distorted when visually related observations cross a data split. We present RA-RepDet, a lightweight reliability-aware RGB-thermal-event detector with modality-specific stems, image-level softmax fusion, modality dropout, and a shared RepViT-FPN-FCOS stack. The main comparison uses a component-disjoint TriAir validation partition formed by assigning connected components of a fixed exact-match, perceptual-hash, and human-adjudicated adjacency graph to one side of the split. On 2,213 validation images with 5,867 vehicle boxes, reliability-aware fusion improves the two-run mean AP50 from 0.9408 to 0.9586, AP75 from 0.8208 to 0.8760, and F1 from 0.8945 to 0.9133 relative to matched early fusion; positive image-level bootstrap intervals and deterministic channel-removal results support the same in-domain trend. Cross-dataset experiments on MM-UAV separate a frozen naive-grid zero-shot stress test from supervised alignment-aware transfer. Direct frozen transfer yields 0.000 AP, whereas MM-UAV supervision recovers $0.2210\pm0.0030$ AP for scratch equal fusion. TriAir initialization improves AP to $0.2340\pm0.0020$, and reliability-aware fusion further improves it to $0.2503\pm0.0025$. Both AP increments are positive for all three paired seeds. These transfer comparisons remain descriptive, use target-domain labels on an exposed devval split, and are not independent external testing.}
+
+\keywords{UAV vehicle detection; RGB-thermal-event fusion; reliability-aware fusion; modality dropout; component-disjoint validation; supervised cross-dataset transfer; multi-sensor perception.}
+
+\begin{document}
+\raggedbottom
+\maketitle
+
+\section{Introduction}
+UAV vehicle detection must localize small targets under changing altitude, viewpoint, scale, illumination, motion, and clutter. These conditions are challenging for generic object detection and for aerial imaging in particular \cite{zhao2019object,cheng2016survey,xia2022dota,zhu2017deepRS}. RGB imagery provides texture and color, but may weaken under poor contrast or changing exposure. Thermal observations can provide temperature-related contrast, while event representations can encode brightness changes with high temporal resolution and wide dynamic range \cite{baltrusaitis2019multimodal,gallego2022event}. The key design question is therefore not merely how to concatenate modalities, but how to use their complementary information without unnecessarily increasing the cost of a lightweight detector.
+
+A second issue is evaluation integrity. In multimodal UAV recordings, nearby observations can remain visually similar even when their file contents differ. If such observations occur on opposite sides of a split, validation performance can be optimistic. This risk is distinct from model design and should be addressed before interpreting a fusion gain \cite{kapoor2023leakage,cawley2010overfitting}. In the present project, split review first identified exact decoded-RGB duplicates and then identified additional adjacent-or-near-identical observations through a human review workflow. These findings motivate a more conservative validation protocol, not a claim that every possible dependence has been eliminated.
+
+This paper presents RA-RepDet, a compact five-channel RGB-thermal-event detector. The reliability-aware system uses separate stems for RGB, thermal, and event inputs, predicts image-level softmax fusion weights, and passes the fused representation through a RepViT-M0.9 \cite{wang2024repvit}, feature-pyramid network (FPN) \cite{lin2017fpn}, and FCOS detector \cite{tian2019fcos}. The matched early-fusion system uses the same downstream detector but replaces the reliability-aware front end with a learned five-to-three channel projection. During reliability-aware training, independent modality dropout reduces reliance on a single input group; $p=0.15$ was pre-specified from archived development evidence before the component-disjoint results were examined. The study does not use this validation partition to run a dropout sweep or to choose an optimal dropout rate.
+
+The study first evaluates the fusion design under a matched TriAir sensing configuration and a component-disjoint validation protocol. It then examines whether the resulting source-domain representation transfers to a different tri-modal acquisition system. The MM-UAV study deliberately separates an unadapted frozen-model stress test from a supervised target-domain benchmark with learned feature alignment. This separation is important because cross-sensor geometry, modality representation, and optimization effects can otherwise be conflated with the value of the fusion mechanism itself.
+
+The conclusions are intentionally scoped. The TriAir evidence is validation-only, synthetic channel removal is not a physical sensor-failure experiment, the frozen MM-UAV experiment uses an unregistered adapter, and the supervised MM-UAV benchmark uses target-domain labels on an exposed devval split. None of these experiments is presented as independent untouched-test evidence.
+
+\noindent\textbf{Contributions.}
+\begin{itemize}
+    \item We develop a lightweight tri-modal fusion front end with modality-specific stems, image-level softmax fusion weights, and a shared RepViT-FPN-FCOS detector.
+    \item We compare matched early fusion with a pre-specified reliability-aware $p=0.15$ system under a frozen component-disjoint TriAir validation protocol.
+    \item We report two-seed aggregate results, image-level bootstrap intervals, deterministic synthetic channel-removal results, and a reproducible efficiency measurement with explicit latency boundaries.
+    \item We provide a controlled cross-dataset study that separates frozen naive-grid zero-shot failure from supervised target-domain transfer with learned feature alignment.
+    \item Using corrected seed-level records, we show that TriAir initialization improves the MM-UAV result over matched scratch training and that reliability-aware fusion provides a further gain in every paired seed, while retaining the boundary that MM-UAV labels and an exposed devval split are used.
+\end{itemize}
+
+\section{Related Work}
+\subsection{Aerial Detection and Lightweight Detectors}
+Aerial detection involves wide scale variation, small objects, geometric changes, and cluttered backgrounds \cite{cheng2016survey,zhu2017deepRS,xia2022dota}. Modern detectors include region-proposal and dense one-stage formulations \cite{ren2017faster,lin2020focal}. FCOS is an anchor-free dense detector that predicts object locations directly \cite{tian2019fcos}. In this study, the detector head is held fixed; the research question is whether the tri-modal fusion front end can improve a compact detection pipeline. RepViT is used as a mobile-oriented backbone, and FPN provides multi-scale features \cite{wang2024repvit,lin2017fpn}.
+
+\subsection{Multimodal and Event-Based Perception}
+Multimodal learning integrates complementary sources while accounting for differences in their reliability and representation \cite{baltrusaitis2019multimodal,ramachandram2017deep}. Visible-infrared fusion has been studied extensively at pixel and feature levels \cite{li2017pixel,ma2019surveyfusion,li2019densefuse}. Event cameras provide asynchronous brightness-change information and can support perception under fast motion or high dynamic range \cite{lichtsteiner2008sensor,gallego2022event,gehrig2021dsec}. RA-RepDet does not reconstruct raw event streams or infer a missing modality. It consumes a preconstructed five-channel sample and learns a compact image-level mixture of modality-stem features.
+
+\subsection{Missing Modality and Evaluation Validity}
+Modality dropout is a common strategy for limiting brittle dependence on one information source \cite{neverova2016moddrop}. Here, it is used as a training-time intervention, while zeroing one channel group at evaluation time gives a controlled synthetic channel-removal protocol. This protocol is useful for comparing models under the same intervention, but it cannot reproduce sensor drift, misregistration, field-of-view change, or other physical failure modes.
+
+Evaluation leakage and adaptive reuse of validation information can produce optimistic performance estimates \cite{kapoor2023leakage,cawley2010overfitting}. The present work does not claim that any finite audit proves the absence of all dependence. Instead, it constructs a split whose train-validation boundary does not cut components of a specified graph formed from exact RGB, pHash, dHash, and human-adjudicated adjacent-or-near-identical relations.
+
+\subsection{Transfer Learning and Cross-Domain Adaptation}
+Transfer learning reuses information learned from a source task or domain to support a target task, but its benefit depends on the relationship between the source and target distributions \cite{pan2010transfer}. Deep features tend to become more task-specific in later layers, and larger source-target differences can reduce their transferability \cite{yosinski2014transfer}; source knowledge can therefore help or have limited effect under different target protocols. Multimodal cross-sensor transfer adds a further complication because modalities may differ in appearance statistics, spatial calibration, field of view, event construction, and annotation geometry. Our protocol consequently evaluates source initialization only after fixing a target-domain alignment-aware architecture and compares it with a matched from-scratch control.
+
+\section{Method}
+\subsection{Problem Formulation and Detector Interface}
+Each observation is a five-channel tensor
+\begin{equation}
+\mathbf{x}=[\mathbf{x}_{\mathrm{rgb}},\mathbf{x}_{\mathrm{th}},\mathbf{x}_{\mathrm{ev}}],
+\end{equation}
+where $\mathbf{x}_{\mathrm{rgb}}\in\mathbb{R}^{3\times H\times W}$, $\mathbf{x}_{\mathrm{th}}\in\mathbb{R}^{1\times H\times W}$, and $\mathbf{x}_{\mathrm{ev}}\in\mathbb{R}^{1\times H\times W}$. The task is single-class vehicle detection. Raw TriAir class 0 is mapped to the foreground label used by the detector, with background retained as label 0.
+
+The downstream detector is shared by both systems: a RepViT-M0.9 backbone, an FPN with 128 output channels, and an FCOS head. This shared detector interface makes the experiment a system-level comparison of an early-fusion design and a reliability-aware design, rather than a comparison of unrelated detectors.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig1_method.pdf}
+\caption{RA-RepDet. RGB, thermal, and event inputs are first encoded by modality-specific stems. A small image-level reliability module produces softmax fusion weights, the weighted feature is projected to the shared detector interface, and a RepViT-FPN-FCOS stack produces vehicle detections. Modality dropout is used only during training.}
+\label{fig:method}
+\end{figure*}
+
+\subsection{Matched Early Fusion}
+The matched early-fusion system projects the five input channels to three channels with a learned $1\times1$ convolution before the shared RepViT-FPN-FCOS detector. It has access to all five channels but does not form explicit modality-specific features or sample-dependent fusion weights.
+
+\subsection{Reliability-Aware Fusion}
+The reliability-aware model processes RGB, thermal, and event inputs through separate $3\times3$ convolution--batch-normalization--SiLU stems. Each stem produces a 16-channel feature map, denoted by $\mathbf{F}_{\mathrm{rgb}}$, $\mathbf{F}_{\mathrm{th}}$, and $\mathbf{F}_{\mathrm{ev}}$. Global average pooling yields one descriptor per stem. The descriptors are concatenated and passed through a small two-layer multilayer perceptron to generate three logits. The fusion weights are
+\begin{equation}
+\begin{aligned}
+\boldsymbol{\alpha}=\operatorname{softmax}\bigl(g([&\operatorname{GAP}(\mathbf{F}_{\mathrm{rgb}});\\
+&\operatorname{GAP}(\mathbf{F}_{\mathrm{th}});\operatorname{GAP}(\mathbf{F}_{\mathrm{ev}})])\bigr),
+\end{aligned}
+\end{equation}
+where $\boldsymbol{\alpha}=[\alpha_{\mathrm{rgb}},\alpha_{\mathrm{th}},\alpha_{\mathrm{ev}}]$ and the three entries sum to one. The fused feature is
+\begin{equation}
+\mathbf{F}_{\mathrm{fuse}}=\alpha_{\mathrm{rgb}}\mathbf{F}_{\mathrm{rgb}}+\alpha_{\mathrm{th}}\mathbf{F}_{\mathrm{th}}+\alpha_{\mathrm{ev}}\mathbf{F}_{\mathrm{ev}}.
+\end{equation}
+A projection converts $\mathbf{F}_{\mathrm{fuse}}$ to the three-channel interface expected by the shared backbone. The gate is a learned feature-mixture mechanism; its weights are not calibrated probabilities of physical sensor health.
+
+\subsection{Modality-Dropout Training}
+For the reliability-aware model, RGB channels $0{:}3$, thermal channel 3, and event channel 4 are independently zeroed during training with probability $p=0.15$. If all three groups are selected, one group is restored uniformly at random so that at least one stream remains. The $p=0.15$ setting was fixed for the component-disjoint comparison before any results from that partition were examined. Ordinary all-modal inference supplies all available streams.
