@@ -1,0 +1,15 @@
+{
+  "status": "CORRECTED_SEED_LEVEL_METRICS_SUPPLIED",
+  "source": "user-provided corrected nine-row table on 2026-07-29",
+  "records": [
+    {"seed": 0, "method": "scratch_equal", "ap": 0.218, "ap50": 0.552, "ap75": 0.131, "ar1": 0.171, "ar10": 0.332, "ar100": 0.349},
+    {"seed": 0, "method": "triair_init_equal", "ap": 0.232, "ap50": 0.575, "ap75": 0.148, "ar1": 0.179, "ar10": 0.349, "ar100": 0.368},
+    {"seed": 0, "method": "triair_init_reliability", "ap": 0.248, "ap50": 0.603, "ap75": 0.171, "ar1": 0.188, "ar10": 0.367, "ar100": 0.388},
+    {"seed": 1, "method": "scratch_equal", "ap": 0.224, "ap50": 0.561, "ap75": 0.138, "ar1": 0.176, "ar10": 0.340, "ar100": 0.357},
+    {"seed": 1, "method": "triair_init_equal", "ap": 0.236, "ap50": 0.584, "ap75": 0.154, "ar1": 0.184, "ar10": 0.356, "ar100": 0.375},
+    {"seed": 1, "method": "triair_init_reliability", "ap": 0.253, "ap50": 0.612, "ap75": 0.179, "ar1": 0.193, "ar10": 0.375, "ar100": 0.396},
+    {"seed": 2, "method": "scratch_equal", "ap": 0.221, "ap50": 0.557, "ap75": 0.135, "ar1": 0.174, "ar10": 0.336, "ar100": 0.353},
+    {"seed": 2, "method": "triair_init_equal", "ap": 0.234, "ap50": 0.580, "ap75": 0.151, "ar1": 0.181, "ar10": 0.353, "ar100": 0.372},
+    {"seed": 2, "method": "triair_init_reliability", "ap": 0.250, "ap50": 0.608, "ap75": 0.175, "ar1": 0.190, "ar10": 0.371, "ar100": 0.392}
+  ]
+}
