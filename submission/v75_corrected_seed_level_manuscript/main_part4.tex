@@ -1,0 +1,107 @@
+\begin{tabular}{@{}rlrrrrrr@{}}
+\toprule
+Seed & Method & AP & AP50 & AP75 & AR1 & AR10 & AR100\\
+\midrule
+0 & Scratch Equal & 0.218 & 0.552 & 0.131 & 0.171 & 0.332 & 0.349\\
+0 & TriAir Init Equal & 0.232 & 0.575 & 0.148 & 0.179 & 0.349 & 0.368\\
+0 & TriAir Init Reliability & 0.248 & 0.603 & 0.171 & 0.188 & 0.367 & 0.388\\
+\addlinespace
+1 & Scratch Equal & 0.224 & 0.561 & 0.138 & 0.176 & 0.340 & 0.357\\
+1 & TriAir Init Equal & 0.236 & 0.584 & 0.154 & 0.184 & 0.356 & 0.375\\
+1 & TriAir Init Reliability & 0.253 & 0.612 & 0.179 & 0.193 & 0.375 & 0.396\\
+\addlinespace
+2 & Scratch Equal & 0.221 & 0.557 & 0.135 & 0.174 & 0.336 & 0.353\\
+2 & TriAir Init Equal & 0.234 & 0.580 & 0.151 & 0.181 & 0.353 & 0.372\\
+2 & TriAir Init Reliability & 0.250 & 0.608 & 0.175 & 0.190 & 0.371 & 0.392\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\caption{Paired AP differences across the three corrected seeds. Values are on the 0--1 scale and are reported descriptively; no significance test is claimed.}
+\label{tab:mmuav-paired-ap}
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Comparison & Seed 0 & Seed 1 & Seed 2 & Mean $\pm$ SD\\
+\midrule
+Init Equal $-$ Scratch & 0.014 & 0.012 & 0.013 & $0.0130\pm0.0010$\\
+Init Reliability $-$ Init Equal & 0.016 & 0.017 & 0.016 & $0.0163\pm0.0006$\\
+Init Reliability $-$ Scratch & 0.030 & 0.029 & 0.029 & $0.0293\pm0.0006$\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Seed-level evidence boundary.}
+The corrected seed-level metrics reproduce the three-seed means and sample standard deviations in \tabref{tab:mmuav-transfer}. AP gains from TriAir initialization and from reliability-aware fusion are positive in all three paired seeds. With only three seeds and an exposed devval split, the paired results are reported descriptively and are not treated as a statistical-significance or independent-generalization claim.
+
+\section{Discussion and Limitations}
+\subsection{In-Domain Reliability-Aware Fusion}
+The component-disjoint TriAir results support a narrow system-level conclusion: under the fixed validation protocol, the pre-specified reliability-aware $p=0.15$ system outperforms matched early fusion in the two fixed training runs and under deterministic removal of a single modality group. The comparison does not isolate the causal contribution of the gate alone because the reliability model is trained with modality dropout while early fusion is not. Likewise, the absence of trained RGB-only, thermal-only, event-only, and static-global-weight controls limits what can be concluded about individual modalities or the specific mechanism of input-conditioned weighting.
+
+The synthetic channel-removal experiment is most appropriately interpreted as a controlled intervention on the learned system. It shows that reliability-aware training reduces sensitivity to zeroed inputs under the same validation distribution. It does not emulate sensor drift, asynchronous failure, spatial misregistration, field-of-view change, or other physical failure modes.
+
+\subsection{Alignment Dominates Direct Cross-Sensor Transfer}
+The MM-UAV experiments provide a complementary boundary on the TriAir result. The zero-shot model executes correctly and emits finite boxes for every target image, but the boxes do not align with the target annotations under an independently normalized, physically unregistered five-channel adapter. Reliability weights cannot correct geometry that is inconsistent before meaningful feature correspondence is established. The near-zero zero-shot result therefore should not be interpreted as evidence that the detector is numerically unstable or that reliability-aware fusion is intrinsically ineffective; it isolates a severe adapter and acquisition-domain mismatch.
+
+Learned target-domain feature alignment and supervision restore AP from 0.000 under the frozen naive-grid stress test to a three-seed mean of 0.2210 for the matched scratch model. This large recovery shows that a compatible target representation and geometry contract is a prerequisite in this cross-sensor setting. After that requirement is met, the corrected seed-level results show consistent additional benefit from source initialization and reliability-aware fusion. A valid cross-dataset claim must therefore distinguish the necessary target-domain alignment stage from the subsequent value of transferred representations and adaptive fusion.
+
+\subsection{Source Initialization and Reliability-Aware Transfer}
+Approximately 99.20\% of destination parameters are initialized from exact compatible TriAir tensors in both initialized transfer variants. Under the corrected seed-level evidence, TriAir Init Equal improves AP from $0.2210\pm0.0030$ to $0.2340\pm0.0020$, and TriAir Init Reliability further improves it to $0.2503\pm0.0025$. The paired AP gains are $0.0130\pm0.0010$ for initialization over scratch and $0.0163\pm0.0006$ for reliability-aware fusion over initialized equal fusion; both gains are positive in all three seeds. The same ordering is observed for AP50, AP75, AR1, AR10, and AR100. These results support a descriptive conclusion that source-domain pretraining and reliability-aware fusion are beneficial within the fixed supervised MM-UAV protocol.
+
+The result does not isolate a universal transfer mechanism. MM-UAV-specific stems and alignment modules remain target-specific, only one 10-epoch schedule is evaluated, and the devval split was exposed during engineering. Three seeds establish consistent direction under this frozen protocol but remain too few for strong distributional or statistical-significance claims. The appropriate conclusion is therefore limited to the observed seed-wise ordering under this protocol rather than general superiority across datasets or adaptation strategies.
+
+\subsection{Evaluation Scope}
+The component-disjoint split protocol is deliberately stronger than an exact-duplicate check, but it has a defined scope. It enforces component disjointness for the locked graph composed of exact RGB content, perceptual-hash candidates, and human-adjudicated adjacent-or-near-identical observations. It cannot demonstrate that all possible scene correlations are absent. Numeric filename identifiers were not treated as verified temporal metadata, and the guard partition is archival rather than an independent test set.
+
+The main TriAir evidence is validation-only because the same component-disjoint validation partition participates in within-run checkpoint retention and final reporting. The MM-UAV zero-shot experiment is performed on a previously exposed devval split with a deliberately naive unregistered adapter, while the supervised benchmark uses MM-UAV training labels. A separately acquired and sealed sensor-compatible test set would be required for independent external-generalization claims.
+
+\section{Conclusion}
+This work presents RA-RepDet, a lightweight reliability-aware RGB-thermal-event detector evaluated against matched early fusion on a component-disjoint TriAir validation partition. The pre-specified reliability-aware $p=0.15$ system improves two-run mean AP50, AP75, F1, precision, and recall, and its advantage remains visible under deterministic synthetic removal of RGB, thermal, or event inputs. The additional parameters and compute are modest, although peak memory and measured latency are higher.
+
+The cross-dataset analysis clarifies the boundary of this result. Frozen TriAir models do not transfer meaningfully to exposed MM-UAV devval data through a naive unregistered normalized-grid adapter. With MM-UAV supervision and learned feature alignment, AP recovers to $0.2210\pm0.0030$ for scratch equal fusion; TriAir initialization raises the three-seed mean to $0.2340\pm0.0020$, and reliability-aware fusion raises it further to $0.2503\pm0.0025$. Both AP increments are positive in all three paired seeds. Taken together, the experiments indicate that cross-sensor transfer first requires an explicit alignment and representation-adaptation solution, after which source initialization and adaptive fusion can provide additional descriptive gains. The contribution is a reproducible in-domain fusion result and a transparent supervised cross-dataset transfer analysis, not a claim of independent testing, universal domain robustness, or generalization without MM-UAV labels.
+
+\section*{Statements and Declarations}
+\bmhead{Funding}
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+
+\bmhead{Competing Interests}
+The competing-interests declaration must be confirmed by both authors before submission.
+
+\bmhead{Author Contributions}
+Nan Xin: Conceptualization, methodology, software, validation, formal analysis, investigation, data curation, visualization, and writing--original draft. Xueting Jin: Supervision, project administration, resources, methodology, and writing--review and editing. Both authors reviewed and approved the manuscript.
+
+\bmhead{Data Availability}
+The authors do not redistribute TriAir or MM-UAV sensor data, annotations, transformed derivatives, or trained weights. Dataset access remains subject to the original providers' terms and any applicable permissions. The dissemination status of the MM-UAV research subset used here has not been established for redistribution; it is therefore not available from the authors. The project records frozen manifests, split and audit reports, evaluator settings, checkpoint hashes, training traces, and compact non-data result artifacts sufficient to identify the experimental subsets and protocols. The MM-UAV experiments use an exposed devval split and are not official untouched-test performance.
+
+\bmhead{Code Availability}
+The project repository contains the model implementation, frozen manifests, split and audit utilities, standardized evaluators, MM-UAV transfer scripts, checkpoint identity records, and compact result artifacts used in this manuscript. Raw sensor arrays, label archives, trained weights, and transient prediction caches are not included.
+
+\sloppy
+\begin{thebibliography}{99}
+\bibitem{zhao2019object} Zhao, Z.-Q., Zheng, P., Xu, S.-T., Wu, X.: Object detection with deep learning: A review. IEEE Trans. Neural Netw. Learn. Syst. 30(11), 3212--3232 (2019). \url{https://doi.org/10.1109/TNNLS.2018.2876865}
+\bibitem{cheng2016survey} Cheng, G., Han, J.: A survey on object detection in optical remote sensing images. ISPRS J. Photogramm. Remote Sens. 117, 11--28 (2016). \url{https://doi.org/10.1016/j.isprsjprs.2016.03.014}
+\bibitem{xia2022dota} Xia, G.-S. et al.: DOTA: A large-scale dataset for object detection in aerial images. IEEE Trans. Pattern Anal. Mach. Intell. 44(10), 5969--5988 (2022). \url{https://doi.org/10.1109/TPAMI.2021.3074724}
+\bibitem{zhu2017deepRS} Zhu, X.X. et al.: Deep learning in remote sensing: A comprehensive review and list of resources. IEEE Geosci. Remote Sens. Mag. 5(4), 8--36 (2017). \url{https://doi.org/10.1109/MGRS.2017.2762307}
+\bibitem{baltrusaitis2019multimodal} Baltru\v{s}aitis, T., Ahuja, C., Morency, L.-P.: Multimodal machine learning: A survey and taxonomy. IEEE Trans. Pattern Anal. Mach. Intell. 41(2), 423--443 (2019). \url{https://doi.org/10.1109/TPAMI.2018.2798607}
+\bibitem{gallego2022event} Gallego, G. et al.: Event-based vision: A survey. IEEE Trans. Pattern Anal. Mach. Intell. 44(1), 154--180 (2022). \url{https://doi.org/10.1109/TPAMI.2020.3008413}
+\bibitem{kapoor2023leakage} Kapoor, S., Narayanan, A.: Leakage and the reproducibility crisis in machine-learning-based science. Patterns 4(9), 100804 (2023). \url{https://doi.org/10.1016/j.patter.2023.100804}
+\bibitem{cawley2010overfitting} Cawley, G.C., Talbot, N.L.C.: On over-fitting in model selection and subsequent selection bias in performance evaluation. J. Mach. Learn. Res. 11, 2079--2107 (2010)
+\bibitem{wang2024repvit} Wang, A., Chen, H., Lin, Z., Han, J., Ding, G.: RepViT: Revisiting mobile CNN from ViT perspective. In: Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit., pp. 15909--15920 (2024)
+\bibitem{lin2017fpn} Lin, T.-Y. et al.: Feature pyramid networks for object detection. In: Proc. IEEE Conf. Comput. Vis. Pattern Recognit., pp. 2117--2125 (2017). \url{https://doi.org/10.1109/CVPR.2017.106}
+\bibitem{tian2019fcos} Tian, Z., Shen, C., Chen, H., He, T.: FCOS: Fully convolutional one-stage object detection. In: Proc. IEEE/CVF Int. Conf. Comput. Vis., pp. 9627--9636 (2019). \url{https://doi.org/10.1109/ICCV.2019.00972}
+\bibitem{ren2017faster} Ren, S., He, K., Girshick, R., Sun, J.: Faster R-CNN: Towards real-time object detection with region proposal networks. IEEE Trans. Pattern Anal. Mach. Intell. 39(6), 1137--1149 (2017). \url{https://doi.org/10.1109/TPAMI.2016.2577031}
+\bibitem{lin2020focal} Lin, T.-Y., Goyal, P., Girshick, R., He, K., Doll\'{a}r, P.: Focal loss for dense object detection. IEEE Trans. Pattern Anal. Mach. Intell. 42(2), 318--327 (2020). \url{https://doi.org/10.1109/TPAMI.2018.2858826}
+\bibitem{ramachandram2017deep} Ramachandram, D., Taylor, G.W.: Deep multimodal learning: A survey on recent advances and trends. IEEE Signal Process. Mag. 34(6), 96--108 (2017). \url{https://doi.org/10.1109/MSP.2017.2738401}
+\bibitem{li2017pixel} Li, S., Kang, X., Fang, L., Hu, J., Yin, H.: Pixel-level image fusion: A survey of the state of the art. Inf. Fusion 33, 100--112 (2017). \url{https://doi.org/10.1016/j.inffus.2016.05.004}
+\bibitem{ma2019surveyfusion} Ma, J., Ma, Y., Li, C.: Infrared and visible image fusion methods and applications: A survey. Inf. Fusion 45, 153--178 (2019). \url{https://doi.org/10.1016/j.inffus.2018.02.004}
+\bibitem{li2019densefuse} Li, H., Wu, X.-J.: DenseFuse: A fusion approach to infrared and visible images. IEEE Trans. Image Process. 28(5), 2614--2623 (2019). \url{https://doi.org/10.1109/TIP.2018.2887342}
+\bibitem{lichtsteiner2008sensor} Lichtsteiner, P., Posch, C., Delbr\"uck, T.: A 128$\times$128 120 dB 15 $\mu$s latency asynchronous temporal contrast vision sensor. IEEE J. Solid-State Circuits 43(2), 566--576 (2008). \url{https://doi.org/10.1109/JSSC.2007.914337}
+\bibitem{gehrig2021dsec} Gehrig, M., Aarents, W., Gehrig, D., Scaramuzza, D.: DSEC: A stereo event camera dataset for driving scenarios. IEEE Robot. Autom. Lett. 6(3), 4947--4954 (2021). \url{https://doi.org/10.1109/LRA.2021.3068942}
+\bibitem{neverova2016moddrop} Neverova, N., Wolf, C., Taylor, G.W., Nebout, F.: ModDrop: Adaptive multi-modal gesture recognition. IEEE Trans. Pattern Anal. Mach. Intell. 38(8), 1692--1706 (2016). \url{https://doi.org/10.1109/TPAMI.2015.2461544}
+\bibitem{pan2010transfer} Pan, S.J., Yang, Q.: A survey on transfer learning. IEEE Trans. Knowl. Data Eng. 22(10), 1345--1359 (2010). \url{https://doi.org/10.1109/TKDE.2009.191}
+\bibitem{yosinski2014transfer} Yosinski, J., Clune, J., Bengio, Y., Lipson, H.: How transferable are features in deep neural networks? In: Advances in Neural Information Processing Systems 27, pp. 3320--3328 (2014)
+\end{thebibliography}
+\end{document}
