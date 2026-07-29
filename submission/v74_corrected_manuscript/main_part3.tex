@@ -1,0 +1,100 @@
+F1 & +0.0187 & [+0.0150, +0.0226]\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Synthetic Channel Removal}
+To test controlled missing-input behavior, one channel group is deterministically set to zero at a time while weights, thresholds, and postprocessing remain fixed. \tabref{tab:removal} summarizes two-checkpoint means. The reliability-aware system retains higher AP50 after removal of RGB, thermal, or event inputs. The largest separation follows thermal removal, where AP50 is 0.7030 for reliability-aware fusion and 0.3648 for early fusion. This deterministic intervention does not emulate measured physical sensor outages, temporal misalignment, or cross-device deployment failures.
+
+\begin{table*}[t]
+\centering
+\caption{Synthetic channel removal on component-disjoint validation. Each value is the two-checkpoint mean. Delta is relative to the all-modal mean of the same model group. The intervention is deterministic zero-channel input, not a physical sensor-failure experiment.}
+\label{tab:removal}
+\scriptsize
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Model group & Condition & Precision & Recall & F1 & AP50 & AP75\\
+\midrule
+Matched early & All modalities & 0.9188 & 0.8720 & 0.8945 & 0.9408 & 0.8208\\
+Matched early & RGB removed & 0.8202 & 0.6531 & 0.7269 & 0.7379 & 0.5265\\
+Matched early & Thermal removed & 0.8226 & 0.3003 & 0.4400 & 0.3648 & 0.2626\\
+Matched early & Event removed & 0.9001 & 0.8731 & 0.8863 & 0.9339 & 0.8021\\
+\midrule
+Reliability $p=0.15$ & All modalities & 0.9273 & 0.8997 & 0.9133 & 0.9586 & 0.8760\\
+Reliability $p=0.15$ & RGB removed & 0.8569 & 0.8229 & 0.8394 & 0.8985 & 0.7051\\
+Reliability $p=0.15$ & Thermal removed & 0.8321 & 0.5885 & 0.6894 & 0.7030 & 0.3883\\
+Reliability $p=0.15$ & Event removed & 0.9305 & 0.8970 & 0.9134 & 0.9582 & 0.8600\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig4_channel_removal.pdf}
+\caption{AP50 under deterministic synthetic channel removal. Reliability-aware $p=0.15$ retains higher AP50 under all four input conditions.}
+\label{fig:removal}
+\end{figure}
+
+\subsection{Efficiency}
+The reliability-aware system adds 1,684 parameters and approximately 0.77 GFLOPs under the reported profiling scope. Measurement uses batch size 1, image size 640, model evaluation mode, \texttt{torch.inference\_mode()}, 200 warm-up iterations, five trials of 1,000 timed iterations, and CUDA synchronization. Raw-forward timing covers the backbone call only; detector inference covers the torchvision FCOS transform, backbone, head, NMS, and postprocessing but excludes data loading and file I/O. \tabref{tab:efficiency} reports the mean of the median latency across the two fixed checkpoints and the observed peak-memory range. Reliability-aware fusion is slightly slower and uses more memory; it should not be described as faster.
+
+\begin{table*}[t]
+\centering
+\caption{Efficiency on RTX 3090, batch size 1, image size 640. Latency is the mean of the median latency from two checkpoints. Raw-forward and detector-inference boundaries are reported separately.}
+\label{tab:efficiency}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Measurement & Matched early & Reliability $p=0.15$ & Difference\\
+\midrule
+Parameters & 6,591,609 & 6,593,293 & +1,684\\
+Raw-forward GFLOPs & 24.44 & 25.22 & +0.77\\
+Detector-inference GFLOPs & 105.21 & 105.98 & +0.77\\
+Raw-forward latency (ms) & 10.43 & 10.61 & +0.18\\
+Detector-inference latency (ms) & 22.89 & 23.30 & +0.41\\
+Raw-forward peak CUDA memory (MB) & 199.7--222.4 & 354.6--374.9 & higher\\
+Detector-inference peak CUDA memory (MB) & 207.5--229.6 & 361.7--382.7 & higher\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\subsection{Cross-Dataset Evaluation on MM-UAV}
+\label{sec:mmuav}
+% TODO-CITATION: insert the canonical MM-UAV dataset citation after author verification.
+MM-UAV is used to study transfer across a different RGB-infrared-event acquisition system. The authorized local research subset contains a frozen 7,187-row training manifest and a 1,845-row devval manifest spanning 85 sequences; the devval annotations contain 4,198 vehicle boxes. Because these sequences were exposed during prior engineering, the split is not treated as an independent blind test. All MM-UAV metrics use COCO AP@[0.50:0.95], AP50, AP75, AR1, AR10, and AR100, which are distinct from the project-local TriAir AP50 and AP75 metrics reported above. Dataset media and annotations are not redistributed, and this manuscript does not assert public redistribution rights.
+
+\subsubsection{Frozen zero-shot normalized-grid stress test}
+Six frozen TriAir checkpoints---matched early fusion and reliability-aware $p=0.15$ for seeds 0, 1, and 2---are evaluated exactly once on all 1,845 devval rows. RGB, infrared, and event observations are decoded independently, letterboxed to $640\times640$, and concatenated as three RGB channels plus one infrared and one event channel. Ground-truth boxes follow RGB geometry. The adapter is deterministic and parameter free, but it does not establish physical pixel correspondence across sensors. The evaluator uses a score threshold of 0.001, NMS threshold of 0.6, and at most 100 detections per image.
+
+All six checkpoints produce finite predictions for every image, with 184,500 valid decoded predictions per checkpoint, yet AP is effectively zero (\tabref{tab:mmuav-zero-shot}). This rules out an empty-output or numerical-failure explanation and instead indicates that the predicted geometry does not match the target annotations under the naive unregistered adapter. The reliability-minus-early differences are also effectively zero in absolute terms and are not interpreted as a robustness gain.
+
+\begin{table*}[t]
+\centering
+\caption{Frozen TriAir checkpoints on exposed MM-UAV devval using the naive normalized-grid adapter. Metrics are COCO-style. The adapter does not establish physical cross-modal registration.}
+\label{tab:mmuav-zero-shot}
+\scriptsize
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Model group & Seed & AP & AP50 & AP75 & AR1 & AR10 & AR100\\
+\midrule
+Matched early fusion & 0 & $1.71{\times}10^{-8}$ & $8.54{\times}10^{-8}$ & 0 & 0 & 0 & $4.76{\times}10^{-5}$\\
+Matched early fusion & 1 & $1.14{\times}10^{-8}$ & $1.14{\times}10^{-7}$ & 0 & 0 & 0 & $2.38{\times}10^{-5}$\\
+Matched early fusion & 2 & 0 & 0 & 0 & 0 & 0 & 0\\
+Reliability-aware $p=0.15$ & 0 & $8.67{\times}10^{-8}$ & $5.15{\times}10^{-7}$ & 0 & 0 & 0 & $1.91{\times}10^{-4}$\\
+Reliability-aware $p=0.15$ & 1 & $2.08{\times}10^{-6}$ & $1.04{\times}10^{-5}$ & 0 & $4.76{\times}10^{-5}$ & $4.76{\times}10^{-5}$ & $1.19{\times}10^{-4}$\\
+Reliability-aware $p=0.15$ & 2 & 0 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsubsection{Supervised alignment-aware transfer benchmark}
+The supervised benchmark tests whether target-domain training and explicit feature alignment recover detection performance, and whether TriAir initialization adds value beyond the matched target-only control. All variants use independent RGB, infrared, and event stems, deterministic modality decoding, learned feature-level alignment, Softplus box-distance output, a 128-channel FPN, and the same detector head. Raw five-channel concatenation is not used.
+
+Exactly nine runs are trained: \textit{Scratch Equal}, \textit{TriAir Init Equal}, and \textit{TriAir Init Reliability}, each with seeds 0, 1, and 2. Every run uses $640\times640$ inputs, batch size 1, 10 epochs, 71,870 optimizer steps, AdamW with learning rate $10^{-4}$ and weight decay $10^{-4}$, a 500-step warmup, and cosine decay to $10^{-6}$. Augmentation, early stopping, devval monitoring during training, threshold tuning, and checkpoint selection are disabled. Only the final checkpoint is evaluated once on all 1,845 devval rows. For the initialized variants, only exact name-and-shape-compatible shared tensors are copied; the transferred parameter fraction is 0.9920 for every initialized run, while MM-UAV-specific stems, alignment modules, and unmatched parameters retain the matched seed-specific initialization.
+
+\tabref{tab:mmuav-transfer} reports the corrected aggregate evidence lock. Supervised alignment-aware training raises AP from 0.000 under frozen naive-grid transfer to $0.220\pm0.007$ for Scratch Equal. TriAir Init Equal improves the reported aggregate AP to $0.233\pm0.006$, and TriAir Init Reliability improves it further to $0.250\pm0.008$ while also attaining the highest AP50, AP75, and AR100 values. The comparison is descriptive: corrected seed-level records and paired differences are not available in the corrected evidence package and are therefore neither reconstructed nor reported.
+
+\begin{table*}[t]
+\centering
+\caption{Corrected aggregate MM-UAV transfer results on the 0--1 scale. AP is reported as mean $\pm$ sample standard deviation where supplied; AP50, AP75, and AR100 are aggregate values. Comparisons are descriptive and supervised. The best supervised aggregate row is bold.}
