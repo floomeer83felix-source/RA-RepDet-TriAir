@@ -1,0 +1,14 @@
+{
+  "methods": {
+    "scratch_equal": {"ap_mean": 0.2210, "ap_sample_std": 0.0030, "ap50_mean": 0.5566666666666667, "ap75_mean": 0.1346666666666667, "ar1_mean": 0.1736666666666667, "ar10_mean": 0.3360, "ar100_mean": 0.3530},
+    "triair_init_equal": {"ap_mean": 0.2340, "ap_sample_std": 0.0020, "ap50_mean": 0.5796666666666667, "ap75_mean": 0.1510, "ar1_mean": 0.1813333333333333, "ar10_mean": 0.3526666666666666, "ar100_mean": 0.3716666666666666},
+    "triair_init_reliability": {"ap_mean": 0.2503333333333334, "ap_sample_std": 0.002516611478423586, "ap50_mean": 0.6076666666666667, "ap75_mean": 0.1750, "ar1_mean": 0.1903333333333333, "ar10_mean": 0.3710, "ar100_mean": 0.3920}
+  },
+  "paired_ap": {
+    "triair_init_equal_minus_scratch_equal": {"mean": 0.0130, "sample_std": 0.0010, "all_positive": true},
+    "triair_init_reliability_minus_triair_init_equal": {"mean": 0.0163333333333333, "sample_std": 0.000577350269189626, "all_positive": true},
+    "triair_init_reliability_minus_scratch_equal": {"mean": 0.0293333333333333, "sample_std": 0.000577350269189626, "all_positive": true}
+  },
+  "source_rows": "corrected_per_run_metrics.json",
+  "reporting_boundary": "descriptive supervised transfer on exposed devval; no significance or independent external-test claim"
+}
