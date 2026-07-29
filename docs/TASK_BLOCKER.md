@@ -1,68 +1,43 @@
 # Task Blocker
 
-Status: `V74_MANUSCRIPT_INTEGRATION_AUTHORIZED_WITH_V73_AGGREGATE_CORRECTION_LOCK`
+Status: `V74_COMPLETE_SUBMISSION_METADATA_AND_CORRECTED_SEED_TRACEABILITY_PENDING`
 
 Generated: 2026-07-29
 
 ## Current state
 
-V73 completed its authorized training and evaluation protocol at commit `eafceccdedfc0bea93170a671906619b004412f4`. Its uploaded aggregate metric values and negative-transfer conclusion were incorrect and have been superseded by:
+`V74_TRIAIR_MANUSCRIPT_MMUAV_TRANSFER_STUDY_INTEGRATED` is complete. The corrected aggregate V72-V73 evidence is integrated into the manuscript, the invalidated old V73 evidence has been removed, and the source builds and renders successfully.
 
-`runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/RESULT_CORRECTION.md`
+There is no active manuscript-integration, LaTeX-build, table-layout, protected-file, or private-artifact blocker.
 
-There is no active training or runtime blocker. V74 may proceed as aggregate-only manuscript integration under the correction lock below.
+## Completed checks
 
-## Corrected result boundary
+- corrected aggregate values traced to `RESULT_CORRECTION.md` and corrected `three_seed_summary.json`;
+- old negative-transfer and no-reliability-gain wording removed;
+- invalidated per-seed and paired-difference tables removed;
+- original TriAir in-domain numbers preserved;
+- two-pass PDF build passed;
+- rendered pages containing the revised MM-UAV section, table, figure, discussion, and conclusion passed visual inspection;
+- no new training, inference, evaluation, or tuning performed.
 
-| Training setting | AP | AP50 | AP75 | AR100 | Conclusion |
-| --- | ---: | ---: | ---: | ---: | --- |
-| Frozen TriAir, naive-grid zero-shot | 0.000 | 0.000 | 0.000 | 0.000 | Direct transfer failed |
-| MM-UAV Scratch Equal | 0.220 ± 0.007 | 0.557 | 0.134 | 0.351 | Aligned supervised training recovered performance |
-| TriAir Init Equal | 0.233 ± 0.006 | 0.580 | 0.151 | 0.374 | Source-domain pretraining was beneficial |
-| TriAir Init Reliability | 0.250 ± 0.008 | 0.610 | 0.178 | 0.398 | Reliability-aware fusion improved performance further |
+## Remaining submission blockers
 
-The combined conclusion is:
+These items do not block V74 completion but must be resolved before journal submission:
 
-- naive-grid frozen zero-shot transfer failed;
-- aligned MM-UAV supervision recovered useful performance;
-- TriAir initialization improved the corrected aggregate result over scratch;
-- reliability-aware fusion improved the corrected aggregate result further and achieved the best reported values.
+1. canonical TriAir dataset citation is not yet author-verified;
+2. canonical MM-UAV dataset citation is not yet author-verified;
+3. competing-interests wording and final institutional metadata require author confirmation;
+4. corrected V73 seed-level records are unavailable, preventing independent reproduction of the reported aggregate mean and sample standard deviation and prohibiting paired or significance claims.
 
-## Invalidated evidence boundary
+## Required boundary
 
-The pre-correction `per_run_metrics.csv`, `per_run_metrics.json`, `paired_transfer_comparison.csv`, and `paired_transfer_comparison.json` must not be used. Corrected seed-level records were not supplied.
+Until corrected V73 seed-level records are supplied:
 
-V74 may not:
-
-- include the invalidated nine-row per-seed table;
-- report paired differences, seed-wise directions, minima, maxima, or ranges;
-- reconstruct seed-level values from aggregate means and standard deviations;
-- retain wording that scratch equal is best, TriAir initialization is negative transfer, or reliability fusion provides no gain.
-
-## Active task
-
-`V74_TRIAIR_MANUSCRIPT_MMUAV_CROSS_DATASET_TRANSFER_INTEGRATION_AUTHORIZED`
-
-V74 is documentation and build work only. It must integrate the corrected aggregate table, update the scientific interpretation, perform traceability and claim audits, build the manuscript cleanly, and inspect rendered pages.
-
-## Scientific boundary
-
-The study remains supervised target-domain transfer. It may not be described as independent/blind external validation, official untouched-test performance, V73 zero-shot success, statistically significant external generalization, or generalization without MM-UAV labels.
-
-## Fail-closed conditions
-
-Finish with the matching blocked state only when:
-
-1. the corrected aggregate numbers cannot be traced to the correction record;
-2. any invalidated old value or conclusion remains in active manuscript sources;
-3. the manuscript source or clean build procedure cannot be resolved;
-4. prohibited external-validation wording remains;
-5. new tables or text cannot be rendered legibly;
-6. protected files drift outside the authorized scope;
-7. private or heavy artifacts enter Git.
+- report V73 aggregate values descriptively only;
+- do not report paired differences, ranges, minima, maxima, seed directions, or significance;
+- do not reconstruct seed-level metrics from the means and standard deviations;
+- do not describe V73 as independent/blind external validation, official untouched-test performance, or generalization without MM-UAV labels.
 
 ## Next action
 
-Execute `docs/NEXT_TASK.md`. Integrate the corrected aggregate V72-V73 transfer study and push with:
-
-`docs: integrate corrected V72-V73 MM-UAV cross-dataset transfer study`
+No next experimental action is authorized. The authors should close the citation, declaration, access-language, and corrected seed-level provenance items before submission.
