@@ -1,0 +1,14 @@
+{
+  "decision": "V76_MAJOR_REVISION_EXISTING_EVIDENCE_INTEGRATED_SINGLE_MODALITY_QUEUE_READY",
+  "manuscript_revision_status": "COMPLETE",
+  "existing_evidence_integration": "COMPLETE",
+  "manuscript_build": "PASS",
+  "rendered_page_audit": "PASS",
+  "single_modality_queue": "READY_NOT_EXECUTED",
+  "single_modality_required_runs": 9,
+  "single_modality_completed_runs": 0,
+  "execution_blocker": "private local TriAir data and RTX 3090 workspace are unavailable in the current ChatGPT environment",
+  "fabricated_or_inferred_new_results": false,
+  "article_readiness_score": 4.2,
+  "submission_authorized": false
+}
