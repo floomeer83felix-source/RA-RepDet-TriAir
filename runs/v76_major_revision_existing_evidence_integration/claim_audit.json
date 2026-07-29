@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "allowed": [
+    "three-seed component-disjoint development-validation comparison",
+    "descriptive causal contrast of dynamic gating against tested static controls",
+    "locked internal holdout AP50 trend after checkpoint lock",
+    "supervised MM-UAV transfer on exposed devval",
+    "single-modality experiment queue prepared but unexecuted"
+  ],
+  "prohibited_and_absent": [
+    "statistical significance",
+    "calibrated physical sensor reliability",
+    "independent or blind public test",
+    "MM-UAV generalization without target labels",
+    "physical sensor-failure robustness",
+    "fabricated single-modality results"
+  ],
+  "static_control_absence_claim_removed": true,
+  "dropout_universally_beneficial_claim": false
+}
