@@ -12,6 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark"
+CORRECTION_LOCK = OUT / "RESULT_CORRECTION.md"
 DECISION = "V73_MMUAV_THREE_SEED_TRANSFER_BENCHMARK_COMPLETE"
 COMMIT = "exp: run V73 MM-UAV TriAir-initialized alignment-aware transfer benchmark"
 REQUIRED = (
@@ -40,6 +41,12 @@ def git(*args: str) -> str:
 
 
 def main() -> None:
+    if CORRECTION_LOCK.is_file():
+        raise RuntimeError(
+            "V73 result correction lock is present. This historical finalizer is disabled because "
+            "rerunning it would overwrite corrected aggregate evidence and task documentation."
+        )
+
     missing = [name for name in REQUIRED if not (OUT / name).is_file()]
     if missing:
         raise RuntimeError(f"V73 required outputs missing: {missing}")
