@@ -1,0 +1,10 @@
+V75 local build validation
+- figure generation: PASS
+- pdfLaTeX pass 1: PASS
+- pdfLaTeX pass 2: PASS
+- pages: 13
+- fatal errors: 0
+- undefined citations: 0
+- undefined references: 0
+- overfull boxes: 0
+- rendered pages: 13
