@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "sources": {
+    "triair_three_seed_coco_and_causal_ablation": "runs/v48_complete_ablation/causal_ablation_summary.json",
+    "locked_internal_holdout": "runs/v42_locked_guard_heldout/heldout_guard_summary.json",
+    "mmuav_corrected_seed_level": "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/corrected_per_run_metrics.json",
+    "mmuav_corrected_summary": "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/three_seed_summary.json"
+  },
+  "manuscript_values_checked": [
+    "0.6803 +/- 0.0221",
+    "0.7156 +/- 0.0172",
+    "+0.0354 +/- 0.0206",
+    "+0.0621 +/- 0.0188",
+    "+0.0404 +/- 0.0074",
+    "-0.0095 +/- 0.0258",
+    "+0.0086 +/- 0.0062",
+    "0.2210 +/- 0.0030",
+    "0.2340 +/- 0.0020",
+    "0.2503 +/- 0.0025"
+  ],
+  "unexecuted_values_inserted": false
+}
