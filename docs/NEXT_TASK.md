@@ -2,25 +2,21 @@
 
 ## Completion
 
-`V77_SINGLE_MODALITY_RESULTS_INTEGRATED_MANUSCRIPT_REBUILT`
+`V78_SUBMISSION_PROVENANCE_AND_DECLARATIONS_CLOSED`
 
-The nine user-supplied single-modality rows have been integrated into the authoritative evidence and complete manuscript. Means, sample standard deviations, and paired comparisons against the existing V48 multimodal systems were independently recomputed.
+The manuscript now records the exact untagged TriAir provider archive, complete local archive audit, provider-supplied data representation, runtime-only conversion path, original non-official random split, published-versus-current label-count discrepancy, no-competing-interests declaration, and non-redistribution boundary.
 
-## Remaining evaluator-only closure
+## Remaining submission preparation
 
-If the nine retained checkpoints are still available, run the existing standardized evaluator once per checkpoint to add:
+Before upload, complete only the following:
 
-- COCO AP@[0.50:0.95];
-- AR1, AR10, and AR100;
-- checkpoint SHA256;
-- split and evaluator identities.
+1. confirm final author names, affiliations, corresponding-author details, and ORCID fields;
+2. check the live target-journal template, required statements, file limits, and submission metadata;
+3. retain the explicit 24,223-versus-30,634 distinction and dataset non-redistribution wording;
+4. optionally run evaluator-only completion for the nine retained single-modality checkpoints if AP@[0.50:0.95], AR1/10/100, and checkpoint hashes are desired.
 
-This is evaluation-only work. No retraining, threshold tuning, schedule changes, seed replacement, or selective rerun is authorized.
-
-## Submission closure
-
-Before submission, the authors must confirm competing interests, final author/institution metadata, exact local TriAir version/conversion provenance, and data-access wording.
+No retraining, tuning, selective rerun, seed replacement, or new public-test claim is authorized.
 
 ## Commit message
 
-`docs: integrate completed V77 single-modality evidence`
+`docs: close V78 data provenance and competing interests`
