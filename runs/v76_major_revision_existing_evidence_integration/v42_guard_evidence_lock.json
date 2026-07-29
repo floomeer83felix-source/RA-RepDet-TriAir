@@ -1,0 +1,16 @@
+{
+  "status": "LOCKED_COMPLETE",
+  "source": "runs/v42_locked_guard_heldout/heldout_guard_summary.json",
+  "guard_images": 837,
+  "inventory_boxes": 2287,
+  "evaluator_gt_boxes": 1264,
+  "checkpoint_pairs": 3,
+  "metrics": {
+    "matched_early_ap50": {"mean": 0.9588218132654826, "sample_std": 0.005825741165654},
+    "reliability_ap50": {"mean": 0.9673834641774496, "sample_std": 0.003256593170525},
+    "paired_ap50_delta": {"mean": 0.008561650911967, "sample_std": 0.006228850993882, "positive_pairs": 3},
+    "paired_ap75_delta": {"mean": 0.0021725098292032, "sample_std": 0.017304522650555, "positive_pairs": 2}
+  },
+  "used_for_training_selection_or_tuning": false,
+  "claim": "locked internal holdout, not independent public test"
+}
