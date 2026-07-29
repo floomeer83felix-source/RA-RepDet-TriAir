@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "protected_training_core_changed": false,
+  "protected_files": [
+    "rarepdet/train_early_fusion.py",
+    "rarepdet/models/early_fusion_fcos.py",
+    "rarepdet/models/reliability_fusion_fcos.py",
+    "datasets/triair_dataset.py"
+  ],
+  "new_experimental_code_scope": [
+    "rarepdet/experimental/v76_single_modality_detector.py",
+    "rarepdet/tools/train_v76_single_modality.py",
+    "rarepdet/tools/eval_v76_single_modality.py",
+    "rarepdet/tools/run_v76_single_modality_queue.py",
+    "rarepdet/tools/build_v76_single_modality_summary.py",
+    "tests/test_v76_single_modality_contract.py"
+  ],
+  "private_or_heavy_artifacts_added": false
+}
