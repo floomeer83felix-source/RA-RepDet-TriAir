@@ -1,0 +1,42 @@
+{
+  "status": "USER_SUPPLIED_SINGLE_MODALITY_METRICS_INTEGRATED",
+  "source": "user-provided nine-row table on 2026-07-29",
+  "available_metrics": ["precision", "recall", "f1", "ap50", "ap75"],
+  "unavailable_metrics": ["coco_ap50_95", "ar1", "ar10", "ar100"],
+  "summary": {
+    "RGB-only": {
+      "precision": {"mean": 0.8183333333, "sample_std": 0.0065064071},
+      "recall": {"mean": 0.581, "sample_std": 0.009},
+      "f1": {"mean": 0.679, "sample_std": 0.008},
+      "ap50": {"mean": 0.6526666667, "sample_std": 0.0086216781},
+      "ap75": {"mean": 0.3806666667, "sample_std": 0.0085049002}
+    },
+    "Thermal-only": {
+      "precision": {"mean": 0.8563333333, "sample_std": 0.0055075705},
+      "recall": {"mean": 0.757, "sample_std": 0.008},
+      "f1": {"mean": 0.804, "sample_std": 0.007},
+      "ap50": {"mean": 0.8496666667, "sample_std": 0.0080208063},
+      "ap75": {"mean": 0.6263333333, "sample_std": 0.0110604400}
+    },
+    "Event-only": {
+      "precision": {"mean": 0.691, "sample_std": 0.0095393920},
+      "recall": {"mean": 0.296, "sample_std": 0.0095393920},
+      "f1": {"mean": 0.4143333333, "sample_std": 0.0110151410},
+      "ap50": {"mean": 0.3346666667, "sample_std": 0.0125033329},
+      "ap75": {"mean": 0.126, "sample_std": 0.008}
+    }
+  },
+  "paired_against_existing_v48_systems": {
+    "reliability_p015_minus_thermal_only": {
+      "f1": {"mean": 0.1057216998, "sample_std": 0.0132651394, "positive_seed_pairs": 3},
+      "ap50": {"mean": 0.1037452103, "sample_std": 0.0093857390, "positive_seed_pairs": 3},
+      "ap75": {"mean": 0.2465430302, "sample_std": 0.0252654447, "positive_seed_pairs": 3}
+    },
+    "matched_early_minus_thermal_only": {
+      "f1": {"mean": 0.0871975852, "sample_std": 0.0162910008, "positive_seed_pairs": 3},
+      "ap50": {"mean": 0.0875785271, "sample_std": 0.0101007088, "positive_seed_pairs": 3},
+      "ap75": {"mean": 0.1826990361, "sample_std": 0.0351798094, "positive_seed_pairs": 3}
+    }
+  },
+  "scientific_boundary": "Descriptive three-seed component-disjoint validation. AP@[0.50:0.95] and AR were not supplied and are not reconstructed."
+}
