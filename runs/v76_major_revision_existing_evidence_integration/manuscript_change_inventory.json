@@ -1,0 +1,20 @@
+{
+  "status": "COMPLETE",
+  "active_entrypoint": "main.tex",
+  "source_parts": [
+    "submission/v76_major_revision_manuscript/main_part1.tex",
+    "submission/v76_major_revision_manuscript/main_part2.tex",
+    "submission/v76_major_revision_manuscript/main_part3.tex",
+    "submission/v76_major_revision_manuscript/main_part4.tex",
+    "submission/v76_major_revision_manuscript/main_part5.tex"
+  ],
+  "changes": [
+    "replaced two-run headline with three-seed COCO evidence",
+    "added six-variant causal fusion ablation and paired contrasts",
+    "added locked internal holdout",
+    "corrected static-control and dropout interpretation",
+    "added dataset-paper citations with local-version provenance caveat",
+    "retained corrected MM-UAV seed-level evidence",
+    "declared trained single-modality baselines pending without inventing results"
+  ]
+}
