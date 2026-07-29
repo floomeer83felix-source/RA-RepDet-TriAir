@@ -1,0 +1,39 @@
+{
+  "records": [
+    {"seed": 0, "comparison": "triair_init_equal_minus_scratch_equal", "ap": 0.014, "ap50": 0.023, "ap75": 0.017, "ar1": 0.008, "ar10": 0.017, "ar100": 0.019},
+    {"seed": 1, "comparison": "triair_init_equal_minus_scratch_equal", "ap": 0.012, "ap50": 0.023, "ap75": 0.016, "ar1": 0.008, "ar10": 0.016, "ar100": 0.018},
+    {"seed": 2, "comparison": "triair_init_equal_minus_scratch_equal", "ap": 0.013, "ap50": 0.023, "ap75": 0.016, "ar1": 0.007, "ar10": 0.017, "ar100": 0.019},
+    {"seed": 0, "comparison": "triair_init_reliability_minus_triair_init_equal", "ap": 0.016, "ap50": 0.028, "ap75": 0.023, "ar1": 0.009, "ar10": 0.018, "ar100": 0.020},
+    {"seed": 1, "comparison": "triair_init_reliability_minus_triair_init_equal", "ap": 0.017, "ap50": 0.028, "ap75": 0.025, "ar1": 0.009, "ar10": 0.019, "ar100": 0.021},
+    {"seed": 2, "comparison": "triair_init_reliability_minus_triair_init_equal", "ap": 0.016, "ap50": 0.028, "ap75": 0.024, "ar1": 0.009, "ar10": 0.018, "ar100": 0.020},
+    {"seed": 0, "comparison": "triair_init_reliability_minus_scratch_equal", "ap": 0.030, "ap50": 0.051, "ap75": 0.040, "ar1": 0.017, "ar10": 0.035, "ar100": 0.039},
+    {"seed": 1, "comparison": "triair_init_reliability_minus_scratch_equal", "ap": 0.029, "ap50": 0.051, "ap75": 0.041, "ar1": 0.017, "ar10": 0.035, "ar100": 0.039},
+    {"seed": 2, "comparison": "triair_init_reliability_minus_scratch_equal", "ap": 0.029, "ap50": 0.051, "ap75": 0.040, "ar1": 0.016, "ar10": 0.035, "ar100": 0.039}
+  ],
+  "summary": {
+    "triair_init_equal_minus_scratch_equal": {
+      "ap": {"mean": 0.013, "sample_std": 0.001, "min": 0.012, "max": 0.014, "range": 0.002, "all_positive": true},
+      "ap50": {"mean": 0.023, "sample_std": 0.0, "min": 0.023, "max": 0.023, "range": 0.0, "all_positive": true},
+      "ap75": {"mean": 0.0163333333333333, "sample_std": 0.000577350269189626, "min": 0.016, "max": 0.017, "range": 0.001, "all_positive": true},
+      "ar1": {"mean": 0.00766666666666667, "sample_std": 0.000577350269189626, "min": 0.007, "max": 0.008, "range": 0.001, "all_positive": true},
+      "ar10": {"mean": 0.0166666666666667, "sample_std": 0.000577350269189626, "min": 0.016, "max": 0.017, "range": 0.001, "all_positive": true},
+      "ar100": {"mean": 0.0186666666666667, "sample_std": 0.000577350269189626, "min": 0.018, "max": 0.019, "range": 0.001, "all_positive": true}
+    },
+    "triair_init_reliability_minus_triair_init_equal": {
+      "ap": {"mean": 0.0163333333333333, "sample_std": 0.000577350269189626, "min": 0.016, "max": 0.017, "range": 0.001, "all_positive": true},
+      "ap50": {"mean": 0.028, "sample_std": 0.0, "min": 0.028, "max": 0.028, "range": 0.0, "all_positive": true},
+      "ap75": {"mean": 0.024, "sample_std": 0.001, "min": 0.023, "max": 0.025, "range": 0.002, "all_positive": true},
+      "ar1": {"mean": 0.009, "sample_std": 0.0, "min": 0.009, "max": 0.009, "range": 0.0, "all_positive": true},
+      "ar10": {"mean": 0.0183333333333333, "sample_std": 0.000577350269189626, "min": 0.018, "max": 0.019, "range": 0.001, "all_positive": true},
+      "ar100": {"mean": 0.0203333333333333, "sample_std": 0.000577350269189626, "min": 0.020, "max": 0.021, "range": 0.001, "all_positive": true}
+    },
+    "triair_init_reliability_minus_scratch_equal": {
+      "ap": {"mean": 0.0293333333333333, "sample_std": 0.000577350269189626, "min": 0.029, "max": 0.030, "range": 0.001, "all_positive": true},
+      "ap50": {"mean": 0.051, "sample_std": 0.0, "min": 0.051, "max": 0.051, "range": 0.0, "all_positive": true},
+      "ap75": {"mean": 0.0403333333333333, "sample_std": 0.000577350269189626, "min": 0.040, "max": 0.041, "range": 0.001, "all_positive": true},
+      "ar1": {"mean": 0.0166666666666667, "sample_std": 0.000577350269189626, "min": 0.016, "max": 0.017, "range": 0.001, "all_positive": true},
+      "ar10": {"mean": 0.035, "sample_std": 0.0, "min": 0.035, "max": 0.035, "range": 0.0, "all_positive": true},
+      "ar100": {"mean": 0.039, "sample_std": 0.0, "min": 0.039, "max": 0.039, "range": 0.0, "all_positive": true}
+    }
+  }
+}
