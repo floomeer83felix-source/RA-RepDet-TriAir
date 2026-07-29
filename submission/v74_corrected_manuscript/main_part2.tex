@@ -1,0 +1,100 @@
+where $\boldsymbol{\alpha}=[\alpha_{\mathrm{rgb}},\alpha_{\mathrm{th}},\alpha_{\mathrm{ev}}]$ and the three entries sum to one. The fused feature is
+\begin{equation}
+\mathbf{F}_{\mathrm{fuse}}=\alpha_{\mathrm{rgb}}\mathbf{F}_{\mathrm{rgb}}+\alpha_{\mathrm{th}}\mathbf{F}_{\mathrm{th}}+\alpha_{\mathrm{ev}}\mathbf{F}_{\mathrm{ev}}.
+\end{equation}
+A projection converts $\mathbf{F}_{\mathrm{fuse}}$ to the three-channel interface expected by the shared backbone. The gate is a learned feature-mixture mechanism; its weights are not calibrated probabilities of physical sensor health.
+
+\subsection{Modality-Dropout Training}
+For the reliability-aware model, RGB channels $0{:}3$, thermal channel 3, and event channel 4 are independently zeroed during training with probability $p=0.15$. If all three groups are selected, one group is restored uniformly at random so that at least one stream remains. The $p=0.15$ setting was fixed for the component-disjoint comparison before any results from that partition were examined. Ordinary all-modal inference supplies all available streams.
+
+\section{Dataset and Component-Disjoint Validation Protocol}
+\subsection{TriAir Representation}
+The local TriAir representation contains 10,489 five-channel samples and 30,634 valid vehicle boxes. Among the samples, 9,751 have label text files, 738 have no label text file, and one label text file is empty. The data pipeline treats missing and empty label files as empty-target observations rather than removing them. TriAir is a publicly available research dataset; this paper evaluates a documented local five-channel mirror and records its inventory, preprocessing, split construction, and audit evidence. Readers should obtain the dataset from its original public distribution and comply with the provider's applicable terms.
+
+\subsection{Expanded-Adjacency Component-Disjoint Assignment}
+The component-disjoint split uses a frozen pre-validation train-plus-validation universe of 9,652 samples. A graph is constructed from (i) exact decoded RGB-content matches, (ii) pHash or dHash candidate relations under the locked audit rule, and (iii) pair relations from clusters manually adjudicated as adjacent-or-near-identical. Filename proximity was used only to organize the human review; filename numbers were not treated as verified temporal metadata. Connected components are assigned wholly to train or validation by a deterministic objective that targets the original validation count, then minimizes moved samples, then minimizes the validation ground-truth-box difference, and finally uses a stable lexicographic tie-break. No detection metric, prediction, loss, or model result is used to construct the split.
+
+The resulting manifests contain 7,439 training images with 22,480 boxes and 2,213 validation images with 5,867 boxes. The 837-image guard partition remains unchanged but is archival and non-test: it is excluded from model selection, performance reporting, and all manuscript metrics. The post-assignment audit records zero train-validation sample overlap, zero exact RGB cross pairs, zero pHash/dHash cross pairs under the locked rule, zero human-adjudicated adjacency cross edges, and zero extended-graph component violations. These checks support a precisely scoped component-disjoint claim; they do not prove the absence of every possible unobserved scene correlation.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig2_protocol.pdf}
+\caption{Component-disjoint validation protocol. Components of the fixed candidate-and-adjacency graph are assigned as indivisible units to train or validation. The post-assignment audit verifies that no original candidate, human-adjudicated adjacency, or extended-graph edge crosses the train-validation boundary. The guard partition is not evaluated.}
+\label{fig:protocol}
+\end{figure*}
+
+\begin{table*}[t]
+\centering
+\caption{TriAir inventory and component-disjoint validation protocol. The guard partition is archival only and is not used for model selection, reported performance, or test claims.}
+\label{tab:protocol}
+\small
+\begin{tabularx}{\textwidth}{@{}l r Y@{}}
+\toprule
+Item & Value & Note\\
+\midrule
+Total local samples & 10,489 & Five-channel RGB-thermal-event arrays\\
+Total valid vehicle boxes & 30,634 & Single vehicle class\\
+Images with label text files & 9,751 & Includes one empty label text file\\
+Images without label text files & 738 & Retained as empty-target images\\
+Training partition & 7,439 / 22,480 boxes & Used for all four fixed training runs\\
+Component-disjoint validation partition & 2,213 / 5,867 boxes & Used for all reported metrics\\
+Guard partition & 837 / 2,287 boxes & Archival, non-test, not evaluated\\
+Candidate graph & decoded exact RGB + pHash/dHash & Locked audit procedure\\
+Additional graph evidence & human-adjudicated adjacency & Only confirmed adjacent-or-near-identical clusters add edges\\
+Post-assignment cross-partition violations & 0 & Exact, perceptual, human-adjacency, and extended-component audit counts are zero\\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\section{Experiments and Results}
+\subsection{Frozen Training and Evaluation Protocol}
+Both systems use the same component-disjoint manifests, 50 epochs, $640\times640$ inputs, batch size 4, learning rate $10^{-4}$, AdamW, no mosaic/mixup/crop/flip/color-jitter augmentation, and fixed seeds 0 and 2. The standardized evaluator uses a score threshold of 0.001, an NMS threshold of 0.6, and at most 100 detections per image. Precision, recall, and F1 are reported at a score threshold of 0.50. AP50 and AP75 are project-local, single-class, score-ranked AP values based on greedy one-to-one matching; they are not COCO AP50:95.
+
+Within each training run, the frozen trainer retains the checkpoint with the highest validation AP50. The same standardized evaluator is then applied to the component-disjoint validation manifest. This is validation-model-selection evidence, not independent-test evidence. No hyperparameter sweep is performed on the component-disjoint partition.
+
+\subsection{Full-Input Comparison}
+\tabref{tab:core} reports each fixed seed and the two-run aggregate. The reliability-aware $p=0.15$ system has higher mean precision, recall, F1, AP50, and AP75 than matched early fusion. The AP50 difference is $+0.0177$, the AP75 difference is $+0.0552$, and the F1 difference is $+0.0188$. The reliability model's AP50 range across the two fixed seeds is smaller than the early-fusion range, but two seeds are insufficient to make a broad stability claim.
+
+\begin{table*}[t]
+\centering
+\caption{Full-input component-disjoint validation results. Values are project-local single-class metrics. The reliability-aware $p=0.15$ setting was pre-specified before this validation comparison; no dropout sweep or optimal-dropout claim is made. Range is the minimum--maximum range across the two fixed seeds.}
+\label{tab:core}
+\scriptsize
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Model group & Statistic & Precision & Recall & F1 & AP50 & AP75\\
+\midrule
+Matched early fusion & seed 0 & 0.9092 & 0.8955 & 0.9023 & 0.9455 & 0.8411\\
+Matched early fusion & seed 2 & 0.9284 & 0.8485 & 0.8866 & 0.9361 & 0.8004\\
+Matched early fusion & mean & 0.9188 & 0.8720 & 0.8945 & 0.9408 & 0.8208\\
+Matched early fusion & range & 0.0192 & 0.0470 & 0.0157 & 0.0094 & 0.0407\\
+\midrule
+Reliability-aware $p=0.15$ & seed 0 & 0.9333 & 0.8972 & 0.9149 & 0.9584 & 0.8952\\
+Reliability-aware $p=0.15$ & seed 2 & 0.9213 & 0.9022 & 0.9116 & 0.9588 & 0.8567\\
+Reliability-aware $p=0.15$ & mean & \textbf{0.9273} & \textbf{0.8997} & \textbf{0.9133} & \textbf{0.9586} & \textbf{0.8760}\\
+Reliability-aware $p=0.15$ & range & 0.0120 & 0.0049 & 0.0033 & 0.0004 & 0.0385\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig3_core_results.pdf}
+\caption{Two-run means for full-input component-disjoint validation. Error bars are population standard deviations over the two fixed seeds and are descriptive only.}
+\label{fig:core}
+\end{figure}
+
+\subsection{Image-Level Bootstrap Uncertainty}
+For descriptive uncertainty analysis, validation images are resampled 2,000 times with a fixed bootstrap seed. Each resample computes the metric for each fixed checkpoint, averages the two checkpoints within each model group, and then calculates the reliability-minus-early difference. Images with no ground-truth boxes remain in the resampling frame; they contribute false positives when predictions are present and zero ground-truth boxes to denominators. The percentile intervals for AP50, AP75, and F1 are positive (\tabref{tab:bootstrap}). These intervals are conditional on the fixed checkpoints and this validation partition; they are not used for model selection.
+
+\begin{table}[t]
+\centering
+\caption{Image-level bootstrap differences, reliability-aware $p=0.15$ minus matched early fusion. Values are descriptive percentile intervals from 2,000 image resamples.}
+\label{tab:bootstrap}
+\scriptsize
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & Mean difference & 95\% CI\\
+\midrule
+AP50 & +0.0177 & [+0.0153, +0.0203]\\
+AP75 & +0.0553 & [+0.0483, +0.0622]\\
