@@ -118,10 +118,12 @@ def coco_detection_metrics(
     max_detections=100,
     iou_thresholds=COCO_IOU_THRESHOLDS,
 ):
-    """Compute COCO 101-point AP for TriAir's single vehicle class.
+    """Compute COCO 101-point AP/AR for TriAir's single vehicle class.
 
     The detector output is capped per image before evaluation. The default
     threshold grid is IoU 0.50:0.05:0.95 and the recall grid is 0.00:0.01:1.00.
+    AR is reported at maxDets 1, 10, and ``max_detections`` (100 in the frozen
+    evaluation contract).
     """
 
     iou_thresholds = tuple(float(value) for value in iou_thresholds)
@@ -161,14 +163,22 @@ def coco_detection_metrics(
         for index, threshold in enumerate(iou_thresholds)
     }
     ap_values = list(ap_by_iou.values())
-    recall = evaluator.eval["recall"][:, 0, 0, 2]
+
+    recall_tensor = evaluator.eval["recall"][:, 0, 0, :]
+    ar_by_max_dets = {
+        str(int(max_det)): _mean_valid(recall_tensor[:, index])
+        for index, max_det in enumerate(evaluator.params.maxDets)
+    }
 
     return {
         "ap50_95": float(np.mean(ap_values)),
         "ap50": ap_by_iou.get("0.50", 0.0),
         "ap75": ap_by_iou.get("0.75", 0.0),
         "ap_by_iou": ap_by_iou,
-        "ar100": _mean_valid(recall),
+        "ar1": ar_by_max_dets.get("1", 0.0),
+        "ar10": ar_by_max_dets.get("10", 0.0),
+        "ar100": ar_by_max_dets.get(str(int(max_detections)), 0.0),
+        "ar_by_max_dets": ar_by_max_dets,
         "images": len(dataset["images"]),
         "gt_boxes": len(dataset["annotations"]),
         "detections": len(detections),
