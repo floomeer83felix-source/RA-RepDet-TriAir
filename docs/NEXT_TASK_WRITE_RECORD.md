@@ -3,16 +3,28 @@
 Written: 2026-07-29
 Branch: `research/ra-repdet-triair`
 
-## Completed task
+## User authorization
 
-`V75_V73_CORRECTED_SEED_LEVEL_EVIDENCE_INTEGRATED`
+The user requested a major revision and explicitly authorized the experiments needed to address reviewer concerns.
 
-V75 integrated the corrected nine-row V73 seed-level metrics, recomputed three-seed summaries and paired differences, added the manuscript seed-level and paired tables, regenerated Figure 5, rebuilt the 13-page PDF, and updated the article evaluation to `3.9 / 5`.
+## Evidence already available and now integrated
 
-## Remaining author actions
+- V48: three-seed six-variant causal fusion ablation;
+- V42: three-seed locked 837-image internal holdout;
+- V75: corrected three-seed MM-UAV transfer evidence.
 
-- verify canonical TriAir and MM-UAV citations;
-- confirm competing interests and institutional metadata;
-- preserve the validation-only and supervised exposed-devval boundaries.
+These records close the earlier manuscript omissions concerning static controls, causal attribution, and three-seed internal holdout evidence.
 
-No subsequent task is authorized.
+## Newly authorized work
+
+Exactly nine single-modality TriAir runs:
+
+1. RGB-only seeds 0, 1, 2;
+2. thermal-only seeds 0, 1, 2;
+3. event-only seeds 0, 1, 2.
+
+The complete frozen contract is in `docs/NEXT_TASK.md`. The implementation uses new experimental scripts and does not modify protected training-core files.
+
+## Current handoff
+
+The V76 manuscript major revision and execution package are complete. GPU execution remains pending on the authorized local TriAir workspace.
