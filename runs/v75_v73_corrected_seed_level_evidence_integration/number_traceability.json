@@ -1,0 +1,8 @@
+{
+  "source": "user-supplied corrected V73 seed-level table on 2026-07-29",
+  "rows": 9,
+  "metrics": ["ap", "ap50", "ap75", "ar1", "ar10", "ar100"],
+  "arithmetic": "means and sample standard deviations recomputed directly from the nine supplied rows",
+  "manuscript_tables": ["tab:mmuav-transfer", "tab:mmuav-transfer-seeds", "tab:mmuav-paired-ap"],
+  "statistical_boundary": "descriptive only; no significance claim"
+}
