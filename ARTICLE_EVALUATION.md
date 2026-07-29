@@ -1,70 +1,68 @@
-# RA-RepDet manuscript evaluation - V75
+# RA-RepDet manuscript evaluation - V76 major revision
 
 ## Overall recommendation
 
-**Major revision before submission, with materially improved evidence readiness.** The corrected V73 seed-level records now reproduce the reported means, sample standard deviations, and paired directions. This closes the most serious traceability gap in V74. The paper's remaining limitations are the validation-only TriAir design, only two TriAir runs, unresolved canonical dataset citations, and author metadata/declaration closure.
+**Major revision package completed; targeted single-modality experiments remain pending execution.** The manuscript is materially stronger than V75 because it now uses the already-completed three-seed COCO evaluation, six-variant causal fusion ablation, and locked internal holdout instead of relying on a two-run system comparison. The central mechanism claim is now better isolated: dynamic gating outperforms fixed equal stem fusion and deterministic learned stem projection, while modality dropout has mixed average effect.
 
-This assessment uses general standards for signal, image, video, and machine-learning journals. It is not an official decision from the current SIVP editorial system.
+The remaining experimental gap is narrow and explicit: trained RGB-only, thermal-only, and event-only baselines. A frozen nine-run execution package (three modalities by three seeds) is included, but no unexecuted result is inserted into the paper.
 
 ## Scorecard
 
 | Dimension | Score | Assessment |
 | --- | ---: | --- |
-| Novelty and relevance | 4.0 / 5 | Lightweight RGB-thermal-event reliability fusion and leakage-aware UAV validation remain relevant and reasonably distinctive. |
-| Method clarity | 4.2 / 5 | Architecture, dropout, split construction, transfer protocol, and scientific boundaries are clearly documented. |
-| Experimental rigor | 3.6 / 5 | MM-UAV now has three corrected seeds and matched paired comparisons; TriAir remains two-run and validation-only. |
-| Evidence traceability | 4.2 / 5 | Corrected seed-level rows, arithmetic summaries, and paired differences are now directly auditable. |
-| Statistical support | 3.5 / 5 | Direction is consistent across three MM-UAV seeds, but n=3 is too small for strong inference and the exposed devval split limits interpretation. |
-| Reproducibility | 4.2 / 5 | Frozen protocols, manifests, scripts, corrected rows, and traceability artifacts provide a strong reproducibility framework. |
-| Writing and organization | 4.3 / 5 | The revised narrative clearly separates in-domain validation, zero-shot failure, and supervised transfer. |
-| Submission readiness | 3.4 / 5 | Dataset citations, declarations, and final metadata remain unresolved. |
+| Novelty and relevance | 4.1 / 5 | Lightweight tri-modal dynamic fusion remains timely and relevant. |
+| Method clarity | 4.4 / 5 | Gate, stems, dropout, detector interface, split construction, and transfer boundaries are clear. |
+| Experimental rigor | 4.1 / 5 | Three-seed full comparison, six causal variants, and a locked holdout substantially improve rigor. |
+| Evidence traceability | 4.5 / 5 | V42, V48, V73, and V75 evidence is directly linked to compact source records. |
+| Statistical support | 3.8 / 5 | Three paired seeds support descriptive consistency, but not strong inference. |
+| Reproducibility | 4.5 / 5 | Frozen manifests, checkpoint hashes, evaluation contracts, and the new single-modality queue are explicit. |
+| Writing and organization | 4.4 / 5 | The revised narrative separates development validation, locked holdout, and supervised transfer. |
+| Submission readiness | 3.8 / 5 | Single-modality results, declarations, and exact TriAir provenance still require closure. |
 
-**Overall: 3.9 / 5 - technically credible and substantially improved, but still requires submission closure.**
+**Overall: 4.2 / 5.** The paper is technically credible and much closer to submission, but the fixed single-modality experiment should be completed before making a comprehensive modality-contribution claim.
 
-## Main strengths
+## Major revisions completed
 
-1. Evaluation leakage is addressed with a component-disjoint split rather than a random split.
-2. The primary model comparison holds the downstream detector fixed.
-3. TriAir project-local metrics and MM-UAV COCO metrics are clearly separated.
-4. The cross-dataset study separates unregistered frozen failure from supervised alignment-aware recovery.
-5. Corrected V73 results are now reproducible from nine explicit seed-level rows.
-6. AP gains from initialization and reliability-aware fusion are positive in all three paired seeds.
-7. The manuscript retains appropriate limits: target labels and an exposed devval split are used.
+1. Replaced the two-run headline with three-seed standardized COCO results.
+2. Added six-variant causal ablation:
+   - matched early fusion;
+   - early fusion plus modality dropout;
+   - separate stems with fixed equal fusion;
+   - separate stems with learned deterministic projection;
+   - dynamic gate without dropout;
+   - dynamic gate with dropout.
+3. Added seed-paired causal contrasts.
+4. Added the 837-image locked internal holdout evaluated after checkpoint lock.
+5. Corrected the discussion: static controls do exist and support a gate-specific descriptive conclusion.
+6. Added canonical TriAir-related and MM-UAV dataset-paper citations, while retaining an explicit local-version provenance caveat.
+7. Preserved the MM-UAV boundary: supervised target-domain adaptation on an exposed devval split, not independent external testing.
 
-## Major reviewer concerns that remain
+## Evidence interpretation
 
-### 1. The main TriAir claim is validation-only
+On component-disjoint development-validation, matched early fusion reaches `0.6803 +/- 0.0221` COCO AP and the full reliability-aware system reaches `0.7156 +/- 0.0172`, with paired gain `0.0354 +/- 0.0206`. The no-dropout dynamic gate reaches the highest mean AP (`0.7251 +/- 0.0121`) and exceeds fixed equal stem fusion by `0.0621 +/- 0.0188` and deterministic learned projection by `0.0404 +/- 0.0074`.
 
-The same component-disjoint validation partition participates in checkpoint retention and final reporting. This is stronger than a leaky random split, but not an independent test. Image-level bootstrap intervals do not remove checkpoint-selection or training-run uncertainty.
+The modality-dropout increment is mixed: `-0.0095 +/- 0.0258` inside the gated architecture and `+0.0038 +/- 0.0322` inside early fusion. This prevents over-attributing the gain to dropout.
 
-### 2. Causal attribution remains limited
+On the locked internal holdout, AP50 improves by `0.0086 +/- 0.0062` and is positive in all three seed pairs. AP75 is mixed. This supports a robust AP50 trend under checkpoint lock, not universal improvement or an independent public-test claim.
 
-The reliability-aware system differs from early fusion in both fusion architecture and modality-dropout training. The gain cannot be attributed uniquely to the reliability gate without additional equal-stem/static-weight/dropout controls.
+## Experiment still required
 
-### 3. Replication remains uneven
+Run the frozen V76 single-modality queue:
 
-MM-UAV now has three corrected seeds, but the TriAir headline comparison uses only two fixed runs. Broader stability claims should remain avoided.
+- RGB-only: seeds 0, 1, 2;
+- thermal-only: seeds 0, 1, 2;
+- event-only: seeds 0, 1, 2.
 
-### 4. Dataset citation and dissemination status require closure
+All nine runs use the frozen V40 component-disjoint train/validation manifests, 50 epochs, batch size 4, image size 640, AdamW learning rate `1e-4`, no modality dropout, checkpoint retention by project-local validation AP50, and one standardized COCO evaluation of the retained checkpoint. No adaptive rerun, seed replacement, or result-driven schedule change is permitted.
 
-Verified canonical citations for TriAir and MM-UAV are still missing. MM-UAV redistribution status remains unresolved; the current non-redistribution language is appropriately cautious.
+## Remaining author closure
 
-### 5. External generalization remains unproven
-
-The zero-shot adapter is deliberately unregistered, and the supervised benchmark uses MM-UAV labels plus an exposed devval split. The results support supervised adaptation under one protocol, not sensor-independent robustness.
-
-## Interpretation of the corrected V73 evidence
-
-The corrected arithmetic is internally coherent. Scratch Equal reaches `0.2210 +/- 0.0030` AP. TriAir initialization adds `0.0130 +/- 0.0010` AP and is positive in each seed. Reliability-aware fusion adds a further `0.0163 +/- 0.0006` AP over initialized equal fusion and is also positive in each seed. The combined gain over scratch is `0.0293 +/- 0.0006` AP. This is strong descriptive consistency, but three paired seeds do not justify a universal or statistically significant superiority claim.
-
-## Must complete before submission
-
-1. Confirm competing interests and author/institution metadata.
-2. Insert verified canonical TriAir and MM-UAV citations.
-3. Confirm lawful data-access and dissemination wording.
-4. Perform a final independent cross-check of the PDF tables against the V75 CSV/JSON files.
-5. Preserve the validation-only and supervised exposed-devval boundaries.
+1. Confirm competing interests and final author/institution metadata.
+2. Verify the exact local TriAir dataset version and conversion mapping against the cited provider paper.
+3. Confirm data access and dissemination wording.
+4. Execute and audit the nine single-modality runs.
+5. Preserve the distinction between component-disjoint development validation, locked internal holdout, and exposed supervised MM-UAV devval.
 
 ## Acceptance outlook
 
-The manuscript is now technically more persuasive because the corrected transfer conclusion is supported by explicit seed-level evidence rather than an aggregate-only correction. With citation and declaration closure, it is a plausible journal submission. Reviewers are still likely to request stronger TriAir replication, clearer causal controls, or an independent test set, so a major-revision outcome remains more likely than immediate acceptance.
+With the single-modality table and metadata/provenance closure, the manuscript is a plausible journal submission. The most likely reviewer request after that would concern a truly independent sensor-compatible test set or broader seed replication rather than a missing basic control.
