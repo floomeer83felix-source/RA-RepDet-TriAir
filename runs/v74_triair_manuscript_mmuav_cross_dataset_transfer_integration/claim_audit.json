@@ -1,0 +1,12 @@
+{
+  "old_negative_transfer_claims_remaining": false,
+  "scratch_best_claim_remaining": false,
+  "invalidated_per_seed_table_remaining": false,
+  "invalidated_paired_differences_remaining": false,
+  "independent_external_validation_claim": false,
+  "official_untouched_test_claim": false,
+  "generalization_without_mmuav_labels_claim": false,
+  "corrected_source_pretraining_benefit_reported": true,
+  "corrected_reliability_gain_reported": true,
+  "statistical_significance_claim": false
+}
