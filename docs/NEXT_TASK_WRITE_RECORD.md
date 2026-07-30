@@ -71,3 +71,13 @@ The user explicitly authorized fresh generation of all nine missing single-modal
 The V81 run remains frozen to 50 epochs, batch size 4, image size 640, AdamW at `1e-4`, no modality dropout, V40 component-disjoint train/development-validation manifests, serial CUDA execution, and no guard access. New checkpoints remain distinct from the lost V77 checkpoint identities.
 
 The queue was launched at `2026-07-30T08:04:13+08:00`; `rgb_seed0` was confirmed active on the RTX 3090 with `0/9` runs complete.
+
+## Supplied V80 standardized-metric update
+
+Written: 2026-07-30
+
+The user subsequently supplied nine rows containing AP@[0.50:0.95], AP50, AP75, AR1, AR10, and AR100 for the three modalities and three seeds. The rows are stored under `runs/v80_supplied_standardized_single_modality_metrics/`.
+
+Independent recomputation passed. AP50 and AP75 match V77 exactly to three decimal places for all nine rows. Thermal-only is strongest, with `0.4633 ± 0.0085` AP and `0.6320 ± 0.0090` AR100.
+
+The supplied table omits checkpoint SHA256, checkpoint epoch, split SHA256, runtime identity, and original evaluator JSON files. These fields were not inferred. A 16-page V80 draft was built and visually audited, but the V78 root manuscript remains authoritative while V81 replication is active and until the evidence-identity gate is resolved.
