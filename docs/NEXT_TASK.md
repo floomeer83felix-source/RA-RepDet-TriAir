@@ -47,6 +47,17 @@ The queue must run serially in the fixed order:
 2. `thermal_seed0`, `thermal_seed1`, `thermal_seed2`;
 3. `event_seed0`, `event_seed1`, `event_seed2`.
 
+## Live execution
+
+- started: `2026-07-30T08:04:13+08:00`;
+- workspace: `E:\RepViT-v74-clean`;
+- queue PID at launch: `57884`;
+- active run at confirmation: `rgb_seed0`;
+- queue stdout: `runs/v76_triair_single_modality_ablation/execution_logs/v81_queue_stdout.log`;
+- queue stderr: `runs/v76_triair_single_modality_ablation/execution_logs/v81_queue_stderr.log`;
+- local launch record: `runs/v76_triair_single_modality_ablation/v81_queue_launch.json`;
+- launch state: GPU computation confirmed, `0/9` complete.
+
 ## Required outputs
 
 For every run:
@@ -81,4 +92,4 @@ Historical RTX 3090 runs indicate approximately 5.7-7.0 hours per 50-epoch model
 
 ## Commit Message
 
-exp: authorize V81 nine-run single-modality retraining
+exp: record V81 single-modality training launch

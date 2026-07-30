@@ -4,7 +4,7 @@ Updated: 2026-07-30
 
 ## Active status
 
-`V81_NINE_SINGLE_MODALITY_RETRAINING_AUTHORIZED_START_PENDING`
+`V81_NINE_SINGLE_MODALITY_RETRAINING_RUNNING_RGB_SEED0`
 
 ## Closed submission items
 
@@ -37,6 +37,8 @@ The evaluator preflight found all nine required V76 `weights/best.pt` files miss
 On 2026-07-30 the user explicitly authorized fresh training of RGB-only, thermal-only, and event-only models for seeds 0, 1, and 2. The fixed nine-run queue uses the V40 component-disjoint train/development-validation manifests, 50 epochs, batch size 4, 640-pixel inputs, AdamW at `1e-4`, no modality dropout, and CUDA on the RTX 3090.
 
 The regenerated checkpoints are new V81 outputs. They are not assumed to be byte-identical to, or the original source of, the V77 supplied metrics. V78 remains authoritative until 9/9 training, standardized evaluation, and transparent reconciliation complete.
+
+The serial queue started at `2026-07-30T08:04:13+08:00` in `E:\RepViT-v74-clean`. Queue PID `57884` launched `rgb_seed0` first. GPU activity was confirmed at approximately 5.8 GB allocated memory and 188 W board power, with an empty stderr log. Current completion count at launch confirmation: `0/9`.
 
 ## Validation
 

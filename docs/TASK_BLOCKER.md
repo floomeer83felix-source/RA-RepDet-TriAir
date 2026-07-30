@@ -1,6 +1,6 @@
 # Task Blocker
 
-Status: `NO_ACTIVE_BLOCKER_V81_GPU_TRAINING_AUTHORIZED`
+Status: `NO_ACTIVE_BLOCKER_V81_GPU_TRAINING_RUNNING`
 
 Updated: 2026-07-30
 
@@ -22,6 +22,10 @@ V80 could not evaluate the nine original retained single-modality checkpoints be
 ## Identity boundary
 
 The generated `best.pt` files are fresh V81 retraining outputs. They must not be described as recovered V77 checkpoints. V77 comparison is descriptive reconciliation only.
+
+## Launch state
+
+The serial queue started successfully at `2026-07-30T08:04:13+08:00`. `rgb_seed0` entered GPU computation, stderr was empty, and no blocker was present at launch confirmation.
 
 ## Failure protocol
 

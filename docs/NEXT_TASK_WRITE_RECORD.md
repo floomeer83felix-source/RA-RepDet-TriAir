@@ -69,3 +69,5 @@ Written: 2026-07-30
 The user explicitly authorized fresh generation of all nine missing single-modality weights: RGB-only, thermal-only, and event-only at seeds 0, 1, and 2. This supersedes the V80 missing-checkpoint stop condition for training authorization only.
 
 The V81 run remains frozen to 50 epochs, batch size 4, image size 640, AdamW at `1e-4`, no modality dropout, V40 component-disjoint train/development-validation manifests, serial CUDA execution, and no guard access. New checkpoints remain distinct from the lost V77 checkpoint identities.
+
+The queue was launched at `2026-07-30T08:04:13+08:00`; `rgb_seed0` was confirmed active on the RTX 3090 with `0/9` runs complete.
