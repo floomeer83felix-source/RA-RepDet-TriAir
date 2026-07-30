@@ -4,7 +4,7 @@ Updated: 2026-07-30
 
 ## Active status
 
-`V81_NINE_SINGLE_MODALITY_RETRAINING_RUNNING_RGB_SEED0`
+`V81_NINE_SINGLE_MODALITY_RETRAINING_RUNNING_RGB_SEED0_V80_SUPPLIED_METRICS_RECORDED`
 
 ## Closed submission items
 
@@ -16,9 +16,21 @@ Updated: 2026-07-30
 6. Count boundary: paper-reported 24,223 vehicles and current-archive 30,634 valid label lines remain distinct; the 6,411 difference is unresolved.
 7. Redistribution: upstream MIT statement applies to code; no explicit dataset-archive license was located, so data are not redistributed.
 
+## Supplied standardized single-modality metrics
+
+The user supplied nine standardized rows containing AP@[0.50:0.95], AP50, AP75, AR1, AR10, and AR100. Independent recomputation gives:
+
+| Modality | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| RGB-only | 0.3073 ± 0.0065 | 0.6527 ± 0.0086 | 0.3807 ± 0.0085 | 0.2857 ± 0.0055 | 0.4550 ± 0.0070 | 0.4830 ± 0.0070 |
+| Thermal-only | 0.4633 ± 0.0085 | 0.8497 ± 0.0080 | 0.6263 ± 0.0111 | 0.3877 ± 0.0065 | 0.5973 ± 0.0085 | 0.6320 ± 0.0090 |
+| Event-only | 0.1020 ± 0.0060 | 0.3347 ± 0.0125 | 0.1260 ± 0.0080 | 0.1220 ± 0.0040 | 0.2437 ± 0.0075 | 0.2710 ± 0.0080 |
+
+All nine AP50/AP75 pairs match the V77 supplied values exactly at three decimal places. The table does not contain checkpoint SHA256, checkpoint epoch, split SHA256, runtime identity, or original evaluator JSON records; these fields were not inferred. Compact evidence is stored under `runs/v80_supplied_standardized_single_modality_metrics/`.
+
 ## V80 evaluator-only execution
 
-The evaluator contract now reports:
+The evaluator contract reports:
 
 - COCO AP@[0.50:0.95];
 - AP50 and AP75;
@@ -30,29 +42,33 @@ A fail-closed nine-checkpoint queue was added at `rarepdet/tools/run_v79_single_
 
 The authorized local RTX 3090 environment was checked on 2026-07-30. The TriAir root and frozen V40 validation manifest are present, and the manifest SHA256 is `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`. CUDA, PyTorch, torchvision, and pycocotools are operational.
 
-The evaluator preflight found all nine required V76 `weights/best.pt` files missing under both repository worktrees. It stopped before inference as required. Exact paths are recorded in `runs/v79_single_modality_evaluator_completion/preflight.json` and `docs/TASK_BLOCKER.md`.
+The original V76 checkpoint preflight found all nine required `weights/best.pt` files missing under both repository worktrees and stopped before inference as required.
 
 ## V81 retraining authorization
 
 On 2026-07-30 the user explicitly authorized fresh training of RGB-only, thermal-only, and event-only models for seeds 0, 1, and 2. The fixed nine-run queue uses the V40 component-disjoint train/development-validation manifests, 50 epochs, batch size 4, 640-pixel inputs, AdamW at `1e-4`, no modality dropout, and CUDA on the RTX 3090.
 
-The regenerated checkpoints are new V81 outputs. They are not assumed to be byte-identical to, or the original source of, the V77 supplied metrics. V78 remains authoritative until 9/9 training, standardized evaluation, and transparent reconciliation complete.
+The regenerated checkpoints are new V81 outputs. They are not assumed to be byte-identical to, or the original source of, the V77 supplied metrics. The supplied standardized table is recorded independently and does not convert new V81 checkpoints into recovered V77 identities.
 
-The serial queue started at `2026-07-30T08:04:13+08:00` in `E:\RepViT-v74-clean`. Queue PID `57884` launched `rgb_seed0` first. GPU activity was confirmed at approximately 5.8 GB allocated memory and 188 W board power, with an empty stderr log. Current completion count at launch confirmation: `0/9`.
+The serial queue started at `2026-07-30T08:04:13+08:00` in `E:\RepViT-v74-clean`. Queue PID `57884` launched `rgb_seed0` first. GPU activity was confirmed at approximately 5.8 GB allocated memory and 188 W board power, with an empty stderr log. Completion state at the last verified launch record: `0/9`.
 
 ## Validation
 
-- V79 Python syntax compile: `PASS`;
-- V79 source-contract tests: `3 passed`;
-- preflight missing-input behavior: `PASS`;
-- new training: `none`;
-- new checkpoint inference: `none`;
+- supplied metric rows: `9/9`;
+- independent mean/sample-SD arithmetic: `PASS`;
+- AP50/AP75 reconciliation against V77: `PASS`, exact at three decimals;
+- V80 draft PDF pages: `16`;
+- two pdfLaTeX passes: `PASS`;
+- undefined citations/references: `0`;
+- overfull boxes: `0`;
+- rendered-page audit: `PASS`;
+- checkpoint/evaluator identity fields supplied with table: `no`;
 - guard access: `none`.
 
 ## Manuscript status
 
-The V78 15-page manuscript remains authoritative. No V80 manuscript was created because 0/9 standardized checkpoint evaluations completed. Existing values were not overwritten.
+A 16-page V80 draft integrating the supplied standardized metric table has been built and visually audited outside the repository entrypoint. The V78 root manuscript remains authoritative while V81 is running and until checkpoint/evaluator identity evidence is archived or the authors explicitly accept supplied-table-only provenance. Existing V77 values were not silently overwritten.
 
 ## Scientific boundary
 
-The development-validation, locked internal holdout, and supervised exposed-MM-UAV-devval boundaries remain unchanged. The evaluator-only pass does not convert any internal result into independent public-test evidence.
+The development-validation, locked internal holdout, and supervised exposed-MM-UAV-devval boundaries remain unchanged. Neither the supplied metric table nor the evaluator/retraining work converts any internal result into independent public-test evidence. No statistical-significance claim is made.
