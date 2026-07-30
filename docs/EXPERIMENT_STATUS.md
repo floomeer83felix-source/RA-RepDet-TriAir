@@ -4,7 +4,7 @@ Updated: 2026-07-30
 
 ## Active status
 
-`V80_BLOCKED_ALL_NINE_AUTHORIZED_SINGLE_MODALITY_CHECKPOINTS_MISSING`
+`V81_NINE_SINGLE_MODALITY_RETRAINING_AUTHORIZED_START_PENDING`
 
 ## Closed submission items
 
@@ -31,6 +31,12 @@ A fail-closed nine-checkpoint queue was added at `rarepdet/tools/run_v79_single_
 The authorized local RTX 3090 environment was checked on 2026-07-30. The TriAir root and frozen V40 validation manifest are present, and the manifest SHA256 is `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`. CUDA, PyTorch, torchvision, and pycocotools are operational.
 
 The evaluator preflight found all nine required V76 `weights/best.pt` files missing under both repository worktrees. It stopped before inference as required. Exact paths are recorded in `runs/v79_single_modality_evaluator_completion/preflight.json` and `docs/TASK_BLOCKER.md`.
+
+## V81 retraining authorization
+
+On 2026-07-30 the user explicitly authorized fresh training of RGB-only, thermal-only, and event-only models for seeds 0, 1, and 2. The fixed nine-run queue uses the V40 component-disjoint train/development-validation manifests, 50 epochs, batch size 4, 640-pixel inputs, AdamW at `1e-4`, no modality dropout, and CUDA on the RTX 3090.
+
+The regenerated checkpoints are new V81 outputs. They are not assumed to be byte-identical to, or the original source of, the V77 supplied metrics. V78 remains authoritative until 9/9 training, standardized evaluation, and transparent reconciliation complete.
 
 ## Validation
 
