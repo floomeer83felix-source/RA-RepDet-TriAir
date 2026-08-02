@@ -1,5 +1,11 @@
 # RA-RepDet manuscript evaluation - V78 provenance and declaration closure
 
+## V81 post-evaluation addendum
+
+Nine fresh single-modality runs and nine checkpoint-backed standardized COCO evaluations are complete. The V81 three-seed AP@[.50:.95] means are `0.4473` for RGB, `0.5196` for thermal, and `0.1949` for event. These results carry checkpoint epochs, checkpoint SHA256 values, and the frozen split SHA256.
+
+V81 differs materially from the supplied V77/V80 table, whose checkpoint identity package remains unavailable. The evidence sets must remain separate; V78 remains authoritative until the authors explicitly select a reporting source and preserve the corresponding provenance limitation.
+
 ## Overall recommendation
 
 **Technically ready for final submission preparation, subject to journal-format and author-metadata checks.** V78 closes the two principal non-experimental blockers remaining after V77: the authors now declare no competing interests, and the exact local TriAir source is identified by a complete archive-entry audit rather than a generic provenance caveat.

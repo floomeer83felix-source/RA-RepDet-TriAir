@@ -1,0 +1,11 @@
+{
+  "status": "V81_RETRAINING_AND_STANDARDIZED_EVALUATION_COMPLETE_MATERIAL_RECONCILIATION_DIFFERENCE",
+  "training_runs_complete": 9,
+  "standardized_evaluations_complete": 9,
+  "checkpoint_hashes_present": true,
+  "split_hash_consistent": true,
+  "guard_used": false,
+  "material_difference": true,
+  "manuscript_action": "keep V78 authoritative; do not silently replace the supplied V80 table",
+  "identity_interpretation": "V81 checkpoints are fresh retraining outputs, not recovered V77/V80 identities"
+}

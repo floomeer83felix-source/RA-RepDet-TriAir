@@ -1,0 +1,14 @@
+{
+  "recorded_at": "2026-08-02T00:39:47.996359+00:00",
+  "git_commit": "03c73a9b530a9c71bed8e7ac79504bc416e5c9d1",
+  "python": "3.9.21",
+  "pytorch": "2.5.1",
+  "torchvision": "0.20.1",
+  "cuda_runtime": "12.4",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "pycocotools": "2.0.8",
+  "evaluator_sha256": "ea0a86947e86e7a046d90dc9371526a70858a4a271db9226f325b9b9e5f280af",
+  "summary_builder_sha256": "6192c971cbcb028b10169ed4f4cdd4f5935ee09156f46028ca6b704b92d03d51",
+  "validation_split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f"
+}

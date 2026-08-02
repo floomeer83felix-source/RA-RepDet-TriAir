@@ -1,0 +1,22 @@
+{
+  "status": "V76_SINGLE_MODALITY_QUEUE_FROZEN",
+  "modes": [
+    "rgb",
+    "thermal",
+    "event"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "runs": 9,
+  "epochs": 50,
+  "batch_size": 4,
+  "img_size": 640,
+  "lr": 0.0001,
+  "checkpoint_selection": "highest development-validation project-local AP50",
+  "final_metric": "one standardized COCO evaluation of each retained checkpoint",
+  "guard_used": false,
+  "tuning": false
+}

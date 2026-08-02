@@ -1,0 +1,18 @@
+{
+  "state": "COMPLETE",
+  "input_mode": "thermal",
+  "seed": 2,
+  "epochs": 50,
+  "best_epoch": 2,
+  "best_project_ap50": 0.8487693071365356,
+  "selection_rule": "highest development-validation project-local AP50",
+  "guard_used": false,
+  "training_runtime_seconds": 24119.49822664261,
+  "reproducibility": {
+    "seed": 2,
+    "deterministic_algorithms": "warn_only",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "best_checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed2\\weights\\best.pt"
+}

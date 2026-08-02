@@ -72,6 +72,14 @@ The V81 run remains frozen to 50 epochs, batch size 4, image size 640, AdamW at 
 
 The queue was launched at `2026-07-30T08:04:13+08:00`; `rgb_seed0` was confirmed active on the RTX 3090 with `0/9` runs complete.
 
+## V81 completion update
+
+Written: 2026-08-02
+
+All nine fresh V81 runs completed 50 epochs, and all nine retained checkpoints completed the standardized COCO evaluator. Checkpoint epochs, checkpoint SHA256 values, the frozen split SHA256, AP/AR metrics, and runtime identity are archived under `runs/v79_single_modality_evaluator_completion/` and `runs/v81_single_modality_retraining_reconciliation/`.
+
+The V81 results differ materially from the supplied V77/V80 rows. The repository keeps both evidence sets separate, leaves V78 authoritative, and requires an explicit evidence-source decision before manuscript replacement.
+
 ## Supplied V80 standardized-metric update
 
 Written: 2026-07-30

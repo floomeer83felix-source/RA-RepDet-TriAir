@@ -1,0 +1,669 @@
+{
+  "status": "V79_SINGLE_MODALITY_EVALUATOR_COMPLETE",
+  "completed_runs": 9,
+  "required_runs": 9,
+  "metrics": [
+    "ap50_95",
+    "ap50",
+    "ap75",
+    "ar1",
+    "ar10",
+    "ar100"
+  ],
+  "per_run": [
+    {
+      "ap50_95": 0.45077197442032,
+      "ap50": 0.763752659274096,
+      "ap75": 0.4520652613963477,
+      "ap_by_iou": {
+        "0.50": 0.763752659274096,
+        "0.55": 0.7290200396019785,
+        "0.60": 0.6803314927229227,
+        "0.65": 0.6179066346239364,
+        "0.70": 0.5370353492527861,
+        "0.75": 0.4520652613963477,
+        "0.80": 0.35956328080134975,
+        "0.85": 0.2517634795737127,
+        "0.90": 0.11259825409364421,
+        "0.95": 0.0036832928624264496
+      },
+      "ar1": 0.16422362365774673,
+      "ar10": 0.5258053519686382,
+      "ar100": 0.5891767513209476,
+      "ar_by_max_dets": {
+        "1": 0.16422362365774673,
+        "10": 0.5258053519686382,
+        "100": 0.5891767513209476
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "rgb_seed0",
+      "input_mode": "rgb",
+      "seed": 0,
+      "checkpoint_epoch": 12,
+      "checkpoint_sha256": "b9cc8c5a8a22cab4f47273d15958fa995a918da5a3dd7a334415d7db03379ad4",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed0\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 89.10331273078918,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.645,
+      "v77_reference_ap75": 0.372,
+      "delta_vs_v77_ap50": 0.11875265927409595,
+      "delta_vs_v77_ap75": 0.08006526139634768
+    },
+    {
+      "ap50_95": 0.44668905803775766,
+      "ap50": 0.7676183361705777,
+      "ap75": 0.44382809703942194,
+      "ap_by_iou": {
+        "0.50": 0.7676183361705777,
+        "0.55": 0.7316418897204205,
+        "0.60": 0.6744863036247746,
+        "0.65": 0.6045396641320218,
+        "0.70": 0.5302472372290343,
+        "0.75": 0.44382809703942194,
+        "0.80": 0.35613876293043734,
+        "0.85": 0.2509233717323287,
+        "0.90": 0.1045003543776131,
+        "0.95": 0.0029665634209461835
+      },
+      "ar1": 0.164803136185444,
+      "ar10": 0.5230782341912391,
+      "ar100": 0.5922106698483042,
+      "ar_by_max_dets": {
+        "1": 0.164803136185444,
+        "10": 0.5230782341912391,
+        "100": 0.5922106698483042
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "rgb_seed1",
+      "input_mode": "rgb",
+      "seed": 1,
+      "checkpoint_epoch": 7,
+      "checkpoint_sha256": "09ac2f854f5f14bb33a1b13a911492ebb11e43cb2ed3ed744af073182a7056af",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed1\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 41.019033908843994,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.662,
+      "v77_reference_ap75": 0.389,
+      "delta_vs_v77_ap50": 0.1056183361705777,
+      "delta_vs_v77_ap75": 0.05482809703942193
+    },
+    {
+      "ap50_95": 0.4443482826661119,
+      "ap50": 0.7709368370536412,
+      "ap75": 0.43248606247298826,
+      "ap_by_iou": {
+        "0.50": 0.7709368370536412,
+        "0.55": 0.7356670743600084,
+        "0.60": 0.6868130756224691,
+        "0.65": 0.6190200488131601,
+        "0.70": 0.5304476006820221,
+        "0.75": 0.43248606247298826,
+        "0.80": 0.33376771358671825,
+        "0.85": 0.23237130568135722,
+        "0.90": 0.09633746911368841,
+        "0.95": 0.005635639275066371
+      },
+      "ar1": 0.16606442815749106,
+      "ar10": 0.5186637122890745,
+      "ar100": 0.5875745696267256,
+      "ar_by_max_dets": {
+        "1": 0.16606442815749106,
+        "10": 0.5186637122890745,
+        "100": 0.5875745696267256
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "rgb_seed2",
+      "input_mode": "rgb",
+      "seed": 2,
+      "checkpoint_epoch": 9,
+      "checkpoint_sha256": "014dcc30e9d3dba658ef0d412473f974d1674e39c049c60646e20747f4d2648c",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed2\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 41.354124546051025,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.651,
+      "v77_reference_ap75": 0.381,
+      "delta_vs_v77_ap50": 0.11993683705364122,
+      "delta_vs_v77_ap75": 0.05148606247298826
+    },
+    {
+      "ap50_95": 0.5255610577547911,
+      "ap50": 0.8155801444016622,
+      "ap75": 0.586420678682507,
+      "ap_by_iou": {
+        "0.50": 0.8155801444016622,
+        "0.55": 0.7887911980585056,
+        "0.60": 0.7567571877348315,
+        "0.65": 0.7097501230153125,
+        "0.70": 0.6510151820041928,
+        "0.75": 0.586420678682507,
+        "0.80": 0.48526897839700406,
+        "0.85": 0.3326475639891203,
+        "0.90": 0.12420697291396549,
+        "0.95": 0.0051725483508109505
+      },
+      "ar1": 0.20767001874893473,
+      "ar10": 0.5867734787796148,
+      "ar100": 0.65522413499233,
+      "ar_by_max_dets": {
+        "1": 0.20767001874893473,
+        "10": 0.5867734787796148,
+        "100": 0.65522413499233
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "thermal_seed0",
+      "input_mode": "thermal",
+      "seed": 0,
+      "checkpoint_epoch": 5,
+      "checkpoint_sha256": "c156ffece27c76475464444fdf27d2964d154a96aeb84dbf198b2c3d5bff6c4b",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed0\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 39.85357856750488,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.842,
+      "v77_reference_ap75": 0.616,
+      "delta_vs_v77_ap50": -0.026419855598337816,
+      "delta_vs_v77_ap75": -0.029579321317492968
+    },
+    {
+      "ap50_95": 0.49771789631328794,
+      "ap50": 0.8340117430175115,
+      "ap75": 0.5500423722896126,
+      "ap_by_iou": {
+        "0.50": 0.8340117430175115,
+        "0.55": 0.8037885585465367,
+        "0.60": 0.7645000792580392,
+        "0.65": 0.7150260794685206,
+        "0.70": 0.6436628098271062,
+        "0.75": 0.5500423722896126,
+        "0.80": 0.4065240544795801,
+        "0.85": 0.21317396497691163,
+        "0.90": 0.045134408615139496,
+        "0.95": 0.0013148926539220001
+      },
+      "ar1": 0.19413669677859213,
+      "ar10": 0.5661496505880348,
+      "ar100": 0.6320606783705471,
+      "ar_by_max_dets": {
+        "1": 0.19413669677859213,
+        "10": 0.5661496505880348,
+        "100": 0.6320606783705471
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "thermal_seed1",
+      "input_mode": "thermal",
+      "seed": 1,
+      "checkpoint_epoch": 2,
+      "checkpoint_sha256": "4b4fb5efc3722545f4f04347d3255ba42689bcbfaf45da825afb3ef22abaafe5",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed1\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 39.72832942008972,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.858,
+      "v77_reference_ap75": 0.638,
+      "delta_vs_v77_ap50": -0.02398825698248852,
+      "delta_vs_v77_ap75": -0.0879576277103874
+    },
+    {
+      "ap50_95": 0.5355851890830314,
+      "ap50": 0.8462649743827535,
+      "ap75": 0.596470332706137,
+      "ap_by_iou": {
+        "0.50": 0.8462649743827535,
+        "0.55": 0.8275416836449285,
+        "0.60": 0.796602025849553,
+        "0.65": 0.7498580594394317,
+        "0.70": 0.6838386584182026,
+        "0.75": 0.596470332706137,
+        "0.80": 0.475961137161367,
+        "0.85": 0.2885813253246375,
+        "0.90": 0.08726618393216302,
+        "0.95": 0.003467509971140677
+      },
+      "ar1": 0.20874382137378555,
+      "ar10": 0.5947843872507244,
+      "ar100": 0.6545764445201978,
+      "ar_by_max_dets": {
+        "1": 0.20874382137378555,
+        "10": 0.5947843872507244,
+        "100": 0.6545764445201978
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "thermal_seed2",
+      "input_mode": "thermal",
+      "seed": 2,
+      "checkpoint_epoch": 2,
+      "checkpoint_sha256": "4a6d685b66094025416368e3b7f8b8bf636dc075f50bb559d00426b95ff209e8",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed2\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 40.43171286582947,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.849,
+      "v77_reference_ap75": 0.625,
+      "delta_vs_v77_ap50": -0.002735025617246478,
+      "delta_vs_v77_ap75": -0.02852966729386297
+    },
+    {
+      "ap50_95": 0.1942334172271992,
+      "ap50": 0.36265249340006994,
+      "ap75": 0.19563992823553492,
+      "ap_by_iou": {
+        "0.50": 0.36265249340006994,
+        "0.55": 0.3431262308847464,
+        "0.60": 0.32285396776128766,
+        "0.65": 0.2968229178192463,
+        "0.70": 0.24959017657872373,
+        "0.75": 0.19563992823553492,
+        "0.80": 0.11806149780914335,
+        "0.85": 0.04573397257425,
+        "0.90": 0.0073318824669366825,
+        "0.95": 0.0005211047420531526
+      },
+      "ar1": 0.0785239475029828,
+      "ar10": 0.2703596386568945,
+      "ar100": 0.3570819839781831,
+      "ar_by_max_dets": {
+        "1": 0.0785239475029828,
+        "10": 0.2703596386568945,
+        "100": 0.3570819839781831
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "event_seed0",
+      "input_mode": "event",
+      "seed": 0,
+      "checkpoint_epoch": 4,
+      "checkpoint_sha256": "0f8768448cc857e78db1151726f30f77ada4867492c37d66c58c1a1204278039",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed0\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 40.11225247383118,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.322,
+      "v77_reference_ap75": 0.118,
+      "delta_vs_v77_ap50": 0.04065249340006993,
+      "delta_vs_v77_ap75": 0.07763992823553492
+    },
+    {
+      "ap50_95": 0.19620452646438669,
+      "ap50": 0.3654258396895671,
+      "ap75": 0.18887056451773174,
+      "ap_by_iou": {
+        "0.50": 0.3654258396895671,
+        "0.55": 0.34700152786780714,
+        "0.60": 0.32297405244666505,
+        "0.65": 0.2960666976670537,
+        "0.70": 0.2525788631123354,
+        "0.75": 0.18887056451773174,
+        "0.80": 0.11952548284952724,
+        "0.85": 0.0523998043901866,
+        "0.90": 0.016652377097492184,
+        "0.95": 0.00055005500550055
+      },
+      "ar1": 0.0747230271007329,
+      "ar10": 0.2700698823930458,
+      "ar100": 0.36173512868587016,
+      "ar_by_max_dets": {
+        "1": 0.0747230271007329,
+        "10": 0.2700698823930458,
+        "100": 0.36173512868587016
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "event_seed1",
+      "input_mode": "event",
+      "seed": 1,
+      "checkpoint_epoch": 3,
+      "checkpoint_sha256": "94522d1dadc5e513c4a0664d30609f83a1d2cbb7dad45c69a28bbfac9e478d83",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed1\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 40.05235576629639,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.347,
+      "v77_reference_ap75": 0.134,
+      "delta_vs_v77_ap50": 0.018425839689567125,
+      "delta_vs_v77_ap75": 0.05487056451773173
+    },
+    {
+      "ap50_95": 0.19411712695217437,
+      "ap50": 0.36899369821326583,
+      "ap75": 0.19835953831867184,
+      "ap_by_iou": {
+        "0.50": 0.36899369821326583,
+        "0.55": 0.3467723648957517,
+        "0.60": 0.32577121191895875,
+        "0.65": 0.29700724236724657,
+        "0.70": 0.25360928898331647,
+        "0.75": 0.19835953831867184,
+        "0.80": 0.11026064264197825,
+        "0.85": 0.037861279487789834,
+        "0.90": 0.002463048030876911,
+        "0.95": 7.295466388744138e-05
+      },
+      "ar1": 0.07191068689279019,
+      "ar10": 0.26787114368501785,
+      "ar100": 0.34855974092381115,
+      "ar_by_max_dets": {
+        "1": 0.07191068689279019,
+        "10": 0.26787114368501785,
+        "100": 0.34855974092381115
+      },
+      "images": 2213,
+      "gt_boxes": 5867,
+      "detections": 221300,
+      "iou_thresholds": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "recall_thresholds": 101,
+      "max_detections": 100,
+      "backend": "pycocotools.cocoeval.COCOeval",
+      "run_id": "event_seed2",
+      "input_mode": "event",
+      "seed": 2,
+      "checkpoint_epoch": 4,
+      "checkpoint_sha256": "958088e173d4d6c8b0ed5185e061710f6ae33cb6f10a9e3d81d71734c59d6cb7",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed2\\weights\\best.pt",
+      "split_file": "E:\\RepViT-v74-clean\\reproducibility\\v40_expanded_adjacency_component_split_v2\\manifests\\v40_expanded_adjacency_component_disjoint_val.txt",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "inference_and_metric_seconds": 39.99101495742798,
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation",
+      "guard_used": false,
+      "v77_reference_ap50": 0.335,
+      "v77_reference_ap75": 0.126,
+      "delta_vs_v77_ap50": 0.03399369821326581,
+      "delta_vs_v77_ap75": 0.07235953831867184
+    }
+  ],
+  "group_summaries": {
+    "rgb": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "ap50_95": {
+          "mean": 0.4472697717080632,
+          "sample_std": 0.0032509806541150114,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.7674359441661049,
+          "sample_std": 0.003595560140576112,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.4427931403029193,
+          "sample_std": 0.009830544705403852,
+          "n": 3
+        },
+        "ar1": {
+          "mean": 0.16503039600022726,
+          "sample_std": 0.0009412096308109232,
+          "n": 3
+        },
+        "ar10": {
+          "mean": 0.5225157661496506,
+          "sample_std": 0.003603891237473191,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.5896539969319925,
+          "sample_std": 0.002354608002635766,
+          "n": 3
+        }
+      }
+    },
+    "thermal": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "ap50_95": {
+          "mean": 0.5196213810503701,
+          "sample_std": 0.019619958841499835,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.8319522872673091,
+          "sample_std": 0.015445734564351478,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.5776444612260856,
+          "sample_std": 0.024426530079841205,
+          "n": 3
+        },
+        "ar1": {
+          "mean": 0.20351684563377082,
+          "sample_std": 0.00814117051954241,
+          "n": 3
+        },
+        "ar10": {
+          "mean": 0.5825691722061247,
+          "sample_std": 0.014773089766812965,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.647287085961025,
+          "sample_std": 0.013190431828429416,
+          "n": 3
+        }
+      }
+    },
+    "event": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "ap50_95": {
+          "mean": 0.19485169021458676,
+          "sample_std": 0.0011730325213291845,
+          "n": 3
+        },
+        "ap50": {
+          "mean": 0.36569067710096764,
+          "sample_std": 0.003178887189187857,
+          "n": 3
+        },
+        "ap75": {
+          "mean": 0.19429001035731283,
+          "sample_std": 0.004886395876020447,
+          "n": 3
+        },
+        "ar1": {
+          "mean": 0.07505255383216863,
+          "sample_std": 0.00331892224594511,
+          "n": 3
+        },
+        "ar10": {
+          "mean": 0.2694335549116527,
+          "sample_std": 0.0013608219222021236,
+          "n": 3
+        },
+        "ar100": {
+          "mean": 0.3557922845292881,
+          "sample_std": 0.006681706681044413,
+          "n": 3
+        }
+      }
+    }
+  },
+  "reference_reconciliation": "AP50/AP75 deltas compare the standardized evaluator outputs with the user-supplied V77 rows; differences are reported, never silently overwritten.",
+  "claim_boundary": {
+    "allowed": [
+      "descriptive component-disjoint development-validation results",
+      "uniform COCO AP/AR comparison of retained checkpoints"
+    ],
+    "disallowed": [
+      "independent-test performance",
+      "statistical significance",
+      "retraining or tuning",
+      "guard-partition access"
+    ]
+  }
+}

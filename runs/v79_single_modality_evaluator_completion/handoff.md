@@ -1,9 +1,7 @@
-# V80 evaluator-only handoff
+# V81 evaluator handoff
 
-Status: `BLOCKED_ALL_NINE_AUTHORIZED_CHECKPOINTS_MISSING`
+Status: `STANDARDIZED_EVALUATION_COMPLETE_9_OF_9`.
 
-The TriAir root, frozen V40 component-disjoint validation manifest, RTX 3090 CUDA runtime, evaluator compilation, and contract tests are valid. The validation-manifest SHA256 is `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`.
+Nine fresh V81 retained checkpoints completed the frozen COCO evaluator. All checkpoint epochs, checkpoint SHA256 values, AP@[.50:.95], AP50, AP75, AR1, AR10, AR100, split identity, and runtimes are present.
 
-The authorized evaluator preflight found 0/9 required V76 `weights/best.pt` files. It stopped before inference. Exact missing paths are in `preflight.json` and `docs/TASK_BLOCKER.md`.
-
-Restore only the exact retained checkpoints and rerun the evaluator-only command. Do not substitute another checkpoint or retrain under this task. Until 9/9 evaluations and AP50/AP75 reconciliation complete, V78 remains authoritative.
+The results differ materially from the supplied V77/V80 table and are retained as separate replication evidence. See `runs/v81_single_modality_retraining_reconciliation/`. V78 remains authoritative pending an explicit evidence-source decision.

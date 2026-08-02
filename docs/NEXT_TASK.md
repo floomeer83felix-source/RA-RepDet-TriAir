@@ -2,7 +2,7 @@
 
 ## Active task
 
-`V81_RETRAIN_NINE_SINGLE_MODALITY_CHECKPOINTS_AND_RECONCILE_SUPPLIED_V80_METRICS`
+`V81_COMPLETE_EVIDENCE_SOURCE_DECISION_PENDING`
 
 The user explicitly authorized regeneration of all nine missing single-modality checkpoints on 2026-07-30:
 
@@ -66,7 +66,8 @@ The queue must run serially in the fixed order:
 - queue stdout: `runs/v76_triair_single_modality_ablation/execution_logs/v81_queue_stdout.log`;
 - queue stderr: `runs/v76_triair_single_modality_ablation/execution_logs/v81_queue_stderr.log`;
 - local launch record: `runs/v76_triair_single_modality_ablation/v81_queue_launch.json`;
-- launch state: GPU computation confirmed, `0/9` complete at the last verified record.
+- final state: training `9/9` complete, standardized COCO evaluation `9/9` complete;
+- compact evidence: `runs/v79_single_modality_evaluator_completion/` and `runs/v81_single_modality_retraining_reconciliation/`.
 
 ## Required outputs
 
@@ -95,7 +96,7 @@ After 9/9 training runs finish:
 7. decide whether the supplied-table V80 draft can become authoritative or whether the V81 replication table must replace it transparently;
 8. update handoff and push compact evidence only.
 
-The V78 root manuscript remains authoritative during live training. A 16-page V80 supplied-metric draft exists, but it is not the repository entrypoint until the identity/reconciliation gate is resolved.
+The V81 identity and reconciliation audit is complete. Material differences from the supplied V77/V80 rows prevent silent manuscript replacement. V78 remains authoritative until an explicit task selects either the checkpoint-backed V81 replication table or the supplied-table V80 evidence with its identity limitation.
 
 ## Estimated runtime
 
@@ -103,4 +104,4 @@ Historical RTX 3090 runs indicate approximately 5.7-7.0 hours per 50-epoch model
 
 ## Commit message
 
-`results: record supplied standardized metrics while V81 replication runs`
+`results: archive V81 single-modality retraining evaluation`

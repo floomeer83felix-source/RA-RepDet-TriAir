@@ -1,5 +1,5 @@
 {
-  "status": "BLOCKED",
+  "status": "READY",
   "task": "V79_SINGLE_MODALITY_EVALUATOR_ONLY_COMPLETION",
   "training_authorized": false,
   "guard_used": false,
@@ -64,17 +64,7 @@
       "checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed2\\weights\\best.pt"
     }
   ],
-  "missing_checkpoints": [
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed0\\weights\\best.pt",
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed1\\weights\\best.pt",
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed2\\weights\\best.pt",
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed0\\weights\\best.pt",
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed1\\weights\\best.pt",
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed2\\weights\\best.pt",
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed0\\weights\\best.pt",
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed1\\weights\\best.pt",
-    "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed2\\weights\\best.pt"
-  ],
+  "missing_checkpoints": [],
   "metrics": [
     "ap50_95",
     "ap50",

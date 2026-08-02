@@ -1,6 +1,6 @@
 # V79 single-modality evaluator-only completion
 
-Status: `V80_BLOCKED_ALL_NINE_AUTHORIZED_CHECKPOINTS_MISSING`
+Status: `V81_STANDARDIZED_EVALUATION_COMPLETE_9_OF_9`
 
 ## Purpose
 
@@ -60,4 +60,8 @@ The authorized RTX 3090 workspace contains the TriAir dataset and the frozen val
 
 All nine required retained V76 `best.pt` files are absent. The queue stopped before inference and wrote `preflight.json`. The same relative paths are absent in `E:\RepViT-main`; no alternate checkpoint was used.
 
-V78 remains authoritative. No AP/AR metric or V80 manuscript was created.
+## 2026-08-02 completion
+
+After the explicitly authorized V81 fresh retraining, all nine new retained checkpoints were available. The evaluator completed 9/9 passes and generated `raw/`, `per_run.csv`, `summary.json`, and `summary.md`. Every row includes checkpoint epoch, checkpoint SHA256, split SHA256, and all six AP/AR metrics.
+
+Material differences from the supplied V77/V80 rows are archived under `runs/v81_single_modality_retraining_reconciliation/`. V78 remains authoritative pending an evidence-source decision.

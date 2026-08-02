@@ -1,0 +1,127 @@
+{
+  "status": "V81_RETRAINING_AND_STANDARDIZED_EVALUATION_COMPLETE_MATERIAL_RECONCILIATION_DIFFERENCE",
+  "training_runs_complete": 9,
+  "standardized_evaluations_complete": 9,
+  "checkpoint_hashes_present": true,
+  "split_hash_consistent": true,
+  "guard_used": false,
+  "material_difference": true,
+  "manuscript_action": "keep V78 authoritative; do not silently replace the supplied V80 table",
+  "identity_interpretation": "V81 checkpoints are fresh retraining outputs, not recovered V77/V80 identities",
+  "group_metric_comparison": {
+    "rgb": {
+      "ap50_95": {
+        "v81_mean": 0.44726977170806315,
+        "supplied_mean": 0.3073333333333333,
+        "mean_delta": 0.13993643837472988,
+        "max_abs_seed_delta": 0.14977197442032003
+      },
+      "ap50": {
+        "v81_mean": 0.767435944166105,
+        "supplied_mean": 0.6526666666666666,
+        "mean_delta": 0.11476927749943829,
+        "max_abs_seed_delta": 0.11993683705364122
+      },
+      "ap75": {
+        "v81_mean": 0.4427931403029193,
+        "supplied_mean": 0.38066666666666665,
+        "mean_delta": 0.06212647363625262,
+        "max_abs_seed_delta": 0.08006526139634768
+      },
+      "ar1": {
+        "v81_mean": 0.16503039600022726,
+        "supplied_mean": 0.2856666666666667,
+        "mean_delta": -0.1206362706664394,
+        "max_abs_seed_delta": 0.12619686381455597
+      },
+      "ar10": {
+        "v81_mean": 0.5225157661496506,
+        "supplied_mean": 0.455,
+        "mean_delta": 0.06751576614965059,
+        "max_abs_seed_delta": 0.07780535196863819
+      },
+      "ar100": {
+        "v81_mean": 0.5896539969319925,
+        "supplied_mean": 0.48299999999999993,
+        "mean_delta": 0.10665399693199247,
+        "max_abs_seed_delta": 0.11317675132094762
+      }
+    },
+    "thermal": {
+      "ap50_95": {
+        "v81_mean": 0.5196213810503701,
+        "supplied_mean": 0.4633333333333334,
+        "mean_delta": 0.056288047717036827,
+        "max_abs_seed_delta": 0.07258518908303141
+      },
+      "ap50": {
+        "v81_mean": 0.8319522872673092,
+        "supplied_mean": 0.8496666666666667,
+        "mean_delta": -0.017714379399357605,
+        "max_abs_seed_delta": 0.026419855598337816
+      },
+      "ap75": {
+        "v81_mean": 0.5776444612260856,
+        "supplied_mean": 0.6263333333333333,
+        "mean_delta": -0.04868887210724778,
+        "max_abs_seed_delta": 0.0879576277103874
+      },
+      "ar1": {
+        "v81_mean": 0.20351684563377082,
+        "supplied_mean": 0.38766666666666666,
+        "mean_delta": -0.18414982103289587,
+        "max_abs_seed_delta": 0.19986330322140788
+      },
+      "ar10": {
+        "v81_mean": 0.5825691722061247,
+        "supplied_mean": 0.5973333333333333,
+        "mean_delta": -0.01476416112720865,
+        "max_abs_seed_delta": 0.03985034941196519
+      },
+      "ar100": {
+        "v81_mean": 0.647287085961025,
+        "supplied_mean": 0.632,
+        "mean_delta": 0.015287085961024979,
+        "max_abs_seed_delta": 0.03222413499233001
+      }
+    },
+    "event": {
+      "ap50_95": {
+        "v81_mean": 0.1948516902145868,
+        "supplied_mean": 0.102,
+        "mean_delta": 0.09285169021458677,
+        "max_abs_seed_delta": 0.0982334172271992
+      },
+      "ap50": {
+        "v81_mean": 0.3656906771009676,
+        "supplied_mean": 0.33466666666666667,
+        "mean_delta": 0.031024010434300957,
+        "max_abs_seed_delta": 0.04065249340006993
+      },
+      "ap75": {
+        "v81_mean": 0.19429001035731283,
+        "supplied_mean": 0.126,
+        "mean_delta": 0.06829001035731283,
+        "max_abs_seed_delta": 0.07763992823553492
+      },
+      "ar1": {
+        "v81_mean": 0.07505255383216863,
+        "supplied_mean": 0.122,
+        "mean_delta": -0.046947446167831364,
+        "max_abs_seed_delta": 0.051276972899267095
+      },
+      "ar10": {
+        "v81_mean": 0.2694335549116527,
+        "supplied_mean": 0.24366666666666667,
+        "mean_delta": 0.025766888244986057,
+        "max_abs_seed_delta": 0.03435963865689451
+      },
+      "ar100": {
+        "v81_mean": 0.35579228452928807,
+        "supplied_mean": 0.271,
+        "mean_delta": 0.08479228452928811,
+        "max_abs_seed_delta": 0.09408198397818307
+      }
+    }
+  }
+}

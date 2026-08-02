@@ -1,32 +1,32 @@
 # Task Blocker
 
-Status: `NO_ACTIVE_BLOCKER_V81_GPU_TRAINING_RUNNING`
+Status: `V81_MANUSCRIPT_INTEGRATION_BLOCKED_MATERIAL_EVIDENCE_SOURCE_DIFFERENCE`
 
-Updated: 2026-07-30
+Updated: 2026-08-02
 
-## Cleared blocker
+## Completed
 
-V80 could not evaluate the nine original retained single-modality checkpoints because all nine files were absent. The user has now explicitly authorized fresh training of the same three modalities and three seeds.
+- fresh V81 single-modality training: 9/9 runs, 50 epochs each;
+- retained `best.pt`: 9/9, local only;
+- standardized COCO evaluation: 9/9;
+- checkpoint epoch and SHA256: 9/9;
+- frozen validation split SHA256: consistent across 9/9;
+- seed-matched reconciliation against supplied V77/V80 rows: complete;
+- guard access, tuning, seed replacement, selective rerun, checkpoint substitution: none.
 
-## Verified launch prerequisites
+## Exact blocker
 
-- RTX 3090 CUDA environment: available;
-- PyTorch / torchvision / CUDA: 2.5.1 / 0.20.1 / 12.4;
-- TriAir root `D:\download\triair`: present;
-- V40 component-disjoint train manifest: present;
-- V40 component-disjoint development-validation manifest: present;
-- E-drive free space before launch: approximately 650 GB;
-- training queue and frozen V76 scripts: present;
-- guard access: not authorized.
+The V81 metrics differ materially from the supplied V77/V80 table. Examples at the three-seed mean level are:
 
-## Identity boundary
+- RGB AP@[.50:.95]: `0.4473` versus supplied `0.3073`;
+- thermal AP75: `0.5776` versus supplied `0.6263`;
+- event AP@[.50:.95]: `0.1949` versus supplied `0.1020`.
 
-The generated `best.pt` files are fresh V81 retraining outputs. They must not be described as recovered V77 checkpoints. V77 comparison is descriptive reconciliation only.
+These are fresh retraining outputs and cannot establish the missing identity of the checkpoints behind the supplied table. The difference is not a rounding issue. No manuscript table was silently replaced.
 
-## Launch state
+## Resolution options
 
-The serial queue started successfully at `2026-07-30T08:04:13+08:00`. `rgb_seed0` entered GPU computation, stderr was empty, and no blocker was present at launch confirmation.
+1. Use the checkpoint-backed V81 replication table as the reproducible single-modality evidence and transparently supersede the supplied V77/V80 rows.
+2. Retain the supplied V80 table as author-provided evidence with explicit missing checkpoint/evaluator identity, and report V81 separately as a non-identical replication.
 
-## Failure protocol
-
-If a run fails, stop the queue, preserve the run's `run_status.json` and last 50 error lines, record attempted fixes and two repair options here, and do not change seeds, thresholds, schedules, or checkpoints without a new authorization.
+V78 remains the authoritative repository manuscript until an explicit evidence-source decision is made.

@@ -1,0 +1,95 @@
+{
+  "count": 9,
+  "entries": [
+    {
+      "run_id": "event_seed0",
+      "input_mode": "event",
+      "seed": 0,
+      "checkpoint_epoch": 4,
+      "checkpoint_sha256": "0f8768448cc857e78db1151726f30f77ada4867492c37d66c58c1a1204278039",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed0\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    },
+    {
+      "run_id": "event_seed1",
+      "input_mode": "event",
+      "seed": 1,
+      "checkpoint_epoch": 3,
+      "checkpoint_sha256": "94522d1dadc5e513c4a0664d30609f83a1d2cbb7dad45c69a28bbfac9e478d83",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed1\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    },
+    {
+      "run_id": "event_seed2",
+      "input_mode": "event",
+      "seed": 2,
+      "checkpoint_epoch": 4,
+      "checkpoint_sha256": "958088e173d4d6c8b0ed5185e061710f6ae33cb6f10a9e3d81d71734c59d6cb7",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\event_seed2\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    },
+    {
+      "run_id": "rgb_seed0",
+      "input_mode": "rgb",
+      "seed": 0,
+      "checkpoint_epoch": 12,
+      "checkpoint_sha256": "b9cc8c5a8a22cab4f47273d15958fa995a918da5a3dd7a334415d7db03379ad4",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed0\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    },
+    {
+      "run_id": "rgb_seed1",
+      "input_mode": "rgb",
+      "seed": 1,
+      "checkpoint_epoch": 7,
+      "checkpoint_sha256": "09ac2f854f5f14bb33a1b13a911492ebb11e43cb2ed3ed744af073182a7056af",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed1\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    },
+    {
+      "run_id": "rgb_seed2",
+      "input_mode": "rgb",
+      "seed": 2,
+      "checkpoint_epoch": 9,
+      "checkpoint_sha256": "014dcc30e9d3dba658ef0d412473f974d1674e39c049c60646e20747f4d2648c",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed2\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    },
+    {
+      "run_id": "thermal_seed0",
+      "input_mode": "thermal",
+      "seed": 0,
+      "checkpoint_epoch": 5,
+      "checkpoint_sha256": "c156ffece27c76475464444fdf27d2964d154a96aeb84dbf198b2c3d5bff6c4b",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed0\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    },
+    {
+      "run_id": "thermal_seed1",
+      "input_mode": "thermal",
+      "seed": 1,
+      "checkpoint_epoch": 2,
+      "checkpoint_sha256": "4b4fb5efc3722545f4f04347d3255ba42689bcbfaf45da825afb3ef22abaafe5",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed1\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    },
+    {
+      "run_id": "thermal_seed2",
+      "input_mode": "thermal",
+      "seed": 2,
+      "checkpoint_epoch": 2,
+      "checkpoint_sha256": "4a6d685b66094025416368e3b7f8b8bf636dc075f50bb559d00426b95ff209e8",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "weights": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\thermal_seed2\\weights\\best.pt",
+      "selection_rule": "best development-validation project-local AP50 checkpoint, then one COCO evaluation"
+    }
+  ]
+}

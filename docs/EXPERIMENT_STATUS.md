@@ -4,7 +4,7 @@ Updated: 2026-07-30
 
 ## Active status
 
-`V81_NINE_SINGLE_MODALITY_RETRAINING_RUNNING_RGB_SEED0_V80_SUPPLIED_METRICS_RECORDED`
+`V81_RETRAINING_AND_STANDARDIZED_EVALUATION_COMPLETE_MATERIAL_RECONCILIATION_DIFFERENCE`
 
 ## Closed submission items
 
@@ -50,7 +50,9 @@ On 2026-07-30 the user explicitly authorized fresh training of RGB-only, thermal
 
 The regenerated checkpoints are new V81 outputs. They are not assumed to be byte-identical to, or the original source of, the V77 supplied metrics. The supplied standardized table is recorded independently and does not convert new V81 checkpoints into recovered V77 identities.
 
-The serial queue started at `2026-07-30T08:04:13+08:00` in `E:\RepViT-v74-clean`. Queue PID `57884` launched `rgb_seed0` first. GPU activity was confirmed at approximately 5.8 GB allocated memory and 188 W board power, with an empty stderr log. Completion state at the last verified launch record: `0/9`.
+The serial queue started at `2026-07-30T08:04:13+08:00` and completed on 2026-08-01. All nine runs reached 50 epochs and produced retained `best.pt` files. The V79 evaluator then completed 9/9 one-pass COCO evaluations. Every result records checkpoint epoch and SHA256, the common split SHA256 `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`, and inference runtime.
+
+V81 three-seed means are RGB `0.4473` AP@[.50:.95], thermal `0.5196`, and event `0.1949`. Seed-matched comparison against the supplied V77/V80 rows found material differences, not display rounding. Fresh V81 checkpoints therefore remain a separate replication evidence set and are not treated as recovered V77/V80 identities.
 
 ## Validation
 
@@ -64,10 +66,14 @@ The serial queue started at `2026-07-30T08:04:13+08:00` in `E:\RepViT-v74-clean`
 - rendered-page audit: `PASS`;
 - checkpoint/evaluator identity fields supplied with table: `no`;
 - guard access: `none`.
+- V81 training completion: `9/9` at 50 epochs;
+- V81 standardized COCO evaluation: `9/9`;
+- V81 checkpoint SHA256 records: `9/9`;
+- V81 versus supplied-table reconciliation: `COMPLETE`, material differences present.
 
 ## Manuscript status
 
-A 16-page V80 draft integrating the supplied standardized metric table has been built and visually audited outside the repository entrypoint. The V78 root manuscript remains authoritative while V81 is running and until checkpoint/evaluator identity evidence is archived or the authors explicitly accept supplied-table-only provenance. Existing V77 values were not silently overwritten.
+A 16-page V80 draft integrating the supplied standardized metric table has been built and visually audited outside the repository entrypoint. V81 identity evidence is now complete, but its metrics differ materially from the supplied table. The V78 root manuscript remains authoritative pending an explicit evidence-source decision. Existing V77/V80 values were not silently overwritten.
 
 ## Scientific boundary
 

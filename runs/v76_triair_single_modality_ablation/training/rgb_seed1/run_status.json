@@ -1,0 +1,18 @@
+{
+  "state": "COMPLETE",
+  "input_mode": "rgb",
+  "seed": 1,
+  "epochs": 50,
+  "best_epoch": 7,
+  "best_project_ap50": 0.7658650279045105,
+  "selection_rule": "highest development-validation project-local AP50",
+  "guard_used": false,
+  "training_runtime_seconds": 16347.160036325455,
+  "reproducibility": {
+    "seed": 1,
+    "deterministic_algorithms": "warn_only",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "best_checkpoint": "E:\\RepViT-v74-clean\\runs\\v76_triair_single_modality_ablation\\training\\rgb_seed1\\weights\\best.pt"
+}
