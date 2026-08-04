@@ -1,91 +1,57 @@
 # Next Task Write Record
 
-Written: 2026-07-30
+Written: 2026-08-04
 Branch: `research/ra-repdet-triair`
 
-## Active handoff
+## Authoritative evidence-source decision
 
-`V80_BLOCKED_RESTORE_EXACT_V76_SINGLE_MODALITY_CHECKPOINTS`
+The author requested inspection of the latest pushed branch and explicitly directed that the latest checkpoint-backed experimental result be used as the source of truth.
 
-The user requested that the complete Codex execution instruction be persisted in the GitHub repository. The authoritative task is now:
+The inspected branch HEAD before this decision record was:
 
 ```text
-docs/CODEX_V80_SINGLE_MODALITY_EVALUATION_TASK.md
+504182a4d63e5984cab2bfb942f3bf9469635611
 ```
 
-`docs/NEXT_TASK.md` points to this runbook.
+Commit message:
 
-## Required work
+```text
+results: archive V81 single-modality retraining evaluation
+```
 
-Codex must:
+## Selected evidence
 
-1. verify the local CUDA environment, TriAir root, frozen validation manifest, and all nine retained `best.pt` checkpoints;
-2. stop fail-closed if any required input is missing;
-3. run the V79 evaluator-only queue without invoking training;
-4. produce AP@[0.50:0.95], AP50, AP75, AR1, AR10, AR100, checkpoint SHA256, checkpoint epoch, and split SHA256 for all nine runs;
-5. reconcile AP50/AP75 against every V77 seed-level value without silently overwriting discrepancies;
-6. compute three-seed means and sample standard deviations;
-7. create V80 only after 9/9 completion and reconciliation;
-8. compile and visually audit the manuscript;
-9. update the repository status documents and commit only compact task-related evidence.
+`V81_CHECKPOINT_BACKED_SINGLE_MODALITY_EVIDENCE_SELECTED_AUTHORITATIVE`
 
-## Frozen prohibitions
+V81 contains:
 
-- no retraining;
-- no hyperparameter or threshold sweep;
-- no seed or checkpoint replacement;
-- no `last.pt` substitution;
-- no selective rerun;
-- no guard access;
-- no inferred metrics;
-- no independent-test or statistical-significance claim.
+- nine fresh frozen-protocol single-modality training runs;
+- nine retained `best.pt` checkpoints;
+- nine standardized COCO evaluations;
+- checkpoint epoch and SHA256 for every run;
+- one consistent frozen validation-manifest SHA256;
+- runtime and reconciliation records;
+- no guard access, tuning, seed replacement, selective rerun, or checkpoint substitution.
 
-## 2026-07-30 execution record
+Authoritative three-seed values:
 
-- authorized RTX 3090 CUDA environment: verified;
-- TriAir root: present;
-- frozen V40 component-disjoint validation manifest: present;
-- manifest SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
-- evaluator compilation: pass;
-- evaluator contract tests: `3 passed`;
-- required retained checkpoints: `0/9` present;
-- inference and training: not started;
-- manuscript integration: not started.
+| Modality | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| RGB-only | 0.4473 ± 0.0033 | 0.7674 ± 0.0036 | 0.4428 ± 0.0098 | 0.1650 ± 0.0009 | 0.5225 ± 0.0036 | 0.5897 ± 0.0024 |
+| Thermal-only | 0.5196 ± 0.0196 | 0.8320 ± 0.0154 | 0.5776 ± 0.0244 | 0.2035 ± 0.0081 | 0.5826 ± 0.0148 | 0.6473 ± 0.0132 |
+| Event-only | 0.1949 ± 0.0012 | 0.3657 ± 0.0032 | 0.1943 ± 0.0049 | 0.0751 ± 0.0033 | 0.2694 ± 0.0014 | 0.3558 ± 0.0067 |
 
-## Current execution boundary
+## Superseded reporting source
 
-The task is blocked until the exact nine retained V76 `best.pt` files are restored. No alternate checkpoint may be used. If they are irrecoverable, V78 remains authoritative and retraining requires a separately authorized task.
+The supplied V77/V80 single-modality table remains archived for provenance and reconciliation only. It lacks the complete checkpoint identity package and differs materially from V81. It is no longer authorized as the primary manuscript evidence and must not be numerically mixed with V81.
 
-## Task-writing commits
+## Next task
 
-- `docs: add Codex V80 evaluator-only task`
-- `docs: point next task to Codex V80 evaluator runbook`
-- `docs: record Codex V80 task handoff`
+Create and audit a new V82 manuscript using V81 as the primary single-modality evidence. V78 remains the root manuscript only until the V82 compilation and rendered-page audit pass.
 
-## V81 authorization update
+## Decision commits
 
-Written: 2026-07-30
-
-The user explicitly authorized fresh generation of all nine missing single-modality weights: RGB-only, thermal-only, and event-only at seeds 0, 1, and 2. This supersedes the V80 missing-checkpoint stop condition for training authorization only.
-
-The V81 run remains frozen to 50 epochs, batch size 4, image size 640, AdamW at `1e-4`, no modality dropout, V40 component-disjoint train/development-validation manifests, serial CUDA execution, and no guard access. New checkpoints remain distinct from the lost V77 checkpoint identities.
-
-The queue was launched at `2026-07-30T08:04:13+08:00`; `rgb_seed0` was confirmed active on the RTX 3090 with `0/9` runs complete.
-
-## V81 completion update
-
-Written: 2026-08-02
-
-All nine fresh V81 runs completed 50 epochs, and all nine retained checkpoints completed the standardized COCO evaluator. Checkpoint epochs, checkpoint SHA256 values, the frozen split SHA256, AP/AR metrics, and runtime identity are archived under `runs/v79_single_modality_evaluator_completion/` and `runs/v81_single_modality_retraining_reconciliation/`.
-
-The V81 results differ materially from the supplied V77/V80 rows. The repository keeps both evidence sets separate, leaves V78 authoritative, and requires an explicit evidence-source decision before manuscript replacement.
-
-## Supplied V80 standardized-metric update
-
-Written: 2026-07-30
-
-The user subsequently supplied nine rows containing AP@[0.50:0.95], AP50, AP75, AR1, AR10, and AR100 for the three modalities and three seeds. The rows are stored under `runs/v80_supplied_standardized_single_modality_metrics/`.
-
-Independent recomputation passed. AP50 and AP75 match V77 exactly to three decimal places for all nine rows. Thermal-only is strongest, with `0.4633 ± 0.0085` AP and `0.6320 ± 0.0090` AR100.
-
-The supplied table omits checkpoint SHA256, checkpoint epoch, split SHA256, runtime identity, and original evaluator JSON files. These fields were not inferred. A 16-page V80 draft was built and visually audited, but the V78 root manuscript remains authoritative while V81 replication is active and until the evidence-identity gate is resolved.
+- `docs: select checkpoint-backed V81 evidence as authoritative`;
+- `docs: set V82 authoritative V81 manuscript task`;
+- `docs: resolve V81 evidence-source blocker`;
+- `docs: record authoritative V81 evidence decision`.
