@@ -1,0 +1,16 @@
+{
+  "status": "V82_AUTHORITATIVE_V81_MANUSCRIPT_BUILT_AND_ACTIVATED",
+  "authoritative_single_modality_source": "V81 checkpoint-backed fresh retraining replication",
+  "historical_supplied_v77_v80_role": "reconciliation archive only",
+  "training_runs_complete": 9,
+  "standardized_evaluations_complete": 9,
+  "checkpoint_hashes_present": true,
+  "split_hash_consistent": true,
+  "manuscript_pages": 16,
+  "undefined_citations_references": 0,
+  "overfull_boxes": 0,
+  "rendered_pages_inspected": 16,
+  "root_entrypoint": "V82",
+  "guard_used_during_integration": false,
+  "new_training_or_evaluation_during_integration": false
+}
