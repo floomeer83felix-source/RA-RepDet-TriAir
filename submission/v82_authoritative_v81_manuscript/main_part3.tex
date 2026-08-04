@@ -1,0 +1,118 @@
+\begin{table}[t]
+\centering
+\caption{Image-level bootstrap differences, reliability-aware $p=0.15$ minus matched early fusion. Values are descriptive percentile intervals from 2,000 image resamples.}
+\label{tab:bootstrap}
+\scriptsize
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & Mean difference & 95\% CI\\
+\midrule
+AP50 & +0.0177 & [+0.0153, +0.0203]\\
+AP75 & +0.0553 & [+0.0483, +0.0622]\\
+F1 & +0.0187 & [+0.0150, +0.0226]\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Synthetic Channel Removal}
+To test controlled missing-input behavior, one channel group is deterministically set to zero at a time while weights, thresholds, and postprocessing remain fixed. \tabref{tab:removal} summarizes the archived seed-0/seed-2 checkpoint means. The reliability-aware system retains higher AP50 after removal of RGB, thermal, or event inputs. The largest separation follows thermal removal, where AP50 is 0.7030 for reliability-aware fusion and 0.3648 for early fusion. This deterministic intervention does not emulate measured physical sensor outages, temporal misalignment, or cross-device deployment failures.
+
+\begin{table*}[t]
+\centering
+\caption{Synthetic channel removal on component-disjoint validation. Each value is the two-checkpoint mean. Delta is relative to the all-modal mean of the same model group. The intervention is deterministic zero-channel input, not a physical sensor-failure experiment.}
+\label{tab:removal}
+\scriptsize
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Model group & Condition & Precision & Recall & F1 & AP50 & AP75\\
+\midrule
+Matched early & All modalities & 0.9188 & 0.8720 & 0.8945 & 0.9408 & 0.8208\\
+Matched early & RGB removed & 0.8202 & 0.6531 & 0.7269 & 0.7379 & 0.5265\\
+Matched early & Thermal removed & 0.8226 & 0.3003 & 0.4400 & 0.3648 & 0.2626\\
+Matched early & Event removed & 0.9001 & 0.8731 & 0.8863 & 0.9339 & 0.8021\\
+\midrule
+Reliability $p=0.15$ & All modalities & 0.9273 & 0.8997 & 0.9133 & 0.9586 & 0.8760\\
+Reliability $p=0.15$ & RGB removed & 0.8569 & 0.8229 & 0.8394 & 0.8985 & 0.7051\\
+Reliability $p=0.15$ & Thermal removed & 0.8321 & 0.5885 & 0.6894 & 0.7030 & 0.3883\\
+Reliability $p=0.15$ & Event removed & 0.9305 & 0.8970 & 0.9134 & 0.9582 & 0.8600\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig4_channel_removal.pdf}
+\caption{AP50 under deterministic synthetic channel removal. Reliability-aware $p=0.15$ retains higher AP50 under all four input conditions.}
+\label{fig:removal}
+\end{figure}
+
+\subsection{Checkpoint-Backed Single-Modality Replication}
+The original checkpoints underlying the earlier author-supplied single-modality table were unavailable. We therefore conducted a fresh V81 replication rather than treating those unidentified records as recoverable evidence. RGB-only, thermal-only, and event-only detectors were retrained for seeds 0, 1, and 2 under the frozen component-disjoint protocol: 50 epochs, batch size 4, $640\times640$ inputs, AdamW at $10^{-4}$ with weight decay $10^{-4}$, no modality dropout, and selection of the checkpoint with the highest project-local development-validation AP50. No guard access, tuning, early stopping, seed replacement, selective rerun, or checkpoint substitution was used.
+
+All nine retained checkpoints were then evaluated once with the standardized COCO contract used for the primary TriAir analysis: score threshold 0.001, NMS threshold 0.6, and at most 100 detections per image. Every result is linked to its selected epoch, checkpoint SHA256, and a common validation-manifest identity (SHA256 prefix \texttt{722efc6f74a7615a}). Full hashes and evaluator JSON records are archived with the project. Because V81 is a fresh replication, its values are not presented as recovered identities for the earlier supplied table, which is retained only as a provenance reconciliation record.
+
+\begin{table*}[t]
+\centering
+\caption{Checkpoint-backed V81 single-modality replication on component-disjoint TriAir development-validation. AP denotes COCO AP@[0.50:0.95]. Epoch is the retained checkpoint selected by project-local AP50.}
+\label{tab:single-modal-v81-seeds}
+\scriptsize
+\setlength{\tabcolsep}{2.8pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+Modality & Seed & Epoch & AP & AP50 & AP75 & AR1 & AR10 & AR100\\
+\midrule
+RGB-only & 0 & 12 & 0.4508 & 0.7638 & 0.4521 & 0.1642 & 0.5258 & 0.5892\\
+RGB-only & 1 & 7 & 0.4467 & 0.7676 & 0.4438 & 0.1648 & 0.5231 & 0.5922\\
+RGB-only & 2 & 9 & 0.4443 & 0.7709 & 0.4325 & 0.1661 & 0.5187 & 0.5876\\
+Thermal-only & 0 & 5 & 0.5256 & 0.8156 & 0.5864 & 0.2077 & 0.5868 & 0.6552\\
+Thermal-only & 1 & 2 & 0.4977 & 0.8340 & 0.5500 & 0.1941 & 0.5661 & 0.6321\\
+Thermal-only & 2 & 2 & 0.5356 & 0.8463 & 0.5965 & 0.2087 & 0.5948 & 0.6546\\
+Event-only & 0 & 4 & 0.1942 & 0.3627 & 0.1956 & 0.0785 & 0.2704 & 0.3571\\
+Event-only & 1 & 3 & 0.1962 & 0.3654 & 0.1889 & 0.0747 & 0.2701 & 0.3617\\
+Event-only & 2 & 4 & 0.1941 & 0.3690 & 0.1984 & 0.0719 & 0.2679 & 0.3486\\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\caption{V81 standardized single-modality COCO means and sample standard deviations over three fresh training seeds.}
+\label{tab:single-modal-v81-summary}
+\scriptsize
+\setlength{\tabcolsep}{2.7pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Modality & AP & AP50 & AP75 & AR1 & AR10 & AR100\\
+\midrule
+RGB-only & $0.4473\pm0.0033$ & $0.7674\pm0.0036$ & $0.4428\pm0.0098$ & $0.1650\pm0.0009$ & $0.5225\pm0.0036$ & $0.5897\pm0.0024$\\
+Thermal-only & $\mathbf{0.5196\pm0.0196}$ & $\mathbf{0.8320\pm0.0154}$ & $\mathbf{0.5776\pm0.0244}$ & $\mathbf{0.2035\pm0.0081}$ & $\mathbf{0.5826\pm0.0148}$ & $\mathbf{0.6473\pm0.0132}$\\
+Event-only & $0.1949\pm0.0012$ & $0.3657\pm0.0032$ & $0.1943\pm0.0049$ & $0.0751\pm0.0033$ & $0.2694\pm0.0014$ & $0.3558\pm0.0067$\\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+Thermal is the strongest standalone modality for every standardized mean, while event-only is the weakest. Because the all-modal V48 checkpoints and the V81 replication use the same component-disjoint validation manifest, standardized COCO metric definitions, and seed labels, compatible seed-paired contrasts can be computed without mixing evaluator contracts (\tabref{tab:fusion-over-v81-thermal}). The full reliability-aware system exceeds thermal-only by $0.1960\pm0.0329$ AP, $0.1215\pm0.0154$ AP50, and $0.2952\pm0.0349$ AP75; each contrast is positive for all three seeds. Matched early fusion also exceeds thermal-only for every seed. These descriptive comparisons support a multimodal benefit beyond the strongest individual stream under the frozen development protocol, but do not establish statistical significance or physical sensor-failure robustness.
+
+\begin{table*}[t]
+\centering
+\caption{Seed-paired standardized COCO contrasts against the authoritative V81 thermal-only replication. Positive pairs count the three shared seed labels.}
+\label{tab:fusion-over-v81-thermal}
+\scriptsize
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Multimodal system minus thermal-only & Metric & Mean delta & Sample SD & Positive pairs\\
+\midrule
+Reliability-aware $p=0.15$ & AP & +0.1960 & 0.0329 & 3/3\\
+Reliability-aware $p=0.15$ & AP50 & +0.1215 & 0.0154 & 3/3\\
+Reliability-aware $p=0.15$ & AP75 & +0.2952 & 0.0349 & 3/3\\
+Matched early fusion & AP & +0.1606 & 0.0223 & 3/3\\
+Matched early fusion & AP50 & +0.1053 & 0.0199 & 3/3\\
+Matched early fusion & AP75 & +0.2314 & 0.0265 & 3/3\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
