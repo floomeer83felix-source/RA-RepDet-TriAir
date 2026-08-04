@@ -1,5 +1,5 @@
 {
-  "status": "V81_CHECKPOINT_BACKED_SINGLE_MODALITY_EVIDENCE_SELECTED_AUTHORITATIVE",
+  "status": "V82_AUTHORITATIVE_V81_MANUSCRIPT_BUILT_AND_ACTIVATED",
   "decision_date": "2026-08-04",
   "decision_source": "explicit author instruction after inspecting latest research/ra-repdet-triair push",
   "training_runs_complete": 9,
@@ -10,6 +10,6 @@
   "material_difference_vs_supplied_table": true,
   "authoritative_evidence": "fresh checkpoint-backed V81 retraining and standardized COCO evaluation",
   "historical_only_evidence": "supplied V77/V80 single-modality rows without complete checkpoint identity package",
-  "manuscript_action": "create a new V82 manuscript using V81 as the primary single-modality evidence; do not mix evidence sets",
+  "manuscript_action": "V82 completed and activated at repository root using V81 as primary evidence",
   "identity_interpretation": "V81 checkpoints are fresh retraining outputs, not recovered V77/V80 identities"
 }
