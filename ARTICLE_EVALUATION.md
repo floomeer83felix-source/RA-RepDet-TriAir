@@ -1,16 +1,36 @@
-# RA-RepDet manuscript evaluation - V78 provenance and declaration closure
+# RA-RepDet manuscript evaluation - V81 authoritative evidence decision
 
-## V81 post-evaluation addendum
+## Evidence-source decision
 
-Nine fresh single-modality runs and nine checkpoint-backed standardized COCO evaluations are complete. The V81 three-seed AP@[.50:.95] means are `0.4473` for RGB, `0.5196` for thermal, and `0.1949` for event. These results carry checkpoint epochs, checkpoint SHA256 values, and the frozen split SHA256.
+On 2026-08-04 the author reviewed the latest `research/ra-repdet-triair` branch and explicitly selected the fresh checkpoint-backed V81 retraining and standardized COCO evaluation as the authoritative single-modality evidence.
 
-V81 differs materially from the supplied V77/V80 table, whose checkpoint identity package remains unavailable. The evidence sets must remain separate; V78 remains authoritative until the authors explicitly select a reporting source and preserve the corresponding provenance limitation.
+The supplied V77/V80 single-modality table remains archived only as historical author-provided evidence. It differs materially from V81 and lacks the complete checkpoint identity package; it must not be used in primary manuscript claims or numerically mixed with V81.
+
+## Authoritative V81 single-modality evidence
+
+All nine models completed the frozen 50-epoch protocol, and all nine retained checkpoints completed standardized COCO evaluation with checkpoint epoch, checkpoint SHA256, frozen split SHA256, and runtime identity recorded.
+
+| Modality | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| RGB-only | 0.4473 ± 0.0033 | 0.7674 ± 0.0036 | 0.4428 ± 0.0098 | 0.1650 ± 0.0009 | 0.5225 ± 0.0036 | 0.5897 ± 0.0024 |
+| Thermal-only | 0.5196 ± 0.0196 | 0.8320 ± 0.0154 | 0.5776 ± 0.0244 | 0.2035 ± 0.0081 | 0.5826 ± 0.0148 | 0.6473 ± 0.0132 |
+| Event-only | 0.1949 ± 0.0012 | 0.3657 ± 0.0032 | 0.1943 ± 0.0049 | 0.0751 ± 0.0033 | 0.2694 ± 0.0014 | 0.3558 ± 0.0067 |
+
+Thermal remains the strongest standalone modality on AP@[.50:.95], AP50, AP75, AR1, AR10, and AR100. The primary manuscript interpretation must be recomputed from these values rather than carried over from the supplied V77/V80 table.
+
+## Evidence traceability
+
+- training runs: `9/9`, exactly 50 epochs each;
+- standardized evaluator runs: `9/9`;
+- checkpoint hashes: `9/9`;
+- common split SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
+- guard access: none;
+- tuning, seed replacement, selective rerun, checkpoint substitution: none;
+- evidence directories: `runs/v79_single_modality_evaluator_completion/` and `runs/v81_single_modality_retraining_reconciliation/`.
 
 ## Overall recommendation
 
-**Technically ready for final submission preparation, subject to journal-format and author-metadata checks.** V78 closes the two principal non-experimental blockers remaining after V77: the authors now declare no competing interests, and the exact local TriAir source is identified by a complete archive-entry audit rather than a generic provenance caveat.
-
-The local study copy is recorded as the untagged provider `triair.zip`, Google Drive file ID `1w71v6n41yqjP7BCr9ni4JdcxMnQ2ocR0`, Last-Modified 2025-11-21, archive size 3,551,150,083 bytes. The author audit compared all 20,240 paths, sizes, and CRC32 values and found zero missing, extra, or different entries. The manuscript also distinguishes the paper-reported 24,223 vehicles from the current archive's 30,634 valid label lines; the unexplained difference of 6,411 is disclosed rather than reconciled by assumption.
+**Proceed with a new V82 manuscript integration.** The experimental evidence source is now resolved in favor of the reproducible checkpoint-backed V81 results. The root V78 manuscript should remain active only until the V82 rewrite, compilation, and rendered-page audit pass.
 
 ## Scorecard
 
@@ -18,40 +38,25 @@ The local study copy is recorded as the untagged provider `triair.zip`, Google D
 | --- | ---: | --- |
 | Novelty and relevance | 4.1 / 5 | Lightweight tri-modal dynamic fusion remains relevant. |
 | Method clarity | 4.5 / 5 | Architecture, runtime data handling, controls, splits, and transfer boundaries are explicit. |
-| Experimental rigor | 4.3 / 5 | Three-seed systems, six fusion controls, locked holdout, transfer study, and single-modality baselines are present. |
-| Evidence traceability | 4.7 / 5 | Provider archive identity, local audit scope, split origin, and result sources are now directly recorded. |
-| Statistical support | 3.9 / 5 | Three paired seeds remain descriptive rather than inferential. |
-| Reproducibility | 4.6 / 5 | Frozen manifests, code paths, provider commit, archive identity, and runtime transformations are documented. |
-| Writing and organization | 4.6 / 5 | Data provenance and count discrepancies are clearly separated from experimental claims. |
-| Submission readiness | 4.4 / 5 | Competing interests and data provenance are closed; final author/institution fields and optional evaluator completion remain. |
+| Experimental rigor | 4.5 / 5 | Three-seed systems, causal controls, locked holdout, transfer study, and checkpoint-backed single-modality replication are present. |
+| Evidence traceability | 4.9 / 5 | V81 includes checkpoint epochs, SHA256 values, split identity, raw evaluator records, and reconciliation. |
+| Statistical support | 3.9 / 5 | Three seeds support descriptive consistency, not strong inference. |
+| Reproducibility | 4.8 / 5 | Frozen protocols, manifests, checkpoint identities, evaluator outputs, and environment records are archived. |
+| Writing and organization | 4.4 / 5 | The current root manuscript still requires V81 integration and removal of supplied-table claims. |
+| Submission readiness | 4.3 / 5 | Evidence is strong, but the manuscript must be rebuilt around the selected V81 source before submission. |
 
-**Overall: 4.5 / 5.** The manuscript is scientifically coherent and suitable for submission packaging. Remaining items are primarily administrative or optional evidence enrichment.
+**Current overall assessment: 4.5 / 5.** The evidence package is stronger and more reproducible than before; the remaining task is manuscript consistency rather than additional experimentation.
 
-## Verified provenance interpretation
+## Required V82 corrections
 
-1. The provider paper reports 10,489 synchronized frames and 24,223 annotated vehicles.
-2. The current untagged provider archive contains 10,489 five-channel arrays and 9,751 YOLO text files according to the complete local audit.
-3. The current archive contains 30,634 valid single-class label lines. This number must not be described as the provider paper's official vehicle count.
-4. No offline raw-to-TriAir conversion was found in this project. Runtime handling is limited to HWC-to-CHW, float conversion and normalization, normalized-YOLO-to-absolute-`xyxy`, and foreground label remapping.
-5. The initial 8,391/2,098 local split is project-generated with seed 0 and an 80:20 ratio; it is not an official provider split and is superseded by the component-disjoint protocol for reported results.
-6. The upstream repository identifies the same Google Drive file and documents the five-channel order and YOLO format. The provider-code mirror was checked against commit `8f4e31ed64f1f2fe019d4706670fc4560c0b2e23`, apart from line-ending normalization.
-
-## Remaining reviewer concerns
-
-1. The main development partition participates in checkpoint retention.
-2. The locked holdout is internal to the same provider archive.
-3. Three seeds support descriptive consistency but not strong statistical inference.
-4. The V77 single-modality records still lack AP@[0.50:0.95], AR metrics, checkpoint hashes, and original evaluator files.
-5. No explicit dataset-archive license was located, so non-redistribution must remain.
-
-## Final closure checklist
-
-1. Confirm final author names, affiliations, corresponding author, and ORCID fields.
-2. Preserve the explicit 24,223-versus-30,634 distinction.
-3. Preserve the statement that the original 8:2 split is project-generated, not official.
-4. Optionally run evaluator-only passes on the nine retained single-modality checkpoints; do not retrain or tune.
-5. Check the current target journal's live formatting and submission requirements immediately before upload.
+1. Use V81 as the only primary single-modality table.
+2. State that V81 is a fresh retraining replication and not a recovery of the unidentified V77/V80 checkpoints.
+3. Recompute multimodal-versus-thermal comparisons only where evaluator definitions are compatible.
+4. Do not retain supplied V77/V80 values in the abstract, main results, discussion, or conclusion.
+5. Preserve development-validation, internal-holdout, and supervised exposed-MM-UAV-devval boundaries.
+6. Preserve the no-competing-interests, data-provenance, 24,223-versus-30,634, and non-redistribution statements.
+7. Make no statistical-significance, independent-test, or physical sensor-failure claim.
 
 ## Acceptance outlook
 
-The major scientific and provenance objections have been addressed. Reviewers may still request a truly independent sensor-compatible test set, more training seeds, or complete single-modality COCO/AR artifacts, but the paper no longer has an unresolved basic-control, competing-interest, or local-data-identity gap.
+After a clean V82 integration, the paper remains a plausible SCI four-zone submission with a materially stronger reproducibility story. Reviewers may still question the internal validation structure, limited seed count, or absence of an independently acquired sensor-compatible test set, but the single-modality evidence itself is now checkpoint-backed and auditable.
