@@ -1,31 +1,27 @@
 # Task Blocker
 
-Status: `NO_ACTIVE_EVIDENCE_SOURCE_BLOCKER_V82_MANUSCRIPT_INTEGRATION_PENDING`
+Status: `NO_ACTIVE_SCIENTIFIC_BLOCKER_V82_MANUSCRIPT_COMPLETE`
 
 Updated: 2026-08-04
 
-## Resolved decision
+## Completed
 
-The previous blocker was a material discrepancy between the supplied V77/V80 single-modality table and the fresh checkpoint-backed V81 replication. On 2026-08-04 the author explicitly selected V81 as the authoritative evidence source.
+- evidence-source decision: checkpoint-backed V81 selected;
+- V81 training: 9/9 at 50 epochs;
+- standardized evaluation: 9/9;
+- checkpoint epoch and SHA256: 9/9;
+- validation split identity: consistent across 9/9;
+- V82 primary single-modality table: V81 only;
+- historical V77/V80 supplied rows: reconciliation archive only;
+- compatible all-modal-versus-thermal contrasts: recomputed;
+- V82 build: 16 pages, two passes, zero undefined citations/references, zero overfull boxes;
+- rendered-page audit: 16/16 pass.
 
-## Authoritative evidence
+## Remaining non-scientific closure
 
-- fresh V81 training: `9/9`, exactly 50 epochs each;
-- standardized COCO evaluation: `9/9`;
-- checkpoint epoch and SHA256: `9/9`;
-- frozen validation split SHA256: consistent across `9/9`;
-- guard access, tuning, seed replacement, selective rerun, checkpoint substitution: none.
+1. Final author, affiliation, correspondence, and ORCID metadata.
+2. Live target-journal formatting and submission-portal verification.
 
-The authoritative three-seed AP@[.50:.95] means are:
+## Scientific boundary
 
-- RGB-only: `0.4473 ± 0.0033`;
-- thermal-only: `0.5196 ± 0.0196`;
-- event-only: `0.1949 ± 0.0012`.
-
-## Historical evidence boundary
-
-The supplied V77/V80 values remain archived only as author-provided historical evidence without checkpoint identity. They must not be mixed with, silently substituted for, or attributed to V81.
-
-## Remaining work
-
-There is no active experimental blocker. The remaining task is to build and audit a new V82 manuscript that uses V81 as the primary single-modality evidence. The root V78 manuscript remains active until that manuscript integration passes compilation and rendered-page review.
+V82 remains development-validation evidence with an internal locked holdout and supervised exposed-devval transfer study. It does not establish statistical significance, independent external generalization, calibrated sensor reliability, or physical sensor-failure robustness.
