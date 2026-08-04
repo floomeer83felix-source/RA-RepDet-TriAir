@@ -2,106 +2,57 @@
 
 ## Active task
 
-`V81_COMPLETE_EVIDENCE_SOURCE_DECISION_PENDING`
+`V82_INTEGRATE_AUTHORITATIVE_V81_SINGLE_MODALITY_EVIDENCE`
 
-The user explicitly authorized regeneration of all nine missing single-modality checkpoints on 2026-07-30:
+## Author decision
 
-- RGB-only: seeds 0, 1, and 2;
-- thermal-only: seeds 0, 1, and 2;
-- event-only: seeds 0, 1, and 2.
+On 2026-08-04 the author reviewed the latest pushed `research/ra-repdet-triair` branch and explicitly selected the checkpoint-backed V81 retraining/evaluation results as the authoritative single-modality evidence.
 
-These are new V81 retraining outputs. They must not be represented as the lost original checkpoints underlying the user-supplied V77 rows.
+The supplied V77/V80 rows remain historical reconciliation records only. They must not appear as the primary single-modality table and must not be mixed numerically with V81.
 
-## Newly supplied standardized metric table
+## Authoritative V81 summary
 
-The user has now supplied nine rows of AP@[0.50:0.95], AP50, AP75, AR1, AR10, and AR100. They are recorded under:
+| Modality | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| RGB-only | 0.4473 ± 0.0033 | 0.7674 ± 0.0036 | 0.4428 ± 0.0098 | 0.1650 ± 0.0009 | 0.5225 ± 0.0036 | 0.5897 ± 0.0024 |
+| Thermal-only | 0.5196 ± 0.0196 | 0.8320 ± 0.0154 | 0.5776 ± 0.0244 | 0.2035 ± 0.0081 | 0.5826 ± 0.0148 | 0.6473 ± 0.0132 |
+| Event-only | 0.1949 ± 0.0012 | 0.3657 ± 0.0032 | 0.1943 ± 0.0049 | 0.0751 ± 0.0033 | 0.2694 ± 0.0014 | 0.3558 ± 0.0067 |
 
-```text
-runs/v80_supplied_standardized_single_modality_metrics/
-```
+## Required manuscript work
 
-Independent arithmetic passed. Every AP50/AP75 value matches V77 exactly to three decimal places. The table does not include checkpoint SHA256, checkpoint epoch, split SHA256, runtime identity, or original evaluator JSON files, so the current V81 replication/provenance task remains active.
+1. Copy the V78 provenance-closed manuscript into a new V82 manuscript directory; do not overwrite V78 or the supplied-table V80 draft.
+2. Replace the primary single-modality evidence with the V81 per-seed and three-seed summary values from:
+   - `runs/v79_single_modality_evaluator_completion/per_run.csv`;
+   - `runs/v79_single_modality_evaluator_completion/summary.md`;
+   - `runs/v81_single_modality_retraining_reconciliation/checkpoint_manifest.json`.
+3. State that V81 is a fresh retraining replication under the frozen protocol, not a recovery of the unidentified V77/V80 checkpoints.
+4. Remove supplied V77/V80 single-modality values from the abstract, headline results, main tables, discussion, conclusion, and acceptance assessment. They may be mentioned only in a compact provenance/reconciliation note if necessary.
+5. Recompute every multimodal-versus-best-single-modality comparison using the authoritative V81 thermal-only values and compatible metrics only. Do not compare COCO AP@[.50:.95] to project-local AP or mix evaluator contracts.
+6. Preserve all existing boundaries:
+   - component-disjoint development-validation is not an independent test;
+   - the 837-image holdout is internal;
+   - MM-UAV is supervised target-domain adaptation on exposed devval;
+   - three seeds support descriptive consistency, not statistical significance;
+   - no physical sensor-failure robustness claim;
+   - 24,223 paper-reported vehicles and 30,634 current-archive valid label lines remain separate;
+   - no competing interests;
+   - no dataset redistribution.
+7. Update `ARTICLE_EVALUATION.md` using V81 as the evidence source.
+8. Build the manuscript twice with pdfLaTeX, check citations/references/overfull boxes, render every page, and inspect all revised result tables.
+9. Switch the root manuscript entrypoint only after the V82 build and audit pass.
 
-## Frozen training contract
+## Evidence identity
 
-- dataset: `D:\download\triair`;
-- train split: `reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_train.txt`;
-- development-validation split: `reproducibility/v40_expanded_adjacency_component_split_v2/manifests/v40_expanded_adjacency_component_disjoint_val.txt`;
-- modes: exactly `rgb`, `thermal`, and `event`;
-- seeds: exactly `0`, `1`, and `2`;
-- epochs: exactly `50`;
-- batch size: `4`;
-- image size: `640`;
-- optimizer: AdamW;
-- learning rate: `1e-4`;
-- weight decay: `1e-4`;
-- modality dropout: `0.0`;
-- workers: `0`;
-- device: CUDA on the authorized RTX 3090;
-- checkpoint rule: highest development-validation project-local AP50;
-- authorized checkpoint names: each run's newly generated `weights/best.pt`;
-- guard access: forbidden;
-- tuning, early stopping, seed replacement, selective rerun, and checkpoint substitution: forbidden.
+- V81 training: `9/9`, 50 epochs each;
+- V81 evaluation: `9/9`;
+- checkpoint SHA256: `9/9`;
+- common validation split SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
+- guard access, tuning, seed replacement, selective rerun, checkpoint substitution: none.
 
-## Execution
+## Completion state
 
-Use the installed PyTorch environment:
+The evidence-source decision is complete. Manuscript integration is the only active scientific-writing task. Until V82 passes build and rendered-page audit, the root V78 manuscript remains the repository entrypoint.
 
-```powershell
-C:\Users\xinnan\.conda\envs\pytorch\python.exe rarepdet/tools/run_v76_single_modality_queue.py --data D:\download\triair --device cuda --resume
-```
+## Recommended commit message
 
-The queue must run serially in the fixed order:
-
-1. `rgb_seed0`, `rgb_seed1`, `rgb_seed2`;
-2. `thermal_seed0`, `thermal_seed1`, `thermal_seed2`;
-3. `event_seed0`, `event_seed1`, `event_seed2`.
-
-## Live execution
-
-- started: `2026-07-30T08:04:13+08:00`;
-- workspace: `E:\RepViT-v74-clean`;
-- queue PID at launch: `57884`;
-- active run at last confirmation: `rgb_seed0`;
-- queue stdout: `runs/v76_triair_single_modality_ablation/execution_logs/v81_queue_stdout.log`;
-- queue stderr: `runs/v76_triair_single_modality_ablation/execution_logs/v81_queue_stderr.log`;
-- local launch record: `runs/v76_triair_single_modality_ablation/v81_queue_launch.json`;
-- final state: training `9/9` complete, standardized COCO evaluation `9/9` complete;
-- compact evidence: `runs/v79_single_modality_evaluator_completion/` and `runs/v81_single_modality_retraining_reconciliation/`.
-
-## Required outputs
-
-For every run:
-
-```text
-runs/v76_triair_single_modality_ablation/training/<mode>_seed<seed>/
-  run_status.json
-  train_log.txt
-  weights/best.pt
-  weights/last.pt
-```
-
-The queue must also produce nine raw evaluation JSON files and the compact V76 summary. Large `.pt` files remain local and must not be committed.
-
-## Completion and manuscript gate
-
-After 9/9 training runs finish:
-
-1. verify every run completed 50 epochs;
-2. record best epoch and SHA256 for every new `best.pt`;
-3. run the V79 standardized COCO evaluator on the nine new checkpoints;
-4. compare the V81 standardized rows with both V77 and the newly supplied V80 table without claiming checkpoint identity;
-5. explain every material difference as new-run versus supplied-record evidence;
-6. archive compact evaluator JSON, checkpoint hashes, manifest hash, and runtime identity;
-7. decide whether the supplied-table V80 draft can become authoritative or whether the V81 replication table must replace it transparently;
-8. update handoff and push compact evidence only.
-
-The V81 identity and reconciliation audit is complete. Material differences from the supplied V77/V80 rows prevent silent manuscript replacement. V78 remains authoritative until an explicit task selects either the checkpoint-backed V81 replication table or the supplied-table V80 evidence with its identity limitation.
-
-## Estimated runtime
-
-Historical RTX 3090 runs indicate approximately 5.7-7.0 hours per 50-epoch model. Nine serial runs are expected to require about 50-63 hours, plus final evaluation.
-
-## Commit message
-
-`results: archive V81 single-modality retraining evaluation`
+`docs: integrate authoritative V81 single-modality evidence`
