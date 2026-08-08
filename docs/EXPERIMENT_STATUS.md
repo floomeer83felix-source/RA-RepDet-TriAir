@@ -1,14 +1,12 @@
 # Experiment Status
 
-Updated: 2026-08-04
+Updated: 2026-08-08
 
 ## Active status
 
-`V82_AUTHORITATIVE_V81_MANUSCRIPT_BUILT_AND_ACTIVATED`
+`V83_POST_V81_WEIGHT_EVIDENCE_REPLAN_NOT_STARTED`
 
-## Authoritative evidence decision
-
-The author selected the fresh checkpoint-backed V81 retraining and standardized COCO evaluation as the authoritative single-modality evidence. The earlier V77/V80 author-supplied table remains archived for historical reconciliation only and is not used in V82 primary claims.
+V82 remains the active manuscript and is scientifically complete for submission preparation. V83 is optional evidence enrichment organized around the authoritative V81 checkpoint weights.
 
 ## Authoritative V81 single-modality results
 
@@ -20,7 +18,7 @@ Values are mean ± sample standard deviation over seeds 0, 1, and 2.
 | Thermal-only | 0.5196 ± 0.0196 | 0.8320 ± 0.0154 | 0.5776 ± 0.0244 | 0.2035 ± 0.0081 | 0.5826 ± 0.0148 | 0.6473 ± 0.0132 |
 | Event-only | 0.1949 ± 0.0012 | 0.3657 ± 0.0032 | 0.1943 ± 0.0049 | 0.0751 ± 0.0033 | 0.2694 ± 0.0014 | 0.3558 ± 0.0067 |
 
-## Compatible multimodal-versus-thermal contrasts
+## Compatible multimodal-versus-thermal development-validation contrasts
 
 | System | Metric | Mean delta | Sample SD | Positive seeds |
 | --- | --- | ---: | ---: | ---: |
@@ -31,16 +29,30 @@ Values are mean ± sample standard deviation over seeds 0, 1, and 2.
 | Matched early fusion | AP50 | +0.1053 | 0.0199 | 3/3 |
 | Matched early fusion | AP75 | +0.2314 | 0.0265 | 3/3 |
 
-These are descriptive component-disjoint development-validation comparisons under compatible standardized COCO definitions. No significance test is claimed.
+These remain descriptive component-disjoint development-validation comparisons under compatible standardized COCO definitions.
 
-## Evidence identity
+## Weight identity
 
 - V81 training completion: `9/9`, exactly 50 epochs each;
 - standardized COCO evaluation: `9/9`;
-- retained checkpoint epoch and SHA256: `9/9`;
-- common validation split SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
-- guard access, tuning, seed replacement, selective rerun, checkpoint substitution: none;
-- source artifacts: `runs/v79_single_modality_evaluator_completion/` and `runs/v81_single_modality_retraining_reconciliation/`.
+- checkpoint epoch and SHA256: `9/9`;
+- checkpoint registry: `runs/v81_single_modality_retraining_reconciliation/checkpoint_manifest.json`;
+- common development-validation split SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
+- historical V77/V80 supplied rows: reconciliation-only, never primary evidence.
+
+## V83 reordered work
+
+1. **Weight integrity preflight:** verify all nine local V81 `best.pt` files against the archived hashes and metadata.
+2. **Efficiency benchmark:** fixed RTX-3090, batch-1, 640x640, FP32 synchronized latency/memory/parameter benchmark without labeled-data access.
+3. **Evidence review:** decide whether the efficiency result materially improves the lightweight claim before changing the manuscript.
+4. **Locked holdout:** optional and separately authorization-gated. No holdout access is authorized by this planning update.
+5. **Submission closure:** final author metadata and live journal/portal verification.
+
+Detailed plan:
+
+```text
+docs/CODEX_V83_POST_V81_WEIGHT_TASK_PLAN.md
+```
 
 ## V82 manuscript validation
 
@@ -50,9 +62,8 @@ These are descriptive component-disjoint development-validation comparisons unde
 - undefined citations/references: `0`;
 - overfull boxes: `0`;
 - PDF preflight: `PASS`;
-- rendered-page audit: `16/16 PASS`;
-- new training or evaluation performed by integration task: `none`.
+- rendered-page audit: `16/16 PASS`.
 
 ## Scientific boundary
 
-The component-disjoint validation partition participates in checkpoint retention, the 837-image holdout is internal, and MM-UAV uses supervised target-domain labels on an exposed devval split. V82 does not claim statistical significance, independent public-test performance, calibrated sensor reliability, or physical sensor-failure robustness.
+The component-disjoint validation partition participates in checkpoint retention, the 837-image holdout is internal and was already used in V42, and MM-UAV uses supervised target-domain labels on an exposed devval split. No significance, independent public-test, calibrated sensor-reliability, or physical sensor-failure claim is made.
