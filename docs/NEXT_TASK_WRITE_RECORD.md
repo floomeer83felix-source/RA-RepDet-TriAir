@@ -1,26 +1,52 @@
 # Next Task Write Record
 
-Written: 2026-08-04
+Written: 2026-08-08
 Branch: `research/ra-repdet-triair`
 
-## Completed task
+## Replanned task
 
-`V82_AUTHORITATIVE_V81_MANUSCRIPT_BUILT_AND_ACTIVATED`
+`V83_POST_V81_WEIGHT_EVIDENCE_REPLAN`
 
-The integration task:
+The author requested that the task sequence be rearranged around the new authoritative V81 checkpoint weights.
 
-1. selected the checkpoint-backed V81 evidence already authorized by the author;
-2. removed the unidentified V77/V80 single-modality table from primary manuscript claims;
-3. integrated the nine V81 per-seed standardized COCO rows and three-seed summaries;
-4. included retained checkpoint epochs and documented the archived SHA256 identities;
-5. recomputed compatible seed-paired multimodal-versus-thermal AP, AP50, and AP75 contrasts;
-6. revised the abstract, contributions, results, discussion, conclusion, data/code availability, and article evaluation;
-7. rebuilt the 16-page manuscript twice with no undefined citations/references or overfull boxes;
-8. rendered and inspected all 16 pages;
-9. activated the V82 manuscript at the repository root.
+## Authoritative inputs
 
-No new training, evaluator run, tuning, seed replacement, checkpoint selection, or guard access occurred during manuscript integration.
+- checkpoint registry: `runs/v81_single_modality_retraining_reconciliation/checkpoint_manifest.json`;
+- nine V81 retained `best.pt` checkpoints;
+- RGB-only, thermal-only, and event-only seeds 0/1/2;
+- checkpoint epoch and SHA256 archived for 9/9;
+- common development-validation split SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
+- V82 remains the active manuscript.
 
-## Completion commit
+## New execution hierarchy
 
-`docs: integrate authoritative V81 single-modality evidence`
+1. verify local V81 weight identities against the manifest;
+2. run a uniform RTX-3090 efficiency benchmark without reopening labeled validation/holdout data;
+3. review whether the efficiency result materially strengthens the lightweight claim;
+4. treat the 837-image locked internal holdout as a separately authorization-gated optional phase;
+5. finish author metadata and live journal/portal checks before submission.
+
+The detailed runbook is:
+
+```text
+docs/CODEX_V83_POST_V81_WEIGHT_TASK_PLAN.md
+```
+
+## Holdout boundary
+
+This planning update does **not** authorize access to the 837-image locked internal holdout. A separate explicit author instruction is required before the V81 weights may be evaluated there. If authorized later, the holdout remains repeated internal evidence from the same provider archive, not an independent public test.
+
+## Frozen prohibitions
+
+- no retraining or fine-tuning;
+- no threshold or hyperparameter sweep;
+- no checkpoint or seed replacement;
+- no selective rerun;
+- no historical V77/V80 values restored to primary claims;
+- no statistical-significance or independent-test claim.
+
+## Planning commits
+
+- `docs: add V83 post-V81 weight task plan`;
+- `docs: point next task to V83 weight plan`;
+- `docs: record V83 post-weight task replan`.
