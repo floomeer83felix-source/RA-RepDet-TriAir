@@ -45,3 +45,9 @@ The earlier V77/V80 author-supplied table remains a historical reconciliation ar
 - confirm final author, affiliation, corresponding-author, and ORCID metadata;
 - check the live target-journal template and portal requirements immediately before upload;
 - preserve the development-validation, internal-holdout, supervised exposed-devval, no-significance, no-physical-failure, 24,223-versus-30,634, no-competing-interests, and non-redistribution boundaries.
+
+## V83 efficiency evidence addendum
+
+V83 verified all nine authoritative V81 checkpoint identities and six exact-identity fusion controls, then completed 15 label-free RTX-3090 efficiency runs. Reliability-aware fusion adds only 1,684 parameters and approximately 0.630 profiler GFLOPs over matched early fusion; its synchronized full-detector latency is `22.2324 +/- 0.1879 ms` versus `22.0800 +/- 0.3082 ms`. Peak allocated memory is higher (`236.16 MiB` versus `122.49 MiB`), so the method should be described as having small parameter/FLOP/latency overhead but material memory overhead.
+
+This corroborates the V82 efficiency interpretation but does not replace its stronger repeated timing table. V82 remains authoritative and unchanged. No dataset or locked-holdout content was accessed for V83.

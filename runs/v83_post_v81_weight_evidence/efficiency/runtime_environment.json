@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-08-09T10:02:23+08:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.9.21",
+  "pytorch": "2.5.1",
+  "torchvision": "0.20.1",
+  "cuda_runtime": "12.4",
+  "cudnn": 90100,
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 3090",
+  "driver_version": "591.86",
+  "gpu_memory_mib": 24576,
+  "git_commit": "c30fced946449a5a32e00cdceaace9932891697c"
+}

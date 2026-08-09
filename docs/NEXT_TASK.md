@@ -2,23 +2,23 @@
 
 ## Active task
 
-`V83_POST_V81_WEIGHT_EVIDENCE_REPLAN`
+`V83_WEIGHT_PREFLIGHT_AND_EFFICIENCY_COMPLETE`
 
 V82 remains the active manuscript. The checkpoint-backed V81 single-modality weights remain the only authoritative single-modality source.
 
-The new task plan is:
+The completed task plan is:
 
 ```text
 docs/CODEX_V83_POST_V81_WEIGHT_TASK_PLAN.md
 ```
 
-## New priority order
+## Completed work
 
-1. **Required preflight:** verify all nine V81 `best.pt` files against the archived checkpoint SHA256/epoch/mode/seed registry. Stop on any mismatch.
-2. **Recommended next experiment:** run a fixed-hardware, label-free efficiency benchmark on the new V81 weights (and verified multimodal checkpoints when available) to strengthen the lightweight claim without reopening validation or holdout labels.
-3. **Optional high-value experiment:** run the nine V81 checkpoints on the existing 837-image locked internal holdout only after a separate explicit author authorization to reuse that holdout. No holdout access is authorized by this planning update alone.
-4. **Manuscript gate:** keep V82 authoritative until a new evidence package passes identity, build, and rendered-page audit. Do not change V82 accuracy values merely because efficiency benchmarking is performed.
-5. **Submission closure:** final author/affiliation/corresponding-author/ORCID metadata and live journal/portal checks remain mandatory before upload.
+1. All nine V81 `best.pt` files passed archived SHA256, epoch, input-mode, seed, and model-configuration checks.
+2. Six exact-identity multimodal checkpoints passed their archived SHA256 and metadata checks.
+3. All 15 checkpoints completed the fixed RTX-3090, batch-1, 640x640, FP32, label-free benchmark with 50 warm-up and 200 synchronized measured iterations.
+4. Evidence review found that V83 corroborates but does not materially improve the stronger efficiency table already in V82, so V82 remains unchanged and authoritative.
+5. No dataset, validation labels, or locked-holdout samples were accessed.
 
 ## Frozen evidence boundary
 
@@ -27,16 +27,11 @@ docs/CODEX_V83_POST_V81_WEIGHT_TASK_PLAN.md
 - No retraining, tuning, threshold sweep, seed replacement, checkpoint substitution, or selective rerun is authorized.
 - The 837-image holdout remains internal to the same provider archive and is not an independent external test.
 
-## Recommended execution order
+## Next authorized work
 
-```text
-V83 weight preflight
--> V83 efficiency benchmark
--> evidence review
--> optional locked-holdout reuse only with separate authorization
--> final submission metadata/journal checks
-```
+- complete final author, affiliation, corresponding-author, and ORCID metadata;
+- verify the live target-journal template and submission portal immediately before upload;
+- preserve V82 as the active manuscript;
+- do not reuse the locked holdout unless the author gives a separate explicit authorization.
 
-## Recommended commit message
-
-`docs: replan post-V81 weight evidence tasks`
+Commit message: `results: archive V83 fixed-hardware efficiency evidence`

@@ -50,3 +50,15 @@ This planning update does **not** authorize access to the 837-image locked inter
 - `docs: add V83 post-V81 weight task plan`;
 - `docs: point next task to V83 weight plan`;
 - `docs: record V83 post-weight task replan`.
+
+## Execution record - 2026-08-09
+
+V83 Priority 0 and Priority 1 are complete. The V81 registry passed `9/9`; the exact-identity matched-early and reliability-aware controls passed `6/6`; and the fixed RTX-3090 efficiency benchmark completed `15/15` without dataset or label access.
+
+Evidence is archived under:
+
+```text
+runs/v83_post_v81_weight_evidence/
+```
+
+The manuscript gate was reviewed. V83 does not replace the stronger repeated efficiency protocol already reported in V82, so no manuscript source or accuracy value was changed. Locked-holdout reuse remains unauthorized.

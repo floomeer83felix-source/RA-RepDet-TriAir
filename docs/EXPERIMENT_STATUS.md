@@ -1,12 +1,25 @@
 # Experiment Status
 
-Updated: 2026-08-08
+Updated: 2026-08-09
 
 ## Active status
 
-`V83_POST_V81_WEIGHT_EVIDENCE_REPLAN_NOT_STARTED`
+`V83_WEIGHT_PREFLIGHT_AND_EFFICIENCY_COMPLETE`
 
-V82 remains the active manuscript and is scientifically complete for submission preparation. V83 is optional evidence enrichment organized around the authoritative V81 checkpoint weights.
+V82 remains the active manuscript and is scientifically complete for submission preparation. V83 verified the authoritative V81 checkpoint weights and completed the fixed-hardware, label-free efficiency benchmark without accessing validation data or the locked holdout.
+
+## V83 completion
+
+- V81 weight identity: `9/9 PASS` for SHA256, epoch, input mode, seed, and model configuration;
+- exact-identity fusion controls: `6/6 PASS` across matched early and reliability-aware seeds 0/1/2;
+- efficiency benchmark: `15/15 COMPLETE` on RTX 3090, batch 1, 640x640, FP32, 50 warm-up and 200 synchronized measured iterations;
+- dataset or label access: none;
+- training or tuning: none;
+- locked holdout access: none.
+
+Reliability-aware fusion reports 6,593,293 parameters, 105.392 profiler GFLOPs, `22.2324 +/- 0.1879 ms` full-detector latency, and `44.9815 FPS`. Matched early fusion reports 6,591,609 parameters, 104.762 profiler GFLOPs, `22.0800 +/- 0.3082 ms`, and `45.2957 FPS`. The parameter, FLOP, and latency overhead is small, while peak CUDA memory is materially higher for reliability-aware fusion.
+
+The V83 result corroborates but does not supersede the existing V82 efficiency table, whose timing protocol is stronger and whose raw-forward and detector-inference boundaries are separate. No V82 manuscript revision is created.
 
 ## Authoritative V81 single-modality results
 

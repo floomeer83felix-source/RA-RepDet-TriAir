@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "source_registry": "runs\\v48_complete_ablation\\causal_ablation_summary.json",
+  "candidate_count": 6,
+  "verified_count": 6,
+  "records": [
+    {
+      "run_id": "matched_early_seed0",
+      "variant": "matched_early",
+      "model_type": "early",
+      "seed": 0,
+      "checkpoint": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed0\\weights\\best.pt",
+      "expected_sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602",
+      "actual_sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602",
+      "checks": {
+        "exists": true,
+        "sha256": true,
+        "model_type": true,
+        "input_channels": true,
+        "image_size": true,
+        "seed": true,
+        "selected_epoch": true,
+        "model_state_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "matched_early_seed1",
+      "variant": "matched_early",
+      "model_type": "early",
+      "seed": 1,
+      "checkpoint": "E:\\RepViT-main\\runs\\v41_q1_upgrade\\seed1\\matched_early_seed1\\weights\\best.pt",
+      "expected_sha256": "60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804",
+      "actual_sha256": "60a338ed887c15d94d3f274df39684c1dc6de68f9f29ba13f9f9cb4d6fbcd804",
+      "checks": {
+        "exists": true,
+        "sha256": true,
+        "model_type": true,
+        "input_channels": true,
+        "image_size": true,
+        "seed": true,
+        "selected_epoch": true,
+        "model_state_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "matched_early_seed2",
+      "variant": "matched_early",
+      "model_type": "early",
+      "seed": 2,
+      "checkpoint": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed2\\weights\\best.pt",
+      "expected_sha256": "b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e",
+      "actual_sha256": "b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e",
+      "checks": {
+        "exists": true,
+        "sha256": true,
+        "model_type": true,
+        "input_channels": true,
+        "image_size": true,
+        "seed": true,
+        "selected_epoch": true,
+        "model_state_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "reliability_p015_seed0",
+      "variant": "ra_full_p015",
+      "model_type": "reliability",
+      "seed": 0,
+      "checkpoint": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\reliability_p015_seed0\\weights\\best.pt",
+      "expected_sha256": "4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436",
+      "actual_sha256": "4284aaa188cb7f065a01b6cf32b78265ab937da0de2d3423d4594d2102787436",
+      "checks": {
+        "exists": true,
+        "sha256": true,
+        "model_type": true,
+        "input_channels": true,
+        "image_size": true,
+        "seed": true,
+        "selected_epoch": true,
+        "model_state_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "reliability_p015_seed1",
+      "variant": "ra_full_p015",
+      "model_type": "reliability",
+      "seed": 1,
+      "checkpoint": "E:\\RepViT-main\\runs\\v41_q1_upgrade\\seed1\\reliability_p015_seed1\\weights\\best.pt",
+      "expected_sha256": "a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d",
+      "actual_sha256": "a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d",
+      "checks": {
+        "exists": true,
+        "sha256": true,
+        "model_type": true,
+        "input_channels": true,
+        "image_size": true,
+        "seed": true,
+        "selected_epoch": true,
+        "model_state_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "run_id": "reliability_p015_seed2",
+      "variant": "ra_full_p015",
+      "model_type": "reliability",
+      "seed": 2,
+      "checkpoint": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\reliability_p015_seed2\\weights\\best.pt",
+      "expected_sha256": "27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415",
+      "actual_sha256": "27affa96df1b3baad3df6f0a591e0599c1f5c0f77f91fad9fdaa408e549f1415",
+      "checks": {
+        "exists": true,
+        "sha256": true,
+        "model_type": true,
+        "input_channels": true,
+        "image_size": true,
+        "seed": true,
+        "selected_epoch": true,
+        "model_state_present": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "holdout_accessed": false
+}

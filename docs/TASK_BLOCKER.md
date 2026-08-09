@@ -1,19 +1,20 @@
 # Task Blocker
 
-Status: `NO_ACTIVE_SUBMISSION_BLOCKER_V83_OPTIONAL_HOLDOUT_REUSE_GATED`
+Status: `NO_ACTIVE_SUBMISSION_BLOCKER_V83_COMPLETE_OPTIONAL_HOLDOUT_REUSE_GATED`
 
-Updated: 2026-08-08
+Updated: 2026-08-09
 
 ## Current state
 
-V82 is complete and submission-capable after final author metadata and live journal checks. The new V83 plan is optional evidence enrichment based on the authoritative V81 weights; it is not required to make the current manuscript scientifically complete.
+V82 is complete and submission-capable after final author metadata and live journal checks. V83 weight verification and label-free efficiency profiling are complete. They corroborate the existing lightweight claim but do not require a V82 manuscript revision.
 
-## Authorized work
+## Completed V83 work
 
-- verify the nine V81 weight identities against the archived manifest;
-- run a label-free fixed-hardware efficiency benchmark;
-- archive runtime environment, latency, memory, parameter-count, and available profiler outputs;
-- update compact evidence documentation.
+- nine V81 weight identities verified;
+- six multimodal control identities verified;
+- 15 fixed-hardware efficiency runs complete;
+- runtime environment, latency, memory, parameter count, and profiler outputs archived;
+- no dataset, label, or holdout access.
 
 ## Authorization-gated work
 
