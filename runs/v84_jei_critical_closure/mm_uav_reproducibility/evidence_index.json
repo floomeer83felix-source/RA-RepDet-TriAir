@@ -1,0 +1,37 @@
+{
+  "generated_by": "rarepdet/tools/build_v84_mmuav_reproducibility.py",
+  "inputs": [
+    {
+      "path": "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/data_manifest_lock.json",
+      "sha256": "4cd5374c7bcd153e2128896a8778dd99cbd84dca097d3b7e4893bee8fb248a6e"
+    },
+    {
+      "path": "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/protocol.json",
+      "sha256": "c8b2a037a154b57ebd3c3e362f83f1a8bced3ad129313151116a56430771909e"
+    },
+    {
+      "path": "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/transfer_map_per_run.json",
+      "sha256": "e749154525d12bd3f5b2970f5ecfe286fc65391efa2436ca170d9f7056477b1f"
+    },
+    {
+      "path": "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/alignment_and_fusion_diagnostics.json",
+      "sha256": "6283d921b017a66e247122c898909fcfd627c541471285d66b690ecd896c4bf7"
+    },
+    {
+      "path": "runs/v75_v73_corrected_seed_level_evidence_integration/corrected_per_run_metrics.json",
+      "sha256": "c7d7d896f7f2507a6442a6578ca55e8013ca2125f76ca3496422e47c574b5b26"
+    },
+    {
+      "path": "datasets/mmuav_feature_alignment_dataset.py",
+      "sha256": "521978cea211f2879c478e1bb33d52cc423d305243c58b435948834c455a3e1d"
+    },
+    {
+      "path": "rarepdet/tools/prepare_v53_mmuav_feature_alignment.py",
+      "sha256": "bc5961ab325b8add6f78797ed5b56bb81e70b54899ccfcf1a4e3e81adc666b79"
+    },
+    {
+      "path": "rarepdet/tools/run_v73_mmuav_transfer_benchmark.py",
+      "sha256": "961966768dcb009c1f12675df6157304c1393c6300948b09c39eb7370f170f47"
+    }
+  ]
+}

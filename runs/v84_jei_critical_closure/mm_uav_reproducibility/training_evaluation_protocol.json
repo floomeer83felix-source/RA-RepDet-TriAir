@@ -1,0 +1,70 @@
+{
+  "authoritative_results": "runs/v75_v73_corrected_seed_level_evidence_integration/corrected_per_run_metrics.json",
+  "authoritative_results_sha256": "c7d7d896f7f2507a6442a6578ca55e8013ca2125f76ca3496422e47c574b5b26",
+  "checkpoint_selection": "Final checkpoint after exactly 10 epochs; no development-validation inference during training.",
+  "claim_boundary": "Supervised target-domain training with exposed devval, not blind zero-shot or external-test evidence.",
+  "evaluation": "One evaluation on the previously exposed development-validation split after final checkpoint creation.",
+  "locked_holdout_accessed": false,
+  "methods": [
+    "scratch_equal",
+    "triair_init_equal",
+    "triair_init_reliability"
+  ],
+  "runs": 9,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "training": {
+    "amp": false,
+    "audit_steps": [
+      0,
+      50,
+      200,
+      1000,
+      5000,
+      10000,
+      20000,
+      40000,
+      60000,
+      71870
+    ],
+    "augmentation": false,
+    "batch_size": 1,
+    "devval_during_training": false,
+    "epochs": 10,
+    "gradient_accumulation": false,
+    "gradient_clipping": false,
+    "image_size": 640,
+    "optimizer": {
+      "lr": 0.0001,
+      "name": "AdamW",
+      "weight_decay": 0.0001
+    },
+    "run_order": [
+      "v73_seed0_scratch_equal",
+      "v73_seed0_triair_init_equal",
+      "v73_seed0_triair_init_reliability",
+      "v73_seed1_scratch_equal",
+      "v73_seed1_triair_init_equal",
+      "v73_seed1_triair_init_reliability",
+      "v73_seed2_scratch_equal",
+      "v73_seed2_triair_init_equal",
+      "v73_seed2_triair_init_reliability"
+    ],
+    "scheduler": {
+      "decay": "cosine",
+      "final_lr": 1e-06,
+      "warmup": "linear",
+      "warmup_steps": 500
+    },
+    "scientific_label": "MM-UAV supervised cross-dataset transfer benchmark with learned feature alignment",
+    "starting_commit": "3841455a39cced13a4925a6488a40b4a8f0c440b",
+    "steps_per_epoch": 7187,
+    "steps_per_run": 71870,
+    "task": "V73_MMUAV_TRIAIR_INITIALIZED_ALIGNMENT_AWARE_TRANSFER_BENCHMARK",
+    "total_optimizer_steps": 646830,
+    "workers": 0
+  }
+}

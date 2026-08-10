@@ -1,0 +1,81 @@
+{
+  "authoritative_source": "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/transfer_map_per_run.json",
+  "authoritative_source_sha256": "e749154525d12bd3f5b2970f5ecfe286fc65391efa2436ca170d9f7056477b1f",
+  "destination_numel": 6692121,
+  "fraction_exact": 0.9920156853111293,
+  "fraction_percent_rounded": 99.2,
+  "initialized_runs": 6,
+  "interpretation": "99.20% is the fraction of destination parameter/buffer elements initialized by exact name-and-shape-compatible TriAir tensors; it is not a sample match rate or an architecture identity claim.",
+  "not_transferred": {
+    "destination_key_group_counts": {
+      "backbone": 2,
+      "feature_scaffold": 34,
+      "to_detector_image": 2
+    },
+    "destination_keys": [
+      "detector.backbone.input_proj.bias",
+      "detector.backbone.input_proj.weight",
+      "feature_scaffold.event_aligner.affine_residual.bias",
+      "feature_scaffold.event_aligner.affine_residual.weight",
+      "feature_scaffold.event_aligner.identity_theta",
+      "feature_scaffold.event_aligner.localization.0.weight",
+      "feature_scaffold.event_aligner.localization.1.bias",
+      "feature_scaffold.event_aligner.localization.1.weight",
+      "feature_scaffold.event_stem.0.weight",
+      "feature_scaffold.event_stem.1.bias",
+      "feature_scaffold.event_stem.1.weight",
+      "feature_scaffold.event_stem.3.weight",
+      "feature_scaffold.event_stem.4.bias",
+      "feature_scaffold.event_stem.4.weight",
+      "feature_scaffold.ir_aligner.affine_residual.bias",
+      "feature_scaffold.ir_aligner.affine_residual.weight",
+      "feature_scaffold.ir_aligner.identity_theta",
+      "feature_scaffold.ir_aligner.localization.0.weight",
+      "feature_scaffold.ir_aligner.localization.1.bias",
+      "feature_scaffold.ir_aligner.localization.1.weight",
+      "feature_scaffold.ir_stem.0.weight",
+      "feature_scaffold.ir_stem.1.bias",
+      "feature_scaffold.ir_stem.1.weight",
+      "feature_scaffold.ir_stem.3.weight",
+      "feature_scaffold.ir_stem.4.bias",
+      "feature_scaffold.ir_stem.4.weight",
+      "feature_scaffold.reliability_scorer.2.bias",
+      "feature_scaffold.reliability_scorer.2.weight",
+      "feature_scaffold.reliability_scorer.4.bias",
+      "feature_scaffold.reliability_scorer.4.weight",
+      "feature_scaffold.rgb_stem.0.weight",
+      "feature_scaffold.rgb_stem.1.bias",
+      "feature_scaffold.rgb_stem.1.weight",
+      "feature_scaffold.rgb_stem.3.weight",
+      "feature_scaffold.rgb_stem.4.bias",
+      "feature_scaffold.rgb_stem.4.weight",
+      "to_detector_image.bias",
+      "to_detector_image.weight"
+    ],
+    "reason": "MM-UAV-specific input projection and feature-alignment/reliability scaffold are destination-only; source tensors outside the shared RepViT/FPN/FCOS prefixes or without exact compatibility are skipped.",
+    "source_tensors_skipped": [
+      {
+        "numel": 15,
+        "reason": "outside_shared_repvit_fpn_fcos_or_not_exact_shape_compatible",
+        "shape": [
+          3,
+          5,
+          1,
+          1
+        ],
+        "source_key": "backbone.input_proj.weight"
+      },
+      {
+        "numel": 3,
+        "reason": "outside_shared_repvit_fpn_fcos_or_not_exact_shape_compatible",
+        "shape": [
+          3
+        ],
+        "source_key": "backbone.input_proj.bias"
+      }
+    ]
+  },
+  "rule": "Copy only source tensors whose names begin with backbone.repvit., backbone.fpn., or head.; prepend detector.; require an exact destination name and exact tensor shape.",
+  "tensor_repair_or_seed_substitution": false,
+  "transferred_numel": 6638689
+}
