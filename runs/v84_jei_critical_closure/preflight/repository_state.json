@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-08-10T22:05:05+08:00",
+  "commit": "fb2da74e712b5dcd05c7e4ede94c3b2ed621ca32",
+  "branch": "research/ra-repdet-triair",
+  "remote": "https://github.com/floomeer83felix-source/RA-RepDet-TriAir.git",
+  "working_tree_status": [
+    "?? runs/v76_triair_single_modality_ablation/v81_queue.pid",
+    "?? runs/v76_triair_single_modality_ablation/v81_queue_launch.json",
+    "?? runs/v84_jei_critical_closure/"
+  ],
+  "holdout_accessed": false
+}
