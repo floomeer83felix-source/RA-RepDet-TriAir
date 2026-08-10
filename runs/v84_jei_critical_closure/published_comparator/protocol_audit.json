@@ -1,0 +1,80 @@
+{
+  "candidate": "Tri-Modal Fusion Transformers for UAV-based Object Detection (TriModalDet)",
+  "evidence": [
+    {
+      "line": 46,
+      "path": "trimodaldet/data/dataset.py",
+      "text": "# Find all valid image files (have corresponding non-empty labels)"
+    },
+    {
+      "line": 62,
+      "path": "trimodaldet/data/dataset.py",
+      "text": "train_files, test_files = train_test_split("
+    },
+    {
+      "line": 63,
+      "path": "trimodaldet/data/dataset.py",
+      "text": "all_valid_files, test_size=test_size, random_state=random_state"
+    },
+    {
+      "line": 99,
+      "path": "README.md",
+      "text": "python scripts/train.py --data data/ --epochs 15 --batch-size 2"
+    },
+    {
+      "line": 223,
+      "path": "README.md",
+      "text": "- Data split: Automatic 80/20 train/test split"
+    },
+    {
+      "line": 284,
+      "path": "README.md",
+      "text": "MIT License"
+    },
+    {
+      "line": 73,
+      "path": "trimodaldet/config.py",
+      "text": "self.num_epochs = 15"
+    },
+    {
+      "line": 74,
+      "path": "trimodaldet/config.py",
+      "text": "self.batch_size = 16"
+    },
+    {
+      "line": 75,
+      "path": "trimodaldet/config.py",
+      "text": "self.learning_rate = 0.02"
+    },
+    {
+      "line": 169,
+      "path": "trimodaldet/training/trainer.py",
+      "text": "path = self.config.model_path"
+    },
+    {
+      "line": 170,
+      "path": "trimodaldet/training/trainer.py",
+      "text": "torch.save(self.model.state_dict(), path)"
+    }
+  ],
+  "modalities": [
+    "RGB",
+    "thermal",
+    "event"
+  ],
+  "observations": {
+    "checkpoint_contract": "The primary trainer saves one configured final model path; it does not expose the frozen V84 devval-selection interface.",
+    "dataset_contract": "NPY plus YOLO labels; valid samples require a corresponding non-empty label.",
+    "license_contract": "README says MIT License, but the pinned tree contains no LICENSE or COPYING file with grant text.",
+    "split_contract": "Implementation creates its own random 80/20 train/test split.",
+    "training_recipe": "README recipe states 15 epochs, batch size 2, SGD, and lr 0.005; code defaults differ for batch size and lr."
+  },
+  "official_source_lock": {
+    "commit": "8f4e31ed64f1f2fe019d4706670fc4560c0b2e23",
+    "license_or_copying_files": [],
+    "repository": "https://github.com/radlab-sketch/trimodal-uav-det.git",
+    "source_vendored_into_ra_repdet": false,
+    "tracked_bytes": 1169678,
+    "tracked_files": 35
+  }
+}

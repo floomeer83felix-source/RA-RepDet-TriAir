@@ -1,0 +1,15 @@
+{
+  "locked_holdout_accessed": false,
+  "metrics_reported": false,
+  "reasons": [
+    "The official loader replaces the frozen component-disjoint split with an internal random 80/20 split and drops empty-label samples.",
+    "The official training/evaluation path does not implement the V84 standardized COCO evaluator and frozen checkpoint-selection contract.",
+    "Adapting both contracts would require a substantial unvalidated harness rather than reproduction of the pinned official implementation.",
+    "The pinned repository has no LICENSE/COPYING grant text; the README-only license label is insufficient for vendoring or modifying the code in this repository."
+  ],
+  "same_component_disjoint_split": false,
+  "same_standardized_coco_evaluator": false,
+  "scientific_boundary": "No numerical comparison is made against the paper's published metrics because its split/evaluator contract differs.",
+  "status": "DOCUMENTED_STOP",
+  "training_started": false
+}
