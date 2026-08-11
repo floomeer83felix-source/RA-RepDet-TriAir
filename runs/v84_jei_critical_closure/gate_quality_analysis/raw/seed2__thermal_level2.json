@@ -1,0 +1,17 @@
+{
+  "ap50": 0.9268203492350796,
+  "ap50_95": 0.6925365446750369,
+  "ap75": 0.8207088934667995,
+  "ar100": 0.7715357081983978,
+  "checkpoint_sha256": "5968bd0509826dc04bde8e59e0d227812be3a3f805fbfee4559e119c441a4875",
+  "event_weight_mean": 0.19148804869888275,
+  "modality": "thermal",
+  "operator": "box_blur_kernel_7",
+  "rgb_weight_mean": 0.3752192075819222,
+  "run_id": "ra_no_moddrop_seed2",
+  "runtime_seconds": 44.77091336250305,
+  "seed": 2,
+  "severity": 2,
+  "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+  "thermal_weight_mean": 0.4332927440794356
+}

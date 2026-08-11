@@ -1,0 +1,20 @@
+{
+  "ap50": 0.9494525979896586,
+  "ap50_95": 0.7093180880644352,
+  "ap75": 0.8576457166644229,
+  "ar100": 0.7803136185444008,
+  "checkpoint_sha256": "a59366dd0687754577d23d3e21358127199345d4ebf3a55a06472b933b57813d",
+  "condition": "no_event",
+  "detections": 221300,
+  "gt_boxes": 5867,
+  "images": 2213,
+  "model": "reliability",
+  "removal_operator": "zero RGB[0:3], thermal[3:4], or event[4:5]",
+  "run_id": "reliability_p015_seed1",
+  "runtime_seconds": 67.11757922172546,
+  "seed": 1,
+  "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+  "training_modality_dropout": 0.15,
+  "variant": "ra_full_p015",
+  "weights": "E:\\RepViT-main\\runs\\v41_q1_upgrade\\seed1\\reliability_p015_seed1\\weights\\best.pt"
+}

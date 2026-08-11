@@ -1,0 +1,20 @@
+{
+  "ap50": 0.3492261991991725,
+  "ap50_95": 0.2560358145413574,
+  "ap75": 0.30869361691372216,
+  "ar100": 0.31252769728992674,
+  "checkpoint_sha256": "7c2817ff29414fcd91a9330c3f34b60dddfb505100f67810291f2e7ab09a1e5c",
+  "condition": "no_thermal",
+  "detections": 221300,
+  "gt_boxes": 5867,
+  "images": 2213,
+  "model": "reliability",
+  "removal_operator": "zero RGB[0:3], thermal[3:4], or event[4:5]",
+  "run_id": "ra_no_moddrop_seed0",
+  "runtime_seconds": 68.30673050880432,
+  "seed": 0,
+  "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+  "training_modality_dropout": 0.0,
+  "variant": "ra_no_moddrop",
+  "weights": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0\\weights\\best.pt"
+}

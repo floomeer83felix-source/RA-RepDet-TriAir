@@ -1,0 +1,10 @@
+{
+  "state": "COMPLETE",
+  "completed": [
+    "P2_CHANNEL_REMOVAL",
+    "P3_GATE_QUALITY",
+    "P4_COMPONENT_BOOTSTRAP"
+  ],
+  "locked_holdout_accessed": false,
+  "updated_at": "2026-08-11T18:41:33+08:00"
+}

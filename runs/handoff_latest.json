@@ -1,31 +1,121 @@
 {
-  "generated_at": "2026-07-17",
-  "task": "V59 MM-UAV streaming zero-detection diagnostic",
-  "status": "V59_STREAMING_ZERO_DETECTION_DIAGNOSIS_COMPLETE_ROOT_CAUSE_IDENTIFIED",
-  "starting_commit": "02ccb571dc143afa32057624ec1b65c438546092",
-  "primary_classification": "EVALUATOR_OR_OUTPUT_SCHEMA_MISMATCH",
-  "direct_mechanism": "V57_BBOX_REGRESSION_DEGENERATE_GEOMETRY",
-  "devval_rows": 1845,
-  "devval_sha256": "113c304794cb32232ca4121edcd8fd8f40dab5a540b2d52b1f165ac4adb37a54",
-  "devval_order_sha256": "dd454cfbafa39f2556628ad45dc191b39b0c54bb926028447d5f57553456e867",
-  "detailed_subset_sha256": "d622f6712a9bfb2faa596daa053ed207dded1a9227e80b4a10dd3b48ae3d51ee",
-  "pass_counts": {"v57_equal": 1, "v57_reliability": 1, "v55_reference": 1},
-  "rows_per_pass": 1845,
-  "geometry": {
-    "v57_equal": {"valid": 0, "degenerate": 5534979, "max_score_median": 0.3474262058734894},
-    "v57_reliability": {"valid": 0, "degenerate": 5535000, "max_score_median": 0.3354482650756836},
-    "v55_reference": {"valid": 5535000, "degenerate": 0, "max_score_median": 0.3558290898799896}
+  "generated_at": "2026-08-11T22:28:03+08:00",
+  "task": "V84 JEI critical evidence closure",
+  "status": "V84_JEI_CRITICAL_EVIDENCE_CLOSURE_COMPLETE",
+  "required_work": {
+    "rgb_thermal_seeds": "3/3 COMPLETE",
+    "channel_removal": "48/48 COMPLETE",
+    "gate_quality": "30/30 COMPLETE",
+    "component_bootstrap": "12/12 COMPLETE",
+    "published_comparator": "DOCUMENTED_PROTOCOL_LICENSE_STOP",
+    "mm_uav_reproducibility": "COMPLETE",
+    "manuscript_integration": "COMPLETE"
   },
-  "checkpoint_hashes_unchanged": true,
-  "parameters_unchanged": true,
-  "optimizer_steps": 0,
-  "backward_passes": 0,
-  "training_mode_executions": 0,
-  "gradient_executions": 0,
-  "alternate_threshold_ap_ar_computed": false,
-  "pre_cuda_tests": "13/13 PASS",
-  "post_cuda_tests": "13/13 PASS",
-  "post_cuda_consistency_audit": "PASS",
-  "protected_file_changes": false,
-  "repair_authorized": false
+  "rgb_thermal": {
+    "status": "V84_RGB_THERMAL_3_SEED_COMPLETE",
+    "protocol": {
+      "epochs": 50,
+      "batch_size": 4,
+      "img_size": 640,
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "checkpoint_selection": "highest development-validation project-local AP50",
+      "standardized_coco_evaluation": "once per retained checkpoint",
+      "train_split_sha256": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+      "devval_split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "guard_used": false
+    },
+    "per_run": [
+      {
+        "run_id": "rgbt_seed0",
+        "seed": 0,
+        "checkpoint_epoch": 9,
+        "checkpoint_sha256": "7a3b58ea6a74dcfeba6351cc48ea8187b1d2734fc7e787459c1fc850ab2de13a",
+        "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+        "ap50_95": 0.7158275697937105,
+        "ap50": 0.9442241623069483,
+        "ap75": 0.8502006391273565,
+        "ar1": 0.2658428498380773,
+        "ar10": 0.7598431907277996,
+        "ar100": 0.7831089142662349
+      },
+      {
+        "run_id": "rgbt_seed1",
+        "seed": 1,
+        "checkpoint_epoch": 4,
+        "checkpoint_sha256": "223a2a32b720913512891a819f39594fd3ff25613b2f3eaf282a39a349756ba4",
+        "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+        "ap50_95": 0.6534922898505624,
+        "ap50": 0.9406923182786527,
+        "ap75": 0.801723942710499,
+        "ar1": 0.24789500596557015,
+        "ar10": 0.7130049429009716,
+        "ar100": 0.738452360661326
+      },
+      {
+        "run_id": "rgbt_seed2",
+        "seed": 2,
+        "checkpoint_epoch": 6,
+        "checkpoint_sha256": "b95e3c31a54f9052ffc8f2c21f30c6ad67f8ee8287151362207295f540809130",
+        "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+        "ap50_95": 0.6834676745784222,
+        "ap50": 0.9353989507997756,
+        "ap75": 0.8150428078152894,
+        "ar1": 0.257814896880859,
+        "ar10": 0.735657064939492,
+        "ar100": 0.7627066643940685
+      }
+    ],
+    "summary": {
+      "ap50_95": {
+        "mean": 0.684262511407565,
+        "sample_std": 0.031175240265094717
+      },
+      "ap50": {
+        "mean": 0.9401051437951256,
+        "sample_std": 0.004441809309522657
+      },
+      "ap75": {
+        "mean": 0.822322463217715,
+        "sample_std": 0.02504481105851253
+      },
+      "ar1": {
+        "mean": 0.2571842508948355,
+        "sample_std": 0.008990526163008423
+      },
+      "ar10": {
+        "mean": 0.7361683995227544,
+        "sample_std": 0.023423310230705423
+      },
+      "ar100": {
+        "mean": 0.7614226464405431,
+        "sample_std": 0.02235594935460706
+      }
+    }
+  },
+  "component_bootstrap": {
+    "components": 1298,
+    "replicates": 5000,
+    "gate_vs_early_ap_95ci": [
+      0.0376306,
+      0.0464252
+    ],
+    "gate_vs_fixed_equal_ap_95ci": [
+      0.0452387,
+      0.053936
+    ],
+    "gate_vs_projection_ap_95ci": [
+      0.0269344,
+      0.0350818
+    ]
+  },
+  "claim_boundary": {
+    "isolated_event_gain_established": false,
+    "calibrated_sensor_health_established": false,
+    "published_same_protocol_superiority_established": false,
+    "locked_holdout_access_in_v84": false
+  },
+  "evidence_summary": "runs/v84_jei_critical_closure/V84_EVIDENCE_SUMMARY.md",
+  "manuscript": "submission/v84_jei_evidence_manuscript/main.tex",
+  "next_action": "Rebuild and author-review final V84 figures before submission packaging."
 }

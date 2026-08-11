@@ -1,0 +1,20 @@
+{
+  "ap50": 0.9397369665325015,
+  "ap50_95": 0.6778474121031997,
+  "ap75": 0.810526072761958,
+  "ar100": 0.7570990284642919,
+  "checkpoint_sha256": "c204220f66851e96433c5bfd2d08a85bb8f7d56ec41cff351e748faca8345a60",
+  "condition": "no_event",
+  "detections": 221300,
+  "gt_boxes": 5867,
+  "images": 2213,
+  "model": "early",
+  "removal_operator": "zero RGB[0:3], thermal[3:4], or event[4:5]",
+  "run_id": "early_moddrop_seed2",
+  "runtime_seconds": 66.67251563072205,
+  "seed": 2,
+  "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+  "training_modality_dropout": 0.15,
+  "variant": "early_moddrop",
+  "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\early_moddrop_seed2\\weights\\best.pt"
+}

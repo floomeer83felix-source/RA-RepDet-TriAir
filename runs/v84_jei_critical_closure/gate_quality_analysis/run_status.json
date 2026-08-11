@@ -1,0 +1,35 @@
+{
+  "completed": 30,
+  "locked_holdout_accessed": false,
+  "monotonic": {
+    "event": {
+      "nonincreasing": false,
+      "severity_means": [
+        0.1773386274149218,
+        0.18913695884475437,
+        0.19167395672220963,
+        0.16463007132694887
+      ]
+    },
+    "rgb": {
+      "nonincreasing": false,
+      "severity_means": [
+        0.42240785342761955,
+        0.4232722353686777,
+        0.4245810492090754,
+        0.4252750838012971
+      ]
+    },
+    "thermal": {
+      "nonincreasing": false,
+      "severity_means": [
+        0.40025351915009394,
+        0.4018866755684484,
+        0.4037506872211729,
+        0.40453203444822666
+      ]
+    }
+  },
+  "required": 30,
+  "state": "COMPLETE"
+}

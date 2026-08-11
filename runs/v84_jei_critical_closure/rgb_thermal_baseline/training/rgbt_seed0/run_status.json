@@ -1,0 +1,18 @@
+{
+  "state": "COMPLETE",
+  "input_mode": "rgbt",
+  "seed": 0,
+  "epochs": 50,
+  "best_epoch": 9,
+  "best_project_ap50": 0.9431815147399902,
+  "selection_rule": "highest development-validation project-local AP50",
+  "guard_used": false,
+  "training_runtime_seconds": 16717.72743821144,
+  "reproducibility": {
+    "seed": 0,
+    "deterministic_algorithms": "warn_only",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "best_checkpoint": "E:\\RepViT-v74-clean\\runs\\v84_jei_critical_closure\\rgb_thermal_baseline\\training\\rgbt_seed0\\weights\\best.pt"
+}

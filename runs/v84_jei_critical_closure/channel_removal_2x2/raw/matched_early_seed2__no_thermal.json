@@ -1,0 +1,20 @@
+{
+  "ap50": 0.37034906413340934,
+  "ap50_95": 0.2275398693333699,
+  "ap75": 0.24380601277721076,
+  "ar100": 0.330407363217999,
+  "checkpoint_sha256": "b36b4965931da68b77a6be82e85e47b34f952445d64b941337f56a722f62737e",
+  "condition": "no_thermal",
+  "detections": 221300,
+  "gt_boxes": 5867,
+  "images": 2213,
+  "model": "early",
+  "removal_operator": "zero RGB[0:3], thermal[3:4], or event[4:5]",
+  "run_id": "matched_early_seed2",
+  "runtime_seconds": 67.8800277709961,
+  "seed": 2,
+  "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+  "training_modality_dropout": 0.0,
+  "variant": "matched_early",
+  "weights": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed2\\weights\\best.pt"
+}

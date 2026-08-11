@@ -1650,6 +1650,14 @@ def write_markdown(data, path):
 
 
 def main():
+    from v84_handoff import is_v84_ready, write_v84_handoff
+
+    if is_v84_ready(PROJECT_ROOT):
+        write_v84_handoff(PROJECT_ROOT)
+        print(f"Saved V84 handoff: {RUNS_DIR / 'handoff_latest.md'}")
+        print(f"Saved V84 handoff: {RUNS_DIR / 'handoff_latest.json'}")
+        return
+
     # V51 owns its handoff while the preregistered recovery is active.  The
     # legacy V40--V50 writers would otherwise overwrite the V51 blocker with
     # stale V50 text during finish_task.ps1.

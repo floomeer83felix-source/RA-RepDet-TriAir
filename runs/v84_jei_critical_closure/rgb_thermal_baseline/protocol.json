@@ -1,0 +1,17 @@
+{
+  "status": "FROZEN",
+  "input_mode": "rgbt",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "epochs": 50,
+  "batch_size": 4,
+  "img_size": 640,
+  "optimizer": "AdamW",
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "checkpoint_selection": "highest development-validation project-local AP50",
+  "guard_used": false
+}

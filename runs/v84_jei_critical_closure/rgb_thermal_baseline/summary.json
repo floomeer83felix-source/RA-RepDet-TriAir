@@ -1,0 +1,82 @@
+{
+  "status": "V84_RGB_THERMAL_3_SEED_COMPLETE",
+  "protocol": {
+    "epochs": 50,
+    "batch_size": 4,
+    "img_size": 640,
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "checkpoint_selection": "highest development-validation project-local AP50",
+    "standardized_coco_evaluation": "once per retained checkpoint",
+    "train_split_sha256": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+    "devval_split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+    "guard_used": false
+  },
+  "per_run": [
+    {
+      "run_id": "rgbt_seed0",
+      "seed": 0,
+      "checkpoint_epoch": 9,
+      "checkpoint_sha256": "7a3b58ea6a74dcfeba6351cc48ea8187b1d2734fc7e787459c1fc850ab2de13a",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "ap50_95": 0.7158275697937105,
+      "ap50": 0.9442241623069483,
+      "ap75": 0.8502006391273565,
+      "ar1": 0.2658428498380773,
+      "ar10": 0.7598431907277996,
+      "ar100": 0.7831089142662349
+    },
+    {
+      "run_id": "rgbt_seed1",
+      "seed": 1,
+      "checkpoint_epoch": 4,
+      "checkpoint_sha256": "223a2a32b720913512891a819f39594fd3ff25613b2f3eaf282a39a349756ba4",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "ap50_95": 0.6534922898505624,
+      "ap50": 0.9406923182786527,
+      "ap75": 0.801723942710499,
+      "ar1": 0.24789500596557015,
+      "ar10": 0.7130049429009716,
+      "ar100": 0.738452360661326
+    },
+    {
+      "run_id": "rgbt_seed2",
+      "seed": 2,
+      "checkpoint_epoch": 6,
+      "checkpoint_sha256": "b95e3c31a54f9052ffc8f2c21f30c6ad67f8ee8287151362207295f540809130",
+      "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "ap50_95": 0.6834676745784222,
+      "ap50": 0.9353989507997756,
+      "ap75": 0.8150428078152894,
+      "ar1": 0.257814896880859,
+      "ar10": 0.735657064939492,
+      "ar100": 0.7627066643940685
+    }
+  ],
+  "summary": {
+    "ap50_95": {
+      "mean": 0.684262511407565,
+      "sample_std": 0.031175240265094717
+    },
+    "ap50": {
+      "mean": 0.9401051437951256,
+      "sample_std": 0.004441809309522657
+    },
+    "ap75": {
+      "mean": 0.822322463217715,
+      "sample_std": 0.02504481105851253
+    },
+    "ar1": {
+      "mean": 0.2571842508948355,
+      "sample_std": 0.008990526163008423
+    },
+    "ar10": {
+      "mean": 0.7361683995227544,
+      "sample_std": 0.023423310230705423
+    },
+    "ar100": {
+      "mean": 0.7614226464405431,
+      "sample_std": 0.02235594935460706
+    }
+  }
+}

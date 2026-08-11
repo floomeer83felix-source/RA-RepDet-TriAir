@@ -1,12 +1,25 @@
 # Experiment Status
 
-Updated: 2026-08-09
+Updated: 2026-08-11
 
 ## Active status
 
-`V83_WEIGHT_PREFLIGHT_AND_EFFICIENCY_COMPLETE`
+`V84_JEI_CRITICAL_EVIDENCE_CLOSURE_COMPLETE`
 
-V82 remains the active manuscript and is scientifically complete for submission preparation. V83 verified the authoritative V81 checkpoint weights and completed the fixed-hardware, label-free efficiency benchmark without accessing validation data or the locked holdout.
+V84 completed the required JEI evidence closure and integrated a new evidence-frozen manuscript source snapshot. All required computations completed or reached the preregistered transparent-stop condition. V84 did not access the locked 837-image internal holdout.
+
+## V84 completion
+
+- RGB+thermal baseline: seeds 0/1/2 complete, COCO AP `0.6843 +/- 0.0312`;
+- matched gate-by-dropout channel-removal analysis: `48/48 COMPLETE`;
+- gate-quality and controlled-corruption analysis: `30/30 COMPLETE`;
+- component-cluster bootstrap: 12 checkpoints, 1,298 components, 5,000 replicates;
+- published comparator: transparent stop because the pinned official implementation cannot satisfy the frozen split, evaluator, checkpoint-selection, and license contract without substantial adaptation;
+- MM-UAV reproducibility: exact sequence, geometry, conversion, transfer, and evaluation details frozen;
+- manuscript snapshot: `submission/v84_jei_evidence_manuscript/`, two-pass source-only pdfLaTeX compile successful;
+- locked holdout access in V84: none.
+
+The evidence narrows the reliability claim: dynamic gating improves nominal development-validation AP under component-aware uncertainty, but missing-event robustness is mainly attributable to modality-dropout training, and controlled corruption does not produce monotonic affected-modality down-weighting. Gate weights are task-driven fusion coefficients, not calibrated sensor-health probabilities. A positive isolated event contribution and same-protocol superiority over a published comparator are not established.
 
 ## V83 completion
 

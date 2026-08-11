@@ -87,3 +87,7 @@ Commit activating this task:
 ```text
 docs: activate V84 JEI critical experiment closure
 ```
+
+## Commit Message
+
+experiments: complete V84 JEI critical evidence closure

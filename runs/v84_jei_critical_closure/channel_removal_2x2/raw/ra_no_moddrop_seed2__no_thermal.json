@@ -1,0 +1,20 @@
+{
+  "ap50": 0.34247090228339333,
+  "ap50_95": 0.26370295720257564,
+  "ap75": 0.31079498666680483,
+  "ar100": 0.30400545423555486,
+  "checkpoint_sha256": "5968bd0509826dc04bde8e59e0d227812be3a3f805fbfee4559e119c441a4875",
+  "condition": "no_thermal",
+  "detections": 221300,
+  "gt_boxes": 5867,
+  "images": 2213,
+  "model": "reliability",
+  "removal_operator": "zero RGB[0:3], thermal[3:4], or event[4:5]",
+  "run_id": "ra_no_moddrop_seed2",
+  "runtime_seconds": 68.47402024269104,
+  "seed": 2,
+  "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+  "training_modality_dropout": 0.0,
+  "variant": "ra_no_moddrop",
+  "weights": "E:\\RepViT-main\\runs\\v48_complete_ablation\\training\\ra_no_moddrop_seed2\\weights\\best.pt"
+}
