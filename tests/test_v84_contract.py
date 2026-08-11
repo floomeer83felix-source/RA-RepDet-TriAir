@@ -55,7 +55,8 @@ def test_component_bootstrap_contract_uses_components_and_5000_replicates():
     text = source("run_v84_component_cluster_bootstrap.py")
     assert "REPLICATES = 5000" in text
     assert "BOOTSTRAP_SEED = 8404" in text
-    assert 'row["v39_partition"] == "VALIDATION"' in text
+    assert "len(groups) != 1298" in text
+    assert 'by_sample = {row["sample_id"]: row["component_id"] for row in rows}' in text
     assert "component-macro" in text
     assert "v40_guard_unchanged_archival" not in text
 

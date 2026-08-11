@@ -60,7 +60,9 @@ def component_map() -> dict[str, str]:
     path = PROJECT_ROOT / "reproducibility/v40_expanded_adjacency_component_split_v2/extended_graph/component_membership.csv"
     with path.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
-    return {row["sample_id"]: row["component_id"] for row in rows if row["v39_partition"] == "VALIDATION"}
+    # The frozen V40 manifest, not the historical v39_partition column, defines
+    # final membership. V40 moved 61 former TRAIN rows into validation by component.
+    return {row["sample_id"]: row["component_id"] for row in rows}
 
 
 def checkpoints() -> list[dict[str, object]]:
@@ -101,6 +103,8 @@ def build_descriptors(dataset: DetectionTriAirDataset, components: dict[str, str
             "event_mean_magnitude": float(event.abs().mean()),
             "event_entropy32_normalized": entropy(event),
         })
+    if len(rows) != 2213 or len({row["component_id"] for row in rows}) != 1298:
+        raise RuntimeError("Frozen validation sample/component coverage mismatch")
     return rows
 
 

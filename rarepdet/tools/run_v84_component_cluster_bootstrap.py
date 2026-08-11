@@ -76,13 +76,15 @@ def component_membership(dataset: DetectionTriAirDataset) -> tuple[dict[int, str
     path = PROJECT_ROOT / "reproducibility/v40_expanded_adjacency_component_split_v2/extended_graph/component_membership.csv"
     with path.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
-    by_sample = {row["sample_id"]: row["component_id"] for row in rows if row["v39_partition"] == "VALIDATION"}
+    # Final partition membership is defined by the frozen manifest. The source
+    # table's v39_partition column predates V40's component-level reassignment.
+    by_sample = {row["sample_id"]: row["component_id"] for row in rows}
     by_index, groups = {}, defaultdict(list)
     for index in range(len(dataset)):
         sample_id = Path(get_sample_info(dataset, index)["image_path"]).stem
         component = by_sample[sample_id]
         by_index[index] = component; groups[component].append(index)
-    if len(groups) != 1311 or sum(map(len, groups.values())) != 2213:
+    if len(groups) != 1298 or sum(map(len, groups.values())) != 2213:
         raise RuntimeError("Frozen validation component contract mismatch")
     return by_index, dict(groups)
 
@@ -191,7 +193,7 @@ def main() -> None:
     write_csv(out / "bootstrap_replicates.csv", replicates)
     (out / "analysis.md").write_text(
         "# V84 Component-Cluster Bootstrap\n\n"
-        "The resampling unit is the 1,311-component identity from the leakage-aware validation split. For each "
+        "The resampling unit is the 1,298-component identity from the leakage-aware validation split. For each "
         "checkpoint, COCO AP/AP50/AP75/AR100 is first computed separately within each component. The paired "
         "component difference is averaged across seeds 0, 1, and 2, and 5,000 bootstrap samples draw components "
         "with replacement using seed 8404.\n\n"
