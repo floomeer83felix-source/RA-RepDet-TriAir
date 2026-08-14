@@ -1,30 +1,29 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-08-11T22:28:03+08:00
+Generated: 2026-08-14T14:46:57+08:00
 
 ## Current task
 
-- Status: `V84_JEI_CRITICAL_EVIDENCE_CLOSURE_COMPLETE`.
-- V84 required computations are complete; the published comparator reached the preregistered transparent-stop condition.
-- The locked 837-image internal holdout was not accessed in V84.
+- Status: `V85_REAL_QUALITATIVE_FIGURE_COMPLETE`.
+- V85 generated and integrated a real checkpoint-backed qualitative figure.
+- No training, threshold tuning, synthetic content, manual box editing, or locked-holdout access occurred.
 
-## Key evidence
+## Frozen evidence
 
-- RGB+thermal baseline AP: `0.6843 +/- 0.0312` over seeds 0/1/2.
-- Channel-removal factorial: `48/48 COMPLETE`; event-removal robustness is mainly associated with dropout training.
-- Gate quality/corruption: `30/30 COMPLETE`; affected-modality weights are not monotonic sensor-health estimates.
-- Component bootstrap: 1,298 components and 5,000 replicates; all three primary gate/no-dropout AP intervals are positive.
-- MM-UAV sequence, geometry, conversion, transfer, and evaluation contracts are frozen.
+- Candidate table covers all 2,213 frozen development-validation samples.
+- Selected samples: `frame_00846` (`v40c_00410`), `nframe_01125` (`v40c_02482`), `nframe_07517` (`v40c_04592`).
+- Scenes use three distinct components and model-independent descriptor selection.
+- Checkpoints are matched early seed 0 and dynamic gate/no-dropout seed 0, both SHA256-verified.
+- One global display contract: score 0.25, NMS IoU 0.60, maximum 100 detections.
 
-## Claim boundary
+## Artifacts
 
-- Dynamic gating is the defining RA-RepDet mechanism; gate/no-dropout is the nominal-accuracy primary variant.
-- No positive isolated event gain, calibrated reliability, same-protocol published superiority, SOTA, or statistical-significance claim is supported.
-- TriAir remains component-disjoint development-validation evidence; MM-UAV remains supervised exposed-devval transfer evidence.
+- Summary: `runs/v85_real_qualitative_figure/V85_QUALITATIVE_FIGURE_SUMMARY.md`.
+- Provenance: `runs/v85_real_qualitative_figure/provenance/qualitative_figure_provenance.md`.
+- Manuscript: `submission/v85_real_qualitative_manuscript/main.tex`.
+- Figure PNG/PDF remain local under the repository heavy-artifact policy.
+- Two-pass manuscript source validation passed with zero undefined references.
 
-## Artifacts and next action
+## Next action
 
-- Evidence summary: `runs/v84_jei_critical_closure/V84_EVIDENCE_SUMMARY.md`.
-- Manuscript source: `submission/v84_jei_evidence_manuscript/main.tex`.
-- Two-pass source-only pdfLaTeX validation passed with zero undefined references.
-- Next action: Rebuild and author-review final V84 figures before submission packaging.
+- Author review of the frozen qualitative figure before final submission packaging.

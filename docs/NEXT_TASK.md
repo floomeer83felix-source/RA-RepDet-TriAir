@@ -2,9 +2,9 @@
 
 ## Active task
 
-`V85_REAL_QUALITATIVE_FIGURE_PLANNED`
+`V85_REAL_QUALITATIVE_FIGURE_COMPLETE`
 
-V84 critical evidence closure is complete. The next authorized Codex task is to generate one **real checkpoint-backed qualitative detection figure** for the JEI manuscript.
+V85 is complete. One **real checkpoint-backed qualitative detection figure** has been generated and integrated into the JEI manuscript candidate under the frozen protocol below.
 
 Execute:
 

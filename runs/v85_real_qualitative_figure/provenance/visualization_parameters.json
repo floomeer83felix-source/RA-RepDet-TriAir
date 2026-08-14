@@ -1,0 +1,28 @@
+{
+  "display_score_threshold": 0.25,
+  "early_box_rgb": [
+    0,
+    114,
+    178
+  ],
+  "event_shared_max": 1.0,
+  "event_shared_min": 0.10588235408067703,
+  "event_transform": "shared min-max scaling over the three selected stored channel-4 arrays, grayscale",
+  "figure_pdf_sha256": "6d5ce6d2c6fcdfdb1587757024612c510f272cf7220f5ecf965f5e6a51e4035d",
+  "figure_png_pixels": [
+    3660,
+    2100
+  ],
+  "figure_png_sha256": "e498d4b47a8e199f9f47c8e5545c37a6f8a5d0c50e7c0dc305703f02b6155cdf",
+  "gate_box_rgb": [
+    213,
+    94,
+    0
+  ],
+  "max_detections": 100,
+  "nms_iou": 0.6,
+  "rgb_transform": "clip normalized stored channels 0:3 to [0,1], round to uint8",
+  "thermal_shared_max": 1.0,
+  "thermal_shared_min": 0.0,
+  "thermal_transform": "shared min-max scaling over the three selected stored channel-3 arrays, grayscale"
+}

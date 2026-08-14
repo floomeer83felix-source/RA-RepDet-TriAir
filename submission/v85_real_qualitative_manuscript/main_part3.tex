@@ -1,0 +1,111 @@
+\begin{table*}[t]
+\centering
+\caption{Component-cluster bootstrap of three-seed component-macro AP differences. Values use 5,000 component resamples; all fractions above zero equal 1.000.}
+\label{tab:bootstrap}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+RA-RepDet gate/no-dropout minus & Observed delta & Bootstrap mean & 95\% interval\\
+\midrule
+Matched early fusion & 0.0420 & 0.0420 & [0.0376, 0.0464]\\
+Fixed equal stems & 0.0496 & 0.0495 & [0.0452, 0.0539]\\
+Learned deterministic projection & 0.0310 & 0.0310 & [0.0269, 0.0351]\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Matched Gate-by-Dropout Channel Removal}
+Each of the four gate-by-training-dropout cells is evaluated for seeds 0, 1, and 2 under full input and deterministic zeroing of RGB, thermal, or event channels (\tabref{tab:removal}). With full input, the factorial dynamic-gate main effect is $+0.0382$ AP and the dropout main effect is $-0.0029$. Under event removal, however, the gate main effect is $-0.1494$ while the dropout main effect is $+0.2214$, with an interaction of $+0.3521$. Thus, the strong event-removal result of the gate-plus-dropout model is mainly associated with dropout and its interaction with gating; it cannot be attributed to the dynamic gate alone. RGB- and thermal-removal results show the same broad benefit from dropout, although their interactions are smaller. Zero-channel intervention remains synthetic and is not a physical sensor-failure experiment.
+
+\begin{table*}[t]
+\centering
+\caption{Three-seed COCO AP for the matched $2\times2$ gate-by-training-dropout channel-removal analysis.}
+\label{tab:removal}
+\scriptsize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Training architecture & Full & RGB removed & Thermal removed & Event removed\\
+\midrule
+Early, no dropout & 0.6803 & 0.4947 & 0.2270 & 0.6349\\
+Early, dropout & 0.6840 & 0.5968 & 0.3887 & 0.6803\\
+Gate, no dropout & \textbf{0.7251} & 0.4829 & 0.2709 & 0.3094\\
+Gate, dropout & 0.7156 & \textbf{0.6139} & \textbf{0.3962} & \textbf{0.7069}\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Gate Weights and Controlled Input Quality}
+For every validation sample and each gate/no-dropout checkpoint, we export RGB, thermal, and event weights together with intensity, contrast, entropy, and event-activity descriptors. Clean mean weights are 0.4224, 0.4003, and 0.1773, respectively. Several descriptors correlate strongly with weights, including RGB luminance with RGB weight, but these are observational associations within the frozen validation set and do not establish calibration.
+
+Controlled corruption gives a stricter test. RGB and thermal are blurred with kernels 3, 7, and 11; the event channel is attenuated by 0.75, 0.50, and 0.25. AP decreases from 0.7251 to 0.6856 under maximum RGB blur, to 0.6350 under maximum thermal blur, and to 0.4768 under maximum event attenuation. Nevertheless, the affected-modality weight does not decrease monotonically for any modality: RGB and thermal weights increase slightly with blur, while event weight first increases and only decreases at the strongest attenuation. The learned weights therefore respond to input changes but do not behave as calibrated or monotonic sensor-quality estimates. We retain the term reliability-aware only in the narrow sense of task-driven, input-conditioned feature weighting.
+
+\subsection{Checkpoint-Backed Single-Modality Replication}
+The original checkpoints underlying the earlier author-supplied single-modality table were unavailable. We therefore conducted a fresh V81 replication rather than treating those unidentified records as recoverable evidence. RGB-only, thermal-only, and event-only detectors were retrained for seeds 0, 1, and 2 under the frozen component-disjoint protocol: 50 epochs, batch size 4, $640\times640$ inputs, AdamW at $10^{-4}$ with weight decay $10^{-4}$, no modality dropout, and selection of the checkpoint with the highest project-local development-validation AP50. No guard access, tuning, early stopping, seed replacement, selective rerun, or checkpoint substitution was used.
+
+All nine retained checkpoints were then evaluated once with the standardized COCO contract used for the primary TriAir analysis: score threshold 0.001, NMS threshold 0.6, and at most 100 detections per image. Every result is linked to its selected epoch, checkpoint SHA256, and a common validation-manifest identity (SHA256 prefix \texttt{722efc6f74a7615a}). Full hashes and evaluator JSON records are archived with the project. Because V81 is a fresh replication, its values are not presented as recovered identities for the earlier supplied table, which is retained only as a provenance reconciliation record.
+
+\begin{table*}[t]
+\centering
+\caption{Checkpoint-backed V81 single-modality replication on component-disjoint TriAir development-validation. AP denotes COCO AP@[0.50:0.95]. Epoch is the retained checkpoint selected by project-local AP50.}
+\label{tab:single-modal-v81-seeds}
+\scriptsize
+\setlength{\tabcolsep}{2.8pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+Modality & Seed & Epoch & AP & AP50 & AP75 & AR1 & AR10 & AR100\\
+\midrule
+RGB-only & 0 & 12 & 0.4508 & 0.7638 & 0.4521 & 0.1642 & 0.5258 & 0.5892\\
+RGB-only & 1 & 7 & 0.4467 & 0.7676 & 0.4438 & 0.1648 & 0.5231 & 0.5922\\
+RGB-only & 2 & 9 & 0.4443 & 0.7709 & 0.4325 & 0.1661 & 0.5187 & 0.5876\\
+Thermal-only & 0 & 5 & 0.5256 & 0.8156 & 0.5864 & 0.2077 & 0.5868 & 0.6552\\
+Thermal-only & 1 & 2 & 0.4977 & 0.8340 & 0.5500 & 0.1941 & 0.5661 & 0.6321\\
+Thermal-only & 2 & 2 & 0.5356 & 0.8463 & 0.5965 & 0.2087 & 0.5948 & 0.6546\\
+Event-only & 0 & 4 & 0.1942 & 0.3627 & 0.1956 & 0.0785 & 0.2704 & 0.3571\\
+Event-only & 1 & 3 & 0.1962 & 0.3654 & 0.1889 & 0.0747 & 0.2701 & 0.3617\\
+Event-only & 2 & 4 & 0.1941 & 0.3690 & 0.1984 & 0.0719 & 0.2679 & 0.3486\\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\caption{V81 standardized single-modality COCO means and sample standard deviations over three fresh training seeds.}
+\label{tab:single-modal-v81-summary}
+\scriptsize
+\setlength{\tabcolsep}{2.7pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Modality & AP & AP50 & AP75 & AR1 & AR10 & AR100\\
+\midrule
+RGB-only & $0.4473\pm0.0033$ & $0.7674\pm0.0036$ & $0.4428\pm0.0098$ & $0.1650\pm0.0009$ & $0.5225\pm0.0036$ & $0.5897\pm0.0024$\\
+Thermal-only & $\mathbf{0.5196\pm0.0196}$ & $\mathbf{0.8320\pm0.0154}$ & $\mathbf{0.5776\pm0.0244}$ & $\mathbf{0.2035\pm0.0081}$ & $\mathbf{0.5826\pm0.0148}$ & $\mathbf{0.6473\pm0.0132}$\\
+Event-only & $0.1949\pm0.0012$ & $0.3657\pm0.0032$ & $0.1943\pm0.0049$ & $0.0751\pm0.0033$ & $0.2694\pm0.0014$ & $0.3558\pm0.0067$\\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+Thermal is the strongest standalone modality for every standardized mean, while event-only is the weakest. Because the all-modal V48 checkpoints and the V81 replication use the same component-disjoint validation manifest, standardized COCO metric definitions, and seed labels, compatible seed-paired contrasts can be computed without mixing evaluator contracts (\tabref{tab:fusion-over-v81-thermal}). Primary RA-RepDet gate/no-dropout exceeds thermal-only by $0.2055\pm0.0266$ AP, $0.1156\pm0.0157$ AP50, and $0.2965\pm0.0311$ AP75; each contrast is positive for all three seeds. Matched early fusion also exceeds thermal-only for every seed. These descriptive comparisons support a multimodal-system benefit beyond the strongest individual stream under the frozen development protocol, but do not isolate the event channel and do not establish statistical significance or physical sensor-failure robustness.
+
+\begin{table*}[t]
+\centering
+\caption{Seed-paired standardized COCO contrasts against the authoritative V81 thermal-only replication. Positive pairs count the three shared seed labels.}
+\label{tab:fusion-over-v81-thermal}
+\scriptsize
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Multimodal system minus thermal-only & Metric & Mean delta & Sample SD & Positive pairs\\
+\midrule
+RA-RepDet gate/no-dropout & AP & +0.2055 & 0.0266 & 3/3\\
+RA-RepDet gate/no-dropout & AP50 & +0.1156 & 0.0157 & 3/3\\
+RA-RepDet gate/no-dropout & AP75 & +0.2965 & 0.0311 & 3/3\\
+Matched early fusion & AP & +0.1606 & 0.0223 & 3/3\\
+Matched early fusion & AP50 & +0.1053 & 0.0199 & 3/3\\
+Matched early fusion & AP75 & +0.2314 & 0.0265 & 3/3\\
+\bottomrule
+\end{tabular}
+\end{table*}
+

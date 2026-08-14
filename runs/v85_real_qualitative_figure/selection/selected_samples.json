@@ -1,8 +1,5 @@
 {
-  "generated_at": "2026-08-14T14:46:57+08:00",
-  "task": "V85 real checkpoint-backed qualitative figure",
-  "status": "V85_REAL_QUALITATIVE_FIGURE_COMPLETE",
-  "selected_samples": [
+  "samples": [
     {
       "component_id": "v40c_00410",
       "event_max": 1.0,
@@ -58,37 +55,9 @@
       "width": 391
     }
   ],
-  "selection_thresholds": {
+  "thresholds": {
     "gt_count_q90": 5.0,
     "rgb_q25": 0.0854288712143898,
     "rgb_q75": 0.48516061902046204
-  },
-  "checkpoints": {
-    "dynamic_gate": {
-      "model": "reliability",
-      "path": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0\\weights\\best.pt",
-      "run_id": "ra_no_moddrop_seed0",
-      "seed": 0,
-      "selected_epoch": 5,
-      "sha256": "7c2817ff29414fcd91a9330c3f34b60dddfb505100f67810291f2e7ab09a1e5c"
-    },
-    "matched_early": {
-      "model": "early",
-      "path": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed0\\weights\\best.pt",
-      "run_id": "matched_early_seed0",
-      "seed": 0,
-      "selected_epoch": 9,
-      "sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602"
-    }
-  },
-  "display_contract": {
-    "score_threshold": 0.25,
-    "nms_iou": 0.6,
-    "max_detections": 100
-  },
-  "locked_holdout_accessed": false,
-  "synthetic_content_used": false,
-  "figure": "runs/v85_real_qualitative_figure/figure/fig6_real_qualitative.pdf",
-  "manuscript": "submission/v85_real_qualitative_manuscript/main.tex",
-  "next_action": "Author review of the frozen qualitative figure before final submission packaging."
+  }
 }

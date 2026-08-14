@@ -1259,6 +1259,13 @@ def build_status():
 
 
 def main():
+    from v85_handoff import is_v85_ready, preserve_v85_status
+
+    if is_v85_ready(PROJECT_ROOT):
+        preserve_v85_status(PROJECT_ROOT)
+        print(f"Preserved V85 status: {STATUS_PATH}")
+        return
+
     from v84_handoff import is_v84_ready, preserve_v84_status
 
     if is_v84_ready(PROJECT_ROOT):

@@ -1650,6 +1650,14 @@ def write_markdown(data, path):
 
 
 def main():
+    from v85_handoff import is_v85_ready, write_v85_handoff
+
+    if is_v85_ready(PROJECT_ROOT):
+        write_v85_handoff(PROJECT_ROOT)
+        print(f"Saved V85 handoff: {RUNS_DIR / 'handoff_latest.md'}")
+        print(f"Saved V85 handoff: {RUNS_DIR / 'handoff_latest.json'}")
+        return
+
     from v84_handoff import is_v84_ready, write_v84_handoff
 
     if is_v84_ready(PROJECT_ROOT):

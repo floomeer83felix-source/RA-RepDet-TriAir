@@ -1,12 +1,25 @@
 # Experiment Status
 
-Updated: 2026-08-11
+Updated: 2026-08-14
 
 ## Active status
 
-`V84_JEI_CRITICAL_EVIDENCE_CLOSURE_COMPLETE`
+`V85_REAL_QUALITATIVE_FIGURE_COMPLETE`
 
-V84 completed the required JEI evidence closure and integrated a new evidence-frozen manuscript source snapshot. All required computations completed or reached the preregistered transparent-stop condition. V84 did not access the locked 837-image internal holdout.
+V85 generated and integrated one real checkpoint-backed qualitative figure from the frozen TriAir component-disjoint development-validation split. No training, threshold tuning, manual box editing, synthetic imagery, or locked-holdout access occurred.
+
+## V85 completion
+
+- deterministic candidate table: all 2,213 authorized development-validation samples;
+- selected scenes: `frame_00846`, `nframe_01125`, and `nframe_07517` from three distinct components;
+- checkpoints: fixed matched-early/no-dropout seed 0 and dynamic-gate/no-dropout seed 0, both SHA256-verified;
+- display contract: score `0.25`, NMS IoU `0.60`, maximum 100 detections for both models and all scenes;
+- outputs: real RGB, thermal, stored-event, matched-early, and dynamic-gate panels plus publication PNG/PDF;
+- provenance: complete sample, split, checkpoint, preprocessing, display-transform, and command record;
+- manuscript snapshot: `submission/v85_real_qualitative_manuscript/`, two-pass pdfLaTeX source validation successful;
+- historical 837-image partition access: none.
+
+The figure is illustrative only. It does not change V84 quantitative results or authorize external-generalization, calibrated-reliability, physical sensor-failure, SOTA, or statistical-significance claims.
 
 ## V84 completion
 

@@ -1,0 +1,18 @@
+{
+  "dynamic_gate": {
+    "model": "reliability",
+    "path": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0\\weights\\best.pt",
+    "run_id": "ra_no_moddrop_seed0",
+    "seed": 0,
+    "selected_epoch": 5,
+    "sha256": "7c2817ff29414fcd91a9330c3f34b60dddfb505100f67810291f2e7ab09a1e5c"
+  },
+  "matched_early": {
+    "model": "early",
+    "path": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed0\\weights\\best.pt",
+    "run_id": "matched_early_seed0",
+    "seed": 0,
+    "selected_epoch": 9,
+    "sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602"
+  }
+}
