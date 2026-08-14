@@ -1,0 +1,29 @@
+name: export-v85-fig6
+
+on:
+  pull_request:
+    branches:
+      - research/ra-repdet-triair
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen V85 assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf
+          test -f submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png
+          echo "6d5ce6d2c6fcdfdb1587757024612c510f272cf7220f5ecf965f5e6a51e4035d  submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf" | sha256sum -c -
+          echo "e498d4b47a8e199f9f47c8e5545c37a6f8a5d0c50e7c0dc305703f02b6155cdf  submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png" | sha256sum -c -
+      - name: Upload frozen V85 Fig6
+        uses: actions/upload-artifact@v4
+        with:
+          name: v85-real-qualitative-assets
+          path: |
+            submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf
+            submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png
+          if-no-files-found: error
+          retention-days: 1
