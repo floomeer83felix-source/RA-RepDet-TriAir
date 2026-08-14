@@ -2,9 +2,9 @@
 
 ## Active task
 
-`V85_REAL_QUALITATIVE_FIGURE_COMPLETE`
+`V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE`
 
-V85 is complete. One **real checkpoint-backed qualitative detection figure** has been generated and integrated into the JEI manuscript candidate under the frozen protocol below.
+The frozen V85 real qualitative PNG/PDF have been copied byte-for-byte into the JEI manuscript submission assets directory and approved for Git tracking. No regeneration, inference, sample selection, or scientific-content change was performed.
 
 Execute:
 
@@ -95,6 +95,4 @@ Only after the real figure and provenance are frozen may Codex insert the figure
 
 ## Commit message
 
-```text
-figures: add real checkpoint-backed qualitative detections for JEI
-```
+submission: track frozen V85 real qualitative figure assets

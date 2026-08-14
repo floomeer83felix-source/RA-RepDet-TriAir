@@ -4,7 +4,7 @@ Updated: 2026-08-14
 
 ## Active status
 
-`V85_REAL_QUALITATIVE_FIGURE_COMPLETE`
+`V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE`
 
 V85 generated and integrated one real checkpoint-backed qualitative figure from the frozen TriAir component-disjoint development-validation split. No training, threshold tuning, manual box editing, synthetic imagery, or locked-holdout access occurred.
 
@@ -17,6 +17,10 @@ V85 generated and integrated one real checkpoint-backed qualitative figure from 
 - outputs: real RGB, thermal, stored-event, matched-early, and dynamic-gate panels plus publication PNG/PDF;
 - provenance: complete sample, split, checkpoint, preprocessing, display-transform, and command record;
 - manuscript snapshot: `submission/v85_real_qualitative_manuscript/`, two-pass pdfLaTeX source validation successful;
+- frozen Fig.6 submission assets: PNG/PDF copied byte-for-byte into the
+  manuscript `figures/` directory and explicitly approved for Git tracking;
+- asset SHA256: PNG `e498d4b47a8e199f9f47c8e5545c37a6f8a5d0c50e7c0dc305703f02b6155cdf`,
+  PDF `6d5ce6d2c6fcdfdb1587757024612c510f272cf7220f5ecf965f5e6a51e4035d`;
 - historical 837-image partition access: none.
 
 The figure is illustrative only. It does not change V84 quantitative results or authorize external-generalization, calibrated-reliability, physical sensor-failure, SOTA, or statistical-significance claims.

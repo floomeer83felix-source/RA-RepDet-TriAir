@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-14T14:46:57+08:00",
+  "generated_at": "2026-08-14T16:28:54+08:00",
   "task": "V85 real checkpoint-backed qualitative figure",
-  "status": "V85_REAL_QUALITATIVE_FIGURE_COMPLETE",
+  "status": "V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE",
   "selected_samples": [
     {
       "component_id": "v40c_00410",
@@ -88,7 +88,12 @@
   },
   "locked_holdout_accessed": false,
   "synthetic_content_used": false,
-  "figure": "runs/v85_real_qualitative_figure/figure/fig6_real_qualitative.pdf",
+  "figure_png": "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png",
+  "figure_pdf": "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf",
+  "figure_sha256": {
+    "png": "e498d4b47a8e199f9f47c8e5545c37a6f8a5d0c50e7c0dc305703f02b6155cdf",
+    "pdf": "6d5ce6d2c6fcdfdb1587757024612c510f272cf7220f5ecf965f5e6a51e4035d"
+  },
   "manuscript": "submission/v85_real_qualitative_manuscript/main.tex",
   "next_action": "Author review of the frozen qualitative figure before final submission packaging."
 }

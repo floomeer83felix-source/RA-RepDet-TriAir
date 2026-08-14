@@ -23,7 +23,8 @@ The fixed display contract is score 0.25, NMS IoU 0.60, and at most 100
 detections. No synthetic imagery or manually edited prediction is used. Full
 provenance is under `runs/v85_real_qualitative_figure/`.
 
-The local V85 figure PDF is included for compilation but remains excluded from
-Git by the repository's heavy-artifact policy. Rendered legacy figures are not
-regenerated in this source snapshot. Final submission packaging must place all
-reviewed figure PDFs in `figures/` before the author-approved render.
+The frozen V85 PNG and PDF are Git-tracked submission assets under `figures/`.
+Their SHA256 values are recorded in the V85 manuscript integration audit.
+Rendered legacy figures are not regenerated in this source snapshot. Final
+submission packaging must place the remaining reviewed figure PDFs in
+`figures/` before the author-approved render.

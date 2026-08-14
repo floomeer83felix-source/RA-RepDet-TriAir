@@ -81,6 +81,10 @@ function Get-CommitMessage {
 }
 
 function Add-FilesSafely {
+    $trackedV85Assets = @(
+        "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png",
+        "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf"
+    )
     $allowedRoots = @(
         ".gitignore",
         "AGENTS.md",
@@ -176,7 +180,8 @@ function Add-FilesSafely {
         Sort-Object -Unique |
         Where-Object {
             $rel = Resolve-Path -LiteralPath $_ -Relative
-            $rel -notmatch $forbidden
+            $normalized = (($rel -replace '^[.\\/]+', '') -replace '\\', '/')
+            $normalized -in $trackedV85Assets -or $rel -notmatch $forbidden
         }
 
     if (-not $safeFiles) {
@@ -203,7 +208,12 @@ function Test-StagedSafety {
         return
     }
 
+    $trackedV85Assets = @(
+        "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png",
+        "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf"
+    )
     $forbidden = $staged | Where-Object {
+        $_ -notin $trackedV85Assets -and
         $_ -match '(^|/)data(/|$)|(^|/)datasets_cache(/|$)|(^|/)weights(/|$)|(^|/)vis_pred(/|$)|(^|/)local_rendered(/|$)|(^|/)local_qualitative(/|$)|(^|/)build(/|$)|\.(npy|npz|pt|pth|ckpt|zip|rar|png|jpg|jpeg|bmp|tif|tiff|eps|pdf|pyc|pyo|pyd)$'
     }
     if ($forbidden) {

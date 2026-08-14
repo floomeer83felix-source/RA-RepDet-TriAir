@@ -1,11 +1,11 @@
 # RA-RepDet-TriAir Handoff
 
-Generated: 2026-08-14T14:46:57+08:00
+Generated: 2026-08-14T16:28:54+08:00
 
 ## Current task
 
-- Status: `V85_REAL_QUALITATIVE_FIGURE_COMPLETE`.
-- V85 generated and integrated a real checkpoint-backed qualitative figure.
+- Status: `V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE`.
+- V85 generated, integrated, and Git-tracked a real checkpoint-backed qualitative figure.
 - No training, threshold tuning, synthetic content, manual box editing, or locked-holdout access occurred.
 
 ## Frozen evidence
@@ -21,7 +21,8 @@ Generated: 2026-08-14T14:46:57+08:00
 - Summary: `runs/v85_real_qualitative_figure/V85_QUALITATIVE_FIGURE_SUMMARY.md`.
 - Provenance: `runs/v85_real_qualitative_figure/provenance/qualitative_figure_provenance.md`.
 - Manuscript: `submission/v85_real_qualitative_manuscript/main.tex`.
-- Figure PNG/PDF remain local under the repository heavy-artifact policy.
+- Frozen figure PNG/PDF are Git-tracked under `submission/v85_real_qualitative_manuscript/figures/`.
+- Source and submission-copy SHA256 values match exactly for both formats.
 - Two-pass manuscript source validation passed with zero undefined references.
 
 ## Next action

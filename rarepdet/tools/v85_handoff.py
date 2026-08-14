@@ -18,6 +18,8 @@ def is_v85_ready(project_root):
         output / "figure/fig6_real_qualitative.png",
         output / "figure/fig6_real_qualitative.pdf",
         output / "manuscript_integration_audit.md",
+        root / "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png",
+        root / "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf",
     )
     return all(path.is_file() for path in required)
 
@@ -30,14 +32,19 @@ def build_v85_data(project_root):
     return {
         "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
         "task": "V85 real checkpoint-backed qualitative figure",
-        "status": "V85_REAL_QUALITATIVE_FIGURE_COMPLETE",
+        "status": "V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE",
         "selected_samples": selected["samples"],
         "selection_thresholds": selected["thresholds"],
         "checkpoints": checkpoints,
         "display_contract": {"score_threshold": 0.25, "nms_iou": 0.60, "max_detections": 100},
         "locked_holdout_accessed": False,
         "synthetic_content_used": False,
-        "figure": "runs/v85_real_qualitative_figure/figure/fig6_real_qualitative.pdf",
+        "figure_png": "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png",
+        "figure_pdf": "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf",
+        "figure_sha256": {
+            "png": "e498d4b47a8e199f9f47c8e5545c37a6f8a5d0c50e7c0dc305703f02b6155cdf",
+            "pdf": "6d5ce6d2c6fcdfdb1587757024612c510f272cf7220f5ecf965f5e6a51e4035d",
+        },
         "manuscript": "submission/v85_real_qualitative_manuscript/main.tex",
         "next_action": "Author review of the frozen qualitative figure before final submission packaging.",
     }
@@ -54,7 +61,7 @@ def write_v85_handoff(project_root):
     lines = [
         "# RA-RepDet-TriAir Handoff", "", f"Generated: {data['generated_at']}", "",
         "## Current task", "", f"- Status: `{data['status']}`.",
-        "- V85 generated and integrated a real checkpoint-backed qualitative figure.",
+        "- V85 generated, integrated, and Git-tracked a real checkpoint-backed qualitative figure.",
         "- No training, threshold tuning, synthetic content, manual box editing, or locked-holdout access occurred.",
         "", "## Frozen evidence", "",
         "- Candidate table covers all 2,213 frozen development-validation samples.",
@@ -68,7 +75,8 @@ def write_v85_handoff(project_root):
         "- Summary: `runs/v85_real_qualitative_figure/V85_QUALITATIVE_FIGURE_SUMMARY.md`.",
         "- Provenance: `runs/v85_real_qualitative_figure/provenance/qualitative_figure_provenance.md`.",
         "- Manuscript: `submission/v85_real_qualitative_manuscript/main.tex`.",
-        "- Figure PNG/PDF remain local under the repository heavy-artifact policy.",
+        "- Frozen figure PNG/PDF are Git-tracked under `submission/v85_real_qualitative_manuscript/figures/`.",
+        "- Source and submission-copy SHA256 values match exactly for both formats.",
         "- Two-pass manuscript source validation passed with zero undefined references.",
         "", "## Next action", "", f"- {data['next_action']}", "",
     ]
@@ -77,6 +85,6 @@ def write_v85_handoff(project_root):
 
 def preserve_v85_status(project_root):
     status = Path(project_root) / "docs/EXPERIMENT_STATUS.md"
-    marker = "V85_REAL_QUALITATIVE_FIGURE_COMPLETE"
+    marker = "V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE"
     if not status.is_file() or marker not in status.read_text(encoding="utf-8"):
         raise RuntimeError("V85 experiment status is missing its completion marker")
