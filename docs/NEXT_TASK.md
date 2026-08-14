@@ -2,92 +2,99 @@
 
 ## Active task
 
-`V84_JEI_CRITICAL_EXPERIMENT_CLOSURE_PLANNED`
+`V85_REAL_QUALITATIVE_FIGURE_PLANNED`
 
-Codex should execute the plan in:
+V84 critical evidence closure is complete. The next authorized Codex task is to generate one **real checkpoint-backed qualitative detection figure** for the JEI manuscript.
+
+Execute:
 
 ```text
-docs/CODEX_V84_JEI_CRITICAL_EXPERIMENTS_PLAN.md
+docs/CODEX_V85_REAL_QUALITATIVE_FIGURE_PLAN.md
 ```
 
-V83 fixed-hardware efficiency evidence is complete. The V81 checkpoint-backed single-modality weights remain the authoritative single-modality source. Historical V77/V80 supplied rows remain reconciliation-only.
+## Scientific purpose
 
-## Immediate Codex execution order
+Add a genuine qualitative figure using only:
 
-1. **P0 — preflight:** freeze repository state, split identities, and exact V48/V81 checkpoint inventory.
-2. **P1 — train RGB+Thermal baseline:** seeds 0/1/2, same component-disjoint split, same training/evaluator contract, no selective reruns.
-3. **P2 — matched 2×2 analysis:** evaluate early/no-dropout, early/dropout, gate/no-dropout, gate/dropout under all/RGB-removed/thermal-removed/event-removed conditions for seeds 0/1/2.
-4. **P3 — gate-quality analysis:** export clean gate weights, compute reproducible modality-quality descriptors, and run controlled single-modality corruption sweeps using gate-no-dropout as the primary model.
-5. **P4 — component-cluster bootstrap:** use leakage-graph components as the resampling unit for the primary paired comparisons.
-6. **P5 — published comparator:** reproduce one official TriAir representative method or another credible public multimodal detector on the exact same split/evaluator. Stop transparently if code/license/protocol incompatibility prevents a valid comparison.
-7. **P6 — optional core seed extension:** if compute remains, add seeds 3/4 only for matched early and gate-no-dropout.
-8. **P7 — MM-UAV reproducibility closure:** document sequence manifests, tracking-to-detection conversion, alignment architecture, transfer matching rule, and evaluation protocol; do not rerun training by default.
-9. **P8 — manuscript integration:** only after evidence freeze; define RA-RepDet as the dynamic gate, make gate-no-dropout the nominal-accuracy primary variant if supported, and treat modality dropout as an optional robustness regularizer.
+- real TriAir component-disjoint development-validation samples;
+- real stored RGB / thermal / event-representation channels;
+- real matched-early/no-dropout checkpoint predictions;
+- real dynamic-gate/no-dropout checkpoint predictions.
 
-## Highest-priority scientific questions
+The figure must not contain synthetic, AI-generated, reconstructed, hand-edited, or invented sensor imagery, bounding boxes, labels, or confidence scores.
 
-V84 must answer these questions directly:
+## Fixed qualitative checkpoints
 
-- Does event information add value beyond an RGB+Thermal model trained without event input?
-- How much of missing-modality robustness comes from the dynamic gate versus modality-dropout training?
-- Do learned modality weights respond systematically to controlled degradation and measurable input quality?
-- Does dynamic gating remain stronger than static/deterministic fusion under component-aware uncertainty analysis?
-- Is RA-RepDet competitive with at least one published multimodal method under the exact same split and evaluator?
+Use **seed 0** for both:
+
+1. matched early fusion / no dropout;
+2. dynamic gate / no dropout.
+
+Do not select the visually best seed or substitute another seed silently. If seed 0 cannot be verified, stop and document the reason.
+
+## Deterministic sample selection
+
+Select three scenes from the frozen 2,213-image development-validation split using the model-independent rule specified in the V85 plan:
+
+- Scene A: bright / ordinary;
+- Scene B: dark / low-visible-light;
+- Scene C: crowded / small-target.
+
+Scenes must come from distinct validation components. Do not manually browse and cherry-pick examples based on model success.
+
+## Figure layout
+
+Preferred layout:
+
+```text
+3 rows × 5 columns
+(a) RGB
+(b) Thermal
+(c) Event representation
+(d) Matched early fusion
+(e) Dynamic gate
+```
+
+Use one global display threshold for both checkpoints and all scenes. Default: score `>= 0.25`, NMS IoU `0.60`, max detections `100`.
+
+## Required output root
+
+```text
+runs/v85_real_qualitative_figure/
+```
+
+Required final artifacts include:
+
+```text
+figure/fig6_real_qualitative.png
+figure/fig6_real_qualitative.pdf
+figure/fig6_caption.txt
+provenance/qualitative_figure_provenance.md
+V85_QUALITATIVE_FIGURE_SUMMARY.md
+```
+
+The provenance must include sample IDs, component IDs, split identity, checkpoint SHA256 values, seed, preprocessing, visualization transforms, prediction threshold, and the generation command.
+
+## Locked data protection
+
+The historical 837-image partition remains **locked**.
+
+Do not inspect, render, score, or use it for qualitative selection. This task is authorized only on the frozen 2,213-image development-validation split.
+
+## Manuscript integration gate
+
+Only after the real figure and provenance are frozen may Codex insert the figure into the current V85 JEI submission candidate. Do not replace quantitative results or change the V84 scientific positioning.
 
 ## Frozen scientific positioning
 
 - `RA-RepDet` = sample-dependent / input-conditioned dynamic modality gating.
-- Modality dropout is an optional robustness regularizer, not the core fusion mechanism.
-- Gate/no-dropout currently has the strongest nominal AP among the six causal variants (`0.7251 ± 0.0121`).
-- Gate+dropout currently has lower nominal AP (`0.7156 ± 0.0172`) and must not be presented as the best-performing default solely because it was previously treated as the full system.
-- Reliability weights are learned task-driven modality weights/proxies, not calibrated physical sensor-health probabilities.
-- No SOTA claim, no physical sensor-failure claim, and no statistical-significance claim from three seeds alone.
+- Gate/no-dropout is the primary nominal-input model.
+- Modality dropout is an optional robustness regularizer.
+- Routing coefficients are task-driven and are not calibrated physical reliability estimates.
+- No SOTA, independent-test, sensor-health, or three-seed significance claim.
 
-## Locked-holdout protection
-
-The 837-image internal holdout remains **locked**.
-
-Codex must **stop before any holdout access**. Reuse requires a separate explicit author instruction specifically authorizing `837-image locked holdout reuse` after the final V84 model/comparator/evaluator choices are frozen.
-
-Do not inspect holdout labels, regenerate holdout metrics, tune on the holdout, or use holdout results to choose a model.
-
-## Expected V84 output root
+## Commit message
 
 ```text
-runs/v84_jei_critical_closure/
+figures: add real checkpoint-backed qualitative detections for JEI
 ```
-
-The final evidence summary must be written to:
-
-```text
-runs/v84_jei_critical_closure/V84_EVIDENCE_SUMMARY.md
-```
-
-and must state which manuscript claims are strengthened, weakened, or unchanged.
-
-## Completion gate
-
-Do not mark V84 complete until:
-
-- RGB+Thermal seeds 0/1/2 are complete;
-- matched channel-removal analysis is complete or a missing-checkpoint limitation is documented;
-- gate-quality/corruption evidence is complete;
-- component-cluster bootstrap is complete;
-- one published comparator is complete or a documented reproducibility/license stop reason exists;
-- MM-UAV reproducibility documentation is complete;
-- no locked-holdout access occurred;
-- manuscript integration happens only after evidence freeze.
-
-## Previous completed work
-
-V83 completed checkpoint integrity and fixed RTX-3090 efficiency benchmarking for 15 verified checkpoints. It did not materially improve the stronger efficiency table already present in the manuscript, so no accuracy evidence was changed.
-
-Commit activating this task:
-
-```text
-docs: activate V84 JEI critical experiment closure
-```
-
-## Commit Message
-
-experiments: complete V84 JEI critical evidence closure
