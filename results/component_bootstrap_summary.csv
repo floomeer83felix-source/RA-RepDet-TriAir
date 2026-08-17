@@ -1,0 +1,13 @@
+comparison,metric,estimand,components,seeds,replicates,bootstrap_seed,observed_delta,bootstrap_mean_delta,percentile_95_low,percentile_95_high,fraction_delta_gt_zero
+gate_no_dropout_minus_matched_early,ap50_95,three-seed mean component-macro metric delta,1298,3,5000,8404,0.0419778842972685,0.04195198807699446,0.03763057617773205,0.04642520838733611,1.0
+gate_no_dropout_minus_matched_early,ap50,three-seed mean component-macro metric delta,1298,3,5000,8404,0.010927024741196577,0.01097026530856996,0.006981368381129215,0.015042739489080546,1.0
+gate_no_dropout_minus_matched_early,ap75,three-seed mean component-macro metric delta,1298,3,5000,8404,0.059294473571523135,0.059297363831278975,0.05099360637170601,0.06791620105697299,1.0
+gate_no_dropout_minus_matched_early,ar100,three-seed mean component-macro metric delta,1298,3,5000,8404,0.03265100951245967,0.032580776081061365,0.02884365315179265,0.03631444351506265,1.0
+gate_no_dropout_minus_fixed_equal_stems,ap50_95,three-seed mean component-macro metric delta,1298,3,5000,8404,0.04955465517529649,0.049542611379720124,0.04523871827882395,0.05393604330778355,1.0
+gate_no_dropout_minus_fixed_equal_stems,ap50,three-seed mean component-macro metric delta,1298,3,5000,8404,0.014726017401616052,0.014778037730739197,0.01071273167716659,0.01881179154734321,1.0
+gate_no_dropout_minus_fixed_equal_stems,ap75,three-seed mean component-macro metric delta,1298,3,5000,8404,0.05911470792400485,0.05911700081601028,0.05082006113935127,0.06755994799953813,1.0
+gate_no_dropout_minus_fixed_equal_stems,ar100,three-seed mean component-macro metric delta,1298,3,5000,8404,0.03839238249345657,0.03835093213187581,0.03500173022042804,0.04175998889601633,1.0
+gate_no_dropout_minus_learned_projection,ap50_95,three-seed mean component-macro metric delta,1298,3,5000,8404,0.03098303125663123,0.030970143755866843,0.026934385401474373,0.03508182086424166,1.0
+gate_no_dropout_minus_learned_projection,ap50,three-seed mean component-macro metric delta,1298,3,5000,8404,0.009001604238362404,0.00903983292262097,0.005320319296337555,0.012936232296629636,1.0
+gate_no_dropout_minus_learned_projection,ap75,three-seed mean component-macro metric delta,1298,3,5000,8404,0.032368528984500884,0.032302034721666546,0.025074555906704384,0.03960865251048105,1.0
+gate_no_dropout_minus_learned_projection,ar100,three-seed mean component-macro metric delta,1298,3,5000,8404,0.023092329472096898,0.023062163397960064,0.019607274896219194,0.026479211126291924,1.0

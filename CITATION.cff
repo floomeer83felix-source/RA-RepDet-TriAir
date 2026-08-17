@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: "RA-RepDet: Reliability-Aware RGB-Thermal-Event Fusion for Lightweight UAV Vehicle Detection under Leakage-Aware Evaluation"
+message: "If you use this code or evidence package, please cite the associated manuscript."
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/floomeer83felix-source/RA-RepDet-TriAir"
+date-released: 2026-08-17
+version: 1.0.0
