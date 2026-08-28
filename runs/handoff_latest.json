@@ -1,99 +1,121 @@
 {
-  "generated_at": "2026-08-14T16:28:54+08:00",
-  "task": "V85 real checkpoint-backed qualitative figure",
-  "status": "V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE",
-  "selected_samples": [
-    {
-      "component_id": "v40c_00410",
-      "event_max": 1.0,
-      "event_mean": 0.22314351797103882,
-      "event_min": 0.10588235408067703,
-      "event_std": 0.19407518208026886,
-      "gt_box_count": 4,
-      "height": 301,
-      "relative_path": "data/images/frame_00846.npy",
-      "rgb_mean_luminance": 0.48581328988075256,
-      "rgb_std_luminance": 0.20196150243282318,
-      "sample_id": "frame_00846",
-      "sample_index": 221,
-      "selected_scene": "A",
-      "thermal_mean": 0.5642675757408142,
-      "thermal_std": 0.2766948342323303,
-      "width": 391
+  "generated_at": "2026-08-29T00:35:07+08:00",
+  "task": "V84 JEI critical evidence closure",
+  "status": "V84_JEI_CRITICAL_EVIDENCE_CLOSURE_COMPLETE",
+  "required_work": {
+    "rgb_thermal_seeds": "3/3 COMPLETE",
+    "channel_removal": "48/48 COMPLETE",
+    "gate_quality": "30/30 COMPLETE",
+    "component_bootstrap": "12/12 COMPLETE",
+    "published_comparator": "DOCUMENTED_PROTOCOL_LICENSE_STOP",
+    "mm_uav_reproducibility": "COMPLETE",
+    "manuscript_integration": "COMPLETE"
+  },
+  "rgb_thermal": {
+    "status": "V84_RGB_THERMAL_3_SEED_COMPLETE",
+    "protocol": {
+      "epochs": 50,
+      "batch_size": 4,
+      "img_size": 640,
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "checkpoint_selection": "highest development-validation project-local AP50",
+      "standardized_coco_evaluation": "once per retained checkpoint",
+      "train_split_sha256": "f24117e3fec5833e06e20202f8ea05cbc2242b3977bcb791d95f2099c8b4133f",
+      "devval_split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+      "guard_used": false
     },
-    {
-      "component_id": "v40c_02482",
-      "event_max": 1.0,
-      "event_mean": 0.14531610906124115,
-      "event_min": 0.12156862765550613,
-      "event_std": 0.011035948991775513,
-      "gt_box_count": 3,
-      "height": 301,
-      "relative_path": "data/images/nframe_01125.npy",
-      "rgb_mean_luminance": 0.02282799407839775,
-      "rgb_std_luminance": 0.02864658460021019,
-      "sample_id": "nframe_01125",
-      "sample_index": 918,
-      "selected_scene": "B",
-      "thermal_mean": 0.5793942213058472,
-      "thermal_std": 0.13853895664215088,
-      "width": 391
-    },
-    {
-      "component_id": "v40c_04592",
-      "event_max": 1.0,
-      "event_mean": 0.14713118970394135,
-      "event_min": 0.10588235408067703,
-      "event_std": 0.03217419609427452,
-      "gt_box_count": 5,
-      "height": 301,
-      "relative_path": "data/images/nframe_07517.npy",
-      "rgb_mean_luminance": 0.11334840953350067,
-      "rgb_std_luminance": 0.13742376863956451,
-      "sample_id": "nframe_07517",
-      "sample_index": 1931,
-      "selected_scene": "C",
-      "thermal_mean": 0.470088392496109,
-      "thermal_std": 0.16074644029140472,
-      "width": 391
+    "per_run": [
+      {
+        "run_id": "rgbt_seed0",
+        "seed": 0,
+        "checkpoint_epoch": 9,
+        "checkpoint_sha256": "7a3b58ea6a74dcfeba6351cc48ea8187b1d2734fc7e787459c1fc850ab2de13a",
+        "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+        "ap50_95": 0.7158275697937105,
+        "ap50": 0.9442241623069483,
+        "ap75": 0.8502006391273565,
+        "ar1": 0.2658428498380773,
+        "ar10": 0.7598431907277996,
+        "ar100": 0.7831089142662349
+      },
+      {
+        "run_id": "rgbt_seed1",
+        "seed": 1,
+        "checkpoint_epoch": 4,
+        "checkpoint_sha256": "223a2a32b720913512891a819f39594fd3ff25613b2f3eaf282a39a349756ba4",
+        "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+        "ap50_95": 0.6534922898505624,
+        "ap50": 0.9406923182786527,
+        "ap75": 0.801723942710499,
+        "ar1": 0.24789500596557015,
+        "ar10": 0.7130049429009716,
+        "ar100": 0.738452360661326
+      },
+      {
+        "run_id": "rgbt_seed2",
+        "seed": 2,
+        "checkpoint_epoch": 6,
+        "checkpoint_sha256": "b95e3c31a54f9052ffc8f2c21f30c6ad67f8ee8287151362207295f540809130",
+        "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f",
+        "ap50_95": 0.6834676745784222,
+        "ap50": 0.9353989507997756,
+        "ap75": 0.8150428078152894,
+        "ar1": 0.257814896880859,
+        "ar10": 0.735657064939492,
+        "ar100": 0.7627066643940685
+      }
+    ],
+    "summary": {
+      "ap50_95": {
+        "mean": 0.684262511407565,
+        "sample_std": 0.031175240265094717
+      },
+      "ap50": {
+        "mean": 0.9401051437951256,
+        "sample_std": 0.004441809309522657
+      },
+      "ap75": {
+        "mean": 0.822322463217715,
+        "sample_std": 0.02504481105851253
+      },
+      "ar1": {
+        "mean": 0.2571842508948355,
+        "sample_std": 0.008990526163008423
+      },
+      "ar10": {
+        "mean": 0.7361683995227544,
+        "sample_std": 0.023423310230705423
+      },
+      "ar100": {
+        "mean": 0.7614226464405431,
+        "sample_std": 0.02235594935460706
+      }
     }
-  ],
-  "selection_thresholds": {
-    "gt_count_q90": 5.0,
-    "rgb_q25": 0.0854288712143898,
-    "rgb_q75": 0.48516061902046204
   },
-  "checkpoints": {
-    "dynamic_gate": {
-      "model": "reliability",
-      "path": "E:\\RepViT-main\\runs\\v46_coco_ablation\\local_training\\ra_no_moddrop_seed0\\weights\\best.pt",
-      "run_id": "ra_no_moddrop_seed0",
-      "seed": 0,
-      "selected_epoch": 5,
-      "sha256": "7c2817ff29414fcd91a9330c3f34b60dddfb505100f67810291f2e7ab09a1e5c"
-    },
-    "matched_early": {
-      "model": "early",
-      "path": "E:\\RepViT-main\\runs\\v40_expanded_adjacency_v2_compute_minimized\\matched_early_seed0\\weights\\best.pt",
-      "run_id": "matched_early_seed0",
-      "seed": 0,
-      "selected_epoch": 9,
-      "sha256": "23331a6e668634f5f1ca1c7dfaddd23e9ee5445c0558e325621e8f454a0b1602"
-    }
+  "component_bootstrap": {
+    "components": 1298,
+    "replicates": 5000,
+    "gate_vs_early_ap_95ci": [
+      0.0376306,
+      0.0464252
+    ],
+    "gate_vs_fixed_equal_ap_95ci": [
+      0.0452387,
+      0.053936
+    ],
+    "gate_vs_projection_ap_95ci": [
+      0.0269344,
+      0.0350818
+    ]
   },
-  "display_contract": {
-    "score_threshold": 0.25,
-    "nms_iou": 0.6,
-    "max_detections": 100
+  "claim_boundary": {
+    "isolated_event_gain_established": false,
+    "calibrated_sensor_health_established": false,
+    "published_same_protocol_superiority_established": false,
+    "locked_holdout_access_in_v84": false
   },
-  "locked_holdout_accessed": false,
-  "synthetic_content_used": false,
-  "figure_png": "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.png",
-  "figure_pdf": "submission/v85_real_qualitative_manuscript/figures/fig6_real_qualitative.pdf",
-  "figure_sha256": {
-    "png": "e498d4b47a8e199f9f47c8e5545c37a6f8a5d0c50e7c0dc305703f02b6155cdf",
-    "pdf": "6d5ce6d2c6fcdfdb1587757024612c510f272cf7220f5ecf965f5e6a51e4035d"
-  },
-  "manuscript": "submission/v85_real_qualitative_manuscript/main.tex",
-  "next_action": "Author review of the frozen qualitative figure before final submission packaging."
+  "evidence_summary": "runs/v84_jei_critical_closure/V84_EVIDENCE_SUMMARY.md",
+  "manuscript": "submission/v84_jei_evidence_manuscript/main.tex",
+  "next_action": "Rebuild and author-review final V84 figures before submission packaging."
 }

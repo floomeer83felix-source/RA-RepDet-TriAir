@@ -34,7 +34,7 @@ from rarepdet.tools.run_v65_mmuav_seed0_softplus_fulltrain import full_coco_metr
 
 OUT = ROOT / "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark"
 LOCAL = Path(os.environ.get("V73_LOCAL_ROOT", r"D:\MM-UAV_v73_local"))
-CHECKPOINT_REPO = Path(os.environ.get("V73_CHECKPOINT_REPO", r"E:\RepViT-main"))
+CHECKPOINT_REPO = Path(os.environ.get("V73_CHECKPOINT_REPO", r"D:\work\RepViT-main"))
 TRAIN_MANIFEST = ROOT / "runs/v53_mmuav_feature_alignment_preflight/manifests/train_rgb_supervised.txt"
 DEVVAL_MANIFEST = ROOT / "runs/v53_mmuav_feature_alignment_preflight/manifests/devval_rgb_supervised.txt"
 STARTING_COMMIT = "3841455a39cced13a4925a6488a40b4a8f0c440b"

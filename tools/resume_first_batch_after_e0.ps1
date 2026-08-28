@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$ProjectRoot = "E:\RepViT-main"
+$ProjectRoot = "D:\work\RepViT-main"
 $Python = "C:\Users\xinnan\.conda\envs\pytorch\python.exe"
 $Log = Join-Path $ProjectRoot "runs\first_batch_resume.log"
 
