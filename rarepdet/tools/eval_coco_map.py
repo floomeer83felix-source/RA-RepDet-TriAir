@@ -252,7 +252,7 @@ def main():
     parser.add_argument("--variant", required=True)
     parser.add_argument(
         "--model",
-        choices=("early", "reliability", "ra_static_equal", "ra_stems_project"),
+        choices=("early", "reliability", "reliability_rgbt", "ra_static_equal", "ra_stems_project"),
         default=None,
     )
     parser.add_argument("--seed", type=int, default=0)

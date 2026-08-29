@@ -1,0 +1,6 @@
+outer_fold,number_of_groups,number_of_images,number_of_gt_boxes,zero_target_images,boxes_per_image,largest_group_size,frame_family_images,nframe_family_images,manifest
+0,1,4077,11157,738,2.736571,4077,4077,0,manifests/v86_outer_fold_0.txt
+1,7,1603,7652,1,4.773550,1580,0,1603,manifests/v86_outer_fold_1.txt
+2,13,1603,3409,0,2.126638,686,0,1603,manifests/v86_outer_fold_2.txt
+3,13,1603,3258,0,2.032439,625,0,1603,manifests/v86_outer_fold_3.txt
+4,11,1603,5158,0,3.217717,564,0,1603,manifests/v86_outer_fold_4.txt

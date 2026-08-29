@@ -1,0 +1,35 @@
+{
+  "adjacency_definition": "same-family consecutive numeric IDs with gap <=16, plus frozen human-adjudicated adjacent-or-near-identical edges",
+  "builder_script": {
+    "reproducibility/v86_proxy_sequence_outer_folds/scripts/build_v86_proxy_sequence_outer_folds.py": "fa56ec9ccc0ff618c9d4ddfe6d92f34efefd39458afee6d67fbc1ed9241d9eb0"
+  },
+  "dataset_root": "D:\\download\\triair",
+  "excluded_from_known_edges": "pHash/dHash threshold matches remain candidate graph edges and are not treated as confirmed near-duplicate relationships",
+  "git_commit": "49705eecf4ab147178deebd1924fdd23661e99d5",
+  "gt_box_count": 30634,
+  "guard_distance": 16,
+  "image_count": 10489,
+  "inputs": {
+    "reproducibility/v39_filename_proximity_review_packet_v1/input_snapshot/locked_rgb_hashes__rgb_hashes__rgb_hashes.csv": "95ed87a0f724461b950ccfc907afb880650a7995f2fe578319e6951f9428f0f2",
+    "reproducibility/v40_expanded_adjacency_component_split_v2/extended_graph/extended_edges.csv": "4c14d44aeca6b6f6e2b7ecea7f6c384bdc959502c316e7f8fada77d2deb3b419"
+  },
+  "known_adjacency_edge_count": 10721,
+  "known_near_duplicate_edge_count": 473,
+  "manifests": {
+    "manifests/v86_outer_fold_0.txt": "2b03df3a645cf87f6cd684a2d56e96899e7a1d3c46aa935f504e0f051601619d",
+    "manifests/v86_outer_fold_0_train_complement.txt": "30a97801b9cbdcd1d8b1bbd7edf168bdc9352220e4196115b3484b867c77b4e7",
+    "manifests/v86_outer_fold_1.txt": "363ba9835c5268e30af96288a79f93460a4bba0b21e8ccf38c97bc2f3fe01615",
+    "manifests/v86_outer_fold_1_train_complement.txt": "424299a25d366d6dc478b3edef877186ce78dbc79d0b9e154a499951e9e13374",
+    "manifests/v86_outer_fold_2.txt": "afd294d76e0b1b4d5617ae8906ec88b8a6c81fdf7ed1eb4d7874f8c502e26e30",
+    "manifests/v86_outer_fold_2_train_complement.txt": "af38e0f1527421cccd8d53832da2de2e84abc6dd982957500637ddb3121c1510",
+    "manifests/v86_outer_fold_3.txt": "7aa165194c7782f25d637b60eabfbd6805c7a83808a01842489fe3de5035deb9",
+    "manifests/v86_outer_fold_3_train_complement.txt": "11ca6ed76742e23187e90afc376da7cca9e0bf793bdf1fe229a783d76b04c127",
+    "manifests/v86_outer_fold_4.txt": "c403b0e1bc443de34183e8fcf78bf7295e260f0351e128cec380d58b736db59d",
+    "manifests/v86_outer_fold_4_train_complement.txt": "eb6f49e66cd4a99dbd240e75929ca4790409fa036c401b78a48e351cd9db8711"
+  },
+  "near_duplicate_definition": "exact decoded-RGB SHA256 identity",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "proxy_group_count": 45,
+  "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+  "zero_target_images": 739
+}

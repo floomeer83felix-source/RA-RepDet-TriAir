@@ -1,0 +1,170 @@
+{
+  "candidate_edges_crossing_giant_boundary": 0,
+  "candidate_edges_used_in_v86_operational_graph": 0,
+  "counterfactual_components": {
+    "candidate_only_edges": {
+      "component_count": 2844,
+      "edge_count": 1812,
+      "largest_component_sizes": [
+        37,
+        33,
+        28,
+        25,
+        25,
+        19,
+        15,
+        12,
+        12,
+        11
+      ]
+    },
+    "confirmed_edges_only": {
+      "component_count": 3963,
+      "edge_count": 114,
+      "largest_component_sizes": [
+        33,
+        22,
+        17,
+        12,
+        7,
+        7,
+        6,
+        5,
+        3,
+        3
+      ]
+    },
+    "filename_adjacency_only": {
+      "component_count": 1,
+      "edge_count": 4076,
+      "largest_component_sizes": [
+        4077
+      ]
+    },
+    "filename_adjacency_plus_confirmed_edges": {
+      "component_count": 1,
+      "edge_count": 4170,
+      "largest_component_sizes": [
+        4077
+      ]
+    },
+    "remove_candidate_only_edges": {
+      "component_count": 1,
+      "edge_count": 4170,
+      "largest_component_sizes": [
+        4077
+      ]
+    },
+    "v86_operational_graph": {
+      "component_count": 1,
+      "edge_count": 4170,
+      "largest_component_sizes": [
+        4077
+      ]
+    }
+  },
+  "edge_counts_inside_giant_group": {
+    "candidate_only_union_edges": 1812,
+    "dhash_candidate_only_edges": 427,
+    "exact_match_edges": 0,
+    "filename_numeric_adjacency_edges": 4076,
+    "manually_confirmed_adjacency_edges": 114,
+    "phash_candidate_only_edges": 1385,
+    "v86_operational_union_edges": 4170
+  },
+  "family_counts": {
+    "frame": 4077
+  },
+  "giant_proxy_group_id": "V86PG0001",
+  "input_sha256": {
+    "extended_edges.csv": "4c14d44aeca6b6f6e2b7ecea7f6c384bdc959502c316e7f8fada77d2deb3b419",
+    "known_adjacency_edges.csv": "2e3232afd7546d23ce95e51061c8fde96cabe683ff8c69004233913002f162ca",
+    "known_near_duplicate_edges.csv": "7c5282da35e3aa78b3a330d3acbb3beead36b8c9f68b32bc6001dabb9392dd8d",
+    "proxy_group_membership.csv": "1b091d96d0ba804e5b99a9cd166695f30e08002f3712063e346fdd25269ee495"
+  },
+  "interpretation": "The giant group is created by the uninterrupted filename-numeric adjacency chain frame_00000..frame_04076. Candidate pHash/dHash edges are not used by the V86 grouping graph and are not responsible for the giant component.",
+  "number_of_images": 4077,
+  "numeric_gap_count": 4076,
+  "numeric_gap_distribution": {
+    "1": 4076
+  },
+  "numeric_id_max": 4076,
+  "numeric_id_min": 0,
+  "operational_graph_bridge_audit": {
+    "bridge_edge_count": 3969,
+    "bridges_splitting_at_least_1000_images_per_side": 2019,
+    "bridges_splitting_at_least_100_images_per_side": 3771,
+    "bridges_splitting_at_least_500_images_per_side": 3004,
+    "largest_balanced_bridge_splits": [
+      {
+        "larger_side_images": 2039,
+        "sample_id_a": "frame_02037",
+        "sample_id_b": "frame_02038",
+        "smaller_side_images": 2038
+      },
+      {
+        "larger_side_images": 2039,
+        "sample_id_a": "frame_02038",
+        "sample_id_b": "frame_02039",
+        "smaller_side_images": 2038
+      },
+      {
+        "larger_side_images": 2040,
+        "sample_id_a": "frame_02036",
+        "sample_id_b": "frame_02037",
+        "smaller_side_images": 2037
+      },
+      {
+        "larger_side_images": 2040,
+        "sample_id_a": "frame_02039",
+        "sample_id_b": "frame_02040",
+        "smaller_side_images": 2037
+      },
+      {
+        "larger_side_images": 2041,
+        "sample_id_a": "frame_02035",
+        "sample_id_b": "frame_02036",
+        "smaller_side_images": 2036
+      },
+      {
+        "larger_side_images": 2041,
+        "sample_id_a": "frame_02040",
+        "sample_id_b": "frame_02041",
+        "smaller_side_images": 2036
+      },
+      {
+        "larger_side_images": 2042,
+        "sample_id_a": "frame_02034",
+        "sample_id_b": "frame_02035",
+        "smaller_side_images": 2035
+      },
+      {
+        "larger_side_images": 2042,
+        "sample_id_a": "frame_02041",
+        "sample_id_b": "frame_02042",
+        "smaller_side_images": 2035
+      },
+      {
+        "larger_side_images": 2043,
+        "sample_id_a": "frame_02033",
+        "sample_id_b": "frame_02034",
+        "smaller_side_images": 2034
+      },
+      {
+        "larger_side_images": 2043,
+        "sample_id_a": "frame_02042",
+        "sample_id_b": "frame_02043",
+        "smaller_side_images": 2034
+      }
+    ]
+  },
+  "pass_conditions": {
+    "candidate_edges_not_used_by_v86_group_builder": true,
+    "no_candidate_edge_crosses_giant_boundary": true,
+    "one_component_after_candidate_removal": true,
+    "one_component_with_filename_adjacency_only": true,
+    "one_component_with_filename_plus_confirmed_only": true
+  },
+  "script_sha256": "2456064a40c2387383d21d0d8a506e3a97ada5e9f1483c78c7fe8cb0d27a4bf3",
+  "status": "PASS"
+}

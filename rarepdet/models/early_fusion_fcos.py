@@ -1,7 +1,11 @@
 from torchvision.models.detection import FCOS
 from torchvision.models.detection.anchor_utils import AnchorGenerator
 
-from rarepdet.models.repvit_fpn_backbone import RepViTFPNBackbone, ReliabilityRepViTFPNBackbone
+from rarepdet.models.repvit_fpn_backbone import (
+    RepViTFPNBackbone,
+    ReliabilityRepViTFPNBackbone,
+    ReliabilityRGBThermalRepViTFPNBackbone,
+)
 
 
 def build_early_fusion_fcos(
@@ -91,6 +95,37 @@ def build_reliability_fcos(
     )
 
 
+def build_reliability_rgbt_fcos(
+    model_name="repvit_m0_9.dist_300e_in1k",
+    img_size=640,
+    num_classes=2,
+    fpn_out_channels=128,
+    score_thresh=0.2,
+    nms_thresh=0.6,
+    detections_per_img=100,
+):
+    backbone = ReliabilityRGBThermalRepViTFPNBackbone(
+        model_name=model_name,
+        fpn_out_channels=fpn_out_channels,
+        pretrained=False,
+    )
+    anchor_sizes = ((4,), (8,), (16,), (32,))
+    anchor_generator = AnchorGenerator(anchor_sizes, ((1.0,),) * len(anchor_sizes))
+    return FCOS(
+        backbone=backbone,
+        num_classes=num_classes,
+        min_size=img_size,
+        max_size=img_size,
+        image_mean=[0.0] * 5,
+        image_std=[1.0] * 5,
+        anchor_generator=anchor_generator,
+        score_thresh=score_thresh,
+        nms_thresh=nms_thresh,
+        detections_per_img=detections_per_img,
+        fixed_size=(img_size, img_size),
+    )
+
+
 def build_detector(
     model_type="early",
     model_name="repvit_m0_9.dist_300e_in1k",
@@ -122,6 +157,16 @@ def build_detector(
             nms_thresh=nms_thresh,
             detections_per_img=detections_per_img,
         )
+    if model_type == "reliability_rgbt":
+        return build_reliability_rgbt_fcos(
+            model_name=model_name,
+            img_size=img_size,
+            num_classes=num_classes,
+            fpn_out_channels=fpn_out_channels,
+            score_thresh=score_thresh,
+            nms_thresh=nms_thresh,
+            detections_per_img=detections_per_img,
+        )
     if model_type in {"ra_static_equal", "ra_stems_project"}:
         from rarepdet.models.ablation_fusion_fcos import build_static_fusion_fcos
 
@@ -137,5 +182,5 @@ def build_detector(
         )
     raise ValueError(
         f"Unknown model type '{model_type}'. Use 'early', 'reliability', "
-        "'ra_static_equal', or 'ra_stems_project'."
+        "'reliability_rgbt', 'ra_static_equal', or 'ra_stems_project'."
     )

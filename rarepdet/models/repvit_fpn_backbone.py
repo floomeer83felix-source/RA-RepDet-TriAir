@@ -170,3 +170,80 @@ class ReliabilityRepViTFPNBackbone(nn.Module):
 
         feature_dict = OrderedDict((str(index), feature) for index, feature in enumerate(features))
         return self.fpn(feature_dict)
+
+
+class ReliabilityRGBThermalRepViTFPNBackbone(nn.Module):
+    """Two-way RGB/thermal dynamic fusion control for the V86 protocol.
+
+    The dataset tensor remains Bx5xHxW for a common loader contract, but the
+    event channel is never read by this model.
+    """
+
+    def __init__(
+        self,
+        model_name="repvit_m0_9.dist_300e_in1k",
+        fpn_out_channels=128,
+        pretrained=False,
+    ):
+        super().__init__()
+        self.model_name = model_name
+        self.last_alpha = None
+        self.rgb_stem = nn.Sequential(
+            nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False),
+            nn.BatchNorm2d(16),
+            nn.SiLU(inplace=True),
+        )
+        self.thermal_stem = nn.Sequential(
+            nn.Conv2d(1, 16, kernel_size=3, padding=1, bias=False),
+            nn.BatchNorm2d(16),
+            nn.SiLU(inplace=True),
+        )
+        self.reliability = nn.Sequential(
+            nn.Linear(32, 16),
+            nn.SiLU(inplace=True),
+            nn.Linear(16, 2),
+        )
+        self.to_repvit = nn.Conv2d(16, 3, kernel_size=1)
+        self.repvit = timm.create_model(
+            model_name,
+            pretrained=pretrained,
+            features_only=True,
+            in_chans=3,
+        )
+        self.in_channels_list = [48, 96, 192, 384]
+        if hasattr(self.repvit, "feature_info"):
+            detected_channels = list(self.repvit.feature_info.channels())
+            if detected_channels:
+                self.in_channels_list = detected_channels
+        self.fpn = FeaturePyramidNetwork(
+            in_channels_list=self.in_channels_list,
+            out_channels=fpn_out_channels,
+        )
+        self.out_channels = fpn_out_channels
+
+    def forward(self, x):
+        if x.ndim != 4 or x.shape[1] != 5:
+            raise ValueError(f"expected Bx5xHxW input, received {tuple(x.shape)}")
+        f_rgb = self.rgb_stem(x[:, 0:3])
+        f_thermal = self.thermal_stem(x[:, 3:4])
+        pooled = torch.cat(
+            [
+                torch.flatten(torch.nn.functional.adaptive_avg_pool2d(f_rgb, 1), 1),
+                torch.flatten(torch.nn.functional.adaptive_avg_pool2d(f_thermal, 1), 1),
+            ],
+            dim=1,
+        )
+        alpha = torch.softmax(self.reliability(pooled), dim=1)
+        self.last_alpha = alpha.detach()
+        fused = (
+            alpha[:, 0].view(-1, 1, 1, 1) * f_rgb
+            + alpha[:, 1].view(-1, 1, 1, 1) * f_thermal
+        )
+        features = self.repvit(self.to_repvit(fused))
+        if len(features) != len(self.in_channels_list):
+            raise RuntimeError(
+                f"{self.model_name} returned {len(features)} feature maps, "
+                f"but FPN expects {len(self.in_channels_list)}."
+            )
+        feature_dict = OrderedDict((str(index), feature) for index, feature in enumerate(features))
+        return self.fpn(feature_dict)

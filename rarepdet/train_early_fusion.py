@@ -222,7 +222,7 @@ def main():
     parser.add_argument(
         "--model",
         default="early",
-        choices=("early", "reliability", "ra_static_equal", "ra_stems_project"),
+        choices=("early", "reliability", "reliability_rgbt", "ra_static_equal", "ra_stems_project"),
     )
     parser.add_argument("--data", default=r"D:\download\triair")
     parser.add_argument("--train-split", default=r"D:\download\triair\splits\train.txt")
