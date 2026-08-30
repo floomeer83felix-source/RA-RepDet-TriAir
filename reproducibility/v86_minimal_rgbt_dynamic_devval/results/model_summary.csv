@@ -1,0 +1,9 @@
+model,metric,n,mean,sample_sd
+rgb_thermal_dynamic,ap50_95,3,0.691243302,0.028029713
+rgb_thermal_event_dynamic,ap50_95,3,0.725147847,0.012111890
+rgb_thermal_dynamic,ap50,3,0.946075999,0.002796456
+rgb_thermal_event_dynamic,ap50,3,0.947546699,0.000283075
+rgb_thermal_dynamic,ap75,3,0.840894422,0.024138985
+rgb_thermal_event_dynamic,ap75,3,0.874167460,0.008120323
+rgb_thermal_dynamic,ar100,3,0.767302994,0.023219272
+rgb_thermal_event_dynamic,ar100,3,0.791670928,0.009793571
