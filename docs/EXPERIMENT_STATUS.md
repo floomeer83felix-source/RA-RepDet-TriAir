@@ -1,112 +1,64 @@
 # Experiment Status
 
-Updated: 2026-08-14
+Updated: 2026-09-08
 
-## Active status
+## Active task
 
-`V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE`
+`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_AUTHORIZED`
 
-V85 generated and integrated one real checkpoint-backed qualitative figure from the frozen TriAir component-disjoint development-validation split. No training, threshold tuning, manual box editing, synthetic imagery, or locked-holdout access occurred.
+## V86 completion
 
-## V85 completion
+V86 completed at commit `d489b82ae0bd9fe650e012c157fb1eb0212a5495` with a deterministic three-seed RGB+thermal dynamic control under the same frozen TriAir component-disjoint development-validation protocol as the authoritative tri-modal dynamic-gating source.
 
-- deterministic candidate table: all 2,213 authorized development-validation samples;
-- selected scenes: `frame_00846`, `nframe_01125`, and `nframe_07517` from three distinct components;
-- checkpoints: fixed matched-early/no-dropout seed 0 and dynamic-gate/no-dropout seed 0, both SHA256-verified;
-- display contract: score `0.25`, NMS IoU `0.60`, maximum 100 detections for both models and all scenes;
-- outputs: real RGB, thermal, stored-event, matched-early, and dynamic-gate panels plus publication PNG/PDF;
-- provenance: complete sample, split, checkpoint, preprocessing, display-transform, and command record;
-- manuscript snapshot: `submission/v85_real_qualitative_manuscript/`, two-pass pdfLaTeX source validation successful;
-- frozen Fig.6 submission assets: PNG/PDF copied byte-for-byte into the
-  manuscript `figures/` directory and explicitly approved for Git tracking;
-- asset SHA256: PNG `e498d4b47a8e199f9f47c8e5545c37a6f8a5d0c50e7c0dc305703f02b6155cdf`,
-  PDF `6d5ce6d2c6fcdfdb1587757024612c510f272cf7220f5ecf965f5e6a51e4035d`;
-- historical 837-image partition access: none.
+Completion facts:
 
-The figure is illustrative only. It does not change V84 quantitative results or authorize external-generalization, calibrated-reliability, physical sensor-failure, SOTA, or statistical-significance claims.
+- RGB+thermal dynamic seeds `0/1/2`: complete;
+- matched RGB+thermal+event dynamic seeds `0/1/2`: frozen from authoritative V84 source;
+- common split SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
+- deterministic result regeneration: verified;
+- GPU released; stderr error: none;
+- historical guard access: none;
+- V86 outer-fold access: none;
+- checkpoints/weights committed to Git: none.
 
-## V84 completion
+### V86 three-seed summary
 
-- RGB+thermal baseline: seeds 0/1/2 complete, COCO AP `0.6843 +/- 0.0312`;
-- matched gate-by-dropout channel-removal analysis: `48/48 COMPLETE`;
-- gate-quality and controlled-corruption analysis: `30/30 COMPLETE`;
-- component-cluster bootstrap: 12 checkpoints, 1,298 components, 5,000 replicates;
-- published comparator: transparent stop because the pinned official implementation cannot satisfy the frozen split, evaluator, checkpoint-selection, and license contract without substantial adaptation;
-- MM-UAV reproducibility: exact sequence, geometry, conversion, transfer, and evaluation details frozen;
-- manuscript snapshot: `submission/v84_jei_evidence_manuscript/`, two-pass source-only pdfLaTeX compile successful;
-- locked holdout access in V84: none.
+| Model | AP@[.50:.95] | AP50 | AP75 | AR100 |
+| --- | ---: | ---: | ---: | ---: |
+| RGB+thermal dynamic | `0.6912 +/- 0.0280` | `0.9461 +/- 0.0028` | `0.8409 +/- 0.0241` | `0.7673 +/- 0.0232` |
+| RGB+thermal+event dynamic | `0.7251 +/- 0.0121` | `0.9475 +/- 0.0003` | `0.8742 +/- 0.0081` | `0.7917 +/- 0.0098` |
 
-The evidence narrows the reliability claim: dynamic gating improves nominal development-validation AP under component-aware uncertainty, but missing-event robustness is mainly attributable to modality-dropout training, and controlled corruption does not produce monotonic affected-modality down-weighting. Gate weights are task-driven fusion coefficients, not calibrated sensor-health probabilities. A positive isolated event contribution and same-protocol superiority over a published comparator are not established.
+Paired tri-modal minus RGB+thermal:
 
-## V83 completion
+- AP: `+0.033904545 +/- 0.040004676`, positive seeds `2/3`;
+- AP50: `+0.001470700`, positive seeds `2/3`;
+- AP75: `+0.033273038`, positive seeds `2/3`;
+- AR100: `+0.024367934`, positive seeds `2/3`.
 
-- V81 weight identity: `9/9 PASS` for SHA256, epoch, input mode, seed, and model configuration;
-- exact-identity fusion controls: `6/6 PASS` across matched early and reliability-aware seeds 0/1/2;
-- efficiency benchmark: `15/15 COMPLETE` on RTX 3090, batch 1, 640x640, FP32, 50 warm-up and 200 synchronized measured iterations;
-- dataset or label access: none;
-- training or tuning: none;
-- locked holdout access: none.
+Seed-level AP differences are `-0.011024848`, `+0.065663667`, and `+0.047074816` for seeds 0, 1, and 2 respectively.
 
-Reliability-aware fusion reports 6,593,293 parameters, 105.392 profiler GFLOPs, `22.2324 +/- 0.1879 ms` full-detector latency, and `44.9815 FPS`. Matched early fusion reports 6,591,609 parameters, 104.762 profiler GFLOPs, `22.0800 +/- 0.3082 ms`, and `45.2957 FPS`. The parameter, FLOP, and latency overhead is small, while peak CUDA memory is materially higher for reliability-aware fusion.
+## Scientific conclusion
 
-The V83 result corroborates but does not supersede the existing V82 efficiency table, whose timing protocol is stronger and whose raw-forward and detector-inference boundaries are separate. No V82 manuscript revision is created.
+The V86 evidence supports a descriptive average contribution from the event stream under the frozen TriAir development-validation protocol. The mean gain is concentrated in COCO AP, AP75, and AR100, while AP50 is effectively unchanged. Because seed 0 does not improve and only `2/3` seeds are positive, V86 does not support uniform per-seed improvement, statistical significance, or universal event utility.
 
-## Authoritative V81 single-modality results
-
-Values are mean ± sample standard deviation over seeds 0, 1, and 2.
+This result complements the authoritative V81 single-modality evidence:
 
 | Modality | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| RGB-only | 0.4473 ± 0.0033 | 0.7674 ± 0.0036 | 0.4428 ± 0.0098 | 0.1650 ± 0.0009 | 0.5225 ± 0.0036 | 0.5897 ± 0.0024 |
-| Thermal-only | 0.5196 ± 0.0196 | 0.8320 ± 0.0154 | 0.5776 ± 0.0244 | 0.2035 ± 0.0081 | 0.5826 ± 0.0148 | 0.6473 ± 0.0132 |
-| Event-only | 0.1949 ± 0.0012 | 0.3657 ± 0.0032 | 0.1943 ± 0.0049 | 0.0751 ± 0.0033 | 0.2694 ± 0.0014 | 0.3558 ± 0.0067 |
+| RGB-only | `0.4473 +/- 0.0033` | `0.7674 +/- 0.0036` | `0.4428 +/- 0.0098` | `0.1650 +/- 0.0009` | `0.5225 +/- 0.0036` | `0.5897 +/- 0.0024` |
+| Thermal-only | `0.5196 +/- 0.0196` | `0.8320 +/- 0.0154` | `0.5776 +/- 0.0244` | `0.2035 +/- 0.0081` | `0.5826 +/- 0.0148` | `0.6473 +/- 0.0132` |
+| Event-only | `0.1949 +/- 0.0012` | `0.3657 +/- 0.0032` | `0.1943 +/- 0.0049` | `0.0751 +/- 0.0033` | `0.2694 +/- 0.0014` | `0.3558 +/- 0.0067` |
 
-## Compatible multimodal-versus-thermal development-validation contrasts
+Together, V81 and V86 support the bounded interpretation that event is weak as a standalone detector but can provide complementary information when fused with RGB and thermal.
 
-| System | Metric | Mean delta | Sample SD | Positive seeds |
-| --- | --- | ---: | ---: | ---: |
-| Reliability-aware p=0.15 | AP | +0.1960 | 0.0329 | 3/3 |
-| Reliability-aware p=0.15 | AP50 | +0.1215 | 0.0154 | 3/3 |
-| Reliability-aware p=0.15 | AP75 | +0.2952 | 0.0349 | 3/3 |
-| Matched early fusion | AP | +0.1606 | 0.0223 | 3/3 |
-| Matched early fusion | AP50 | +0.1053 | 0.0199 | 3/3 |
-| Matched early fusion | AP75 | +0.2314 | 0.0265 | 3/3 |
+## Active V87 work
 
-These remain descriptive component-disjoint development-validation comparisons under compatible standardized COCO definitions.
+V87 must integrate the V81 and V86 evidence into the current manuscript with exact number traceability and conservative wording. No new experiment is authorized.
 
-## Weight identity
+Required completion state:
 
-- V81 training completion: `9/9`, exactly 50 epochs each;
-- standardized COCO evaluation: `9/9`;
-- checkpoint epoch and SHA256: `9/9`;
-- checkpoint registry: `runs/v81_single_modality_retraining_reconciliation/checkpoint_manifest.json`;
-- common development-validation split SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
-- historical V77/V80 supplied rows: reconciliation-only, never primary evidence.
+`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE`
 
-## V83 reordered work
+Required completion commit:
 
-1. **Weight integrity preflight:** verify all nine local V81 `best.pt` files against the archived hashes and metadata.
-2. **Efficiency benchmark:** fixed RTX-3090, batch-1, 640x640, FP32 synchronized latency/memory/parameter benchmark without labeled-data access.
-3. **Evidence review:** decide whether the efficiency result materially improves the lightweight claim before changing the manuscript.
-4. **Locked holdout:** optional and separately authorization-gated. No holdout access is authorized by this planning update.
-5. **Submission closure:** final author metadata and live journal/portal verification.
-
-Detailed plan:
-
-```text
-docs/CODEX_V83_POST_V81_WEIGHT_TASK_PLAN.md
-```
-
-## V82 manuscript validation
-
-- active root manuscript: V82;
-- PDF pages: `16`;
-- two pdfLaTeX passes: `PASS`;
-- undefined citations/references: `0`;
-- overfull boxes: `0`;
-- PDF preflight: `PASS`;
-- rendered-page audit: `16/16 PASS`.
-
-## Scientific boundary
-
-The component-disjoint validation partition participates in checkpoint retention, the 837-image holdout is internal and was already used in V42, and MM-UAV uses supervised target-domain labels on an exposed devval split. No significance, independent public-test, calibrated sensor-reliability, or physical sensor-failure claim is made.
+`docs: integrate V81-V86 TriAir event contribution evidence into manuscript`
