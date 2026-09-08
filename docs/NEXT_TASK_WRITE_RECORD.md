@@ -1,64 +1,83 @@
 # Next Task Write Record
 
-Written: 2026-08-08
+Written: 2026-09-08
 Branch: `research/ra-repdet-triair`
 
-## Replanned task
+## Completed prior task
 
-`V83_POST_V81_WEIGHT_EVIDENCE_REPLAN`
+V86 completion commit:
 
-The author requested that the task sequence be rearranged around the new authoritative V81 checkpoint weights.
+`d489b82ae0bd9fe650e012c157fb1eb0212a5495`
 
-## Authoritative inputs
+Commit message:
 
-- checkpoint registry: `runs/v81_single_modality_retraining_reconciliation/checkpoint_manifest.json`;
-- nine V81 retained `best.pt` checkpoints;
-- RGB-only, thermal-only, and event-only seeds 0/1/2;
-- checkpoint epoch and SHA256 archived for 9/9;
-- common development-validation split SHA256: `722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`;
-- V82 remains the active manuscript.
+`results: add three-seed RGB-thermal dynamic control`
 
-## New execution hierarchy
+Verified V86 result:
 
-1. verify local V81 weight identities against the manifest;
-2. run a uniform RTX-3090 efficiency benchmark without reopening labeled validation/holdout data;
-3. review whether the efficiency result materially strengthens the lightweight claim;
-4. treat the 837-image locked internal holdout as a separately authorization-gated optional phase;
-5. finish author metadata and live journal/portal checks before submission.
+`V86_MINIMAL_RGBT_DYNAMIC_DEVVAL_COMPLETE`
 
-The detailed runbook is:
+The branch head was exactly the V86 completion commit before this handoff was written.
 
-```text
-docs/CODEX_V83_POST_V81_WEIGHT_TASK_PLAN.md
-```
+## Frozen V86 evidence
 
-## Holdout boundary
+Three-seed means +/- sample SD:
 
-This planning update does **not** authorize access to the 837-image locked internal holdout. A separate explicit author instruction is required before the V81 weights may be evaluated there. If authorized later, the holdout remains repeated internal evidence from the same provider archive, not an independent public test.
+| Model | AP@[.50:.95] | AP50 | AP75 | AR100 |
+| --- | ---: | ---: | ---: | ---: |
+| RGB+thermal dynamic | `0.6912 +/- 0.0280` | `0.9461 +/- 0.0028` | `0.8409 +/- 0.0241` | `0.7673 +/- 0.0232` |
+| RGB+thermal+event dynamic | `0.7251 +/- 0.0121` | `0.9475 +/- 0.0003` | `0.8742 +/- 0.0081` | `0.7917 +/- 0.0098` |
 
-## Frozen prohibitions
+Paired tri-modal minus two-modal AP by seed:
 
-- no retraining or fine-tuning;
-- no threshold or hyperparameter sweep;
-- no checkpoint or seed replacement;
-- no selective rerun;
-- no historical V77/V80 values restored to primary claims;
-- no statistical-significance or independent-test claim.
+- seed 0: `-0.011024848`;
+- seed 1: `+0.065663667`;
+- seed 2: `+0.047074816`;
+- mean: `+0.033904545`;
+- sample SD: `0.040004676`;
+- positive seeds: `2/3`.
 
-## Planning commits
+Paired mean deltas for other metrics:
 
-- `docs: add V83 post-V81 weight task plan`;
-- `docs: point next task to V83 weight plan`;
-- `docs: record V83 post-weight task replan`.
+- AP50: `+0.001470700`;
+- AP75: `+0.033273038`;
+- AR100: `+0.024367934`.
 
-## Execution record - 2026-08-09
+Authoritative V86 files:
 
-V83 Priority 0 and Priority 1 are complete. The V81 registry passed `9/9`; the exact-identity matched-early and reliability-aware controls passed `6/6`; and the fixed RTX-3090 efficiency benchmark completed `15/15` without dataset or label access.
+- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/V86_MINIMAL_RGBT_DYNAMIC_RESULT.md`;
+- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/rgbt_dynamic_per_seed.csv`;
+- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/paired_event_deltas.csv`.
 
-Evidence is archived under:
+## Active next task
 
-```text
-runs/v83_post_v81_weight_evidence/
-```
+`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_AUTHORIZED`
 
-The manuscript gate was reviewed. V83 does not replace the stronger repeated efficiency protocol already reported in V82, so no manuscript source or accuracy value was changed. Locked-holdout reuse remains unauthorized.
+Canonical task file:
+
+`docs/NEXT_TASK.md`
+
+V87 must integrate the authoritative V81 single-modality results together with V86 into the manuscript. The intended scientific message is bounded:
+
+1. Thermal-only is the strongest single modality, RGB-only is second, and event-only is weakest under the V81 COCO protocol.
+2. Event-only weakness does not imply zero complementary value in fusion.
+3. Adding event to the matched RGB+thermal dynamic model increases three-seed mean AP by `+0.0339`, AP75 by `+0.0333`, and AR100 by `+0.0244`.
+4. AP50 changes by only `+0.00147` on average.
+5. Seed 0 does not improve in AP, AP75, or AR100; therefore only descriptive average improvement is supported.
+6. No significance, universal event benefit, independent-test, calibrated-reliability, or physical sensor-health claim is authorized.
+
+## Execution restriction
+
+V87 is manuscript-only. No new training, inference, evaluator run, threshold tuning, seed addition, holdout access, V86 outer-fold access, or result-driven rerun is authorized.
+
+## Required completion
+
+Successful state:
+
+`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE`
+
+Required completion commit:
+
+`docs: integrate V81-V86 TriAir event contribution evidence into manuscript`
+
+Push to `research/ra-repdet-triair`.
