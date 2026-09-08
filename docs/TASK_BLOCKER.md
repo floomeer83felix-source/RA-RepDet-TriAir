@@ -1,42 +1,62 @@
 # Task Blocker
 
-Status: `NO_ACTIVE_SUBMISSION_BLOCKER_V83_COMPLETE_OPTIONAL_HOLDOUT_REUSE_GATED`
+Status: `V87_MANUSCRIPT_INTEGRATION_AUTHORIZED_NO_ACTIVE_EXPERIMENT_BLOCKER`
 
-Updated: 2026-08-09
+Updated: 2026-09-08
 
 ## Current state
 
-V82 is complete and submission-capable after final author metadata and live journal checks. V83 weight verification and label-free efficiency profiling are complete. They corroborate the existing lightweight claim but do not require a V82 manuscript revision.
+V86 is complete at commit `d489b82ae0bd9fe650e012c157fb1eb0212a5495`. All three RGB+thermal dynamic seeds completed under the frozen TriAir component-disjoint development-validation split and were deterministically compared against the authoritative matched tri-modal dynamic-gating rows.
 
-## Completed V83 work
+There is no active experimental blocker. The next task is manuscript integration only:
 
-- nine V81 weight identities verified;
-- six multimodal control identities verified;
-- 15 fixed-hardware efficiency runs complete;
-- runtime environment, latency, memory, parameter count, and profiler outputs archived;
-- no dataset, label, or holdout access.
+`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_AUTHORIZED`
 
-## Authorization-gated work
+## Frozen evidence boundary
 
-The 837-image locked internal holdout may be reused with the V81 weights only after a separate explicit author instruction. This planning update does not authorize that access.
+The manuscript may state that:
 
-If holdout reuse is later authorized:
+- RGB+thermal dynamic reaches AP `0.6912 +/- 0.0280`;
+- RGB+thermal+event dynamic reaches AP `0.7251 +/- 0.0121`;
+- the paired AP mean difference is `+0.0339 +/- 0.0400`;
+- AP is positive for `2/3` seeds and negative for seed 0;
+- AP50 is almost unchanged on average (`+0.00147`);
+- AP75 (`+0.03327`) and AR100 (`+0.02437`) show the clearest descriptive mean gains;
+- event-only remains the weakest V81 single-modality detector, so its value is complementary rather than dominant under this protocol.
 
-- no checkpoint, threshold, epoch, or seed selection may use holdout results;
-- all nine V81 checkpoints must be evaluated under one frozen contract;
-- the holdout must remain described as internal to the same provider archive and previously used in V42, not as a pristine or independent external test.
+## Claims that remain blocked
 
-## Prohibited
+Do not state or imply:
 
-- retraining or fine-tuning;
-- hyperparameter/threshold sweep;
-- `last.pt` substitution;
-- checkpoint or seed replacement;
-- selective reruns driven by results;
-- numerical mixing with historical V77/V80 supplied rows;
-- statistical-significance, independent-test, or physical sensor-failure claims.
+- event improves every random seed;
+- statistical significance;
+- universal or dataset-independent event benefit;
+- independent test-set validation;
+- physical sensor-failure robustness;
+- calibrated sensor-health probabilities;
+- historical guard or V86 outer-fold confirmation;
+- SOTA based on this comparison alone.
 
-## Remaining mandatory submission closure
+## Protected work boundary
 
-1. Final author, affiliation, corresponding-author, and ORCID metadata.
-2. Live target-journal formatting and submission-portal verification.
+V87 must not:
+
+- run new training, inference, evaluation, threshold search, or hyperparameter tuning;
+- access the historical 837-image partition;
+- access V86 outer folds;
+- rerun only unfavorable seeds;
+- replace checkpoints or evaluator definitions;
+- commit model weights, raw datasets, or private/heavy artifacts.
+
+## Fail-closed conditions
+
+Use a blocked V87 state only if one of the following occurs:
+
+1. manuscript numbers cannot be traced exactly to the frozen V81/V86 evidence;
+2. the manuscript still contains uniform-improvement, significance, independent-test, or calibrated-reliability overclaims;
+3. the manuscript no longer compiles cleanly or the new tables/captions render incorrectly;
+4. protected or heavy artifacts enter the Git diff.
+
+Otherwise complete V87 with:
+
+`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE`.
