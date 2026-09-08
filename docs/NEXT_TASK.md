@@ -1,98 +1,129 @@
 # Current Task
 
-## Active task
+## Authorization
 
-`V85_SUBMISSION_FIGURE_ASSETS_TRACKING_COMPLETE`
+V86 completed at commit `d489b82ae0bd9fe650e012c157fb1eb0212a5495` with the frozen result:
 
-The frozen V85 real qualitative PNG/PDF have been copied byte-for-byte into the JEI manuscript submission assets directory and approved for Git tracking. No regeneration, inference, sample selection, or scientific-content change was performed.
+`V86_MINIMAL_RGBT_DYNAMIC_DEVVAL_COMPLETE`
 
-Execute:
+The active next task is:
 
-```text
-docs/CODEX_V85_REAL_QUALITATIVE_FIGURE_PLAN.md
-```
+`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_AUTHORIZED`
 
-## Scientific purpose
+V87 is a manuscript-evidence integration task only. It must integrate the authoritative V81 single-modality evidence and the V86 matched RGB+thermal versus RGB+thermal+event dynamic-gating comparison into the current manuscript without new training, inference, tuning, checkpoint selection, or holdout access.
 
-Add a genuine qualitative figure using only:
+## Frozen evidence
 
-- real TriAir component-disjoint development-validation samples;
-- real stored RGB / thermal / event-representation channels;
-- real matched-early/no-dropout checkpoint predictions;
-- real dynamic-gate/no-dropout checkpoint predictions.
+### V81 single-modality three-seed results
 
-The figure must not contain synthetic, AI-generated, reconstructed, hand-edited, or invented sensor imagery, bounding boxes, labels, or confidence scores.
+| Modality | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| RGB-only | `0.4473 +/- 0.0033` | `0.7674 +/- 0.0036` | `0.4428 +/- 0.0098` | `0.1650 +/- 0.0009` | `0.5225 +/- 0.0036` | `0.5897 +/- 0.0024` |
+| Thermal-only | `0.5196 +/- 0.0196` | `0.8320 +/- 0.0154` | `0.5776 +/- 0.0244` | `0.2035 +/- 0.0081` | `0.5826 +/- 0.0148` | `0.6473 +/- 0.0132` |
+| Event-only | `0.1949 +/- 0.0012` | `0.3657 +/- 0.0032` | `0.1943 +/- 0.0049` | `0.0751 +/- 0.0033` | `0.2694 +/- 0.0014` | `0.3558 +/- 0.0067` |
 
-## Fixed qualitative checkpoints
+Common component-disjoint devval split SHA256:
+`722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`.
 
-Use **seed 0** for both:
+### V86 matched event-contribution comparison
 
-1. matched early fusion / no dropout;
-2. dynamic gate / no dropout.
+| Model | AP@[.50:.95] | AP50 | AP75 | AR100 |
+| --- | ---: | ---: | ---: | ---: |
+| RGB+thermal dynamic | `0.6912 +/- 0.0280` | `0.9461 +/- 0.0028` | `0.8409 +/- 0.0241` | `0.7673 +/- 0.0232` |
+| RGB+thermal+event dynamic | `0.7251 +/- 0.0121` | `0.9475 +/- 0.0003` | `0.8742 +/- 0.0081` | `0.7917 +/- 0.0098` |
 
-Do not select the visually best seed or substitute another seed silently. If seed 0 cannot be verified, stop and document the reason.
+Same-seed tri-modal minus RGB+thermal AP:
 
-## Deterministic sample selection
+- seed 0: `-0.011024848`;
+- seed 1: `+0.065663667`;
+- seed 2: `+0.047074816`;
+- mean: `+0.033904545`;
+- sample SD: `0.040004676`;
+- positive seeds: `2/3`.
 
-Select three scenes from the frozen 2,213-image development-validation split using the model-independent rule specified in the V85 plan:
+Other paired mean differences:
 
-- Scene A: bright / ordinary;
-- Scene B: dark / low-visible-light;
-- Scene C: crowded / small-target.
+- AP50: `+0.001470700`, positive seeds `2/3`;
+- AP75: `+0.033273038`, positive seeds `2/3`;
+- AR100: `+0.024367934`, positive seeds `2/3`.
 
-Scenes must come from distinct validation components. Do not manually browse and cherry-pick examples based on model success.
+Authoritative sources:
 
-## Figure layout
+- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/V86_MINIMAL_RGBT_DYNAMIC_RESULT.md`;
+- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/rgbt_dynamic_per_seed.csv`;
+- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/paired_event_deltas.csv`;
+- V86 completion commit `d489b82ae0bd9fe650e012c157fb1eb0212a5495`.
 
-Preferred layout:
+## Required manuscript changes
 
-```text
-3 rows × 5 columns
-(a) RGB
-(b) Thermal
-(c) Event representation
-(d) Matched early fusion
-(e) Dynamic gate
-```
+1. Add or update one compact single-modality table using the exact V81 COCO metrics.
+2. Add one matched two-modal versus tri-modal dynamic-gating table using the exact V86 three-seed means and sample standard deviations.
+3. Report the same-seed AP deltas and state explicitly that only `2/3` seeds improve.
+4. State that AP50 is nearly unchanged, while the descriptive mean gain is concentrated in stricter localization and recall: AP75 and AR100.
+5. Connect V81 and V86 without overclaiming: event-only is the weakest standalone modality, yet event information can still provide complementary value when fused with RGB and thermal.
+6. Preserve the existing interpretation of dynamic gating as task-driven routing coefficients, not calibrated physical sensor-health estimates.
+7. Keep all component-disjoint devval, holdout, MM-UAV, and external-generalization boundaries unchanged.
+8. Rebuild the manuscript and inspect the updated tables, references, page layout, and captions.
 
-Use one global display threshold for both checkpoints and all scenes. Default: score `>= 0.25`, NMS IoU `0.60`, max detections `100`.
+## Required interpretation
 
-## Required output root
+Allowed wording should be equivalent to:
 
-```text
-runs/v85_real_qualitative_figure/
-```
+> On the frozen component-disjoint development-validation protocol, event-only detection is substantially weaker than RGB-only or thermal-only detection, but adding the event stream to the matched RGB+thermal dynamic-gating system yields a descriptive three-seed mean improvement in COCO AP (+0.0339), AP75 (+0.0333), and AR100 (+0.0244), while AP50 remains nearly unchanged. The AP improvement is positive for two of three seeds, so the evidence supports complementary event contribution on average but not uniform per-seed improvement or statistical significance.
 
-Required final artifacts include:
+## Prohibited claims
 
-```text
-figure/fig6_real_qualitative.png
-figure/fig6_real_qualitative.pdf
-figure/fig6_caption.txt
-provenance/qualitative_figure_provenance.md
-V85_QUALITATIVE_FIGURE_SUMMARY.md
-```
+Do not claim:
 
-The provenance must include sample IDs, component IDs, split identity, checkpoint SHA256 values, seed, preprocessing, visualization transforms, prediction threshold, and the generation command.
+- event improves every seed;
+- statistically significant event benefit;
+- universal event-sensor utility;
+- independent test-set confirmation;
+- calibrated sensor reliability or physical sensor-health estimation;
+- SOTA solely from this comparison;
+- access to or evidence from the historical guard or V86 outer folds.
 
-## Locked data protection
+## Forbidden work
 
-The historical 837-image partition remains **locked**.
+- no new training, fine-tuning, inference, evaluation, seed, checkpoint, or threshold sweep;
+- no result-driven reruns;
+- no historical 837-image holdout access;
+- no V86 outer-fold access;
+- no metric recomputation from alternate evaluators;
+- no selective omission of seed 0;
+- no raw checkpoints or private/heavy artifacts committed to Git.
 
-Do not inspect, render, score, or use it for qualitative selection. This task is authorized only on the frozen 2,213-image development-validation split.
+## Required outputs
 
-## Manuscript integration gate
+Create a compact manuscript-integration record under:
 
-Only after the real figure and provenance are frozen may Codex insert the figure into the current V85 JEI submission candidate. Do not replace quantitative results or change the V84 scientific positioning.
+`runs/v87_triair_event_contribution_manuscript_integration/`
 
-## Frozen scientific positioning
+Include at minimum:
 
-- `RA-RepDet` = sample-dependent / input-conditioned dynamic modality gating.
-- Gate/no-dropout is the primary nominal-input model.
-- Modality dropout is an optional robustness regularizer.
-- Routing coefficients are task-driven and are not calibrated physical reliability estimates.
-- No SOTA, independent-test, sensor-health, or three-seed significance claim.
+- `evidence_lock.json`;
+- `manuscript_change_map.json`;
+- `number_traceability.json`;
+- `claim_audit.json`;
+- `build_output.txt`;
+- `rendered_page_audit.md`;
+- `final_decision.json`;
+- `handoff.md`.
 
-## Commit message
+## Decision states
 
-submission: track frozen V85 real qualitative figure assets
+Choose exactly one:
+
+- `V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE`;
+- `V87_BLOCKED_EVIDENCE_OR_NUMBER_TRACEABILITY`;
+- `V87_BLOCKED_CLAIM_OVERREACH`;
+- `V87_BLOCKED_MANUSCRIPT_BUILD_OR_LAYOUT`;
+- `V87_BLOCKED_PROTECTED_ARTIFACT_VIOLATION`.
+
+## Completion commit
+
+Commit with exactly:
+
+`docs: integrate V81-V86 TriAir event contribution evidence into manuscript`
+
+Push to `research/ra-repdet-triair`.
