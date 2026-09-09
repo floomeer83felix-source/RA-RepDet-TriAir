@@ -1,62 +1,28 @@
 # Task Blocker
 
-Status: `V87_MANUSCRIPT_INTEGRATION_AUTHORIZED_NO_ACTIVE_EXPERIMENT_BLOCKER`
+Status: `V87_COMPLETE_NO_ACTIVE_EXPERIMENT_BLOCKER_V88_RELEASE_AUDIT_AUTHORIZED`
 
-Updated: 2026-09-08
+Updated: 2026-09-09
 
 ## Current state
 
-V86 is complete at commit `d489b82ae0bd9fe650e012c157fb1eb0212a5495`. All three RGB+thermal dynamic seeds completed under the frozen TriAir component-disjoint development-validation split and were deterministically compared against the authoritative matched tri-modal dynamic-gating rows.
+V87 is complete. The V81 single-modality table, V86 matched event-contribution comparison, same-seed deltas, and bounded interpretation are integrated into the active manuscript. The V73 MM-UAV section has also been restored to the frozen actual metrics after removal of an older idealized reference table.
 
-There is no active experimental blocker. The next task is manuscript integration only:
+There is no active experimental blocker and no new experiment is authorized.
 
-`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_AUTHORIZED`
-
-## Frozen evidence boundary
+## Frozen claim boundary
 
 The manuscript may state that:
 
-- RGB+thermal dynamic reaches AP `0.6912 +/- 0.0280`;
-- RGB+thermal+event dynamic reaches AP `0.7251 +/- 0.0121`;
-- the paired AP mean difference is `+0.0339 +/- 0.0400`;
-- AP is positive for `2/3` seeds and negative for seed 0;
-- AP50 is almost unchanged on average (`+0.00147`);
-- AP75 (`+0.03327`) and AR100 (`+0.02437`) show the clearest descriptive mean gains;
-- event-only remains the weakest V81 single-modality detector, so its value is complementary rather than dominant under this protocol.
+- thermal-only is the strongest V81 standalone modality and event-only is the weakest;
+- RGB+thermal+event dynamic improves mean AP over matched RGB+thermal dynamic by `+0.0339 +/- 0.0400`;
+- the AP improvement is positive for `2/3` seeds and negative for seed 0;
+- AP50 is nearly unchanged, while AP75 and AR100 show clearer descriptive mean gains;
+- event provides complementary average value under the frozen TriAir development protocol;
+- V73 supervised alignment restores MM-UAV performance, but TriAir initialization and reliability-aware fusion do not improve the three-seed mean.
 
-## Claims that remain blocked
+The manuscript must not claim uniform event benefit, statistical significance, calibrated physical sensor health, independent blind external validation, universal cross-dataset superiority, or positive V73 transfer from the removed idealized reference values.
 
-Do not state or imply:
+## V88 boundary
 
-- event improves every random seed;
-- statistical significance;
-- universal or dataset-independent event benefit;
-- independent test-set validation;
-- physical sensor-failure robustness;
-- calibrated sensor-health probabilities;
-- historical guard or V86 outer-fold confirmation;
-- SOTA based on this comparison alone.
-
-## Protected work boundary
-
-V87 must not:
-
-- run new training, inference, evaluation, threshold search, or hyperparameter tuning;
-- access the historical 837-image partition;
-- access V86 outer folds;
-- rerun only unfavorable seeds;
-- replace checkpoints or evaluator definitions;
-- commit model weights, raw datasets, or private/heavy artifacts.
-
-## Fail-closed conditions
-
-Use a blocked V87 state only if one of the following occurs:
-
-1. manuscript numbers cannot be traced exactly to the frozen V81/V86 evidence;
-2. the manuscript still contains uniform-improvement, significance, independent-test, or calibrated-reliability overclaims;
-3. the manuscript no longer compiles cleanly or the new tables/captions render incorrectly;
-4. protected or heavy artifacts enter the Git diff.
-
-Otherwise complete V87 with:
-
-`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE`.
+V88 may only perform final manuscript consistency, author-metadata, table/figure/reference, build, and release-candidate checks. It may not run training, inference, evaluation, threshold search, checkpoint replacement, or new dataset experiments.
