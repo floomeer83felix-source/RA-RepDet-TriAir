@@ -1,0 +1,11 @@
+{
+  "decision": "V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE",
+  "v81_integrated": true,
+  "v86_integrated": true,
+  "v73_actual_metrics_restored": true,
+  "new_training_or_inference": false,
+  "historical_holdout_access": false,
+  "v86_outer_fold_access": false,
+  "claim_audit": "PASS",
+  "local_build": "PASS"
+}
