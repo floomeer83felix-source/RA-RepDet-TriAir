@@ -1,0 +1,19 @@
+{
+  "allowed": [
+    "event-only is the weakest standalone TriAir modality under V81",
+    "adding event to matched RGB+thermal dynamic gating improves mean AP, AP75, and AR100 descriptively",
+    "AP50 is nearly unchanged",
+    "AP gain is positive for 2 of 3 seeds",
+    "MM-UAV supervised alignment restores useful performance",
+    "TriAir initialization does not improve the V73 three-seed mean under the frozen schedule"
+  ],
+  "prohibited_and_absent": [
+    "event improves every seed",
+    "statistically significant event benefit",
+    "universal event-sensor utility",
+    "calibrated sensor-health estimation",
+    "independent blind external validation",
+    "positive MM-UAV transfer superiority from the idealized reference values"
+  ],
+  "status": "PASS"
+}
