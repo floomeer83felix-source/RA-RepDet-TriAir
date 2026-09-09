@@ -1,0 +1,20 @@
+{
+  "decision_target": "V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE",
+  "v81_single_modality": {
+    "rgb_only_ap": "0.4473 +/- 0.0033",
+    "thermal_only_ap": "0.5196 +/- 0.0196",
+    "event_only_ap": "0.1949 +/- 0.0012",
+    "split_sha256": "722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f"
+  },
+  "v86_commit": "d489b82ae0bd9fe650e012c157fb1eb0212a5495",
+  "v86_rgbt_ap": "0.6912 +/- 0.0280",
+  "v86_triad_ap": "0.7251 +/- 0.0121",
+  "v86_paired_ap_mean": 0.033904545,
+  "v86_paired_ap_sample_sd": 0.040004676,
+  "v86_positive_ap_seeds": 2,
+  "v73_frozen_actual": {
+    "scratch_equal_ap": "0.2234 +/- 0.0073",
+    "triair_init_equal_ap": "0.2178 +/- 0.0020",
+    "triair_init_reliability_ap": "0.2151 +/- 0.0090"
+  }
+}
