@@ -1,112 +1,57 @@
 # Current Task
 
-## Authorization
+## Completion
 
-V86 completed at commit `d489b82ae0bd9fe650e012c157fb1eb0212a5495` with the frozen result:
+V87 is complete with:
 
-`V86_MINIMAL_RGBT_DYNAMIC_DEVVAL_COMPLETE`
+`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE`
 
-The active next task is:
+The active manuscript now contains the authoritative V81 single-modality evidence and the V86 matched RGB+thermal versus RGB+thermal+event dynamic-gating comparison, including the negative seed-0 AP delta and the bounded `2/3`-seed interpretation. The manuscript's MM-UAV V73 section has also been restored to the frozen actual metrics, replacing an older idealized reference table that was not experimental evidence.
 
-`V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_AUTHORIZED`
+No new training, inference, evaluation, tuning, checkpoint selection, historical-holdout access, or V86 outer-fold access occurred in V87.
 
-V87 is a manuscript-evidence integration task only. It must integrate the authoritative V81 single-modality evidence and the V86 matched RGB+thermal versus RGB+thermal+event dynamic-gating comparison into the current manuscript without new training, inference, tuning, checkpoint selection, or holdout access.
+## Active next task
 
-## Frozen evidence
+`V88_MANUSCRIPT_RELEASE_CANDIDATE_CONSISTENCY_AUDIT_AUTHORIZED`
 
-### V81 single-modality three-seed results
+V88 is a final manuscript/submission-readiness task only.
 
-| Modality | AP@[.50:.95] | AP50 | AP75 | AR1 | AR10 | AR100 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| RGB-only | `0.4473 +/- 0.0033` | `0.7674 +/- 0.0036` | `0.4428 +/- 0.0098` | `0.1650 +/- 0.0009` | `0.5225 +/- 0.0036` | `0.5897 +/- 0.0024` |
-| Thermal-only | `0.5196 +/- 0.0196` | `0.8320 +/- 0.0154` | `0.5776 +/- 0.0244` | `0.2035 +/- 0.0081` | `0.5826 +/- 0.0148` | `0.6473 +/- 0.0132` |
-| Event-only | `0.1949 +/- 0.0012` | `0.3657 +/- 0.0032` | `0.1943 +/- 0.0049` | `0.0751 +/- 0.0033` | `0.2694 +/- 0.0014` | `0.3558 +/- 0.0067` |
+## Required V88 work
 
-Common component-disjoint devval split SHA256:
-`722efc6f74a7615aa70fad30275e9e617b3a1866bbc63eadbebce60a9a23fe8f`.
+1. Treat the current manuscript and frozen V81/V84/V85/V86/V87 evidence as read-only scientific inputs.
+2. Audit every numerical statement in the abstract, results, discussion, conclusion, tables, and captions against its authoritative result artifact.
+3. Verify that the active manuscript contains no idealized/reference-only numbers presented as experimental results.
+4. Preserve the V86 event-contribution boundary: mean AP `+0.0339 +/- 0.0400`, positive in `2/3` seeds, AP50 nearly unchanged, no significance claim.
+5. Preserve the actual V73 MM-UAV ordering: Scratch Equal has the highest three-seed mean; source initialization and reliability-aware fusion do not improve the mean under the frozen schedule.
+6. Verify author metadata: Nan Xin first author; Xueting Jin corresponding author; corresponding email `jinxueting@ahpc.edu.cn`; Anhui Police College affiliation; no specific funding.
+7. Verify Data Availability describes TriAir and MM-UAV as publicly available research datasets obtained from their original providers, without implying that this repository redistributes raw data or weights.
+8. Check all figure/table numbering, cross-references, bibliography entries, equations, captions, page breaks, and two-column layout.
+9. Run a clean multi-pass LaTeX build and rendered-page audit.
+10. Freeze the final release-candidate source manifest, PDF hash, source hash, build log, and claim audit.
 
-### V86 matched event-contribution comparison
+## Prohibited work
 
-| Model | AP@[.50:.95] | AP50 | AP75 | AR100 |
-| --- | ---: | ---: | ---: | ---: |
-| RGB+thermal dynamic | `0.6912 +/- 0.0280` | `0.9461 +/- 0.0028` | `0.8409 +/- 0.0241` | `0.7673 +/- 0.0232` |
-| RGB+thermal+event dynamic | `0.7251 +/- 0.0121` | `0.9475 +/- 0.0003` | `0.8742 +/- 0.0081` | `0.7917 +/- 0.0098` |
+- no new training, fine-tuning, inference, evaluation, threshold sweep, hyperparameter search, or seed addition;
+- no checkpoint replacement or result-driven rerun;
+- no historical-holdout or V86 outer-fold access;
+- no selective omission of unfavorable seeds;
+- no statistical-significance, SOTA, calibrated sensor-health, or independent blind external-validation claim unsupported by the frozen evidence;
+- no raw datasets, checkpoints, credentials, or heavy/private experiment artifacts committed to Git.
 
-Same-seed tri-modal minus RGB+thermal AP:
+## Required output root
 
-- seed 0: `-0.011024848`;
-- seed 1: `+0.065663667`;
-- seed 2: `+0.047074816`;
-- mean: `+0.033904545`;
-- sample SD: `0.040004676`;
-- positive seeds: `2/3`.
+`runs/v88_manuscript_release_candidate_consistency_audit/`
 
-Other paired mean differences:
+Required outputs:
 
-- AP50: `+0.001470700`, positive seeds `2/3`;
-- AP75: `+0.033273038`, positive seeds `2/3`;
-- AR100: `+0.024367934`, positive seeds `2/3`.
-
-Authoritative sources:
-
-- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/V86_MINIMAL_RGBT_DYNAMIC_RESULT.md`;
-- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/rgbt_dynamic_per_seed.csv`;
-- `reproducibility/v86_minimal_rgbt_dynamic_devval/results/paired_event_deltas.csv`;
-- V86 completion commit `d489b82ae0bd9fe650e012c157fb1eb0212a5495`.
-
-## Required manuscript changes
-
-1. Add or update one compact single-modality table using the exact V81 COCO metrics.
-2. Add one matched two-modal versus tri-modal dynamic-gating table using the exact V86 three-seed means and sample standard deviations.
-3. Report the same-seed AP deltas and state explicitly that only `2/3` seeds improve.
-4. State that AP50 is nearly unchanged, while the descriptive mean gain is concentrated in stricter localization and recall: AP75 and AR100.
-5. Connect V81 and V86 without overclaiming: event-only is the weakest standalone modality, yet event information can still provide complementary value when fused with RGB and thermal.
-6. Preserve the existing interpretation of dynamic gating as task-driven routing coefficients, not calibrated physical sensor-health estimates.
-7. Keep all component-disjoint devval, holdout, MM-UAV, and external-generalization boundaries unchanged.
-8. Rebuild the manuscript and inspect the updated tables, references, page layout, and captions.
-
-## Required interpretation
-
-Allowed wording should be equivalent to:
-
-> On the frozen component-disjoint development-validation protocol, event-only detection is substantially weaker than RGB-only or thermal-only detection, but adding the event stream to the matched RGB+thermal dynamic-gating system yields a descriptive three-seed mean improvement in COCO AP (+0.0339), AP75 (+0.0333), and AR100 (+0.0244), while AP50 remains nearly unchanged. The AP improvement is positive for two of three seeds, so the evidence supports complementary event contribution on average but not uniform per-seed improvement or statistical significance.
-
-## Prohibited claims
-
-Do not claim:
-
-- event improves every seed;
-- statistically significant event benefit;
-- universal event-sensor utility;
-- independent test-set confirmation;
-- calibrated sensor reliability or physical sensor-health estimation;
-- SOTA solely from this comparison;
-- access to or evidence from the historical guard or V86 outer folds.
-
-## Forbidden work
-
-- no new training, fine-tuning, inference, evaluation, seed, checkpoint, or threshold sweep;
-- no result-driven reruns;
-- no historical 837-image holdout access;
-- no V86 outer-fold access;
-- no metric recomputation from alternate evaluators;
-- no selective omission of seed 0;
-- no raw checkpoints or private/heavy artifacts committed to Git.
-
-## Required outputs
-
-Create a compact manuscript-integration record under:
-
-`runs/v87_triair_event_contribution_manuscript_integration/`
-
-Include at minimum:
-
-- `evidence_lock.json`;
-- `manuscript_change_map.json`;
-- `number_traceability.json`;
+- `evidence_manifest.json`;
+- `number_audit.json`;
 - `claim_audit.json`;
+- `author_metadata_audit.json`;
+- `figure_table_reference_audit.json`;
 - `build_output.txt`;
 - `rendered_page_audit.md`;
+- `release_candidate_manifest.json`;
 - `final_decision.json`;
 - `handoff.md`.
 
@@ -114,16 +59,15 @@ Include at minimum:
 
 Choose exactly one:
 
-- `V87_TRIAIR_EVENT_CONTRIBUTION_MANUSCRIPT_INTEGRATION_COMPLETE`;
-- `V87_BLOCKED_EVIDENCE_OR_NUMBER_TRACEABILITY`;
-- `V87_BLOCKED_CLAIM_OVERREACH`;
-- `V87_BLOCKED_MANUSCRIPT_BUILD_OR_LAYOUT`;
-- `V87_BLOCKED_PROTECTED_ARTIFACT_VIOLATION`.
+- `V88_MANUSCRIPT_RELEASE_CANDIDATE_COMPLETE`;
+- `V88_BLOCKED_EVIDENCE_OR_NUMBER_INCONSISTENCY`;
+- `V88_BLOCKED_CLAIM_OVERREACH`;
+- `V88_BLOCKED_AUTHOR_METADATA`;
+- `V88_BLOCKED_BUILD_OR_LAYOUT`;
+- `V88_BLOCKED_PROTECTED_ARTIFACT_VIOLATION`.
 
 ## Completion commit
 
-Commit with exactly:
-
-`docs: integrate V81-V86 TriAir event contribution evidence into manuscript`
+`docs: finalize V88 manuscript release candidate`
 
 Push to `research/ra-repdet-triair`.
