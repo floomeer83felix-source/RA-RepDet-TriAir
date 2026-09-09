@@ -1,0 +1,19 @@
+{
+  "v81_source": "runs/v81_single_modality_retraining_reconciliation/checkpoint_manifest.json and standardized evaluator records",
+  "v86_sources": [
+    "reproducibility/v86_minimal_rgbt_dynamic_devval/results/V86_MINIMAL_RGBT_DYNAMIC_RESULT.md",
+    "reproducibility/v86_minimal_rgbt_dynamic_devval/results/rgbt_dynamic_per_seed.csv",
+    "reproducibility/v86_minimal_rgbt_dynamic_devval/results/paired_event_deltas.csv"
+  ],
+  "v73_sources": [
+    "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/per_run_metrics.csv",
+    "runs/v73_mmuav_triair_initialized_alignment_aware_transfer_benchmark/three_seed_summary.json"
+  ],
+  "checks": {
+    "single_modality_table_exact": true,
+    "v86_means_and_sd_exact": true,
+    "v86_seed0_negative_delta_retained": true,
+    "v73_actual_metrics_restored": true,
+    "idealized_reference_values_removed_from_active_manuscript": true
+  }
+}
