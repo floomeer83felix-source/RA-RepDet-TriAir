@@ -76,29 +76,22 @@ The supervised benchmark tests whether target-domain training and explicit featu
 
 Exactly nine runs are trained: \textit{Scratch Equal}, \textit{TriAir Init Equal}, and \textit{TriAir Init Reliability}, each with seeds 0, 1, and 2. Every run uses $640\times640$ inputs, batch size 1, 10 epochs, 71,870 optimizer steps, AdamW with learning rate $10^{-4}$ and weight decay $10^{-4}$, a 500-step warmup, and cosine decay to $10^{-6}$. Augmentation, early stopping, devval monitoring during training, threshold tuning, and checkpoint selection are disabled. Only the final checkpoint is evaluated once on all 1,845 devval rows. For the initialized variants, only exact name-and-shape-compatible shared RepViT, FPN, and FCOS tensors are copied. The reported 99.20\% is the fraction of destination parameter and buffer elements copied by this exact rule; it is not a sample match rate or an architecture-identity claim. MM-UAV-specific input projection, stems, alignment modules, reliability scorer, and other unmatched tensors retain the matched seed-specific initialization.
 
-\tabref{tab:mmuav-transfer} reports the independently verified three-seed summary. Supervised alignment-aware training raises AP from 0.000 under frozen naive-grid transfer to $0.2210\pm0.0030$ for Scratch Equal. TriAir Init Equal improves AP to $0.2340\pm0.0020$, and TriAir Init Reliability improves it further to $0.2503\pm0.0025$ while also attaining the highest AP50, AP75, and AR100 means. The complete seed-level records are reported in \tabref{tab:mmuav-transfer-seeds}.
+\tabref{tab:mmuav-transfer} reports the frozen three-seed summary. Supervised alignment-aware training raises AP from effectively zero under frozen naive-grid transfer to $0.2234\pm0.0073$ for Scratch Equal. TriAir Init Equal reaches $0.2178\pm0.0020$, and TriAir Init Reliability reaches $0.2151\pm0.0090$. The corresponding AP50 means are 0.5569, 0.5526, and 0.5451; AR100 means are 0.3513, 0.3437, and 0.3422. Thus, the target-domain alignment and supervision recover useful detection performance, but neither TriAir initialization nor reliability-aware fusion improves the three-seed mean over the matched from-scratch control under this fixed schedule.
 
 \begin{table*}[t]
 \centering
-\caption{Corrected three-seed MM-UAV transfer summary on the 0--1 scale. AP is mean $\pm$ sample standard deviation; the remaining columns are three-seed means. Comparisons are descriptive and supervised. The best supervised row is bold.}
+\caption{Frozen three-seed MM-UAV supervised transfer summary. AP is mean $\pm$ sample standard deviation; remaining values are three-seed means. Comparisons are descriptive and use an exposed devval split.}
 \label{tab:mmuav-transfer}
 \scriptsize
 \begin{tabularx}{\textwidth}{@{}YrrrrY@{}}
 \toprule
 Training setting & AP & AP50 & AP75 & AR100 & Interpretation\\
 \midrule
-Frozen TriAir, naive-grid zero-shot & 0.000 & 0.000 & 0.000 & 0.000 & Direct transfer failed\\
-MM-UAV Scratch Equal & $0.2210\pm0.0030$ & 0.5567 & 0.1347 & 0.3530 & Aligned supervised training recovered performance\\
-TriAir Init Equal & $0.2340\pm0.0020$ & 0.5797 & 0.1510 & 0.3717 & Source-domain pretraining was beneficial\\
-\textbf{TriAir Init Reliability} & $\mathbf{0.2503\pm0.0025}$ & \textbf{0.6077} & \textbf{0.1750} & \textbf{0.3920} & Reliability-aware fusion improved performance further\\
+Frozen TriAir, naive-grid zero-shot & 0.000 & 0.000 & 0.000 & 0.000 & Direct unregistered transfer failed\\
+\textbf{MM-UAV Scratch Equal} & $\mathbf{0.2234\pm0.0073}$ & \textbf{0.5569} & \textbf{0.1340} & \textbf{0.3513} & Highest supervised mean under fixed protocol\\
+TriAir Init Equal & $0.2178\pm0.0020$ & 0.5526 & 0.1254 & 0.3437 & No positive mean transfer benefit\\
+TriAir Init Reliability & $0.2151\pm0.0090$ & 0.5451 & 0.1254 & 0.3422 & No additional mean reliability-fusion benefit\\
 \bottomrule
 \end{tabularx}
 \end{table*}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/fig5_mmuav_transfer.pdf}
-\caption{Corrected three-seed COCO AP on the supervised MM-UAV transfer benchmark. Error bars are sample standard deviations. TriAir initialization improves over scratch equal fusion, and the reliability-aware initialized variant has the highest mean AP.}
-\label{fig:mmuav-transfer}
-\end{figure}
 
