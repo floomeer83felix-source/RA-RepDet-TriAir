@@ -1,0 +1,11 @@
+{
+  "manuscript_root": "submission/v85_real_qualitative_manuscript/",
+  "changes": [
+    "Inserted a matched V86 RGB+thermal versus RGB+thermal+event dynamic-gating subsection and tables after V81 single-modality evidence.",
+    "Corrected the MM-UAV V73 summary and per-seed tables to the frozen actual metrics; removed the incorrect idealized positive-transfer interpretation.",
+    "Updated discussion to state that event contributes descriptively on average but not uniformly across seeds.",
+    "Updated MM-UAV discussion to negative transfer under high parameter coverage.",
+    "Updated conclusion and data-availability wording without changing experiment outputs or checkpoints."
+  ],
+  "protected_binary_figure": "figures/fig6_real_qualitative.pdf unchanged"
+}
