@@ -1,0 +1,41 @@
+\subsection{Matched Event-Contribution Comparison}
+\label{sec:event-contribution}
+The checkpoint-backed V81 single-modality replication shows that event-only detection is the weakest standalone stream, with $0.1949\pm0.0012$ COCO AP, compared with $0.4473\pm0.0033$ for RGB-only and $0.5196\pm0.0196$ for thermal-only. Weak standalone performance does not, however, imply that the event stream is useless when fused with complementary modalities. V86 therefore isolates the event input under a matched dynamic-gating architecture, training schedule, component-disjoint development-validation split, evaluator, checkpoint rule, and seed set.
+
+The RGB+thermal dynamic model reaches $0.6912\pm0.0280$ AP, $0.9461\pm0.0028$ AP50, $0.8409\pm0.0241$ AP75, and $0.7673\pm0.0232$ AR100. The matched RGB+thermal+event dynamic model reaches $0.7251\pm0.0121$ AP, $0.9475\pm0.0003$ AP50, $0.8742\pm0.0081$ AP75, and $0.7917\pm0.0098$ AR100 (\tabref{tab:event-contribution-v86}). The same-seed tri-modal minus two-modal AP differences are $-0.0110$, $+0.0657$, and $+0.0471$ for seeds 0, 1, and 2, respectively, giving a mean paired difference of $+0.0339\pm0.0400$ with positive gains in two of three seeds. The mean paired differences are $+0.0015$ for AP50, $+0.0333$ for AP75, and $+0.0244$ for AR100, each positive in two of three seeds.
+
+The event-associated mean gain is therefore concentrated in stricter localization and recall rather than the lenient AP50 operating point. The evidence supports a complementary event contribution on average under this frozen development-validation protocol, but it does not support uniform per-seed improvement, statistical significance, universal event-sensor utility, or a physical sensor-health interpretation.
+
+\begin{table*}[t]
+\centering
+\caption{Matched V86 dynamic-gating comparison isolating the event stream on component-disjoint TriAir development-validation. Values are three-seed mean $\pm$ sample standard deviation.}
+\label{tab:event-contribution-v86}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Input configuration & AP & AP50 & AP75 & AR100\\
+\midrule
+RGB+thermal dynamic & $0.6912\pm0.0280$ & $0.9461\pm0.0028$ & $0.8409\pm0.0241$ & $0.7673\pm0.0232$\\
+RGB+thermal+event dynamic & $\mathbf{0.7251\pm0.0121}$ & $\mathbf{0.9475\pm0.0003}$ & $\mathbf{0.8742\pm0.0081}$ & $\mathbf{0.7917\pm0.0098}$\\
+\midrule
+Paired mean difference & $+0.0339\pm0.0400$ & $+0.0015\pm0.0026$ & $+0.0333\pm0.0314$ & $+0.0244\pm0.0329$\\
+Positive seed pairs & 2/3 & 2/3 & 2/3 & 2/3\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\caption{Seed-paired AP contribution of event input in V86.}
+\label{tab:event-contribution-v86-seeds}
+\small
+\begin{tabular}{@{}rrrr@{}}
+\toprule
+Seed & RGB+thermal & Tri-modal & Difference\\
+\midrule
+0 & 0.7223 & 0.7112 & -0.0110\\
+1 & 0.6677 & 0.7334 & +0.0657\\
+2 & 0.6837 & 0.7308 & +0.0471\\
+\bottomrule
+\end{tabular}
+\end{table}
