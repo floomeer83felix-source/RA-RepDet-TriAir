@@ -1,0 +1,6 @@
+Local integrated authoring package was compiled with two consecutive pdfLaTeX passes on 2026-09-09.
+Result: PASS
+Pages: 13
+Undefined citations/references: 0
+Overfull boxes after table resize correction: 0
+The repository V85 qualitative figure asset was not regenerated or modified; manuscript changes are textual/tables only.
