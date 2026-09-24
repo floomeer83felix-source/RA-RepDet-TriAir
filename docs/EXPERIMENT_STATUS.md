@@ -1,5 +1,22 @@
 # Experiment Status
 
+## M3OT supervised run started (2026-09-24)
+
+`M3OT_SUPERVISED_RGBT_SIX_SEED_RUNNING`: the read-only RGB/IR/GT audit and
+eight-sample visual review passed. Official train has 8,630 usable RGB/IR
+pairs and 111,678 vehicle boxes; val has 1,200 pairs and 13,781 boxes. One
+official train RGB frame (`1-07/000451`) has no IR pair and is excluded.
+RGB and IR are frame-paired but not perfectly pixel-aligned; GT remains in
+RGB coordinates. There is no train/val frame overlap.
+
+The matched 50-epoch queue started at 2026-09-24 09:48 CST with
+`early_seed0`. The six runs are sequential and resumable. Run artifacts and
+the orchestrator log stay local under `runs/m3ot_supervised_rgbt_v1/`.
+Final AP, paired differences, counts, CSVs, and qualitative figures are
+**pending**; no result or model superiority is claimed yet. The public M3OT
+test split, TriAir archival guard, and frozen manuscript results were not
+accessed or changed for this experiment.
+
 ## User-authorized M3OT experiment (2026-09-24)
 
 `M3OT_SUPERVISED_RGBT_SIX_SEED_AUTHORIZED` is the active experiment. It

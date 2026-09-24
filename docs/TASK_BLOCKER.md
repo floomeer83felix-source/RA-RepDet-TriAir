@@ -2,13 +2,13 @@
 
 ## Current M3OT experiment gate (2026-09-24)
 
-No active failure is asserted. The user has authorized the M3OT supervised
-six-seed experiment in `docs/M3OT_SUPERVISED_RGBT_SIX_SEED_PROTOCOL.md`.
-Training remains gated on a read-only RGB/IR/GT pairing audit and visual box
-review. The previously queued V88 manuscript-only boundary is deferred for
-this explicitly user-authorized experiment; its frozen scientific claims must
-not be silently revised. If M3OT pairing, labels, resource availability, or
-training fails, record the exact blocker here before proceeding.
+No active failure is asserted. The M3OT RGB/IR/GT pairing and visual-review
+gates passed on 2026-09-24, and the matched six-run training queue is now
+running. The sole unpaired train RGB frame is excluded and documented in the
+audit; imperfect RGB/IR pixel alignment is a disclosed limitation, not a
+silent annotation correction. V88 remains deferred, and its frozen
+scientific claims must not be silently revised. If M3OT training or final
+verification fails, record the exact error here before proceeding.
 
 Status: `V87_COMPLETE_NO_ACTIVE_EXPERIMENT_BLOCKER_V88_RELEASE_AUDIT_AUTHORIZED`
 

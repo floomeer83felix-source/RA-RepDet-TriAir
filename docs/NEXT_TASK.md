@@ -4,6 +4,12 @@
 
 `M3OT_SUPERVISED_RGBT_SIX_SEED_AUTHORIZED`
 
+Execution status (2026-09-24): data and visual gates passed; the six-run
+sequential training queue is running from `early_seed0`. Monitor
+`runs/m3ot_supervised_rgbt_v1/orchestrator.stdout.log` and each run's
+`status.json`. Do not report final metrics until all six 50-epoch runs and
+the best-checkpoint report have completed and been verified.
+
 The user explicitly authorized a new M3OT supervised experiment after V87.
 Execute `docs/M3OT_SUPERVISED_RGBT_SIX_SEED_PROTOCOL.md` before resuming the
 previously queued V88 manuscript audit. This authorization supersedes V88's
