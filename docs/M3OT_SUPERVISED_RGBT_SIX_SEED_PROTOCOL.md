@@ -31,7 +31,9 @@ checkpoint selection every epoch. Do not use the M3OT public test split.
 - Seeds: 0, 1, 2, with the same seeded shuffle stream and image order per
   corresponding seed. Train exactly 50 epochs, batch size 4, fixed 640x640
   detector input, AdamW, constant `lr=1e-4`, `weight_decay=1e-4`. No warm-up,
-  scheduler, gradient accumulation, or architecture-specific tuning.
+  scheduler, gradient accumulation, or architecture-specific tuning. Both
+  models use two data-loader workers; sampler and worker RNG streams are
+  separate so epoch-boundary resume preserves the image order.
 - Decode paired uint8 RGB/IR, concatenate RGB then IR, divide by 255;
   torchvision detector performs the same fixed 640x640 warp for both. No
   mosaic, mixup, random crop, flip, color jitter, or modality dropout.
