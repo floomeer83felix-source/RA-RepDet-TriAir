@@ -1,5 +1,16 @@
 # Experiment Status
 
+## User-authorized M3OT experiment (2026-09-24)
+
+`M3OT_SUPERVISED_RGBT_SIX_SEED_AUTHORIZED` is the active experiment. It
+compares RGB+thermal early fusion with RGB+thermal dynamic routing on official
+M3OT train/val, three matched seeds, from-scratch initialization, 50 epochs
+per run, and one shared training/evaluation protocol. Pairing and qualitative
+GT review are required before GPU training. V88 manuscript release audit is
+deferred, not completed. The prior exploratory M3OT zero-shot and
+inference-only scale-adapter results are not supervised baseline results and
+must not be mixed with this experiment.
+
 Updated: 2026-09-09
 
 ## Active status

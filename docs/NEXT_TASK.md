@@ -1,5 +1,28 @@
 # Current Task
 
+## Active user-authorized experiment (2026-09-24)
+
+`M3OT_SUPERVISED_RGBT_SIX_SEED_AUTHORIZED`
+
+The user explicitly authorized a new M3OT supervised experiment after V87.
+Execute `docs/M3OT_SUPERVISED_RGBT_SIX_SEED_PROTOCOL.md` before resuming the
+previously queued V88 manuscript audit. This authorization supersedes V88's
+no-new-experiment restriction **only for this M3OT protocol**. Do not change
+the frozen TriAir manuscript claims or use the M3OT public test split.
+
+First audit actual local RGB/IR/frame pairing and official RGB COCO vehicle
+boxes, then visually inspect representative train/val samples. Only after
+both gates pass, train early RGB+thermal and dynamic RGB+thermal detectors from
+scratch (`pretrained=False`) for seeds 0/1/2 with identical 50-epoch,
+batch-4, 640x640, AdamW (`lr=1e-4`, `weight_decay=1e-4`) schedules and no
+augmentation. Evaluate official val each epoch, select each best checkpoint
+by AP50, and produce all metrics, paired comparisons, fixed-threshold counts,
+three model-independent qualitative scenes, CSV files, and a short report.
+
+This is **supervised M3OT train/val development**, not zero-shot transfer or
+blind independent test. Heavy data, weights, caches, and rendered figures
+remain local; only lightweight code/docs/reports may be pushed.
+
 ## Completion
 
 V87 is complete with:
@@ -10,9 +33,10 @@ The active manuscript now contains the authoritative V81 single-modality evidenc
 
 No new training, inference, evaluation, tuning, checkpoint selection, historical-holdout access, or V86 outer-fold access occurred in V87.
 
-## Active next task
+## Deferred manuscript task
 
-`V88_MANUSCRIPT_RELEASE_CANDIDATE_CONSISTENCY_AUDIT_AUTHORIZED`
+`V88_MANUSCRIPT_RELEASE_CANDIDATE_CONSISTENCY_AUDIT_AUTHORIZED` (deferred until
+the user-authorized M3OT experiment is resolved)
 
 V88 is a final manuscript/submission-readiness task only.
 

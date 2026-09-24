@@ -1,5 +1,15 @@
 # Task Blocker
 
+## Current M3OT experiment gate (2026-09-24)
+
+No active failure is asserted. The user has authorized the M3OT supervised
+six-seed experiment in `docs/M3OT_SUPERVISED_RGBT_SIX_SEED_PROTOCOL.md`.
+Training remains gated on a read-only RGB/IR/GT pairing audit and visual box
+review. The previously queued V88 manuscript-only boundary is deferred for
+this explicitly user-authorized experiment; its frozen scientific claims must
+not be silently revised. If M3OT pairing, labels, resource availability, or
+training fails, record the exact blocker here before proceeding.
+
 Status: `V87_COMPLETE_NO_ACTIVE_EXPERIMENT_BLOCKER_V88_RELEASE_AUDIT_AUTHORIZED`
 
 Updated: 2026-09-09
