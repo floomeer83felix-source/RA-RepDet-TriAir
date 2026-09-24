@@ -1,5 +1,15 @@
 # Current Task
 
+## Recovery note (2026-09-24)
+
+The first M3OT queue stopped after early seed 0 completed and dynamic seed 0
+completed 23 epochs. A native PyTorch crash interrupted dynamic epoch 24.
+The unchanged queue was restarted from the intact epoch-23 checkpoint at
+22:24 CST; its live log is
+`runs/m3ot_supervised_rgbt_v1/orchestrator.resume2.stdout.log`. It skips
+completed early seed 0, resumes dynamic seed 0, then continues seeds 1 and
+2. Keep the original crash log and do not treat any partial metrics as final.
+
 ## Active user-authorized experiment (2026-09-24)
 
 `M3OT_SUPERVISED_RGBT_SIX_SEED_AUTHORIZED`

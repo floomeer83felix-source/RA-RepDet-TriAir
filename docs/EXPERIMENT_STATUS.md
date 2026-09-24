@@ -1,5 +1,18 @@
 # Experiment Status
 
+## M3OT supervised checkpoint resume (2026-09-24 22:24 CST)
+
+The first queue completed `early_seed0` (50/50 epochs; best epoch 40) and
+`reliability_rgbt_seed0` through epoch 23. During dynamic epoch 24, the
+Windows/PyTorch process exited with native code `-1073740791`; the remaining
+four runs did not start. The epoch-23 `last.pt` loaded successfully and
+contains model, optimizer, and RNG states matching the status/history files.
+The unchanged six-run queue has now resumed from dynamic epoch 24, with
+original crash logs preserved and new output in
+`runs/m3ot_supervised_rgbt_v1/orchestrator.resume2.stdout.log`.
+Final six-seed results remain pending. Do not interpret the partial seed-0
+comparison as a final experimental conclusion.
+
 ## M3OT supervised run started (2026-09-24)
 
 `M3OT_SUPERVISED_RGBT_SIX_SEED_RUNNING`: the read-only RGB/IR/GT audit and
