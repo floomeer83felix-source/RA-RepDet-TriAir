@@ -1,5 +1,28 @@
 # Experiment Status
 
+## M3OT supervised six-seed experiment complete (2026-09-25)
+
+All six matched RGB+thermal runs completed 50/50 epochs on official M3OT
+train/val. Best checkpoints were selected by val AP50 and then re-evaluated
+under the same deterministic CUDA settings; all four COCO metrics matched
+the saved best-epoch metrics exactly. The final six-row CSV, sample-SD
+summary, paired AP differences, fixed-threshold counts, and three preselected
+qualitative scenes are under `runs/m3ot_supervised_rgbt_v1/results/` locally.
+Lightweight result tables and the report are tracked in
+`reproducibility/m3ot_supervised_rgbt_v1/results/`.
+
+| Model | AP mean +/- sample SD | AP50 mean +/- sample SD | AP75 mean +/- sample SD | AR100 mean +/- sample SD |
+| --- | ---: | ---: | ---: | ---: |
+| Early RGB+thermal | 0.2095 +/- 0.0155 | 0.5028 +/- 0.0290 | 0.1239 +/- 0.0209 | 0.3482 +/- 0.0186 |
+| Dynamic RGB+thermal | 0.2380 +/- 0.0156 | 0.5533 +/- 0.0128 | 0.1518 +/- 0.0231 | 0.3792 +/- 0.0142 |
+
+Paired dynamic-minus-early AP is +0.041268, +0.020828, and +0.023166 for
+seeds 0, 1, and 2; mean +0.028421 +/- 0.011187 sample SD. This is a
+descriptive supervised train/val result, not a blind independent-test or
+significance claim. At score >= 0.25, seed-0 dynamic routing has higher
+recall but lower precision than seed-0 early fusion; per-seed TP/FP/FN/P/R
+remain visible in the CSV. The M3OT public test split was not accessed.
+
 ## M3OT supervised checkpoint resume (2026-09-24 22:24 CST)
 
 The first queue completed `early_seed0` (50/50 epochs; best epoch 40) and

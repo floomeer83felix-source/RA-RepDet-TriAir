@@ -21,6 +21,7 @@ if str(ROOT) not in sys.path:
 from datasets.m3ot_dataset import M3OTExternalDataset
 from datasets.triair_dataset import collate_fn
 from rarepdet.coco_metrics import coco_detection_metrics
+from rarepdet.train_early_fusion import configure_reproducibility
 from tools.m3ot_matching import match_prediction
 from tools.train_m3ot_supervised import assert_audit, make_model, sha256
 
@@ -166,6 +167,9 @@ def main() -> None:
     for seed in (0, 1, 2):
         for model_type in MODELS:
             path, identity = verify_run(root, model_type, seed, manifest_hash)
+            reproducibility = configure_reproducibility(seed)
+            if reproducibility != identity["config"]["reproducibility"]:
+                raise RuntimeError(f"Reproducibility settings differ: {model_type} seed {seed}")
             dataset = M3OTExternalDataset(manifest, model_type=model_type,
                                           expected_split="val")
             model = make_model(model_type)

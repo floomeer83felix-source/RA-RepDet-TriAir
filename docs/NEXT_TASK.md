@@ -1,5 +1,17 @@
 # Current Task
 
+## M3OT completion handoff (2026-09-25)
+
+`M3OT_SUPERVISED_RGBT_SIX_SEED_COMPLETE`: all six runs completed, all six
+best checkpoints re-evaluated with exact saved-metric agreement, and the
+final CSV/report/figure audit passed. The report's initial recomputation
+failure was solely due to not re-enabling the training-time deterministic
+CUDA/cuDNN settings; `tools/report_m3ot_supervised.py` now restores them
+per seed. No model, checkpoint, training hyperparameter, or dataset was
+changed. See `reproducibility/m3ot_supervised_rgbt_v1/results/README.md`
+for the lightweight handoff. V88 manuscript release audit remains the
+next queued task, not executed in this M3OT completion turn.
+
 ## Recovery note (2026-09-24)
 
 The first M3OT queue stopped after early seed 0 completed and dynamic seed 0

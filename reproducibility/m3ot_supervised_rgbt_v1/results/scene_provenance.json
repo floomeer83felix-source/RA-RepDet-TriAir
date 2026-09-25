@@ -1,0 +1,23 @@
+[
+  {
+    "scene": "group1_typical",
+    "sample_id": "1/val/1-08/000361",
+    "gt_boxes": 8,
+    "early_display_boxes": 8,
+    "dynamic_display_boxes": 15
+  },
+  {
+    "scene": "group2_typical",
+    "sample_id": "2/val/2-08/000320",
+    "gt_boxes": 15,
+    "early_display_boxes": 12,
+    "dynamic_display_boxes": 35
+  },
+  {
+    "scene": "dense",
+    "sample_id": "2/val/2-08/000236",
+    "gt_boxes": 24,
+    "early_display_boxes": 11,
+    "dynamic_display_boxes": 43
+  }
+]

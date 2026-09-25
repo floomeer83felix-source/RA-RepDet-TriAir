@@ -1,5 +1,17 @@
 # Task Blocker
 
+## M3OT status after completion (2026-09-25)
+
+No active M3OT blocker. The six training runs and final artifact audit are
+complete. The historical native crash below was recovered from epoch 23
+without a protocol change. The first final-report attempt rejected an AP
+recalculation mismatch of roughly 1e-5 for early seed 0; investigation
+showed that the reporting process had omitted the training-time
+deterministic CUDA/cuDNN configuration. Re-running that checkpoint with the
+frozen seed and deterministic settings gave zero difference in AP, AP50,
+AP75, and AR100. The corrected report then re-evaluated all six best
+checkpoints with exact metric agreement and produced the final outputs.
+
 ## M3OT native-process interruption and recovery (2026-09-24)
 
 The original queue stopped in `reliability_rgbt_seed0` epoch 24 near step
